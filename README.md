@@ -1,30 +1,12 @@
-# README #
+# cozen-lib
 
-This README would normally document whatever steps are necessary to get your application up and running.
-This is a commit.
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.15.1.
 
-### What is this repository for? ###
+## Build & development
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Run `grunt` for building and `grunt serve` for preview.
 
-### How do I get set up? ###
+## Testing
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Running `grunt test` will run the unit tests with karma.
