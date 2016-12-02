@@ -3,11 +3,11 @@
 
     angular
         .module('cozenLibApp')
-        .controller('BtnCtrl', BtnCtrl);
+        .controller('PanelCtrl', PanelCtrl);
 
-    BtnCtrl.$inject = [];
+    PanelCtrl.$inject = [];
 
-    function BtnCtrl() {
+    function PanelCtrl() {
         var vm = this;
     }
 

@@ -1,27 +1,32 @@
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLibApp')
-    .config(config);
+    angular
+        .module('cozenLibApp')
+        .config(config);
 
-  config.$inject = [
-    '$stateProvider',
-    '$urlRouterProvider'
-  ];
+    config.$inject = [
+        '$stateProvider',
+        '$urlRouterProvider'
+    ];
 
-  function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider) {
 
-    // Main abstract route (parent)
-    $stateProvider
-      .state('examples', {
-        url        : '/examples',
-        templateUrl: 'examples/main.html',
-        data       : {pageTitle: 'Examples'}
-      });
+        // Main abstract route (parent)
+        $stateProvider
+            .state('main', {
+                url        : '/main',
+                templateUrl: 'examples/main.html',
+                data       : {pageTitle: 'Main'}
+            })
+            .state('examples', {
+                abstract: true,
+                url     : '/examples',
+                template: '<ui-view/>'
+            });
 
-    // Other routes
-    $urlRouterProvider.otherwise('/examples');
-  }
+        // Other routes
+        $urlRouterProvider.otherwise('/main');
+    }
 
 })(window.angular);

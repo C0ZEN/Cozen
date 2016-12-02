@@ -14,17 +14,17 @@
 
         // Btn routes
         $stateProvider
-            .state('examples.btn', {
+            .state('examples.panel', {
                 abstract: true,
-                url     : '/btn',
+                url     : '/panel',
                 template: '<ui-view/>'
             })
-            .state('examples.btn.default', {
+            .state('examples.panel.default', {
                 url         : '/default',
-                templateUrl : 'examples/btn/templates/btn.default.html',
-                controller  : 'BtnCtrl',
+                templateUrl : 'examples/panel/templates/panel.default.html',
+                controller  : 'PanelCtrl',
                 controllerAs: 'vm',
-                data        : {pageTitle: 'Btn - Default'}
+                data        : {pageTitle: 'Panel - Default'}
             });
     }
 

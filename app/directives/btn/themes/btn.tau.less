@@ -1,0 +1,38 @@
+div.cozen-btn.tau {
+
+  // Size
+  &.small {
+    .cozen-btn-size(@cozen-space-small, 16px, 32px);
+    .cozen-btn-icon(0 @cozen-space-small);
+  }
+  &.normal {
+    .cozen-btn-size(@cozen-space-normal, 20px, 39px);
+    .cozen-btn-icon(0 @cozen-space-normal);
+  }
+  &.large {
+    .cozen-btn-size(@cozen-space-large, 25px, 48px);
+    .cozen-btn-icon(0 @cozen-space-large);
+  }
+
+  // Type
+  &.default {
+    .cozen-btn-type(@cozen-color-white, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-btn-border(1px, solid, @cozen-color-grey-hover, @cozen-color-grey-hover);
+  }
+  &.info {
+    .cozen-btn-type(@cozen-color-white, @cozen-color-blue, @cozen-color-blue-hover);
+    .cozen-btn-border(1px, solid, @cozen-color-blue-hover, @cozen-color-blue-hover);
+  }
+  &.success {
+    .cozen-btn-type(@cozen-color-white, @cozen-color-green, @cozen-color-green-hover);
+    .cozen-btn-border(1px, solid, @cozen-color-green-hover, @cozen-color-green-hover);
+  }
+  &.warning {
+    .cozen-btn-type(@cozen-color-white, @cozen-color-orange, @cozen-color-orange-hover);
+    .cozen-btn-border(1px, solid, @cozen-color-orange-hover, @cozen-color-orange-hover);
+  }
+  &.error {
+    .cozen-btn-type(@cozen-color-white, @cozen-color-red, @cozen-color-red-hover);
+    .cozen-btn-border(1px, solid, @cozen-color-red-hover, @cozen-color-red-hover);
+  }
+}

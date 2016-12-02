@@ -1,0 +1,45 @@
+<div ng-if="_isReady"
+     class="cozen-panel"
+     ng-class="_methods.getMainClass();"
+     id="{{ _cozenPanelId }}">
+
+    <div class="cozen-panel-header"
+         ng-click="_methods.onClick.header($event);">
+
+        <!-- Big left icon -->
+        <div ng-if="_cozenPanelBigIconLeft != ''"
+             ng-click="_methods.onClick.bigIconLeft($event);"
+             class="cozen-panel-big-icon left">
+            <i ng-class="[_cozenPanelBigIconLeft]"></i>
+        </div>
+
+        <!-- Left icon -->
+        <div ng-if="_cozenPanelIconLeft != ''"
+             class="cozen-panel-icon">
+            <i ng-class="[_cozenPanelIconLeft]"></i>
+        </div>
+
+        <!-- Label -->
+        <span class="cozen-panel-label">
+            {{ _cozenPanelLabel | translate }}
+        </span>
+
+        <!-- Right icon -->
+        <div ng-if="_cozenPanelIconRight != ''"
+             class="cozen-panel-icon">
+            <i ng-class="[_cozenPanelIconRight]"></i>
+        </div>
+
+        <!-- Big right icon -->
+        <div ng-if="_cozenPanelBigIconRight != ''"
+             ng-click="_methods.onClick.bigIconRight($event);"
+             class="cozen-panel-big-icon right">
+            <i ng-class="[_cozenPanelBigIconRight]"></i>
+        </div>
+    </div>
+
+    <div ng-show="cozenPanelOpen"
+         class="cozen-panel-body"
+         ng-transclude>
+    </div>
+</div>

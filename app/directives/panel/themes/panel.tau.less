@@ -1,0 +1,52 @@
+div.cozen-panel.tau {
+
+  // Variables
+  @cozen-panel-tau-height-small: 32px;
+  @cozen-panel-tau-height-normal: 39px;
+  @cozen-panel-tau-height-large: 48px;
+  @cozen-panel-tau-border-size: 1px;
+
+  // Size
+  &.small {
+    .cozen-panel-size(@cozen-space-normal, 16px, @cozen-panel-tau-height-small);
+    .cozen-panel-icon(0 @cozen-space-small);
+    .cozen-panel-big-icon(@cozen-panel-tau-height-small, @cozen-panel-tau-border-size);
+  }
+  &.normal {
+    .cozen-panel-size(@cozen-space-normal, 20px, @cozen-panel-tau-height-normal);
+    .cozen-panel-icon(0 @cozen-space-normal);
+    .cozen-panel-big-icon(@cozen-panel-tau-height-normal, @cozen-panel-tau-border-size);
+  }
+  &.large {
+    .cozen-panel-size(@cozen-space-large, 25px, @cozen-panel-tau-height-large);
+    .cozen-panel-icon(0 @cozen-space-large);
+    .cozen-panel-big-icon(@cozen-panel-tau-height-large, @cozen-panel-tau-border-size);
+  }
+
+  // Type
+  &.default {
+    .cozen-panel-type-header(@cozen-color-white, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-panel-type-body(@cozen-color-background);
+    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-grey-hover, @cozen-color-grey-hover);
+  }
+  &.info {
+    .cozen-panel-type-header(@cozen-color-white, @cozen-color-blue, @cozen-color-blue-hover);
+    .cozen-panel-type-body(@cozen-color-background);
+    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-blue-hover, @cozen-color-blue-hover);
+  }
+  &.success {
+    .cozen-panel-type-header(@cozen-color-white, @cozen-color-green, @cozen-color-green-hover);
+    .cozen-panel-type-body(@cozen-color-background);
+    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-green-hover, @cozen-color-green-hover);
+  }
+  &.warning {
+    .cozen-panel-type-header(@cozen-color-white, @cozen-color-orange, @cozen-color-orange-hover);
+    .cozen-panel-type-body(@cozen-color-background);
+    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-orange-hover, @cozen-color-orange-hover);
+  }
+  &.error {
+    .cozen-panel-type-header(@cozen-color-white, @cozen-color-red, @cozen-color-red-hover);
+    .cozen-panel-type-body(@cozen-color-background);
+    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-red-hover, @cozen-color-red-hover);
+  }
+}
