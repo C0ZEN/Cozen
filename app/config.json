@@ -6,5 +6,20 @@
   "themes": [
     "tau"
   ],
-  "debug": true
+  "debug": false,
+  "scrollsBar": true,
+  "scrollsBarConfig": {
+    "autoHideScrollbar": true,
+    "theme": "dark",
+    "advanced": {
+      "updateOnContentResize": true
+    },
+    "setHeight": 0,
+    "scrollInertia": 100,
+    "axis": "yx",
+    "scrollButtons": {
+      "scrollAmount": "auto",
+      "enable": false
+    }
+  }
 }

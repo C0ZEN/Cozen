@@ -5,7 +5,9 @@ div.cozen-btn {
   box-sizing:  border-box;
   position:    relative;
   line-height: normal;
-  outline:     0;
+  outline:     @cozen-outline;
+  width:       100%;
+  display:     inline-block;
 
   // Label
   & > span.cozen-btn-label {
@@ -14,6 +16,7 @@ div.cozen-btn {
     font-size:      inherit;
     vertical-align: sub;
     line-height:    inherit;
+    font-family:    @cozen-family-span;
   }
 
   // Icon
@@ -67,5 +70,11 @@ div.cozen-btn {
   // Loading
   &.loading {
     cursor: wait;
+  }
+
+  // Auto sizing
+  &.auto {
+    width:  auto;
+    margin: 0 auto;
   }
 }

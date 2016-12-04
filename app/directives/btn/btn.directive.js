@@ -14,20 +14,21 @@
  * @param {boolean}  cozenBtnLoader   = false > Active a loader (replace all the content and disable visual state)
  *
  * [Attributes params]
- * @param {number} cozenBtnId                     > Id of the button
- * @param {string} cozenBtnLabel                  > Text of the button [required]
- * @param {string} cozenBtnSize       = 'normal'  > Size of the button
- * @param {string} cozenBtnSizeSmall              > Shortcut for small size
- * @param {string} cozenBtnSizeNormal             > Shortcut for normal size
- * @param {string} cozenBtnSizeLarge              > Shortcut for large size
- * @param {string} cozenBtnType       = 'default' > Type of the button (change the color)
- * @param {string} cozenBtnTypeDefault            > Shortcut for default type
- * @param {string} cozenBtnTypeInfo               > Shortcut for info type
- * @param {string} cozenBtnTypeSuccess            > Shortcut for success type
- * @param {string} cozenBtnTypeWarning            > Shortcut for warning type
- * @param {string} cozenBtnTypeError              > Shortcut for error type
- * @param {string} cozenBtnIconLeft               > Add an icon the to left (write the class)
- * @param {string} cozenBtnIconRight              > Add an icon the to right (write the class)
+ * @param {number}  cozenBtnId                      > Id of the button
+ * @param {string}  cozenBtnLabel                   > Text of the button
+ * @param {string}  cozenBtnSize        = 'normal'  > Size of the button
+ * @param {string}  cozenBtnSizeSmall               > Shortcut for small size
+ * @param {string}  cozenBtnSizeNormal              > Shortcut for normal size
+ * @param {string}  cozenBtnSizeLarge               > Shortcut for large size
+ * @param {string}  cozenBtnType        = 'default' > Type of the button (change the color)
+ * @param {string}  cozenBtnTypeDefault             > Shortcut for default type
+ * @param {string}  cozenBtnTypeInfo                > Shortcut for info type
+ * @param {string}  cozenBtnTypeSuccess             > Shortcut for success type
+ * @param {string}  cozenBtnTypeWarning             > Shortcut for warning type
+ * @param {string}  cozenBtnTypeError               > Shortcut for error type
+ * @param {string}  cozenBtnIconLeft                > Add an icon the to left (write the class)
+ * @param {string}  cozenBtnIconRight               > Add an icon the to right (write the class)
+ * @param {boolean} cozenBtnAutoSizing  = false     > Shortcut to activate the auto sizing (instead of 100% width)
  *
  */
 (function (angular) {
@@ -59,9 +60,12 @@
 
         function link(scope, element, attrs) {
             var methods = {
-                init    : init,
-                hasError: hasError,
-                destroy : destroy
+                init           : init,
+                hasError       : hasError,
+                destroy        : destroy,
+                getMainClass   : getMainClass,
+                onClick        : onClick,
+                getTabIndex    : getTabIndex
             };
 
             var data = {
@@ -77,7 +81,8 @@
                 // Public functions
                 scope._methods = {
                     getMainClass: getMainClass,
-                    onClick     : onClick
+                    onClick     : onClick,
+                    getTabIndex : getTabIndex
                 };
 
                 // Checking required stuff
@@ -121,10 +126,6 @@
             }
 
             function hasError() {
-                if (Methods.isNullOrEmpty(attrs.cozenBtnLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'cozenBtnLabel');
-                    return true;
-                }
                 return false;
             }
 
@@ -137,6 +138,7 @@
                 if (scope.cozenBtnActive) classList.push('active');
                 if (scope.cozenBtnDisabled) classList.push('disabled');
                 if (scope.cozenBtnLoader) classList.push('loading');
+                if (angular.isDefined(attrs.cozenBtnAutoSizing)) classList.push('auto');
                 return classList;
             }
 
@@ -145,6 +147,13 @@
                 if (scope.cozenBtnLoader) return;
                 if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
                 if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClick');
+            }
+
+            function getTabIndex() {
+                var tabIndex = 0;
+                if (scope.cozenBtnDisabled) tabIndex = -1;
+                else if (scope.cozenBtnLoader) tabIndex = -1;
+                return tabIndex;
             }
         }
     }

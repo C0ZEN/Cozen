@@ -6,7 +6,10 @@ var Methods = {
     safeApply             : safeApply,
     isFunction            : isFunction,
     directiveErrorRequired: directiveErrorRequired,
-    directiveCallbackLog  : directiveCallbackLog
+    directiveCallbackLog  : directiveCallbackLog,
+    getConsoleColor       : getConsoleColor,
+    capitalizeFirstLetter : capitalizeFirstLetter,
+    directiveErrorFunction: directiveErrorFunction
 };
 
 var Data = {
@@ -65,13 +68,30 @@ function directiveCallbackLog(directive, fn) {
 function getConsoleColor(type) {
     var color = 'color:';
     switch (type) {
+        case 'red':
         case 'directive':
             return color + Data.red;
+        case 'purple':
         case 'fn':
             return color + Data.purple;
+        case 'orange':
         case 'time':
             return color + Data.orange;
         default:
             return color + Data.black;
     }
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function directiveErrorFunction(directive, param) {
+    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a function',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }

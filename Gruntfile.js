@@ -471,8 +471,8 @@ module.exports = function (grunt) {
                 }
             },
             config : {
-                src : '<%= yeoman.app %>/directives/app.constant.tpl.js',
-                dest: '<%= yeoman.app %>/directives/app.constant.js'
+                src : '<%= yeoman.app %>/directives/utils/app.constant.tpl.js',
+                dest: '<%= yeoman.app %>/directives/utils/app.constant.js'
             }
         }
     });

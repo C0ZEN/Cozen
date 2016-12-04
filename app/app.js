@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, window) {
     'use strict';
 
     /**
@@ -20,7 +20,10 @@
             'ngSanitize',
             'ngTouch',
             'ui.router',
-            'pascalprecht.translate'
+            'pascalprecht.translate',
+            'ui.bootstrap',
+            'ui.bootstrap.tooltip',
+            'ngScrollbars'
         ])
         .config(config)
         .run(run);
@@ -29,11 +32,12 @@
         '$locationProvider',
         '$translateProvider',
         'CONFIG',
-        'ThemesProvider'
+        'ThemesProvider',
+        'ConfigProvider'
     ];
 
     // Global configuration
-    function config($locationProvider, $translateProvider, CONFIG, ThemesProvider) {
+    function config($locationProvider, $translateProvider, CONFIG, ThemesProvider, ConfigProvider) {
 
         // Configure the location provider
         $locationProvider.html5Mode({
@@ -54,6 +58,11 @@
 
         // Choose the theme
         ThemesProvider.setActiveTheme('tau');
+
+        // Override the CONFIG
+        ConfigProvider
+            .scrollsBar(true)
+            .debug(true);
     }
 
     run.$inject = [
@@ -62,7 +71,8 @@
     ];
 
     function run($rootScope, $state) {
-        $rootScope.$state = $state;
+        $rootScope.$state      = $state;
+        $rootScope.innerHeight = window.innerHeight;
     }
 
-})(window.angular);
+})(window.angular, window);

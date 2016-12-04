@@ -17,6 +17,8 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
+        <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -65,7 +67,9 @@
             </div>
         </div>
 
-        <div ui-view></div>
+        <cozen-view cozen-view-scroll-bar-height="{{ innerHeight - 72 }}">
+            <div ui-view></div>
+        </cozen-view>
 
         <!-- build:js(.) scripts/vendor.js -->
         <!-- bower:js -->
@@ -86,12 +90,20 @@
         <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
         <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
         <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+        <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+        <script src="bower_components/ng-scrollbars/src/scrollbars.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
         <!-- cozen-js-start -->
 
         <script src="app.js" type="text/javascript"></script>
+
+        <script src="examples/tooltip/tooltip.routes.js" type="text/javascript"></script>
+
+        <script src="examples/tooltip/tooltip.ctrl.js" type="text/javascript"></script>
 
         <script src="examples/panel/panel.routes.js" type="text/javascript"></script>
 
@@ -103,15 +115,27 @@
 
         <script src="examples/app.routes.js" type="text/javascript"></script>
 
-        <script src="directives/theme.provider.js" type="text/javascript"></script>
+        <script src="directives/view/view.directive.js" type="text/javascript"></script>
 
-        <script src="directives/public.methods.js" type="text/javascript"></script>
+        <script src="directives/utils/theme.provider.js" type="text/javascript"></script>
+
+        <script src="directives/utils/shortcut.directive.js" type="text/javascript"></script>
+
+        <script src="directives/utils/public.methods.js" type="text/javascript"></script>
+
+        <script src="directives/utils/onFocus.directive.js" type="text/javascript"></script>
+
+        <script src="directives/utils/onBlur.directive.js" type="text/javascript"></script>
+
+        <script src="directives/utils/config.provider.js" type="text/javascript"></script>
+
+        <script src="directives/utils/app.constant.js" type="text/javascript"></script>
+
+        <script src="directives/tooltip/tooltip.directive.js" type="text/javascript"></script>
 
         <script src="directives/panel/panel.directive.js" type="text/javascript"></script>
 
         <script src="directives/btn/btn.directive.js" type="text/javascript"></script>
-
-        <script src="directives/app.constant.js" type="text/javascript"></script>
 
         <!-- cozen-js-end -->
 

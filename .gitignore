@@ -8,5 +8,5 @@
 .gitattributes
 .idea/
 app/languages
-app/directives/app.constant.js
+app/directives/utils/app.constant.js
 app/styles/themes/tau/tau.min.css

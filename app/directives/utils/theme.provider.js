@@ -14,11 +14,18 @@
 
         this.setActiveTheme = function (theme) {
             if (!Methods.isInList(CONFIG.config.themes, theme)) {
-                console.error('The theme <' + theme + '> is not in the list of available themes.\n' +
-                    'To avoid error, the new active theme is <' + activeTheme + '>.');
+                console.error('%cThe theme <%c' + theme + '%c> is not in the list of available themes.\n' +
+                    'To avoid error, the new active theme is <%c' + activeTheme + '%c>.',
+                    getConsoleColor(),
+                    getConsoleColor('red'),
+                    getConsoleColor(),
+                    getConsoleColor('purple'),
+                    getConsoleColor()
+                );
             } else {
                 activeTheme = theme;
             }
+            return this;
         };
 
         this.$get = Themes;

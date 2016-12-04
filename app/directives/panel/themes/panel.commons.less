@@ -4,7 +4,8 @@ div.cozen-panel {
   box-sizing:  border-box;
   position:    relative;
   line-height: normal;
-  outline:     0;
+  outline:     @cozen-outline;
+  width:       100%;
 
   // Header
   & > div.cozen-panel-header {
@@ -19,6 +20,11 @@ div.cozen-panel {
       font-size:      inherit;
       vertical-align: sub;
       line-height:    inherit;
+      font-family:    @cozen-family-span;
+      small {
+        font-weight: normal;
+        font-family: @cozen-family-span;
+      }
     }
 
     // Icon
@@ -28,7 +34,8 @@ div.cozen-panel {
       cursor:         inherit;
       font-weight:    normal;
       vertical-align: sub;
-      outline:        0;
+      outline:        @cozen-outline;
+      transition:     @cozen-transition;
     }
     & > div.cozen-panel-icon {
       font-size:   inherit;
@@ -46,6 +53,7 @@ div.cozen-panel {
         vertical-align: middle;
         height:         inherit;
         line-height:    inherit;
+        transition:     @cozen-transition;
       }
     }
   }

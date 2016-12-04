@@ -4,41 +4,58 @@
      id="{{ _cozenPanelId }}">
 
     <div class="cozen-panel-header"
+         tabindex="{{ _methods.getTabIndex(); }}"
          ng-click="_methods.onClick.header($event);">
 
         <!-- Big left icon -->
         <div ng-if="_cozenPanelBigIconLeft != ''"
              ng-click="_methods.onClick.bigIconLeft($event);"
-             class="cozen-panel-big-icon left">
+             class="cozen-panel-big-icon left"
+             ng-mouseenter="_methods.bigIconHover(true);"
+             ng-mouseleave="_methods.bigIconHover(false);"
+             cozen-tooltip
+             cozen-tooltip-label="{{ _cozenPanelBigIconLeftTooltip }}"
+             cozen-tooltip-placement="auto bottom"
+             cozen-tooltip-disabled="_cozenPanelBigIconLeftTooltip == ''"
+             tabindex="{{ _methods.getTabIndex(); }}">
             <i ng-class="[_cozenPanelBigIconLeft]"></i>
         </div>
 
         <!-- Left icon -->
         <div ng-if="_cozenPanelIconLeft != ''"
-             class="cozen-panel-icon">
+             class="cozen-panel-icon left">
             <i ng-class="[_cozenPanelIconLeft]"></i>
         </div>
 
         <!-- Label -->
         <span class="cozen-panel-label">
             {{ _cozenPanelLabel | translate }}
+            <small ng-if="_cozenPanelSubLabel != ''">{{ _cozenPanelSubLabel | translate }}</small>
         </span>
 
         <!-- Right icon -->
         <div ng-if="_cozenPanelIconRight != ''"
-             class="cozen-panel-icon">
+             class="cozen-panel-icon right">
             <i ng-class="[_cozenPanelIconRight]"></i>
         </div>
 
         <!-- Big right icon -->
         <div ng-if="_cozenPanelBigIconRight != ''"
              ng-click="_methods.onClick.bigIconRight($event);"
-             class="cozen-panel-big-icon right">
+             class="cozen-panel-big-icon right"
+             ng-mouseenter="_methods.bigIconHover(true);"
+             ng-mouseleave="_methods.bigIconHover(false);"
+             cozen-tooltip
+             cozen-tooltip-label="{{ _cozenPanelBigIconRightTooltip }}"
+             cozen-tooltip-placement="auto bottom"
+             cozen-tooltip-disabled="_cozenPanelBigIconRightTooltip == ''"
+             tabindex="{{ _methods.getTabIndex(); }}">
             <i ng-class="[_cozenPanelBigIconRight]"></i>
         </div>
     </div>
 
-    <div ng-show="cozenPanelOpen"
+    <div ng-show="cozenPanelOpen || _cozenPanelFrozen"
+         ng-style="_methods.getBodyStyles();"
          class="cozen-panel-body"
          ng-transclude>
     </div>
