@@ -52,11 +52,11 @@
                 if (methods.hasError()) return;
 
                 // Default values (attributes)
-                scope._cozenViewScrollBar       = CONFIG.config.scrollsBar;
-                scope._cozenViewScrollBarConfig = CONFIG.config.scrollsBarConfig;
+                scope._cozenScrollBar       = CONFIG.config.scrollsBar;
+                scope._cozenScrollBarConfig = CONFIG.config.scrollsBarConfig;
 
                 // Scrollbar config for the height
-                scope._cozenViewScrollBarConfig.setHeight = angular.isDefined(attrs.cozenViewScrollBarHeight) ? parseInt(attrs.cozenViewScrollBarHeight) : window.innerHeight;
+                scope._cozenScrollBarConfig.setHeight = angular.isDefined(attrs.cozenViewScrollBarHeight) ? parseInt(attrs.cozenViewScrollBarHeight) : window.innerHeight;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
