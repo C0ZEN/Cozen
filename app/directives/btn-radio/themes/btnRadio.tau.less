@@ -1,0 +1,26 @@
+@cozen-btn-radio-small: 12px;
+@cozen-btn-radio-normal: 14px;
+@cozen-btn-radio-large: 18px;
+@cozen-btn-radio-border-small: 1px;
+@cozen-btn-radio-border-medium: 1px;
+@cozen-btn-radio-border-large: 2px;
+
+div.cozen-btn-radio.tau {
+
+  // Size
+  &.small {
+    .cozen-btn-radio-size(@cozen-btn-radio-small, @cozen-btn-radio-small - 6, @cozen-btn-radio-border-small);
+    .cozen-btn-radio-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-radio-border(@cozen-btn-radio-border-small, solid, @cozen-color-grey, @cozen-color-grey-hover);
+  }
+  &.normal {
+    .cozen-btn-radio-size(@cozen-btn-radio-normal, @cozen-btn-radio-normal - 6, @cozen-btn-radio-border-medium);
+    .cozen-btn-radio-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-radio-border(@cozen-btn-radio-border-medium, solid, @cozen-color-grey, @cozen-color-grey-hover);
+  }
+  &.large {
+    .cozen-btn-radio-size(@cozen-btn-radio-large, @cozen-btn-radio-large - 8, @cozen-btn-radio-border-large);
+    .cozen-btn-radio-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-radio-border(@cozen-btn-radio-border-large, solid, @cozen-color-grey, @cozen-color-grey-hover);
+  }
+}

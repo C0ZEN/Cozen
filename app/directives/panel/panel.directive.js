@@ -160,7 +160,7 @@
 
       function hasError() {
         if (Methods.isNullOrEmpty(attrs.cozenPanelLabel)) {
-          Methods.directiveErrorRequired(data.directive, 'cozenPanelLabel');
+          Methods.directiveErrorRequired(data.directive, 'Label');
           return true;
         }
         return false;

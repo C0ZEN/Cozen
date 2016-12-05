@@ -1,0 +1,43 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-btn-radio-size(@size, @bubble, @border) {
+  & > div.cozen-btn-radio-bubble {
+    width:       @size;
+    height:      @size;
+    line-height: @size;
+    & > div.cozen-btn-radio-inner-bubble {
+      width:      @bubble;
+      height:     @bubble;
+      margin: unit(((@size - @bubble) / 2) - @border, px);
+    }
+  }
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-btn-radio-color(@background-color, @background-color-hover, @active-color, @active-color-hover) {
+  & > div.cozen-btn-radio-bubble {
+    background-color: @background-color;
+    &:hover {
+      background-color: @background-color-hover;
+      & > div.cozen-btn-radio-inner-bubble {
+        background-color: @active-color-hover;
+      }
+    }
+    & > div.cozen-btn-radio-inner-bubble {
+      background-color: @active-color;
+    }
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-btn-radio-border(@size, @type, @color, @color-hover) {
+  & > div.cozen-btn-radio-bubble {
+    border: @size @type @color;
+    &:hover {
+      border: @size @type @color-hover;
+    }
+  }
+}

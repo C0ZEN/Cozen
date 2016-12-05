@@ -1,0 +1,27 @@
+div.cozen-btn-radio {
+  cursor:         pointer;
+  transition:     @cozen-transition;
+  box-sizing:     border-box;
+  position:       relative;
+  outline:        @cozen-outline;
+  display:        inline-block;
+  vertical-align: baseline;
+
+  & > div.cozen-btn-radio-bubble {
+    position:      relative;
+    transition:    @cozen-transition;
+    border-radius: 50%;
+    & > div.cozen-btn-radio-inner-bubble {
+      content:             '';
+      border-radius:       50%;
+      animation-duration:  @cozen-animation-duration;
+      animation-fill-mode: @cozen-animation-fill;
+    }
+  }
+
+  // Disabled
+  &.disabled {
+    opacity: 0.4;
+    cursor:  not-allowed;
+  }
+}
