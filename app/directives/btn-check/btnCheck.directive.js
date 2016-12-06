@@ -136,6 +136,7 @@
 
       function getTabIndex() {
         var tabIndex = 0;
+        if (scope.cozenBtnCheckDisabled) tabIndex = -1;
         return tabIndex;
       }
     }

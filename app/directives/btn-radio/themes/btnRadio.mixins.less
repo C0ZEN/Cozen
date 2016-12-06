@@ -29,11 +29,11 @@
       background-color: @active-color;
     }
   }
-  &.active {
-    & > div.cozen-btn-radio-bubble:hover {
-      background-color: @background-color;
-      & > div.cozen-btn-radio-inner-bubble {
-        background-color: @active-color;
+  &:focus {
+    & > div.cozen-btn-radio-bubble {
+      background-color: @background-color-hover;
+      & > i.cozen-btn-radio-inner-bubble {
+        color: @active-color-hover;
       }
     }
   }
@@ -48,9 +48,9 @@
       border: @size @type @color-hover;
     }
   }
-  &.active {
-    & > div.cozen-btn-radio-bubble:hover {
-      border: @size @type @color;
+  &:focus {
+    & > div.cozen-btn-radio-bubble {
+      border: @size @type @color-hover;
     }
   }
 }

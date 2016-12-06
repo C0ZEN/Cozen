@@ -27,6 +27,14 @@
       color: @active-color;
     }
   }
+  &:focus {
+    & > div.cozen-btn-check-square {
+      background-color: @background-color-hover;
+      & > i.cozen-btn-check-inner {
+        color: @active-color-hover;
+      }
+    }
+  }
 }
 /**************/
 /*   BORDER   */
@@ -35,6 +43,11 @@
   & > div.cozen-btn-check-square {
     border: @size @type @color;
     &:hover {
+      border: @size @type @color-hover;
+    }
+  }
+  &:focus {
+    & > div.cozen-btn-check-square {
       border: @size @type @color-hover;
     }
   }
