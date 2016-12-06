@@ -2,15 +2,18 @@ div.cozen-pagination.tau {
 
   // Size
   &.small {
-    .cozen-btn-size(@cozen-space-small, 16px, 32px);
-    .cozen-btn-icon(0 @cozen-space-small);
+    .cozen-pagination-btn-size(@cozen-space-small, 12px, 24px);
+    .cozen-pagination-btn-border(1px, solid, @cozen-color-orange, @cozen-color-orange-hover);
+    .cozen-pagination-btn-color(@cozen-color-orange, @cozen-color-orange-hover, @cozen-color-white, @cozen-color-white);
   }
   &.normal {
-    .cozen-btn-size(@cozen-space-normal, 20px, 39px);
-    .cozen-btn-icon(0 @cozen-space-normal);
+    .cozen-pagination-btn-size(@cozen-space-normal, 14px, 28px);
+    .cozen-pagination-btn-border(1px, solid, @cozen-color-green, @cozen-color-green-hover);
+    .cozen-pagination-btn-color(@cozen-color-green, @cozen-color-green-hover, @cozen-color-white, @cozen-color-white);
   }
   &.large {
-    .cozen-btn-size(@cozen-space-large, 25px, 48px);
-    .cozen-btn-icon(0 @cozen-space-large);
+    .cozen-pagination-btn-size(@cozen-space-large, 18px, 32px);
+    .cozen-pagination-btn-border(1px, solid, @cozen-color-purple, @cozen-color-purple-hover);
+    .cozen-pagination-btn-color(@cozen-color-purple, @cozen-color-purple-hover, @cozen-color-white, @cozen-color-white);
   }
 }

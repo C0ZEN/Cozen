@@ -60,12 +60,12 @@
 
         function link(scope, element, attrs) {
             var methods = {
-                init           : init,
-                hasError       : hasError,
-                destroy        : destroy,
-                getMainClass   : getMainClass,
-                onClick        : onClick,
-                getTabIndex    : getTabIndex
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                onClick     : onClick,
+                getTabIndex : getTabIndex
             };
 
             var data = {

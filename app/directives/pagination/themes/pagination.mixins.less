@@ -1,0 +1,102 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-pagination-btn-size(@padding, @font-size, @height) {
+  & > div.cozen-pagination-btn {
+    padding:     0 @padding;
+    font-size:   @font-size;
+    height:      @height;
+    line-height: @height;
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-pagination-btn-border(@size, @type, @color, @color-hover) {
+  & > div.cozen-pagination-btn {
+    border:       @size @type @color;
+    border-right: none;
+    &:last-of-type {
+      border-right: @size @type @color;
+    }
+    &:focus,
+    &:hover {
+      border:       @size @type @color-hover;
+      border-right: none;
+      &:last-of-type {
+        border-right: @size @type @color-hover;
+      }
+      & + div {
+        border-left: @size @type @color-hover;
+      }
+    }
+    &.disabled {
+      &:hover {
+        border:       @size @type @color;
+        border-right: none;
+        &:last-of-type {
+          border-right: @size @type @color;
+        }
+        & + div {
+          border-left: @size @type @color;
+        }
+      }
+    }
+  }
+  &.disabled {
+    & > div.cozen-pagination-btn:hover {
+      border:       @size @type @color;
+      border-right: none;
+      &:last-of-type {
+        border-right: @size @type @color;
+      }
+      & + div {
+        border-left: @size @type @color;
+      }
+    }
+  }
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-pagination-btn-color(@color, @color-hover, @background-color, @background-color-hover) {
+  & > div.cozen-pagination-btn {
+    color:            @color;
+    background-color: @background-color;
+    .cozen-pagination-btn-active(@background-color, @background-color-hover, @color, @color-hover);
+    &:focus,
+    &:hover {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+    &.disabled {
+      &:hover {
+        color:            @color;
+        background-color: @background-color;
+      }
+    }
+  }
+  &.disabled {
+    & > div.cozen-pagination-btn {
+      .cozen-pagination-btn-active(@background-color, @background-color, @color, @color);
+      &:hover {
+        color:            @color;
+        background-color: @background-color;
+      }
+    }
+  }
+}
+/**************/
+/*   ACTIVE   */
+/**************/
+.cozen-pagination-btn-active(@color, @color-hover, @background-color, @background-color-hover) {
+  &.active {
+    color:            @color;
+    background-color: @background-color;
+    &:focus,
+    &:hover {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+  }
+}

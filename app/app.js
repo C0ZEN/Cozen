@@ -47,7 +47,7 @@
     });
 
     // Configure the translate provider
-    $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
     $translateProvider.useStaticFilesLoader({
       prefix: '/languages/',
       suffix: '.concat.json'

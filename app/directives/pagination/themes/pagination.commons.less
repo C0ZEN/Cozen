@@ -1,9 +1,45 @@
 div.cozen-pagination {
-  cursor:      pointer;
-  text-align:  center;
-  transition:  @cozen-transition;
-  box-sizing:  border-box;
-  position:    relative;
-  width:       100%;
-  display:     inline-block;
+  cursor:          pointer;
+  text-align:      center;
+  transition:      @cozen-transition;
+  box-sizing:      border-box;
+  position:        relative;
+  width:           100%;
+  display:         flex;
+  flex-direction:  row;
+  justify-content: center;
+
+  // Btn
+  & > div.cozen-pagination-btn {
+    transition: @cozen-transition;
+    position:   relative;
+    cursor:     inherit;
+    width:      auto;
+    display:    inline-block;
+    outline:    @cozen-outline;
+    span,
+    i {
+      vertical-align: middle;
+      font-size:      inherit;
+      transition:     @cozen-transition;
+    }
+    &:first-of-type {
+      border-top-left-radius:    @cozen-radius;
+      border-bottom-left-radius: @cozen-radius;
+    }
+    &:last-of-type {
+      border-top-right-radius:    @cozen-radius;
+      border-bottom-right-radius: @cozen-radius;
+    }
+    &.disabled {
+      opacity: 0.4;
+      cursor:  not-allowed;
+    }
+  }
+
+  // Disabled
+  &.disabled {
+    opacity: 0.4;
+    cursor:  not-allowed;
+  }
 }
