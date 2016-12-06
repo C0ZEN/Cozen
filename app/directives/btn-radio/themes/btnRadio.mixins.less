@@ -7,8 +7,8 @@
     height:      @size;
     line-height: @size;
     & > div.cozen-btn-radio-inner-bubble {
-      width:      @bubble;
-      height:     @bubble;
+      width:  @bubble;
+      height: @bubble;
       margin: unit(((@size - @bubble) / 2) - @border, px);
     }
   }
@@ -29,6 +29,14 @@
       background-color: @active-color;
     }
   }
+  &.active {
+    & > div.cozen-btn-radio-bubble:hover {
+      background-color: @background-color;
+      & > div.cozen-btn-radio-inner-bubble {
+        background-color: @active-color;
+      }
+    }
+  }
 }
 /**************/
 /*   BORDER   */
@@ -38,6 +46,11 @@
     border: @size @type @color;
     &:hover {
       border: @size @type @color-hover;
+    }
+  }
+  &.active {
+    & > div.cozen-btn-radio-bubble:hover {
+      border: @size @type @color;
     }
   }
 }

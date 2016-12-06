@@ -1,0 +1,29 @@
+@cozen-btn-check-small: 12px;
+@cozen-btn-check-normal: 14px;
+@cozen-btn-check-large: 16px;
+@cozen-btn-check-small-inner: 4px;
+@cozen-btn-check-normal-inner: 6px;
+@cozen-btn-check-large-inner: 8px;
+@cozen-btn-check-border-small: 1px;
+@cozen-btn-check-border-medium: 1px;
+@cozen-btn-check-border-large: 1px;
+
+div.cozen-btn-check.tau {
+
+  // Size
+  &.small {
+    .cozen-btn-check-size(@cozen-btn-check-small, @cozen-btn-check-small-inner, @cozen-btn-check-border-small);
+    .cozen-btn-check-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-small, solid, @cozen-color-grey, @cozen-color-grey-hover);
+  }
+  &.normal {
+    .cozen-btn-check-size(@cozen-btn-check-normal, @cozen-btn-check-normal-inner, @cozen-btn-check-border-medium);
+    .cozen-btn-check-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-medium, solid, @cozen-color-grey, @cozen-color-grey-hover);
+  }
+  &.large {
+    .cozen-btn-check-size(@cozen-btn-check-large, @cozen-btn-check-large-inner, @cozen-btn-check-border-large);
+    .cozen-btn-check-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-large, solid, @cozen-color-grey, @cozen-color-grey-hover);
+  }
+}

@@ -1,4 +1,4 @@
-div.cozen-btn-radio {
+div.cozen-btn-check {
   cursor:         pointer;
   transition:     @cozen-transition;
   box-sizing:     border-box;
@@ -8,23 +8,22 @@ div.cozen-btn-radio {
   display:        inline-block;
 
   // Label
-  & > label.cozen-btn-radio-label {
+  & > label.cozen-btn-check-label {
     cursor:         inherit;
     vertical-align: middle;
     margin-right:   2px;
   }
 
-  // Bubble
-  & > div.cozen-btn-radio-bubble {
+  // Square
+  & > div.cozen-btn-check-square {
     position:      relative;
     transition:    @cozen-transition;
-    border-radius: 50%;
+    border-radius: @cozen-radius;
     display:       inline-block;
     cursor:        inherit;
-    & > div.cozen-btn-radio-inner-bubble {
-      content:       '';
-      border-radius: 50%;
-      cursor:        inherit;
+    & > i.cozen-btn-check-inner {
+      cursor:  inherit;
+      display: table;
       &.bounceOut,
       &.bounceIn {
         animation-fill-mode: @cozen-animation-fill;
@@ -42,10 +41,5 @@ div.cozen-btn-radio {
   &.disabled {
     opacity: 0.4;
     cursor:  not-allowed;
-  }
-
-  // Active
-  &.active {
-    cursor: default;
   }
 }

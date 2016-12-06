@@ -20,124 +20,153 @@
  * @param {string}  cozenBtnRadioSizeLarge               > Shortcut for large size
  * @param {boolean} cozenBtnRadioAnimationIn  = true     > Add an animation on show
  * @param {boolean} cozenBtnRadioAnimationOut = true     > Add an animation on hide
+ * @param {string}  cozenBtnRadioLabel                   > Text added with the button radio
+ * @param {string}  cozenBtnRadioGroup                   > Group to link radio together [required]
  *
  */
 (function (angular) {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('cozenLibApp')
-        .directive('cozenBtnRadio', cozenBtnRadio);
+  angular
+    .module('cozenLibApp')
+    .directive('cozenBtnRadio', cozenBtnRadio);
 
-    cozenBtnRadio.$inject = [
-        'Themes',
-        'CONFIG'
-    ];
+  cozenBtnRadio.$inject = [
+    'Themes',
+    'CONFIG',
+    '$rootScope',
+    'rfc4122'
+  ];
 
-    function cozenBtnRadio(Themes, CONFIG) {
-        return {
-            link       : link,
-            restrict   : 'E',
-            replace    : false,
-            transclude : false,
-            scope      : {
-                cozenBtnRadioOnChange: '&',
-                cozenBtnRadioDisabled: '=?',
-                cozenBtnRadioModel   : '=?'
-            },
-            templateUrl: 'directives/btn-radio/btnRadio.template.html'
+  function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122) {
+    return {
+      link       : link,
+      restrict   : 'E',
+      replace    : false,
+      transclude : false,
+      scope      : {
+        cozenBtnRadioOnChange: '&',
+        cozenBtnRadioDisabled: '=?',
+        cozenBtnRadioModel   : '=?'
+      },
+      templateUrl: 'directives/btn-radio/btnRadio.template.html'
+    };
+
+    function link(scope, element, attrs) {
+      var methods = {
+        init          : init,
+        hasError      : hasError,
+        destroy       : destroy,
+        getMainClass  : getMainClass,
+        onClick       : onClick,
+        getTabIndex   : getTabIndex,
+        onGroupChanged: onGroupChanged
+      };
+
+      var data = {
+        directive : 'cozenBtnRadio',
+        groupEvent: {
+          onChange: 'cozenBtnRadioOnChange' + Methods.capitalizeFirstLetter(attrs.cozenBtnRadioGroup)
+        },
+        group     : attrs.cozenBtnRadioGroup,
+        uuid      : rfc4122.v4()
+      };
+
+      scope._isReady = false;
+
+      methods.init();
+
+      function init() {
+
+        // Public functions
+        scope._methods = {
+          getMainClass: getMainClass,
+          onClick     : onClick,
+          getTabIndex : getTabIndex
         };
 
-        function link(scope, element, attrs) {
-            var methods = {
-                init        : init,
-                hasError    : hasError,
-                destroy     : destroy,
-                getMainClass: getMainClass,
-                onClick     : onClick,
-                getTabIndex : getTabIndex
-            };
+        // Checking required stuff
+        if (methods.hasError()) return;
 
-            var data = {
-                directive: 'cozenBtnRadio'
-            };
-
-            scope._isReady = false;
-
-            methods.init();
-
-            function init() {
-
-                // Public functions
-                scope._methods = {
-                    getMainClass: getMainClass,
-                    onClick     : onClick,
-                    getTabIndex : getTabIndex
-                };
-
-                // Checking required stuff
-                if (methods.hasError()) return;
-
-                // Shortcut values (size)
-                if (angular.isUndefined(attrs.cozenBtnRadioSize)) {
-                    if (angular.isDefined(attrs.cozenBtnRadioSizeSmall)) scope._cozenBtnRadioSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) scope._cozenBtnRadioSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) scope._cozenBtnRadioSize = 'large';
-                    else scope._cozenBtnRadioSize = 'normal';
-                }
-
-                // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) scope.cozenBtnRadioDisabled = false;
-
-                // Default values (attributes)
-                scope._cozenBtnRadioId           = angular.isDefined(attrs.cozenBtnRadioId) ? attrs.cozenBtnRadioId : '';
-                scope._cozenBtnRadioAnimationIn  = angular.isDefined(attrs.cozenBtnRadioAnimationIn) ? JSON.parse(attrs.cozenBtnRadioAnimationIn) : true;
-                scope._cozenBtnRadioAnimationOut = angular.isDefined(attrs.cozenBtnRadioAnimationOut) ? JSON.parse(attrs.cozenBtnRadioAnimationOut) : true;
-
-                // Init stuff
-                element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
-
-                // Display the template
-                scope._isReady = true;
-            }
-
-            function hasError() {
-                if (Methods.isNullOrEmpty(attrs.cozenBtnRadioModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
-                    return true;
-                }
-                else if (typeof scope.cozenBtnRadioModel != 'boolean') {
-                    Methods.directiveErrorBoolean(data.directive, 'Model');
-                    return true;
-                }
-                return false;
-            }
-
-            function destroy() {
-                element.off('$destroy', methods.destroy);
-            }
-
-            function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnRadioSize];
-                if (scope.cozenBtnRadioDisabled) classList.push('disabled');
-                if (scope.cozenBtnRadioModel) classList.push('active');
-                return classList;
-            }
-
-            function onClick($event) {
-                if (scope.cozenBtnRadioDisabled) return;
-                scope.cozenBtnRadioModel = !scope.cozenBtnRadioModel;
-                if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
-            }
-
-            function getTabIndex() {
-                var tabIndex = 0;
-                return tabIndex;
-            }
+        // Shortcut values (size)
+        if (angular.isUndefined(attrs.cozenBtnRadioSize)) {
+          if (angular.isDefined(attrs.cozenBtnRadioSizeSmall)) scope._cozenBtnRadioSize = 'small';
+          else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) scope._cozenBtnRadioSize = 'normal';
+          else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) scope._cozenBtnRadioSize = 'large';
+          else scope._cozenBtnRadioSize = 'normal';
         }
+
+        // Default values (scope)
+        if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) scope.cozenBtnRadioDisabled = false;
+
+        // Default values (attributes)
+        scope._cozenBtnRadioId           = angular.isDefined(attrs.cozenBtnRadioId) ? attrs.cozenBtnRadioId : '';
+        scope._cozenBtnRadioAnimationIn  = angular.isDefined(attrs.cozenBtnRadioAnimationIn) ? JSON.parse(attrs.cozenBtnRadioAnimationIn) : true;
+        scope._cozenBtnRadioAnimationOut = angular.isDefined(attrs.cozenBtnRadioAnimationOut) ? JSON.parse(attrs.cozenBtnRadioAnimationOut) : true;
+        scope._cozenBtnRadioLabel        = angular.isDefined(attrs.cozenBtnRadioLabel) ? attrs.cozenBtnRadioLabel : '';
+
+        // Init stuff
+        element.on('$destroy', methods.destroy);
+        scope._activeTheme = Themes.getActiveTheme();
+        $rootScope.$on(data.groupEvent.onChange, methods.onGroupChanged);
+
+        // Display the template
+        scope._isReady = true;
+      }
+
+      function hasError() {
+        if (Methods.isNullOrEmpty(attrs.cozenBtnRadioModel)) {
+          Methods.directiveErrorRequired(data.directive, 'Model');
+          return true;
+        }
+        else if (typeof scope.cozenBtnRadioModel != 'boolean') {
+          Methods.directiveErrorBoolean(data.directive, 'Model');
+          return true;
+        }
+        else if (Methods.isNullOrEmpty(attrs.cozenBtnRadioGroup)) {
+          Methods.directiveErrorRequired(data.directive, 'Group');
+          return true;
+        }
+        return false;
+      }
+
+      function destroy() {
+        element.off('$destroy', methods.destroy);
+      }
+
+      function getMainClass() {
+        var classList = [scope._activeTheme, scope._cozenBtnRadioSize];
+        if (scope.cozenBtnRadioDisabled) classList.push('disabled');
+        if (scope.cozenBtnRadioModel) classList.push('active');
+        return classList;
+      }
+
+      function onClick($event) {
+        if (scope.cozenBtnRadioDisabled) return;
+        if (scope.cozenBtnRadioModel) return;
+        scope.cozenBtnRadioModel = true;
+        if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
+        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+        $rootScope.$broadcast(data.groupEvent.onChange, data);
+      }
+
+      function getTabIndex() {
+        var tabIndex = 0;
+        return tabIndex;
+      }
+
+      function onGroupChanged(event, eventData) {
+        if (eventData.group == data.group) {
+          if (eventData.uuid != data.uuid) {
+            if (!scope.cozenBtnRadioModel) return;
+            scope.cozenBtnRadioModel = false;
+            if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
+            if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+          }
+        }
+      }
     }
+  }
 
 })(window.angular);
 
