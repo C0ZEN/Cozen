@@ -190,7 +190,7 @@
             break;
           case 'previous-block':
             scope.cozenPaginationBlock--;
-            scope.cozenPaginationModel = 5 * scope.cozenPaginationBlock;
+            scope.cozenPaginationModel = 5 * scope.cozenPaginationBlock + 5;
             break;
           default:
             if (scope.cozenPaginationModel == page) return;
@@ -232,7 +232,7 @@
 
       function previousBlock() {
         var previousBlock = scope.cozenPaginationBlock * 5;
-        return previousBlock < methods.getTotalPage();
+        return previousBlock >= 5;
       }
     }
   }

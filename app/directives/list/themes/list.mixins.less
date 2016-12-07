@@ -1,0 +1,75 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-btn-size(@padding, @font-size, @height) {
+  padding:   0 @padding;
+  font-size: @font-size;
+  height:    @height;
+  & > div.cozen-btn-loader {
+    width: @height * @height / 16;
+    &:before,
+    & > span,
+    &:after {
+      width:  @height / 3;
+      height: @height / 3;
+    }
+  }
+  &.auto {
+    & > div.cozen-btn-loader {
+      margin: 0 @padding;
+    }
+  }
+}
+/************/
+/*   TYPE   */
+/************/
+.cozen-btn-type(@color, @background-color, @background-color-hover) {
+  color:            @color;
+  background-color: @background-color;
+  &:hover,
+  &:focus,
+  &.active {
+    background-color: @background-color-hover;
+    &.disabled {
+      background-color: @background-color;
+    }
+    &.loading {
+      background-color: fade(@background-color, 40%);
+    }
+  }
+  &.loading {
+    background-color: fade(@background-color, 40%);
+  }
+  & > div.cozen-btn-loader {
+    &:before,
+    & > span,
+    &:after {
+      background-color: @background-color;
+    }
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-btn-border(@size, @type, @color, @color-hover, @radius) {
+  border:        @size @type @color;
+  border-radius: @radius;
+  &:hover,
+  &.active {
+    border: @size @type @color-hover;
+    &.loading {
+      border: @size @type fade(@color, 20%);
+    }
+  }
+  &.loading {
+    border: @size @type fade(@color, 20%);
+  }
+}
+/************/
+/*   ICON   */
+/************/
+.cozen-btn-icon(@padding) {
+  & > div.cozen-btn-icon {
+    padding: @padding;
+  }
+}
