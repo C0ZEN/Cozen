@@ -1,69 +1,86 @@
-<div ng-if="_isReady"
+<div ng-if="_isReady && _methods.show();"
      class="cozen-pagination"
      ng-class="_methods.getMainClass();"
      id="{{ _cozenPaginationId }}">
 
-    <!-- First -->
-    <div ng-if="_cozenPaginationFirst"
-         ng-click="_methods.onClick($event, 'first');"
-         ng-class="{'disabled': _methods.getPages().length <= 1 || cozenPaginationModel == 1}"
-         class="cozen-pagination-btn"
-         tabindex="{{ _methods.getPages().length <= 1 || cozenPaginationModel == 1 ? -1 : 0 }}"
-         cozen-tooltip
-         cozen-tooltip-label="pagination_first"
-         cozen-tooltip-placement="auto bottom"
-         cozen-tooltip-disabled="!_cozenPaginationWithTooltips">
-        <i class="fa fa-chevron-left"></i>
-        <i class="fa fa-chevron-left"></i>
-    </div>
+  <!-- First -->
+  <div ng-if="_cozenPaginationFirst"
+       ng-click="_methods.onClick($event, 'first');"
+       ng-class="{'disabled': _methods.getPages().length <= 1 || cozenPaginationModel == 1}"
+       class="cozen-pagination-btn"
+       tabindex="{{ _methods.getPages().length <= 1 || cozenPaginationModel == 1 ? -1 : 0 }}"
+       cozen-tooltip
+       cozen-tooltip-label="pagination_first"
+       cozen-tooltip-placement="auto bottom"
+       cozen-tooltip-disabled="!_cozenPaginationWithTooltips || cozenPaginationDisabled || _methods.getPages().length <= 1 || cozenPaginationModel == 1">
+    <i class="fa fa-chevron-left"></i>
+    <i class="fa fa-chevron-left"></i>
+  </div>
 
-    <!-- Previous -->
-    <div ng-if="_cozenPaginationPrevious"
-         ng-click="_methods.onClick($event, 'previous');"
-         ng-class="{'disabled': _methods.getPages().length <= 1 || cozenPaginationModel == 1}"
-         class="cozen-pagination-btn"
-         tabindex="{{ _methods.getPages().length <= 1 || cozenPaginationModel == 1 ? -1 : 0 }}"
-         cozen-tooltip
-         cozen-tooltip-label="pagination_previous"
-         cozen-tooltip-placement="auto bottom"
-         cozen-tooltip-disabled="!_cozenPaginationWithTooltips">
-        <i class="fa fa-chevron-left"></i>
-    </div>
+  <!-- Previous -->
+  <div ng-if="_cozenPaginationPrevious"
+       ng-click="_methods.onClick($event, 'previous');"
+       ng-class="{'disabled': _methods.getPages().length <= 1 || cozenPaginationModel == 1}"
+       class="cozen-pagination-btn"
+       tabindex="{{ _methods.getPages().length <= 1 || cozenPaginationModel == 1 ? -1 : 0 }}"
+       cozen-tooltip
+       cozen-tooltip-label="pagination_previous"
+       cozen-tooltip-placement="auto bottom"
+       cozen-tooltip-disabled="!_cozenPaginationWithTooltips || cozenPaginationDisabled || _methods.getPages().length <= 1 || cozenPaginationModel == 1">
+    <i class="fa fa-chevron-left"></i>
+  </div>
 
-    <!-- Page -->
-    <div ng-repeat="page in _methods.getPages() track by $index"
-         ng-click="_methods.onClick($event, 'page', $index + 1);"
-         ng-class="{'active': cozenPaginationModel == $index + 1}"
-         tabindex="{{ cozenPaginationModel == $index + 1 ? -1 : 0 }}"
-         class="cozen-pagination-btn">
-        <span>{{ $index + 1 }}</span>
-    </div>
+  <!-- Previous block -->
+  <div ng-if="_methods.getTotalPage() > 5 && _methods.previousBlock()"
+       ng-click="_methods.onClick($event, 'previous-block');"
+       tabindex="0"
+       class="cozen-pagination-btn">
+    <span>...</span>
+  </div>
 
-    <!-- Next -->
-    <div ng-if="_cozenPaginationNext"
-         ng-click="_methods.onClick($event, 'next');"
-         ng-class="{'disabled': _methods.getPages().length <= 1 || cozenPaginationModel == _methods.getTotalPage()}"
-         class="cozen-pagination-btn"
-         tabindex="{{ _methods.getPages().length <= 1 || cozenPaginationModel == _methods.getTotalPage() ? -1 : 0 }}"
-         cozen-tooltip
-         cozen-tooltip-label="pagination_next"
-         cozen-tooltip-placement="auto bottom"
-         cozen-tooltip-disabled="!_cozenPaginationWithTooltips">
-        <i class="fa fa-chevron-right"></i>
-    </div>
+  <!-- Page -->
+  <div ng-repeat="page in _methods.getPages() track by $index"
+       ng-if="page <= _methods.getTotalPage();"
+       ng-click="_methods.onClick($event, 'page', page);"
+       ng-class="{'active': cozenPaginationModel == page}"
+       tabindex="{{ cozenPaginationModel == page ? -1 : 0 }}"
+       class="cozen-pagination-btn">
+    <span>{{ page }}</span>
+  </div>
 
-    <!-- Last -->
-    <div ng-if="_cozenPaginationLast"
-         ng-click="_methods.onClick($event, 'last');"
-         ng-class="{'disabled': _methods.getPages().length <= 1 || cozenPaginationModel == _methods.getTotalPage()}"
-         class="cozen-pagination-btn"
-         tabindex="{{ _methods.getPages().length <= 1 || cozenPaginationModel == _methods.getTotalPage() ? -1 : 0 }}"
-         cozen-tooltip
-         cozen-tooltip-label="pagination_last"
-         cozen-tooltip-placement="auto bottom"
-         cozen-tooltip-disabled="!_cozenPaginationWithTooltips">
-        <i class="fa fa-chevron-right"></i>
-        <i class="fa fa-chevron-right"></i>
-    </div>
+  <!-- Next block -->
+  <div ng-if="_methods.getTotalPage() > 5 && _methods.nextBlock()"
+       ng-click="_methods.onClick($event, 'next-block');"
+       tabindex="0"
+       class="cozen-pagination-btn">
+    <span>...</span>
+  </div>
+
+  <!-- Next -->
+  <div ng-if="_cozenPaginationNext"
+       ng-click="_methods.onClick($event, 'next');"
+       ng-class="{'disabled': _methods.getTotalPage() <= 1 || cozenPaginationModel == _methods.getTotalPage()}"
+       class="cozen-pagination-btn"
+       tabindex="{{ _methods.getTotalPage() <= 1 || cozenPaginationModel == _methods.getTotalPage() ? -1 : 0 }}"
+       cozen-tooltip
+       cozen-tooltip-label="pagination_next"
+       cozen-tooltip-placement="auto bottom"
+       cozen-tooltip-disabled="!_cozenPaginationWithTooltips || cozenPaginationDisabled || _methods.getPages().length <= 1 || cozenPaginationModel == _methods.getTotalPage()">
+    <i class="fa fa-chevron-right"></i>
+  </div>
+
+  <!-- Last -->
+  <div ng-if="_cozenPaginationLast"
+       ng-click="_methods.onClick($event, 'last');"
+       ng-class="{'disabled': _methods.getTotalPage() <= 1 || cozenPaginationModel == _methods.getTotalPage()}"
+       class="cozen-pagination-btn"
+       tabindex="{{ _methods.getTotalPage() <= 1 || cozenPaginationModel == _methods.getTotalPage() ? -1 : 0 }}"
+       cozen-tooltip
+       cozen-tooltip-label="pagination_last"
+       cozen-tooltip-placement="auto bottom"
+       cozen-tooltip-disabled="!_cozenPaginationWithTooltips || cozenPaginationDisabled || _methods.getPages().length <= 1 || cozenPaginationModel == _methods.getTotalPage()">
+    <i class="fa fa-chevron-right"></i>
+    <i class="fa fa-chevron-right"></i>
+  </div>
 </div>
 
