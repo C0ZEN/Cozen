@@ -1,4 +1,9 @@
 <div ng-if="_isReady"
-     class="cozen-btn"
+     class="cozen-list"
+     ng-class="_methods.getMainClass();"
      id="{{ _cozenListId }}">
+
+    <div class="cozen-list-transclude"
+         cozen-list-transclude>
+    </div>
 </div>

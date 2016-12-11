@@ -1,0 +1,86 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-list-item-simple-size(@font-size) {
+  .cozen-list-item.cozen-list-item-simple {
+    font-size: @font-size;
+    div.cozen-list-item-simple-content {
+      & > div.cozen-list-item-simple-icon.left {
+        margin-right: @font-size / 6;
+      }
+    }
+  }
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-list-item-simple-color(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-list-item.cozen-list-item-simple {
+    color:            @color;
+    background-color: @background-color;
+    &:hover,
+    &:focus {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+    &.disabled {
+      &:hover,
+      &:focus {
+        color:            @color;
+        background-color: @background-color;
+      }
+    }
+  }
+}
+/*****************/
+/*   SUB-COLOR   */
+/*****************/
+.cozen-list-item-simple-sub-color(@color, @color-hover) {
+  .cozen-list-item.cozen-list-item-simple {
+    div.cozen-list-item-simple-content {
+      span.cozen-list-item-simple-label small {
+        color: @color;
+        &:hover,
+        &:focus {
+          color: @color-hover;
+        }
+        &.disabled {
+          color: @color;
+        }
+      }
+    }
+  }
+}
+/***********/
+/*   BTN   */
+/***********/
+.cozen-list-item-simple-btn(@hover, @padding, @font-size, @color, @background-color, @border) {
+  & when (@hover = false) {
+    .cozen-list-item.cozen-list-item-simple {
+      div.cozen-list-item-simple-content {
+        div.cozen-list-item-simple-btn {
+          padding:          @padding;
+          font-size:        @font-size;
+          color:            @color;
+          background-color: @background-color;
+          border:           @border;
+        }
+      }
+    }
+  }
+  & when (@hover = true) {
+    .cozen-list-item.cozen-list-item-simple {
+      div.cozen-list-item-simple-content {
+        div.cozen-list-item-simple-btn {
+          &:focus,
+          &:hover {
+            padding:          @padding;
+            color:            @color;
+            background-color: @background-color;
+            border:           @border;
+          }
+        }
+      }
+    }
+  }
+}

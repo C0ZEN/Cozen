@@ -1,0 +1,117 @@
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-list-item-media3-color(@background-color, @background-color-hover) {
+  .cozen-list-item.cozen-list-item-media3 {
+    background-color: @background-color;
+    &:hover,
+    &:focus {
+      background-color: @background-color-hover;
+    }
+    &.disabled {
+      &:hover,
+      &:focus {
+        background-color: @background-color;
+      }
+    }
+  }
+}
+/**************/
+/*   HEADER   */
+/**************/
+.cozen-list-item-media3-header(@font-size, @margin, @color, @color-hover) {
+  .cozen-list-item.cozen-list-item-media3 {
+    div.cozen-list-item-media3-content.text {
+      & > span.cozen-list-item-media3-header {
+        font-size: @font-size;
+        margin:    @margin;
+        color:     @color;
+      }
+    }
+    &:focus,
+    &:hover {
+      & > span.cozen-list-item-media3-header {
+        color: @color-hover;
+      }
+    }
+    &.disabled {
+      &:hover,
+      &:focus {
+        & > span.cozen-list-item-media3-header {
+          color: @color;
+        }
+      }
+    }
+  }
+}
+/*************/
+/*   LABEL   */
+/*************/
+.cozen-list-item-media3-label(@font-size, @margin, @color, @color-hover) {
+  .cozen-list-item.cozen-list-item-media3 {
+    div.cozen-list-item-media3-content.text {
+      & > span.cozen-list-item-media3-label {
+        font-size: @font-size;
+        margin:    @margin;
+        color:     @color;
+      }
+    }
+    &:focus,
+    &:hover {
+      & > span.cozen-list-item-media3-label {
+        color: @color-hover;
+      }
+    }
+    &.disabled {
+      &:hover,
+      &:focus {
+        & > span.cozen-list-item-media3-label {
+          color: @color;
+        }
+      }
+    }
+  }
+}
+/*****************/
+/*   SUB LABEL   */
+/*****************/
+.cozen-list-item-media3-sub-label(@font-size, @margin, @color, @color-hover) {
+  .cozen-list-item.cozen-list-item-media3 {
+    div.cozen-list-item-media3-content.text {
+      & > span.cozen-list-item-media3-sub-label {
+        font-size: @font-size;
+        margin:    @margin;
+        color:     @color;
+      }
+    }
+    &:focus,
+    &:hover {
+      & > span.cozen-list-item-media3-sub-label {
+        color: @color-hover;
+      }
+    }
+    &.disabled {
+      &:hover,
+      &:focus {
+        & > span.cozen-list-item-media3-sub-label {
+          color: @color;
+        }
+      }
+    }
+  }
+}
+/*************/
+/*   MEDIA   */
+/*************/
+.cozen-list-item-media3-media(@border, @height, @margin-right) {
+  .cozen-list-item.cozen-list-item-media3 {
+    div.cozen-list-item-media3-content.media {
+      margin-right: @margin-right;
+      img {
+        width:  @height;
+        height: @height;
+        border: @border;
+      }
+    }
+  }
+}
