@@ -1,0 +1,100 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-btn-toggle-size(@padding, @width, @height) {
+  & div.cozen-btn-toggle-switch {
+    padding:     @padding;
+    width:       @width;
+    height:      @height;
+    line-height: @height;
+  }
+}
+/****************/
+/*   COLOR ON   */
+/****************/
+.cozen-btn-toggle-color-on(@switch-color, @switch-color-hover) {
+  & div.cozen-btn-toggle-switch {
+    &.active:after {
+      background-color: @switch-color;
+    }
+  }
+  &:focus,
+  &:hover {
+    & div.cozen-btn-toggle-switch {
+      &.active:after {
+        background-color: @switch-color-hover;
+      }
+    }
+  }
+  &.disabled {
+    &:focus,
+    &:hover {
+      & div.cozen-btn-toggle-switch {
+        &.active:after {
+          background-color: @switch-color;
+        }
+      }
+    }
+  }
+}
+/*****************/
+/*   COLOR OFF   */
+/*****************/
+.cozen-btn-toggle-color-off(@background-color, @background-color-hover, @switch-color, @switch-color-hover) {
+  & div.cozen-btn-toggle-switch {
+    background-color: @background-color;
+    &:after {
+      background-color: @switch-color;
+    }
+  }
+  &:focus,
+  &:hover {
+    & div.cozen-btn-toggle-switch {
+      background-color: @background-color-hover;
+      &:after {
+        background-color: @switch-color-hover;
+      }
+    }
+  }
+  &.diabled {
+    &:focus,
+    &:hover {
+      & div.cozen-btn-toggle-switch {
+        background-color: @background-color;
+        &:after {
+          background-color: @switch-color;
+        }
+      }
+    }
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-btn-toggle-border(@size, @type, @color, @color-hover) {
+  & div.cozen-btn-toggle-switch {
+    border: @size @type @color;
+  }
+  &:focus,
+  &:hover {
+    & div.cozen-btn-toggle-switch {
+      border: @size @type @color-hover;
+    }
+  }
+  &.disabled {
+    &:focus,
+    &:hover {
+      & div.cozen-btn-toggle-switch {
+        border: @size @type @color;
+      }
+    }
+  }
+}
+/*************/
+/*   LABEL   */
+/*************/
+.cozen-btn-toggle-label(@margin) {
+  & label.cozen-btn-toggle-label {
+    margin: @margin;
+  }
+}

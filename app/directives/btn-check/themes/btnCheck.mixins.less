@@ -2,11 +2,11 @@
 /*   SIZE   */
 /************/
 .cozen-btn-check-size(@size, @square, @border) {
-  & > div.cozen-btn-check-square {
+  & div.cozen-btn-check-square {
     width:       @size;
     height:      @size;
     line-height: @size;
-    & > i.cozen-btn-check-inner {
+    & i.cozen-btn-check-inner {
       font-size: @size - 2;
     }
   }
@@ -15,22 +15,22 @@
 /*   COLOR   */
 /*************/
 .cozen-btn-check-color(@background-color, @background-color-hover, @active-color, @active-color-hover) {
-  & > div.cozen-btn-check-square {
+  & div.cozen-btn-check-square {
     background-color: @background-color;
     &:hover {
       background-color: @background-color-hover;
-      & > i.cozen-btn-check-inner {
+      & i.cozen-btn-check-inner {
         color: @active-color-hover;
       }
     }
-    & > i.cozen-btn-check-inner {
+    & i.cozen-btn-check-inner {
       color: @active-color;
     }
   }
   &:focus {
-    & > div.cozen-btn-check-square {
+    & div.cozen-btn-check-square {
       background-color: @background-color-hover;
-      & > i.cozen-btn-check-inner {
+      & i.cozen-btn-check-inner {
         color: @active-color-hover;
       }
     }
@@ -40,15 +40,23 @@
 /*   BORDER   */
 /**************/
 .cozen-btn-check-border(@size, @type, @color, @color-hover) {
-  & > div.cozen-btn-check-square {
+  & div.cozen-btn-check-square {
     border: @size @type @color;
     &:hover {
       border: @size @type @color-hover;
     }
   }
   &:focus {
-    & > div.cozen-btn-check-square {
+    & div.cozen-btn-check-square {
       border: @size @type @color-hover;
     }
+  }
+}
+/*************/
+/*   LABEL   */
+/*************/
+.cozen-btn-check-label(@margin) {
+  & label.cozen-btn-check-label {
+    margin: @margin;
   }
 }

@@ -1,0 +1,161 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-panel-size(@padding, @font-size, @height) {
+  & > div.cozen-panel-header {
+    font-size: @font-size;
+    height:    @height;
+    & > span.cozen-panel-label {
+      padding: 0 @padding;
+    }
+    & > div.cozen-panel-big-icon {
+      &.left {
+        padding: 0 @padding;
+      }
+      &.right {
+        padding: 0 @padding;
+      }
+    }
+  }
+  & > div.cozen-panel-body {
+    padding: @padding;
+  }
+}
+/*******************/
+/*   TYPE HEADER   */
+/*******************/
+.cozen-panel-type-header(@color, @color-hover, @background-color, @background-color-hover) {
+  & > div.cozen-panel-header {
+    color:            @color;
+    background-color: @background-color;
+    &:hover,
+    &:focus {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+  }
+  &.disabled {
+    & > div.cozen-panel-header {
+      color:            @color-hover;
+      background-color: @background-color;
+    }
+  }
+  &.no-hover {
+    & > div.cozen-panel-header,
+    & > div.cozen-panel-header:hover {
+      color:            @color-hover;
+      background-color: @background-color;
+    }
+  }
+}
+/*****************/
+/*   TYPE BODY   */
+/*****************/
+.cozen-panel-type-body(@background-color) {
+  background-color: @background-color;
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-panel-border(@size, @type, @color, @color-hover, @radius) {
+  & > div.cozen-panel-header {
+    border:        @size @type @color;
+    border-radius: @radius;
+    &:hover {
+      border: @size @type @color-hover;
+    }
+  }
+  & > div.cozen-panel-body {
+    border:                     @size @type @color;
+    border-top:                 none;
+    border-bottom-left-radius:  @radius;
+    border-bottom-right-radius: @radius;
+  }
+  &.open {
+    & > div.cozen-panel-header {
+      border-radius:           0;
+      border-top-left-radius:  @radius;
+      border-top-right-radius: @radius;
+    }
+  }
+}
+/************/
+/*   ICON   */
+/************/
+.cozen-panel-icon(@margin) {
+  & > div.cozen-panel-header {
+    & > div.cozen-panel-icon {
+      &.left {
+        margin-left: @margin;
+      }
+      &.right {
+        margin-right: @margin;
+      }
+    }
+  }
+}
+/****************/
+/*   BIG ICON   */
+/****************/
+.cozen-panel-big-icon(@height, @border, @margin) {
+  & > div.cozen-panel-header {
+    & > div.cozen-panel-big-icon {
+      height:      @height - @border * 2;
+      line-height: @height - @border * 2;
+      i {
+        font-size: @height - @border * 2 - 4;
+      }
+      &.left {
+        margin-right: @margin;
+      }
+      &.right {
+        margin-left: @margin;
+      }
+    }
+  }
+}
+/*********************/
+/*   BIG ICON COLOR  */
+/*********************/
+.cozen-panel-big-icon-color(@direction, @color, @color-hover, @background-color, @background-color-hover) {
+  & > div.cozen-panel-header {
+    & > div.cozen-panel-big-icon {
+      & when (@direction = 'left') {
+        &.left {
+          .cozen-panel-big-icon-color-extent(@color, @color-hover, @background-color, @background-color-hover);
+        }
+      }
+      & when (@direction = 'right') {
+        &.right {
+          .cozen-panel-big-icon-color-extent(@color, @color-hover, @background-color, @background-color-hover);
+        }
+      }
+    }
+  }
+}
+.cozen-panel-big-icon-color-extent(@color, @color-hover, @background-color, @background-color-hover) {
+  color:            @color;
+  background-color: @background-color;
+  &:hover,
+  &:focus {
+    color:            @color-hover;
+    background-color: @background-color-hover;
+  }
+}
+/*****************/
+/*   SUB LABEL   */
+/*****************/
+.cozen-panel-sub-label(@size, @color, @color-hover) {
+  & > div.cozen-panel-header {
+    & > span.cozen-panel-label small {
+      font-size: @size;
+      color:     @color;
+    }
+    &:hover,
+    &:focus {
+      & > span.cozen-panel-label small {
+        color: @color-hover;
+      }
+    }
+  }
+}

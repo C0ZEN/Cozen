@@ -5,23 +5,25 @@ div.cozen-btn-radio {
   position:       relative;
   outline:        @cozen-outline;
   vertical-align: baseline;
-  display:        inline-block;
+  display:        flex;
+  flex-direction: row;
+  align-content:  flex-start;
+  align-items:    center;
 
   // Label
-  & > label.cozen-btn-radio-label {
-    cursor:         inherit;
-    vertical-align: middle;
-    margin-right:   2px;
+  & label.cozen-btn-radio-label {
+    cursor: inherit;
   }
 
   // Bubble
-  & > div.cozen-btn-radio-bubble {
-    position:      relative;
-    transition:    @cozen-transition;
-    border-radius: 50%;
-    display:       inline-block;
-    cursor:        inherit;
-    & > div.cozen-btn-radio-inner-bubble {
+  & div.cozen-btn-radio-bubble {
+    position:       relative;
+    transition:     @cozen-transition;
+    border-radius:  50%;
+    display:        inline-block;
+    cursor:         inherit;
+    vertical-align: middle;
+    & div.cozen-btn-radio-inner-bubble {
       content:       '';
       border-radius: 50%;
       cursor:        inherit;

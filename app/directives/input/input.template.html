@@ -1,0 +1,12 @@
+<div ng-if="_isReady"
+     class="cozen-input"
+     ng-class="_methods.getMainClass();"
+     id="{{ _cozenInputId }}">
+
+    <cozen-tooltip cozen-tooltip-label="{{ _cozenInputTooltip }}"
+                   cozen-tooltip-trigger="{{ _cozenInputTooltipTrigger }}"
+                   cozen-tooltip-disabled="_cozenInputTooltip == ''">
+        <input ng-model="cozenInputModel">
+    </cozen-tooltip>
+
+</div>

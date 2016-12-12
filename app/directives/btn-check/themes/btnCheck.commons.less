@@ -5,23 +5,25 @@ div.cozen-btn-check {
   position:       relative;
   outline:        @cozen-outline;
   vertical-align: baseline;
-  display:        inline-block;
+  display:        flex;
+  flex-direction: row;
+  align-content:  flex-start;
+  align-items:    center;
 
   // Label
-  & > label.cozen-btn-check-label {
-    cursor:         inherit;
-    vertical-align: middle;
-    margin-right:   2px;
+  & label.cozen-btn-check-label {
+    cursor: inherit;
   }
 
   // Square
-  & > div.cozen-btn-check-square {
-    position:      relative;
-    transition:    @cozen-transition;
-    border-radius: @cozen-radius;
-    display:       inline-block;
-    cursor:        inherit;
-    & > i.cozen-btn-check-inner {
+  & div.cozen-btn-check-square {
+    position:       relative;
+    transition:     @cozen-transition;
+    border-radius:  @cozen-radius;
+    display:        inline-block;
+    cursor:         inherit;
+    vertical-align: middle;
+    & i.cozen-btn-check-inner {
       cursor:  inherit;
       display: table;
       &.bounceOut,
