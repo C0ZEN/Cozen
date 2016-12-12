@@ -18,13 +18,12 @@
   .cozen-list-item.cozen-list-item-simple {
     color:            @color;
     background-color: @background-color;
-    &:hover,
+    &.active,
     &:focus {
       color:            @color-hover;
       background-color: @background-color-hover;
     }
     &.disabled {
-      &:hover,
       &:focus {
         color:            @color;
         background-color: @background-color;
@@ -40,7 +39,7 @@
     div.cozen-list-item-simple-content {
       span.cozen-list-item-simple-label small {
         color: @color;
-        &:hover,
+        &.active,
         &:focus {
           color: @color-hover;
         }

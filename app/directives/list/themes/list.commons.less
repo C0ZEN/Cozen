@@ -1,11 +1,12 @@
 div.cozen-list .cozen-list-item {
-  cursor:      pointer;
-  transition:  @cozen-transition;
-  box-sizing:  border-box;
-  position:    relative;
-  width:       100%;
-  line-height: normal;
-  outline:     @cozen-outline;
+  cursor:        pointer;
+  transition:    @cozen-transition;
+  box-sizing:    border-box;
+  position:      relative;
+  width:         100%;
+  line-height:   normal;
+  outline:       @cozen-outline;
+  border-bottom: inherit;
 
   // No action
   &.no-action {
@@ -19,8 +20,4 @@ div.cozen-list .cozen-list-item {
     user-select: none;
   }
 }
-&:last-of-type {
-  .cozen-list-item {
-    border-bottom: none;
-  }
-}
+

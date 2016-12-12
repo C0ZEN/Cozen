@@ -3,7 +3,8 @@
      ng-class="_methods.getMainClass();"
      id="{{ _cozenListItemSimpleId }}"
      tabindex="{{ _methods.getTabIndex(); }}"
-     ng-click="_methods.onClick.item($event)">
+     ng-click="_methods.onClick.item($event)"
+     ng-mousemove="_methods.onHover($event)">
 
     <div class="cozen-list-item-simple-content left">
 

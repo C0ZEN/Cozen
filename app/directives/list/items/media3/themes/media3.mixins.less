@@ -4,12 +4,11 @@
 .cozen-list-item-media3-color(@background-color, @background-color-hover) {
   .cozen-list-item.cozen-list-item-media3 {
     background-color: @background-color;
-    &:hover,
+    &.active,
     &:focus {
       background-color: @background-color-hover;
     }
     &.disabled {
-      &:hover,
       &:focus {
         background-color: @background-color;
       }
@@ -28,14 +27,13 @@
         color:     @color;
       }
     }
-    &:focus,
-    &:hover {
+    &.active,
+    &:focus {
       & > span.cozen-list-item-media3-header {
         color: @color-hover;
       }
     }
     &.disabled {
-      &:hover,
       &:focus {
         & > span.cozen-list-item-media3-header {
           color: @color;
@@ -56,14 +54,13 @@
         color:     @color;
       }
     }
-    &:focus,
-    &:hover {
+    &.active,
+    &:focus {
       & > span.cozen-list-item-media3-label {
         color: @color-hover;
       }
     }
     &.disabled {
-      &:hover,
       &:focus {
         & > span.cozen-list-item-media3-label {
           color: @color;
@@ -84,14 +81,13 @@
         color:     @color;
       }
     }
-    &:focus,
-    &:hover {
+    &.active,
+    &:focus {
       & > span.cozen-list-item-media3-sub-label {
         color: @color-hover;
       }
     }
     &.disabled {
-      &:hover,
       &:focus {
         & > span.cozen-list-item-media3-sub-label {
           color: @color;
