@@ -1,67 +1,36 @@
-div.cozen-panel.tau {
+div.cozen-input.tau {
 
   // Variables
-  @cozen-panel-tau-height-small: 32px;
-  @cozen-panel-tau-height-normal: 39px;
-  @cozen-panel-tau-height-large: 48px;
-  @cozen-panel-tau-border-size: 1px;
+  @cozen-input-tau-padding-icon-small: 4px;
+  @cozen-input-tau-padding-icon-normal: 4px;
+  @cozen-input-tau-padding-icon-large: 5px;
+  @cozen-input-tau-padding-small: 4px;
+  @cozen-input-tau-padding-normal: 6px;
+  @cozen-input-tau-padding-large: 8px;
+  @cozen-input-tau-font-small: 13px;
+  @cozen-input-tau-font-normal: 16px;
+  @cozen-input-tau-font-large: 19px;
 
   // Size
   &.small {
-    .cozen-panel-size(@cozen-space-small, 16px, @cozen-panel-tau-height-small);
-    .cozen-panel-icon(@cozen-space-normal);
-    .cozen-panel-big-icon(@cozen-panel-tau-height-small, @cozen-panel-tau-border-size, @cozen-space-small);
+    .cozen-input-size(0 @cozen-input-tau-padding-small, @cozen-input-tau-font-small);
+    .cozen-input-color(@cozen-color-black, @cozen-color-black, ffffff, @cozen-color-white);
+    .cozen-input-border(1px, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-icon(@cozen-input-tau-padding-icon-small, @cozen-input-tau-font-small);
   }
   &.normal {
-    .cozen-panel-size(@cozen-space-small, 20px, @cozen-panel-tau-height-normal);
-    .cozen-panel-icon(@cozen-space-normal);
-    .cozen-panel-big-icon(@cozen-panel-tau-height-normal, @cozen-panel-tau-border-size, @cozen-space-small);
+    .cozen-input-size(1px @cozen-input-tau-padding-normal, @cozen-input-tau-font-normal);
+    .cozen-input-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
+    .cozen-input-border(1px, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-icon(@cozen-input-tau-padding-icon-normal, @cozen-input-tau-font-normal);
   }
   &.large {
-    .cozen-panel-size(@cozen-space-normal, 25px, @cozen-panel-tau-height-large);
-    .cozen-panel-icon(@cozen-space-large);
-    .cozen-panel-big-icon(@cozen-panel-tau-height-large, @cozen-panel-tau-border-size, @cozen-space-small);
-  }
-
-  // Type
-  &.default {
-    .cozen-panel-type-header(@cozen-color-white, @cozen-color-white, @cozen-color-grey, @cozen-color-grey-hover);
-    .cozen-panel-type-body(@cozen-color-background);
-    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-grey-hover, @cozen-color-grey-hover, @cozen-radius);
-    .cozen-panel-big-icon-color('left', @cozen-color-white, @cozen-color-white, @cozen-color-orange, @cozen-color-orange-hover);
-    .cozen-panel-big-icon-color('right', @cozen-color-white, @cozen-color-white, @cozen-color-red, @cozen-color-red-hover);
-    .cozen-panel-sub-label(70%, @cozen-color-white, @cozen-color-white);
-  }
-  &.info {
-    .cozen-panel-type-header(@cozen-color-white, @cozen-color-white, @cozen-color-blue, @cozen-color-blue-hover);
-    .cozen-panel-type-body(@cozen-color-background);
-    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-blue-hover, @cozen-color-blue-hover, @cozen-radius);
-    .cozen-panel-big-icon-color('left', @cozen-color-white, @cozen-color-white, @cozen-color-blue, @cozen-color-blue-hover);
-    .cozen-panel-big-icon-color('right', @cozen-color-white, @cozen-color-white, @cozen-color-blue, @cozen-color-blue-hover);
-    .cozen-panel-sub-label(70%, @cozen-color-white-hover, @cozen-color-white-hover);
-  }
-  &.success {
-    .cozen-panel-type-header(@cozen-color-white, @cozen-color-white, @cozen-color-green, @cozen-color-green-hover);
-    .cozen-panel-type-body(@cozen-color-background);
-    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-green-hover, @cozen-color-green-hover, @cozen-radius);
-    .cozen-panel-big-icon-color('left', @cozen-color-white, @cozen-color-white, @cozen-color-green, @cozen-color-green-hover);
-    .cozen-panel-big-icon-color('right', @cozen-color-white, @cozen-color-white, @cozen-color-green, @cozen-color-green-hover);
-    .cozen-panel-sub-label(70%, @cozen-color-white-hover, @cozen-color-white-hover);
-  }
-  &.warning {
-    .cozen-panel-type-header(@cozen-color-white, @cozen-color-white, @cozen-color-orange, @cozen-color-orange-hover);
-    .cozen-panel-type-body(@cozen-color-background);
-    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-orange-hover, @cozen-color-orange-hover, @cozen-radius);
-    .cozen-panel-big-icon-color('left', @cozen-color-white, @cozen-color-white, @cozen-color-orange, @cozen-color-orange-hover);
-    .cozen-panel-big-icon-color('right', @cozen-color-white, @cozen-color-white, @cozen-color-orange, @cozen-color-orange-hover);
-    .cozen-panel-sub-label(70%, @cozen-color-white-hover, @cozen-color-white-hover);
-  }
-  &.error {
-    .cozen-panel-type-header(@cozen-color-white, @cozen-color-white, @cozen-color-red, @cozen-color-red-hover);
-    .cozen-panel-type-body(@cozen-color-background);
-    .cozen-panel-border(@cozen-panel-tau-border-size, solid, @cozen-color-red-hover, @cozen-color-red-hover, @cozen-radius);
-    .cozen-panel-big-icon-color('left', @cozen-color-white, @cozen-color-white, @cozen-color-red, @cozen-color-red-hover);
-    .cozen-panel-big-icon-color('right', @cozen-color-white, @cozen-color-white, @cozen-color-red, @cozen-color-red-hover);
-    .cozen-panel-sub-label(70%, @cozen-color-white-hover, @cozen-color-white-hover);
+    .cozen-input-size(3px @cozen-input-tau-padding-large, @cozen-input-tau-font-normal);
+    .cozen-input-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
+    .cozen-input-border(1px, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-icon(@cozen-input-tau-padding-icon-large, @cozen-input-tau-font-large);
   }
 }

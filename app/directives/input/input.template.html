@@ -3,10 +3,37 @@
      ng-class="_methods.getMainClass();"
      id="{{ _cozenInputId }}">
 
-    <cozen-tooltip cozen-tooltip-label="{{ _cozenInputTooltip }}"
-                   cozen-tooltip-trigger="{{ _cozenInputTooltipTrigger }}"
-                   cozen-tooltip-disabled="_cozenInputTooltip == ''">
-        <input ng-model="cozenInputModel">
-    </cozen-tooltip>
+  <!-- Tooltip -->
+  <cozen-tooltip cozen-tooltip-label="{{ _cozenInputTooltip }}"
+                 cozen-tooltip-trigger="{{ _cozenInputTooltipTrigger }}"
+                 cozen-tooltip-display="block"
+                 cozen-tooltip-disabled="_cozenInputTooltip == ''">
 
+    <div class="cozen-input-content">
+
+      <!-- Left icon -->
+      <div ng-if="_cozenInputIconLeft != ''"
+           class="cozen-input-icon left">
+        <i ng-class="[_cozenInputIconLeft]"></i>
+      </div>
+
+      <!-- Input -->
+      <input ng-model="vm.cozenInputModel"
+             ng-required="_cozenInputRequired"
+             ng-change="_methods.onChange();"
+             type="{{ _cozenInputType }}"
+             ng-disabled="vm.cozenInputDisabled"
+             placeholder="{{ _cozenInputPlaceholder }}"
+             min="{{ _cozenInputMin }}"
+             max="{{ _cozenInputMax }}"
+             ng-minlength="_cozenInputMinLength"
+             ng-maxlength="_cozenInputMaxLength">
+
+      <!-- Right icon -->
+      <div ng-if="_cozenInputIconRight != ''"
+           class="cozen-input-icon right">
+        <i ng-class="[_cozenInputIconRight]"></i>
+      </div>
+    </div>
+  </cozen-tooltip>
 </div>

@@ -1,18 +1,111 @@
 <div class="container">
+  <form name="userForm">
     <div class="row">
-        <div class="col-xs-12">
-            <cozen-input cozen-input-model="lol"></cozen-input>
-        </div>
-        <div class="col-xs-12">
-            <cozen-input cozen-input-model="lol"
-                         cozen-input-tooltip="Un tooltip !">
-            </cozen-input>
-        </div>
-        <div class="col-xs-12">
-            <cozen-input cozen-input-model="lol"
-                         cozen-input-tooltip="Un tooltip !"
-                         cozen-input-tooltip-trigger="mouseenter">
-            </cozen-input>
-        </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model0"></cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model0"
+                     cozen-input-tooltip="Un tooltip !">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model0"
+                     cozen-input-tooltip="Un tooltip !"
+                     cozen-input-tooltip-trigger="mouseenter">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model0"
+                     cozen-input-required="true">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model1"
+                     cozen-input-required="true"
+                     cozen-input-prefix="prefix-">
+        </cozen-input>
+      </div>
+      <pre>{{ vm.model1 }}</pre>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model2"
+                     cozen-input-required="true"
+                     cozen-input-suffix="-suffix">
+        </cozen-input>
+      </div>
+      <pre>{{ vm.model2 }}</pre>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model3"
+                     cozen-input-required="true"
+                     cozen-input-prefix="prefix-"
+                     cozen-input-suffix="-suffix">
+        </cozen-input>
+      </div>
+      <pre>{{ vm.model3 }}</pre>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model3"
+                     cozen-input-disabled="true">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model4"
+                     cozen-input-placeholder="Un placeholder">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model5"
+                     cozen-input-min="10"
+                     cozen-input-max="20">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model6"
+                     cozen-input-type-number
+                     cozen-input-min="10"
+                     cozen-input-max="20">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model7"
+                     cozen-input-min-length="10"
+                     cozen-input-max-length="20">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model8"
+                     cozen-input-size-small>
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model8"
+                     cozen-input-size-normal>
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model8"
+                     cozen-input-size-large>
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model9"
+                     cozen-input-size-small
+                     cozen-input-icon-left="fa fa-search"
+                     cozen-input-icon-right="fa fa-search">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model9"
+                     cozen-input-icon-left="fa fa-search"
+                     cozen-input-icon-right="fa fa-search">
+        </cozen-input>
+      </div>
+      <div class="col-xs-12">
+        <cozen-input cozen-input-model="vm.model9"
+                     cozen-input-size-large
+                     cozen-input-icon-left="fa fa-search"
+                     cozen-input-icon-right="fa fa-search">
+        </cozen-input>
+      </div>
     </div>
+  </form>
 </div>

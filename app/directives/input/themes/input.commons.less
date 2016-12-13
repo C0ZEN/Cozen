@@ -1,68 +1,61 @@
-div.cozen-panel {
+div.cozen-input {
   cursor:      pointer;
-  transition:  @cozen-transition;
   box-sizing:  border-box;
   position:    relative;
-  line-height: normal;
-  outline:     @cozen-outline;
+  line-height: 1;
   width:       100%;
+  display:     inline-block;
+  transition:  @cozen-transition;
 
   // Header
-  & > div.cozen-panel-header {
-    cursor:     inherit;
-    outline:    inherit;
-    transition: @cozen-transition;
-
-    // Label
-    & > span.cozen-panel-label {
-      cursor:         inherit;
-      font-weight:    normal;
-      font-size:      inherit;
-      vertical-align: sub;
-      line-height:    inherit;
-      font-family:    @cozen-family-span;
-      small {
-        font-weight: normal;
-        font-family: @cozen-family-span;
-      }
-    }
+  & div.cozen-input-content {
+    cursor:           inherit;
+    outline:          inherit;
+    font-size:        inherit;
+    color:            inherit;
+    background-color: inherit;
+    display:          inline-block;
+    width:            100%;
+    transition:       @cozen-transition;
 
     // Icon
-    & > div.cozen-panel-icon,
-    & > div.cozen-panel-big-icon {
-      display:        inline-block;
-      cursor:         inherit;
-      font-weight:    normal;
-      vertical-align: sub;
-      outline:        @cozen-outline;
-      transition:     @cozen-transition;
-    }
-    & > div.cozen-panel-icon {
-      font-size:   inherit;
-      line-height: inherit;
-    }
-    & > div.cozen-panel-big-icon {
-      display: inline-flex;
+    & div.cozen-input-icon {
+      cursor:           inherit;
+      font-weight:      normal;
+      line-height:      inherit;
+      font-size:        inherit;
+      color:            inherit;
+      background-color: inherit;
+      transition:       @cozen-transition;
+      position:         absolute;
+      top:              0;
+      content:          '';
+      height:           100%;
+      display:          flex;
+      align-items:      center;
       &.left {
-        float: left;
+        left: 0;
       }
       &.right {
-        float: right;
+        right: 0;
       }
       i {
-        vertical-align: middle;
-        height:         inherit;
-        line-height:    inherit;
-        transition:     @cozen-transition;
+        width:      1.28571429em;
+        text-align: center;
       }
     }
-  }
 
-  // Body
-  & > div.cozen-panel-body {
-    cursor:     default;
-    overflow-y: auto;
-    overflow-x: hidden;
+    // Input
+    input {
+      font-size:        inherit;
+      color:            inherit;
+      background-color: inherit;
+      display:          inline-block;
+      width:            100%;
+      border-radius:    @cozen-radius;
+      transition:       @cozen-transition;
+      outline:          @cozen-outline;
+    }
   }
 
   // Disabled
