@@ -20,14 +20,15 @@
       <!-- Input -->
       <input ng-model="vm.cozenInputModel"
              ng-required="_cozenInputRequired"
-             ng-change="_methods.onChange();"
+             ng-change="_methods.onChange($valid);"
              type="{{ _cozenInputType }}"
              ng-disabled="vm.cozenInputDisabled"
              placeholder="{{ _cozenInputPlaceholder }}"
              min="{{ _cozenInputMin }}"
              max="{{ _cozenInputMax }}"
              ng-minlength="_cozenInputMinLength"
-             ng-maxlength="_cozenInputMaxLength">
+             ng-maxlength="_cozenInputMaxLength"
+             name="{'">
 
       <!-- Right icon -->
       <div ng-if="_cozenInputIconRight != ''"

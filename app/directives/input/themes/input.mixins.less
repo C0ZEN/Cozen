@@ -41,19 +41,19 @@
 /**************/
 /*   BORDER   */
 /**************/
-.cozen-input-border(@size, @type, @color, @color-hover) {
+.cozen-input-border(@border, @border-hover) {
   div.cozen-input-content {
     input {
-      border: @size @type @color;
+      border: @border;
       &:focus {
-        border: @size @type @color-hover;
+        border: @border-hover;
       }
     }
   }
   &:hover {
     div.cozen-input-content {
       input {
-        border: @size @type @color-hover;
+        border: @border-hover;
       }
     }
   }
@@ -61,14 +61,14 @@
     div.cozen-input-content {
       input {
         &:focus {
-          border: @size @type @color;
+          border: @border;
         }
       }
     }
     &:hover {
       div.cozen-input-content {
         input {
-          border: @size @type @color;
+          border: @border;
         }
       }
     }
@@ -187,5 +187,14 @@
         padding-right: @padding * 2 + @font-size;
       }
     }
+  }
+}
+/*************/
+/*   ERROR   */
+/*************/
+.cozen-input-error(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover) {
+  &.error-design {
+    .cozen-input-color(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-input-border(@border, @border-hover);
   }
 }

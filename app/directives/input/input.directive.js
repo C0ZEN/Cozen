@@ -37,6 +37,8 @@
  * @param {number}  cozenInputMaxLength      = 100            > Maximum char length
  * @param {string}  cozenInputIconLeft                        > Text for the icon left (font)
  * @param {string}  cozenInputIconRight                       > Text for the icon right (font)
+ * @param {string}  cozenInputName           = uuid           > Name of the input
+ * @param {string}  cozenInputForm           = 'form'   > Name of the form
  *
  */
 (function (angular) {
@@ -48,10 +50,11 @@
 
   cozenInput.$inject = [
     'Themes',
-    'CONFIG'
+    'CONFIG',
+    'rfc4122'
   ];
 
-  function cozenInput(Themes, CONFIG) {
+  function cozenInput(Themes, CONFIG, rfc4122) {
     return {
       link            : link,
       restrict        : 'E',
@@ -78,7 +81,8 @@
       };
 
       var data = {
-        directive: 'cozenInput'
+        directive: 'cozenInput',
+        uuid     : rfc4122.v4()
       };
 
       scope._isReady = false;
@@ -125,8 +129,8 @@
         scope._cozenInputTooltip        = angular.isDefined(attrs.cozenInputTooltip) ? attrs.cozenInputTooltip : '';
         scope._cozenInputTooltipTrigger = angular.isDefined(attrs.cozenInputTooltipTrigger) ? attrs.cozenInputTooltipTrigger : 'outsideClick';
         scope._cozenInputRequired       = angular.isDefined(attrs.cozenInputRequired) ? attrs.cozenInputRequired : false;
-        scope._cozenInputErrorDesign    = angular.isDefined(attrs.cozenInputErrorDesign) ? attrs.cozenInputErrorDesign : true;
-        scope._cozenInputSuccessDesign  = angular.isDefined(attrs.cozenInputSuccessDesign) ? attrs.cozenInputSuccessDesign : true;
+        scope._cozenInputErrorDesign    = angular.isDefined(attrs.cozenInputErrorDesign) ? JSON.parse(attrs.cozenInputErrorDesign) : true;
+        scope._cozenInputSuccessDesign  = angular.isDefined(attrs.cozenInputSuccessDesign) ? JSON.parse(attrs.cozenInputSuccessDesign) : true;
         scope._cozenInputPrefix         = angular.isDefined(attrs.cozenInputPrefix) ? attrs.cozenInputPrefix : '';
         scope._cozenInputSuffix         = angular.isDefined(attrs.cozenInputSuffix) ? attrs.cozenInputSuffix : '';
         scope._cozenInputPlaceholder    = angular.isDefined(attrs.cozenInputPlaceholder) ? attrs.cozenInputPlaceholder : '';
@@ -136,6 +140,8 @@
         scope._cozenInputMaxLength      = angular.isDefined(attrs.cozenInputMaxLength) ? attrs.cozenInputMaxLength : 100;
         scope._cozenInputIconLeft       = angular.isDefined(attrs.cozenInputIconLeft) ? attrs.cozenInputIconLeft : '';
         scope._cozenInputIconRight      = angular.isDefined(attrs.cozenInputIconRight) ? attrs.cozenInputIconRight : '';
+        scope._cozenInputName           = angular.isDefined(attrs.cozenInputName) ? attrs.cozenInputName : data.uuid;
+        scope._cozenInputForm           = angular.isDefined(attrs.cozenInputForm) ? attrs.cozenInputForm : 'form';
 
         // Init stuff
         element.on('$destroy', methods.destroy);
@@ -160,7 +166,7 @@
 
       function getMainClass() {
         var classList = [scope._activeTheme, scope._cozenInputSize];
-        if (scope._cozenInputErrorDesign) classList.push('error-design');
+        if (scope._cozenInputErrorDesign && scope.$parent[scope._cozenInputForm][scope._cozenInputName]) classList.push('error-design');
         if (scope._cozenInputSuccessDesign) classList.push('success-design');
         if (scope.vm.cozenInputDisabled) classList.push('disabled');
         if (scope._cozenInputIconLeft) classList.push('icon-left');
@@ -168,10 +174,11 @@
         return classList;
       }
 
-      function onChange() {
+      function onChange(valid) {
         if (scope.vm.cozenInputDisabled) return;
         if (Methods.isFunction(scope.cozenInputOnChange)) scope.cozenInputOnChange();
         if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+
       }
     }
   }
