@@ -5,7 +5,7 @@
      tabindex="{{ _methods.getTabIndex(); }}"
      ng-click="_methods.onClick($event)">
 
-    <cozen-tooltip cozen-tooltip-label="{{ _cozenBtnRadioTooltip }}"
+    <cozen-tooltip cozen-tooltip-label="_cozenBtnRadioTooltip"
                    cozen-tooltip-disabled="_cozenBtnRadioTooltip == ''">
 
         <!-- Label -->
@@ -19,7 +19,7 @@
         <div class="cozen-btn-radio-bubble">
             <div ng-show="cozenBtnRadioModel"
                  ng-class="{'bounceIn': cozenBtnRadioModel && _cozenBtnRadioAnimationOut,
-             'bounceOut': !cozenBtnRadioModel && _cozenBtnRadioAnimationIn}"
+                            'bounceOut': !cozenBtnRadioModel && _cozenBtnRadioAnimationIn}"
                  class="cozen-btn-radio-inner-bubble">
             </div>
         </div>

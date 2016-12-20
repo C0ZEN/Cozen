@@ -1,0 +1,39 @@
+div.cozen-textarea.tau {
+
+  // Variables
+  @cozen-textarea-tau-padding-icon-small: 4px;
+  @cozen-textarea-tau-padding-icon-normal: 4px;
+  @cozen-textarea-tau-padding-icon-large: 5px;
+  @cozen-textarea-tau-padding-small: 4px;
+  @cozen-textarea-tau-padding-normal: 6px;
+  @cozen-textarea-tau-padding-large: 8px;
+  @cozen-textarea-tau-font-small: 13px;
+  @cozen-textarea-tau-font-normal: 16px;
+  @cozen-textarea-tau-font-large: 19px;
+
+  // Size
+  &.small {
+    .cozen-textarea-size(@cozen-textarea-tau-padding-small, @cozen-textarea-tau-font-small);
+    .cozen-textarea-color(@cozen-color-black, @cozen-color-black, ffffff, @cozen-color-white);
+    .cozen-textarea-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
+    .cozen-textarea-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-textarea-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red);
+    .cozen-textarea-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green);
+  }
+  &.normal {
+    .cozen-textarea-size(@cozen-textarea-tau-padding-normal, @cozen-textarea-tau-font-normal);
+    .cozen-textarea-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
+    .cozen-textarea-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
+    .cozen-textarea-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-textarea-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red);
+    .cozen-textarea-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green);
+  }
+  &.large {
+    .cozen-textarea-size(@cozen-textarea-tau-padding-large, @cozen-textarea-tau-font-normal);
+    .cozen-textarea-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
+    .cozen-textarea-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
+    .cozen-textarea-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-textarea-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red);
+    .cozen-textarea-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green);
+  }
+}

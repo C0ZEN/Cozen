@@ -1,0 +1,28 @@
+div.cozen-textarea {
+  cursor:      text;
+  box-sizing:  border-box;
+  position:    relative;
+  line-height: 1;
+  width:       100%;
+  display:     inline-block;
+  transition:  @cozen-transition;
+
+  // Textarea
+  textarea {
+    cursor:        inherit;
+    display:       inline-block;
+    width:         100%;
+    border-radius: @cozen-radius;
+    transition:    @cozen-transition;
+    outline:       @cozen-outline;
+    resize:        vertical;
+    line-height:   normal;
+  }
+
+  // Disabled
+  &.disabled {
+    opacity:     0.4;
+    cursor:      not-allowed;
+    user-select: none;
+  }
+}

@@ -1,5 +1,5 @@
 div.cozen-input {
-  cursor:      pointer;
+  cursor:      default;
   box-sizing:  border-box;
   position:    relative;
   line-height: 1;
@@ -7,8 +7,8 @@ div.cozen-input {
   display:     inline-block;
   transition:  @cozen-transition;
 
-  // Header
-  & div.cozen-input-content {
+  // Content
+  div.cozen-input-content {
     cursor:           inherit;
     outline:          inherit;
     font-size:        inherit;
@@ -16,17 +16,17 @@ div.cozen-input {
     background-color: inherit;
     display:          inline-block;
     width:            100%;
-    transition:       @cozen-transition;
+    transition:       none;
 
     // Icon
-    & div.cozen-input-icon {
+    div.cozen-input-icon {
       cursor:           inherit;
       font-weight:      normal;
       line-height:      inherit;
       font-size:        inherit;
       color:            inherit;
       background-color: inherit;
-      transition:       @cozen-transition;
+      transition:       none;
       position:         absolute;
       top:              0;
       content:          '';
@@ -42,6 +42,7 @@ div.cozen-input {
       i {
         width:      1.28571429em;
         text-align: center;
+        transition: none;
       }
     }
 
@@ -56,6 +57,42 @@ div.cozen-input {
       transition:       @cozen-transition;
       outline:          @cozen-outline;
     }
+
+    // Tweak: looks like a normal input (avoid auto complete behavior)
+    input[readonly] {
+      cursor: text;
+    }
+
+    // Type number
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin:             0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    // Arrows
+    div.cozen-input-arrows {
+      position: absolute;
+      top:      0;
+      height:   100%;
+      content:  '';
+      cursor:   pointer;
+      color:    inherit;
+      div.cozen-input-arrow {
+        cursor:         inherit;
+        height:         50%;
+        line-height:    50%;
+        outline:        @cozen-outline;
+        position:       relative;
+        display:        flex;
+        flex-direction: row;
+        align-items:    stretch;
+        color:          inherit;
+      }
+    }
   }
 
   // Disabled
@@ -63,5 +100,21 @@ div.cozen-input {
     opacity:     0.4;
     cursor:      not-allowed;
     user-select: none;
+    div.cozen-input-content {
+      input,
+      div.cozen-input-arrows {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+ul.cozen-input-password-tooltip {
+  margin:     0;
+  text-align: justify;
+  li {
+    &.complete {
+      text-decoration: line-through;
+      color: @cozen-color-grey;
+    }
   }
 }

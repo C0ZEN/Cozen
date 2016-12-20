@@ -1,0 +1,28 @@
+<div ng-if="_isReady"
+     class="cozen-textarea"
+     ng-class="_methods.getMainClass()"
+     id="{{ _cozenTextareaId }}">
+
+    <!-- Tooltip -->
+    <cozen-tooltip cozen-tooltip-label="_cozenTextareaTooltip"
+                   cozen-tooltip-trigger="{{ _cozenTextareaTooltipTrigger }}"
+                   cozen-tooltip-display="block"
+                   cozen-tooltip-placement="{{ _cozenTextareaTooltipPlacement }}"
+                   cozen-tooltip-disabled="_cozenTextareaTooltip == ''">
+
+        <!-- Textarea -->
+        <textarea ng-model="vm.cozenTextareaModel"
+                  ng-required="_cozenTextareaRequired"
+                  ng-change="_methods.onChange($event);"
+                  ng-disabled="vm.cozenTextareaDisabled"
+                  placeholder="{{ _cozenTextareaPlaceholder }}"
+                  ng-minlength="_cozenTextareaMinLength"
+                  ng-maxlength="_cozenTextareaMaxLength"
+                  name="{{ _cozenTextareaName }}"
+                  ng-model-options="{allowInvalid: true}"
+                  msd-elastic
+                  msd-elastic-disabled="{{ !_cozenTextareaElastic }}"
+                  rows="{{ _cozenTextareaRows }}">
+        </textarea>
+    </cozen-tooltip>
+</div>

@@ -1,0 +1,85 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-dropdown-item-simple-size(@font-size) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple {
+    font-size: @font-size;
+    div.cozen-dropdown-item-simple-content {
+      & > div.cozen-dropdown-item-simple-icon.left {
+        margin-right: @font-size / 6;
+      }
+    }
+  }
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-dropdown-item-simple-color(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple {
+    color:            @color;
+    background-color: @background-color;
+    &.active,
+    &:focus {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+    &.disabled {
+      &:focus {
+        color:            @color;
+        background-color: @background-color;
+      }
+    }
+  }
+}
+/*****************/
+/*   SUB-COLOR   */
+/*****************/
+.cozen-dropdown-item-simple-sub-color(@color, @color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple {
+    div.cozen-dropdown-item-simple-content {
+      span.cozen-dropdown-item-simple-label small {
+        color: @color;
+        &.active,
+        &:focus {
+          color: @color-hover;
+        }
+        &.disabled {
+          color: @color;
+        }
+      }
+    }
+  }
+}
+/***********/
+/*   BTN   */
+/***********/
+.cozen-dropdown-item-simple-btn(@hover, @padding, @font-size, @color, @background-color, @border) {
+  & when (@hover = false) {
+    .cozen-dropdown-item.cozen-dropdown-item-simple {
+      div.cozen-dropdown-item-simple-content {
+        div.cozen-dropdown-item-simple-btn {
+          padding:          @padding;
+          font-size:        @font-size;
+          color:            @color;
+          background-color: @background-color;
+          border:           @border;
+        }
+      }
+    }
+  }
+  & when (@hover = true) {
+    .cozen-dropdown-item.cozen-dropdown-item-simple {
+      div.cozen-dropdown-item-simple-content {
+        div.cozen-dropdown-item-simple-btn {
+          &:focus,
+          &:hover {
+            padding:          @padding;
+            color:            @color;
+            background-color: @background-color;
+            border:           @border;
+          }
+        }
+      }
+    }
+  }
+}

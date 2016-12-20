@@ -1,0 +1,7 @@
+{
+  "input_password_lowercase": "Une lettre minuscule",
+  "input_password_uppercase": "Une lettre majuscule",
+  "input_password_number": "Un chiffre",
+  "input_password_special_char": "Un caractère spécial",
+  "input_password_min_length": "Au moins {{length}} caractères"
+}

@@ -14,7 +14,7 @@
              ng-mouseenter="_methods.bigIconHover(true);"
              ng-mouseleave="_methods.bigIconHover(false);"
              cozen-tooltip
-             cozen-tooltip-label="{{ _cozenPanelBigIconLeftTooltip }}"
+             cozen-tooltip-label="_cozenPanelBigIconLeftTooltip"
              cozen-tooltip-placement="auto bottom"
              cozen-tooltip-disabled="_cozenPanelBigIconLeftTooltip == ''"
              tabindex="{{ _methods.getTabIndex(); }}">
@@ -46,7 +46,7 @@
              ng-mouseenter="_methods.bigIconHover(true);"
              ng-mouseleave="_methods.bigIconHover(false);"
              cozen-tooltip
-             cozen-tooltip-label="{{ _cozenPanelBigIconRightTooltip }}"
+             cozen-tooltip-label="_cozenPanelBigIconRightTooltip"
              cozen-tooltip-placement="auto bottom"
              cozen-tooltip-disabled="_cozenPanelBigIconRightTooltip == ''"
              tabindex="{{ _methods.getTabIndex(); }}">

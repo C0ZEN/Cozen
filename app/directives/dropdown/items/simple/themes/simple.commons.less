@@ -1,0 +1,52 @@
+div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple {
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  line-height:     1;
+
+  div.cozen-dropdown-item-simple-content {
+    align-self:  center;
+    line-height: inherit;
+
+    // Label
+    & > span.cozen-dropdown-item-simple-label {
+      cursor:         inherit;
+      font-weight:    normal;
+      font-size:      inherit;
+      vertical-align: sub;
+      line-height:    inherit;
+      font-family:    @cozen-family-span;
+      small {
+        font-weight: normal;
+        font-family: @cozen-family-span;
+      }
+    }
+
+    // Icon
+    & > div.cozen-dropdown-item-simple-icon {
+      display:        inline-block;
+      cursor:         inherit;
+      font-weight:    normal;
+      vertical-align: sub;
+      outline:        @cozen-outline;
+      transition:     @cozen-transition;
+      font-size:      inherit;
+      line-height:    inherit;
+    }
+
+    // Btn
+    & div.cozen-dropdown-item-simple-btn {
+      outline:       @cozen-outline;
+      transition:    @cozen-transition;
+      border-radius: @cozen-radius;
+      display:       inline-block;
+      height:        100%;
+      i,
+      span {
+        font-size:      inherit;
+        color:          inherit;
+        vertical-align: middle;
+      }
+    }
+  }
+}

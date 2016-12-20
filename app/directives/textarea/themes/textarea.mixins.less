@@ -1,0 +1,121 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-textarea-size(@padding, @font-size) {
+  textarea {
+    font-size: @font-size;
+    padding:   @padding;
+  }
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-textarea-color(@color, @color-hover, @background-color, @background-color-hover) {
+  textarea {
+    color:            @color;
+    background-color: @background-color;
+    &:focus,
+    &:hover {
+      background-color: @background-color-hover;
+    }
+  }
+  &.disabled {
+    textarea {
+      &:focus,
+      &:hover {
+        background-color: @background-color;
+      }
+    }
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-textarea-border(@border, @border-hover) {
+  textarea {
+    border: @border;
+    &:focus,
+    &:hover {
+      border: @border-hover;
+    }
+  }
+  &.disabled {
+    textarea {
+      &:focus,
+      &:hover {
+        border: @border;
+      }
+    }
+  }
+}
+/*******************/
+/*   PLACEHOLDER   */
+/*******************/
+.cozen-textarea-placeholder(@color, @color-hover) {
+  textarea {
+    &::-webkit-input-placeholder {
+      color: @color;
+    }
+    &::-moz-placeholder {
+      color: @color;
+    }
+    &:-ms-input-placeholder {
+      color: @color;
+    }
+    &:-moz-placeholder {
+      color: @color;
+    }
+    &:focus,
+    &:hover {
+      &::-webkit-input-placeholder {
+        color: @color-hover;
+      }
+      &::-moz-placeholder {
+        color: @color-hover;
+      }
+      &:-ms-input-placeholder {
+        color: @color-hover;
+      }
+      &:-moz-placeholder {
+        color: @color-hover;
+      }
+    }
+  }
+  .disabled {
+    textarea {
+      &:focus,
+      &:hover {
+        &::-webkit-input-placeholder {
+          color: @color;
+        }
+        &::-moz-placeholder {
+          color: @color;
+        }
+        &:-ms-input-placeholder {
+          color: @color;
+        }
+        &:-moz-placeholder {
+          color: @color;
+        }
+      }
+    }
+  }
+}
+/*************/
+/*   ERROR   */
+/*************/
+.cozen-textarea-error(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover) {
+  &.error-design {
+    .cozen-textarea-color(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-textarea-border(@border, @border-hover);
+  }
+}
+/***************/
+/*   SUCCESS   */
+/***************/
+.cozen-textarea-success(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover) {
+  &.success-design {
+    .cozen-textarea-color(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-textarea-border(@border, @border-hover);
+  }
+}

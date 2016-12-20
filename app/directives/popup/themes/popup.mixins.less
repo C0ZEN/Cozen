@@ -1,0 +1,119 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-popup-size(@margin, @max-height, @padding) {
+  div.cozen-popup-container {
+    margin: @margin;
+    div.cozen-popup-header,
+    div.cozen-popup-body,
+    div.cozen-popup-footer {
+      padding: @padding;
+    }
+    div.cozen-popup-body {
+      max-height: @max-height;
+    }
+  }
+}
+/**************/
+/*   HEADER   */
+/**************/
+.cozen-popup-header(@background-color, @background-color-hover) {
+  div.cozen-popup-container {
+    div.cozen-popup-header {
+      background-color: @background-color;
+      &:hover {
+        background-color: @background-color-hover;
+      }
+    }
+  }
+}
+/******************/
+/*   HEADER SIZE  */
+/******************/
+.cozen-popup-header-size(@title-size, @title-margin, @sub-title-size, @close-size, @picto-margin-right) {
+  div.cozen-popup-container {
+    div.cozen-popup-header {
+      div.cozen-popup-header-img.left {
+        margin-right: @picto-margin-right;
+      }
+      div.cozen-popup-header-title {
+        span.title {
+          font-size: @title-size;
+          margin:    @title-margin;
+        }
+        span.sub-title {
+          font-size: @sub-title-size;
+        }
+      }
+      div.cozen-popup-header-close {
+        font-size: @close-size;
+      }
+    }
+  }
+}
+/*******************/
+/*   HEADER COLOR  */
+/*******************/
+.cozen-popup-header-color(@title-color, @sub-title-color, @close-color) {
+  div.cozen-popup-container {
+    div.cozen-popup-header {
+      div.cozen-popup-header-title {
+        span.title {
+          color: @title-color;
+        }
+        span.sub-title {
+          color: @sub-title-color;
+        }
+      }
+      div.cozen-popup-header-close {
+        color: @close-color;
+      }
+    }
+  }
+}
+/************/
+/*   BODY   */
+/************/
+.cozen-popup-body(@background-color, @background-color-hover) {
+  div.cozen-popup-container {
+    div.cozen-popup-body {
+      background-color: @background-color;
+    }
+  }
+}
+/**************/
+/*   FOOTER   */
+/**************/
+.cozen-popup-footer(@background-color, @background-color-hover) {
+  div.cozen-popup-container {
+    div.cozen-popup-footer {
+      background-color: @background-color;
+    }
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-popup-border(@border-outside, @border-inside, @shadow) {
+  div.cozen-popup-container {
+    box-shadow: @shadow;
+    div.cozen-popup-header {
+      border:        @border-outside;
+      border-bottom: @border-inside;
+    }
+    div.cozen-popup-body {
+      border-left:  @border-outside;
+      border-right: @border-outside;
+    }
+    div.cozen-popup-footer {
+      border:     @border-outside;
+      border-top: @border-inside;
+    }
+  }
+}
+/*****************/
+/*   CONTAINER   */
+/*****************/
+.cozen-popup-container(@background-color) {
+  background-color: @background-color;
+}

@@ -1,16 +1,18 @@
 'use strict';
 
 var Methods = {
-    isInList              : isInList,
-    isNullOrEmpty         : isNullOrEmpty,
-    safeApply             : safeApply,
-    isFunction            : isFunction,
-    directiveErrorRequired: directiveErrorRequired,
-    directiveCallbackLog  : directiveCallbackLog,
-    getConsoleColor       : getConsoleColor,
-    capitalizeFirstLetter : capitalizeFirstLetter,
-    directiveErrorFunction: directiveErrorFunction,
-    directiveErrorBoolean : directiveErrorBoolean
+    isInList                  : isInList,
+    isNullOrEmpty             : isNullOrEmpty,
+    safeApply                 : safeApply,
+    isFunction                : isFunction,
+    directiveErrorRequired    : directiveErrorRequired,
+    directiveCallbackLog      : directiveCallbackLog,
+    getConsoleColor           : getConsoleColor,
+    capitalizeFirstLetter     : capitalizeFirstLetter,
+    directiveErrorFunction    : directiveErrorFunction,
+    directiveErrorBoolean     : directiveErrorBoolean,
+    isRegExpValid             : isRegExpValid,
+    getElementPaddingTopBottom: getElementPaddingTopBottom
 };
 
 var Data = {
@@ -109,4 +111,13 @@ function directiveErrorBoolean(directive, param) {
         getConsoleColor('fn'),
         getConsoleColor()
     );
+}
+
+function isRegExpValid(regexp, value) {
+    return !(!new RegExp(regexp).test(value) || isNullOrEmpty(value));
+}
+
+function getElementPaddingTopBottom(element) {
+    var styles = window.getComputedStyle(element);
+    return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
 }

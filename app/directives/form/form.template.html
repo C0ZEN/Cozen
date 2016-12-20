@@ -1,0 +1,8 @@
+<form ng-if="_isReady"
+      class="cozen-form"
+      name="{{ _cozenFormName }}"
+      id="{{ _cozenFormId }}"
+      cozen-when-ready="_methods.dispatchName();"
+      cozen-wait-for-interpolation="true"
+      ng-transclude>
+</form>

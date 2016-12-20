@@ -1,0 +1,11 @@
+<div ng-if="_isReady"
+     class="cozen-dropdown"
+     ng-class="_methods.getMainClass();"
+     id="{{ _cozenDropdownId }}"
+     ng-mouseenter="_methods.onHover($event, true)"
+     ng-mouseleave="_methods.onHover($event, false)">
+
+    <div class="cozen-dropdown-transclude"
+         ng-transclude>
+    </div>
+</div>

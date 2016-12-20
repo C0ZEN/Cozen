@@ -143,10 +143,11 @@
             }
 
             function onClick($event) {
+                $event.stopPropagation();
                 if (scope.cozenBtnDisabled) return;
                 if (scope.cozenBtnLoader) return;
                 if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClick');
+                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
             }
 
             function getTabIndex() {

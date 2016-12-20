@@ -25,8 +25,11 @@
             'ui.bootstrap.tooltip',
             'ngScrollbars',
             'uuid',
+            'monospaced.elastic',
 
-            'cozenLibApp.list'
+            'cozenLibApp.list',
+            'cozenLibApp.popup',
+            'cozenLibApp.dropdown'
         ])
         .config(config)
         .run(run);

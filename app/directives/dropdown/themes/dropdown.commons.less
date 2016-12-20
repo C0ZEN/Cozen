@@ -1,0 +1,23 @@
+div.cozen-dropdown .cozen-dropdown-item {
+  cursor:        pointer;
+  transition:    @cozen-transition;
+  box-sizing:    border-box;
+  position:      relative;
+  width:         100%;
+  line-height:   normal;
+  outline:       @cozen-outline;
+  border-bottom: inherit;
+
+  // No action
+  &.no-action {
+    cursor: default;
+  }
+
+  // Disabled
+  &.disabled {
+    opacity:     0.4;
+    cursor:      not-allowed;
+    user-select: none;
+  }
+}
+

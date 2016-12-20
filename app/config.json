@@ -12,7 +12,8 @@
     "autoHideScrollbar": true,
     "theme": "dark",
     "advanced": {
-      "updateOnContentResize": true
+      "updateOnContentResize": true,
+      "updateOnSelectorChange": true
     },
     "setHeight": 0,
     "scrollInertia": 100,

@@ -1,11 +1,14 @@
 /************/
 /*   SIZE   */
 /************/
-.cozen-input-size(@padding, @font-size) {
+.cozen-input-size(@padding-top-bot, @padding-left-right, @font-size) {
   font-size: @font-size;
   div.cozen-input-content {
     input {
-      padding: @padding;
+      padding: @padding-top-bot @padding-left-right;
+    }
+    div.cozen-input-arrows {
+      right: @padding-left-right;
     }
   }
 }
@@ -22,6 +25,16 @@
     input {
       &:focus {
         background-color: @background-color-hover;
+      }
+    }
+    div.cozen-input-arrows {
+      div.cozen-input-arrow {
+        &.up div {
+          border-bottom-color: @color;
+        }
+        &.down div {
+          border-top-color: @color;
+        }
       }
     }
   }
@@ -126,7 +139,7 @@
       }
     }
   }
-  .disable {
+  .disabled {
     div.cozen-input-content {
       input {
         &:focus {
@@ -169,22 +182,25 @@
 /*   ICON   */
 /************/
 .cozen-input-icon(@padding, @font-size) {
-  & div.cozen-input-content {
+  div.cozen-input-content {
     & div.cozen-input-icon {
       padding: 0 @padding;
     }
   }
   &.icon-left {
-    & div.cozen-input-content {
+    div.cozen-input-content {
       input {
         padding-left: @padding * 2 + @font-size;
       }
     }
   }
   &.icon-right {
-    & div.cozen-input-content {
+    div.cozen-input-content {
       input {
         padding-right: @padding * 2 + @font-size;
+      }
+      & div.cozen-input-arrows {
+        right: @padding * 2 + @font-size;
       }
     }
   }
@@ -196,5 +212,40 @@
   &.error-design {
     .cozen-input-color(@color, @color-hover, @background-color, @background-color-hover);
     .cozen-input-border(@border, @border-hover);
+  }
+}
+/***************/
+/*   SUCCESS   */
+/***************/
+.cozen-input-success(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover) {
+  &.success-design {
+    .cozen-input-color(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-input-border(@border, @border-hover);
+  }
+}
+/**************/
+/*   ARROWS   */
+/**************/
+.cozen-input-arrows(@padding, @caret-height, @caret-width, @center) {
+  div.cozen-input-content {
+    div.cozen-input-arrows {
+      div.cozen-input-arrow {
+        padding: @padding;
+        div {
+          border-left:  solid transparent @caret-width;
+          border-right: solid transparent @caret-width;
+        }
+        &.up div {
+          margin-bottom: @center;
+          border-bottom-style: solid;
+          border-bottom-width: @caret-height;
+        }
+        &.down div {
+          margin-top:       @center;
+          border-top-style: solid;
+          border-top-width: @caret-height;
+        }
+      }
+    }
   }
 }
