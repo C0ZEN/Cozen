@@ -174,7 +174,7 @@
 
           // Enter
           case 13:
-            methods.onClick(event);
+            methods.onClickItem(event);
             break;
         }
       }

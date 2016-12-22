@@ -1,23 +1,127 @@
-div.cozen-dropdown .cozen-dropdown-item {
-  cursor:        pointer;
-  transition:    @cozen-transition;
-  box-sizing:    border-box;
-  position:      relative;
-  width:         100%;
-  line-height:   normal;
-  outline:       @cozen-outline;
-  border-bottom: inherit;
+div.cozen-dropdown {
+  cursor:      default;
+  box-sizing:  border-box;
+  position:    relative;
+  line-height: 1;
+  width:       100%;
+  display:     inline-block;
+  transition:  @cozen-transition;
 
-  // No action
-  &.no-action {
-    cursor: default;
-  }
+  div.cozen-dropdown-container {
+    display:  block;
+    position: relative;
 
-  // Disabled
-  &.disabled {
-    opacity:     0.4;
-    cursor:      not-allowed;
-    user-select: none;
+    // Content
+    div.cozen-dropdown-content {
+      cursor:           inherit;
+      outline:          inherit;
+      font-size:        inherit;
+      color:            inherit;
+      background-color: inherit;
+      display:          inline-block;
+      width:            100%;
+      transition:       none;
+      position:         relative;
+
+      // Icon
+      div.cozen-dropdown-icon {
+        cursor:           inherit;
+        font-weight:      normal;
+        line-height:      inherit;
+        font-size:        inherit;
+        color:            inherit;
+        background-color: inherit;
+        transition:       none;
+        position:         absolute;
+        top:              0;
+        content:          '';
+        height:           100%;
+        display:          flex;
+        align-items:      center;
+        &.left {
+          left: 0;
+        }
+        &.right {
+          right:  0;
+          cursor: pointer;
+          i {
+            transition: @cozen-transition;
+          }
+        }
+        i {
+          width:      1.28571429em;
+          text-align: center;
+        }
+      }
+
+      // Input
+      input {
+        font-size:        inherit;
+        color:            inherit;
+        background-color: inherit;
+        display:          inline-block;
+        width:            100%;
+        border-radius:    @cozen-radius;
+        transition:       @cozen-transition;
+        outline:          @cozen-outline;
+      }
+
+      // Tweak: looks like a normal input (avoid auto complete behavior)
+      input[readonly] {
+        cursor: pointer;
+      }
+    }
+
+    // Disabled
+    &.disabled {
+      opacity:     0.4;
+      cursor:      not-allowed;
+      user-select: none;
+      div.cozen-dropdown-content {
+        input {
+          cursor: not-allowed;
+        }
+        div.cozen-dropdown-icon.right {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    div.cozen-dropdown-transclude {
+      position:      absolute;
+      top:           100%;
+      left:          0;
+      content:       '';
+      border-radius: @cozen-radius;
+      margin-top:    1px;
+      z-index:       200;
+      :first-child {
+        border-top-left-radius:  @cozen-radius;
+        border-top-right-radius: @cozen-radius;
+      }
+      :last-child {
+        border-bottom-left-radius:  @cozen-radius;
+        border-bottom-right-radius: @cozen-radius;
+      }
+
+      // Item
+      .cozen-dropdown-item {
+        transition:    @cozen-transition;
+        box-sizing:    border-box;
+        position:      relative;
+        width:         100%;
+        line-height:   normal;
+        outline:       @cozen-outline;
+        border-bottom: inherit;
+
+        // Disabled
+        &.disabled {
+          opacity:     0.4;
+          cursor:      not-allowed;
+          user-select: none;
+        }
+      }
+    }
   }
 }
 

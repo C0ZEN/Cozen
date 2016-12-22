@@ -31,7 +31,7 @@
  * @param {string}  cozenPopupName                        > Name of the popup [required]
  * @param {boolean} cozenPopupAnimationIn     = true      > Add an animation before show
  * @param {boolean} cozenPopupAnimationOut    = true      > Add an animation before hide
- * @param {boolean} cozenPopupEasyClose       = true      > Auto close the popup when a clicked outside
+ * @param {boolean} cozenPopupEasyClose       = true      > Auto close the popup when a click is outside
  * @param {boolean} cozenPopupCloseBtn        = true      > Display the close btn (top-right)
  * @param {string}  cozenPopupHeaderPictoLeft             > Add a picto on left of the header (url of the picto)
  *

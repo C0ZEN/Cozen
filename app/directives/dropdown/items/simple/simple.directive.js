@@ -10,185 +10,252 @@
  * [Scope params]
  * @param {function} cozenDropdownItemSimpleOnClick          > Callback function called on click
  * @param {boolean}  cozenDropdownItemSimpleDisabled = false > Disable the item
- * @param {boolean}  cozenDropdownItemSimpleBtnRight = false > Display a btn on the right
- * @param {function} cozenDropdownItemSimpleBtnRightOnClick  > Callback function called on click on the btn
+ * @param {boolean}  cozenDropdownItemSimpleSelected = false > Select the item (edit the models and styles)
+ * @param {boolean}  cozenDropdownItemSimpleValue            > Use this value instead of label for parent model
  *
  * [Attributes params]
- * @param {number} cozenLisItemSimpleId               > Id of the item
- * @param {string} cozenDropdownItemSimpleLabel           > Text of the item [required]
- * @param {string} cozenDropdownItemSimpleSubLabel        > Text of the item
- * @param {string} cozenDropdownItemSimpleIconLeft        > Icon left (name of the icon)
- * @param {string} cozenDropdownItemSimpleBtnRightIcon    > Icon of the btn (name of the icon)
- * @param {string} cozenDropdownItemSimpleBtnRightTooltip > Text of the btn tooltip
- * @param {string} cozenDropdownItemSimpleBtnRightLabel   > Text of the btn
+ * @param {number} cozenDropdownItemSimpleId        > Id of the item
+ * @param {string} cozenDropdownItemSimpleLabel     > Text of the item [required]
+ * @param {string} cozenDropdownItemSimpleSubLabel  > Text of the item
+ * @param {string} cozenDropdownItemSimpleIconLeft  > Icon left (name of the icon)
+ * @param {string} cozenDropdownItemSimpleIconRight > Icon right (name of the icon)
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLibApp.dropdown.simple', [])
-    .directive('cozenDropdownItemSimple', cozenDropdownItemSimple);
+    angular
+        .module('cozenLibApp.dropdown.simple', [])
+        .directive('cozenDropdownItemSimple', cozenDropdownItemSimple);
 
-  cozenDropdownItemSimple.$inject = [
-    'CONFIG',
-    'rfc4122',
-    '$rootScope',
-    '$window'
-  ];
+    cozenDropdownItemSimple.$inject = [
+        'CONFIG',
+        'rfc4122',
+        '$rootScope',
+        '$window',
+        '$timeout'
+    ];
 
-  function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : false,
-      scope      : {
-        cozenDropdownItemSimpleOnClick        : '&',
-        cozenDropdownItemSimpleDisabled       : '=?',
-        cozenDropdownItemSimpleBtnRight       : '=?',
-        cozenDropdownItemSimpleBtnRightOnClick: '&'
-      },
-      templateUrl: 'directives/dropdown/items/simple/simple.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init           : init,
-        hasError       : hasError,
-        destroy        : destroy,
-        getMainClass   : getMainClass,
-        onClickItem    : onClickItem,
-        getTabIndex    : getTabIndex,
-        onClickBtnRight: onClickBtnRight,
-        onActive       : onActive,
-        onKeyDown      : onKeyDown,
-        onHover        : onHover
-      };
-
-      var data = {
-        directive: 'cozenDropdownItemSimple',
-        uuid     : rfc4122.v4()
-      };
-
-      scope._isReady = false;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          onClick     : {
-            item    : onClickItem,
-            btnRight: onClickBtnRight
-          },
-          getTabIndex : getTabIndex,
-          onHover     : onHover
+    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, $timeout) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenDropdownItemSimpleOnClick : '&',
+                cozenDropdownItemSimpleDisabled: '=?',
+                cozenDropdownItemSimpleSelected: '=?',
+                cozenDropdownItemSimpleValue   : '=?'
+            },
+            templateUrl: 'directives/dropdown/items/simple/simple.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init             : init,
+                hasError         : hasError,
+                destroy          : destroy,
+                getMainClass     : getMainClass,
+                onClickItem      : onClickItem,
+                getTabIndex      : getTabIndex,
+                onActive         : onActive,
+                onKeyDown        : onKeyDown,
+                onHover          : onHover,
+                onCollapse       : onCollapse,
+                getDropdown      : getDropdown,
+                updateParentModel: updateParentModel,
+                deselect         : deselect
+            };
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled)) scope.cozenDropdownItemSimpleDisabled = false;
-        if (angular.isUndefined(attrs.cozenDropdownItemSimpleBtnRight)) scope.cozenDropdownItemSimpleBtnRight = false;
+            var data = {
+                directive: 'cozenDropdownItemSimple',
+                uuid     : rfc4122.v4(),
+                dropdown : {
+                    name: null
+                }
+            };
 
-        // Default values (attributes)
-        scope._cozenLisItemSimpleId               = angular.isDefined(attrs.cozenLisItemSimpleId) ? attrs.cozenLisItemSimpleId : '';
-        scope._cozenDropdownItemSimpleLabel           = attrs.cozenDropdownItemSimpleLabel;
-        scope._cozenDropdownItemSimpleSubLabel        = angular.isDefined(attrs.cozenDropdownItemSimpleSubLabel) ? attrs.cozenDropdownItemSimpleSubLabel : '';
-        scope._cozenDropdownItemSimpleIconLeft        = angular.isDefined(attrs.cozenDropdownItemSimpleIconLeft) ? attrs.cozenDropdownItemSimpleIconLeft : '';
-        scope._cozenDropdownItemSimpleBtnRightIcon    = attrs.cozenDropdownItemSimpleBtnRightIcon;
-        scope._cozenDropdownItemSimpleBtnRightTooltip = angular.isDefined(attrs.cozenDropdownItemSimpleBtnRightTooltip) ? attrs.cozenDropdownItemSimpleBtnRightTooltip : '';
-        scope._cozenDropdownItemSimpleBtnRightLabel   = angular.isDefined(attrs.cozenDropdownItemSimpleBtnRightLabel) ? attrs.cozenDropdownItemSimpleBtnRightLabel : '';
+            scope._isReady = false;
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope.cozenDropdownItemSimpleActive = false;
-        scope.$parent.$parent.$parent.childrenUuid.push(data.uuid);
-        $rootScope.$on('cozenDropdownActive', methods.onActive);
-        $window.addEventListener('keydown', methods.onKeyDown);
+            methods.init();
 
-        // Display the template
-        scope._isReady = true;
-      }
+            function init() {
 
-      function hasError() {
-        if (Methods.isNullOrEmpty(attrs.cozenDropdownItemSimpleLabel)) {
-          Methods.directiveErrorRequired(data.directive, 'Label');
-          return true;
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    onClick     : {
+                        item: onClickItem
+                    },
+                    getTabIndex : getTabIndex,
+                    onHover     : onHover
+                };
+
+                // Checking required stuff
+                if (methods.hasError()) return;
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled)) scope.cozenDropdownItemSimpleDisabled = false;
+                if (angular.isUndefined(attrs.cozenDropdownItemSimpleSelected)) {
+                    scope.cozenDropdownItemSimpleSelected = false;
+                }
+                else if (typeof scope.cozenDropdownItemSimpleSelected != "boolean") {
+                    scope.cozenDropdownItemSimpleSelected = false;
+                }
+
+                // Default values (attributes)
+                scope._cozenDropdownItemSimpleId        = angular.isDefined(attrs.cozenDropdownItemSimpleId) ? attrs.cozenDropdownItemSimpleId : '';
+                scope._cozenDropdownItemSimpleLabel     = attrs.cozenDropdownItemSimpleLabel;
+                scope._cozenDropdownItemSimpleSubLabel  = angular.isDefined(attrs.cozenDropdownItemSimpleSubLabel) ? attrs.cozenDropdownItemSimpleSubLabel : '';
+                scope._cozenDropdownItemSimpleIconLeft  = angular.isDefined(attrs.cozenDropdownItemSimpleIconLeft) ? attrs.cozenDropdownItemSimpleIconLeft : '';
+                scope._cozenDropdownItemSimpleIconRight = angular.isDefined(attrs.cozenDropdownItemSimpleIconRight) ? attrs.cozenDropdownItemSimpleIconRight : '';
+                scope._cozenDropdownItemSimpleShowTick  = methods.getDropdown()._cozenDropdownShowTick;
+                scope._cozenDropdownItemSimpleTickIcon  = methods.getDropdown()._cozenDropdownTickIcon;
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope.cozenDropdownItemSimpleActive = false;
+
+                // Register data into the parent
+                var dropdown = methods.getDropdown();
+                dropdown.childrenUuid.push({
+                    uuid    : data.uuid,
+                    disabled: scope.cozenDropdownItemSimpleDisabled
+                });
+                data.dropdown.name = dropdown._cozenDropdownName;
+                methods.updateParentModel();
+
+                $rootScope.$on('cozenDropdownActive', methods.onActive);
+                scope.$on('cozenDropdownCollapse', methods.onCollapse);
+                scope.$on('cozenDropdownDeselect', methods.deselect);
+
+                // Display the template
+                scope._isReady = true;
+            }
+
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenDropdownItemSimpleLabel)) {
+                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                $window.removeEventListener('keydown', methods.onKeyDown);
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                var classList = [];
+                if (scope.cozenDropdownItemSimpleDisabled) classList.push('disabled');
+                else if (scope.cozenDropdownItemSimpleActive) classList.push('active');
+                if (scope.cozenDropdownItemSimpleSelected) classList.push('selected');
+                return classList;
+            }
+
+            function onClickItem($event) {
+                $event.stopPropagation();
+                var dropdown = methods.getDropdown();
+                if (!dropdown._cozenDropdownCollapse) return;
+                if (scope.cozenDropdownItemSimpleDisabled) return;
+                if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) scope.cozenDropdownItemSimpleOnClick();
+                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) dropdown._methods.onClick();
+
+                // Toggle and inform the parent
+                scope.cozenDropdownItemSimpleSelected = !scope.cozenDropdownItemSimpleSelected;
+                methods.updateParentModel();
+                Methods.safeApply(scope);
+            }
+
+            function getTabIndex() {
+                var tabIndex = 0;
+                if (scope.cozenDropdownItemSimpleDisabled) tabIndex = -1;
+                return tabIndex;
+            }
+
+            function onActive(event, eventData) {
+                if (scope.cozenDropdownItemSimpleDisabled) return;
+                scope.cozenDropdownItemSimpleActive = eventData.uuid == data.uuid;
+                Methods.safeApply(scope);
+            }
+
+            function onKeyDown(event) {
+                if (scope.cozenDropdownItemSimpleDisabled) return;
+                if (!scope.cozenDropdownItemSimpleActive) return;
+                event.stopPropagation();
+                switch (event.keyCode) {
+
+                    // Enter
+                    case 13:
+                        methods.onClickItem(event);
+                        break;
+                }
+            }
+
+            function onHover($event) {
+                if (scope.cozenDropdownItemSimpleActive) return;
+
+                // Search the active child
+                var activeChild = 0;
+                for (var i = 0, length = methods.getDropdown().childrenUuid.length; i < length; i++) {
+                    if (methods.getDropdown().childrenUuid[i].uuid == data.uuid) {
+                        activeChild = i;
+                        break;
+                    }
+                }
+                methods.getDropdown().activeChild = activeChild;
+                console.log('simple', activeChild);
+                $rootScope.$broadcast('cozenDropdownActive', {
+                    uuid: data.uuid
+                });
+            }
+
+            function onCollapse(event, data) {
+                if (data.collapse) {
+                    $window.addEventListener('keydown', methods.onKeyDown);
+                } else {
+                    $window.removeEventListener('keydown', methods.onKeyDown);
+                }
+            }
+
+            function getDropdown() {
+                var dropdown = scope.$parent.$parent;
+                if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
+                    dropdown = scope.$parent.$parent.$parent;
+                    if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
+                        dropdown = scope.$parent.$parent.$parent.$parent;
+                        if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
+                            dropdown = scope.$parent.$parent.$parent.$parent.$parent;
+                            if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
+                                dropdown = scope.$parent.$parent.$parent.$parent.$parent.$parent;
+                                if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
+                                    return dropdown;
+                                } else return dropdown;
+                            } else return dropdown;
+                        } else return dropdown;
+                    } else return dropdown;
+                } else return dropdown;
+            }
+
+            function updateParentModel() {
+                $rootScope.$broadcast('cozenDropdownSelected', {
+                    uuid    : data.uuid,
+                    selected: scope.cozenDropdownItemSimpleSelected,
+                    dropdown: data.dropdown.name,
+                    value   : Methods.isNullOrEmpty(scope.cozenDropdownItemSimpleValue) ? scope._cozenDropdownItemSimpleLabel : scope.cozenDropdownItemSimpleValue
+                });
+            }
+
+            function deselect(event, params) {
+                if (params.uuid != data.uuid) {
+                    scope.cozenDropdownItemSimpleSelected = false;
+                }
+            }
         }
-        else if (scope.cozenDropdownItemSimpleBtnRight && angular.isUndefined(attrs.cozenDropdownItemSimpleBtnRightOnClick)) {
-          Methods.directiveErrorRequired(data.directive, 'BtnRightOnClick');
-          return true;
-        }
-        return false;
-      }
-
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
-
-      function getMainClass() {
-        var classDropdown = [];
-        if (angular.isUndefined(attrs.cozenDropdownItemSimpleOnClick)) classDropdown.push('no-action');
-        if (scope.cozenDropdownItemSimpleDisabled) classDropdown.push('disabled');
-        else if (scope.cozenDropdownItemSimpleActive) classDropdown.push('active');
-        return classDropdown;
-      }
-
-      function onClickItem($event) {
-        if (scope.cozenDropdownItemSimpleDisabled) return;
-        if (angular.isUndefined(attrs.cozenDropdownItemSimpleOnClick)) return;
-        if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) scope.cozenDropdownItemSimpleOnClick();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
-      }
-
-      function getTabIndex() {
-        var tabIndex = 0;
-        if (scope.cozenDropdownItemSimpleDisabled) tabIndex = -1;
-        else if (angular.isUndefined(attrs.cozenDropdownItemSimpleOnClick)) tabIndex = -1;
-        return tabIndex;
-      }
-
-      function onClickBtnRight($event) {
-        if (scope.cozenDropdownItemSimpleDisabled) return;
-        if (Methods.isFunction(scope.cozenDropdownItemSimpleBtnRightOnClick)) scope.cozenDropdownItemSimpleBtnRightOnClick();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
-        $event.stopPropagation();
-      }
-
-      function onActive(event, eventData) {
-        if (scope.cozenDropdownItemSimpleDisabled) return;
-        scope.cozenDropdownItemSimpleActive = eventData.uuid == data.uuid;
-        Methods.safeApply(scope);
-      }
-
-      function onKeyDown(event) {
-        if (scope.cozenDropdownItemSimpleDisabled) return;
-        if (!scope.cozenDropdownItemSimpleActive) return;
-        event.preventDefault();
-        switch (event.keyCode) {
-
-          // Enter
-          case 13:
-            methods.onClick(event);
-            break;
-        }
-      }
-
-      function onHover($event) {
-        if (scope.cozenDropdownItemSimpleActive) return;
-        scope.$parent.$parent.$parent.$parent.activeChild = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
-        scope.$parent.$parent.$parent.activeChild = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
-        $rootScope.$broadcast('cozenDropdownActive', {
-          uuid: data.uuid
-        });
-      }
     }
-  }
 
 })(window.angular);
 

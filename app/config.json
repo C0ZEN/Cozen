@@ -22,5 +22,8 @@
       "scrollAmount": "auto",
       "enable": false
     }
+  },
+  "dropdown": {
+    "autoCloseOthers": true
   }
 }

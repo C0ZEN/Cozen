@@ -68,7 +68,8 @@
         // Override the CONFIG
         ConfigProvider
             .scrollsBar(true)
-            .debug(true);
+            .debug(true)
+            .dropdownAutoCloseOthers(true);
     }
 
     run.$inject = [

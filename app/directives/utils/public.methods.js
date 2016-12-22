@@ -12,7 +12,8 @@ var Methods = {
     directiveErrorFunction    : directiveErrorFunction,
     directiveErrorBoolean     : directiveErrorBoolean,
     isRegExpValid             : isRegExpValid,
-    getElementPaddingTopBottom: getElementPaddingTopBottom
+    getElementPaddingTopBottom: getElementPaddingTopBottom,
+    directiveErrorEmpty       : directiveErrorEmpty
 };
 
 var Data = {
@@ -120,4 +121,14 @@ function isRegExpValid(regexp, value) {
 function getElementPaddingTopBottom(element) {
     var styles = window.getComputedStyle(element);
     return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+}
+
+function directiveErrorEmpty(directive, param) {
+    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }

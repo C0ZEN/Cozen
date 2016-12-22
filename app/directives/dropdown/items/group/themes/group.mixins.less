@@ -1,0 +1,27 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-dropdown-item-group-size(@font-size, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-group {
+    font-size: @font-size;
+    div.cozen-dropdown-item-group-content {
+      padding: @padding;
+      & > div.cozen-dropdown-item-group-icon.left {
+        margin-right: @font-size / 6;
+      }
+    }
+  }
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-dropdown-item-group-color(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-group {
+    color:            @color;
+    background-color: @background-color;
+    &.active {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+  }
+}

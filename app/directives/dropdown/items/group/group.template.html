@@ -1,0 +1,22 @@
+<div ng-if="_isReady"
+     class="cozen-dropdown-item cozen-dropdown-item-group"
+     ng-class="_methods.getMainClass();"
+     id="{{ _cozenDropdownItemGroupId }}">
+
+    <div class="cozen-dropdown-item-group-content left">
+
+        <!-- Left icon -->
+        <div ng-if="_cozenDropdownItemGroupIconLeft != ''"
+             class="cozen-dropdown-item-group-icon left">
+            <i ng-class="[_cozenDropdownItemGroupIconLeft]"></i>
+        </div>
+
+        <!-- Label -->
+        <span class="cozen-dropdown-item-group-label">
+            {{ _cozenDropdownItemGroupLabel | translate }}
+        </span>
+    </div>
+
+    <div class="cozen-dropdown-item-group-transclude ng-transclude"></div>
+</div>
+

@@ -3,8 +3,9 @@
      ng-class="_methods.getMainClass();"
      id="{{ _cozenDropdownItemSimpleId }}"
      tabindex="{{ _methods.getTabIndex(); }}"
-     ng-click="_methods.onClick.item($event)"
-     ng-mousemove="_methods.onHover($event)">
+     ng-click="_methods.onClick.item($event);"
+     onclick="this.blur();"
+     ng-mousemove="_methods.onHover($event);">
 
     <div class="cozen-dropdown-item-simple-content left">
 
@@ -21,20 +22,18 @@
                 {{ _cozenDropdownItemSimpleSubLabel | translate }}
             </small>
         </span>
+
+        <!-- Right icon -->
+        <div ng-if="_cozenDropdownItemSimpleIconRight != ''"
+             class="cozen-dropdown-item-simple-icon right">
+            <i ng-class="[_cozenDropdownItemSimpleIconRight]"></i>
+        </div>
     </div>
 
-    <div ng-if="cozenDropdownItemSimpleBtnRight"
-         class="cozen-dropdown-item-simple-content right">
-
-        <!-- Btn -->
-        <cozen-tooltip cozen-tooltip-label="_cozenDropdownItemSimpleBtnRightTooltip"
-                       cozen-tooltip-disabled="_cozenDropdownItemSimpleBtnRightTooltip == ''">
-            <div ng-click="_methods.onClick.btnRight($event)"
-                 class="cozen-dropdown-item-simple-btn">
-                <i ng-class="[_cozenDropdownItemSimpleBtnRightIcon]"></i>
-                <span>{{ _cozenDropdownItemSimpleBtnRightLabel }}</span>
-            </div>
-        </cozen-tooltip>
+    <!-- Right icon -->
+    <div ng-show="_cozenDropdownItemSimpleShowTick && cozenDropdownItemSimpleSelected"
+         class="cozen-dropdown-item-simple-tick right">
+        <i ng-class="[_cozenDropdownItemSimpleTickIcon]"></i>
     </div>
 </div>
 

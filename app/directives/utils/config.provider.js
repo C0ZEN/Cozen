@@ -28,22 +28,22 @@
             return this;
         };
 
-      this.scrollsBar = function (value) {
-        if (typeof value != 'boolean') {
-          console.error('%c<%cscrollsBar%c> must be <%ctrue%c> or <%cfalse%c>',
-            getConsoleColor(),
-            getConsoleColor('red'),
-            getConsoleColor(),
-            getConsoleColor('purple'),
-            getConsoleColor(),
-            getConsoleColor('purple'),
-            getConsoleColor()
-          );
-        } else {
-          CONFIG.config.scrollsBar = value;
-        }
-        return this;
-      };
+        this.scrollsBar = function (value) {
+            if (typeof value != 'boolean') {
+                console.error('%c<%cscrollsBar%c> must be <%ctrue%c> or <%cfalse%c>',
+                    getConsoleColor(),
+                    getConsoleColor('red'),
+                    getConsoleColor(),
+                    getConsoleColor('purple'),
+                    getConsoleColor(),
+                    getConsoleColor('purple'),
+                    getConsoleColor()
+                );
+            } else {
+                CONFIG.config.scrollsBar = value;
+            }
+            return this;
+        };
 
         this.scrollsBarConfig = function (config) {
             if (typeof config != 'object') {
@@ -56,6 +56,23 @@
                 );
             } else {
                 CONFIG.config.scrollsBarConfig = config;
+            }
+            return this;
+        };
+
+        this.dropdownAutoCloseOthers = function (value) {
+            if (typeof value != 'boolean') {
+                console.error('%c<%cdropdownAutoCloseOthers%c> must be <%ctrue%c> or <%cfalse%c>',
+                    getConsoleColor(),
+                    getConsoleColor('red'),
+                    getConsoleColor(),
+                    getConsoleColor('purple'),
+                    getConsoleColor(),
+                    getConsoleColor('purple'),
+                    getConsoleColor()
+                );
+            } else {
+                CONFIG.config.dropdown.autoCloseOthers = value;
             }
             return this;
         };

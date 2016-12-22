@@ -5,7 +5,45 @@
      ng-mouseenter="_methods.onHover($event, true)"
      ng-mouseleave="_methods.onHover($event, false)">
 
-    <div class="cozen-dropdown-transclude"
-         ng-transclude>
+    <div class="cozen-dropdown-container">
+
+        <!-- Visual input -->
+        <div ng-click="_methods.onClick($event);"
+             onclick="this.blur();"
+             tabindex="-1"
+             class="cozen-dropdown-content">
+
+            <!-- Left icon -->
+            <div ng-if="_cozenDropdownIconLeft != ''"
+                 class="cozen-dropdown-icon left">
+                <i ng-class="[_cozenDropdownIconLeft]"></i>
+            </div>
+
+            <!-- Input -->
+            <input ng-model="vm.cozenDropdownModel"
+                   ng-required="_cozenDropdownRequired"
+                   ng-change="_methods.onChange($event);"
+                   type="text"
+                   ng-disabled="vm.cozenDropdownDisabled"
+                   placeholder="{{ _cozenDropdownPlaceholder }}"
+                   name="{{ _cozenDropdownName }}"
+                   readonly
+                   onclick="this.blur();"
+                   onkeydown="this.blur();"
+                   ng-model-options="{allowInvalid: true}">
+
+            <!-- Right icon -->
+            <div class="cozen-dropdown-icon right">
+                <i class="fa fa-caret-down"
+                   ng-class="{'fa-rotate-90': _cozenDropdownCollapse}">
+                </i>
+            </div>
+        </div>
+
+        <!-- Dropdown items -->
+        <div ng-show="_cozenDropdownCollapse"
+             class="cozen-dropdown-transclude"
+             ng-transclude>
+        </div>
     </div>
 </div>

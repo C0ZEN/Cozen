@@ -3,13 +3,15 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple {
   flex-direction:  row;
   justify-content: space-between;
   line-height:     1;
+  cursor:          pointer;
 
   div.cozen-dropdown-item-simple-content {
     align-self:  center;
     line-height: inherit;
+    cursor:      inherit;
 
     // Label
-    & > span.cozen-dropdown-item-simple-label {
+    span.cozen-dropdown-item-simple-label {
       cursor:         inherit;
       font-weight:    normal;
       font-size:      inherit;
@@ -23,7 +25,7 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple {
     }
 
     // Icon
-    & > div.cozen-dropdown-item-simple-icon {
+    div.cozen-dropdown-item-simple-icon {
       display:        inline-block;
       cursor:         inherit;
       font-weight:    normal;
@@ -33,20 +35,19 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple {
       font-size:      inherit;
       line-height:    inherit;
     }
+  }
 
-    // Btn
-    & div.cozen-dropdown-item-simple-btn {
-      outline:       @cozen-outline;
-      transition:    @cozen-transition;
-      border-radius: @cozen-radius;
-      display:       inline-block;
-      height:        100%;
-      i,
-      span {
-        font-size:      inherit;
-        color:          inherit;
-        vertical-align: middle;
-      }
+  // Tick
+  div.cozen-dropdown-item-simple-tick {
+    align-self:     center;
+    cursor:         inherit;
+    font-weight:    normal;
+    vertical-align: sub;
+    outline:        @cozen-outline;
+    font-size:      inherit;
+    line-height:    inherit;
+    i {
+      vertical-align: middle;
     }
   }
 }
