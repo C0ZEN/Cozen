@@ -35,6 +35,7 @@
  * @param {boolean} cozenDropdownEasyClose        = true          > Auto close the dropdown when a click is outside
  * @param {boolean} cozenDropdownShowTick         = true          > Display an icon to the right when a data is selected
  * @param {boolean} cozenDropdownTickIcon         = 'fa fa-check' > Define what type of icon should it be
+ * @param {string}  cozenDropdownModelEnhanced    = 'last'        > Choose the way of display the selected data text in the input [last, all, count, number (value expected)]
  *
  */
 (function (angular) {
@@ -43,6 +44,7 @@
     angular
         .module('cozenLibApp.dropdown', [
             'cozenLibApp.dropdown.group',
+            'cozenLibApp.dropdown.search',
             'cozenLibApp.dropdown.simple'
         ])
         .directive('cozenDropdown', cozenDropdown);
@@ -52,10 +54,11 @@
         'CONFIG',
         '$window',
         '$rootScope',
-        'rfc4122'
+        'rfc4122',
+        '$filter'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122) {
+    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter) {
         return {
             link            : link,
             restrict        : 'E',
@@ -86,7 +89,8 @@
                 onClick          : onClick,
                 onAutoCloseOthers: onAutoCloseOthers,
                 onWindowClick    : onWindowClick,
-                onChildSelected  : onChildSelected
+                onChildSelected  : onChildSelected,
+                onChildSearched: onChildSearched
             };
 
             var data = {
@@ -127,8 +131,22 @@
                     else scope._cozenDropdownValidator = 'dirty';
                 }
 
+                // Check the model enhanced mod
+                if (angular.isUndefined(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = 'last';
+                else {
+                    if (attrs.cozenDropdownModelEnhanced == 'last') scope._cozenDropdownModelEnhanced = 'last';
+                    else if (attrs.cozenDropdownModelEnhanced == 'count') scope._cozenDropdownModelEnhanced = 'count';
+                    else if (attrs.cozenDropdownModelEnhanced == 'all') scope._cozenDropdownModelEnhanced = 'all';
+                    else if (!isNaN(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = parseInt(attrs.cozenDropdownModelEnhanced);
+                    else {
+                        scope._cozenDropdownModelEnhanced = 'last';
+                        Methods.directiveWarningUnmatched(data.directive, 'ModelEnhanced', 'last');
+                    }
+                }
+
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenDropdownDisabled)) scope.vm.cozenDropdownDisabled = false;
+                scope.vm.cozenDropdownModelEnhanced = '';
 
                 // Default values (attributes)
                 scope._cozenDropdownId             = angular.isDefined(attrs.cozenDropdownId) ? attrs.cozenDropdownId : '';
@@ -167,6 +185,9 @@
 
                 // When a child is toggle
                 scope.$on('cozenDropdownSelected', methods.onChildSelected);
+
+                // When the search change (from each child)
+                scope.$on('cozenDropdownItemDisabled', methods.onChildSearched);
 
                 // Display the template
                 scope._isReady = true;
@@ -235,7 +256,7 @@
                     if (!scope.isHover) return;
                 }
                 if (event.keyCode == 38 || event.keyCode == 40) {
-                    
+
                     // Search for a new active child (escape disabled ones)
                     var length = scope.childrenUuid.length, i = 0;
                     var value  = angular.copy(scope.activeChild);
@@ -356,18 +377,69 @@
 
             function onChildSelected(event, data) {
                 if (data.dropdown == scope._cozenDropdownName) {
+
+                    // ModelEnhanced stuff
+                    if (data.selected && scope._cozenDropdownModelEnhanced == 'last') scope.vm.cozenDropdownModelEnhanced = data.label;
+                    else if (scope._cozenDropdownModelEnhanced != 'last') scope.vm.cozenDropdownModelEnhanced = '';
+
                     if (scope._cozenDropdownMultiple) {
 
                         // Update the array and forge the model
+                        var selectedValues          = 0;
                         scope.vm.cozenDropdownModel = [];
                         scope.childrenUuid.forEach(function (child) {
+
+                            // Updaye the new value
                             if (child.uuid == data.uuid) {
                                 child.selected = data.selected;
                                 child.value    = data.value;
                             }
-                            if (!child.disabled && child.selected) scope.vm.cozenDropdownModel.push(child.value);
+
+                            // Update the model
+                            if (!child.disabled && child.selected) {
+                                scope.vm.cozenDropdownModel.push(child.value);
+
+                                // ModelEnhanced : all & number
+                                if (scope._cozenDropdownModelEnhanced == 'all' || typeof scope._cozenDropdownModelEnhanced == 'number') {
+                                    if (selectedValues > 0) scope.vm.cozenDropdownModelEnhanced += ', ';
+                                    scope.vm.cozenDropdownModelEnhanced += child.label;
+                                    selectedValues++;
+                                }
+
+                                // ModelEnhanced : count (first result)
+                                else if (scope._cozenDropdownModelEnhanced == 'count') {
+                                    scope.vm.cozenDropdownModelEnhanced = child.label;
+                                    selectedValues++;
+                                }
+                            }
                         });
-                        if (scope.vm.cozenDropdownModel.length == 0) scope.vm.cozenDropdownModel = '';
+
+                        // ModelEnhanced : number
+                        var useCount = false;
+                        if (typeof scope._cozenDropdownModelEnhanced == 'number') {
+                            if (selectedValues > scope._cozenDropdownModelEnhanced) {
+                                useCount = true;
+                            }
+                        }
+
+                        // ModelEnhanced : count (if more than one result)
+                        if ((scope._cozenDropdownModelEnhanced == 'count' && selectedValues > 1) || useCount) {
+                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count', {
+                                selected: selectedValues,
+                                total   : scope.childrenUuid.length
+                            });
+                        }
+
+                        // ModelEnhanced : count (if all selected)
+                        if ((scope._cozenDropdownModelEnhanced == 'count' || useCount) && selectedValues == scope.childrenUuid.length) {
+                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count_all');
+                        }
+
+                        // No data selected
+                        if (selectedValues == 0) {
+                            scope.vm.cozenDropdownModel         = '';
+                            scope.vm.cozenDropdownModelEnhanced = '';
+                        }
                     } else {
 
                         // Change the model
@@ -378,8 +450,18 @@
                             scope.$broadcast('cozenDropdownDeselect', {
                                 uuid: data.uuid
                             });
+                        } else scope.vm.cozenDropdownModel = '';
+                        scope.vm.cozenDropdownModelEnhanced = scope.vm.cozenDropdownModel;
+                    }
+                }
+            }
+
+            function onChildSearched(event, params) {
+                if (scope._cozenDropdownName == params.dropdown) {
+                    for(var i = 0, length = scope.childrenUuid.length; i < length; i++) {
+                        if (scope.childrenUuid[i].uuid == params.uuid) {
+                            scope.childrenUuid[i].disabled = params.disabled;
                         }
-                        else scope.vm.cozenDropdownModel = '';
                     }
                 }
             }

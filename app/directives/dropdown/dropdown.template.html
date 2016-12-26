@@ -20,12 +20,12 @@
             </div>
 
             <!-- Input -->
-            <input ng-model="vm.cozenDropdownModel"
+            <input ng-model="vm.cozenDropdownModelEnhanced"
                    ng-required="_cozenDropdownRequired"
                    ng-change="_methods.onChange($event);"
                    type="text"
                    ng-disabled="vm.cozenDropdownDisabled"
-                   placeholder="{{ _cozenDropdownPlaceholder }}"
+                   placeholder="{{ _cozenDropdownPlaceholder | translate }}"
                    name="{{ _cozenDropdownName }}"
                    readonly
                    onclick="this.blur();"

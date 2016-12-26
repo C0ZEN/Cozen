@@ -13,7 +13,6 @@
   }
   div.cozen-dropdown-item-group-transclude {
     .cozen-dropdown-item.cozen-dropdown-item-simple {
-
       padding: @padding-when-group;
     }
   }
@@ -21,19 +20,32 @@
 /*************/
 /*   COLOR   */
 /*************/
-.cozen-dropdown-item-simple-color(@color, @color-hover, @background-color, @background-color-hover) {
-  .cozen-dropdown-item.cozen-dropdown-item-simple {
-    color:            @color;
-    background-color: @background-color;
-    &.active,
-    &:focus {
-      color:            @color-hover;
-      background-color: @background-color-hover;
-    }
-    &.disabled {
+.cozen-dropdown-item-simple-color(@selected, @color, @color-hover, @background-color, @background-color-hover) {
+  & when (@selected = true) {
+    .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
+      color:            @color;
+      background-color: @background-color;
+      &.active,
       &:focus {
-        color:            @color;
-        background-color: @background-color;
+        color:            @color-hover;
+        background-color: @background-color-hover;
+      }
+    }
+  }
+  & when (@selected = false) {
+    .cozen-dropdown-item.cozen-dropdown-item-simple {
+      color:            @color;
+      background-color: @background-color;
+      &.active,
+      &:focus {
+        color:            @color-hover;
+        background-color: @background-color-hover;
+      }
+      &.disabled {
+        &:focus {
+          color:            @color;
+          background-color: @background-color;
+        }
       }
     }
   }
@@ -41,17 +53,32 @@
 /*****************/
 /*   SUB-COLOR   */
 /*****************/
-.cozen-dropdown-item-simple-sub-color(@color, @color-hover) {
-  .cozen-dropdown-item.cozen-dropdown-item-simple {
-    div.cozen-dropdown-item-simple-content {
-      span.cozen-dropdown-item-simple-label small {
-        color: @color;
-        &.active,
-        &:focus {
-          color: @color-hover;
-        }
-        &.disabled {
+.cozen-dropdown-item-simple-sub-color(@selected, @color, @color-hover) {
+  & when (@selected = true) {
+    .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
+      div.cozen-dropdown-item-simple-content {
+        span.cozen-dropdown-item-simple-label small {
           color: @color;
+          &.active,
+          &:focus {
+            color: @color-hover;
+          }
+        }
+      }
+    }
+  }
+  & when (@selected = false) {
+    .cozen-dropdown-item.cozen-dropdown-item-simple {
+      div.cozen-dropdown-item-simple-content {
+        span.cozen-dropdown-item-simple-label small {
+          color: @color;
+          &.active,
+          &:focus {
+            color: @color-hover;
+          }
+          &.disabled {
+            color: @color;
+          }
         }
       }
     }

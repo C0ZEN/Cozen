@@ -19,6 +19,14 @@
       padding: @padding-top-bot @padding-left-right;
     }
   }
+
+  // Search
+  div.cozen-dropdown-item-search-content {
+    font-size: @font-size;
+    input {
+      padding: @padding-top-bot @padding-left-right;
+    }
+  }
 }
 /*************/
 /*   COLOR   */
@@ -29,6 +37,7 @@
   &:hover {
     background-color: @background-color-hover;
   }
+  div.cozen-dropdown-item-search-content,
   div.cozen-dropdown-content {
     input {
       &:focus {
@@ -48,11 +57,23 @@
       }
     }
   }
+
+  // Search
+  div.cozen-dropdown-item-search-content {
+    color:            @color;
+    input {
+      background-color: @background-color;
+      &:hover {
+        background-color: @background-color-hover;
+      }
+    }
+  }
 }
 /**************/
 /*   BORDER   */
 /**************/
 .cozen-dropdown-border(@border, @border-hover) {
+  div.cozen-dropdown-item-search-content,
   div.cozen-dropdown-content {
     input {
       border: @border;
@@ -84,11 +105,21 @@
       }
     }
   }
+
+  // Search
+  div.cozen-dropdown-item-search-content {
+    &:hover {
+      input {
+        border: @border-hover;
+      }
+    }
+  }
 }
 /*******************/
 /*   PLACEHOLDER   */
 /*******************/
 .cozen-dropdown-placeholder(@color, @color-hover) {
+  div.cozen-dropdown-item-search-content,
   div.cozen-dropdown-content {
     input {
       &::-webkit-input-placeholder {
@@ -175,13 +206,33 @@
       }
     }
   }
+
+  // Search
+  div.cozen-dropdown-item-search-content {
+    &:hover {
+      input {
+        &::-webkit-input-placeholder {
+          color: @color-hover;
+        }
+        &::-moz-placeholder {
+          color: @color-hover;
+        }
+        &:-ms-input-placeholder {
+          color: @color-hover;
+        }
+        &:-moz-placeholder {
+          color: @color-hover;
+        }
+      }
+    }
+  }
 }
 /************/
 /*   ICON   */
 /************/
 .cozen-dropdown-icon(@padding, @font-size) {
   div.cozen-dropdown-content {
-    & div.cozen-dropdown-icon {
+    div.cozen-dropdown-icon {
       padding: 0 @padding;
     }
   }
@@ -197,6 +248,16 @@
       input {
         padding-right: @padding * 2 + @font-size;
       }
+    }
+  }
+
+  // Search
+  div.cozen-dropdown-item-search-content {
+    input {
+      padding-right: @padding * 3 + @font-size;
+    }
+    div.cozen-dropdown-item-search-icon {
+      padding: 0 @padding;
     }
   }
 }

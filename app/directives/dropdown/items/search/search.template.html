@@ -1,0 +1,22 @@
+<div ng-if="_isReady"
+     class="cozen-dropdown-item cozen-dropdown-item-search"
+     ng-class="_methods.getMainClass();"
+     id="{{ _cozenDropdownItemSearchId }}">
+
+    <div class="cozen-dropdown-item-search-content left">
+
+        <!-- Input -->
+        <input ng-model="vm.cozenDropdownItemSearchModel"
+               ng-change="_methods.onChange($event);"
+               type="text"
+               placeholder="{{ _cozenDropdownItemSearchPlaceholder | translate }}"
+               ng-model-options="{allowInvalid: true}">
+
+        <!-- Right icon -->
+        <div ng-if="_cozenDropdownItemSearchIconRight != ''"
+             class="cozen-dropdown-item-search-icon right">
+            <i ng-class="[_cozenDropdownItemSearchIconRight]"></i>
+        </div>
+    </div>
+</div>
+

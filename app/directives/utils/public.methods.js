@@ -13,7 +13,8 @@ var Methods = {
     directiveErrorBoolean     : directiveErrorBoolean,
     isRegExpValid             : isRegExpValid,
     getElementPaddingTopBottom: getElementPaddingTopBottom,
-    directiveErrorEmpty       : directiveErrorEmpty
+    directiveErrorEmpty       : directiveErrorEmpty,
+    directiveWarningUnmatched : directiveWarningUnmatched
 };
 
 var Data = {
@@ -127,6 +128,18 @@ function directiveErrorEmpty(directive, param) {
     console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
         getConsoleColor(),
         getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
+}
+
+function directiveWarningUnmatched(directive, param, value) {
+    console.warn('%c[%c' + directive + '%c] Attr <%c' + param + '%c> value\'s was wrong\nThe default value <%c' + value + '%c> was set',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
         getConsoleColor(),
         getConsoleColor('fn'),
         getConsoleColor()
