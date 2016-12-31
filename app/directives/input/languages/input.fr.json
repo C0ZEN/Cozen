@@ -3,5 +3,6 @@
   "input_password_uppercase": "Une lettre majuscule",
   "input_password_number": "Un chiffre",
   "input_password_special_char": "Un caractère spécial",
-  "input_password_min_length": "Au moins {{length}} caractères"
+  "input_password_min_length": "Au moins {{length}} caractères",
+  "input_required_tooltip": "Champ requis"
 }

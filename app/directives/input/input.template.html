@@ -3,6 +3,39 @@
      ng-class="_methods.getMainClass()"
      id="{{ _cozenInputId }}">
 
+    <div ng-if="_cozenInputLabel != ''"
+         class="cozen-input-label">
+
+        <!-- Label -->
+        <label for="{{ _cozenInputUuid }}"
+               class="label">
+            {{ _cozenInputLabel | translate }}
+        </label>
+
+        <!-- Required star -->
+        <label ng-if="_cozenInputRequired && _cozenInputRequiredConfig.type == 'star'"
+               class="required-star">
+            *
+        </label>
+
+        <!-- Required icon -->
+        <label ng-if="_cozenInputRequired && _cozenInputRequiredConfig.type == 'icon'"
+               class="required-icon">
+            <cozen-tooltip cozen-tooltip-label="_cozenInputRequiredTooltip"
+                           cozen-tooltip-display="block"
+                           cozen-tooltip-disabled="_cozenInputRequiredTooltip == ''">
+                <i class="{{ _cozenInputRequiredConfig.icon }}"></i>
+            </cozen-tooltip>
+        </label>
+
+        <!-- Model length -->
+        <label ng-if="_cozenInputDisplayModelLength"
+               class="model-length"
+               ng-class="{'error': _cozenInputModelLength < 0}">
+            {{ _cozenInputModelLength }}
+        </label>
+    </div>
+
     <!-- Tooltip -->
     <cozen-tooltip cozen-tooltip-label="_cozenInputTooltip"
                    cozen-tooltip-trigger="{{ _cozenInputTooltipTrigger }}"
@@ -35,7 +68,8 @@
                    autocomplete="{{ _cozenInputAutoComplete }}"
                    onfocus="this.removeAttribute('readonly');"
                    readonly
-                   ng-model-options="{allowInvalid: true}">
+                   ng-model-options="{allowInvalid: true}"
+                   id="{{ _cozenInputUuid }}">
 
             <!-- Arrow up/down -->
             <div ng-if="_cozenInputType == 'number'"

@@ -7,9 +7,29 @@ div.cozen-dropdown {
   display:     inline-block;
   transition:  @cozen-transition;
 
+  // Label
+  div.cozen-dropdown-label {
+    display:     flex;
+    align-items: center;
+    label {
+      font-size:   inherit;
+      color:       inherit;
+      font-weight: inherit;
+      margin:      0;
+      padding:     0;
+      &.required-star {
+        line-height: 0;
+      }
+      &.required-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
   div.cozen-dropdown-container {
     display:  block;
     position: relative;
+    cursor:   inherit;
 
     // Content
     div.cozen-dropdown-content {
@@ -30,7 +50,7 @@ div.cozen-dropdown {
         line-height:      inherit;
         font-size:        inherit;
         color:            inherit;
-        background-color: inherit;
+        background-color: transparent;
         transition:       none;
         position:         absolute;
         top:              0;
@@ -72,29 +92,15 @@ div.cozen-dropdown {
       }
     }
 
-    // Disabled
-    &.disabled {
-      opacity:     0.4;
-      cursor:      not-allowed;
-      user-select: none;
-      div.cozen-dropdown-content {
-        input {
-          cursor: not-allowed;
-        }
-        div.cozen-dropdown-icon.right {
-          cursor: not-allowed;
-        }
-      }
-    }
-
     div.cozen-dropdown-transclude {
       position:      absolute;
-      top:           100%;
       left:          0;
       content:       '';
       border-radius: @cozen-radius;
       margin-top:    1px;
       z-index:       200;
+      overflow-x:    hidden;
+      overflow-y:    auto;
       :first-child {
         border-top-left-radius:  @cozen-radius;
         border-top-right-radius: @cozen-radius;
@@ -118,6 +124,23 @@ div.cozen-dropdown {
           opacity:     0.4;
           cursor:      not-allowed;
           user-select: none;
+        }
+      }
+    }
+  }
+
+  // Disabled
+  &.disabled {
+    opacity:     0.4;
+    cursor:      not-allowed;
+    user-select: none;
+    div.cozen-dropdown-container {
+      div.cozen-dropdown-content {
+        input {
+          cursor: not-allowed;
+        }
+        div.cozen-dropdown-icon.right {
+          cursor: not-allowed;
         }
       }
     }

@@ -17,6 +17,7 @@ module.exports = function (grunt) {
     var appConfig = {
         app      : require('./bower.json').appPath || 'app',
         dist     : 'dist',
+        release  : 'release',
         languages: grunt.file.readJSON('app/config.json').languages,
         themes   : grunt.file.readJSON('app/config.json').themes
     };
@@ -161,7 +162,7 @@ module.exports = function (grunt) {
 
         // Empties folders to start fresh
         clean: {
-            dist  : {
+            dist   : {
                 files: [{
                     dot: true,
                     src: [
@@ -171,7 +172,16 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
-            server: '.tmp'
+            server : '.tmp',
+            release: {
+                files: [{
+                    dot: true,
+                    src: [
+                        '.tmp',
+                        '<%= yeoman.release %>/**/*'
+                    ]
+                }]
+            }
         },
 
         // Add vendor prefixed styles
@@ -193,6 +203,14 @@ module.exports = function (grunt) {
                 }]
             },
             dist   : {
+                files: [{
+                    expand: true,
+                    cwd   : '.tmp/styles/',
+                    src   : '**/*.css',
+                    dest  : '.tmp/styles/'
+                }]
+            },
+            release: {
                 files: [{
                     expand: true,
                     cwd   : '.tmp/styles/',
@@ -278,15 +296,23 @@ module.exports = function (grunt) {
         // By default, your `index.html`'s <!-- Usemin block --> will take care of
         // minification. These next options are pre-configured if you do not wish
         // to use the Usemin blocks.
-        // uglify: {
-        //   dist: {
-        //     files: {
-        //       '<%= yeoman.dist %>/scripts/scripts.js': [
-        //         '<%= yeoman.dist %>/scripts/scripts.js'
-        //       ]
-        //     }
-        //   }
-        // },
+        uglify: {
+            dist   : {
+                files: {
+                    '<%= yeoman.dist %>/scripts/scripts.js': [
+                        '<%= yeoman.dist %>/scripts/scripts.js'
+                    ]
+                }
+            },
+            release: {
+                files: {
+                    '<%= yeoman.release %>/cozen.min.js': [
+                        '<%= yeoman.app %>/**/*.js',
+                        '!<%= yeoman.app %>/directives/utils/app.constant.tpl.js'
+                    ]
+                }
+            }
+        },
 
         imagemin: {
             dist: {
@@ -311,7 +337,7 @@ module.exports = function (grunt) {
         },
 
         htmlmin: {
-            dist: {
+            dist   : {
                 options: {
                     collapseWhitespace       : true,
                     conservativeCollapse     : true,
@@ -323,6 +349,20 @@ module.exports = function (grunt) {
                     cwd   : '<%= yeoman.dist %>',
                     src   : ['*.html'],
                     dest  : '<%= yeoman.dist %>'
+                }]
+            },
+            release: {
+                options: {
+                    collapseWhitespace       : true,
+                    conservativeCollapse     : true,
+                    collapseBooleanAttributes: true,
+                    removeCommentsFromCDATA  : true
+                },
+                files  : [{
+                    expand: true,
+                    cwd   : '<%= yeoman.app %>/directives',
+                    src   : ['**/*.html'],
+                    dest  : '<%= yeoman.release %>/directives'
                 }]
             }
         },
@@ -362,7 +402,7 @@ module.exports = function (grunt) {
 
         // Copies remaining files to places other tasks can use
         copy: {
-            dist  : {
+            dist   : {
                 files: [{
                     expand: true,
                     dot   : true,
@@ -386,23 +426,44 @@ module.exports = function (grunt) {
                     dest  : '<%= yeoman.dist %>'
                 }]
             },
-            styles: {
+            styles : {
                 expand: true,
                 cwd   : '<%= yeoman.app %>/styles',
                 dest  : '.tmp/styles/',
                 src   : '**/*.css'
+            },
+            release: {
+                expand : true,
+                flatten: true,
+                cwd    : '<%= yeoman.app %>/directives',
+                dest   : '.tmp/release/directives',
+                src    : [
+                    '**/*.js',
+                    '!utils/app.constant.tpl.js'
+                ]
+            },
+            languages: {
+                expand : true,
+                cwd    : '<%= yeoman.app %>/languages',
+                dest   : '<%= yeoman.release %>/languages',
+                src    : '*.json'
             }
         },
 
         // Run some tasks in parallel to speed up the build process
         concurrent: {
-            server: [
+            server : [
                 'copy:styles'
             ],
-            test  : [
+            test   : [
                 'copy:styles'
             ],
-            dist  : [
+            dist   : [
+                'copy:styles',
+                'imagemin',
+                'svgmin'
+            ],
+            release: [
                 'copy:styles',
                 'imagemin',
                 'svgmin'
@@ -431,7 +492,7 @@ module.exports = function (grunt) {
         // When adding a new theme,
         // You need to add the task for less and cssmin
         less  : {
-            serve: {
+            serve  : {
                 options: {
                     plugins: [
                         new (require('less-plugin-autoprefix'))()
@@ -439,6 +500,17 @@ module.exports = function (grunt) {
                 },
                 files  : [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'}
+                ]
+            },
+            release: {
+                options: {
+                    plugins: [
+                        new (require('less-plugin-autoprefix'))()
+                    ]
+                },
+                files  : [
+                    {'.tmp/release/themes/tau.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'},
+                    {'.tmp/release/themes/min/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'}
                 ]
             }
         },
@@ -449,6 +521,11 @@ module.exports = function (grunt) {
             serve  : {
                 files: [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/tau.min.css'}
+                ]
+            },
+            release: {
+                files: [
+                    {'.tmp/release/themes/min/tau.min.css': '.tmp/release/themes/min/tau.min.css'}
                 ]
             }
         },
@@ -471,6 +548,19 @@ module.exports = function (grunt) {
             config : {
                 src : '<%= yeoman.app %>/directives/utils/app.constant.tpl.js',
                 dest: '<%= yeoman.app %>/directives/utils/app.constant.js'
+            }
+        },
+
+        concat: {
+            js : {
+                src : '.tmp/release/directives/*.js',
+                dest: '<%= yeoman.release %>/cozen.js'
+            },
+            css: {
+                files: [
+                    {'<%= yeoman.release %>/cozen.min.css': '.tmp/release/themes/min/*.css'},
+                    {'<%= yeoman.release %>/cozen.css': '.tmp/release/themes/*.css'}
+                ]
             }
         }
     });
@@ -524,6 +614,22 @@ module.exports = function (grunt) {
         'filerev',
         'usemin',
         'htmlmin'
+    ]);
+
+    grunt.registerTask('release', [
+        'clean:release',      // Delete the .tmp folder and release content folder
+        'wiredep',            // Inject the bower dependencies into the index.html
+        'angularFileLoader',  // Inject the js dependencies into the index.html
+        'languages',          // Concat the languages files
+        'preprocess',         // Build the templates files
+        'less:release',       // Transform less to css and add them to the release folder
+        'cssmin:release',     // Make the css better
+        'uglify:release',     // Copy and min all the js into the release folder
+        'htmlmin:release',    // Copy and min all the html into the release folder
+        'copy:release',       // Copy all the js into the .tmp folder
+        'concat:js',          // Copy all the js into the release folder
+        'concat:css',         // Copy all the css into the release folder
+        'copy:languages'      // Copy the languages folder into the release folder
     ]);
 
     grunt.registerTask('default', [

@@ -1,11 +1,35 @@
 <div ng-if="_isReady"
      class="cozen-dropdown"
      ng-class="_methods.getMainClass();"
-     id="{{ _cozenDropdownId }}"
-     ng-mouseenter="_methods.onHover($event, true)"
-     ng-mouseleave="_methods.onHover($event, false)">
+     id="{{ _cozenDropdownId }}">
 
-    <div class="cozen-dropdown-container">
+    <!-- Label stuff -->
+    <div ng-if="_cozenDropdownLabel != ''"
+         class="cozen-dropdown-label">
+
+        <!-- Label -->
+        <label class="label">{{ _cozenDropdownLabel | translate }}</label>
+
+        <!-- Required star -->
+        <label ng-if="_cozenDropdownRequired && _cozenDropdownRequiredConfig.type == 'star'"
+               class="required-star">
+            *
+        </label>
+
+        <!-- Required icon -->
+        <label ng-if="_cozenDropdownRequired && _cozenDropdownRequiredConfig.type == 'icon'"
+               class="required-icon">
+            <cozen-tooltip cozen-tooltip-label="_cozenDropdownRequiredTooltip"
+                           cozen-tooltip-display="block"
+                           cozen-tooltip-disabled="_cozenDropdownRequiredTooltip == ''">
+                <i class="{{ _cozenDropdownRequiredConfig.icon }}"></i>
+            </cozen-tooltip>
+        </label>
+    </div>
+
+    <div class="cozen-dropdown-container"
+         ng-mouseenter="_methods.onHover($event, true)"
+         ng-mouseleave="_methods.onHover($event, false)">
 
         <!-- Visual input -->
         <div ng-click="_methods.onClick($event);"
@@ -34,8 +58,7 @@
 
             <!-- Right icon -->
             <div class="cozen-dropdown-icon right">
-                <i class="fa fa-caret-down"
-                   ng-class="{'fa-rotate-90': _cozenDropdownCollapse}">
+                <i ng-class="_methods.getArrowClass();">
                 </i>
             </div>
         </div>
@@ -43,7 +66,11 @@
         <!-- Dropdown items -->
         <div ng-show="_cozenDropdownCollapse"
              class="cozen-dropdown-transclude"
-             ng-transclude>
+             ng-style="_methods.getTranscludeStyle()"
+             ng-scrollbars
+             ng-scrollbars-disabled="!_cozenScrollBar"
+             ng-scrollbars-config="_cozenScrollBarConfig">
+            <div class="ng-transclude"></div>
         </div>
     </div>
 </div>

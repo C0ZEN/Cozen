@@ -13,29 +13,30 @@
  * @param {function} cozenDropdownOnChange         > Callback function called on change
  *
  * [Attributes params]
- * @param {number}  cozenDropdownId                               > Id of the dropdown
- * @param {string}  cozenDropdownSize             = 'normal'      > Size of the dropdown
- * @param {string}  cozenDropdownSizeSmall                        > Shortcut for small size
- * @param {string}  cozenDropdownSizeNormal                       > Shortcut for normal size
- * @param {string}  cozenDropdownSizeLarge                        > Shortcut for large size
- * @param {boolean} cozenDropdownRequired         = false         > Required input
- * @param {boolean} cozenDropdownErrorDesign      = true          > Add style when error
- * @param {boolean} cozenDropdownSuccessDesign    = true          > Add style when success
- * @param {string}  cozenDropdownPlaceholder                      > Text for the placeholder
- * @param {string}  cozenDropdownIconLeft                         > Text for the icon left (font)
- * @param {string}  cozenDropdownName             = uuid          > Name of the input
- * @param {boolean} cozenDropdownValidator        = 'dirty'       > Define after what type of event the input must add more ui color
- * @param {boolean} cozenDropdownValidatorAll                     > Shortcut for all type
- * @param {boolean} cozenDropdownValidatorTouched                 > Shortcut for touched type
- * @param {boolean} cozenDropdownValidatorDirty                   > Shortcut for dirty type
- * @param {boolean} cozenDropdownValidatorEmpty   = true          > Display ui color even if input empty
- * @param {boolean} cozenDropdownEasyNavigation   = true          > Allow to navigate with arrows even if the pointer is out of the dropdown
- * @param {boolean} cozenDropdownMultiple         = false         > Allow to select multiple data
- * @param {boolean} cozenDropdownAutoClose        = true          > Close the dropdown after had selected a data (only for single)
- * @param {boolean} cozenDropdownEasyClose        = true          > Auto close the dropdown when a click is outside
- * @param {boolean} cozenDropdownShowTick         = true          > Display an icon to the right when a data is selected
- * @param {boolean} cozenDropdownTickIcon         = 'fa fa-check' > Define what type of icon should it be
- * @param {string}  cozenDropdownModelEnhanced    = 'last'        > Choose the way of display the selected data text in the input [last, all, count, number (value expected)]
+ * @param {number}  cozenDropdownId                                             > Id of the dropdown
+ * @param {string}  cozenDropdownSize             = 'normal'                    > Size of the dropdown
+ * @param {string}  cozenDropdownSizeSmall                                      > Shortcut for small size
+ * @param {string}  cozenDropdownSizeNormal                                     > Shortcut for normal size
+ * @param {string}  cozenDropdownSizeLarge                                      > Shortcut for large size
+ * @param {boolean} cozenDropdownRequired         = false                       > Required input
+ * @param {boolean} cozenDropdownErrorDesign      = true                        > Add style when error
+ * @param {boolean} cozenDropdownSuccessDesign    = true                        > Add style when success
+ * @param {string}  cozenDropdownPlaceholder                                    > Text for the placeholder
+ * @param {string}  cozenDropdownIconLeft                                       > Text for the icon left (font)
+ * @param {string}  cozenDropdownName             = uuid                        > Name of the input
+ * @param {boolean} cozenDropdownValidator        = 'touched'                   > Define after what type of event the input must add more ui color
+ * @param {boolean} cozenDropdownValidatorAll                                   > Shortcut for all type
+ * @param {boolean} cozenDropdownValidatorTouched                               > Shortcut for touched type
+ * @param {boolean} cozenDropdownEasyNavigation   = true                        > Allow to navigate with arrows even if the pointer is out of the dropdown
+ * @param {boolean} cozenDropdownMultiple         = false                       > Allow to select multiple data
+ * @param {boolean} cozenDropdownAutoClose        = true                        > Close the dropdown after had selected a data (only for single)
+ * @param {boolean} cozenDropdownEasyClose        = true                        > Auto close the dropdown when a click is outside
+ * @param {boolean} cozenDropdownShowTick         = true                        > Display an icon to the right when a data is selected
+ * @param {boolean} cozenDropdownTickIcon         = 'fa fa-check'               > Define what type of icon should it be
+ * @param {string}  cozenDropdownModelEnhanced    = 'last'                      > Choose the way of display the selected data text in the input [last, all, count, number (value expected)]
+ * @param {number}  cozenDropdownMaxHeight        = 200                         > Max-height of the dropdown
+ * @param {string}  cozenDropdownLabel                                          > Add a label on the top of the dropdown
+ * @param {string}  cozenDropdownRequiredTooltip  = 'dropdown_required_tooltip' > Text to display for the tooltip of the required element
  *
  */
 (function (angular) {
@@ -55,10 +56,11 @@
         '$window',
         '$rootScope',
         'rfc4122',
-        '$filter'
+        '$filter',
+        '$timeout'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter) {
+    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout) {
         return {
             link            : link,
             restrict        : 'E',
@@ -77,25 +79,31 @@
 
         function link(scope, element, attrs) {
             var methods = {
-                init             : init,
-                hasError         : hasError,
-                destroy          : destroy,
-                getMainClass     : getMainClass,
-                onHover          : onHover,
-                onKeyDown        : onKeyDown,
-                onChange         : onChange,
-                getDesignClass   : getDesignClass,
-                getForm          : getForm,
-                onClick          : onClick,
-                onAutoCloseOthers: onAutoCloseOthers,
-                onWindowClick    : onWindowClick,
-                onChildSelected  : onChildSelected,
-                onChildSearched: onChildSearched
+                init                     : init,
+                hasError                 : hasError,
+                destroy                  : destroy,
+                getMainClass             : getMainClass,
+                onHover                  : onHover,
+                onKeyDown                : onKeyDown,
+                onChange                 : onChange,
+                getForm                  : getForm,
+                onClick                  : onClick,
+                onAutoCloseOthers        : onAutoCloseOthers,
+                onWindowClick            : onWindowClick,
+                onChildSelected          : onChildSelected,
+                onChildSearched          : onChildSearched,
+                setScrollBarHeight       : setScrollBarHeight,
+                onActiveChild            : onActiveChild,
+                defineTranscludeDirection: defineTranscludeDirection,
+                getArrowClass            : getArrowClass,
+                getTranscludeStyle       : getTranscludeStyle
             };
 
             var data = {
-                directive: 'cozenDropdown',
-                uuid     : rfc4122.v4()
+                directive       : 'cozenDropdown',
+                uuid            : rfc4122.v4(),
+                transcludeHeight: 0,
+                touched         : false
             };
 
             scope._isReady = false;
@@ -106,10 +114,12 @@
 
                 // Public functions
                 scope._methods = {
-                    getMainClass: getMainClass,
-                    onHover     : onHover,
-                    onChange    : onChange,
-                    onClick     : onClick
+                    getMainClass      : getMainClass,
+                    onHover           : onHover,
+                    onChange          : onChange,
+                    onClick           : onClick,
+                    getArrowClass     : getArrowClass,
+                    getTranscludeStyle: getTranscludeStyle
                 };
 
                 // Checking required stuff
@@ -126,9 +136,8 @@
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenDropdownValidator)) {
                     if (angular.isDefined(attrs.cozenDropdownValidatorAll)) scope._cozenDropdownValidator = 'all';
-                    if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) scope._cozenDropdownValidator = 'touched';
-                    else if (angular.isDefined(attrs.cozenDropdownValidatorDirty)) scope._cozenDropdownValidator = 'dirty';
-                    else scope._cozenDropdownValidator = 'dirty';
+                    else if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) scope._cozenDropdownValidator = 'touched';
+                    else scope._cozenDropdownValidator = 'touched';
                 }
 
                 // Check the model enhanced mod
@@ -149,20 +158,24 @@
                 scope.vm.cozenDropdownModelEnhanced = '';
 
                 // Default values (attributes)
-                scope._cozenDropdownId             = angular.isDefined(attrs.cozenDropdownId) ? attrs.cozenDropdownId : '';
-                scope._cozenDropdownRequired       = angular.isDefined(attrs.cozenDropdownRequired) ? JSON.parse(attrs.cozenDropdownRequired) : false;
-                scope._cozenDropdownErrorDesign    = angular.isDefined(attrs.cozenDropdownErrorDesign) ? JSON.parse(attrs.cozenDropdownErrorDesign) : true;
-                scope._cozenDropdownSuccessDesign  = angular.isDefined(attrs.cozenDropdownSuccessDesign) ? JSON.parse(attrs.cozenDropdownSuccessDesign) : true;
-                scope._cozenDropdownPlaceholder    = angular.isDefined(attrs.cozenDropdownPlaceholder) ? attrs.cozenDropdownPlaceholder : '';
-                scope._cozenDropdownIconLeft       = angular.isDefined(attrs.cozenDropdownIconLeft) ? attrs.cozenDropdownIconLeft : '';
-                scope._cozenDropdownName           = angular.isDefined(attrs.cozenDropdownName) ? attrs.cozenDropdownName : data.uuid;
-                scope._cozenDropdownValidatorEmpty = angular.isDefined(attrs.cozenDropdownValidatorEmpty) ? JSON.parse(attrs.cozenDropdownValidatorEmpty) : true;
-                scope._cozenDropdownEasyNavigation = angular.isDefined(attrs.cozenDropdownEasyNavigation) ? JSON.parse(attrs.cozenDropdownEasyNavigation) : true;
-                scope._cozenDropdownMultiple       = angular.isDefined(attrs.cozenDropdownMultiple) ? JSON.parse(attrs.cozenDropdownMultiple) : false;
-                scope._cozenDropdownAutoClose      = angular.isDefined(attrs.cozenDropdownAutoClose) ? JSON.parse(attrs.cozenDropdownAutoClose) : true;
-                scope._cozenDropdownEasyClose      = angular.isDefined(attrs.cozenDropdownEasyClose) ? JSON.parse(attrs.cozenDropdownEasyClose) : true;
-                scope._cozenDropdownShowTick       = angular.isDefined(attrs.cozenDropdownShowTick) ? JSON.parse(attrs.cozenDropdownShowTick) : true;
-                scope._cozenDropdownTickIcon       = angular.isDefined(attrs.cozenDropdownTickIcon) ? attrs.cozenDropdownTickIcon : 'fa fa-check';
+                scope._cozenDropdownId              = angular.isDefined(attrs.cozenDropdownId) ? attrs.cozenDropdownId : '';
+                scope._cozenDropdownRequired        = angular.isDefined(attrs.cozenDropdownRequired) ? JSON.parse(attrs.cozenDropdownRequired) : false;
+                scope._cozenDropdownErrorDesign     = angular.isDefined(attrs.cozenDropdownErrorDesign) ? JSON.parse(attrs.cozenDropdownErrorDesign) : true;
+                scope._cozenDropdownSuccessDesign   = angular.isDefined(attrs.cozenDropdownSuccessDesign) ? JSON.parse(attrs.cozenDropdownSuccessDesign) : true;
+                scope._cozenDropdownPlaceholder     = angular.isDefined(attrs.cozenDropdownPlaceholder) ? attrs.cozenDropdownPlaceholder : '';
+                scope._cozenDropdownIconLeft        = angular.isDefined(attrs.cozenDropdownIconLeft) ? attrs.cozenDropdownIconLeft : '';
+                scope._cozenDropdownName            = angular.isDefined(attrs.cozenDropdownName) ? attrs.cozenDropdownName : data.uuid;
+                scope._cozenDropdownEasyNavigation  = angular.isDefined(attrs.cozenDropdownEasyNavigation) ? JSON.parse(attrs.cozenDropdownEasyNavigation) : true;
+                scope._cozenDropdownMultiple        = angular.isDefined(attrs.cozenDropdownMultiple) ? JSON.parse(attrs.cozenDropdownMultiple) : false;
+                scope._cozenDropdownAutoClose       = angular.isDefined(attrs.cozenDropdownAutoClose) ? JSON.parse(attrs.cozenDropdownAutoClose) : true;
+                scope._cozenDropdownEasyClose       = angular.isDefined(attrs.cozenDropdownEasyClose) ? JSON.parse(attrs.cozenDropdownEasyClose) : true;
+                scope._cozenDropdownShowTick        = angular.isDefined(attrs.cozenDropdownShowTick) ? JSON.parse(attrs.cozenDropdownShowTick) : true;
+                scope._cozenDropdownTickIcon        = angular.isDefined(attrs.cozenDropdownTickIcon) ? attrs.cozenDropdownTickIcon : 'fa fa-check';
+                scope._cozenDropdownMaxHeight       = angular.isDefined(attrs.cozenDropdownMaxHeight) ? JSON.parse(attrs.cozenDropdownMaxHeight) : 200;
+                scope._cozenDropdownDirection       = 'down';
+                scope._cozenDropdownLabel           = angular.isDefined(attrs.cozenDropdownLabel) ? attrs.cozenDropdownLabel : '';
+                scope._cozenDropdownRequiredConfig  = CONFIG.config.required;
+                scope._cozenDropdownRequiredTooltip = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -189,6 +202,18 @@
                 // When the search change (from each child)
                 scope.$on('cozenDropdownItemDisabled', methods.onChildSearched);
 
+                // Update the active child when a change occur in a child
+                scope.$on('cozenDropdownActiveChild', methods.onActiveChild);
+
+                // Define the transclude position
+                $window.addEventListener('scroll', methods.defineTranscludeDirection);
+
+                // ScrollBar
+                scope._cozenScrollBar            = CONFIG.config.scrollsBar;
+                scope._cozenScrollBarConfig      = CONFIG.config.scrollsBarConfig;
+                scope._cozenScrollBarConfig.axis = 'y';
+                methods.setScrollBarHeight();
+
                 // Display the template
                 scope._isReady = true;
             }
@@ -210,27 +235,24 @@
             function destroy() {
                 $window.removeEventListener('keydown', methods.onKeyDown);
                 $window.removeEventListener('click', methods.onWindowClick);
+                $window.removeEventListener('scroll', methods.onScroll);
                 element.off('$destroy', methods.destroy);
             }
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenDropdownForm)) {
                     var classList = [scope._activeTheme, scope._cozenDropdownSize, 'icon-right'];
-                    var input     = methods.getForm()[scope._cozenDropdownName];
-                    if (!Methods.isNullOrEmpty(input)) {
-                        if (scope._cozenDropdownValidatorEmpty || (!scope._cozenDropdownValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenDropdownModel))) {
-                            switch (scope._cozenDropdownValidator) {
-                                case 'touched':
-                                    if (input.$touched) classList.push(methods.getDesignClass(input));
-                                    break;
-                                case 'dirty':
-                                    if (input.$dirty) classList.push(methods.getDesignClass(input));
-                                    break;
-                                case 'all':
-                                    classList.push(methods.getDesignClass(input));
-                                    break;
+                    switch (scope._cozenDropdownValidator) {
+                        case 'touched':
+                            if (data.touched) {
+                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
+                                else if (scope._cozenDropdownRequired) classList.push('error-design');
                             }
-                        }
+                            break;
+                        case 'all':
+                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
+                            else if (scope._cozenDropdownRequired) classList.push('error-design');
+                            break;
                     }
                     if (scope.vm.cozenDropdownDisabled) classList.push('disabled');
                     if (scope._cozenDropdownIconLeft) classList.push('icon-left');
@@ -251,6 +273,8 @@
 
             function onKeyDown(event) {
                 event.stopPropagation();
+                event.preventDefault();
+                if (scope.vm.cozenDropdownDisabled) return;
                 if (!scope._cozenDropdownCollapse) return;
                 if (!scope._cozenDropdownEasyNavigation) {
                     if (!scope.isHover) return;
@@ -292,23 +316,6 @@
                 if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
             }
 
-            function getDesignClass(input) {
-                if (scope._cozenDropdownErrorDesign) {
-                    if (input.$invalid) {
-                        scope._cozenDropdownHasFeedback = 'error';
-                        return 'error-design';
-                    }
-                }
-                if (scope._cozenDropdownSuccessDesign) {
-                    if (input.$valid) {
-                        scope._cozenDropdownHasFeedback = 'success';
-                        return 'success-design';
-                    }
-                }
-                scope._cozenDropdownHasFeedback = false;
-                return '';
-            }
-
             function getForm() {
                 var form = scope.$parent.$parent[scope._cozenDropdownForm];
                 if (Methods.isNullOrEmpty(form)) {
@@ -329,8 +336,9 @@
             }
 
             function onClick($event) {
+                data.touched = true;
                 if (!Methods.isNullOrEmpty($event)) $event.stopPropagation();
-                if (!scope.cozenDropdownDisabled) {
+                if (!scope.vm.cozenDropdownDisabled) {
                     scope._cozenDropdownCollapse = !scope._cozenDropdownCollapse;
                     scope.$broadcast('cozenDropdownCollapse', {
                         collapse: scope._cozenDropdownCollapse
@@ -349,6 +357,11 @@
                         if (scope._cozenDropdownEasyClose) {
                             $window.addEventListener('click', methods.onWindowClick);
                         }
+
+                        $timeout(function () {
+                            data.transcludeHeight = element.find('.cozen-dropdown-transclude .ng-transclude')[0].offsetHeight;
+                            methods.defineTranscludeDirection();
+                        }, 1);
                     } else {
                         $window.removeEventListener('click', methods.onWindowClick);
                     }
@@ -411,6 +424,9 @@
                                     scope.vm.cozenDropdownModelEnhanced = child.label;
                                     selectedValues++;
                                 }
+
+                                // ModelEnhanced : last
+                                else if (scope._cozenDropdownModelEnhanced == 'last') selectedValues++;
                             }
                         });
 
@@ -458,12 +474,54 @@
 
             function onChildSearched(event, params) {
                 if (scope._cozenDropdownName == params.dropdown) {
-                    for(var i = 0, length = scope.childrenUuid.length; i < length; i++) {
+                    for (var i = 0, length = scope.childrenUuid.length; i < length; i++) {
                         if (scope.childrenUuid[i].uuid == params.uuid) {
                             scope.childrenUuid[i].disabled = params.disabled;
                         }
                     }
                 }
+            }
+
+            function setScrollBarHeight() {
+                $timeout(function () {
+                    var body       = element.find('.cozen-dropdown-transclude')[0];
+                    var transclude = element.find('.cozen-dropdown-transclude .ng-transclude')[0];
+                    if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
+                    Methods.safeApply(scope);
+                });
+            }
+
+            function onActiveChild(event, params) {
+                if (scope._cozenDropdownName == params.dropdown) {
+                    scope.activeChild = params.activeChild;
+                }
+            }
+
+            function defineTranscludeDirection() {
+                var inputViewport = element.find('.cozen-dropdown-content')[0].getBoundingClientRect();
+                var windowHeight  = window.innerHeight;
+                var maxHeight     = data.transcludeHeight;
+                if (data.transcludeHeight > scope._cozenDropdownMaxHeight) maxHeight = scope._cozenDropdownMaxHeight + 8;
+                if (windowHeight - inputViewport.bottom < maxHeight) scope._cozenDropdownDirection = 'up';
+                else scope._cozenDropdownDirection = 'down';
+                Methods.safeApply(scope);
+            }
+
+            function getArrowClass() {
+                var classList = ['fa', 'fa-caret-down'];
+                if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
+                else if (scope._cozenDropdownDirection == 'up' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
+                else if (scope._cozenDropdownDirection == 'up' && !scope._cozenDropdownCollapse) classList.push('fa-rotate-180');
+                return classList;
+            }
+
+            function getTranscludeStyle() {
+                var styleList = {
+                    'max-height': scope._cozenDropdownMaxHeight + 'px'
+                };
+                if (scope._cozenDropdownDirection == 'down') styleList.top = '100%';
+                else styleList.bottom = '100%';
+                return styleList;
             }
         }
     }

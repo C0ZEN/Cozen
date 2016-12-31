@@ -14,41 +14,43 @@
  * @param {object}   cozenInputTypePasswordConfig         > Override the default configuration object
  *
  * [Attributes params]
- * @param {number}  cozenInputId                                > Id of the input
- * @param {string}  cozenInputTooltip                           > Text of the tooltip
- * @param {string}  cozenInputTooltipPlacement = 'auto right'   > Change the position of the tooltip
- * @param {string}  cozenInputTooltipTrigger   = 'outsideClick' > Type of trigger to show the tooltip
- * @param {boolean} cozenInputRequired         = false          > Required input
- * @param {boolean} cozenInputErrorDesign      = true           > Add style when error
- * @param {boolean} cozenInputSuccessDesign    = true           > Add style when success
- * @param {string}  cozenInputPattern                           > Pattern HTML5 to check for error
- * @param {string}  cozenInputPatternEmail                      > Shortcut for email pattern
- * @param {string}  cozenInputPatternLetter                     > Shortcut for email pattern
- * @param {string}  cozenInputSize             = 'normal'       > Size of the button
- * @param {string}  cozenInputSizeSmall                         > Shortcut for small size
- * @param {string}  cozenInputSizeNormal                        > Shortcut for normal size
- * @param {string}  cozenInputSizeLarge                         > Shortcut for large size
- * @param {string}  cozenInputPrefix                            > Add a prefix
- * @param {string}  cozenInputSuffix                            > Add a suffix
- * @param {string}  cozenInputType             = 'text'         > Type of the input
- * @param {string}  cozenInputTypeText                          > Shortcut for text type
- * @param {string}  cozenInputTypeNumber                        > Shortcut for number type
- * @param {string}  cozenInputTypePassword                      > Shortcut for password type
- * @param {string}  cozenInputPlaceholder                       > Text for the placeholder
- * @param {number}  cozenInputMin              = 0              > Minimum length
- * @param {number}  cozenInputMax              = 1000           > Maximum length
- * @param {number}  cozenInputMinLength        = 0              > Minimum char length
- * @param {number}  cozenInputMaxLength        = 100            > Maximum char length
- * @param {string}  cozenInputIconLeft                          > Text for the icon left (font)
- * @param {string}  cozenInputIconRight                         > Text for the icon right (font)
- * @param {string}  cozenInputName             = uuid           > Name of the input
- * @param {boolean} cozenInputValidator        = 'dirty'        > Define after what type of event the input must add more ui color
- * @param {boolean} cozenInputValidatorAll                      > Shortcut for all type
- * @param {boolean} cozenInputValidatorTouched                  > Shortcut for touched type
- * @param {boolean} cozenInputValidatorDirty                    > Shortcut for dirty type
- * @param {boolean} cozenInputValidatorEmpty   = true           > Display ui color even if input empty
- * @param {boolean} cozenInputValidatorIcon    = true           > Add (and change) the icon right if success/error
- * @param {string}  cozenInputAutoComplete     = 'on'           > Allow auto complete (on/off)
+ * @param {number}  cozenInputId                                          > Id of the input
+ * @param {string}  cozenInputTooltip                                     > Text of the tooltip
+ * @param {string}  cozenInputTooltipPlacement = 'auto right'             > Change the position of the tooltip
+ * @param {string}  cozenInputTooltipTrigger   = 'outsideClick'           > Type of trigger to show the tooltip
+ * @param {boolean} cozenInputRequired         = false                    > Required input
+ * @param {boolean} cozenInputErrorDesign      = true                     > Add style when error
+ * @param {boolean} cozenInputSuccessDesign    = true                     > Add style when success
+ * @param {string}  cozenInputPattern                                     > Pattern HTML5 to check for error
+ * @param {string}  cozenInputPatternEmail                                > Shortcut for email pattern
+ * @param {string}  cozenInputPatternLetter                               > Shortcut for email pattern
+ * @param {string}  cozenInputSize             = 'normal'                 > Size of the button
+ * @param {string}  cozenInputSizeSmall                                   > Shortcut for small size
+ * @param {string}  cozenInputSizeNormal                                  > Shortcut for normal size
+ * @param {string}  cozenInputSizeLarge                                   > Shortcut for large size
+ * @param {string}  cozenInputPrefix                                      > Add a prefix
+ * @param {string}  cozenInputSuffix                                      > Add a suffix
+ * @param {string}  cozenInputType             = 'text'                   > Type of the input
+ * @param {string}  cozenInputTypeText                                    > Shortcut for text type
+ * @param {string}  cozenInputTypeNumber                                  > Shortcut for number type
+ * @param {string}  cozenInputTypePassword                                > Shortcut for password type
+ * @param {string}  cozenInputPlaceholder                                 > Text for the placeholder
+ * @param {number}  cozenInputMin              = 0                        > Minimum length
+ * @param {number}  cozenInputMax              = 1000                     > Maximum length
+ * @param {number}  cozenInputMinLength        = 0                        > Minimum char length
+ * @param {number}  cozenInputMaxLength        = 100                      > Maximum char length
+ * @param {string}  cozenInputIconLeft                                    > Text for the icon left (font)
+ * @param {string}  cozenInputIconRight                                   > Text for the icon right (font)
+ * @param {string}  cozenInputName             = uuid                     > Name of the input
+ * @param {boolean} cozenInputValidator        = 'dirty'                  > Define after what type of event the input must add more ui color
+ * @param {boolean} cozenInputValidatorAll                                > Shortcut for all type
+ * @param {boolean} cozenInputValidatorTouched                            > Shortcut for touched type
+ * @param {boolean} cozenInputValidatorDirty                              > Shortcut for dirty type
+ * @param {boolean} cozenInputValidatorEmpty   = true                     > Display ui color even if input empty
+ * @param {boolean} cozenInputValidatorIcon    = true                     > Add (and change) the icon right if success/error
+ * @param {string}  cozenInputAutoComplete     = 'on'                     > Allow auto complete (on/off)
+ * @param {string}  cozenInputLabel                                       > Add a label on the top of the input
+ * @param {string}  cozenInputRequiredTooltip  = 'input_required_tooltip' > Text to display for the tooltip of the required element
  *
  * [cozenInputTypePasswordConfig]
  *
@@ -104,7 +106,8 @@
                 onArrowUp              : onArrowUp,
                 arrowUpdateModel       : arrowUpdateModel,
                 getPasswordTooltipLabel: getPasswordTooltipLabel,
-                getPasswordStateClass  : getPasswordStateClass
+                getPasswordStateClass  : getPasswordStateClass,
+                updateModelLength      : updateModelLength
             };
 
             var data = {
@@ -179,7 +182,7 @@
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenInputValidator)) {
                     if (angular.isDefined(attrs.cozenInputValidatorAll)) scope._cozenInputValidator = 'all';
-                    if (angular.isDefined(attrs.cozenInputValidatorTouched)) scope._cozenInputValidator = 'touched';
+                    else if (angular.isDefined(attrs.cozenInputValidatorTouched)) scope._cozenInputValidator = 'touched';
                     else if (angular.isDefined(attrs.cozenInputValidatorDirty)) scope._cozenInputValidator = 'dirty';
                     else scope._cozenInputValidator = 'dirty';
                 }
@@ -188,27 +191,33 @@
                 if (angular.isUndefined(attrs.cozenInputDisabled)) scope.vm.cozenInputDisabled = false;
 
                 // Default values (attributes)
-                scope._cozenInputId               = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
-                scope._cozenInputTooltip          = angular.isDefined(attrs.cozenInputTooltip) ? attrs.cozenInputTooltip : '';
-                scope._cozenInputTooltipTrigger   = angular.isDefined(attrs.cozenInputTooltipTrigger) ? attrs.cozenInputTooltipTrigger : 'outsideClick';
-                scope._cozenInputRequired         = angular.isDefined(attrs.cozenInputRequired) ? JSON.parse(attrs.cozenInputRequired) : false;
-                scope._cozenInputErrorDesign      = angular.isDefined(attrs.cozenInputErrorDesign) ? JSON.parse(attrs.cozenInputErrorDesign) : true;
-                scope._cozenInputSuccessDesign    = angular.isDefined(attrs.cozenInputSuccessDesign) ? JSON.parse(attrs.cozenInputSuccessDesign) : true;
-                scope._cozenInputPrefix           = angular.isDefined(attrs.cozenInputPrefix) ? attrs.cozenInputPrefix : '';
-                scope._cozenInputSuffix           = angular.isDefined(attrs.cozenInputSuffix) ? attrs.cozenInputSuffix : '';
-                scope._cozenInputPlaceholder      = angular.isDefined(attrs.cozenInputPlaceholder) ? attrs.cozenInputPlaceholder : '';
-                scope._cozenInputMin              = angular.isDefined(attrs.cozenInputMin) ? JSON.parse(attrs.cozenInputMin) : 0;
-                scope._cozenInputMax              = angular.isDefined(attrs.cozenInputMax) ? JSON.parse(attrs.cozenInputMax) : 1000;
-                scope._cozenInputMinLength        = angular.isDefined(attrs.cozenInputMinLength) ? JSON.parse(attrs.cozenInputMinLength) : 0;
-                scope._cozenInputMaxLength        = angular.isDefined(attrs.cozenInputMaxLength) ? JSON.parse(attrs.cozenInputMaxLength) : 100;
-                scope._cozenInputIconLeft         = angular.isDefined(attrs.cozenInputIconLeft) ? attrs.cozenInputIconLeft : '';
-                scope._cozenInputIconRight        = angular.isDefined(attrs.cozenInputIconRight) ? attrs.cozenInputIconRight : '';
-                scope._cozenInputName             = angular.isDefined(attrs.cozenInputName) ? attrs.cozenInputName : data.uuid;
-                scope._cozenInputValidatorEmpty   = angular.isDefined(attrs.cozenInputValidatorEmpty) ? JSON.parse(attrs.cozenInputValidatorEmpty) : true;
-                scope._cozenInputValidatorIcon    = angular.isDefined(attrs.cozenInputValidatorIcon) ? JSON.parse(attrs.cozenInputValidatorIcon) : true;
-                scope._cozenInputTooltipType      = scope._cozenInputType == 'password' ? 'html' : 'default';
-                scope._cozenInputAutoComplete     = angular.isDefined(attrs.cozenInputAutoComplete) ? attrs.cozenInputAutoComplete : 'on';
-                scope._cozenInputTooltipPlacement = angular.isDefined(attrs.cozenInputTooltipPlacement) ? attrs.cozenInputTooltipPlacement : 'auto right';
+                scope._cozenInputId                 = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
+                scope._cozenInputTooltip            = angular.isDefined(attrs.cozenInputTooltip) ? attrs.cozenInputTooltip : '';
+                scope._cozenInputTooltipTrigger     = angular.isDefined(attrs.cozenInputTooltipTrigger) ? attrs.cozenInputTooltipTrigger : 'outsideClick';
+                scope._cozenInputRequired           = angular.isDefined(attrs.cozenInputRequired) ? JSON.parse(attrs.cozenInputRequired) : false;
+                scope._cozenInputErrorDesign        = angular.isDefined(attrs.cozenInputErrorDesign) ? JSON.parse(attrs.cozenInputErrorDesign) : true;
+                scope._cozenInputSuccessDesign      = angular.isDefined(attrs.cozenInputSuccessDesign) ? JSON.parse(attrs.cozenInputSuccessDesign) : true;
+                scope._cozenInputPrefix             = angular.isDefined(attrs.cozenInputPrefix) ? attrs.cozenInputPrefix : '';
+                scope._cozenInputSuffix             = angular.isDefined(attrs.cozenInputSuffix) ? attrs.cozenInputSuffix : '';
+                scope._cozenInputPlaceholder        = angular.isDefined(attrs.cozenInputPlaceholder) ? attrs.cozenInputPlaceholder : '';
+                scope._cozenInputMin                = angular.isDefined(attrs.cozenInputMin) ? JSON.parse(attrs.cozenInputMin) : 0;
+                scope._cozenInputMax                = angular.isDefined(attrs.cozenInputMax) ? JSON.parse(attrs.cozenInputMax) : 1000;
+                scope._cozenInputMinLength          = angular.isDefined(attrs.cozenInputMinLength) ? JSON.parse(attrs.cozenInputMinLength) : 0;
+                scope._cozenInputMaxLength          = angular.isDefined(attrs.cozenInputMaxLength) ? JSON.parse(attrs.cozenInputMaxLength) : 100;
+                scope._cozenInputIconLeft           = angular.isDefined(attrs.cozenInputIconLeft) ? attrs.cozenInputIconLeft : '';
+                scope._cozenInputIconRight          = angular.isDefined(attrs.cozenInputIconRight) ? attrs.cozenInputIconRight : '';
+                scope._cozenInputName               = angular.isDefined(attrs.cozenInputName) ? attrs.cozenInputName : data.uuid;
+                scope._cozenInputValidatorEmpty     = angular.isDefined(attrs.cozenInputValidatorEmpty) ? JSON.parse(attrs.cozenInputValidatorEmpty) : true;
+                scope._cozenInputValidatorIcon      = angular.isDefined(attrs.cozenInputValidatorIcon) ? JSON.parse(attrs.cozenInputValidatorIcon) : true;
+                scope._cozenInputTooltipType        = scope._cozenInputType == 'password' ? 'html' : 'default';
+                scope._cozenInputAutoComplete       = angular.isDefined(attrs.cozenInputAutoComplete) ? attrs.cozenInputAutoComplete : 'on';
+                scope._cozenInputTooltipPlacement   = angular.isDefined(attrs.cozenInputTooltipPlacement) ? attrs.cozenInputTooltipPlacement : 'auto right';
+                scope._cozenInputLabel              = angular.isDefined(attrs.cozenInputLabel) ? attrs.cozenInputLabel : '';
+                scope._cozenInputUuid               = data.uuid;
+                scope._cozenInputDisplayModelLength = CONFIG.config.input.displayModelLength;
+                scope._cozenInputModelLength        = scope._cozenInputMaxLength;
+                scope._cozenInputRequiredConfig     = CONFIG.config.required;
+                scope._cozenInputRequiredTooltip    = angular.isDefined(attrs.cozenInputRequiredTooltip) ? attrs.cozenInputRequiredTooltip : 'input_required_tooltip';
 
                 // Object overriding (typePasswordConfig)
                 if (scope._cozenInputType == 'password') {
@@ -281,6 +290,7 @@
                 if (Methods.isFunction(scope.cozenInputOnChange)) scope.cozenInputOnChange();
                 if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
+                methods.updateModelLength();
             }
 
             function getDesignClass(input) {
@@ -442,6 +452,10 @@
                 var classList = [];
                 if (data.password[regexp].complete) classList.push('active');
                 return classList;
+            }
+
+            function updateModelLength() {
+                scope._cozenInputModelLength = scope._cozenInputMaxLength - scope.vm.cozenInputModel.length;
             }
         }
     }

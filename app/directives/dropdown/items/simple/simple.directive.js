@@ -211,7 +211,13 @@
                         break;
                     }
                 }
-                methods.getDropdown().activeChild = activeChild;
+
+                // Tell the parent about the new active child
+                $rootScope.$broadcast('cozenDropdownActiveChild', {
+                    dropdown   : data.dropdown.name,
+                    activeChild: activeChild
+                });
+
                 $rootScope.$broadcast('cozenDropdownActive', {
                     uuid: data.uuid
                 });

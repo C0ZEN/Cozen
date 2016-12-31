@@ -14,7 +14,10 @@ var Methods = {
     isRegExpValid             : isRegExpValid,
     getElementPaddingTopBottom: getElementPaddingTopBottom,
     directiveErrorEmpty       : directiveErrorEmpty,
-    directiveWarningUnmatched : directiveWarningUnmatched
+    directiveWarningUnmatched : directiveWarningUnmatched,
+    dataMustBeBoolean         : dataMustBeBoolean,
+    dataMustBeObject          : dataMustBeObject,
+    dataMustBeInThisList: dataMustBeInThisList
 };
 
 var Data = {
@@ -142,6 +145,38 @@ function directiveWarningUnmatched(directive, param, value) {
         getConsoleColor('fn'),
         getConsoleColor(),
         getConsoleColor('fn'),
+        getConsoleColor()
+    );
+}
+
+function dataMustBeBoolean(attribute) {
+    console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
+}
+
+function dataMustBeObject(attribute) {
+    console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
+}
+
+function dataMustBeInThisList(attribute, list) {
+    console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
         getConsoleColor()
     );
 }

@@ -32,13 +32,13 @@
 /*   COLOR   */
 /*************/
 .cozen-dropdown-color(@color, @color-hover, @background-color, @background-color-hover) {
-  color:            @color;
-  background-color: @background-color;
-  &:hover {
-    background-color: @background-color-hover;
-  }
+  color: @color;
   div.cozen-dropdown-item-search-content,
   div.cozen-dropdown-content {
+    background-color: @background-color;
+    &:hover {
+      background-color: @background-color-hover;
+    }
     input {
       &:focus {
         background-color: @background-color-hover;
@@ -46,10 +46,10 @@
     }
   }
   &.disabled {
-    &:hover {
-      background-color: @background-color;
-    }
     div.cozen-dropdown-content {
+      &:hover {
+        background-color: @background-color;
+      }
       input {
         &:focus {
           background-color: @background-color;
@@ -60,7 +60,7 @@
 
   // Search
   div.cozen-dropdown-item-search-content {
-    color:            @color;
+    color: @color;
     input {
       background-color: @background-color;
       &:hover {
@@ -264,19 +264,21 @@
 /*************/
 /*   ERROR   */
 /*************/
-.cozen-dropdown-error(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover) {
+.cozen-dropdown-error(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover, @label-color) {
   &.error-design {
     .cozen-dropdown-color(@color, @color-hover, @background-color, @background-color-hover);
     .cozen-dropdown-border(@border, @border-hover);
+    .cozen-dropdown-label(@label-color);
   }
 }
 /***************/
 /*   SUCCESS   */
 /***************/
-.cozen-dropdown-success(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover) {
+.cozen-dropdown-success(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover, @label-color) {
   &.success-design {
     .cozen-dropdown-color(@color, @color-hover, @background-color, @background-color-hover);
     .cozen-dropdown-border(@border, @border-hover);
+    .cozen-dropdown-label(@label-color);
   }
 }
 /****************/
@@ -289,6 +291,57 @@
       background-color: @background-color;
       border:           @border;
       box-shadow:       @box-shadow;
+    }
+  }
+}
+/*************/
+/*   LABEL   */
+/*************/
+.cozen-dropdown-label(@color) {
+  div.cozen-dropdown-label {
+    label.label {
+      color: @color;
+    }
+  }
+}
+.cozen-dropdown-label(@font-size, @color, @padding, @font-weight, @margin-bottom) {
+  div.cozen-dropdown-label {
+    margin-bottom: @margin-bottom;
+    label.label {
+      font-size:   @font-size;
+      color:       @color;
+      padding:     @padding;
+      font-weight: @font-weight;
+    }
+  }
+}
+/*********************/
+/*   REQUIRED STAR   */
+/*********************/
+.cozen-dropdown-required-star(@font-size, @color, @padding, @error-color) {
+  div.cozen-dropdown-label {
+    label.required-star {
+      font-size: @font-size;
+      color:     @color;
+      padding:   @padding;
+      &.error {
+        color: @error-color;
+      }
+    }
+  }
+}
+/*********************/
+/*   REQUIRED ICON   */
+/*********************/
+.cozen-dropdown-required-icon(@font-size, @color, @padding, @color-hover) {
+  div.cozen-dropdown-label {
+    label.required-icon {
+      font-size: @font-size;
+      color:     @color;
+      padding:   @padding;
+      &:hover {
+        color: @color-hover;
+      }
     }
   }
 }

@@ -24,6 +24,17 @@
     }
   },
   "dropdown": {
-    "autoCloseOthers": true
+    "autoCloseOthers": true,
+    "displayModelLength": false
+  },
+  "input": {
+    "displayModelLength": false
+  },
+  "textarea": {
+    "displayModelLength": false
+  },
+  "required": {
+    "type": "star",
+    "icon": "fa fa-exclamation-circle"
   }
 }

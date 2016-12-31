@@ -12,68 +12,56 @@
     function ConfigProvider(CONFIG) {
 
         this.debug = function (value) {
-            if (typeof value != 'boolean') {
-                console.error('%c<%cdebug%c> must be <%ctrue%c> or <%cfalse%c>',
-                    getConsoleColor(),
-                    getConsoleColor('red'),
-                    getConsoleColor(),
-                    getConsoleColor('purple'),
-                    getConsoleColor(),
-                    getConsoleColor('purple'),
-                    getConsoleColor()
-                );
-            } else {
-                CONFIG.config.debug = value;
-            }
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('debug');
+            else CONFIG.config.debug = value;
             return this;
         };
 
         this.scrollsBar = function (value) {
-            if (typeof value != 'boolean') {
-                console.error('%c<%cscrollsBar%c> must be <%ctrue%c> or <%cfalse%c>',
-                    getConsoleColor(),
-                    getConsoleColor('red'),
-                    getConsoleColor(),
-                    getConsoleColor('purple'),
-                    getConsoleColor(),
-                    getConsoleColor('purple'),
-                    getConsoleColor()
-                );
-            } else {
-                CONFIG.config.scrollsBar = value;
-            }
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('scrollsBar');
+            else CONFIG.config.scrollsBar = value;
             return this;
         };
 
         this.scrollsBarConfig = function (config) {
-            if (typeof config != 'object') {
-                console.error('%c<%cscrollsBarConfig%c> must be an <%cobject%c>',
-                    getConsoleColor(),
-                    getConsoleColor('red'),
-                    getConsoleColor(),
-                    getConsoleColor('purple'),
-                    getConsoleColor()
-                );
-            } else {
-                CONFIG.config.scrollsBarConfig = config;
-            }
+            if (typeof config != 'object') Methods.dataMustBeObject('scrollsBarConfig');
+            else CONFIG.config.scrollsBarConfig = config;
             return this;
         };
 
         this.dropdownAutoCloseOthers = function (value) {
-            if (typeof value != 'boolean') {
-                console.error('%c<%cdropdownAutoCloseOthers%c> must be <%ctrue%c> or <%cfalse%c>',
-                    getConsoleColor(),
-                    getConsoleColor('red'),
-                    getConsoleColor(),
-                    getConsoleColor('purple'),
-                    getConsoleColor(),
-                    getConsoleColor('purple'),
-                    getConsoleColor()
-                );
-            } else {
-                CONFIG.config.dropdown.autoCloseOthers = value;
-            }
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
+            else CONFIG.config.dropdown.autoCloseOthers = value;
+            return this;
+        };
+
+        this.inputDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('inputDisplayModelLength');
+            else CONFIG.config.input.displayModelLength = value;
+            return this;
+        };
+
+        this.textareaDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaDisplayModelLength');
+            else CONFIG.config.textarea.displayModelLength = value;
+            return this;
+        };
+
+        this.dropdownDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownDisplayModelLength');
+            else CONFIG.config.dropdown.displayModelLength = value;
+            return this;
+        };
+
+        this.requiredType = function (value) {
+            var list = ['star', 'icon'];
+            if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('requiredType', list);
+            else CONFIG.config.required.type = value;
+            return this;
+        };
+
+        this.requiredIcon = function (value) {
+            CONFIG.config.required.icon = value;
             return this;
         };
 

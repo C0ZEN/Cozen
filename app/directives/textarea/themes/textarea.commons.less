@@ -7,6 +7,31 @@ div.cozen-textarea {
   display:     inline-block;
   transition:  @cozen-transition;
 
+  // Label
+  div.cozen-textarea-label {
+    display:     flex;
+    align-items: center;
+    label {
+      font-size:   inherit;
+      color:       inherit;
+      font-weight: inherit;
+      margin:      0;
+      padding:     0;
+      &.label {
+        cursor: pointer;
+      }
+      &.model-length {
+        margin-left: auto;
+      }
+      &.required-star {
+        line-height: 0;
+      }
+      &.required-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
   // Textarea
   textarea {
     cursor:        inherit;

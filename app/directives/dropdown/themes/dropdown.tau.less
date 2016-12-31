@@ -15,13 +15,16 @@ div.cozen-dropdown.tau {
   &.small {
     .cozen-dropdown-hr(2px 0, 100%, 1px solid @cozen-color-white-hover);
     .cozen-dropdown-size(0, @cozen-dropdown-tau-padding-small, @cozen-dropdown-tau-font-small);
-    .cozen-dropdown-color(@cozen-color-black, @cozen-color-black, ffffff, @cozen-color-white);
+    .cozen-dropdown-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
     .cozen-dropdown-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
     .cozen-dropdown-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
     .cozen-dropdown-icon(@cozen-dropdown-tau-padding-icon-small, @cozen-dropdown-tau-font-small);
-    .cozen-dropdown-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red);
-    .cozen-dropdown-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green);
+    .cozen-dropdown-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red, @cozen-color-red-hover);
+    .cozen-dropdown-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green, @cozen-color-green-hover);
     .cozen-dropdown-dropdown(100%, #ffffff, 1px solid @cozen-color-grey, ~"0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset");
+    .cozen-dropdown-label(13px, @cozen-color-black, 0, normal, @cozen-dropdown-tau-padding-small);
+    .cozen-dropdown-required-star(15px, @cozen-color-orange, 0 2px, @cozen-color-orange);
+    .cozen-dropdown-required-icon(12px, @cozen-color-orange, 0 4px, @cozen-color-orange-hover);
   }
   &.normal {
     .cozen-dropdown-hr(3px 0, 100%, 1px solid @cozen-color-white-hover);
@@ -30,9 +33,12 @@ div.cozen-dropdown.tau {
     .cozen-dropdown-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
     .cozen-dropdown-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
     .cozen-dropdown-icon(@cozen-dropdown-tau-padding-icon-normal, @cozen-dropdown-tau-font-normal);
-    .cozen-dropdown-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red);
-    .cozen-dropdown-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green);
+    .cozen-dropdown-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red, @cozen-color-red-hover);
+    .cozen-dropdown-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green, @cozen-color-green-hover);
     .cozen-dropdown-dropdown(100%, #ffffff, 1px solid @cozen-color-grey, ~"0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset");
+    .cozen-dropdown-label(16px, @cozen-color-black, 0, normal, @cozen-dropdown-tau-padding-normal);
+    .cozen-dropdown-required-star(18px, @cozen-color-orange, 0 3px, @cozen-color-orange);
+    .cozen-dropdown-required-icon(14px, @cozen-color-orange, 0 5px, @cozen-color-orange-hover);
   }
   &.large {
     .cozen-dropdown-hr(5px 0, 100%, 1px solid @cozen-color-white-hover);
@@ -41,8 +47,11 @@ div.cozen-dropdown.tau {
     .cozen-dropdown-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
     .cozen-dropdown-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
     .cozen-dropdown-icon(@cozen-dropdown-tau-padding-icon-large, @cozen-dropdown-tau-font-large);
-    .cozen-dropdown-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red);
-    .cozen-dropdown-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green);
+    .cozen-dropdown-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red, @cozen-color-red-hover);
+    .cozen-dropdown-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green, @cozen-color-green-hover);
     .cozen-dropdown-dropdown(100%, #ffffff, 1px solid @cozen-color-grey, ~"0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset");
+    .cozen-dropdown-label(18px, @cozen-color-black, 0, normal, @cozen-dropdown-tau-padding-large);
+    .cozen-dropdown-required-star(20px, @cozen-color-orange, 0 4px, @cozen-color-orange);
+    .cozen-dropdown-required-icon(16px, @cozen-color-orange, 0 7px, @cozen-color-orange-hover);
   }
 }

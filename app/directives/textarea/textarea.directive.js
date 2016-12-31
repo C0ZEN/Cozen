@@ -13,28 +13,30 @@
  * @param {function} cozenTextareaOnChange         > Callback function called on change
  *
  * [Attributes params]
- * @param {number}  cozenTextareaId                                > Id of the textarea
- * @param {string}  cozenTextareaTooltip                           > Text of the tooltip
- * @param {string}  cozenTextareaTooltipPlacement = 'auto right'   > Change the position of the tooltip
- * @param {string}  cozenTextareaTooltipTrigger   = 'outsideClick' > Type of trigger to show the tooltip
- * @param {boolean} cozenTextareaRequired         = false          > Required textarea
- * @param {boolean} cozenTextareaErrorDesign      = true           > Add style when error
- * @param {boolean} cozenTextareaSuccessDesign    = true           > Add style when success
- * @param {string}  cozenTextareaSize             = 'normal'       > Size of the button
- * @param {string}  cozenTextareaSizeSmall                         > Shortcut for small size
- * @param {string}  cozenTextareaSizeNormal                        > Shortcut for normal size
- * @param {string}  cozenTextareaSizeLarge                         > Shortcut for large size
- * @param {string}  cozenTextareaPlaceholder                       > Text for the placeholder
- * @param {number}  cozenTextareaMinLength        = 0              > Minimum char length
- * @param {number}  cozenTextareaMaxLength        = 100            > Maximum char length
- * @param {string}  cozenTextareaName             = uuid           > Name of the textarea
- * @param {boolean} cozenTextareaValidator        = 'dirty'        > Define after what type of event the textarea must add more ui color
- * @param {boolean} cozenTextareaValidatorAll                      > Shortcut for all type
- * @param {boolean} cozenTextareaValidatorTouched                  > Shortcut for touched type
- * @param {boolean} cozenTextareaValidatorDirty                    > Shortcut for dirty type
- * @param {boolean} cozenTextareaValidatorEmpty   = true           > Display ui color even if textarea empty
- * @param {boolean} cozenTextareaElastic          = false          > Auto resize the textarea depending of his content
- * @param {number}  cozenTextareaRows             = 2              > Number of rows
+ * @param {number}  cozenTextareaId                                             > Id of the textarea
+ * @param {string}  cozenTextareaTooltip                                        > Text of the tooltip
+ * @param {string}  cozenTextareaTooltipPlacement = 'auto right'                > Change the position of the tooltip
+ * @param {string}  cozenTextareaTooltipTrigger   = 'outsideClick'              > Type of trigger to show the tooltip
+ * @param {boolean} cozenTextareaRequired         = false                       > Required textarea
+ * @param {boolean} cozenTextareaErrorDesign      = true                        > Add style when error
+ * @param {boolean} cozenTextareaSuccessDesign    = true                        > Add style when success
+ * @param {string}  cozenTextareaSize             = 'normal'                    > Size of the button
+ * @param {string}  cozenTextareaSizeSmall                                      > Shortcut for small size
+ * @param {string}  cozenTextareaSizeNormal                                     > Shortcut for normal size
+ * @param {string}  cozenTextareaSizeLarge                                      > Shortcut for large size
+ * @param {string}  cozenTextareaPlaceholder                                    > Text for the placeholder
+ * @param {number}  cozenTextareaMinLength        = 0                           > Minimum char length
+ * @param {number}  cozenTextareaMaxLength        = 100                         > Maximum char length
+ * @param {string}  cozenTextareaName             = uuid                        > Name of the textarea
+ * @param {boolean} cozenTextareaValidator        = 'dirty'                     > Define after what type of event the textarea must add more ui color
+ * @param {boolean} cozenTextareaValidatorAll                                   > Shortcut for all type
+ * @param {boolean} cozenTextareaValidatorTouched                               > Shortcut for touched type
+ * @param {boolean} cozenTextareaValidatorDirty                                 > Shortcut for dirty type
+ * @param {boolean} cozenTextareaValidatorEmpty   = true                        > Display ui color even if textarea empty
+ * @param {boolean} cozenTextareaElastic          = false                       > Auto resize the textarea depending of his content
+ * @param {number}  cozenTextareaRows             = 2                           > Number of rows
+ * @param {string}  cozenTextareaLabel                                          > Add a label on the top of the textarea
+ * @param {string}  cozenTextareaRequiredTooltip  = 'textarea_required_tooltip' > Text to display for the tooltip of the required element
  *
  */
 (function (angular) {
@@ -72,13 +74,14 @@
 
         function link(scope, element, attrs) {
             var methods = {
-                init          : init,
-                hasError      : hasError,
-                destroy       : destroy,
-                getMainClass  : getMainClass,
-                onChange      : onChange,
-                getDesignClass: getDesignClass,
-                getForm       : getForm
+                init             : init,
+                hasError         : hasError,
+                destroy          : destroy,
+                getMainClass     : getMainClass,
+                onChange         : onChange,
+                getDesignClass   : getDesignClass,
+                getForm          : getForm,
+                updateModelLength: updateModelLength
             };
 
             var data = {
@@ -121,21 +124,27 @@
                 if (angular.isUndefined(attrs.cozenTextareaDisabled)) scope.vm.cozenTextareaDisabled = false;
 
                 // Default values (attributes)
-                scope._cozenTextareaId               = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
-                scope._cozenTextareaTooltip          = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
-                scope._cozenTextareaTooltipTrigger   = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : 'outsideClick';
-                scope._cozenTextareaRequired         = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : false;
-                scope._cozenTextareaErrorDesign      = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : true;
-                scope._cozenTextareaSuccessDesign    = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : true;
-                scope._cozenTextareaPlaceholder      = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
-                scope._cozenTextareaMinLength        = angular.isDefined(attrs.cozenTextareaMinLength) ? JSON.parse(attrs.cozenTextareaMinLength) : 0;
-                scope._cozenTextareaMaxLength        = angular.isDefined(attrs.cozenTextareaMaxLength) ? JSON.parse(attrs.cozenTextareaMaxLength) : 100;
-                scope._cozenTextareaName             = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
-                scope._cozenTextareaValidatorEmpty   = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : true;
-                scope._cozenTextareaValidatorIcon    = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
-                scope._cozenTextareaTooltipPlacement = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : 'auto right';
-                scope._cozenTextareaElastic          = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : false;
-                scope._cozenTextareaRows             = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : 2;
+                scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
+                scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
+                scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : 'outsideClick';
+                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : false;
+                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : true;
+                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : true;
+                scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
+                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? JSON.parse(attrs.cozenTextareaMinLength) : 0;
+                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? JSON.parse(attrs.cozenTextareaMaxLength) : 100;
+                scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
+                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : true;
+                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
+                scope._cozenTextareaTooltipPlacement   = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : 'auto right';
+                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : false;
+                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : 2;
+                scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
+                scope._cozenTextareaUuid               = data.uuid;
+                scope._cozenTextareaDisplayModelLength = CONFIG.config.textarea.displayModelLength;
+                scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
+                scope._cozenTextareaRequiredConfig     = CONFIG.config.required;
+                scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -188,6 +197,7 @@
                 if (scope.vm.cozenTextareaDisabled) return;
                 if (Methods.isFunction(scope.cozenTextareaOnChange)) scope.cozenTextareaOnChange();
                 if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                methods.updateModelLength();
             }
 
             function getDesignClass(textarea) {
@@ -224,6 +234,10 @@
                         } else return form;
                     } else return form;
                 } else return form;
+            }
+
+            function updateModelLength() {
+                scope._cozenTextareaModelLength = scope._cozenTextareaMaxLength - scope.vm.cozenTextareaModel.length;
             }
         }
     }

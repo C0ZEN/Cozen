@@ -67,9 +67,13 @@
 
         // Override the CONFIG
         ConfigProvider
-            .scrollsBar(true)
+            .scrollsBar(false)
             .debug(true)
-            .dropdownAutoCloseOthers(true);
+            .dropdownAutoCloseOthers(true)
+            .inputDisplayModelLength(true)
+            .textareaDisplayModelLength(true)
+            .dropdownDisplayModelLength(true)
+            .requiredType('icon');
     }
 
     run.$inject = [
