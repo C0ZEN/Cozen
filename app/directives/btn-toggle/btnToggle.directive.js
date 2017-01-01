@@ -27,7 +27,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.btnToggle', [])
         .directive('cozenBtnToggle', cozenBtnToggle);
 
     cozenBtnToggle.$inject = [
@@ -131,7 +131,7 @@
                 if (scope.cozenBtnToggleDisabled) return;
                 scope.cozenBtnToggleModel = !scope.cozenBtnToggleModel;
                 if (Methods.isFunction(scope.cozenBtnToggleOnChange)) scope.cozenBtnToggleOnChange();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
             }
 
             function getTabIndex() {

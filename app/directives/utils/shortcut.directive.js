@@ -13,7 +13,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib')
         .value('Shortcuts', {
             shift: false,
             ctrl : false,

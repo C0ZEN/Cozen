@@ -15,7 +15,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.view', [])
         .directive('cozenView', cozenView);
 
     cozenView.$inject = [
@@ -52,8 +52,8 @@
                 if (methods.hasError()) return;
 
                 // Default values (attributes)
-                scope._cozenScrollBar       = CONFIG.config.scrollsBar;
-                scope._cozenScrollBarConfig = CONFIG.config.scrollsBarConfig;
+                scope._cozenScrollBar       = CONFIG.scrollsBar;
+                scope._cozenScrollBarConfig = CONFIG.scrollsBarConfig;
 
                 // Scrollbar config for the height
                 scope._cozenScrollBarConfig.setHeight = angular.isDefined(attrs.cozenViewScrollBarHeight) ? parseInt(attrs.cozenViewScrollBarHeight) : window.innerHeight;

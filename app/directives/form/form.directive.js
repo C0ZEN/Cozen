@@ -15,7 +15,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.form', [])
         .directive('cozenForm', cozenForm);
 
     cozenForm.$inject = [

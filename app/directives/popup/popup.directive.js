@@ -40,8 +40,8 @@
     'use strict';
 
     angular
-        .module('cozenLibApp.popup', [
-            'cozenLibApp.popup.factory'
+        .module('cozenLib.popup', [
+            'cozenLib.popup.factory'
         ])
         .directive('cozenPopup', cozenPopup);
 
@@ -142,8 +142,8 @@
                 scope._cozenPopupHeaderPictoLeft = angular.isDefined(attrs.cozenPopupHeaderPictoLeft) ? attrs.cozenPopupHeaderPictoLeft : '';
 
                 // ScrollBar
-                scope._cozenScrollBar            = CONFIG.config.scrollsBar;
-                scope._cozenScrollBarConfig      = CONFIG.config.scrollsBarConfig;
+                scope._cozenScrollBar            = CONFIG.scrollsBar;
+                scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
                 scope._cozenScrollBarConfig.axis = 'y';
                 methods.setScrollBarHeight();
 
@@ -193,7 +193,7 @@
                     data.firstHide         = false;
                     scope.cozenPopupIsOpen = false;
                     if (Methods.isFunction(scope.cozenPopupOnHide)) scope.cozenPopupOnHide();
-                    if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
                     Methods.safeApply(scope);
                     $window.removeEventListener('click', methods.onClick);
                     $window.removeEventListener('keydown', methods.onKeyDown);
@@ -204,7 +204,7 @@
                 if (params.name == scope._cozenPopupName) {
                     scope.cozenPopupIsOpen = true;
                     if (Methods.isFunction(scope.cozenPopupOnShow)) scope.cozenPopupOnShow();
-                    if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
                     Methods.safeApply(scope);
                     if (scope._cozenPopupEasyClose) {
                         $window.addEventListener('click', methods.onClick);

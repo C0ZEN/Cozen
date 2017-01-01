@@ -3,13 +3,12 @@
 
     angular
         .module('test')
-        .controller('PanelCtrl', PanelCtrl);
+        .controller('AlertCtrl', AlertCtrl);
 
-    PanelCtrl.$inject = [];
+    AlertCtrl.$inject = [];
 
-    function PanelCtrl() {
+    function AlertCtrl() {
         var vm = this;
     }
 
 })(window.angular);
-

@@ -60,7 +60,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.input', [])
         .directive('cozenInput', cozenInput);
 
     cozenInput.$inject = [
@@ -214,9 +214,9 @@
                 scope._cozenInputTooltipPlacement   = angular.isDefined(attrs.cozenInputTooltipPlacement) ? attrs.cozenInputTooltipPlacement : 'auto right';
                 scope._cozenInputLabel              = angular.isDefined(attrs.cozenInputLabel) ? attrs.cozenInputLabel : '';
                 scope._cozenInputUuid               = data.uuid;
-                scope._cozenInputDisplayModelLength = CONFIG.config.input.displayModelLength;
+                scope._cozenInputDisplayModelLength = CONFIG.input.displayModelLength;
                 scope._cozenInputModelLength        = scope._cozenInputMaxLength;
-                scope._cozenInputRequiredConfig     = CONFIG.config.required;
+                scope._cozenInputRequiredConfig     = CONFIG.required;
                 scope._cozenInputRequiredTooltip    = angular.isDefined(attrs.cozenInputRequiredTooltip) ? attrs.cozenInputRequiredTooltip : 'input_required_tooltip';
 
                 // Object overriding (typePasswordConfig)
@@ -288,7 +288,7 @@
             function onChange($event) {
                 if (scope.vm.cozenInputDisabled) return;
                 if (Methods.isFunction(scope.cozenInputOnChange)) scope.cozenInputOnChange();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
             }

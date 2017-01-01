@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('test')
         .controller('DropdownCtrl', DropdownCtrl);
 
     DropdownCtrl.$inject = [];

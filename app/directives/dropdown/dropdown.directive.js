@@ -43,10 +43,10 @@
     'use strict';
 
     angular
-        .module('cozenLibApp.dropdown', [
-            'cozenLibApp.dropdown.group',
-            'cozenLibApp.dropdown.search',
-            'cozenLibApp.dropdown.simple'
+        .module('cozenLib.dropdown', [
+            'cozenLib.dropdown.group',
+            'cozenLib.dropdown.search',
+            'cozenLib.dropdown.simple'
         ])
         .directive('cozenDropdown', cozenDropdown);
 
@@ -174,7 +174,7 @@
                 scope._cozenDropdownMaxHeight       = angular.isDefined(attrs.cozenDropdownMaxHeight) ? JSON.parse(attrs.cozenDropdownMaxHeight) : 200;
                 scope._cozenDropdownDirection       = 'down';
                 scope._cozenDropdownLabel           = angular.isDefined(attrs.cozenDropdownLabel) ? attrs.cozenDropdownLabel : '';
-                scope._cozenDropdownRequiredConfig  = CONFIG.config.required;
+                scope._cozenDropdownRequiredConfig  = CONFIG.required;
                 scope._cozenDropdownRequiredTooltip = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
 
                 // Init stuff
@@ -209,8 +209,8 @@
                 $window.addEventListener('scroll', methods.defineTranscludeDirection);
 
                 // ScrollBar
-                scope._cozenScrollBar            = CONFIG.config.scrollsBar;
-                scope._cozenScrollBarConfig      = CONFIG.config.scrollsBarConfig;
+                scope._cozenScrollBar            = CONFIG.scrollsBar;
+                scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
                 scope._cozenScrollBarConfig.axis = 'y';
                 methods.setScrollBarHeight();
 
@@ -313,7 +313,7 @@
             function onChange($event) {
                 if (scope.vm.cozenDropdownDisabled) return;
                 if (Methods.isFunction(scope.cozenDropdownOnChange)) scope.cozenDropdownOnChange();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
             }
 
             function getForm() {
@@ -347,7 +347,7 @@
                     if (scope._cozenDropdownCollapse) {
 
                         // Auto close all other dropdown
-                        if (CONFIG.config.dropdown.autoCloseOthers) {
+                        if (CONFIG.dropdown.autoCloseOthers) {
                             $rootScope.$broadcast('cozenDropdownAutoCloseOthers', {
                                 name: scope._cozenDropdownName
                             });

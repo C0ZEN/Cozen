@@ -1,35 +1,9 @@
 (function (angular, window) {
     'use strict';
 
-    /**
-     * @ngdoc overview
-     * @name cozenLibApp
-     * @description
-     * # cozenLibApp
-     *
-     * Main module of the application.
-     */
     angular
-        .module('cozenLibApp', [
-            'ngAnimate',
-            'ngAria',
-            'ngCookies',
-            'ngMessages',
-            'ngResource',
-            'ngRoute',
-            'ngSanitize',
-            'ngTouch',
-            'ui.router',
-            'pascalprecht.translate',
-            'ui.bootstrap',
-            'ui.bootstrap.tooltip',
-            'ngScrollbars',
-            'uuid',
-            'monospaced.elastic',
-
-            'cozenLibApp.list',
-            'cozenLibApp.popup',
-            'cozenLibApp.dropdown'
+        .module('test', [
+            'cozenLib'
         ])
         .config(config)
         .run(run);
@@ -57,10 +31,10 @@
             prefix: '/languages/',
             suffix: '.concat.json'
         });
-        $translateProvider.preferredLanguage(CONFIG.config.languages[0]);
+        $translateProvider.preferredLanguage(CONFIG.languages[0]);
 
         // Configure the locale for moment
-        moment.locale(CONFIG.config.languages[0]);
+        moment.locale(CONFIG.languages[0]);
 
         // Choose the theme
         ThemesProvider.setActiveTheme('tau');

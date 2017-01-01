@@ -43,7 +43,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.textarea', [])
         .directive('cozenTextarea', cozenTextarea);
 
     cozenTextarea.$inject = [
@@ -141,9 +141,9 @@
                 scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : 2;
                 scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
                 scope._cozenTextareaUuid               = data.uuid;
-                scope._cozenTextareaDisplayModelLength = CONFIG.config.textarea.displayModelLength;
+                scope._cozenTextareaDisplayModelLength = CONFIG.textarea.displayModelLength;
                 scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
-                scope._cozenTextareaRequiredConfig     = CONFIG.config.required;
+                scope._cozenTextareaRequiredConfig     = CONFIG.required;
                 scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
 
                 // Init stuff
@@ -196,7 +196,7 @@
             function onChange($event) {
                 if (scope.vm.cozenTextareaDisabled) return;
                 if (Methods.isFunction(scope.cozenTextareaOnChange)) scope.cozenTextareaOnChange();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 methods.updateModelLength();
             }
 

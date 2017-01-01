@@ -12,19 +12,19 @@
 
     function config($stateProvider) {
 
-        // Btn routes
+        // Alert routes
         $stateProvider
-            .state('examples.input', {
+            .state('examples.alert', {
                 abstract: true,
-                url     : '/input',
+                url     : '/alert',
                 template: '<ui-view/>'
             })
-            .state('examples.input.default', {
+            .state('examples.alert.default', {
                 url         : '/default',
-                templateUrl : 'examples/input/templates/input.default.html',
-                controller  : 'InputCtrl',
+                templateUrl : 'examples/alert/templates/alert.default.html',
+                controller  : 'AlertCtrl',
                 controllerAs: 'vm',
-                data        : {pageTitle: 'Input - Default'}
+                data        : {pageTitle: 'Alert - Default'}
             });
     }
 

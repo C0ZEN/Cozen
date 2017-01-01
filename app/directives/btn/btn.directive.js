@@ -35,7 +35,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.btn', [])
         .directive('cozenBtn', cozenBtn);
 
     cozenBtn.$inject = [
@@ -147,7 +147,7 @@
                 if (scope.cozenBtnDisabled) return;
                 if (scope.cozenBtnLoader) return;
                 if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
             }
 
             function getTabIndex() {

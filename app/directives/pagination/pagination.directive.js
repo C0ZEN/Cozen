@@ -32,7 +32,7 @@
   'use strict';
 
   angular
-    .module('cozenLibApp')
+    .module('cozenLib.pagination', [])
     .directive('cozenPagination', cozenPagination);
 
   cozenPagination.$inject = [
@@ -198,7 +198,7 @@
             break;
         }
         if (oldModel != scope.cozenPaginationModel && Methods.isFunction(scope.cozenPaginationOnChange)) scope.cozenPaginationOnChange();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
       }
 
       function getPages() {

@@ -43,7 +43,7 @@
   'use strict';
 
   angular
-    .module('cozenLibApp')
+    .module('cozenLib.panel', [])
     .directive('cozenPanel', cozenPanel);
 
   cozenPanel.$inject = [
@@ -146,8 +146,8 @@
         scope._cozenPanelMaxHeight           = angular.isDefined(attrs.cozenPanelMaxHeight) ? attrs.cozenPanelMaxHeight : 'auto';
 
         // ScrollBar
-        scope._cozenScrollBar       = CONFIG.config.scrollsBar && scope._cozenPanelMaxHeight != 'auto';
-        scope._cozenScrollBarConfig = CONFIG.config.scrollsBarConfig;
+        scope._cozenScrollBar       = CONFIG.scrollsBar && scope._cozenPanelMaxHeight != 'auto';
+        scope._cozenScrollBarConfig = CONFIG.scrollsBarConfig;
 
         // Init stuff
         element.on('$destroy', methods.destroy);
@@ -183,7 +183,7 @@
         if (Methods.isFunction(scope.cozenPanelOnClick)) scope.cozenPanelOnClick();
         if (Methods.isFunction(scope.cozenPanelOnToggle) && !scope._cozenPanelFrozen) scope.cozenPanelOnToggle();
         if (!scope._cozenPanelFrozen) scope.cozenPanelOpen = !scope.cozenPanelOpen;
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickHeader');
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickHeader');
       }
 
       function startWatching() {
@@ -199,14 +199,14 @@
         $event.stopPropagation();
         if (scope.cozenPanelDisabled) return;
         if (Methods.isFunction(scope.cozenPanelOnClickBigIconLeft)) scope.cozenPanelOnClickBigIconLeft();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickBigIconLeft');
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickBigIconLeft');
       }
 
       function onClickBigIconRight($event) {
         $event.stopPropagation();
         if (scope.cozenPanelDisabled) return;
         if (Methods.isFunction(scope.cozenPanelOnClickBigIconRight)) scope.cozenPanelOnClickBigIconRight();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickBigIconRight');
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickBigIconRight');
       }
 
       function bigIconHover(hover) {

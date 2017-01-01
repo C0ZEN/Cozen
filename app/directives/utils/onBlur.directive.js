@@ -16,7 +16,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib')
         .directive('cozenOnBlur', cozenOnBlur);
 
     cozenOnBlur.$inject = [

@@ -17,7 +17,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp.dropdown.group', [])
+        .module('cozenLib.dropdown.group', [])
         .directive('cozenDropdownItemGroup', cozenDropdownItemGroup);
 
     cozenDropdownItemGroup.$inject = [

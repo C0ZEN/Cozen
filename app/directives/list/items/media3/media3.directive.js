@@ -23,7 +23,7 @@
   'use strict';
 
   angular
-    .module('cozenLibApp.list.media3', [])
+    .module('cozenLib.list.media3', [])
     .directive('cozenListItemMedia3', cozenListItemMedia3);
 
   cozenListItemMedia3.$inject = [
@@ -135,7 +135,7 @@
         if (scope.cozenListItemMedia3Disabled) return;
         if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) return;
         if (Methods.isFunction(scope.cozenListItemMedia3OnClick)) scope.cozenListItemMedia3OnClick();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
       }
 
       function getTabIndex() {

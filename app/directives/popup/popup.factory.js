@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp.popup.factory', [])
+        .module('cozenLib.popup.factory', [])
         .factory('cozenPopupFactory', cozenPopupFactory);
 
     cozenPopupFactory.$inject = [

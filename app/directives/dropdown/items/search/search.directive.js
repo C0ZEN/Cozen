@@ -20,7 +20,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp.dropdown.search', [])
+        .module('cozenLib.dropdown.search', [])
         .directive('cozenDropdownItemSearch', cozenDropdownItemSearch);
 
     cozenDropdownItemSearch.$inject = [

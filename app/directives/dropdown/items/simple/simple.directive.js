@@ -25,7 +25,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp.dropdown.simple', [])
+        .module('cozenLib.dropdown.simple', [])
         .directive('cozenDropdownItemSimple', cozenDropdownItemSimple);
 
     cozenDropdownItemSimple.$inject = [
@@ -166,7 +166,7 @@
                 if (!dropdown._cozenDropdownCollapse) return;
                 if (scope.cozenDropdownItemSimpleDisabled) return;
                 if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) scope.cozenDropdownItemSimpleOnClick();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
                 if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) dropdown._methods.onClick();
 
                 // Toggle and inform the parent

@@ -29,7 +29,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.btnRadio', [])
         .directive('cozenBtnRadio', cozenBtnRadio);
 
     cozenBtnRadio.$inject = [
@@ -148,7 +148,7 @@
                 if (scope.cozenBtnRadioModel) return;
                 scope.cozenBtnRadioModel = true;
                 if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
-                if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 $rootScope.$broadcast(data.groupEvent.onChange, data);
             }
 
@@ -163,7 +163,7 @@
                         if (!scope.cozenBtnRadioModel) return;
                         scope.cozenBtnRadioModel = false;
                         if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
-                        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                     }
                 }
             }

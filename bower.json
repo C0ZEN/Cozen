@@ -1,5 +1,5 @@
 {
-  "name": "cozen-lib",
+  "name": "cozenLib",
   "version": "0.0.0",
   "dependencies": {
     "angular": "^1.4.0",
@@ -30,7 +30,7 @@
     "angular-translate": "^2.13.0"
   },
   "appPath": "app",
-  "moduleName": "cozenLibApp",
+  "moduleName": "cozenLib",
   "overrides": {
     "bootstrap": {
       "main": [

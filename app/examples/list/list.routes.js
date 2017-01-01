@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('test')
         .config(config);
 
     config.$inject = [

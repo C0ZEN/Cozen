@@ -2,9 +2,12 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
-        .constant('CONFIG', {
-            config: /* @echo CONFIG */
-        });
+        .module('cozenLib')
+        .constant('CONFIG'
+            /* @if true **
+             ,
+             /* @endif */
+            /* @echo CONFIG */
+        );
 
 })(window.angular);

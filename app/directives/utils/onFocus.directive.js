@@ -16,7 +16,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib')
         .directive('cozenOnFocus', cozenOnFocus);
 
     cozenOnFocus.$inject = [

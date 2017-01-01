@@ -36,5 +36,23 @@
   "required": {
     "type": "star",
     "icon": "fa fa-exclamation-circle"
+  },
+  "alert": {
+    "textAlign": "justify",
+    "closeBtn": {
+      "tooltip": true,
+      "enabled": true
+    },
+    "iconLeft": {
+      "default": "",
+      "info": "fa fa-info-circle",
+      "success": "fa fa-check-circle",
+      "warning": "fa fa-exclamation-triangle",
+      "error": "fa fa-exclamation-circle"
+    },
+    "animation": {
+      "in": true,
+      "out": true
+    }
   }
 }

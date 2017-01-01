@@ -21,9 +21,9 @@
     'use strict';
 
     angular
-        .module('cozenLibApp.list', [
-            'cozenLibApp.list.simple',
-            'cozenLibApp.list.media3'
+        .module('cozenLib.list', [
+            'cozenLib.list.simple',
+            'cozenLib.list.media3'
         ])
         .directive('cozenList', cozenList);
 

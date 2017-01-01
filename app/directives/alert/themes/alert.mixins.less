@@ -1,0 +1,87 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-alert-size(@margin, @padding) {
+  margin:  @margin;
+  padding: @padding;
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-alert-color(@background-color, @background-color-hover) {
+  background-color: @background-color;
+  &:hover {
+    background-color: @background-color-hover;
+  }
+}
+/**********************/
+/*   ICON LEFT SIZE   */
+/**********************/
+.cozen-alert-icon-left-size(@padding, @font-size) {
+  div.cozen-alert-icon.left {
+    padding:   @padding;
+    font-size: @font-size;
+  }
+}
+/***********************/
+/*   ICON LEFT COLOR   */
+/***********************/
+.cozen-alert-icon-left-color(@color, @color-hover) {
+  div.cozen-alert-icon.left {
+    color: @color;
+    &:hover {
+      color: @color-hover;
+    }
+  }
+}
+/**********************/
+/*   BTN CLOSE SIZE   */
+/**********************/
+.cozen-alert-btn-close-size(@padding, @font-size) {
+  div.cozen-alert-icon.right {
+    padding:   @padding;
+    font-size: @font-size;
+  }
+}
+/***********************/
+/*   BTN CLOSE COLOR   */
+/***********************/
+.cozen-alert-btn-close-color(@color, @color-hover) {
+  div.cozen-alert-icon.right {
+    color: @color;
+    &:hover {
+      color: @color-hover;
+    }
+  }
+}
+/******************/
+/*   LABEL SIZE   */
+/******************/
+.cozen-alert-label-size(@padding, @font-size, @font-weight) {
+  span.cozen-alert-label {
+    padding:     @padding;
+    font-size:   @font-size;
+    font-weight: @font-weight;
+  }
+}
+/*******************/
+/*   LABEL COLOR   */
+/*******************/
+.cozen-alert-label-color(@color, @color-hover) {
+  span.cozen-alert-label {
+    color: @color;
+    &:hover {
+      color: @color-hover;
+    }
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-alert-border(@border, @border-hover, @shadow) {
+  box-shadow: @shadow;
+  border:     @border;
+  &:hover {
+    border: @border-hover;
+  }
+}

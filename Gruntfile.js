@@ -308,7 +308,7 @@ module.exports = function (grunt) {
                 files: {
                     '<%= yeoman.release %>/cozen.min.js': [
                         '<%= yeoman.app %>/**/*.js',
-                        '!<%= yeoman.app %>/directives/utils/app.constant.tpl.js'
+                        '!<%= yeoman.app %>/**/*.tpl.js'
                     ]
                 }
             }
@@ -370,7 +370,7 @@ module.exports = function (grunt) {
         ngtemplates: {
             dist: {
                 options: {
-                    module : 'cozenLibApp',
+                    module : 'cozenLib',
                     htmlmin: '<%= htmlmin.dist.options %>',
                     usemin : 'scripts/scripts.js'
                 },
@@ -402,7 +402,7 @@ module.exports = function (grunt) {
 
         // Copies remaining files to places other tasks can use
         copy: {
-            dist   : {
+            dist     : {
                 files: [{
                     expand: true,
                     dot   : true,
@@ -426,27 +426,33 @@ module.exports = function (grunt) {
                     dest  : '<%= yeoman.dist %>'
                 }]
             },
-            styles : {
+            styles   : {
                 expand: true,
                 cwd   : '<%= yeoman.app %>/styles',
                 dest  : '.tmp/styles/',
                 src   : '**/*.css'
             },
-            release: {
+            release  : {
                 expand : true,
                 flatten: true,
                 cwd    : '<%= yeoman.app %>/directives',
                 dest   : '.tmp/release/directives',
                 src    : [
                     '**/*.js',
-                    '!utils/app.constant.tpl.js'
+                    '!**/*.tpl.js'
                 ]
             },
             languages: {
-                expand : true,
-                cwd    : '<%= yeoman.app %>/languages',
-                dest   : '<%= yeoman.release %>/languages',
-                src    : '*.json'
+                expand: true,
+                cwd   : '<%= yeoman.app %>/languages',
+                dest  : '<%= yeoman.release %>/languages',
+                src   : '*.json'
+            },
+            config: {
+                expand: true,
+                cwd   : '<%= yeoman.app %>',
+                dest  : '<%= yeoman.release %>',
+                src   : 'config.json'
             }
         },
 
@@ -480,7 +486,10 @@ module.exports = function (grunt) {
 
         angularFileLoader: {
             options: {
-                scripts : ['<%= yeoman.app %>/**/*.js'],
+                scripts : [
+                    '<%= yeoman.app %>/**/*.js',
+                    '!<%= yeoman.app %>/**/*.tpl.js'
+                ],
                 startTag: 'cozen-js-start',
                 endTag  : 'cozen-js-end'
             },
@@ -525,7 +534,8 @@ module.exports = function (grunt) {
             },
             release: {
                 files: [
-                    {'.tmp/release/themes/min/tau.min.css': '.tmp/release/themes/min/tau.min.css'}
+                    {'.tmp/release/themes/min/tau.min.css': '.tmp/release/themes/min/tau.min.css'},
+                    {'.tmp/release/reset.min.css': '<%= yeoman.app %>/styles/reset.css'}
                 ]
             }
         },
@@ -559,7 +569,8 @@ module.exports = function (grunt) {
             css: {
                 files: [
                     {'<%= yeoman.release %>/cozen.min.css': '.tmp/release/themes/min/*.css'},
-                    {'<%= yeoman.release %>/cozen.css': '.tmp/release/themes/*.css'}
+                    {'<%= yeoman.release %>/cozen.css': '.tmp/release/themes/*.css'},
+                    {'<%= yeoman.release %>/optional.reset.min.css': '.tmp/release/reset.min.css'}
                 ]
             }
         }
@@ -617,19 +628,18 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('release', [
-        'clean:release',      // Delete the .tmp folder and release content folder
-        'wiredep',            // Inject the bower dependencies into the index.html
-        'angularFileLoader',  // Inject the js dependencies into the index.html
-        'languages',          // Concat the languages files
-        'preprocess',         // Build the templates files
-        'less:release',       // Transform less to css and add them to the release folder
-        'cssmin:release',     // Make the css better
-        'uglify:release',     // Copy and min all the js into the release folder
-        'htmlmin:release',    // Copy and min all the html into the release folder
-        'copy:release',       // Copy all the js into the .tmp folder
-        'concat:js',          // Copy all the js into the release folder
-        'concat:css',         // Copy all the css into the release folder
-        'copy:languages'      // Copy the languages folder into the release folder
+        'clean:release',   // Delete the .tmp folder and release content folder
+        'languages',       // Concat the languages files
+        'preprocess',      // Build the templates files
+        'less:release',    // Transform less to css and add them to the release folder
+        'cssmin:release',  // Make the css better
+        'uglify:release',  // Copy and min all the js into the release folder
+        'htmlmin:release', // Copy and min all the html into the release folder
+        'copy:release',    // Copy all the js into the .tmp folder
+        'concat:js',       // Copy all the js into the release folder
+        'concat:css',      // Copy all the css into the release folder
+        'copy:languages',  // Copy the languages folder into the release folder
+        'copy:config'      // Copy the config
     ]);
 
     grunt.registerTask('default', [
@@ -640,10 +650,10 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('autoFill', [
+        'preprocess',
         'wiredep',
         'angularFileLoader',
-        'languages',
-        'preprocess'
+        'languages'
     ]);
 
     grunt.registerTask('languages', 'Languages task to compile the .json', [

@@ -45,7 +45,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib')
         .directive('cozenWhenReady', cozenWhenReady);
 
     cozenWhenReady.$inject = [

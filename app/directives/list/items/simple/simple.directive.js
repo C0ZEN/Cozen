@@ -27,7 +27,7 @@
   'use strict';
 
   angular
-    .module('cozenLibApp.list.simple', [])
+    .module('cozenLib.list.simple', [])
     .directive('cozenListItemSimple', cozenListItemSimple);
 
   cozenListItemSimple.$inject = [
@@ -143,7 +143,7 @@
         if (scope.cozenListItemSimpleDisabled) return;
         if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) return;
         if (Methods.isFunction(scope.cozenListItemSimpleOnClick)) scope.cozenListItemSimpleOnClick();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
       }
 
       function getTabIndex() {
@@ -156,7 +156,7 @@
       function onClickBtnRight($event) {
         if (scope.cozenListItemSimpleDisabled) return;
         if (Methods.isFunction(scope.cozenListItemSimpleBtnRightOnClick)) scope.cozenListItemSimpleBtnRightOnClick();
-        if (CONFIG.config.debug) Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
         $event.stopPropagation();
       }
 

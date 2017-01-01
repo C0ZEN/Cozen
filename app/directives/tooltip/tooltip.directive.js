@@ -27,7 +27,7 @@
     'use strict';
 
     angular
-        .module('cozenLibApp')
+        .module('cozenLib.tooltip', [])
         .directive('cozenTooltip', cozenTooltip);
 
     cozenTooltip.$inject = [
