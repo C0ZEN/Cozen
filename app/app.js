@@ -37,7 +37,7 @@
         moment.locale(CONFIG.languages[0]);
 
         // Choose the theme
-        ThemesProvider.setActiveTheme('tau');
+        ThemesProvider.setActiveTheme('atom');
 
         // Override the CONFIG
         ConfigProvider

@@ -9,5 +9,5 @@
 .idea/
 app/languages
 app/directives/utils/app.constant.js
-app/styles/themes/tau/tau.min.css
+app/styles/themes/**/*.min.css
 /release

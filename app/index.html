@@ -1,224 +1,176 @@
 <!doctype html>
 <html ng-app="test">
-    <head>
-        <meta charset="utf-8">
-        <title ng-bind="$state.current.data.pageTitle + ' - Cozen Lib'">Cozen Lib</title>
-        <base href="/">
-        <meta name="description"
-              content="">
-        <meta name="viewport"
-              content="width=device-width">
+  <head>
+    <meta charset="utf-8">
+    <title ng-bind="$state.current.data.pageTitle + ' - Cozen Lib'">Cozen Lib</title>
+    <base href="/">
+    <meta name="description"
+          content="">
+    <meta name="viewport"
+          content="width=device-width">
 
-        <!-- Reset css link -->
-        <link rel="stylesheet"
-              href="styles/reset.css">
+    <!-- Reset css link -->
+    <link rel="stylesheet"
+          href="styles/reset.css">
 
-        <!-- build:css(.) styles/vendor.css -->
-        <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
-        <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
-        <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
-        <!-- endbower -->
-        <!-- endbuild -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
+    <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
 
-        <!-- Bootstrap override -->
-        <link rel="stylesheet"
-              href="styles/bootstrap-override.css">
+    <!-- Bootstrap override -->
+    <link rel="stylesheet"
+          href="styles/bootstrap-override.css">
 
-        <!-- Themes css link -->
-        <link rel="stylesheet"
-              href="styles/themes/tau/tau.min.css">
+    <!-- Themes css link -->
+    <link rel="stylesheet"
+          href="styles/themes/tau/tau.min.css">
 
-    </head>
+    <!-- Start theme template styles -->
 
-    <body>
 
-        <!-- Add your site or application content here -->
-        <div class="header">
-            <div class="navbar navbar-default"
-                 role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
+    <link href="styles/themes/atom/atom.min.css" rel="stylesheet"/>
 
-                        <button type="button"
-                                class="navbar-toggle collapsed"
-                                data-toggle="collapse"
-                                data-target="#js-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
 
-                        <a class="navbar-brand">Cozen Lib</a>
-                    </div>
+    <link href="styles/themes/tau/tau.min.css" rel="stylesheet"/>
 
-                    <div class="collapse navbar-collapse"
-                         id="js-navbar-collapse">
 
-                        <ul class="nav navbar-nav">
-                            <li ui-sref-active="active">
-                                <a ui-sref="main">Main</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <!-- End theme template styles -->
+
+  </head>
+
+  <body>
+
+    <!-- Add your site or application content here -->
+    <div class="header">
+      <div class="navbar navbar-default"
+           role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand">Cozen Lib</a>
+          </div>
+
+          <div class="collapse navbar-collapse"
+               id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li ui-sref-active="active">
+                <a ui-sref="main">Main</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <cozen-view cozen-view-scroll-bar-height="{{ innerHeight - 72 }}">
-            <div ui-view></div>
-        </cozen-view>
+    <cozen-view cozen-view-scroll-bar-height="{{ innerHeight - 72 }}">
+      <div ui-view></div>
+    </cozen-view>
 
-        <!-- build:js(.) scripts/vendor.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-aria/angular-aria.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-messages/angular-messages.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-touch/angular-touch.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="bower_components/angular-translate/angular-translate.js"></script>
-        <script src="bower_components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
-        <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-        <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
-        <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
-        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-        <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
-        <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
-        <script src="bower_components/ng-scrollbars/src/scrollbars.js"></script>
-        <script src="bower_components/angular-uuid-service/angular-uuid-service.js"></script>
-        <script src="bower_components/angular-elastic/elastic.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+    <script src="bower_components/ng-scrollbars/src/scrollbars.js"></script>
+    <script src="bower_components/angular-uuid-service/angular-uuid-service.js"></script>
+    <script src="bower_components/angular-elastic/elastic.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
-        <!-- cozen-js-start -->
+    <!-- cozen-js-start -->
+<script src="app.js" type="text/javascript"></script>
+<script src="examples/tooltip/tooltip.routes.js" type="text/javascript"></script>
+<script src="examples/tooltip/tooltip.ctrl.js" type="text/javascript"></script>
+<script src="examples/textarea/textarea.routes.js" type="text/javascript"></script>
+<script src="examples/textarea/textarea.ctrl.js" type="text/javascript"></script>
+<script src="examples/popup/popup.routes.js" type="text/javascript"></script>
+<script src="examples/popup/popup.ctrl.js" type="text/javascript"></script>
+<script src="examples/panel/panel.routes.js" type="text/javascript"></script>
+<script src="examples/panel/panel.ctrl.js" type="text/javascript"></script>
+<script src="examples/pagination/pagination.routes.js" type="text/javascript"></script>
+<script src="examples/pagination/pagination.ctrl.js" type="text/javascript"></script>
+<script src="examples/list/list.routes.js" type="text/javascript"></script>
+<script src="examples/list/list.ctrl.js" type="text/javascript"></script>
+<script src="examples/input/input.routes.js" type="text/javascript"></script>
+<script src="examples/input/input.ctrl.js" type="text/javascript"></script>
+<script src="examples/dropdown/dropdown.routes.js" type="text/javascript"></script>
+<script src="examples/dropdown/dropdown.ctrl.js" type="text/javascript"></script>
+<script src="examples/btn/btn.routes.js" type="text/javascript"></script>
+<script src="examples/btn/btn.ctrl.js" type="text/javascript"></script>
+<script src="examples/btn-toggle/btnToggle.routes.js" type="text/javascript"></script>
+<script src="examples/btn-toggle/btnToggle.ctrl.js" type="text/javascript"></script>
+<script src="examples/btn-radio/btnRadio.routes.js" type="text/javascript"></script>
+<script src="examples/btn-radio/btnRadio.ctrl.js" type="text/javascript"></script>
+<script src="examples/btn-check/btnCheck.routes.js" type="text/javascript"></script>
+<script src="examples/btn-check/btnCheck.ctrl.js" type="text/javascript"></script>
+<script src="examples/app.routes.js" type="text/javascript"></script>
+<script src="examples/alert/alert.routes.js" type="text/javascript"></script>
+<script src="examples/alert/alert.ctrl.js" type="text/javascript"></script>
+<script src="directives/view/view.directive.js" type="text/javascript"></script>
+<script src="directives/utils/app.modules.js" type="text/javascript"></script>
+<script src="directives/utils/whenReady.directive.js" type="text/javascript"></script>
+<script src="directives/utils/theme.provider.js" type="text/javascript"></script>
+<script src="directives/utils/shortcut.directive.js" type="text/javascript"></script>
+<script src="directives/utils/public.methods.js" type="text/javascript"></script>
+<script src="directives/utils/onFocus.directive.js" type="text/javascript"></script>
+<script src="directives/utils/onBlur.directive.js" type="text/javascript"></script>
+<script src="directives/utils/config.provider.js" type="text/javascript"></script>
+<script src="directives/utils/app.constant.js" type="text/javascript"></script>
+<script src="directives/tooltip/tooltip.directive.js" type="text/javascript"></script>
+<script src="directives/textarea/textarea.directive.js" type="text/javascript"></script>
+<script src="directives/popup/popup.factory.js" type="text/javascript"></script>
+<script src="directives/popup/popup.directive.js" type="text/javascript"></script>
+<script src="directives/panel/panel.directive.js" type="text/javascript"></script>
+<script src="directives/pagination/pagination.directive.js" type="text/javascript"></script>
+<script src="directives/list/list.directive.js" type="text/javascript"></script>
+<script src="directives/list/items/simple/simple.directive.js" type="text/javascript"></script>
+<script src="directives/list/items/media3/media3.directive.js" type="text/javascript"></script>
+<script src="directives/input/input.directive.js" type="text/javascript"></script>
+<script src="directives/form/form.directive.js" type="text/javascript"></script>
+<script src="directives/dropdown/items/simple/simple.directive.js" type="text/javascript"></script>
+<script src="directives/dropdown/items/search/search.directive.js" type="text/javascript"></script>
+<script src="directives/dropdown/items/group/group.directive.js" type="text/javascript"></script>
+<script src="directives/dropdown/dropdown.directive.js" type="text/javascript"></script>
+<script src="directives/btn/btn.directive.js" type="text/javascript"></script>
+<script src="directives/btn-toggle/btnToggle.directive.js" type="text/javascript"></script>
+<script src="directives/btn-radio/btnRadio.directive.js" type="text/javascript"></script>
+<script src="directives/btn-check/btnCheck.directive.js" type="text/javascript"></script>
+<script src="directives/alert/alert.directive.js" type="text/javascript"></script>
+<!-- cozen-js-end -->
 
-        <script src="app.js" type="text/javascript"></script>
-
-        <script src="examples/tooltip/tooltip.routes.js" type="text/javascript"></script>
-
-        <script src="examples/tooltip/tooltip.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/textarea/textarea.routes.js" type="text/javascript"></script>
-
-        <script src="examples/textarea/textarea.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/popup/popup.routes.js" type="text/javascript"></script>
-
-        <script src="examples/popup/popup.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/panel/panel.routes.js" type="text/javascript"></script>
-
-        <script src="examples/panel/panel.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/pagination/pagination.routes.js" type="text/javascript"></script>
-
-        <script src="examples/pagination/pagination.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/list/list.routes.js" type="text/javascript"></script>
-
-        <script src="examples/list/list.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/input/input.routes.js" type="text/javascript"></script>
-
-        <script src="examples/input/input.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/dropdown/dropdown.routes.js" type="text/javascript"></script>
-
-        <script src="examples/dropdown/dropdown.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/btn/btn.routes.js" type="text/javascript"></script>
-
-        <script src="examples/btn/btn.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/btn-toggle/btnToggle.routes.js" type="text/javascript"></script>
-
-        <script src="examples/btn-toggle/btnToggle.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/btn-radio/btnRadio.routes.js" type="text/javascript"></script>
-
-        <script src="examples/btn-radio/btnRadio.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/btn-check/btnCheck.routes.js" type="text/javascript"></script>
-
-        <script src="examples/btn-check/btnCheck.ctrl.js" type="text/javascript"></script>
-
-        <script src="examples/app.routes.js" type="text/javascript"></script>
-
-        <script src="examples/alert/alert.routes.js" type="text/javascript"></script>
-
-        <script src="examples/alert/alert.ctrl.js" type="text/javascript"></script>
-
-        <script src="directives/view/view.directive.js" type="text/javascript"></script>
-
-        <script src="directives/utils/app.modules.js" type="text/javascript"></script>
-
-        <script src="directives/utils/whenReady.directive.js" type="text/javascript"></script>
-
-        <script src="directives/utils/theme.provider.js" type="text/javascript"></script>
-
-        <script src="directives/utils/shortcut.directive.js" type="text/javascript"></script>
-
-        <script src="directives/utils/public.methods.js" type="text/javascript"></script>
-
-        <script src="directives/utils/onFocus.directive.js" type="text/javascript"></script>
-
-        <script src="directives/utils/onBlur.directive.js" type="text/javascript"></script>
-
-        <script src="directives/utils/config.provider.js" type="text/javascript"></script>
-
-        <script src="directives/utils/app.constant.js" type="text/javascript"></script>
-
-        <script src="directives/tooltip/tooltip.directive.js" type="text/javascript"></script>
-
-        <script src="directives/textarea/textarea.directive.js" type="text/javascript"></script>
-
-        <script src="directives/popup/popup.factory.js" type="text/javascript"></script>
-
-        <script src="directives/popup/popup.directive.js" type="text/javascript"></script>
-
-        <script src="directives/panel/panel.directive.js" type="text/javascript"></script>
-
-        <script src="directives/pagination/pagination.directive.js" type="text/javascript"></script>
-
-        <script src="directives/list/list.directive.js" type="text/javascript"></script>
-
-        <script src="directives/list/items/simple/simple.directive.js" type="text/javascript"></script>
-
-        <script src="directives/list/items/media3/media3.directive.js" type="text/javascript"></script>
-
-        <script src="directives/input/input.directive.js" type="text/javascript"></script>
-
-        <script src="directives/form/form.directive.js" type="text/javascript"></script>
-
-        <script src="directives/dropdown/items/simple/simple.directive.js" type="text/javascript"></script>
-
-        <script src="directives/dropdown/items/search/search.directive.js" type="text/javascript"></script>
-
-        <script src="directives/dropdown/items/group/group.directive.js" type="text/javascript"></script>
-
-        <script src="directives/dropdown/dropdown.directive.js" type="text/javascript"></script>
-
-        <script src="directives/btn/btn.directive.js" type="text/javascript"></script>
-
-        <script src="directives/btn-toggle/btnToggle.directive.js" type="text/javascript"></script>
-
-        <script src="directives/btn-radio/btnRadio.directive.js" type="text/javascript"></script>
-
-        <script src="directives/btn-check/btnCheck.directive.js" type="text/javascript"></script>
-
-        <script src="directives/alert/alert.directive.js" type="text/javascript"></script>
-
-        <!-- cozen-js-end -->
-
-    </body>
+  </body>
 </html>

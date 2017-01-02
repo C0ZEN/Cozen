@@ -4,7 +4,8 @@
     "en"
   ],
   "themes": [
-    "tau"
+    "tau",
+    "atom"
   ],
   "debug": false,
   "scrollsBar": true,

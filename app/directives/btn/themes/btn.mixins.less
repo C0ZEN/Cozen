@@ -1,22 +1,30 @@
 /************/
 /*   SIZE   */
 /************/
-.cozen-btn-size(@padding, @font-size, @height) {
-  padding:   0 @padding;
+.cozen-btn-size(@padding, @font-size, @auto-padding) {
+  padding:   @padding;
   font-size: @font-size;
-  height:    @height;
+  &.auto {
+    padding: @auto-padding;
+  }
+}
+/**************/
+/*   LOADER   */
+/**************/
+.cozen-btn-loader(@padding, @width, @size) {
   & > div.cozen-btn-loader {
-    width: @height * @height / 16;
+    width:   @width;
+    padding: @padding;
     &:before,
     & > span,
     &:after {
-      width:  @height / 3;
-      height: @height / 3;
+      width:  @size;
+      height: @size;
     }
   }
   &.auto {
     & > div.cozen-btn-loader {
-      margin: 0 @padding;
+      margin: 0 @size;
     }
   }
 }
