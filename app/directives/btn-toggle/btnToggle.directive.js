@@ -21,6 +21,7 @@
  * @param {boolean} cozenBtnToggleAnimation  = true     > Add an animation on toggle
  * @param {string}  cozenBtnToggleLabel                 > Text added with the button toggle
  * @param {string}  cozenBtnToggleTooltip               > Text of the tooltip
+ * @param {boolean} cozenBtnToggleStartRight = true     > Display the toggle on the right of the label
  *
  */
 (function (angular) {
@@ -91,10 +92,11 @@
                 if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) scope.cozenBtnToggleDisabled = false;
 
                 // Default values (attributes)
-                scope._cozenBtnToggleId        = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
-                scope._cozenBtnToggleAnimation = angular.isDefined(attrs.cozenBtnToggleAnimation) ? JSON.parse(attrs.cozenBtnToggleAnimation) : true;
-                scope._cozenBtnToggleLabel     = angular.isDefined(attrs.cozenBtnToggleLabel) ? attrs.cozenBtnToggleLabel : '';
-                scope._cozenBtnToggleTooltip   = angular.isDefined(attrs.cozenBtnToggleTooltip) ? attrs.cozenBtnToggleTooltip : '';
+                scope._cozenBtnToggleId         = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
+                scope._cozenBtnToggleAnimation  = angular.isDefined(attrs.cozenBtnToggleAnimation) ? JSON.parse(attrs.cozenBtnToggleAnimation) : true;
+                scope._cozenBtnToggleLabel      = angular.isDefined(attrs.cozenBtnToggleLabel) ? attrs.cozenBtnToggleLabel : '';
+                scope._cozenBtnToggleTooltip    = angular.isDefined(attrs.cozenBtnToggleTooltip) ? attrs.cozenBtnToggleTooltip : '';
+                scope._cozenBtnToggleStartRight = angular.isDefined(attrs.cozenBtnToggleStartRight) ? JSON.parse(attrs.cozenBtnToggleStartRight) : true;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -124,6 +126,7 @@
                 var classList = [scope._activeTheme, scope._cozenBtnToggleSize];
                 if (scope.cozenBtnToggleDisabled) classList.push('disabled');
                 if (scope.cozenBtnToggleModel) classList.push('active');
+                if (scope._cozenBtnToggleStartRight) classList.push('switch-right');
                 return classList;
             }
 

@@ -1,0 +1,66 @@
+div.cozen-btn-check {
+  cursor:         pointer;
+  transition:     @cozen-transition;
+  box-sizing:     border-box;
+  position:       relative;
+  outline:        @cozen-outline;
+  vertical-align: baseline;
+
+  div.cozen-btn-check-container {
+    display:        flex;
+    flex-direction: row;
+    align-content:  flex-start;
+    align-items:    center;
+    outline:        @cozen-outline;
+    cursor:         inherit;
+
+    // Label
+    label.cozen-btn-check-label {
+      cursor:      inherit;
+      margin:      0;
+      padding:     0;
+      order:       2;
+      line-height: 1;
+    }
+
+    // Square
+    div.cozen-btn-check-square {
+      position:       relative;
+      transition:     @cozen-transition;
+      border-radius:  @cozen-radius;
+      display:        inline-block;
+      cursor:         inherit;
+      vertical-align: middle;
+      order:          1;
+      i.cozen-btn-check-inner {
+        cursor:   inherit;
+        position: absolute;
+        &.bounceOut,
+        &.bounceIn {
+          animation-fill-mode: @cozen-animation-fill;
+        }
+        &.bounceOut {
+          animation-duration: @cozen-animation-duration-out;
+        }
+        &.bounceIn {
+          animation-duration: @cozen-animation-duration-in;
+        }
+      }
+    }
+  }
+
+  // Disabled
+  &.disabled {
+    cursor:      not-allowed;
+    user-select: none;
+  }
+
+  // Check right
+  &.check-right {
+    div.cozen-btn-check-container {
+      div.cozen-btn-check-square {
+        order: 3;
+      }
+    }
+  }
+}

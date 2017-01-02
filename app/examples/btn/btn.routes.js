@@ -25,6 +25,13 @@
                 controller  : 'BtnCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Btn - Default'}
+            })
+            .state('examples.btn.primary', {
+                url         : '/primary',
+                templateUrl : 'examples/btn/templates/btn.primary.html',
+                controller  : 'BtnCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Btn - Primary'}
             });
     }
 

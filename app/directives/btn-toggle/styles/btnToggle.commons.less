@@ -1,0 +1,79 @@
+div.cozen-btn-toggle {
+  cursor:         pointer;
+  transition:     @cozen-transition;
+  box-sizing:     border-box;
+  position:       relative;
+  outline:        @cozen-outline;
+  vertical-align: baseline;
+  display:        flex;
+  flex-direction: row;
+  align-content:  flex-start;
+  align-items:    center;
+
+  div.cozen-btn-toggle-container {
+    display:        flex;
+    flex-direction: row;
+    align-content:  flex-start;
+    align-items:    center;
+    outline:        @cozen-outline;
+    cursor:         inherit;
+
+    // Label
+    label.cozen-btn-toggle-label {
+      cursor:      inherit;
+      margin:      0;
+      padding:     0;
+      order:       2;
+      line-height: 1;
+    }
+
+    // Switch
+    div.cozen-btn-toggle-switch {
+      position:       relative;
+      display:        inline-block;
+      cursor:         inherit;
+      outline:        @cozen-outline;
+      border-radius:  2em;
+      box-sizing:     border-box;
+      vertical-align: middle;
+      order:          1;
+      &:after {
+        left:          0;
+        border-radius: 50%;
+        position:      relative;
+        display:       block;
+        content:       '';
+        width:         50%;
+        height:        100%;
+      }
+      &.active {
+        &:after {
+          left: 50%;
+        }
+      }
+
+      // Transition
+      &.transition {
+        transition: @cozen-animation-duration-in-fast ease-out;
+        &:after {
+          transition: @cozen-animation-duration-out-fast ease-out;
+        }
+      }
+    }
+  }
+
+  // Disabled
+  &.disabled {
+    cursor:      not-allowed;
+    user-select: none;
+  }
+
+  // Switch right
+  &.switch-right {
+    div.cozen-btn-toggle-container {
+      div.cozen-btn-toggle-switch {
+        order: 3;
+      }
+    }
+  }
+}

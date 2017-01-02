@@ -22,6 +22,7 @@
  * @param {boolean} cozenBtnCheckAnimationOut = true     > Add an animation on hide
  * @param {string}  cozenBtnCheckLabel                   > Text added with the button check
  * @param {string}  cozenBtnCheckTooltip                 > Text of the tooltip
+ * @param {boolean} cozenBtnCheckStartRight   = true     > Display the check on the right of the label
  *
  */
 (function (angular) {
@@ -97,6 +98,7 @@
                 scope._cozenBtnCheckAnimationOut = angular.isDefined(attrs.cozenBtnCheckAnimationOut) ? JSON.parse(attrs.cozenBtnCheckAnimationOut) : true;
                 scope._cozenBtnCheckLabel        = angular.isDefined(attrs.cozenBtnCheckLabel) ? attrs.cozenBtnCheckLabel : '';
                 scope._cozenBtnCheckTooltip      = angular.isDefined(attrs.cozenBtnCheckTooltip) ? attrs.cozenBtnCheckTooltip : '';
+                scope._cozenBtnCheckStartRight   = angular.isDefined(attrs.cozenBtnCheckStartRight) ? JSON.parse(attrs.cozenBtnCheckStartRight) : true;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -126,6 +128,7 @@
                 var classList = [scope._activeTheme, scope._cozenBtnCheckSize];
                 if (scope.cozenBtnCheckDisabled) classList.push('disabled');
                 if (scope.cozenBtnCheckModel) classList.push('active');
+                if (scope._cozenBtnCheckStartRight) classList.push('check-right');
                 return classList;
             }
 

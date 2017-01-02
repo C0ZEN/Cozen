@@ -36,10 +36,19 @@
         // Configure the locale for moment
         moment.locale(CONFIG.languages[0]);
 
-        // Choose the theme
-        ThemesProvider.setActiveTheme('atom');
+        // Override the CONFIG for the Tau theme
+        // ThemesProvider.setActiveTheme('tau');
+        // ConfigProvider
+        //     .scrollsBar(false)
+        //     .debug(true)
+        //     .dropdownAutoCloseOthers(true)
+        //     .inputDisplayModelLength(true)
+        //     .textareaDisplayModelLength(true)
+        //     .dropdownDisplayModelLength(true)
+        //     .requiredType('icon');
 
-        // Override the CONFIG
+        // Override the CONFIG for the Atom theme
+        ThemesProvider.setActiveTheme('atom');
         ConfigProvider
             .scrollsBar(false)
             .debug(true)
@@ -47,7 +56,8 @@
             .inputDisplayModelLength(true)
             .textareaDisplayModelLength(true)
             .dropdownDisplayModelLength(true)
-            .requiredType('icon');
+            .requiredType('icon')
+            .alertIconLeftDefault('fa fa-info-circle');
     }
 
     run.$inject = [

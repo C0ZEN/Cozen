@@ -23,6 +23,7 @@
  * @param {string}  cozenBtnRadioLabel                   > Text added with the button radio
  * @param {string}  cozenBtnRadioGroup                   > Group to link radio together [required]
  * @param {string}  cozenBtnRadioTooltip                 > Text of the tooltip
+ * @param {boolean} cozenBtnRadioStartRight   = true     > Display the bubble on the right of the label
  *
  */
 (function (angular) {
@@ -106,6 +107,7 @@
                 scope._cozenBtnRadioAnimationOut = angular.isDefined(attrs.cozenBtnRadioAnimationOut) ? JSON.parse(attrs.cozenBtnRadioAnimationOut) : true;
                 scope._cozenBtnRadioLabel        = angular.isDefined(attrs.cozenBtnRadioLabel) ? attrs.cozenBtnRadioLabel : '';
                 scope._cozenBtnRadioTooltip      = angular.isDefined(attrs.cozenBtnRadioTooltip) ? attrs.cozenBtnRadioTooltip : '';
+                scope._cozenBtnRadioStartRight   = angular.isDefined(attrs.cozenBtnRadioStartRight) ? JSON.parse(attrs.cozenBtnRadioStartRight) : true;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -140,6 +142,7 @@
                 var classList = [scope._activeTheme, scope._cozenBtnRadioSize];
                 if (scope.cozenBtnRadioDisabled) classList.push('disabled');
                 if (scope.cozenBtnRadioModel) classList.push('active');
+                if (scope._cozenBtnRadioStartRight) classList.push('bubble-right');
                 return classList;
             }
 

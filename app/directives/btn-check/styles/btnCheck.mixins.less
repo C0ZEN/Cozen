@@ -1,0 +1,224 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-btn-check-size(@size, @font-size) {
+  div.cozen-btn-check-container {
+    div.cozen-btn-check-square {
+      width:       @size;
+      height:      @size;
+      line-height: @size;
+      i.cozen-btn-check-inner {
+        font-size: @font-size;
+      }
+    }
+  }
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-btn-check-color(@background-color, @background-color-hover, @active-color, @active-color-hover) {
+  div.cozen-btn-check-container {
+    div.cozen-btn-check-square {
+      background-color: @background-color;
+      i.cozen-btn-check-inner {
+        color: @active-color;
+      }
+    }
+    &:hover,
+    &:focus {
+      div.cozen-btn-check-square {
+        background-color: @background-color-hover;
+        i.cozen-btn-check-inner {
+          color: @active-color-hover;
+        }
+      }
+    }
+  }
+}
+/**********************/
+/*   COLOR DISABLED   */
+/**********************/
+.cozen-btn-check-color-disabled(@background-color, @background-color-hover) {
+  &.disabled {
+    div.cozen-btn-check-container {
+      div.cozen-btn-check-square {
+        background-color: @background-color;
+      }
+      &:hover,
+      &:focus {
+        div.cozen-btn-check-square {
+          background-color: @background-color-hover;
+        }
+      }
+    }
+  }
+}
+/*********************/
+/*   COLOR CHECKED   */
+/*********************/
+.cozen-btn-check-color-checked(@background-color, @background-color-hover, @active-color, @active-color-hover) {
+  &.active {
+    div.cozen-btn-check-container {
+      div.cozen-btn-check-square {
+        background-color: @background-color;
+        i.cozen-btn-check-inner {
+          color: @active-color;
+        }
+      }
+      &:hover,
+      &:focus {
+        div.cozen-btn-check-square {
+          background-color: @background-color-hover;
+          i.cozen-btn-check-inner {
+            color: @active-color-hover;
+          }
+        }
+      }
+    }
+  }
+}
+/******************************/
+/*   COLOR CHECKED DISABLED   */
+/******************************/
+.cozen-btn-check-color-checked-disabled(@background-color, @background-color-hover, @active-color, @active-color-hover) {
+  &.active.disabled {
+    div.cozen-btn-check-container {
+      div.cozen-btn-check-square {
+        background-color: @background-color;
+        i.cozen-btn-check-inner {
+          color: @active-color;
+        }
+      }
+      &:hover,
+      &:focus {
+        div.cozen-btn-check-square {
+          background-color: @background-color-hover;
+          i.cozen-btn-check-inner {
+            color: @active-color-hover;
+          }
+        }
+      }
+    }
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-btn-check-border(@size, @type, @color, @color-hover) {
+  div.cozen-btn-check-container {
+    div.cozen-btn-check-square {
+      border: @size @type @color;
+    }
+    &:hover,
+    &:focus {
+      div.cozen-btn-check-square {
+        border: @size @type @color-hover;
+      }
+    }
+  }
+}
+/**********************/
+/*   BORDER CHECKED   */
+/**********************/
+.cozen-btn-check-border-checked(@size, @type, @color, @color-hover) {
+  &.active {
+    div.cozen-btn-check-container {
+      div.cozen-btn-check-square {
+        border: @size @type @color;
+      }
+      &:hover,
+      &:focus {
+        div.cozen-btn-check-square {
+          border: @size @type @color-hover;
+        }
+      }
+    }
+  }
+}
+/***********************/
+/*   BORDER DISABLED   */
+/***********************/
+.cozen-btn-check-border-disabled(@size, @type, @color, @color-hover) {
+  &.disabled {
+    div.cozen-btn-check-container {
+      div.cozen-btn-check-square {
+        border: @size @type @color;
+      }
+      &:hover,
+      &:focus {
+        div.cozen-btn-check-square {
+          border: @size @type @color-hover;
+        }
+      }
+    }
+  }
+}
+/*************/
+/*   LABEL   */
+/*************/
+.cozen-btn-check-label(@margin, @color, @color-hover, @font-size, @weight) {
+  div.cozen-btn-check-container {
+    label.cozen-btn-check-label {
+      margin-left: @margin;
+      color:       @color;
+      font-size:   @font-size;
+      font-weight: @weight;
+    }
+    &:hover,
+    &:focus {
+      label.cozen-btn-check-label {
+        color: @color-hover;
+      }
+    }
+  }
+  &.check-right {
+    div.cozen-btn-check-container {
+      label.cozen-btn-check-label {
+        margin-left:  0;
+        margin-right: @margin;
+      }
+    }
+  }
+}
+/**********************/
+/*   LABEL DISABLED   */
+/**********************/
+.cozen-btn-check-label-disabled(@margin, @color, @color-hover, @font-size, @weight) {
+  &.disabled {
+    div.cozen-btn-check-container {
+      label.cozen-btn-check-label {
+        margin-left: @margin;
+        color:       @color;
+        font-size:   @font-size;
+        font-weight: @weight;
+      }
+      &:hover,
+      &:focus {
+        label.cozen-btn-check-label {
+          color: @color-hover;
+        }
+      }
+    }
+    &.check-right {
+      div.cozen-btn-check-container {
+        label.cozen-btn-check-label {
+          margin-left:  0;
+          margin-right: @margin;
+        }
+      }
+    }
+  }
+}
+/************/
+/*   ICON   */
+/************/
+.cozen-btn-check-icon(@top, @left) {
+  div.cozen-btn-check-container {
+    div.cozen-btn-check-square {
+      i {
+        top:  @top;
+        left: @left;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@cozen-btn-check-small: 12px;
+@cozen-btn-check-normal: 14px;
+@cozen-btn-check-large: 16px;
+@cozen-btn-check-small-inner: 4px;
+@cozen-btn-check-normal-inner: 6px;
+@cozen-btn-check-large-inner: 8px;
+@cozen-btn-check-border-small: 1px;
+@cozen-btn-check-border-medium: 1px;
+@cozen-btn-check-border-large: 1px;
+
+div.cozen-btn-check.tau {
+
+  // Size
+  &.small {
+    .cozen-btn-check-size(@cozen-btn-check-small, @cozen-btn-check-small - 2);
+    .cozen-btn-check-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-color-checked(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-small, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-small, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-btn-check-label(4px, @cozen-color-black, @cozen-color-black, 14px, 400);
+  }
+  &.normal {
+    .cozen-btn-check-size(@cozen-btn-check-normal, @cozen-btn-check-normal - 2);
+    .cozen-btn-check-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-color-checked(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-medium, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-medium, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-btn-check-label(4px, @cozen-color-black, @cozen-color-black, 16px, 400);
+  }
+  &.large {
+    .cozen-btn-check-size(@cozen-btn-check-large, @cozen-btn-check-large - 2);
+    .cozen-btn-check-color(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-color-checked(@cozen-color-white, @cozen-color-white, @cozen-color-black, @cozen-color-black-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-large, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-btn-check-border(@cozen-btn-check-border-large, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-btn-check-label(4px, @cozen-color-black, @cozen-color-black, 18px, 400);
+  }
+}

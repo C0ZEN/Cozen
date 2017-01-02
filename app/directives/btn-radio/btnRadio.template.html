@@ -1,26 +1,29 @@
 <div ng-if="_isReady"
      class="cozen-btn-radio"
      ng-class="_methods.getMainClass();"
-     id="{{ _cozenBtnRadioId }}"
-     tabindex="{{ _methods.getTabIndex(); }}"
-     ng-click="_methods.onClick($event)">
+     id="{{ _cozenBtnRadioId }}">
 
     <cozen-tooltip cozen-tooltip-label="_cozenBtnRadioTooltip"
                    cozen-tooltip-disabled="_cozenBtnRadioTooltip == ''">
 
-        <!-- Label -->
-        <label ng-if="_cozenBtnRadioLabel != ''"
-               class="cozen-btn-radio-label"
-               ng-class="[_cozenBtnRadioSize]">
-            {{ _cozenBtnRadioLabel | translate }}
-        </label>
+        <div class="cozen-btn-radio-container"
+             tabindex="{{ _methods.getTabIndex(); }}"
+             ng-click="_methods.onClick($event)">
 
-        <!-- Radio -->
-        <div class="cozen-btn-radio-bubble">
-            <div ng-show="cozenBtnRadioModel"
-                 ng-class="{'bounceIn': cozenBtnRadioModel && _cozenBtnRadioAnimationOut,
+            <!-- Label -->
+            <label ng-if="_cozenBtnRadioLabel != ''"
+                   class="cozen-btn-radio-label"
+                   ng-class="[_cozenBtnRadioSize]">
+                {{ _cozenBtnRadioLabel | translate }}
+            </label>
+
+            <!-- Radio -->
+            <div class="cozen-btn-radio-bubble">
+                <div ng-show="cozenBtnRadioModel"
+                     ng-class="{'bounceIn': cozenBtnRadioModel && _cozenBtnRadioAnimationOut,
                             'bounceOut': !cozenBtnRadioModel && _cozenBtnRadioAnimationIn}"
-                 class="cozen-btn-radio-inner-bubble">
+                     class="cozen-btn-radio-inner-bubble">
+                </div>
             </div>
         </div>
     </cozen-tooltip>

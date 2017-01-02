@@ -1,27 +1,30 @@
 <div ng-if="_isReady"
      class="cozen-btn-check"
      ng-class="_methods.getMainClass();"
-     id="{{ _cozenBtnCheckId }}"
-     tabindex="{{ _methods.getTabIndex(); }}"
-     ng-click="_methods.onClick($event)">
+     id="{{ _cozenBtnCheckId }}">
 
     <cozen-tooltip cozen-tooltip-label="_cozenBtnCheckTooltip"
                    cozen-tooltip-disabled="_cozenBtnCheckTooltip == ''">
 
-        <!-- Label -->
-        <label ng-if="_cozenBtnCheckLabel != ''"
-               class="cozen-btn-check-label"
-               ng-class="[_cozenBtnCheckSize]">
-            {{ _cozenBtnCheckLabel | translate }}
-        </label>
+        <div class="cozen-btn-check-container"
+             tabindex="{{ _methods.getTabIndex(); }}"
+             ng-click="_methods.onClick($event)">
 
-        <!-- Check -->
-        <div class="cozen-btn-check-square">
-            <i ng-show="cozenBtnCheckModel"
-               ng-class="{'bounceIn': cozenBtnCheckModel && _cozenBtnCheckAnimationOut,
-             'bounceOut': !cozenBtnCheckModel && _cozenBtnCheckAnimationIn}"
-               class="cozen-btn-check-inner fa fa-check">
-            </i>
+            <!-- Label -->
+            <label ng-if="_cozenBtnCheckLabel != ''"
+                   class="cozen-btn-check-label"
+                   ng-class="[_cozenBtnCheckSize]">
+                {{ _cozenBtnCheckLabel | translate }}
+            </label>
+
+            <!-- Check -->
+            <div class="cozen-btn-check-square">
+                <i ng-show="cozenBtnCheckModel"
+                   ng-class="{'bounceIn': cozenBtnCheckModel && _cozenBtnCheckAnimationOut,
+                          'bounceOut': !cozenBtnCheckModel && _cozenBtnCheckAnimationIn}"
+                   class="cozen-btn-check-inner fa fa-check">
+                </i>
+            </div>
         </div>
     </cozen-tooltip>
 </div>
