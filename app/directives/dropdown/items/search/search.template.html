@@ -3,20 +3,32 @@
      ng-class="_methods.getMainClass();"
      id="{{ _cozenDropdownItemSearchId }}">
 
-    <div class="cozen-dropdown-item-search-content left">
+  <div class="cozen-dropdown-item-search-content left">
 
-        <!-- Input -->
-        <input ng-model="vm.cozenDropdownItemSearchModel"
-               ng-change="_methods.onChange($event);"
-               type="text"
-               placeholder="{{ _cozenDropdownItemSearchPlaceholder | translate }}"
-               ng-model-options="{allowInvalid: true}">
-
-        <!-- Right icon -->
-        <div ng-if="_cozenDropdownItemSearchIconRight != ''"
-             class="cozen-dropdown-item-search-icon right">
-            <i ng-class="[_cozenDropdownItemSearchIconRight]"></i>
-        </div>
+    <!-- Left icon -->
+    <div ng-if="_cozenDropdownItemSearchIconLeft != ''"
+         class="cozen-dropdown-item-search-icon left">
+      <i ng-class="[_cozenDropdownItemSearchIconLeft]"></i>
     </div>
+
+    <!-- Input -->
+    <input ng-model="vm.cozenDropdownItemSearchModel"
+           ng-change="_methods.onChange($event);"
+           type="text"
+           placeholder="{{ _cozenDropdownItemSearchPlaceholder | translate }}"
+           ng-model-options="{allowInvalid: true}">
+
+    <!-- Right icon -->
+    <div ng-if="_cozenDropdownItemSearchIconRight != ''"
+         class="cozen-dropdown-item-search-icon right">
+      <i ng-class="[_cozenDropdownItemSearchIconRight]"></i>
+    </div>
+  </div>
+
+  <!-- Empty -->
+  <div ng-if="_cozenDropdownItemSearchEmpty"
+       class="cozen-dropdown-item-search-empty">
+    <span>{{ 'dropdown_search_empty' | translate }}</span>
+  </div>
 </div>
 

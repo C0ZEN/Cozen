@@ -1,237 +1,280 @@
 <div class="container"
      style="min-height: 878px;">
-    <div class="row">
-        <div class="col-xs-12">
-            <cozen-form cozen-form-name="lool">
-                <cozen-input cozen-input-model="dada"
-                             cozen-input-icon-right="fa fa-caret-down">
-                </cozen-input>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-required="true"
-                                cozen-dropdown-label="Un label">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-required="true"
-                                cozen-dropdown-required-tooltip="Champ requis !"
-                                cozen-dropdown-label="Un label">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-disabled="true">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-placeholder="Un placeholder"
-                                cozen-dropdown-easy-navigation="false">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-placeholder="Un placeholder">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                cozen-dropdown-item-simple-on-click="vm.onClick(4, 0)">
-                    </cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                cozen-dropdown-item-simple-on-click="vm.onClick(4, 1)">
-                    </cozen-dropdown-item-simple>
-                    <hr>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                cozen-dropdown-item-simple-disabled="true"
-                                                cozen-dropdown-item-simple-on-click="vm.onClick(4, 2)">
-                    </cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="vm.zzef"
-                                cozen-dropdown-placeholder="Un placeholder"
-                                cozen-dropdown-multiple="true">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                cozen-dropdown-item-simple-id="0"
-                                                cozen-dropdown-item-simple-on-click="vm.onClick(5, 0)">
-                    </cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label 2"
-                                                cozen-dropdown-item-simple-on-click="vm.onClick(5, 1)">
-                    </cozen-dropdown-item-simple>
-                    <hr>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                cozen-dropdown-item-simple-disabled="true"
-                                                cozen-dropdown-item-simple-on-click="vm.onClick(5, 2)">
-                    </cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-placeholder="Un placeholder"
-                                cozen-dropdown-multiple="true">
-                    <cozen-dropdown-item-group cozen-dropdown-item-group-label="Un groupe">
-                        <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                    cozen-dropdown-item-simple-on-click="vm.onClick(6, 0)">
-                        </cozen-dropdown-item-simple>
-                        <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                    cozen-dropdown-item-simple-on-click="vm.onClick(6, 1)">
-                        </cozen-dropdown-item-simple>
-                    </cozen-dropdown-item-group>
-                    <hr>
-                    <cozen-dropdown-item-group cozen-dropdown-item-group-label="Un groupe">
-                        <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                    cozen-dropdown-item-simple-on-click="vm.onClick(6, 2)">
-                        </cozen-dropdown-item-simple>
-                        <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
-                                                    cozen-dropdown-item-simple-on-click="vm.onClick(6, 3)">
-                        </cozen-dropdown-item-simple>
-                    </cozen-dropdown-item-group>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-placeholder="Un placeholder"
-                                cozen-dropdown-multiple="true"
-                                cozen-dropdown-tick-icon="fa fa-check-circle">
-                    <cozen-dropdown-item-group cozen-dropdown-item-group-label="Voitures"
-                                               cozen-dropdown-item-group-icon-left="fa fa-car">
-                        <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="GTR"
-                                                    cozen-dropdown-item-simple-on-click="vm.onClick(7, 0)">
-                        </cozen-dropdown-item-simple>
-                        <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Gold VII"
-                                                    cozen-dropdown-item-simple-on-click="vm.onClick(7, 1)">
-                        </cozen-dropdown-item-simple>
-                    </cozen-dropdown-item-group>
-                    <hr>
-                    <cozen-dropdown-item-group cozen-dropdown-item-group-label="Camions"
-                                               cozen-dropdown-item-group-icon-left="fa fa-truck">
-                        <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="???"
-                                                    cozen-dropdown-item-simple-on-click="vm.onClick(7, 2)">
-                        </cozen-dropdown-item-simple>
-                    </cozen-dropdown-item-group>
-                </cozen-dropdown>
-                <hr>
-                <pre>{{ vm.selectedName | json }}</pre>
-                <cozen-dropdown cozen-dropdown-model="vm.selectedName"
-                                cozen-dropdown-placeholder="Un placeholder"
-                                cozen-dropdown-tick-icon="fa fa-check-circle">
-                    <cozen-dropdown-item-simple ng-repeat="car in vm.names track by $index"
-                                                cozen-dropdown-item-simple-selected="car.selected"
-                                                cozen-dropdown-item-simple-label="{{ car.name }}">
-                    </cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <pre>{{ vm.selectedName | json }}</pre>
-                <cozen-dropdown cozen-dropdown-model="vm.selectedName"
-                                cozen-dropdown-placeholder="Un placeholder"
-                                cozen-dropdown-tick-icon="fa fa-check-circle">
-                    <cozen-dropdown-item-simple ng-repeat="car in vm.names track by $index"
-                                                cozen-dropdown-item-simple-value="car.id"
-                                                cozen-dropdown-item-simple-selected="car.selected"
-                                                cozen-dropdown-item-simple-label="{{ car.name }}">
-                    </cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <pre>{{ vm.selectedCars | json }}</pre>
-                <pre>{{ vm.cars | json }}</pre>
-                <pre>{{ vm.carsSearch }}</pre>
-                <cozen-dropdown cozen-dropdown-model="vm.selectedCars"
-                                cozen-dropdown-placeholder="Un placeholder"
-                                cozen-dropdown-multiple="true"
-                                cozen-dropdown-model-enhanced="2"
-                                cozen-dropdown-tick-icon="fa fa-check-circle">
-                    <cozen-dropdown-item-search cozen-dropdown-item-search-model="vm.carsSearch"
-                                                cozen-dropdown-item-search-placeholder="Recherche">
-                    </cozen-dropdown-item-search>
-                    <cozen-dropdown-item-simple ng-repeat="car in vm.cars track by $index"
-                                                cozen-dropdown-item-simple-value="car.id"
-                                                cozen-dropdown-item-simple-selected="car.selected"
-                                                cozen-dropdown-item-simple-label="{{ car.name }}"
-                                                cozen-dropdown-item-simple-sub-label="{{ ' - ' + car.id }}">
-                    </cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-required="true">
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-                <hr>
-                <cozen-dropdown cozen-dropdown-model="first"
-                                cozen-dropdown-required="true"
-                                cozen-dropdown-validator-all>
-                    <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
-                </cozen-dropdown>
-            </cozen-form>
-        </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <cozen-form cozen-form-name="lool">
+        <cozen-input cozen-input-model="dada"
+                     cozen-input-icon-right="fa fa-caret-down">
+        </cozen-input>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-required="true"
+                        cozen-dropdown-label="Un label">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-required="true"
+                        cozen-dropdown-required-tooltip="Champ requis !"
+                        cozen-dropdown-label="Un label">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-label="dadazdazd"
+                        cozen-dropdown-disabled="true">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="grgege"
+                        cozen-dropdown-disabled="true">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-selected="true">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="grgegrre">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-disabled="true">
+          </cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-icon-left="fa fa-plus"
+                                      cozen-dropdown-item-simple-sub-label="avec un sous titre">
+          </cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-icon-left="fa fa-plus"
+                                      cozen-dropdown-item-simple-selected="true"
+                                      cozen-dropdown-item-simple-disabled="true"
+                                      cozen-dropdown-item-simple-sub-label="avec un sous titre">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-easy-navigation="false">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-placeholder="Un placeholder">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(4, 0)">
+          </cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(4, 1)">
+          </cozen-dropdown-item-simple>
+          <hr>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-disabled="true"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(4, 2)">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="vm.zzef"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-multiple="true">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-id="0"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(5, 0)">
+          </cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label 2"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(5, 1)">
+          </cozen-dropdown-item-simple>
+          <hr>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-disabled="true"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(5, 2)">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="vm.zzedsff"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-icon-left="fa fa-search"
+                        cozen-dropdown-multiple="true">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-id="0"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(5, 0)">
+          </cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label 2"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(5, 1)">
+          </cozen-dropdown-item-simple>
+          <hr>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                      cozen-dropdown-item-simple-disabled="true"
+                                      cozen-dropdown-item-simple-on-click="vm.onClick(5, 2)">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-multiple="true">
+          <cozen-dropdown-item-group cozen-dropdown-item-group-label="Un groupe">
+            <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                        cozen-dropdown-item-simple-on-click="vm.onClick(6, 0)">
+            </cozen-dropdown-item-simple>
+            <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                        cozen-dropdown-item-simple-on-click="vm.onClick(6, 1)">
+            </cozen-dropdown-item-simple>
+          </cozen-dropdown-item-group>
+          <hr>
+          <cozen-dropdown-item-group cozen-dropdown-item-group-label="Un groupe">
+            <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                        cozen-dropdown-item-simple-on-click="vm.onClick(6, 2)">
+            </cozen-dropdown-item-simple>
+            <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"
+                                        cozen-dropdown-item-simple-on-click="vm.onClick(6, 3)">
+            </cozen-dropdown-item-simple>
+          </cozen-dropdown-item-group>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-multiple="true"
+                        cozen-dropdown-tick-icon="fa fa-check-circle">
+          <cozen-dropdown-item-group cozen-dropdown-item-group-label="Voitures"
+                                     cozen-dropdown-item-group-icon-left="fa fa-car">
+            <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="GTR"
+                                        cozen-dropdown-item-simple-on-click="vm.onClick(7, 0)">
+            </cozen-dropdown-item-simple>
+            <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Gold VII"
+                                        cozen-dropdown-item-simple-on-click="vm.onClick(7, 1)">
+            </cozen-dropdown-item-simple>
+          </cozen-dropdown-item-group>
+          <hr>
+          <cozen-dropdown-item-group cozen-dropdown-item-group-label="Camions"
+                                     cozen-dropdown-item-group-icon-left="fa fa-truck">
+            <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="???"
+                                        cozen-dropdown-item-simple-on-click="vm.onClick(7, 2)">
+            </cozen-dropdown-item-simple>
+          </cozen-dropdown-item-group>
+        </cozen-dropdown>
+        <hr>
+        <pre>{{ vm.selectedName | json }}</pre>
+        <cozen-dropdown cozen-dropdown-model="vm.selectedName"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-tick-icon="fa fa-check-circle">
+          <cozen-dropdown-item-simple ng-repeat="car in vm.names track by $index"
+                                      cozen-dropdown-item-simple-selected="car.selected"
+                                      cozen-dropdown-item-simple-label="{{ car.name }}">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <pre>{{ vm.selectedName | json }}</pre>
+        <cozen-dropdown cozen-dropdown-model="vm.selectedName"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-tick-icon="fa fa-check-circle">
+          <cozen-dropdown-item-simple ng-repeat="car in vm.names track by $index"
+                                      cozen-dropdown-item-simple-value="car.id"
+                                      cozen-dropdown-item-simple-selected="car.selected"
+                                      cozen-dropdown-item-simple-label="{{ car.name }}">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <pre>{{ vm.selectedCars | json }}</pre>
+        <pre>{{ vm.cars | json }}</pre>
+        <pre>{{ vm.carsSearch }}</pre>
+        <cozen-dropdown cozen-dropdown-model="vm.selectedCars"
+                        cozen-dropdown-placeholder="Un placeholder"
+                        cozen-dropdown-multiple="true"
+                        cozen-dropdown-model-enhanced="2"
+                        cozen-dropdown-tick-icon="fa fa-check-circle">
+          <cozen-dropdown-item-search cozen-dropdown-item-search-model="vm.carsSearch"
+                                      cozen-dropdown-item-search-placeholder="Recherche">
+          </cozen-dropdown-item-search>
+          <cozen-dropdown-item-simple ng-repeat="car in vm.cars track by $index"
+                                      cozen-dropdown-item-simple-value="car.id"
+                                      cozen-dropdown-item-simple-selected="car.selected"
+                                      cozen-dropdown-item-simple-label="{{ car.name }}"
+                                      cozen-dropdown-item-simple-sub-label="{{ ' - ' + car.id }}">
+          </cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-required="true">
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+        <hr>
+        <cozen-dropdown cozen-dropdown-model="first"
+                        cozen-dropdown-required="true"
+                        cozen-dropdown-validator-all>
+          <cozen-dropdown-item-simple cozen-dropdown-item-simple-label="Un label"></cozen-dropdown-item-simple>
+        </cozen-dropdown>
+      </cozen-form>
     </div>
+  </div>
 </div>

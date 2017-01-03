@@ -39,15 +39,37 @@
       }
     }
   }
+}
+/**********************/
+/*   COLOR DISABLED   */
+/**********************/
+.cozen-input-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
+  &.success-design.disabled,
+  &.error-design.disabled,
   &.disabled {
+    color: @color;
     div.cozen-input-content {
+      background-color: @background-color;
       &:hover {
-        background-color: @background-color;
+        background-color: @background-color-hover;
       }
       input {
-        &:hover,
         &:focus {
-          background-color: @background-color;
+          background-color: @background-color-hover;
+        }
+      }
+      div.cozen-input-icon.left,
+      div.cozen-input-icon.right,
+      div.cozen-input-icon {
+        color: @color;
+      }
+    }
+    &:hover {
+      div.cozen-input-content {
+        div.cozen-input-icon.left,
+        div.cozen-input-icon.right,
+        div.cozen-input-icon {
+          color: @color;
         }
       }
     }
@@ -56,38 +78,47 @@
 /**************/
 /*   BORDER   */
 /**************/
-.cozen-input-border(@size, @type, @color, @color-hover) {
+.cozen-input-border(@border, @border-hover) {
   div.cozen-input-content {
     input {
-      border: @size @type @color;
+      border: @border;
       &:focus {
-        border: @size @type @color-hover;
+        border: @border-hover;
       }
     }
   }
   &:hover {
     div.cozen-input-content {
       input {
-        border: @size @type @color-hover;
+        border: @border-hover;
       }
     }
   }
+}
+/**********************/
+/*   BORDER DISABLED  */
+/**********************/
+.cozen-input-border-disabled(@border, @border-hover) {
+  &.success-design.disabled,
+  &.error-design.disabled,
   &.disabled {
     div.cozen-input-content {
       input {
+        border: @border;
         &:focus {
-          border: @size @type @color;
+          border: @border-hover;
         }
       }
     }
     &:hover {
       div.cozen-input-content {
         input {
-          border: @size @type @color;
+          border: @border-hover;
         }
       }
     }
   }
+
 }
 /*******************/
 /*   PLACEHOLDER   */
@@ -141,21 +172,40 @@
       }
     }
   }
-  .disabled {
+}
+/****************************/
+/*   PLACEHOLDER DISABLED   */
+/****************************/
+.cozen-input-placeholder-disabled(@color, @color-hover) {
+  &.success-design.disabled,
+  &.error-design.disabled,
+  &.disabled {
     div.cozen-input-content {
       input {
+        &::-webkit-input-placeholder {
+          color: @color;
+        }
+        &::-moz-placeholder {
+          color: @color;
+        }
+        &:-ms-input-placeholder {
+          color: @color;
+        }
+        &:-moz-placeholder {
+          color: @color;
+        }
         &:focus {
           &::-webkit-input-placeholder {
-            color: @color;
+            color: @color-hover;
           }
           &::-moz-placeholder {
-            color: @color;
+            color: @color-hover;
           }
           &:-ms-input-placeholder {
-            color: @color;
+            color: @color-hover;
           }
           &:-moz-placeholder {
-            color: @color;
+            color: @color-hover;
           }
         }
       }
@@ -164,45 +214,70 @@
       div.cozen-input-content {
         input {
           &::-webkit-input-placeholder {
-            color: @color;
+            color: @color-hover;
           }
           &::-moz-placeholder {
-            color: @color;
+            color: @color-hover;
           }
           &:-ms-input-placeholder {
-            color: @color;
+            color: @color-hover;
           }
           &:-moz-placeholder {
-            color: @color;
+            color: @color-hover;
           }
         }
       }
     }
   }
 }
-/************/
-/*   ICON   */
-/************/
-.cozen-input-icon(@padding, @font-size) {
+/*****************/
+/*   ICON LEFT   */
+/*****************/
+.cozen-input-icon-left(@padding, @font-size, @color, @color-hover, @input-padding-left) {
   div.cozen-input-content {
-    & div.cozen-input-icon {
-      padding: 0 @padding;
+    div.cozen-input-icon.left {
+      padding: @padding;
+      color:   @color;
     }
   }
+  &:hover {
+    div.cozen-input-content {
+      div.cozen-input-icon.left {
+        color: @color-hover;
+      }
+    }
+  }
+
   &.icon-left {
     div.cozen-input-content {
       input {
-        padding-left: @padding * 2 + @font-size;
+        padding-left: @input-padding-left;
       }
     }
   }
-  &.icon-right {
+}
+/******************/
+/*   ICON RIGHT   */
+/******************/
+.cozen-input-icon-right(@padding, @font-size, @color, @color-hover, @input-padding-right) {
+  div.cozen-input-content {
+    div.cozen-input-icon.right {
+      padding: @padding;
+      color:   @color;
+    }
+  }
+  &:hover {
+    div.cozen-input-content {
+      div.cozen-input-icon.right {
+        color: @color-hover;
+      }
+    }
+  }
+
+  &.icon-left {
     div.cozen-input-content {
       input {
-        padding-right: @padding * 2 + @font-size;
-      }
-      & div.cozen-input-arrows {
-        right: @padding * 2 + @font-size;
+        padding-right: @input-padding-right;
       }
     }
   }
@@ -210,20 +285,20 @@
 /*************/
 /*   ERROR   */
 /*************/
-.cozen-input-error(@color, @color-hover, @background-color, @background-color-hover, @size, @type, @color, @color-hover, @label-color) {
+.cozen-input-error(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover, @label-color) {
   &.error-design {
     .cozen-input-color(@color, @color-hover, @background-color, @background-color-hover);
-    .cozen-input-border(@size, @type, @color, @color-hover);
+    .cozen-input-border(@border, @border-hover);
     .cozen-input-label(@label-color);
   }
 }
 /***************/
 /*   SUCCESS   */
 /***************/
-.cozen-input-success(@color, @color-hover, @background-color, @background-color-hover, @size, @type, @color, @color-hover, @label-color) {
+.cozen-input-success(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover, @label-color) {
   &.success-design {
     .cozen-input-color(@color, @color-hover, @background-color, @background-color-hover);
-    .cozen-input-border(@size, @type, @color, @color-hover);
+    .cozen-input-border(@border, @border-hover);
     .cozen-input-label(@label-color);
   }
 }
@@ -271,6 +346,24 @@
       color:       @color;
       padding:     @padding;
       font-weight: @font-weight;
+    }
+  }
+}
+/**********************/
+/*   LABEL DISABLED   */
+/**********************/
+.cozen-input-label-disabled(@font-size, @color, @padding, @font-weight, @margin-bottom) {
+  &.success-design.disabled,
+  &.error-design.disabled,
+  &.disabled {
+    div.cozen-input-label {
+      margin-bottom: @margin-bottom;
+      label.label {
+        font-size:   @font-size;
+        color:       @color;
+        padding:     @padding;
+        font-weight: @font-weight;
+      }
     }
   }
 }

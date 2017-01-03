@@ -1,0 +1,30 @@
+div.cozen-input.atom {
+
+  // Variables
+  .cozen-input-tooltip-color(@atom-color-label);
+
+  // Size
+  &.small {
+  }
+  &.normal {
+    .cozen-input-size(@atom-space-small, @atom-space-base, @atom-font-h3);
+    .cozen-input-color(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-white);
+    .cozen-input-color-disabled(@atom-color-line-rule, @atom-color-line-rule, @atom-color-line-rule-light, @atom-color-line-rule-light);
+    .cozen-input-border(1px solid @atom-color-line-rule, 1px solid @atom-color-blue-active);
+    .cozen-input-border-disabled(1px solid @atom-color-line-rule, 1px solid @atom-color-line-rule);
+    .cozen-input-placeholder(@atom-color-line-rule, @atom-color-line-rule);
+    .cozen-input-placeholder-disabled(@atom-color-line-rule, @atom-color-line-rule);
+    .cozen-input-icon-left(@atom-space-small, @atom-font-h3, @atom-color-line-rule, @atom-color-line-rule, 33px);
+    .cozen-input-icon-right(@atom-space-small, @atom-font-h3, @atom-color-font, @atom-color-font, 33px);
+    .cozen-input-error(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-white, 1px solid @atom-color-error, 1px solid @atom-color-error, @atom-color-label);
+    .cozen-input-success(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-white, 1px solid @atom-color-success, 1px solid @atom-color-success, @atom-color-label);
+    .cozen-input-arrows(0 @atom-space-small, 8px, 7px, 2px);
+    .cozen-input-label(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
+    .cozen-input-label-disabled(@atom-font-h3, @atom-color-label-disabled, 0, 400, @atom-space-small);
+    .cozen-input-model-length(@atom-font-body, @atom-color-line-rule, 0, normal, @atom-color-line-rule);
+    .cozen-input-required-star(@atom-font-h3, @atom-color-yellow, 0 3px, @atom-color-yellow);
+    .cozen-input-required-icon(@atom-font-body, @atom-color-yellow, 0 5px, @atom-color-yellow);
+  }
+  &.large {
+  }
+}

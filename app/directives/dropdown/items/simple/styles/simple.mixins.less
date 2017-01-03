@@ -1,15 +1,11 @@
 /************/
 /*   SIZE   */
 /************/
-.cozen-dropdown-item-simple-size(@font-size, @padding, @padding-when-group) {
+.cozen-dropdown-item-simple-size(@font-size, @padding, @padding-when-group, @weight) {
   .cozen-dropdown-item.cozen-dropdown-item-simple {
-    font-size: @font-size;
-    padding:   @padding;
-    div.cozen-dropdown-item-simple-content {
-      & > div.cozen-dropdown-item-simple-icon.left {
-        margin-right: @font-size / 6;
-      }
-    }
+    font-size:   @font-size;
+    padding:     @padding;
+    font-weight: @weight;
   }
   div.cozen-dropdown-item-group-transclude {
     .cozen-dropdown-item.cozen-dropdown-item-simple {
@@ -20,67 +16,224 @@
 /*************/
 /*   COLOR   */
 /*************/
-.cozen-dropdown-item-simple-color(@selected, @color, @color-hover, @background-color, @background-color-hover) {
-  & when (@selected = true) {
-    .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
-      color:            @color;
-      background-color: @background-color;
-      &.active,
-      &:focus {
-        color:            @color-hover;
-        background-color: @background-color-hover;
-      }
+.cozen-dropdown-item-simple-color(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple {
+    color:            @color;
+    background-color: @background-color;
+    &.active,
+    &:focus {
+      color:            @color-hover;
+      background-color: @background-color-hover;
     }
   }
-  & when (@selected = false) {
-    .cozen-dropdown-item.cozen-dropdown-item-simple {
-      color:            @color;
-      background-color: @background-color;
-      &.active,
-      &:focus {
-        color:            @color-hover;
-        background-color: @background-color-hover;
-      }
-      &.disabled {
-        &:focus {
-          color:            @color;
-          background-color: @background-color;
-        }
-      }
+}
+/**********************/
+/*   COLOR SELECTED   */
+/**********************/
+.cozen-dropdown-item-simple-color-selected(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
+    color:            @color;
+    background-color: @background-color;
+    &.active,
+    &:focus {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+  }
+}
+/**********************/
+/*   COLOR DISABLED   */
+/**********************/
+.cozen-dropdown-item-simple-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.disabled {
+    color:            @color;
+    background-color: @background-color;
+    &.active,
+    &:focus {
+      color:            @color-hover;
+      background-color: @background-color-hover;
+    }
+  }
+}
+/*******************************/
+/*   COLOR SELECTED DISABLED   */
+/*******************************/
+.cozen-dropdown-item-simple-color-selected-disabled(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled {
+    color:            @color;
+    background-color: @background-color;
+    &.active,
+    &:focus {
+      color:            @color-hover;
+      background-color: @background-color-hover;
     }
   }
 }
 /*****************/
 /*   SUB-COLOR   */
 /*****************/
-.cozen-dropdown-item-simple-sub-color(@selected, @color, @color-hover) {
-  & when (@selected = true) {
-    .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
-      div.cozen-dropdown-item-simple-content {
-        span.cozen-dropdown-item-simple-label small {
-          color: @color;
-          &.active,
-          &:focus {
-            color: @color-hover;
-          }
-        }
-      }
-    }
-  }
-  & when (@selected = false) {
-    .cozen-dropdown-item.cozen-dropdown-item-simple {
-      div.cozen-dropdown-item-simple-content {
-        span.cozen-dropdown-item-simple-label small {
-          color: @color;
-          &.active,
-          &:focus {
-            color: @color-hover;
-          }
-          &.disabled {
-            color: @color;
-          }
+.cozen-dropdown-item-simple-sub-color(@color, @color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple {
+    div.cozen-dropdown-item-simple-content {
+      span.cozen-dropdown-item-simple-label small {
+        color: @color;
+        &.active,
+        &:focus {
+          color: @color-hover;
         }
       }
     }
   }
 }
+/**************************/
+/*   SUB-COLOR SELECTED   */
+/**************************/
+.cozen-dropdown-item-simple-sub-color-selected(@color, @color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
+    div.cozen-dropdown-item-simple-content {
+      span.cozen-dropdown-item-simple-label small {
+        color: @color;
+        &.active,
+        &:focus {
+          color: @color-hover;
+        }
+      }
+    }
+  }
+}
+/**************************/
+/*   SUB-COLOR DISABLED   */
+/**************************/
+.cozen-dropdown-item-simple-sub-color-disabled(@color, @color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.disabled {
+    div.cozen-dropdown-item-simple-content {
+      span.cozen-dropdown-item-simple-label small {
+        color: @color;
+        &.active,
+        &:focus {
+          color: @color-hover;
+        }
+      }
+    }
+  }
+}
+/***********************************/
+/*   SUB-COLOR SELECTED DISABLED   */
+/***********************************/
+.cozen-dropdown-item-simple-sub-color-selected-disabled(@color, @color-hover) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled {
+    div.cozen-dropdown-item-simple-content {
+      span.cozen-dropdown-item-simple-label small {
+        color: @color;
+        &.active,
+        &:focus {
+          color: @color-hover;
+        }
+      }
+    }
+  }
+}
+/*****************/
+/*   ICON LEFT   */
+/*****************/
+.cozen-dropdown-item-simple-icon-left(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple {
+    ._cozen-dropdown-item-simple-icon-internal(true, @font-size, @color, @color-hover, @padding);
+  }
+}
+/*************************/
+/*   ICON LEFT SELECTED  */
+/*************************/
+.cozen-dropdown-item-simple-icon-left-selected(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
+    ._cozen-dropdown-item-simple-icon-internal(true, @font-size, @color, @color-hover, @padding);
+  }
+}
+/*************************/
+/*   ICON LEFT DISABLED  */
+/*************************/
+.cozen-dropdown-item-simple-icon-left-disabled(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.disabled {
+    ._cozen-dropdown-item-simple-icon-internal(true, @font-size, @color, @color-hover, @padding);
+  }
+}
+/**********************************/
+/*   ICON LEFT SELECTED DISABLED  */
+/**********************************/
+.cozen-dropdown-item-simple-icon-left-selected-disabled(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled {
+    ._cozen-dropdown-item-simple-icon-internal(true, @font-size, @color, @color-hover, @padding);
+  }
+}
+/******************/
+/*   ICON RIGHT   */
+/******************/
+.cozen-dropdown-item-simple-icon-right(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple {
+    ._cozen-dropdown-item-simple-icon-internal(false, @font-size, @color, @color-hover, @padding);
+  }
+}
+/**************************/
+/*   ICON RIGHT SELECTED  */
+/**************************/
+.cozen-dropdown-item-simple-icon-right-selected(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected {
+    ._cozen-dropdown-item-simple-icon-internal(false, @font-size, @color, @color-hover, @padding);
+  }
+}
+/**************************/
+/*   ICON RIGHT DISABLED  */
+/**************************/
+.cozen-dropdown-item-simple-icon-right-disabled(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.disabled {
+    ._cozen-dropdown-item-simple-icon-internal(false, @font-size, @color, @color-hover, @padding);
+  }
+}
+/***********************************/
+/*   ICON RIGHT SELECTED DISABLED  */
+/***********************************/
+.cozen-dropdown-item-simple-icon-right-selected-disabled(@font-size, @color, @color-hover, @padding) {
+  .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled {
+    ._cozen-dropdown-item-simple-icon-internal(false, @font-size, @color, @color-hover, @padding);
+  }
+}
+/*********************/
+/*   ICON INTERNAL   */
+/*********************/
+._cozen-dropdown-item-simple-icon-internal(@left, @font-size, @color, @color-hover, @padding) {
+  & when (@left = true) {
+    div.cozen-dropdown-item-simple-content {
+      div.cozen-dropdown-item-simple-icon.left {
+        font-size: @font-size;
+        color:     @color;
+        padding:   @padding;
+      }
+    }
+    &.active,
+    &:focus {
+      div.cozen-dropdown-item-simple-content {
+        div.cozen-dropdown-item-simple-icon.left {
+          color: @color-hover;
+        }
+      }
+    }
+  }
+  & when (@left = false) {
+    div.cozen-dropdown-item-simple-content {
+      div.cozen-dropdown-item-simple-icon.right {
+        font-size: @font-size;
+        color:     @color;
+        padding:   @padding;
+      }
+    }
+    &.active,
+    &:focus {
+      div.cozen-dropdown-item-simple-content {
+        div.cozen-dropdown-item-simple-icon.right {
+          color: @color-hover;
+        }
+      }
+    }
+  }
+}
+

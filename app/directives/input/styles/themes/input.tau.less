@@ -16,12 +16,12 @@ div.cozen-input.tau {
   // Size
   &.small {
     .cozen-input-size(0, @cozen-input-tau-padding-small, @cozen-input-tau-font-small);
-    .cozen-input-color(@cozen-color-black, @cozen-color-black, ffffff, @cozen-color-white);
-    .cozen-input-border(1px, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
+    .cozen-input-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
     .cozen-input-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
-    .cozen-input-icon(@cozen-input-tau-padding-icon-small, @cozen-input-tau-font-small);
-    .cozen-input-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px, solid, @cozen-color-red, @cozen-color-red, @cozen-color-red-hover);
-    .cozen-input-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px, solid, @cozen-color-green, @cozen-color-green, @cozen-color-green-hover);
+    .cozen-input-icon-left(4px, 16px, @cozen-color-grey, @cozen-color-grey, 33px);
+    .cozen-input-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red, @cozen-color-red-hover);
+    .cozen-input-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green, @cozen-color-green-hover);
     .cozen-input-arrows(0 @cozen-input-tau-padding-small, 7px, 6px, 1px);
     .cozen-input-label(13px, @cozen-color-black, 0, normal, @cozen-input-tau-padding-small);
     .cozen-input-model-length(12px, @cozen-color-grey-hover, 0, normal, @cozen-color-red-hover);
@@ -31,11 +31,11 @@ div.cozen-input.tau {
   &.normal {
     .cozen-input-size(1px, @cozen-input-tau-padding-normal, @cozen-input-tau-font-normal);
     .cozen-input-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
-    .cozen-input-border(1px, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
     .cozen-input-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
-    .cozen-input-icon(@cozen-input-tau-padding-icon-normal, @cozen-input-tau-font-normal);
-    .cozen-input-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px, solid, @cozen-color-red, @cozen-color-red, @cozen-color-red-hover);
-    .cozen-input-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px, solid, @cozen-color-green, @cozen-color-green, @cozen-color-green-hover);
+    .cozen-input-icon-left(4px, 16px, @cozen-color-grey, @cozen-color-grey, 33px);
+    .cozen-input-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red, @cozen-color-red-hover);
+    .cozen-input-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green, @cozen-color-green-hover);
     .cozen-input-arrows(0 @cozen-input-tau-padding-small, 8px, 7px, 2px);
     .cozen-input-label(16px, @cozen-color-black, 0, normal, @cozen-input-tau-padding-normal);
     .cozen-input-model-length(14px, @cozen-color-grey-hover, 0, normal, @cozen-color-red-hover);
@@ -45,11 +45,11 @@ div.cozen-input.tau {
   &.large {
     .cozen-input-size(3px, @cozen-input-tau-padding-large, @cozen-input-tau-font-normal);
     .cozen-input-color(@cozen-color-black, @cozen-color-black, #ffffff, @cozen-color-white);
-    .cozen-input-border(1px, solid, @cozen-color-grey, @cozen-color-grey-hover);
+    .cozen-input-border(1px solid @cozen-color-grey, 1px solid @cozen-color-grey-hover);
     .cozen-input-placeholder(@cozen-color-grey, @cozen-color-grey-hover);
-    .cozen-input-icon(@cozen-input-tau-padding-icon-large, @cozen-input-tau-font-large);
-    .cozen-input-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px, solid, @cozen-color-red, @cozen-color-red, @cozen-color-red-hover);
-    .cozen-input-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px, solid, @cozen-color-green, @cozen-color-green, @cozen-color-green-hover);
+    .cozen-input-icon-left(4px, 16px, @cozen-color-grey, @cozen-color-grey, 33px);
+    .cozen-input-error(@cozen-color-red-hover, @cozen-color-red-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-red, 1px solid @cozen-color-red, @cozen-color-red-hover);
+    .cozen-input-success(@cozen-color-green-hover, @cozen-color-green-hover, #ffffff, @cozen-color-white, 1px solid @cozen-color-green, 1px solid @cozen-color-green, @cozen-color-green-hover);
     .cozen-input-arrows(0 @cozen-input-tau-padding-small, 9px, 8px, 3px);
     .cozen-input-label(18px, @cozen-color-black, 0, normal, @cozen-input-tau-padding-large);
     .cozen-input-model-length(16px, @cozen-color-grey-hover, 0, normal, @cozen-color-red-hover);
