@@ -3,61 +3,61 @@
      ng-class="_methods.getMainClass()"
      id="{{ _cozenTextareaId }}">
 
-    <!-- Label stuff -->
-    <div ng-if="_cozenTextareaLabel != ''"
-         class="cozen-textarea-label">
+  <!-- Label stuff -->
+  <div ng-if="_cozenTextareaLabel != ''"
+       class="cozen-textarea-label">
 
-        <!-- Label -->
-        <label for="{{ _cozenTextareaUuid }}"
-               class="label">
-            {{ _cozenTextareaLabel | translate }}
-        </label>
+    <!-- Label -->
+    <label for="{{ _cozenTextareaUuid }}"
+           class="label">
+      {{ _cozenTextareaLabel | translate }}
+    </label>
 
-        <!-- Required star -->
-        <label ng-if="_cozenTextareaRequired && _cozenTextareaRequiredConfig.type == 'star'"
-               class="required-star">
-            *
-        </label>
+    <!-- Required star -->
+    <label ng-if="_cozenTextareaRequired && _cozenTextareaRequiredConfig.type == 'star'"
+           class="required-star">
+      *
+    </label>
 
-        <!-- Required icon -->
-        <label ng-if="_cozenTextareaRequired && _cozenTextareaRequiredConfig.type == 'icon'"
-               class="required-icon">
-            <cozen-tooltip cozen-tooltip-label="_cozenTextareaRequiredTooltip"
-                           cozen-tooltip-display="block"
-                           cozen-tooltip-disabled="_cozenTextareaRequiredTooltip == ''">
-                <i class="{{ _cozenTextareaRequiredConfig.icon }}"></i>
-            </cozen-tooltip>
-        </label>
+    <!-- Required icon -->
+    <label ng-if="_cozenTextareaRequired && _cozenTextareaRequiredConfig.type == 'icon'"
+           class="required-icon">
+      <cozen-tooltip cozen-tooltip-label="_cozenTextareaRequiredTooltip"
+                     cozen-tooltip-display="block"
+                     cozen-tooltip-disabled="_cozenTextareaRequiredTooltip == ''">
+        <i class="{{ _cozenTextareaRequiredConfig.icon }}"></i>
+      </cozen-tooltip>
+    </label>
 
-        <!-- Model length -->
-        <label ng-if="_cozenTextareaDisplayModelLength"
-               class="model-length"
-               ng-class="{'error': _cozenTextareaModelLength < 0}">
-            {{ _cozenTextareaModelLength }}
-        </label>
-    </div>
+    <!-- Model length -->
+    <label ng-if="_cozenTextareaDisplayModelLength && vm.cozenTextareaModel.length > 0"
+           class="model-length"
+           ng-class="{'error': _cozenTextareaModelLength < 0}">
+      {{ _cozenTextareaModelLength }}
+    </label>
+  </div>
 
-    <!-- Tooltip -->
-    <cozen-tooltip cozen-tooltip-label="_cozenTextareaTooltip"
-                   cozen-tooltip-trigger="{{ _cozenTextareaTooltipTrigger }}"
-                   cozen-tooltip-display="block"
-                   cozen-tooltip-placement="{{ _cozenTextareaTooltipPlacement }}"
-                   cozen-tooltip-disabled="_cozenTextareaTooltip == ''">
+  <!-- Tooltip -->
+  <cozen-tooltip cozen-tooltip-label="_cozenTextareaTooltip"
+                 cozen-tooltip-trigger="{{ _cozenTextareaTooltipTrigger }}"
+                 cozen-tooltip-display="block"
+                 cozen-tooltip-placement="{{ _cozenTextareaTooltipPlacement }}"
+                 cozen-tooltip-disabled="_cozenTextareaTooltip == ''">
 
-        <!-- Textarea -->
-        <textarea ng-model="vm.cozenTextareaModel"
-                  ng-required="_cozenTextareaRequired"
-                  ng-change="_methods.onChange($event);"
-                  ng-disabled="vm.cozenTextareaDisabled"
-                  placeholder="{{ _cozenTextareaPlaceholder }}"
-                  ng-minlength="_cozenTextareaMinLength"
-                  ng-maxlength="_cozenTextareaMaxLength"
-                  name="{{ _cozenTextareaName }}"
-                  ng-model-options="{allowInvalid: true}"
-                  msd-elastic
-                  msd-elastic-disabled="{{ !_cozenTextareaElastic }}"
-                  rows="{{ _cozenTextareaRows }}"
-                  id="{{ _cozenTextareaUuid }}">
+    <!-- Textarea -->
+    <textarea ng-model="vm.cozenTextareaModel"
+              ng-required="_cozenTextareaRequired"
+              ng-change="_methods.onChange($event);"
+              ng-disabled="vm.cozenTextareaDisabled"
+              placeholder="{{ _cozenTextareaPlaceholder }}"
+              ng-minlength="_cozenTextareaMinLength"
+              ng-maxlength="_cozenTextareaMaxLength"
+              name="{{ _cozenTextareaName }}"
+              ng-model-options="{allowInvalid: true}"
+              msd-elastic
+              msd-elastic-disabled="{{ !_cozenTextareaElastic }}"
+              rows="{{ _cozenTextareaRows }}"
+              id="{{ _cozenTextareaUuid }}">
         </textarea>
-    </cozen-tooltip>
+  </cozen-tooltip>
 </div>

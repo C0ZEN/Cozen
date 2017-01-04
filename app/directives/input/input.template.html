@@ -29,7 +29,7 @@
         </label>
 
         <!-- Model length -->
-        <label ng-if="_cozenInputDisplayModelLength"
+        <label ng-if="_cozenInputDisplayModelLength && vm.cozenInputModel.length > 0"
                class="model-length"
                ng-class="{'error': _cozenInputModelLength < 0}">
             {{ _cozenInputModelLength }}

@@ -11,6 +11,38 @@
 /*   COLOR   */
 /*************/
 .cozen-textarea-color(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-textarea-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+}
+/*********************/
+/*   COLOR SUCCESS   */
+/*********************/
+.cozen-textarea-color-success(@color, @color-hover, @background-color, @background-color-hover) {
+  &.success-design {
+    .cozen-textarea-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+  }
+}
+/*******************/
+/*   COLOR ERROR   */
+/*******************/
+.cozen-textarea-color-error(@color, @color-hover, @background-color, @background-color-hover) {
+  &.error-design {
+    .cozen-textarea-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+  }
+}
+/**********************/
+/*   COLOR DISABLED   */
+/**********************/
+.cozen-textarea-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
+  &.success-design.disabled,
+  &.error-design.disabled,
+  &.disabled {
+    .cozen-textarea-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+  }
+}
+/**********************/
+/*   COLOR INTERNAL   */
+/**********************/
+.cozen-textarea-color-internal(@color, @color-hover, @background-color, @background-color-hover) {
   textarea {
     color:            @color;
     background-color: @background-color;
@@ -19,19 +51,43 @@
       background-color: @background-color-hover;
     }
   }
-  &.disabled {
-    textarea {
-      &:focus,
-      &:hover {
-        background-color: @background-color;
-      }
-    }
-  }
 }
 /**************/
 /*   BORDER   */
 /**************/
 .cozen-textarea-border(@border, @border-hover) {
+  .cozen-textarea-border-inter(@border, @border-hover);
+}
+/**********************/
+/*   BORDER SUCCESS   */
+/**********************/
+.cozen-textarea-border-success(@border, @border-hover) {
+  &.success-design {
+    .cozen-textarea-border-inter(@border, @border-hover);
+  }
+}
+/********************/
+/*   BORDER ERROR   */
+/********************/
+.cozen-textarea-border-error(@border, @border-hover) {
+  &.error-design {
+    .cozen-textarea-border-inter(@border, @border-hover);
+  }
+}
+/***********************/
+/*   BORDER DISABLED   */
+/***********************/
+.cozen-textarea-border-disabled(@border, @border-hover) {
+  &.success-design.disabled,
+  &.error-design.disabled,
+  &.disabled {
+    .cozen-textarea-border-inter(@border, @border-hover);
+  }
+}
+/***********************/
+/*   BORDER INTERNAL   */
+/***********************/
+.cozen-textarea-border-inter(@border, @border-hover) {
   textarea {
     border: @border;
     &:focus,
@@ -39,19 +95,25 @@
       border: @border-hover;
     }
   }
-  &.disabled {
-    textarea {
-      &:focus,
-      &:hover {
-        border: @border;
-      }
-    }
-  }
 }
 /*******************/
 /*   PLACEHOLDER   */
 /*******************/
 .cozen-textarea-placeholder(@color, @color-hover) {
+  .cozen-textarea-placeholder-internal(@color, @color-hover);
+}
+/****************************/
+/*   PLACEHOLDER DISABLED   */
+/****************************/
+.cozen-textarea-placeholder-disabled(@color, @color-hover) {
+  &.disabled {
+    .cozen-textarea-placeholder-internal(@color, @color-hover);
+  }
+}
+/****************************/
+/*   PLACEHOLDER INTERNAL   */
+/****************************/
+.cozen-textarea-placeholder-internal(@color, @color-hover) {
   textarea {
     &::-webkit-input-placeholder {
       color: @color;
@@ -81,57 +143,43 @@
       }
     }
   }
-  .disabled {
-    textarea {
-      &:focus,
-      &:hover {
-        &::-webkit-input-placeholder {
-          color: @color;
-        }
-        &::-moz-placeholder {
-          color: @color;
-        }
-        &:-ms-input-placeholder {
-          color: @color;
-        }
-        &:-moz-placeholder {
-          color: @color;
-        }
-      }
-    }
-  }
-}
-/*************/
-/*   ERROR   */
-/*************/
-.cozen-textarea-error(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover, @label-color) {
-  &.error-design {
-    .cozen-textarea-color(@color, @color-hover, @background-color, @background-color-hover);
-    .cozen-textarea-border(@border, @border-hover);
-    .cozen-textarea-label(@label-color);
-  }
-}
-/***************/
-/*   SUCCESS   */
-/***************/
-.cozen-textarea-success(@color, @color-hover, @background-color, @background-color-hover, @border, @border-hover, @label-color) {
-  &.success-design {
-    .cozen-textarea-color(@color, @color-hover, @background-color, @background-color-hover);
-    .cozen-textarea-border(@border, @border-hover);
-    .cozen-textarea-label(@label-color);
-  }
 }
 /*************/
 /*   LABEL   */
 /*************/
-.cozen-textarea-label(@color) {
-  div.cozen-textarea-label {
-    label.label {
-      color: @color;
-    }
+.cozen-textarea-label(@font-size, @color, @padding, @font-weight, @margin-bottom) {
+  .cozen-textarea-label-internal(@font-size, @color, @padding, @font-weight, @margin-bottom);
+}
+/*********************/
+/*   LABEL SUCCESS   */
+/*********************/
+.cozen-textarea-label-success(@font-size, @color, @padding, @font-weight, @margin-bottom) {
+  &.success-design {
+    .cozen-textarea-label-internal(@font-size, @color, @padding, @font-weight, @margin-bottom);
   }
 }
-.cozen-textarea-label(@font-size, @color, @padding, @font-weight, @margin-bottom) {
+/*******************/
+/*   LABEL ERROR   */
+/*******************/
+.cozen-textarea-label-error(@font-size, @color, @padding, @font-weight, @margin-bottom) {
+  &.error-design {
+    .cozen-textarea-label-internal(@font-size, @color, @padding, @font-weight, @margin-bottom);
+  }
+}
+/**********************/
+/*   LABEL DISABLED   */
+/**********************/
+.cozen-textarea-label-disabled(@font-size, @color, @padding, @font-weight, @margin-bottom) {
+  &.success-design.disabled,
+  &.error-design.disabled,
+  &.disabled {
+    .cozen-textarea-label-internal(@font-size, @color, @padding, @font-weight, @margin-bottom);
+  }
+}
+/**********************/
+/*   LABEL INTERNAL   */
+/**********************/
+.cozen-textarea-label-internal(@font-size, @color, @padding, @font-weight, @margin-bottom) {
   div.cozen-textarea-label {
     margin-bottom: @margin-bottom;
     label.label {
