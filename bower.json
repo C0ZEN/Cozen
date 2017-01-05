@@ -1,7 +1,7 @@
 {
-  "name": "cozenLib",
-  "version": "1.0.3",
-  "main": "release/cozen.min.js",
+  "name": "cozen-lib",
+  "version": "1.0.4",
+  "main": "release/cozen.js",
   "dependencies": {
     "angular": "^1.4.0",
     "bootstrap": "^3.2.0",
@@ -31,7 +31,7 @@
     "angular-translate": "^2.13.0"
   },
   "appPath": "app",
-  "moduleName": "cozenLib",
+  "moduleName": "cozen-lib",
   "overrides": {
     "bootstrap": {
       "main": [

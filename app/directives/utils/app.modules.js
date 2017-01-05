@@ -1,11 +1,11 @@
-if (typeof module !== 'undefined' &&
-    typeof exports !== 'undefined' &&
-    module.exports === exports) {
-    module.exports = 'cozenLib';
-}
-
 (function (angular, window) {
     'use strict';
+
+    if (typeof module !== 'undefined' &&
+        typeof exports !== 'undefined' &&
+        module.exports === exports) {
+        module.exports = 'cozen-lib';
+    }
 
     /**
      * @ngdoc overview

@@ -1,7 +1,7 @@
 {
-  "name": "cozenLib",
-  "version": "1.0.3",
-  "main": "release/cozen.min",
+  "name": "cozen-lib",
+  "version": "1.0.4",
+  "main": "release/cozen.js",
   "files": [
     "release/cozen.min.js",
     "release/cozen.min.css"
