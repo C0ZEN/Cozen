@@ -1,5 +1,11 @@
 {
   "name": "cozenLib",
+  "version": "1.0.3",
+  "main": "release/cozen.min",
+  "files": [
+    "release/cozen.min.js",
+    "release/cozen.min.css"
+  ],
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
