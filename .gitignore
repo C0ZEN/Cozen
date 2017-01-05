@@ -10,4 +10,3 @@
 app/languages
 app/directives/utils/app.constant.js
 app/styles/themes/**/*.min.css
-/release
