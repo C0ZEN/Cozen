@@ -121,11 +121,11 @@
 
             function onKeyDown(event) {
                 if (!scope.isHover) return;
-                event.stopPropagation();
                 switch (event.keyCode) {
 
                     // Arrow up
                     case 38:
+                        event.stopPropagation();
                         if (scope.activeChild > 1) scope.activeChild--;
                         else scope.activeChild = scope.childrenUuid.length;
                         $rootScope.$broadcast('cozenListActive', {
@@ -135,6 +135,7 @@
 
                     // Arrow down
                     case 40:
+                        event.stopPropagation();
                         if (scope.activeChild < scope.childrenUuid.length) scope.activeChild++;
                         else scope.activeChild = 1;
                         $rootScope.$broadcast('cozenListActive', {

@@ -8,13 +8,16 @@ div.cozen-panel {
   width:       100%;
 
   // Header
-  & > div.cozen-panel-header {
-    cursor:     inherit;
-    outline:    inherit;
-    transition: @cozen-transition;
+  div.cozen-panel-header {
+    cursor:         inherit;
+    outline:        inherit;
+    transition:     @cozen-transition;
+    display:        flex;
+    flex-direction: row;
+    align-items:     center;
 
     // Label
-    & > span.cozen-panel-label {
+    span.cozen-panel-label {
       cursor:         inherit;
       font-weight:    normal;
       font-size:      inherit;
@@ -26,8 +29,8 @@ div.cozen-panel {
     }
 
     // Icon
-    & > div.cozen-panel-icon,
-    & > div.cozen-panel-big-icon {
+    div.cozen-panel-icon,
+    div.cozen-panel-big-icon {
       display:        inline-block;
       cursor:         inherit;
       font-weight:    normal;
@@ -35,17 +38,15 @@ div.cozen-panel {
       outline:        @cozen-outline;
       transition:     @cozen-transition;
     }
-    & > div.cozen-panel-icon {
+    div.cozen-panel-icon {
       font-size:   inherit;
       line-height: inherit;
     }
-    & > div.cozen-panel-big-icon {
-      display: inline-flex;
-      &.left {
-        float: left;
-      }
+    div.cozen-panel-big-icon {
+      display:       inline-flex;
+      border-radius: @cozen-radius;
       &.right {
-        float: right;
+        margin-left: auto;
       }
       i {
         vertical-align: middle;
@@ -57,7 +58,7 @@ div.cozen-panel {
   }
 
   // Body
-  & > div.cozen-panel-body {
+  div.cozen-panel-body {
     cursor:     default;
     overflow-y: auto;
     overflow-x: hidden;
@@ -65,7 +66,6 @@ div.cozen-panel {
 
   // Disabled
   &.disabled {
-    opacity:     0.4;
     cursor:      not-allowed;
     user-select: none;
   }

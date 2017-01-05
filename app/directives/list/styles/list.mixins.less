@@ -6,14 +6,36 @@
     padding: @padding;
   }
 }
-/**************/
-/*   BORDER   */
-/**************/
+/**********/
+/*   HR   */
+/**********/
 .cozen-list-hr(@margin, @max-width, @border-bottom) {
   hr {
     margin:        @margin;
     max-width:     @max-width;
     border-bottom: @border-bottom;
+  }
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-list-border(@top, @inner, @bottom, @left-right) {
+  div.cozen-list-transclude {
+    div.cozen-list-item {
+      border-top:   @inner;
+      border-right: @left-right;
+      border-left:  @left-right;
+    }
+    :first-child {
+      div.cozen-list-item {
+        border-top: @top;
+      }
+    }
+    :last-child {
+      div.cozen-list-item {
+        border-bottom: @bottom;
+      }
+    }
   }
 }
 

@@ -1,58 +1,54 @@
 /************/
 /*   SIZE   */
 /************/
-.cozen-pagination-btn-size(@padding, @font-size, @height) {
-  & > div.cozen-pagination-btn {
-    padding:     0 @padding;
-    font-size:   @font-size;
-    height:      @height;
-    line-height: @height;
+.cozen-pagination-btn-size(@padding, @font-size) {
+  div.cozen-pagination-btn {
+    padding:   @padding;
+    font-size: @font-size;
   }
 }
 /**************/
 /*   BORDER   */
 /**************/
-.cozen-pagination-btn-border(@size, @type, @color, @color-hover) {
-  & > div.cozen-pagination-btn {
-    border:       @size @type @color;
+.cozen-pagination-btn-border(@border, @border-hover) {
+  div.cozen-pagination-btn {
+    .cozen-pagination-btn-border-internal(@border, @border-hover);
+  }
+}
+/*********************/
+/*   BORDER ACTIVE   */
+/*********************/
+.cozen-pagination-btn-border-active(@border, @border-hover) {
+  div.cozen-pagination-btn.active {
+    .cozen-pagination-btn-border-internal(@border, @border-hover);
+  }
+}
+/***********************/
+/*   BORDER DISABLED   */
+/***********************/
+.cozen-pagination-btn-border-disabled(@border, @border-hover) {
+  div.cozen-pagination-btn.disabled {
+    .cozen-pagination-btn-border-internal(@border, @border-hover);
+  }
+}
+/***********************/
+/*   BORDER INTERNAL   */
+/***********************/
+.cozen-pagination-btn-border-internal(@border, @border-hover) {
+  border:       @border;
+  border-right: none;
+  &:last-of-type {
+    border-right: @border;
+  }
+  &:focus,
+  &:hover {
+    border:       @border-hover;
     border-right: none;
     &:last-of-type {
-      border-right: @size @type @color;
+      border-right: @border-hover;
     }
-    &:focus,
-    &:hover {
-      border:       @size @type @color-hover;
-      border-right: none;
-      &:last-of-type {
-        border-right: @size @type @color-hover;
-      }
-      & + div {
-        border-left: @size @type @color-hover;
-      }
-    }
-    &.disabled {
-      &:hover {
-        border:       @size @type @color;
-        border-right: none;
-        &:last-of-type {
-          border-right: @size @type @color;
-        }
-        & + div {
-          border-left: @size @type @color;
-        }
-      }
-    }
-  }
-  &.disabled {
-    & > div.cozen-pagination-btn:hover {
-      border:       @size @type @color;
-      border-right: none;
-      &:last-of-type {
-        border-right: @size @type @color;
-      }
-      & + div {
-        border-left: @size @type @color;
-      }
+    & + div {
+      border-left: @border-hover;
     }
   }
 }
@@ -60,43 +56,35 @@
 /*   COLOR   */
 /*************/
 .cozen-pagination-btn-color(@color, @color-hover, @background-color, @background-color-hover) {
-  & > div.cozen-pagination-btn {
-    color:            @color;
-    background-color: @background-color;
-    .cozen-pagination-btn-active(@background-color, @background-color-hover, @color, @color-hover);
-    &:focus,
-    &:hover {
-      color:            @color-hover;
-      background-color: @background-color-hover;
-    }
-    &.disabled {
-      &:hover {
-        color:            @color;
-        background-color: @background-color;
-      }
-    }
-  }
-  &.disabled {
-    & > div.cozen-pagination-btn {
-      .cozen-pagination-btn-active(@background-color, @background-color, @color, @color);
-      &:hover {
-        color:            @color;
-        background-color: @background-color;
-      }
-    }
+  div.cozen-pagination-btn {
+    .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
   }
 }
-/**************/
-/*   ACTIVE   */
-/**************/
-.cozen-pagination-btn-active(@color, @color-hover, @background-color, @background-color-hover) {
-  &.active {
-    color:            @color;
-    background-color: @background-color;
-    &:focus,
-    &:hover {
-      color:            @color-hover;
-      background-color: @background-color-hover;
-    }
+/********************/
+/*   COLOR ACTIVE   */
+/********************/
+.cozen-pagination-btn-color-active(@color, @color-hover, @background-color, @background-color-hover) {
+  div.cozen-pagination-btn.active {
+    .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+  }
+}
+/**********************/
+/*   COLOR DISABLED   */
+/**********************/
+.cozen-pagination-btn-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
+  div.cozen-pagination-btn.disabled {
+    .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+  }
+}
+/**********************/
+/*   COLOR INTERNAL   */
+/**********************/
+.cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover) {
+  color:            @color;
+  background-color: @background-color;
+  &:focus,
+  &:hover {
+    color:            @color-hover;
+    background-color: @background-color-hover;
   }
 }

@@ -30,7 +30,7 @@
 /******************/
 /*   HEADER SIZE  */
 /******************/
-.cozen-popup-header-size(@title-size, @title-margin, @sub-title-size, @close-size, @picto-margin-right) {
+.cozen-popup-header-size(@title-size, @title-margin, @sub-title-size, @close-size, @picto-margin-right, @weight) {
   div.cozen-popup-container {
     div.cozen-popup-header {
       div.cozen-popup-header-img.left {
@@ -38,15 +38,18 @@
       }
       div.cozen-popup-header-title {
         span.title {
-          font-size: @title-size;
-          margin:    @title-margin;
+          font-size:   @title-size;
+          margin:      @title-margin;
+          font-weight: @weight;
         }
         span.sub-title {
-          font-size: @sub-title-size;
+          font-size:   @sub-title-size;
+          font-weight: @weight;
         }
       }
       div.cozen-popup-header-close {
-        font-size: @close-size;
+        font-size:   @close-size;
+        font-weight: @weight;
       }
     }
   }

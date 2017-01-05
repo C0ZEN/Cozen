@@ -2,16 +2,37 @@
 /*   COLOR   */
 /*************/
 .cozen-list-item-media3-color(@background-color, @background-color-hover) {
-  .cozen-list-item.cozen-list-item-media3 {
+  .cozen-list-item-media3-color-internal(@background-color, @background-color-hover);
+}
+/*****************/
+/*   COLOR ODD   */
+/*****************/
+.cozen-list-item-media3-color-odd(@background-color, @background-color-hover) {
+  .cozen-list-item.cozen-list-item-media3.odd {
     background-color: @background-color;
     &.active,
     &:focus {
       background-color: @background-color-hover;
     }
-    &.disabled {
-      &:focus {
-        background-color: @background-color;
-      }
+  }
+}
+/**********************/
+/*   COLOR DISABLED   */
+/**********************/
+.cozen-list-item-media3-color-disabled(@background-color, @background-color-hover) {
+  &.disabled {
+    .cozen-list-item-media3-color-internal(@background-color, @background-color-hover);
+  }
+}
+/**********************/
+/*   COLOR INTERNAL   */
+/**********************/
+.cozen-list-item-media3-color-internal(@background-color, @background-color-hover) {
+  .cozen-list-item.cozen-list-item-media3 {
+    background-color: @background-color;
+    &.active,
+    &:focus {
+      background-color: @background-color-hover;
     }
   }
 }

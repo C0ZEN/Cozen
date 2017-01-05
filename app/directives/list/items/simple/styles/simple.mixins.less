@@ -5,7 +5,7 @@
   .cozen-list-item.cozen-list-item-simple {
     font-size: @font-size;
     div.cozen-list-item-simple-content {
-      & > div.cozen-list-item-simple-icon.left {
+      div.cozen-list-item-simple-icon.left {
         margin-right: @font-size / 6;
       }
     }
@@ -15,6 +15,33 @@
 /*   COLOR   */
 /*************/
 .cozen-list-item-simple-color(@color, @color-hover, @background-color, @background-color-hover) {
+  .cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+}
+/*****************/
+/*   COLOR ODD   */
+/*****************/
+.cozen-list-item-simple-color-odd(@background-color, @background-color-hover) {
+  .cozen-list-item.cozen-list-item-simple.odd {
+    background-color: @background-color;
+    &.active,
+    &:focus {
+      background-color: @background-color-hover;
+    }
+  }
+}
+/**********************/
+/*   COLOR DISABLED   */
+/**********************/
+.cozen-list-item-simple-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
+  &.odd.disabled,
+  &.disabled {
+    .cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+  }
+}
+/**********************/
+/*   COLOR INTERNAL   */
+/**********************/
+.cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover) {
   .cozen-list-item.cozen-list-item-simple {
     color:            @color;
     background-color: @background-color;
@@ -22,12 +49,6 @@
     &:focus {
       color:            @color-hover;
       background-color: @background-color-hover;
-    }
-    &.disabled {
-      &:focus {
-        color:            @color;
-        background-color: @background-color;
-      }
     }
   }
 }
@@ -53,8 +74,42 @@
 /***********/
 /*   BTN   */
 /***********/
-.cozen-list-item-simple-btn(@hover, @padding, @font-size, @color, @background-color, @border) {
-  & when (@hover = false) {
+.cozen-list-item-simple-btn(@padding, @font-size, @color, @background-color, @border) {
+  .cozen-list-item.cozen-list-item-simple {
+    div.cozen-list-item-simple-content {
+      div.cozen-list-item-simple-btn {
+        padding:          @padding;
+        font-size:        @font-size;
+        color:            @color;
+        background-color: @background-color;
+        border:           @border;
+      }
+    }
+  }
+}
+/*****************/
+/*   BTN HOVER   */
+/*****************/
+.cozen-list-item-simple-btn-hover(@padding, @font-size, @color, @background-color, @border) {
+  .cozen-list-item.cozen-list-item-simple {
+    div.cozen-list-item-simple-content {
+      div.cozen-list-item-simple-btn {
+        &:focus,
+        &:hover {
+          padding:          @padding;
+          color:            @color;
+          background-color: @background-color;
+          border:           @border;
+        }
+      }
+    }
+  }
+}
+/********************/
+/*   BTN DISABLED   */
+/********************/
+.cozen-list-item-simple-btn-disabled(@padding, @font-size, @color, @background-color, @border) {
+  &.disabled {
     .cozen-list-item.cozen-list-item-simple {
       div.cozen-list-item-simple-content {
         div.cozen-list-item-simple-btn {
@@ -63,14 +118,6 @@
           color:            @color;
           background-color: @background-color;
           border:           @border;
-        }
-      }
-    }
-  }
-  & when (@hover = true) {
-    .cozen-list-item.cozen-list-item-simple {
-      div.cozen-list-item-simple-content {
-        div.cozen-list-item-simple-btn {
           &:focus,
           &:hover {
             padding:          @padding;

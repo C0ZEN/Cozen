@@ -1,41 +1,43 @@
 /*************/
 /*   COLOR   */
 /*************/
-.cozen-tooltip-color(@color, @background-color) {
-  .tooltip.top .tooltip-arrow {
-    border-top-color: @background-color;
+.cozen-tooltip-color(@color, @background-color, @arrow-color, @border, @shadow) {
+  &.tooltip.top .tooltip-arrow {
+    border-top-color: @arrow-color;
   }
-  .tooltip.top-left .tooltip-arrow {
-    border-top-color: @background-color;
+  &.tooltip.top-left .tooltip-arrow {
+    border-top-color: @arrow-color;
   }
-  .tooltip.top-right .tooltip-arrow {
-    border-top-color: @background-color;
+  &.tooltip.top-right .tooltip-arrow {
+    border-top-color: @arrow-color;
   }
-  .tooltip.right .tooltip-arrow {
-    border-right-color: @background-color;
+  &.tooltip.right .tooltip-arrow {
+    border-right-color: @arrow-color;
   }
-  .tooltip.left .tooltip-arrow {
-    border-left-color: @background-color;
+  &.tooltip.left .tooltip-arrow {
+    border-left-color: @arrow-color;
   }
-  .tooltip.bottom .tooltip-arrow {
-    border-bottom-color: @background-color;
+  &.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: @arrow-color;
   }
-  .tooltip.bottom-left .tooltip-arrow {
-    border-bottom-color: @background-color;
+  &.tooltip.bottom-left .tooltip-arrow {
+    border-bottom-color: @arrow-color;
   }
-  .tooltip.bottom-right .tooltip-arrow {
-    border-bottom-color: @background-color;
+  &.tooltip.bottom-right .tooltip-arrow {
+    border-bottom-color: @arrow-color;
   }
-  .tooltip > .tooltip-inner {
+  &.tooltip > .tooltip-inner {
     background-color: @background-color;
     color:            @color;
+    border:           @border;
+    box-shadow:       @shadow;
   }
 }
 /************/
 /*   FONT   */
 /************/
 .cozen-tooltip-font(@size, @weight) {
-  .tooltip {
+  &.tooltip {
     font-size:   @size;
     font-weight: @weight;
   }
@@ -44,7 +46,7 @@
 /*   SIZE   */
 /************/
 .cozen-tooltip-size(@padding, @max-width) {
-  .tooltip {
+  &.tooltip {
     padding:   @padding;
     max-width: @max-width;
   }
