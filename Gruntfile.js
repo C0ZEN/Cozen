@@ -305,19 +305,30 @@ module.exports = function (grunt) {
         // minification. These next options are pre-configured if you do not wish
         // to use the Usemin blocks.
         uglify: {
-            dist   : {
+            dist             : {
                 files: {
                     '<%= yeoman.dist %>/scripts/scripts.js': [
                         '<%= yeoman.dist %>/scripts/scripts.js'
                     ]
                 }
             },
-            release: {
+            releaseDirectives: {
                 files: {
-                    '<%= yeoman.release %>/main.min.js': [
+                    '.tmp/release/directives.min.js': [
                         '<%= yeoman.app %>/**/*.js',
-                        '!<%= yeoman.app %>/**/*.tpl.js'
+                        '!<%= yeoman.app %>/**/*.tpl.js',
+                        '!<%= yeoman.app %>/directives/utils/app.modules.js'
                     ]
+                }
+            },
+            releaseMain      : {
+                files: {
+                    '.tmp/release/main.min.js': '<%= yeoman.app %>/directives/utils/app.modules.js'
+                }
+            },
+            releaseCache: {
+                files: {
+                    '.tmp/release/template.cache.min.js': '<%= yeoman.release %>/clean/template.cache.js'
                 }
             }
         },
@@ -390,11 +401,12 @@ module.exports = function (grunt) {
             release: {
                 options: {
                     module : 'cozenLib',
-                    htmlmin: '<%= htmlmin.release.options %>'
+                    htmlmin: '<%= htmlmin.release.options %>',
+                    prefix : 'directives/'
                 },
                 cwd    : '<%= yeoman.app %>/directives',
                 src    : '**/*.html',
-                dest   : '<%= yeoman.release %>/template.cache.js'
+                dest   : '<%= yeoman.release %>/clean/template.cache.js'
             }
         },
 
@@ -469,7 +481,7 @@ module.exports = function (grunt) {
             config   : {
                 expand: true,
                 cwd   : '<%= yeoman.app %>',
-                dest  : '<%= yeoman.release %>',
+                dest  : '<%= yeoman.release %>/clean',
                 src   : 'config.json'
             }
         },
@@ -585,16 +597,31 @@ module.exports = function (grunt) {
         },
 
         concat: {
-            js : {
-                src : '.tmp/release/directives/*.js',
-                dest: '<%= yeoman.release %>/main.js'
+            directivesJs: {
+                src : [
+                    '.tmp/release/directives/*.js',
+                    '!.tmp/release/directives/app.modules.js'
+                ],
+                dest: '<%= yeoman.release %>/clean/directives.js'
             },
-            css: {
+            mainJs      : {
+                src : '.tmp/release/directives/app.modules.js',
+                dest: '<%= yeoman.release %>/clean/main.js'
+            },
+            css         : {
                 files: [
                     {'<%= yeoman.release %>/main.min.css': '.tmp/release/themes/min/*.css'},
-                    {'<%= yeoman.release %>/main.css': '.tmp/release/themes/*.css'},
+                    {'<%= yeoman.release %>/clean/main.css': '.tmp/release/themes/*.css'},
                     {'<%= yeoman.release %>/optional.reset.min.css': '.tmp/release/reset.min.css'}
                 ]
+            },
+            allInOne: {
+                src: [
+                    '.tmp/release/main.min.js',
+                    '.tmp/release/template.cache.min.js',
+                    '.tmp/release/directives.min.js'
+                ],
+                dest: '<%= yeoman.release %>/all-in-one.min.js'
             }
         },
 
@@ -665,18 +692,22 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('release', [
-        'clean:release',       // Delete the .tmp folder and release content folder
-        'languages',           // Concat the languages files
-        'preprocess',          // Build the templates files
-        'less:release',        // Transform less to css and add them to the release folder
-        'cssmin:release',      // Make the css better
-        'ngtemplates:release', // Transform all the .html as template
-        'uglify:release',      // Copy and min all the js into the release folder
-        'copy:release',        // Copy all the js into the .tmp folder
-        'concat:js',           // Copy all the js into the release folder
-        'concat:css',          // Copy all the css into the release folder
-        'copy:languages',      // Copy the languages folder into the release folder
-        'copy:config'          // Copy the config
+        'clean:release',            // Delete the .tmp folder and release content folder
+        'languages',                // Concat the languages files
+        'preprocess',               // Build the templates files
+        'less:release',             // Transform less to css and add them to the release folder
+        'cssmin:release',           // Make the css better
+        'ngtemplates:release',      // Transform all the .html as template
+        'uglify:releaseDirectives', // Copy and min all the js into the release folder
+        'uglify:releaseMain',       // Copy and min the main js into the release folder
+        'uglify:releaseCache',      // Copy and min the cache js into the release folder
+        'copy:release',             // Copy all the js into the .tmp folder
+        'concat:mainJs',            // Copy the main js into the release folder
+        'concat:directivesJs',      // Copy all the other js into the release folder
+        'concat:css',               // Copy all the css into the release folder
+        'copy:languages',           // Copy the languages folder into the release folder
+        'copy:config',              // Copy the config,
+        'concat:allInOne'           // Copy and min all the js files into one
     ]);
 
     grunt.registerTask('default', [
