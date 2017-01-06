@@ -3,6 +3,7 @@
     "fr",
     "en"
   ],
+  "currentLanguage": "fr",
   "themes": [
     "tau",
     "atom"

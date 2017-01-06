@@ -14,7 +14,7 @@
 
         // Main abstract route (parent)
         $stateProvider
-            .state('main', {
+            .state('base', {
                 url        : '/main',
                 templateUrl: 'examples/main.html',
                 data       : {pageTitle: 'Main'}

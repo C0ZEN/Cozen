@@ -19,23 +19,6 @@
     // Global configuration
     function config($locationProvider, $translateProvider, CONFIG, ThemesProvider, ConfigProvider) {
 
-        // Configure the location provider
-        $locationProvider.html5Mode({
-            enabled    : false,
-            requireBase: false
-        });
-
-        // Configure the translate provider
-        $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-        $translateProvider.useStaticFilesLoader({
-            prefix: '/languages/',
-            suffix: '.concat.json'
-        });
-        $translateProvider.preferredLanguage(CONFIG.languages[0]);
-
-        // Configure the locale for moment
-        moment.locale(CONFIG.languages[0]);
-
         // Override the CONFIG for the Tau theme
         // ThemesProvider.setActiveTheme('tau');
         // ConfigProvider
@@ -57,7 +40,25 @@
             .textareaDisplayModelLength(true)
             .dropdownDisplayModelLength(true)
             .requiredType('icon')
-            .alertIconLeftDefault('fa fa-info-circle');
+            .alertIconLeftDefault('fa fa-info-circle')
+            .currentLanguage('fr');
+
+        // Configure the location provider
+        $locationProvider.html5Mode({
+            enabled    : false,
+            requireBase: false
+        });
+
+        // Configure the translate provider
+        $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+        $translateProvider.useStaticFilesLoader({
+            prefix: '/languages/',
+            suffix: '.concat.json'
+        });
+        $translateProvider.preferredLanguage(CONFIG.currentLanguage);
+
+        // Configure the locale for moment
+        moment.locale(CONFIG.currentLanguage);
     }
 
     run.$inject = [

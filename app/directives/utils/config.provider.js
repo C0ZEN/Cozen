@@ -17,6 +17,13 @@
             return this;
         };
 
+        this.currentLanguage = function (value) {
+            var list = CONFIG.languages;
+            if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('currentLanguage', list);
+            else CONFIG.currentLanguage = value;
+            return this;
+        };
+
         this.scrollsBar = function (value) {
             if (typeof value != 'boolean') Methods.dataMustBeBoolean('scrollsBar');
             else CONFIG.scrollsBar = value;

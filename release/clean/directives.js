@@ -215,6 +215,7 @@
     "fr",
     "en"
   ],
+  "currentLanguage": "fr",
   "themes": [
     "tau",
     "atom"
@@ -936,6 +937,13 @@
         this.debug = function (value) {
             if (typeof value != 'boolean') Methods.dataMustBeBoolean('debug');
             else CONFIG.debug = value;
+            return this;
+        };
+
+        this.currentLanguage = function (value) {
+            var list = CONFIG.languages;
+            if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('currentLanguage', list);
+            else CONFIG.currentLanguage = value;
             return this;
         };
 
