@@ -1,7 +1,7 @@
 {
   "name": "cozen-lib",
-  "version": "1.0.4",
-  "main": "release/cozen.js",
+  "version": "1.0.6",
+  "main": "release/main.js",
   "dependencies": {
     "angular": "^1.4.0",
     "bootstrap": "^3.2.0",
