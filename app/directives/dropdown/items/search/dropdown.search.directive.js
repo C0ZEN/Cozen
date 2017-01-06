@@ -41,7 +41,7 @@
       scope           : {
         cozenDropdownItemSearchModel: '=?'
       },
-      templateUrl     : 'directives/dropdown/items/search/search.template.html',
+      templateUrl     : 'directives/dropdown/items/search/dropdown.search.template.html',
       bindToController: true,
       controller      : cozenDropdownItemSearchCtrl,
       controllerAs    : 'vm'

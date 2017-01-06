@@ -43,7 +43,7 @@
                 cozenListItemMedia3OnClick : '&',
                 cozenListItemMedia3Disabled: '=?'
             },
-            templateUrl: 'directives/list/items/media3/media3.template.html'
+            templateUrl: 'directives/list/items/media3/list.media3.template.html'
         };
 
         function link(scope, element, attrs) {

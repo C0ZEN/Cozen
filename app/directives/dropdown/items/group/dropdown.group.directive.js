@@ -35,7 +35,7 @@
             replace    : false,
             transclude : true,
             scope      : false,
-            templateUrl: 'directives/dropdown/items/group/group.template.html'
+            templateUrl: 'directives/dropdown/items/group/dropdown.group.template.html'
         };
 
         function link(scope, element, attrs) {

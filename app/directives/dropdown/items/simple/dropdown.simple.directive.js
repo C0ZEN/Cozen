@@ -49,7 +49,7 @@
                 cozenDropdownItemSimpleSelected: '=?',
                 cozenDropdownItemSimpleValue   : '=?'
             },
-            templateUrl: 'directives/dropdown/items/simple/simple.template.html'
+            templateUrl: 'directives/dropdown/items/simple/dropdown.simple.template.html'
         };
 
         function link(scope, element, attrs) {

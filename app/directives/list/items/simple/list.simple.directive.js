@@ -49,7 +49,7 @@
                 cozenListItemSimpleBtnRight       : '=?',
                 cozenListItemSimpleBtnRightOnClick: '&'
             },
-            templateUrl: 'directives/list/items/simple/simple.template.html'
+            templateUrl: 'directives/list/items/simple/list.simple.template.html'
         };
 
         function link(scope, element, attrs) {
