@@ -2130,27 +2130,27 @@ div.cozen-btn.atom.normal.auto > div.cozen-btn-loader {
   margin: 0 10px;
 }
 div.cozen-btn.atom.large {
-  padding: 6px;
+  padding: 12px;
   font-size: 16px;
 }
 div.cozen-btn.atom.large.auto {
-  padding: 6px 24px;
+  padding: 12px 36px;
 }
 div.cozen-btn.atom.large > div.cozen-btn-icon {
-  padding: 0 6px;
+  padding: 0 12px;
 }
 div.cozen-btn.atom.large > div.cozen-btn-loader {
-  width: 50px;
+  width: 90px;
   padding: 13px;
 }
 div.cozen-btn.atom.large > div.cozen-btn-loader:before,
 div.cozen-btn.atom.large > div.cozen-btn-loader > span,
 div.cozen-btn.atom.large > div.cozen-btn-loader:after {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 div.cozen-btn.atom.large.auto > div.cozen-btn-loader {
-  margin: 0 10px;
+  margin: 0 12px;
 }
 div.cozen-btn.atom.default {
   color: #ffffff;
