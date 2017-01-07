@@ -2234,7 +2234,7 @@ div.cozen-btn.atom.primary {
 div.cozen-btn.atom.primary:hover,
 div.cozen-btn.atom.primary:focus,
 div.cozen-btn.atom.primary.active {
-  background-color: rgba(30, 136, 229, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-btn.atom.primary:hover.loading,
 div.cozen-btn.atom.primary:focus.loading,
@@ -6780,14 +6780,14 @@ div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3 {
 }
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3.active,
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3.odd {
   background-color: rgba(44, 159, 221, 0.04);
 }
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3.odd.active,
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3.odd:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.small.disabled .cozen-list-item.cozen-list-item-media3 {
   background-color: #ffffff;
@@ -6845,14 +6845,14 @@ div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3 {
 }
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3.active,
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3.odd {
   background-color: rgba(44, 159, 221, 0.04);
 }
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3.odd.active,
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3.odd:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.normal.disabled .cozen-list-item.cozen-list-item-media3 {
   background-color: #ffffff;
@@ -6910,14 +6910,14 @@ div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3 {
 }
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3.active,
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3.odd {
   background-color: rgba(44, 159, 221, 0.04);
 }
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3.odd.active,
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3.odd:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.large.disabled .cozen-list-item.cozen-list-item-media3 {
   background-color: #ffffff;
@@ -6983,14 +6983,14 @@ div.cozen-list.atom.small .cozen-list-item.cozen-list-item-simple {
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-simple.active,
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-simple:focus {
   color: #4c596b;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-simple.odd {
   background-color: rgba(44, 159, 221, 0.04);
 }
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-simple.odd.active,
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-simple.odd:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.small.odd.disabled .cozen-list-item.cozen-list-item-simple,
 div.cozen-list.atom.small.disabled .cozen-list-item.cozen-list-item-simple {
@@ -7055,14 +7055,14 @@ div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-simple {
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-simple.active,
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-simple:focus {
   color: #4c596b;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-simple.odd {
   background-color: rgba(44, 159, 221, 0.04);
 }
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-simple.odd.active,
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-simple.odd:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.normal.odd.disabled .cozen-list-item.cozen-list-item-simple,
 div.cozen-list.atom.normal.disabled .cozen-list-item.cozen-list-item-simple {
@@ -7127,14 +7127,14 @@ div.cozen-list.atom.large .cozen-list-item.cozen-list-item-simple {
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-simple.active,
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-simple:focus {
   color: #4c596b;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-simple.odd {
   background-color: rgba(44, 159, 221, 0.04);
 }
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-simple.odd.active,
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-simple.odd:focus {
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-list.atom.large.odd.disabled .cozen-list-item.cozen-list-item-simple,
 div.cozen-list.atom.large.disabled .cozen-list-item.cozen-list-item-simple {
@@ -7257,16 +7257,16 @@ div.cozen-pagination.atom.small div.cozen-pagination-btn {
 div.cozen-pagination.atom.small div.cozen-pagination-btn:focus,
 div.cozen-pagination.atom.small div.cozen-pagination-btn:hover {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.active {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.active:focus,
 div.cozen-pagination.atom.small div.cozen-pagination-btn.active:hover {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled {
   color: rgba(76, 89, 107, 0.5);
@@ -7348,16 +7348,16 @@ div.cozen-pagination.atom.normal div.cozen-pagination-btn {
 div.cozen-pagination.atom.normal div.cozen-pagination-btn:focus,
 div.cozen-pagination.atom.normal div.cozen-pagination-btn:hover {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.active {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.active:focus,
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.active:hover {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled {
   color: rgba(76, 89, 107, 0.5);
@@ -7439,16 +7439,16 @@ div.cozen-pagination.atom.large div.cozen-pagination-btn {
 div.cozen-pagination.atom.large div.cozen-pagination-btn:focus,
 div.cozen-pagination.atom.large div.cozen-pagination-btn:hover {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.active {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.active:focus,
 div.cozen-pagination.atom.large div.cozen-pagination-btn.active:hover {
   color: #2c9fdd;
-  background-color: rgba(44, 159, 221, 0.1);
+  background-color: #e9f5fb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled {
   color: rgba(76, 89, 107, 0.5);
