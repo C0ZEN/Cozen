@@ -56,5 +56,15 @@
       "in": true,
       "out": true
     }
+  },
+  "popup": {
+    "header": true,
+    "footer": true,
+    "animation": {
+      "in": true,
+      "out": true
+    },
+    "easeClose": true,
+    "closeBtn": true
   }
 }

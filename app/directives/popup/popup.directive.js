@@ -13,26 +13,26 @@
  * @param {boolean}  cozenPopupIsOpen = false > Display the popup without event
  *
  * [Attributes params]
- * @param {number}  cozenPopupId                          > Id of the button
- * @param {string}  cozenPopupSize            = 'normal'  > Size of the button
+ * @param {number}  cozenPopupId                          > Id of the popup
+ * @param {string}  cozenPopupSize            = 'normal'  > Size of the popup
  * @param {string}  cozenPopupSizeSmall                   > Shortcut for small size
  * @param {string}  cozenPopupSizeNormal                  > Shortcut for normal size
  * @param {string}  cozenPopupSizeLarge                   > Shortcut for large size
- * @param {string}  cozenPopupType            = 'default' > Type of the button (change the color)
+ * @param {string}  cozenPopupType            = 'default' > Type of the popup (change the color)
  * @param {string}  cozenPopupTypeDefault                 > Shortcut for default type
  * @param {string}  cozenPopupTypeInfo                    > Shortcut for info type
  * @param {string}  cozenPopupTypeSuccess                 > Shortcut for success type
  * @param {string}  cozenPopupTypeWarning                 > Shortcut for warning type
  * @param {string}  cozenPopupTypeError                   > Shortcut for error type
- * @param {boolean} cozenPopupHeader          = true      > Display the header
+ * @param {boolean} cozenPopupHeader          = true      > Display the header [config]
  * @param {string}  cozenPopupHeaderTitle                 > Text of the header title
  * @param {string}  cozenPopupHeaderSubTitle              > Text of the header sub-title
- * @param {boolean} cozenPopupFooter          = true      > Display the footer
+ * @param {boolean} cozenPopupFooter          = true      > Display the footer [config]
  * @param {string}  cozenPopupName                        > Name of the popup [required]
- * @param {boolean} cozenPopupAnimationIn     = true      > Add an animation before show
- * @param {boolean} cozenPopupAnimationOut    = true      > Add an animation before hide
- * @param {boolean} cozenPopupEasyClose       = true      > Auto close the popup when a click is outside
- * @param {boolean} cozenPopupCloseBtn        = true      > Display the close btn (top-right)
+ * @param {boolean} cozenPopupAnimationIn     = true      > Add an animation before show [config]
+ * @param {boolean} cozenPopupAnimationOut    = true      > Add an animation before hide [config]
+ * @param {boolean} cozenPopupEasyClose       = true      > Auto close the popup when a click is outside [config]
+ * @param {boolean} cozenPopupCloseBtn        = true      > Display the close btn (top-right) [config]
  * @param {string}  cozenPopupHeaderPictoLeft             > Add a picto on left of the header (url of the picto)
  *
  */
@@ -130,15 +130,15 @@
 
                 // Default values (attributes)
                 scope._cozenPopupId              = angular.isDefined(attrs.cozenPopupId) ? attrs.cozenPopupId : '';
-                scope._cozenPopupHeader          = angular.isDefined(attrs.cozenPopupHeader) ? JSON.parse(attrs.cozenPopupHeader) : true;
+                scope._cozenPopupHeader          = angular.isDefined(attrs.cozenPopupHeader) ? JSON.parse(attrs.cozenPopupHeader) : CONFIG.popup.header;
                 scope._cozenPopupHeaderTitle     = angular.isDefined(attrs.cozenPopupHeaderTitle) ? attrs.cozenPopupHeaderTitle : '';
                 scope._cozenPopupHeaderSubTitle  = angular.isDefined(attrs.cozenPopupHeaderSubTitle) ? attrs.cozenPopupHeaderSubTitle : '';
-                scope._cozenPopupFooter          = angular.isDefined(attrs.cozenPopupFooter) ? JSON.parse(attrs.cozenPopupFooter) : true;
+                scope._cozenPopupFooter          = angular.isDefined(attrs.cozenPopupFooter) ? JSON.parse(attrs.cozenPopupFooter) : CONFIG.popup.footer;
                 scope._cozenPopupName            = attrs.cozenPopupName;
-                scope._cozenPopupAnimationIn     = angular.isDefined(attrs.cozenPopupAnimationIn) ? JSON.parse(attrs.cozenPopupAnimationIn) : true;
-                scope._cozenPopupAnimationOut    = angular.isDefined(attrs.cozenPopupAnimationOut) ? JSON.parse(attrs.cozenPopupAnimationOut) : true;
-                scope._cozenPopupEasyClose       = angular.isDefined(attrs.cozenPopupEasyClose) ? JSON.parse(attrs.cozenPopupEasyClose) : true;
-                scope._cozenPopupCloseBtn        = angular.isDefined(attrs.cozenPopupCloseBtn) ? JSON.parse(attrs.cozenPopupCloseBtn) : true;
+                scope._cozenPopupAnimationIn     = angular.isDefined(attrs.cozenPopupAnimationIn) ? JSON.parse(attrs.cozenPopupAnimationIn) : CONFIG.popup.animation.in;
+                scope._cozenPopupAnimationOut    = angular.isDefined(attrs.cozenPopupAnimationOut) ? JSON.parse(attrs.cozenPopupAnimationOut) : CONFIG.popup.animation.out;
+                scope._cozenPopupEasyClose       = angular.isDefined(attrs.cozenPopupEasyClose) ? JSON.parse(attrs.cozenPopupEasyClose) : CONFIG.popup.easeClose;
+                scope._cozenPopupCloseBtn        = angular.isDefined(attrs.cozenPopupCloseBtn) ? JSON.parse(attrs.cozenPopupCloseBtn) : CONFIG.popup.closeBtn;
                 scope._cozenPopupHeaderPictoLeft = angular.isDefined(attrs.cozenPopupHeaderPictoLeft) ? attrs.cozenPopupHeaderPictoLeft : '';
 
                 // ScrollBar
@@ -265,8 +265,8 @@
                 // Set the height of the img (to auto fit)
                 if (scope._cozenPopupHeaderPictoLeft != '') {
                     $timeout(function () {
-                        var img   = element.find('.cozen-popup-header .cozen-popup-header-img.left')[0];
-                        var title = element.find('.cozen-popup-header .cozen-popup-header-title')[0];
+                        var img          = element.find('.cozen-popup-header .cozen-popup-header-img.left')[0];
+                        var title        = element.find('.cozen-popup-header .cozen-popup-header-title')[0];
                         img.style.height = title.offsetHeight + 'px';
                         img.style.width  = title.offsetHeight + 'px';
                     });

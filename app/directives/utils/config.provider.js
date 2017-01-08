@@ -126,6 +126,42 @@
             return this;
         };
 
+        this.popupHeader = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupHeader');
+            else CONFIG.popup.header = value;
+            return this;
+        };
+
+        this.popupFooter = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupFooter');
+            else CONFIG.popup.footer = value;
+            return this;
+        };
+
+        this.popupAnimationIn = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationIn');
+            else CONFIG.popup.animation.in = value;
+            return this;
+        };
+
+        this.popupAnimationOut = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOut');
+            else CONFIG.popup.animation.out = value;
+            return this;
+        };
+
+        this.popupEasyClose = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupEasyClose');
+            else CONFIG.popup.easyClose = value;
+            return this;
+        };
+
+        this.popupCloseBtn = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupCloseBtn');
+            else CONFIG.popup.closeBtn = value;
+            return this;
+        };
+
         this.$get = Config;
 
         Config.$inject = [];
