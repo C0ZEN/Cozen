@@ -32,6 +32,20 @@
 /*   TYPE   */
 /************/
 .cozen-btn-type(@color, @background-color, @background-color-hover, @weight) {
+  .cozen-btn-type-internal(@color, @background-color, @background-color-hover, @weight);
+}
+/*********************/
+/*   TYPE DISABLED   */
+/*********************/
+.cozen-btn-type-disabled(@color, @background-color, @background-color-hover, @weight) {
+  &.disabled {
+    .cozen-btn-type-internal(@color, @background-color, @background-color-hover, @weight);
+  }
+}
+/*********************/
+/*   TYPE INTERNAL   */
+/*********************/
+.cozen-btn-type-internal(@color, @background-color, @background-color-hover, @weight) {
   color:            @color;
   background-color: @background-color;
   font-weight:      @weight;
@@ -58,6 +72,20 @@
 /*   BORDER   */
 /**************/
 .cozen-btn-border(@size, @type, @color, @color-hover, @radius) {
+  .cozen-btn-border-internal(@size, @type, @color, @color-hover, @radius);
+}
+/***********************/
+/*   BORDER DISABLED   */
+/***********************/
+.cozen-btn-border-disabled(@size, @type, @color, @color-hover, @radius) {
+  &.disabled {
+    .cozen-btn-border-internal(@size, @type, @color, @color-hover, @radius);
+  }
+}
+/***********************/
+/*   BORDER INTERNAL   */
+/***********************/
+.cozen-btn-border-internal(@size, @type, @color, @color-hover, @radius) {
   border:        @size @type @color;
   border-radius: @radius;
   &:hover,

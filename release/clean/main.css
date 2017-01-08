@@ -51,9 +51,21 @@
 /************/
 /*   TYPE   */
 /************/
+/*********************/
+/*   TYPE DISABLED   */
+/*********************/
+/*********************/
+/*   TYPE INTERNAL   */
+/*********************/
 /**************/
 /*   BORDER   */
 /**************/
+/***********************/
+/*   BORDER DISABLED   */
+/***********************/
+/***********************/
+/*   BORDER INTERNAL   */
+/***********************/
 /************/
 /*   ICON   */
 /************/
@@ -2192,8 +2204,6 @@ div.cozen-btn.atom.default.disabled {
   color: #ffffff;
   background-color: #e2e6e6;
   font-weight: 400;
-  border: 1px solid #e2e6e6;
-  border-radius: 3px;
 }
 div.cozen-btn.atom.default.disabled:hover,
 div.cozen-btn.atom.default.disabled:focus,
@@ -2212,6 +2222,10 @@ div.cozen-btn.atom.default.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.default.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.default.disabled > div.cozen-btn-loader:after {
   background-color: #e2e6e6;
+}
+div.cozen-btn.atom.default.disabled {
+  border: 1px solid #e2e6e6;
+  border-radius: 3px;
 }
 div.cozen-btn.atom.default.disabled:hover,
 div.cozen-btn.atom.default.disabled.active {
@@ -2264,8 +2278,6 @@ div.cozen-btn.atom.primary.disabled {
   color: #ffffff;
   background-color: #e2e6e6;
   font-weight: 500;
-  border: 1px solid #e2e6e6;
-  border-radius: 3px;
 }
 div.cozen-btn.atom.primary.disabled:hover,
 div.cozen-btn.atom.primary.disabled:focus,
@@ -2285,6 +2297,10 @@ div.cozen-btn.atom.primary.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.primary.disabled > div.cozen-btn-loader:after {
   background-color: #e2e6e6;
 }
+div.cozen-btn.atom.primary.disabled {
+  border: 1px solid #e2e6e6;
+  border-radius: 3px;
+}
 div.cozen-btn.atom.primary.disabled:hover,
 div.cozen-btn.atom.primary.disabled.active {
   border: 1px solid #e2e6e6;
@@ -2294,6 +2310,80 @@ div.cozen-btn.atom.primary.disabled.active.loading {
   border: 1px solid rgba(226, 230, 230, 0.2);
 }
 div.cozen-btn.atom.primary.disabled.loading {
+  border: 1px solid rgba(226, 230, 230, 0.2);
+}
+div.cozen-btn.atom.transparent {
+  color: #2c9fdd;
+  background-color: transparent;
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+div.cozen-btn.atom.transparent:hover,
+div.cozen-btn.atom.transparent:focus,
+div.cozen-btn.atom.transparent.active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+div.cozen-btn.atom.transparent:hover.loading,
+div.cozen-btn.atom.transparent:focus.loading,
+div.cozen-btn.atom.transparent.active.loading {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+div.cozen-btn.atom.transparent.loading {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+div.cozen-btn.atom.transparent > div.cozen-btn-loader:before,
+div.cozen-btn.atom.transparent > div.cozen-btn-loader > span,
+div.cozen-btn.atom.transparent > div.cozen-btn-loader:after {
+  background-color: transparent;
+}
+div.cozen-btn.atom.transparent:hover,
+div.cozen-btn.atom.transparent.active {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+div.cozen-btn.atom.transparent:hover.loading,
+div.cozen-btn.atom.transparent.active.loading {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+div.cozen-btn.atom.transparent.loading {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+div.cozen-btn.atom.transparent.disabled {
+  color: #ffffff;
+  background-color: #e2e6e6;
+  font-weight: 500;
+}
+div.cozen-btn.atom.transparent.disabled:hover,
+div.cozen-btn.atom.transparent.disabled:focus,
+div.cozen-btn.atom.transparent.disabled.active {
+  background-color: #e2e6e6;
+}
+div.cozen-btn.atom.transparent.disabled:hover.loading,
+div.cozen-btn.atom.transparent.disabled:focus.loading,
+div.cozen-btn.atom.transparent.disabled.active.loading {
+  background-color: rgba(226, 230, 230, 0.4);
+}
+div.cozen-btn.atom.transparent.disabled.loading {
+  background-color: rgba(226, 230, 230, 0.4);
+}
+div.cozen-btn.atom.transparent.disabled > div.cozen-btn-loader:before,
+div.cozen-btn.atom.transparent.disabled > div.cozen-btn-loader > span,
+div.cozen-btn.atom.transparent.disabled > div.cozen-btn-loader:after {
+  background-color: #e2e6e6;
+}
+div.cozen-btn.atom.transparent.disabled {
+  border: 1px solid #e2e6e6;
+  border-radius: 3px;
+}
+div.cozen-btn.atom.transparent.disabled:hover,
+div.cozen-btn.atom.transparent.disabled.active {
+  border: 1px solid #e2e6e6;
+}
+div.cozen-btn.atom.transparent.disabled:hover.loading,
+div.cozen-btn.atom.transparent.disabled.active.loading {
+  border: 1px solid rgba(226, 230, 230, 0.2);
+}
+div.cozen-btn.atom.transparent.disabled.loading {
   border: 1px solid rgba(226, 230, 230, 0.2);
 }
 div.cozen-btn.atom.info {
@@ -2336,8 +2426,6 @@ div.cozen-btn.atom.info.disabled {
   color: #ffffff;
   background-color: #e2e6e6;
   font-weight: 400;
-  border: 1px solid #e2e6e6;
-  border-radius: 3px;
 }
 div.cozen-btn.atom.info.disabled:hover,
 div.cozen-btn.atom.info.disabled:focus,
@@ -2356,6 +2444,10 @@ div.cozen-btn.atom.info.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.info.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.info.disabled > div.cozen-btn-loader:after {
   background-color: #e2e6e6;
+}
+div.cozen-btn.atom.info.disabled {
+  border: 1px solid #e2e6e6;
+  border-radius: 3px;
 }
 div.cozen-btn.atom.info.disabled:hover,
 div.cozen-btn.atom.info.disabled.active {
@@ -2408,8 +2500,6 @@ div.cozen-btn.atom.success.disabled {
   color: #ffffff;
   background-color: #e2e6e6;
   font-weight: 400;
-  border: 1px solid #e2e6e6;
-  border-radius: 3px;
 }
 div.cozen-btn.atom.success.disabled:hover,
 div.cozen-btn.atom.success.disabled:focus,
@@ -2428,6 +2518,10 @@ div.cozen-btn.atom.success.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.success.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.success.disabled > div.cozen-btn-loader:after {
   background-color: #e2e6e6;
+}
+div.cozen-btn.atom.success.disabled {
+  border: 1px solid #e2e6e6;
+  border-radius: 3px;
 }
 div.cozen-btn.atom.success.disabled:hover,
 div.cozen-btn.atom.success.disabled.active {
@@ -2480,8 +2574,6 @@ div.cozen-btn.atom.warning.disabled {
   color: #ffffff;
   background-color: #e2e6e6;
   font-weight: 400;
-  border: 1px solid #e2e6e6;
-  border-radius: 3px;
 }
 div.cozen-btn.atom.warning.disabled:hover,
 div.cozen-btn.atom.warning.disabled:focus,
@@ -2500,6 +2592,10 @@ div.cozen-btn.atom.warning.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.warning.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.warning.disabled > div.cozen-btn-loader:after {
   background-color: #e2e6e6;
+}
+div.cozen-btn.atom.warning.disabled {
+  border: 1px solid #e2e6e6;
+  border-radius: 3px;
 }
 div.cozen-btn.atom.warning.disabled:hover,
 div.cozen-btn.atom.warning.disabled.active {
@@ -2552,8 +2648,6 @@ div.cozen-btn.atom.error.disabled {
   color: #ffffff;
   background-color: #e2e6e6;
   font-weight: 400;
-  border: 1px solid #e2e6e6;
-  border-radius: 3px;
 }
 div.cozen-btn.atom.error.disabled:hover,
 div.cozen-btn.atom.error.disabled:focus,
@@ -2572,6 +2666,10 @@ div.cozen-btn.atom.error.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.error.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.error.disabled > div.cozen-btn-loader:after {
   background-color: #e2e6e6;
+}
+div.cozen-btn.atom.error.disabled {
+  border: 1px solid #e2e6e6;
+  border-radius: 3px;
 }
 div.cozen-btn.atom.error.disabled:hover,
 div.cozen-btn.atom.error.disabled.active {
@@ -8930,9 +9028,21 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 /************/
 /*   TYPE   */
 /************/
+/*********************/
+/*   TYPE DISABLED   */
+/*********************/
+/*********************/
+/*   TYPE INTERNAL   */
+/*********************/
 /**************/
 /*   BORDER   */
 /**************/
+/***********************/
+/*   BORDER DISABLED   */
+/***********************/
+/***********************/
+/*   BORDER INTERNAL   */
+/***********************/
 /************/
 /*   ICON   */
 /************/

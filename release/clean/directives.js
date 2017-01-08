@@ -299,6 +299,7 @@
  * @param {string}  cozenBtnSizeLarge               > Shortcut for large size
  * @param {string}  cozenBtnType        = 'default' > Type of the button (change the color)
  * @param {string}  cozenBtnTypePrimary             > Shortcut for primary type
+ * @param {string}  cozenBtnTypeTransparent         > Shortcut for transparent type
  * @param {string}  cozenBtnTypeDefault             > Shortcut for default type
  * @param {string}  cozenBtnTypeInfo                > Shortcut for info type
  * @param {string}  cozenBtnTypeSuccess             > Shortcut for success type
@@ -378,6 +379,7 @@
                 if (angular.isUndefined(attrs.cozenBtnType)) {
                     if (angular.isDefined(attrs.cozenBtnTypeDefault)) scope._cozenBtnType = 'default';
                     else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
+                    else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
                     else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
                     else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
                     else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';

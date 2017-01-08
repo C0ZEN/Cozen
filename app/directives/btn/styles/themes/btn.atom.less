@@ -1,5 +1,4 @@
 div.cozen-btn.atom {
-
   @border-height: 1px;
 
   // Size
@@ -23,49 +22,43 @@ div.cozen-btn.atom {
   &.default {
     .cozen-btn-type(@atom-color-white, @atom-color-blue, @atom-color-blue-active, 400);
     .cozen-btn-border(@border-height, solid, @atom-color-blue, @atom-color-blue-active, @cozen-radius);
-    &.disabled {
-      .cozen-btn-type(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
-      .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
-    }
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
   }
   &.primary {
     .cozen-btn-type(@atom-color-blue, @atom-color-white, @atom-color-blue-light, 500);
     .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
-    &.disabled {
-      .cozen-btn-type(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 500);
-      .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
-    }
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 500);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.transparent {
+    .cozen-btn-type(@atom-color-blue, transparent, rgba(0, 0, 0, 0.1), 500);
+    .cozen-btn-border(@border-height, solid, transparent, rgba(0, 0, 0, 0.1), @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 500);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
   }
   &.info {
     .cozen-btn-type(@atom-color-white, @atom-color-blue, @atom-color-blue-active, 400);
     .cozen-btn-border(@border-height, solid, @atom-color-blue, @atom-color-blue-active, @cozen-radius);
-    &.disabled {
-      .cozen-btn-type(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
-      .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
-    }
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
   }
   &.success {
     .cozen-btn-type(@atom-color-white, @atom-color-blue, @atom-color-blue-active, 400);
     .cozen-btn-border(@border-height, solid, @atom-color-blue, @atom-color-blue-active, @cozen-radius);
-    &.disabled {
-      .cozen-btn-type(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
-      .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
-    }
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
   }
   &.warning {
     .cozen-btn-type(@atom-color-white, @atom-color-blue, @atom-color-blue-active, 400);
     .cozen-btn-border(@border-height, solid, @atom-color-blue, @atom-color-blue-active, @cozen-radius);
-    &.disabled {
-      .cozen-btn-type(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
-      .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
-    }
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
   }
   &.error {
     .cozen-btn-type(@atom-color-white, @atom-color-blue, @atom-color-blue-active, 400);
     .cozen-btn-border(@border-height, solid, @atom-color-blue, @atom-color-blue-active, @cozen-radius);
-    &.disabled {
-      .cozen-btn-type(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
-      .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
-    }
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
   }
 }
