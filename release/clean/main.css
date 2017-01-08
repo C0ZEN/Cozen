@@ -3728,7 +3728,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dropdown-content {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content:hover,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content:hover,
@@ -3736,7 +3736,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content input:focus,
@@ -3744,7 +3744,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content div.cozen-dropdown-icon.left,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content div.cozen-dropdown-icon.left,
@@ -4177,7 +4177,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-d
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-dropdown-content {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content:hover,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content:hover,
@@ -4185,7 +4185,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-d
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content input:focus,
@@ -4193,7 +4193,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-d
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content div.cozen-dropdown-icon.left,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content div.cozen-dropdown-icon.left,
@@ -4626,7 +4626,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dropdown-content {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content:hover,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content:hover,
@@ -4634,7 +4634,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dropdown-content:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content input:focus,
@@ -4642,7 +4642,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dropdown-content input:focus {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content div.cozen-dropdown-icon.left,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content div.cozen-dropdown-icon.left,
@@ -5613,12 +5613,12 @@ div.cozen-input.atom.small.disabled {
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content,
 div.cozen-input.atom.small.disabled div.cozen-input-content {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content:hover,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content:hover,
 div.cozen-input.atom.small.disabled div.cozen-input-content:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:hover,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:hover,
@@ -5626,7 +5626,7 @@ div.cozen-input.atom.small.disabled div.cozen-input-content input:hover,
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:focus {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
@@ -6038,12 +6038,12 @@ div.cozen-input.atom.normal.disabled {
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content,
 div.cozen-input.atom.normal.disabled div.cozen-input-content {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content:hover,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content:hover,
 div.cozen-input.atom.normal.disabled div.cozen-input-content:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:hover,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:hover,
@@ -6051,7 +6051,7 @@ div.cozen-input.atom.normal.disabled div.cozen-input-content input:hover,
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
@@ -6463,12 +6463,12 @@ div.cozen-input.atom.large.disabled {
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content,
 div.cozen-input.atom.large.disabled div.cozen-input-content {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content:hover,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content:hover,
 div.cozen-input.atom.large.disabled div.cozen-input-content:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:hover,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:hover,
@@ -6476,7 +6476,7 @@ div.cozen-input.atom.large.disabled div.cozen-input-content input:hover,
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:focus {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
@@ -8079,7 +8079,7 @@ div.cozen-popup.atom.small div.cozen-popup-container {
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-body,
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-footer {
-  padding: 6px 12px;
+  padding: 12px 24px;
 }
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-body {
   max-height: 650px;
@@ -8089,7 +8089,7 @@ div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header div.
 }
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
   font-size: 24px;
-  margin: 0 0 6px 0;
+  margin: 0;
   font-weight: 500;
 }
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.sub-title {
@@ -8097,7 +8097,7 @@ div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header div.
   font-weight: 500;
 }
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-close {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 500;
 }
 div.cozen-popup.atom.normal div.cozen-popup-container {
@@ -8106,7 +8106,7 @@ div.cozen-popup.atom.normal div.cozen-popup-container {
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-body,
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-footer {
-  padding: 6px 12px;
+  padding: 12px 24px;
 }
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-body {
   max-height: 650px;
@@ -8116,7 +8116,7 @@ div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header div
 }
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
   font-size: 24px;
-  margin: 0 0 6px 0;
+  margin: 0;
   font-weight: 500;
 }
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.sub-title {
@@ -8124,7 +8124,7 @@ div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header div
   font-weight: 500;
 }
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-close {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 500;
 }
 div.cozen-popup.atom.large div.cozen-popup-container {
@@ -8133,7 +8133,7 @@ div.cozen-popup.atom.large div.cozen-popup-container {
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-body,
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-footer {
-  padding: 6px 12px;
+  padding: 12px 24px;
 }
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-body {
   max-height: 650px;
@@ -8143,7 +8143,7 @@ div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header div.
 }
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
   font-size: 24px;
-  margin: 0 0 6px 0;
+  margin: 0;
   font-weight: 500;
 }
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.sub-title {
@@ -8151,17 +8151,17 @@ div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header div.
   font-weight: 500;
 }
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-close {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 500;
 }
 div.cozen-popup.atom.default {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-header {
-  background-color: #e2e6e6;
+  background-color: #f8f8f8;
 }
 div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #e2e6e6;
+  background-color: #f8f8f8;
 }
 div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
   color: #4c596b;
@@ -8176,7 +8176,7 @@ div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #e2e6e6;
+  background-color: #f8f8f8;
 }
 div.cozen-popup.atom.default div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
@@ -8275,39 +8275,39 @@ div.cozen-popup.atom.warning {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-header {
-  background-color: #e2e6e6;
+  background-color: #ffb330;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #e2e6e6;
+  background-color: #ffb330;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.sub-title {
-  color: #8c8c8c;
+  color: #ffffff;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-close {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #e2e6e6;
+  background-color: #ffb330;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #e2e6e6;
+  border: none;
   border-bottom: 1px solid #e2e6e6;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #e2e6e6;
-  border-right: 1px solid #e2e6e6;
+  border-left: none;
+  border-right: none;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #e2e6e6;
+  border: none;
   border-top: 1px solid #e2e6e6;
 }
 div.cozen-popup.atom.error {
@@ -8381,7 +8381,7 @@ div.cozen-textarea.atom.small.success-design.disabled textarea,
 div.cozen-textarea.atom.small.error-design.disabled textarea,
 div.cozen-textarea.atom.small.disabled textarea {
   color: #e2e6e6;
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.small.success-design.disabled textarea:focus,
 div.cozen-textarea.atom.small.error-design.disabled textarea:focus,
@@ -8389,7 +8389,7 @@ div.cozen-textarea.atom.small.disabled textarea:focus,
 div.cozen-textarea.atom.small.success-design.disabled textarea:hover,
 div.cozen-textarea.atom.small.error-design.disabled textarea:hover,
 div.cozen-textarea.atom.small.disabled textarea:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.small textarea {
   border: 1px solid #e2e6e6;
@@ -8578,7 +8578,7 @@ div.cozen-textarea.atom.normal.success-design.disabled textarea,
 div.cozen-textarea.atom.normal.error-design.disabled textarea,
 div.cozen-textarea.atom.normal.disabled textarea {
   color: #e2e6e6;
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.normal.success-design.disabled textarea:focus,
 div.cozen-textarea.atom.normal.error-design.disabled textarea:focus,
@@ -8586,7 +8586,7 @@ div.cozen-textarea.atom.normal.disabled textarea:focus,
 div.cozen-textarea.atom.normal.success-design.disabled textarea:hover,
 div.cozen-textarea.atom.normal.error-design.disabled textarea:hover,
 div.cozen-textarea.atom.normal.disabled textarea:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.normal textarea {
   border: 1px solid #e2e6e6;
@@ -8775,7 +8775,7 @@ div.cozen-textarea.atom.large.success-design.disabled textarea,
 div.cozen-textarea.atom.large.error-design.disabled textarea,
 div.cozen-textarea.atom.large.disabled textarea {
   color: #e2e6e6;
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.large.success-design.disabled textarea:focus,
 div.cozen-textarea.atom.large.error-design.disabled textarea:focus,
@@ -8783,7 +8783,7 @@ div.cozen-textarea.atom.large.disabled textarea:focus,
 div.cozen-textarea.atom.large.success-design.disabled textarea:hover,
 div.cozen-textarea.atom.large.error-design.disabled textarea:hover,
 div.cozen-textarea.atom.large.disabled textarea:hover {
-  background-color: rgba(226, 230, 230, 0.1);
+  background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.large textarea {
   border: 1px solid #e2e6e6;

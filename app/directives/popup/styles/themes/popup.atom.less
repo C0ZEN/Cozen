@@ -2,24 +2,24 @@ div.cozen-popup.atom {
 
   // Size
   &.small {
-    .cozen-popup-size(16% 26%, 650px, @atom-space-small @atom-space-base);
-    .cozen-popup-header-size(@atom-font-h2, 0 0 @atom-space-small 0, @atom-font-h3, @atom-font-h3, @atom-font-h3, 500);
+    .cozen-popup-size(16% 26%, 650px, @atom-space-base @atom-space-medium);
+    .cozen-popup-header-size(@atom-font-h2, 0, @atom-font-h3, @atom-font-h2, @atom-font-h3, 500);
   }
   &.normal {
-    .cozen-popup-size(10% 20%, 650px, @atom-space-small @atom-space-base);
-    .cozen-popup-header-size(@atom-font-h2, 0 0 @atom-space-small 0, @atom-font-h3, @atom-font-h3, @atom-font-h3, 500);
+    .cozen-popup-size(10% 20%, 650px, @atom-space-base @atom-space-medium);
+    .cozen-popup-header-size(@atom-font-h2, 0, @atom-font-h3, @atom-font-h2, @atom-font-h3, 500);
   }
   &.large {
-    .cozen-popup-size(5% 15%, 650px, @atom-space-small @atom-space-base);
-    .cozen-popup-header-size(@atom-font-h2, 0 0 @atom-space-small 0, @atom-font-h3, @atom-font-h3, @atom-font-h3, 500);
+    .cozen-popup-size(5% 15%, 650px, @atom-space-base @atom-space-medium);
+    .cozen-popup-header-size(@atom-font-h2, 0, @atom-font-h3, @atom-font-h2, @atom-font-h3, 500);
   }
 
   // Type
   &.default {
-    .cozen-popup-header(@atom-color-line-rule, @atom-color-line-rule);
+    .cozen-popup-header(@atom-color-line-rule-light, @atom-color-line-rule-light);
     .cozen-popup-header-color(@atom-color-font, @atom-color-label, @atom-color-font);
     .cozen-popup-body(@atom-color-white, @atom-color-white);
-    .cozen-popup-footer(@atom-color-line-rule, @atom-color-line-rule);
+    .cozen-popup-footer(@atom-color-line-rule-light, @atom-color-line-rule-light);
     .cozen-popup-border(1px solid @atom-color-line-rule, 1px solid @atom-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
     .cozen-popup-container(rgba(0, 0, 0, 0.85));
   }
@@ -40,11 +40,11 @@ div.cozen-popup.atom {
     .cozen-popup-container(rgba(0, 0, 0, 0.85));
   }
   &.warning {
-    .cozen-popup-header(@atom-color-line-rule, @atom-color-line-rule);
-    .cozen-popup-header-color(@atom-color-font, @atom-color-label, @atom-color-font);
+    .cozen-popup-header(@atom-color-warning, @atom-color-warning);
+    .cozen-popup-header-color(@atom-color-white, @atom-color-white, @atom-color-white);
     .cozen-popup-body(@atom-color-white, @atom-color-white);
-    .cozen-popup-footer(@atom-color-line-rule, @atom-color-line-rule);
-    .cozen-popup-border(1px solid @atom-color-line-rule, 1px solid @atom-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+    .cozen-popup-footer(@atom-color-warning, @atom-color-warning);
+    .cozen-popup-border(none, 1px solid @atom-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
     .cozen-popup-container(rgba(0, 0, 0, 0.85));
   }
   &.error {

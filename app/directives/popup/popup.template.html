@@ -21,8 +21,14 @@
 
             <!-- Title -->
             <div class="cozen-popup-header-title">
-                <span class="title">{{ _cozenPopupHeaderTitle | translate }}</span>
-                <span class="sub-title">{{ _cozenPopupHeaderSubTitle | translate }}</span>
+                <span ng-if="_cozenPopupHeaderTitle != ''"
+                      class="title">
+                    {{ _cozenPopupHeaderTitle | translate }}
+                </span>
+                <span ng-if="_cozenPopupHeaderSubTitle != ''"
+                      class="sub-title">
+                    {{ _cozenPopupHeaderSubTitle | translate }}
+                </span>
             </div>
 
             <!-- Close btn -->

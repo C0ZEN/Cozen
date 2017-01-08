@@ -201,5 +201,19 @@
                 </cozen-list>
             </cozen-popup>
         </div>
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="Un label"
+                       cozen-btn-on-click="vm.togglePopup(15)">
+            </cozen-btn>
+            <cozen-popup cozen-popup-name="15"
+                         cozen-popup-header-title="Un titre"
+                         cozen-popup-type-warning>
+                <cozen-list>
+                    <cozen-list-item-simple ng-repeat="item in [0,1,2,3,4,5,6,7,8]"
+                                            cozen-list-item-simple-label="Un label">
+                    </cozen-list-item-simple>
+                </cozen-list>
+            </cozen-popup>
+        </div>
     </div>
 </div>
