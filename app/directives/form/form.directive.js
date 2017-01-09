@@ -6,6 +6,9 @@
  * @transclude true
  * @description
  *
+ * [Scope params]
+ * @param {string} cozenFormCtrl > Parent controller
+ *
  * [Attributes params]
  * @param {number} cozenFormId   > Id of the form
  * @param {string} cozenFormName > Name of the form [required]
@@ -28,7 +31,9 @@
             restrict   : 'E',
             replace    : false,
             transclude : true,
-            scope      : false,
+            scope      : {
+                cozenFormCtrl: '=?'
+            },
             templateUrl: 'directives/form/form.template.html'
         };
 
@@ -37,8 +42,7 @@
                 init        : init,
                 hasError    : hasError,
                 destroy     : destroy,
-                dispatchName: dispatchName,
-                isFormValid : isFormValid
+                dispatchName: dispatchName
             };
 
             var data = {
@@ -53,8 +57,7 @@
 
                 // Public functions
                 scope._methods = {
-                    dispatchName: dispatchName,
-                    isFormValid : isFormValid
+                    dispatchName: dispatchName
                 };
 
                 // Checking required stuff
@@ -89,10 +92,6 @@
                         name: scope._cozenFormName
                     });
                 }, 1);
-            }
-
-            function isFormValid() {
-                console.log($valid);
             }
         }
     }
