@@ -52,6 +52,7 @@
  * @param {string}  cozenInputAutoComplete     = 'on'                     > Allow auto complete (on/off)
  * @param {string}  cozenInputLabel                                       > Add a label on the top of the input
  * @param {string}  cozenInputRequiredTooltip  = 'input_required_tooltip' > Text to display for the tooltip of the required element
+ * @param {string}  class                                                 > Additionnal class
  *
  * [cozenInputTypePasswordConfig]
  *
@@ -265,7 +266,7 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
-                    var classList = [scope._activeTheme, scope._cozenInputSize];
+                    var classList = [scope._activeTheme, scope._cozenInputSize, attrs.class];
                     var input     = methods.getForm()[scope._cozenInputName];
                     if (!Methods.isNullOrEmpty(input)) {
                         if (scope._cozenInputValidatorEmpty || (!scope._cozenInputValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenInputModel))) {
