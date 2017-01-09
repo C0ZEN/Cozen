@@ -2326,6 +2326,7 @@
  * @param {boolean}  cozenInputDisabled           = false > Disable the input
  * @param {function} cozenInputOnChange                   > Callback function called on change
  * @param {object}   cozenInputTypePasswordConfig         > Override the default configuration object
+ * @param {boolean}  cozenInputHasError                   > Force to have error design
  *
  * [Attributes params]
  * @param {number}  cozenInputId                                          > Id of the input
@@ -2370,7 +2371,11 @@
  * @param {string}  cozenInputSpellCheck       = false                    > Disable the spell checking
  *
  * [cozenInputTypePasswordConfig]
- *
+ * @param {boolean} lowercase   = true > Check for a lowercase
+ * @param {boolean} uppercase   = true > Check for an uppercase
+ * @param {boolean} number      = true > Check for a number
+ * @param {boolean} specialChar = true > Check for a special char
+ * @param {number}  minLength   = 6    > Check for this min length
  *
  */
 (function (angular) {
@@ -2399,7 +2404,8 @@
                 cozenInputModel             : '=?',
                 cozenInputDisabled          : '=?',
                 cozenInputOnChange          : '&',
-                cozenInputTypePasswordConfig: '=?'
+                cozenInputTypePasswordConfig: '=?',
+                cozenInputHasError          : '=?'
             },
             templateUrl     : 'directives/input/input.template.html',
             bindToController: true,
@@ -2508,6 +2514,7 @@
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenInputDisabled)) scope.vm.cozenInputDisabled = false;
+                if (angular.isUndefined(attrs.cozenInputHasError)) scope.cozenInputHasError = false;
 
                 // Default values (attributes)
                 scope._cozenInputId                 = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
@@ -2618,7 +2625,8 @@
 
             function getDesignClass(input) {
                 if (scope._cozenInputErrorDesign) {
-                    if (input.$invalid) {
+                    if (scope.cozenInputHasError) return 'error-design';
+                    else if (input.$invalid) {
                         scope._cozenInputHasFeedback = 'error';
                         return 'error-design';
                     }
