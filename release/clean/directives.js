@@ -2514,7 +2514,7 @@
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenInputDisabled)) scope.vm.cozenInputDisabled = false;
-                if (angular.isUndefined(attrs.cozenInputHasError)) scope.cozenInputHasError = false;
+                if (angular.isUndefined(attrs.cozenInputHasError)) scope.vm.cozenInputHasError = false;
 
                 // Default values (attributes)
                 scope._cozenInputId                 = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
@@ -2625,7 +2625,10 @@
 
             function getDesignClass(input) {
                 if (scope._cozenInputErrorDesign) {
-                    if (scope.cozenInputHasError) return 'error-design';
+                    if (scope.vm.cozenInputHasError) {
+                        scope._cozenInputHasFeedback = 'error';
+                        return 'error-design';
+                    }
                     else if (input.$invalid) {
                         scope._cozenInputHasFeedback = 'error';
                         return 'error-design';
