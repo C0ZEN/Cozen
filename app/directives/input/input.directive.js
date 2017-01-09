@@ -23,7 +23,8 @@
  * @param {boolean} cozenInputSuccessDesign    = true                     > Add style when success
  * @param {string}  cozenInputPattern                                     > Pattern HTML5 to check for error
  * @param {string}  cozenInputPatternEmail                                > Shortcut for email pattern
- * @param {string}  cozenInputPatternLetter                               > Shortcut for email pattern
+ * @param {string}  cozenInputPatternLetter                               > Shortcut for letter pattern
+ * @param {string}  cozenInputPatternName                                 > Shortcut for name pattern
  * @param {string}  cozenInputSize             = 'normal'                 > Size of the button
  * @param {string}  cozenInputSizeSmall                                   > Shortcut for small size
  * @param {string}  cozenInputSizeNormal                                  > Shortcut for normal size
