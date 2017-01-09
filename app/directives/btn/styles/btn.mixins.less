@@ -102,8 +102,14 @@
 /************/
 /*   ICON   */
 /************/
-.cozen-btn-icon(@padding) {
-  & > div.cozen-btn-icon {
-    padding: @padding;
+.cozen-btn-icon(@padding, @size) {
+  div.cozen-btn-icon {
+    font-size: @size;
+    &.left {
+      padding-right: @padding;
+    }
+    &.right {
+      padding-left: @padding;
+    }
   }
 }
