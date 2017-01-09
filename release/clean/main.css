@@ -1740,16 +1740,16 @@ div.cozen-popup.ng-hide-add-active.animate-out {
   transition: 200ms ease-out;
   background-color: transparent !important;
 }
-div.cozen-popup div.cozen-popup-container.animate-in,
-div.cozen-popup div.cozen-popup-container.animate-out {
+div.cozen-popup div.cozen-popup-container.animation-in,
+div.cozen-popup div.cozen-popup-container.animation-out {
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }
-div.cozen-popup div.cozen-popup-container.animate-in {
+div.cozen-popup div.cozen-popup-container.animation-in {
   -webkit-animation-duration: 300ms;
           animation-duration: 300ms;
 }
-div.cozen-popup div.cozen-popup-container.animate-out {
+div.cozen-popup div.cozen-popup-container.animation-out {
   -webkit-animation-duration: 200ms;
           animation-duration: 200ms;
 }
@@ -1901,6 +1901,60 @@ div.cozen-tooltip > div.cozen-tooltip-html {
   100% {
     opacity: 0.2;
   }
+}
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
+}
+@-webkit-keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+.zoomOut {
+  -webkit-animation-name: zoomOut;
+          animation-name: zoomOut;
 }
 div.cozen-alert.atom.small {
   margin: 0;
@@ -10835,16 +10889,16 @@ div.cozen-popup.ng-hide-add-active.animate-out {
   transition: 200ms ease-out;
   background-color: transparent !important;
 }
-div.cozen-popup div.cozen-popup-container.animate-in,
-div.cozen-popup div.cozen-popup-container.animate-out {
+div.cozen-popup div.cozen-popup-container.animation-in,
+div.cozen-popup div.cozen-popup-container.animation-out {
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }
-div.cozen-popup div.cozen-popup-container.animate-in {
+div.cozen-popup div.cozen-popup-container.animation-in {
   -webkit-animation-duration: 300ms;
           animation-duration: 300ms;
 }
-div.cozen-popup div.cozen-popup-container.animate-out {
+div.cozen-popup div.cozen-popup-container.animation-out {
   -webkit-animation-duration: 200ms;
           animation-duration: 200ms;
 }
@@ -10996,6 +11050,60 @@ div.cozen-tooltip > div.cozen-tooltip-html {
   100% {
     opacity: 0.2;
   }
+}
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
+}
+@-webkit-keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+.zoomOut {
+  -webkit-animation-name: zoomOut;
+          animation-name: zoomOut;
 }
 div.cozen-alert.tau.small {
   margin: 0;
