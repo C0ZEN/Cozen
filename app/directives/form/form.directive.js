@@ -85,7 +85,7 @@
             function dispatchName() {
                 $timeout(function () {
                     scope.$broadcast('cozenFormName', {
-                        name: scope._cozenFormName
+                        name: scope._cozenFormCtrl + '.' + scope._cozenFormName
                     });
                 }, 1);
             }
