@@ -358,6 +358,8 @@
                         return '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
                     case 'letter':
                         return '[a-zA-Z]*';
+                    case 'name':
+                        return '[a-zA-Z\'-]*';
                     case 'password':
                         var pattern = '';
                         if (scope.vm.cozenInputTypePasswordConfig.lowercase) pattern += '(?=.*' + data.password.lowercase.regexp + ')';
