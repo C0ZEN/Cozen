@@ -2471,7 +2471,7 @@ div.cozen-btn.atom.cold {
 div.cozen-btn.atom.cold:hover,
 div.cozen-btn.atom.cold:focus,
 div.cozen-btn.atom.cold.active {
-  background-color: #7f8c8d;
+  background-color: #d6d9dc;
 }
 div.cozen-btn.atom.cold:hover.loading,
 div.cozen-btn.atom.cold:focus.loading,
@@ -2488,7 +2488,7 @@ div.cozen-btn.atom.cold > div.cozen-btn-loader:after {
 }
 div.cozen-btn.atom.cold:hover,
 div.cozen-btn.atom.cold.active {
-  border: 1px solid #7f8c8d;
+  border: 1px solid #d6d9dc;
 }
 div.cozen-btn.atom.cold:hover.loading,
 div.cozen-btn.atom.cold.active.loading {
