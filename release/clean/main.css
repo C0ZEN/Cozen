@@ -2105,7 +2105,7 @@ div.cozen-btn.atom.small {
 div.cozen-btn.atom.small.auto {
   padding: 6px 24px;
 }
-div.cozen-btn.atom.small div.cozen-btn-icon {
+div.cozen-btn.atom.small div.cozen-btn-icon i {
   font-size: 18px;
 }
 div.cozen-btn.atom.small div.cozen-btn-icon.left {
@@ -2134,7 +2134,7 @@ div.cozen-btn.atom.normal {
 div.cozen-btn.atom.normal.auto {
   padding: 6px 24px;
 }
-div.cozen-btn.atom.normal div.cozen-btn-icon {
+div.cozen-btn.atom.normal div.cozen-btn-icon i {
   font-size: 18px;
 }
 div.cozen-btn.atom.normal div.cozen-btn-icon.left {
@@ -2163,7 +2163,7 @@ div.cozen-btn.atom.large {
 div.cozen-btn.atom.large.auto {
   padding: 12px 36px;
 }
-div.cozen-btn.atom.large div.cozen-btn-icon {
+div.cozen-btn.atom.large div.cozen-btn-icon i {
   font-size: 18px;
 }
 div.cozen-btn.atom.large div.cozen-btn-icon.left {
@@ -11200,7 +11200,7 @@ div.cozen-btn.tau.small {
 div.cozen-btn.tau.small.auto {
   padding: 4px 8px;
 }
-div.cozen-btn.tau.small div.cozen-btn-icon {
+div.cozen-btn.tau.small div.cozen-btn-icon i {
   font-size: 16px;
 }
 div.cozen-btn.tau.small div.cozen-btn-icon.left {
@@ -11229,7 +11229,7 @@ div.cozen-btn.tau.normal {
 div.cozen-btn.tau.normal.auto {
   padding: 4px 8px;
 }
-div.cozen-btn.tau.normal div.cozen-btn-icon {
+div.cozen-btn.tau.normal div.cozen-btn-icon i {
   font-size: 16px;
 }
 div.cozen-btn.tau.normal div.cozen-btn-icon.left {
@@ -11258,7 +11258,7 @@ div.cozen-btn.tau.large {
 div.cozen-btn.tau.large.auto {
   padding: 4px 8px;
 }
-div.cozen-btn.tau.large div.cozen-btn-icon {
+div.cozen-btn.tau.large div.cozen-btn-icon i {
   font-size: 16px;
 }
 div.cozen-btn.tau.large div.cozen-btn-icon.left {
