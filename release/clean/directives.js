@@ -2254,7 +2254,8 @@
                 init        : init,
                 hasError    : hasError,
                 destroy     : destroy,
-                dispatchName: dispatchName
+                dispatchName: dispatchName,
+                isFormValid : isFormValid
             };
 
             var data = {
@@ -2269,7 +2270,8 @@
 
                 // Public functions
                 scope._methods = {
-                    dispatchName: dispatchName
+                    dispatchName: dispatchName,
+                    isFormValid : isFormValid
                 };
 
                 // Checking required stuff
@@ -2304,6 +2306,10 @@
                         name: scope._cozenFormName
                     });
                 }, 1);
+            }
+
+            function isFormValid() {
+                console.log($valid);
             }
         }
     }
@@ -2621,6 +2627,8 @@
                 if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
+                console.log(methods.getForm());
+                // methods.getForm()._methods.isFormValid();
             }
 
             function getDesignClass(input) {

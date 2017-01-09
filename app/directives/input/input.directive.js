@@ -307,6 +307,8 @@
                 if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
+                console.log(methods.getForm());
+                // methods.getForm()._methods.isFormValid();
             }
 
             function getDesignClass(input) {

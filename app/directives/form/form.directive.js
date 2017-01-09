@@ -36,7 +36,8 @@
                 init        : init,
                 hasError    : hasError,
                 destroy     : destroy,
-                dispatchName: dispatchName
+                dispatchName: dispatchName,
+                isFormValid : isFormValid
             };
 
             var data = {
@@ -51,7 +52,8 @@
 
                 // Public functions
                 scope._methods = {
-                    dispatchName: dispatchName
+                    dispatchName: dispatchName,
+                    isFormValid : isFormValid
                 };
 
                 // Checking required stuff
@@ -86,6 +88,10 @@
                         name: scope._cozenFormName
                     });
                 }, 1);
+            }
+
+            function isFormValid() {
+                console.log($valid);
             }
         }
     }
