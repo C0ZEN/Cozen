@@ -1,7 +1,7 @@
 /*************/
 /*   COLOR   */
 /*************/
-.cozen-tooltip-color(@color, @background-color, @arrow-color, @border, @shadow) {
+.cozen-tooltip-color(@color, @background-color, @arrow-color, @border, @shadow, @opacity) {
   &.tooltip.top .tooltip-arrow {
     border-top-color: @arrow-color;
   }
@@ -12,6 +12,7 @@
     border-top-color: @arrow-color;
   }
   &.tooltip.right .tooltip-arrow {
+    left:               1px;
     border-right-color: @arrow-color;
   }
   &.tooltip.left .tooltip-arrow {
@@ -31,6 +32,9 @@
     color:            @color;
     border:           @border;
     box-shadow:       @shadow;
+  }
+  &.tooltip {
+    opacity: @opacity;
   }
 }
 /************/

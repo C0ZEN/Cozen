@@ -34,171 +34,171 @@
  *
  */
 (function (angular) {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('cozenLib.alert', [])
-        .directive('cozenAlert', cozenAlert);
+  angular
+    .module('cozenLib.alert', [])
+    .directive('cozenAlert', cozenAlert);
 
-    cozenAlert.$inject = [
-        'Themes',
-        'CONFIG',
-        '$window',
-        '$timeout',
-        'rfc4122'
-    ];
+  cozenAlert.$inject = [
+    'Themes',
+    'CONFIG',
+    '$window',
+    '$timeout',
+    'rfc4122'
+  ];
 
-    function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
-        return {
-            link       : link,
-            restrict   : 'E',
-            replace    : false,
-            transclude : false,
-            scope      : {
-                cozenAlertOnShow : '&',
-                cozenAlertOnHide : '&',
-                cozenAlertDisplay: '=?'
-            },
-            templateUrl: 'directives/alert/alert.template.html'
+  function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
+    return {
+      link       : link,
+      restrict   : 'E',
+      replace    : false,
+      transclude : false,
+      scope      : {
+        cozenAlertOnShow : '&',
+        cozenAlertOnHide : '&',
+        cozenAlertDisplay: '=?'
+      },
+      templateUrl: 'directives/alert/alert.template.html'
+    };
+
+    function link(scope, element, attrs) {
+      var methods = {
+        init        : init,
+        hasError    : hasError,
+        destroy     : destroy,
+        getMainClass: getMainClass,
+        hide        : hide,
+        show        : show,
+        onClose     : onClose
+      };
+
+      var data = {
+        directive        : 'cozenAlert',
+        uuid             : rfc4122.v4(),
+        shown            : true,
+        firstHide        : true,
+        firstDisplayWatch: true
+      };
+
+      scope._isReady = false;
+
+      methods.init();
+
+      function init() {
+
+        // Public functions
+        scope._methods = {
+          getMainClass: getMainClass,
+          hide        : hide,
+          onClose     : onClose
         };
 
-        function link(scope, element, attrs) {
-            var methods = {
-                init        : init,
-                hasError    : hasError,
-                destroy     : destroy,
-                getMainClass: getMainClass,
-                hide        : hide,
-                show        : show,
-                onClose     : onClose
-            };
+        // Checking required stuff
+        if (methods.hasError()) return;
 
-            var data = {
-                directive        : 'cozenAlert',
-                uuid             : rfc4122.v4(),
-                shown            : true,
-                firstHide        : true,
-                firstDisplayWatch: true
-            };
-
-            scope._isReady = false;
-
-            methods.init();
-
-            function init() {
-
-                // Public functions
-                scope._methods = {
-                    getMainClass: getMainClass,
-                    hide        : hide,
-                    onClose     : onClose
-                };
-
-                // Checking required stuff
-                if (methods.hasError()) return;
-
-                // Shortcut values (size)
-                if (angular.isUndefined(attrs.cozenAlertSize)) {
-                    if (angular.isDefined(attrs.cozenAlertSizeSmall)) scope._cozenAlertSize = 'small';
-                    else if (angular.isDefined(attrs.cozenAlertSizeNormal)) scope._cozenAlertSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenAlertSizeLarge)) scope._cozenAlertSize = 'large';
-                    else scope._cozenAlertSize = 'normal';
-                }
-
-                // Shortcut values (type)
-                if (angular.isUndefined(attrs.cozenAlertType)) {
-                    if (angular.isDefined(attrs.cozenAlertTypeDefault)) scope._cozenAlertType = 'default';
-                    else if (angular.isDefined(attrs.cozenAlertTypeInfo)) scope._cozenAlertType = 'info';
-                    else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) scope._cozenAlertType = 'success';
-                    else if (angular.isDefined(attrs.cozenAlertTypeWarning)) scope._cozenAlertType = 'warning';
-                    else if (angular.isDefined(attrs.cozenAlertTypeError)) scope._cozenAlertType = 'error';
-                    else scope._cozenAlertType = 'default';
-                }
-
-                // Default values (scope)
-                if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
-
-                // Default values (attributes)
-                scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
-                scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
-                scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
-                scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
-                scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
-                scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
-                scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
-                scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
-
-                // Init stuff
-                element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
-                scope.$on('cozenAlertShow', methods.show);
-                scope.$on('cozenAlertHide', methods.hide);
-
-                // To execute the hide and show stuff even if the value is changed elsewhere
-                scope.$watch('cozenAlertDisplay', function (newValue) {
-                    if (!data.firstDisplayWatch) {
-                        if (newValue) {
-                            methods.show(null, {
-                                uuid: data.uuid
-                            });
-                        } else {
-                            methods.hide(null, {
-                                uuid: data.uuid
-                            });
-                        }
-                    } else data.firstDisplayWatch = false;
-                });
-
-                // Display the template
-                scope._isReady = true;
-            }
-
-            function hasError() {
-                return false;
-            }
-
-            function destroy() {
-                element.off('$destroy', methods.destroy);
-            }
-
-            function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType];
-                if (!data.firstHide) {
-                    if (scope._cozenAlertAnimationIn) classList.push('animate-in');
-                    if (scope._cozenAlertAnimationOut) classList.push('animate-out');
-                    if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push('fadeInUp');
-                    if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push('fadeOutDown');
-                }
-                return classList;
-            }
-
-            function hide($event, params) {
-                if (params.uuid == data.uuid) {
-                    data.firstHide          = false;
-                    scope.cozenAlertDisplay = false;
-                    if (Methods.isFunction(scope.cozenAlertOnHide)) scope.cozenAlertOnHide();
-                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
-                    Methods.safeApply(scope);
-                }
-            }
-
-            function show($event, params) {
-                if (params.uuid == data.uuid) {
-                    data.firstHide          = false;
-                    scope.cozenAlertDisplay = true;
-                    if (Methods.isFunction(scope.cozenAlertOnShow)) scope.cozenAlertOnShow();
-                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
-                    Methods.safeApply(scope);
-                }
-            }
-
-            function onClose() {
-                methods.hide(null, {
-                    uuid: data.uuid
-                });
-            }
+        // Shortcut values (size)
+        if (angular.isUndefined(attrs.cozenAlertSize)) {
+          if (angular.isDefined(attrs.cozenAlertSizeSmall)) scope._cozenAlertSize = 'small';
+          else if (angular.isDefined(attrs.cozenAlertSizeNormal)) scope._cozenAlertSize = 'normal';
+          else if (angular.isDefined(attrs.cozenAlertSizeLarge)) scope._cozenAlertSize = 'large';
+          else scope._cozenAlertSize = 'normal';
         }
+
+        // Shortcut values (type)
+        if (angular.isUndefined(attrs.cozenAlertType)) {
+          if (angular.isDefined(attrs.cozenAlertTypeDefault)) scope._cozenAlertType = 'default';
+          else if (angular.isDefined(attrs.cozenAlertTypeInfo)) scope._cozenAlertType = 'info';
+          else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) scope._cozenAlertType = 'success';
+          else if (angular.isDefined(attrs.cozenAlertTypeWarning)) scope._cozenAlertType = 'warning';
+          else if (angular.isDefined(attrs.cozenAlertTypeError)) scope._cozenAlertType = 'error';
+          else scope._cozenAlertType = 'default';
+        }
+
+        // Default values (scope)
+        if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
+
+        // Default values (attributes)
+        scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
+        scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in.enabled;
+        scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out.enabled;
+        scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
+        scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
+        scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
+        scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
+        scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+
+        // Init stuff
+        element.on('$destroy', methods.destroy);
+        scope._activeTheme = Themes.getActiveTheme();
+        scope.$on('cozenAlertShow', methods.show);
+        scope.$on('cozenAlertHide', methods.hide);
+
+        // To execute the hide and show stuff even if the value is changed elsewhere
+        scope.$watch('cozenAlertDisplay', function (newValue) {
+          if (!data.firstDisplayWatch) {
+            if (newValue) {
+              methods.show(null, {
+                uuid: data.uuid
+              });
+            } else {
+              methods.hide(null, {
+                uuid: data.uuid
+              });
+            }
+          } else data.firstDisplayWatch = false;
+        });
+
+        // Display the template
+        scope._isReady = true;
+      }
+
+      function hasError() {
+        return false;
+      }
+
+      function destroy() {
+        element.off('$destroy', methods.destroy);
+      }
+
+      function getMainClass() {
+        var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType];
+        if (!data.firstHide) {
+          if (scope._cozenAlertAnimationIn) classList.push('animate-in');
+          if (scope._cozenAlertAnimationOut) classList.push('animate-out');
+          if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push(CONFIG.alert.animation.in.animation);
+          if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push(CONFIG.alert.animation.in.animation);
+        }
+        return classList;
+      }
+
+      function hide($event, params) {
+        if (params.uuid == data.uuid) {
+          data.firstHide          = false;
+          scope.cozenAlertDisplay = false;
+          if (Methods.isFunction(scope.cozenAlertOnHide)) scope.cozenAlertOnHide();
+          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
+          Methods.safeApply(scope);
+        }
+      }
+
+      function show($event, params) {
+        if (params.uuid == data.uuid) {
+          data.firstHide          = false;
+          scope.cozenAlertDisplay = true;
+          if (Methods.isFunction(scope.cozenAlertOnShow)) scope.cozenAlertOnShow();
+          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
+          Methods.safeApply(scope);
+        }
+      }
+
+      function onClose() {
+        methods.hide(null, {
+          uuid: data.uuid
+        });
+      }
     }
+  }
 
 })(window.angular);
 
@@ -273,8 +273,14 @@
     "header": true,
     "footer": true,
     "animation": {
-      "in": true,
-      "out": true
+      "in": {
+        "enabled": true,
+        "animation": "fadeInUp"
+      },
+      "out": {
+        "enabled": true,
+        "animation": "fadeOutDown"
+      }
     },
     "easeClose": true,
     "closeBtn": true
@@ -934,177 +940,189 @@
 
 
 (function (angular) {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('cozenLib')
-        .provider('Config', ConfigProvider);
+  angular
+    .module('cozenLib')
+    .provider('Config', ConfigProvider);
 
-    ConfigProvider.$inject = [
-        'CONFIG'
-    ];
+  ConfigProvider.$inject = [
+    'CONFIG'
+  ];
 
-    function ConfigProvider(CONFIG) {
+  function ConfigProvider(CONFIG) {
 
-        this.debug = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('debug');
-            else CONFIG.debug = value;
-            return this;
-        };
+    this.debug = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('debug');
+      else CONFIG.debug = value;
+      return this;
+    };
 
-        this.currentLanguage = function (value) {
-            var list = CONFIG.languages;
-            if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('currentLanguage', list);
-            else CONFIG.currentLanguage = value;
-            return this;
-        };
+    this.currentLanguage = function (value) {
+      var list = CONFIG.languages;
+      if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('currentLanguage', list);
+      else CONFIG.currentLanguage = value;
+      return this;
+    };
 
-        this.scrollsBar = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('scrollsBar');
-            else CONFIG.scrollsBar = value;
-            return this;
-        };
+    this.scrollsBar = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('scrollsBar');
+      else CONFIG.scrollsBar = value;
+      return this;
+    };
 
-        this.scrollsBarConfig = function (config) {
-            if (typeof config != 'object') Methods.dataMustBeObject('scrollsBarConfig');
-            else CONFIG.scrollsBarConfig = config;
-            return this;
-        };
+    this.scrollsBarConfig = function (config) {
+      if (typeof config != 'object') Methods.dataMustBeObject('scrollsBarConfig');
+      else CONFIG.scrollsBarConfig = config;
+      return this;
+    };
 
-        this.dropdownAutoCloseOthers = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
-            else CONFIG.dropdown.autoCloseOthers = value;
-            return this;
-        };
+    this.dropdownAutoCloseOthers = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
+      else CONFIG.dropdown.autoCloseOthers = value;
+      return this;
+    };
 
-        this.inputDisplayModelLength = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('inputDisplayModelLength');
-            else CONFIG.input.displayModelLength = value;
-            return this;
-        };
+    this.inputDisplayModelLength = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('inputDisplayModelLength');
+      else CONFIG.input.displayModelLength = value;
+      return this;
+    };
 
-        this.textareaDisplayModelLength = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaDisplayModelLength');
-            else CONFIG.textarea.displayModelLength = value;
-            return this;
-        };
+    this.textareaDisplayModelLength = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaDisplayModelLength');
+      else CONFIG.textarea.displayModelLength = value;
+      return this;
+    };
 
-        this.dropdownDisplayModelLength = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownDisplayModelLength');
-            else CONFIG.dropdown.displayModelLength = value;
-            return this;
-        };
+    this.dropdownDisplayModelLength = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownDisplayModelLength');
+      else CONFIG.dropdown.displayModelLength = value;
+      return this;
+    };
 
-        this.requiredType = function (value) {
-            var list = ['star', 'icon'];
-            if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('requiredType', list);
-            else CONFIG.required.type = value;
-            return this;
-        };
+    this.requiredType = function (value) {
+      var list = ['star', 'icon'];
+      if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('requiredType', list);
+      else CONFIG.required.type = value;
+      return this;
+    };
 
-        this.requiredIcon = function (value) {
-            CONFIG.required.icon = value;
-            return this;
-        };
+    this.requiredIcon = function (value) {
+      CONFIG.required.icon = value;
+      return this;
+    };
 
-        this.alertTextAlign = function (value) {
-            CONFIG.alert.textAlign = value;
-            return this;
-        };
+    this.alertTextAlign = function (value) {
+      CONFIG.alert.textAlign = value;
+      return this;
+    };
 
-        this.alertCloseBtnEnabled = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnEnabled');
-            else CONFIG.alert.closeBtn.enabled = value;
-            return this;
-        };
+    this.alertCloseBtnEnabled = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnEnabled');
+      else CONFIG.alert.closeBtn.enabled = value;
+      return this;
+    };
 
-        this.alertCloseBtnTootlip = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnTootlip');
-            else CONFIG.alert.closeBtn.tooltip = value;
-            return this;
-        };
+    this.alertCloseBtnTootlip = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnTootlip');
+      else CONFIG.alert.closeBtn.tooltip = value;
+      return this;
+    };
 
-        this.alertAnimationIn = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationIn');
-            else CONFIG.alert.animation.in = value;
-            return this;
-        };
+    this.alertAnimationIn = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationIn');
+      else CONFIG.alert.animation.in = value;
+      return this;
+    };
 
-        this.alertAnimationOut = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationOut');
-            else CONFIG.alert.animation.out = value;
-            return this;
-        };
+    this.alertAnimationOut = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationOut');
+      else CONFIG.alert.animation.out = value;
+      return this;
+    };
 
-        this.alertIconLeftDefault = function (value) {
-            CONFIG.alert.iconLeft.default = value;
-            return this;
-        };
+    this.alertIconLeftDefault = function (value) {
+      CONFIG.alert.iconLeft.default = value;
+      return this;
+    };
 
-        this.alertIconLeftInfo = function (value) {
-            CONFIG.alert.iconLeft.info = value;
-            return this;
-        };
+    this.alertIconLeftInfo = function (value) {
+      CONFIG.alert.iconLeft.info = value;
+      return this;
+    };
 
-        this.alertIconLeftSuccess = function (value) {
-            CONFIG.alert.iconLeft.success = value;
-            return this;
-        };
+    this.alertIconLeftSuccess = function (value) {
+      CONFIG.alert.iconLeft.success = value;
+      return this;
+    };
 
-        this.alertIconLeftWarning = function (value) {
-            CONFIG.alert.iconLeft.warning = value;
-            return this;
-        };
+    this.alertIconLeftWarning = function (value) {
+      CONFIG.alert.iconLeft.warning = value;
+      return this;
+    };
 
-        this.alertIconLeftError = function (value) {
-            CONFIG.alert.iconLeft.error = value;
-            return this;
-        };
+    this.alertIconLeftError = function (value) {
+      CONFIG.alert.iconLeft.error = value;
+      return this;
+    };
 
-        this.popupHeader = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupHeader');
-            else CONFIG.popup.header = value;
-            return this;
-        };
+    this.popupHeader = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupHeader');
+      else CONFIG.popup.header = value;
+      return this;
+    };
 
-        this.popupFooter = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupFooter');
-            else CONFIG.popup.footer = value;
-            return this;
-        };
+    this.popupFooter = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupFooter');
+      else CONFIG.popup.footer = value;
+      return this;
+    };
 
-        this.popupAnimationIn = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationIn');
-            else CONFIG.popup.animation.in = value;
-            return this;
-        };
+    this.popupAnimationInEnabled = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationInEnabled');
+      else CONFIG.popup.animation.in.enabled = value;
+      return this;
+    };
 
-        this.popupAnimationOut = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOut');
-            else CONFIG.popup.animation.out = value;
-            return this;
-        };
+    this.popupAnimationOutEnabled = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOutEnabled');
+      else CONFIG.popup.animation.out.enabled = value;
+      return this;
+    };
 
-        this.popupEasyClose = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupEasyClose');
-            else CONFIG.popup.easyClose = value;
-            return this;
-        };
+    this.popupAnimationInAnimation = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationInAnimation');
+      else CONFIG.popup.animation.in.animation = value;
+      return this;
+    };
 
-        this.popupCloseBtn = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupCloseBtn');
-            else CONFIG.popup.closeBtn = value;
-            return this;
-        };
+    this.popupAnimationOutAnimation = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOutAnimation');
+      else CONFIG.popup.animation.out.animation = value;
+      return this;
+    };
 
-        this.$get = Config;
+    this.popupEasyClose = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupEasyClose');
+      else CONFIG.popup.easyClose = value;
+      return this;
+    };
 
-        Config.$inject = [];
+    this.popupCloseBtn = function (value) {
+      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupCloseBtn');
+      else CONFIG.popup.closeBtn = value;
+      return this;
+    };
 
-        function Config() {
-            return {};
-        }
+    this.$get = Config;
+
+    Config.$inject = [];
+
+    function Config() {
+      return {};
     }
+  }
 
 })(window.angular);
 

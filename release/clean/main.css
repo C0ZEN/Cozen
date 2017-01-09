@@ -8944,34 +8944,38 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
   color: #feb909;
 }
 .atom.tooltip.top .tooltip-arrow {
-  border-top-color: #e2e6e6;
+  border-top-color: #34495e;
 }
 .atom.tooltip.top-left .tooltip-arrow {
-  border-top-color: #e2e6e6;
+  border-top-color: #34495e;
 }
 .atom.tooltip.top-right .tooltip-arrow {
-  border-top-color: #e2e6e6;
+  border-top-color: #34495e;
 }
 .atom.tooltip.right .tooltip-arrow {
-  border-right-color: #e2e6e6;
+  left: 1px;
+  border-right-color: #34495e;
 }
 .atom.tooltip.left .tooltip-arrow {
-  border-left-color: #e2e6e6;
+  border-left-color: #34495e;
 }
 .atom.tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #e2e6e6;
+  border-bottom-color: #34495e;
 }
 .atom.tooltip.bottom-left .tooltip-arrow {
-  border-bottom-color: #e2e6e6;
+  border-bottom-color: #34495e;
 }
 .atom.tooltip.bottom-right .tooltip-arrow {
-  border-bottom-color: #e2e6e6;
+  border-bottom-color: #34495e;
 }
 .atom.tooltip > .tooltip-inner {
-  background-color: #ffffff;
-  color: #8c8c8c;
-  border: 1px solid #e2e6e6;
-  box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
+  background-color: #34495e;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.atom.tooltip {
+  opacity: 1;
 }
 .atom.tooltip {
   font-size: 14px;
@@ -14571,6 +14575,7 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
   border-top-color: #2c3e50;
 }
 .tau.tooltip.right .tooltip-arrow {
+  left: 1px;
   border-right-color: #2c3e50;
 }
 .tau.tooltip.left .tooltip-arrow {
@@ -14590,6 +14595,9 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
   color: #ecf0f1;
   border: 1px solid #2c3e50;
   box-shadow: none;
+}
+.tau.tooltip {
+  opacity: 1;
 }
 .tau.tooltip {
   font-size: 12px;

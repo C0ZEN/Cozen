@@ -61,8 +61,14 @@
     "header": true,
     "footer": true,
     "animation": {
-      "in": true,
-      "out": true
+      "in": {
+        "enabled": true,
+        "animation": "fadeInUp"
+      },
+      "out": {
+        "enabled": true,
+        "animation": "fadeOutDown"
+      }
     },
     "easeClose": true,
     "closeBtn": true
