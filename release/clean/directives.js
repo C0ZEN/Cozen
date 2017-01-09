@@ -2575,6 +2575,12 @@
                 });
                 scope._cozenInputPatternRegExp = methods.getPattern();
 
+                // Force the error
+                if (scope.cozenInputHasError) {
+                    methods.getForm()[scope._cozenInputName].$valid   = false;
+                    methods.getForm()[scope._cozenInputName].$invalid = true;
+                }
+
                 // Display the template (the timeout avoid a visual bug due to events)
                 $timeout(function () {
                     scope._isReady = true;
@@ -2627,8 +2633,12 @@
                 if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
-                console.log(methods.getForm());
-                // methods.getForm()._methods.isFormValid();
+
+                // Force the error
+                if (scope.cozenInputHasError) {
+                    methods.getForm()[scope._cozenInputName].$valid   = false;
+                    methods.getForm()[scope._cozenInputName].$invalid = true;
+                }
             }
 
             function getDesignClass(input) {
