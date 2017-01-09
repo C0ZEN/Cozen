@@ -159,8 +159,10 @@
 
                 // Shortcut values (pattern)
                 if (angular.isUndefined(attrs.cozenInputPattern)) {
+
                     if (angular.isDefined(attrs.cozenInputPatternEmail)) scope._cozenInputPattern = 'email';
-                    if (angular.isDefined(attrs.cozenInputPatternLetter)) scope._cozenInputPattern = 'letter';
+                    else if (angular.isDefined(attrs.cozenInputPatternLetter)) scope._cozenInputPattern = 'letter';
+                    else if (angular.isDefined(attrs.cozenInputPatternName)) scope._cozenInputPattern = 'name';
                     else scope._cozenInputPattern = '';
                 }
 
