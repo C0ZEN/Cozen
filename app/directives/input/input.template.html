@@ -58,7 +58,7 @@
                    ng-change="_methods.onChange($event);"
                    type="{{ _cozenInputType }}"
                    ng-disabled="vm.cozenInputDisabled"
-                   placeholder="{{ _cozenInputPlaceholder }}"
+                   placeholder="{{ _cozenInputPlaceholder | translate }}"
                    min="{{ _cozenInputMin }}"
                    max="{{ _cozenInputMax }}"
                    ng-minlength="_cozenInputMinLength"
