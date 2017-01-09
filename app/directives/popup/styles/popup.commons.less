@@ -21,14 +21,14 @@ div.cozen-popup {
   }
 
   div.cozen-popup-container {
-    &.fadeInUp,
-    &.fadeOutDown {
+    &.animation-in,
+    &.animation-out {
       animation-fill-mode: @cozen-animation-fill;
     }
-    &.fadeInUp {
+    &.animation-in {
       animation-duration: @cozen-animation-duration-in-fast;
     }
-    &.fadeOutDown {
+    &.animation-out {
       animation-duration: @cozen-animation-duration-out-fast;
     }
     :first-child {
