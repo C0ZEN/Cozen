@@ -235,8 +235,14 @@
 
       function getPopupClass() {
         var classList = [];
-        if (scope.cozenPopupIsOpen && scope._cozenPopupAnimationIn) classList.push(CONFIG.popup.animation.in.animation);
-        if (!scope.cozenPopupIsOpen && scope._cozenPopupAnimationOut) classList.push(CONFIG.popup.animation.out.animation);
+        if (scope.cozenPopupIsOpen && scope._cozenPopupAnimationIn) {
+          classList.push(CONFIG.popup.animation.in.animation);
+          classList.push('animation-in');
+        }
+        if (!scope.cozenPopupIsOpen && scope._cozenPopupAnimationOut) {
+          classList.push(CONFIG.popup.animation.out.animation);
+          classList.push('animation-out');
+        }
         return classList;
       }
 

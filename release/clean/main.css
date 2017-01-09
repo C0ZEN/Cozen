@@ -1740,16 +1740,16 @@ div.cozen-popup.ng-hide-add-active.animate-out {
   transition: 200ms ease-out;
   background-color: transparent !important;
 }
-div.cozen-popup div.cozen-popup-container.fadeInUp,
-div.cozen-popup div.cozen-popup-container.fadeOutDown {
+div.cozen-popup div.cozen-popup-container.animate-in,
+div.cozen-popup div.cozen-popup-container.animate-out {
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }
-div.cozen-popup div.cozen-popup-container.fadeInUp {
+div.cozen-popup div.cozen-popup-container.animate-in {
   -webkit-animation-duration: 300ms;
           animation-duration: 300ms;
 }
-div.cozen-popup div.cozen-popup-container.fadeOutDown {
+div.cozen-popup div.cozen-popup-container.animate-out {
   -webkit-animation-duration: 200ms;
           animation-duration: 200ms;
 }
@@ -10835,16 +10835,16 @@ div.cozen-popup.ng-hide-add-active.animate-out {
   transition: 200ms ease-out;
   background-color: transparent !important;
 }
-div.cozen-popup div.cozen-popup-container.fadeInUp,
-div.cozen-popup div.cozen-popup-container.fadeOutDown {
+div.cozen-popup div.cozen-popup-container.animate-in,
+div.cozen-popup div.cozen-popup-container.animate-out {
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }
-div.cozen-popup div.cozen-popup-container.fadeInUp {
+div.cozen-popup div.cozen-popup-container.animate-in {
   -webkit-animation-duration: 300ms;
           animation-duration: 300ms;
 }
-div.cozen-popup div.cozen-popup-container.fadeOutDown {
+div.cozen-popup div.cozen-popup-container.animate-out {
   -webkit-animation-duration: 200ms;
           animation-duration: 200ms;
 }
