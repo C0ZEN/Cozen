@@ -6,12 +6,10 @@
  * @transclude true
  * @description
  *
- * [Scope params]
- * @param {string} cozenFormCtrl > Parent controller
- *
  * [Attributes params]
  * @param {number} cozenFormId   > Id of the form
  * @param {string} cozenFormName > Name of the form [required]
+ * @param {string} cozenFormCtrl > Parent controller
  *
  */
 (function (angular) {
@@ -31,9 +29,6 @@
             restrict   : 'E',
             replace    : false,
             transclude : true,
-            scope      : {
-                cozenFormCtrl: '=?'
-            },
             templateUrl: 'directives/form/form.template.html'
         };
 
@@ -66,6 +61,7 @@
                 // Default values (attributes)
                 scope._cozenFormId   = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : '';
                 scope._cozenFormName = attrs.cozenFormName;
+                scope._cozenFormCtrl = angular.isDefined(attrs.cozenFormCtrl) ? attrs.cozenFormCtrl : 'vm';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
