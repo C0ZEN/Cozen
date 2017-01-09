@@ -28,6 +28,7 @@
             restrict   : 'E',
             replace    : false,
             transclude : true,
+            scope      : false,
             templateUrl: 'directives/form/form.template.html'
         };
 
