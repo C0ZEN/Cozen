@@ -1401,8 +1401,8 @@ div.cozen-input div.cozen-input-content input {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: border, color, background-color all 80ms ease-out;
-  transition: border, color, background-color all 80ms ease-out;
+  -webkit-transition: all 80ms ease-out, height 0ms;
+  transition: all 80ms ease-out, height 0ms;
   outline: 0;
 }
 div.cozen-input div.cozen-input-content input[readonly] {
@@ -10550,8 +10550,8 @@ div.cozen-input div.cozen-input-content input {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: border, color, background-color all 80ms ease-out;
-  transition: border, color, background-color all 80ms ease-out;
+  -webkit-transition: all 80ms ease-out, height 0ms;
+  transition: all 80ms ease-out, height 0ms;
   outline: 0;
 }
 div.cozen-input div.cozen-input-content input[readonly] {
