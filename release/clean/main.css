@@ -702,14 +702,14 @@ div.cozen-btn {
   width: 100%;
   display: block;
 }
-div.cozen-btn > span.cozen-btn-label {
+div.cozen-btn span.cozen-btn-label {
   cursor: inherit;
   font-size: inherit;
   font-weight: inherit;
   vertical-align: sub;
   line-height: inherit;
 }
-div.cozen-btn > div.cozen-btn-icon {
+div.cozen-btn div.cozen-btn-icon {
   display: inline-block;
   cursor: inherit;
   font-weight: inherit;
@@ -717,14 +717,17 @@ div.cozen-btn > div.cozen-btn-icon {
   vertical-align: sub;
   line-height: inherit;
 }
-div.cozen-btn > div.cozen-btn-loader {
+div.cozen-btn div.cozen-btn-icon i {
+  vertical-align: middle;
+}
+div.cozen-btn div.cozen-btn-loader {
   position: relative;
   height: inherit;
   margin: 0 auto;
 }
-div.cozen-btn > div.cozen-btn-loader:before,
-div.cozen-btn > div.cozen-btn-loader > span,
-div.cozen-btn > div.cozen-btn-loader:after {
+div.cozen-btn div.cozen-btn-loader:before,
+div.cozen-btn div.cozen-btn-loader span,
+div.cozen-btn div.cozen-btn-loader:after {
   top: 50%;
   content: '';
   position: absolute;
@@ -732,21 +735,21 @@ div.cozen-btn > div.cozen-btn-loader:after {
   border-radius: 50%;
   opacity: 0.2;
 }
-div.cozen-btn > div.cozen-btn-loader:before {
+div.cozen-btn div.cozen-btn-loader:before {
   left: 0;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
   -webkit-animation: tauLightUp 1500ms linear infinite;
           animation: tauLightUp 1500ms linear infinite;
 }
-div.cozen-btn > div.cozen-btn-loader > span {
+div.cozen-btn div.cozen-btn-loader span {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   -webkit-animation: tauLightUp 1500ms linear infinite 500ms;
           animation: tauLightUp 1500ms linear infinite 500ms;
 }
-div.cozen-btn > div.cozen-btn-loader:after {
+div.cozen-btn div.cozen-btn-loader:after {
   right: 0;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
@@ -9794,14 +9797,14 @@ div.cozen-btn {
   width: 100%;
   display: block;
 }
-div.cozen-btn > span.cozen-btn-label {
+div.cozen-btn span.cozen-btn-label {
   cursor: inherit;
   font-size: inherit;
   font-weight: inherit;
   vertical-align: sub;
   line-height: inherit;
 }
-div.cozen-btn > div.cozen-btn-icon {
+div.cozen-btn div.cozen-btn-icon {
   display: inline-block;
   cursor: inherit;
   font-weight: inherit;
@@ -9809,14 +9812,17 @@ div.cozen-btn > div.cozen-btn-icon {
   vertical-align: sub;
   line-height: inherit;
 }
-div.cozen-btn > div.cozen-btn-loader {
+div.cozen-btn div.cozen-btn-icon i {
+  vertical-align: middle;
+}
+div.cozen-btn div.cozen-btn-loader {
   position: relative;
   height: inherit;
   margin: 0 auto;
 }
-div.cozen-btn > div.cozen-btn-loader:before,
-div.cozen-btn > div.cozen-btn-loader > span,
-div.cozen-btn > div.cozen-btn-loader:after {
+div.cozen-btn div.cozen-btn-loader:before,
+div.cozen-btn div.cozen-btn-loader span,
+div.cozen-btn div.cozen-btn-loader:after {
   top: 50%;
   content: '';
   position: absolute;
@@ -9824,21 +9830,21 @@ div.cozen-btn > div.cozen-btn-loader:after {
   border-radius: 50%;
   opacity: 0.2;
 }
-div.cozen-btn > div.cozen-btn-loader:before {
+div.cozen-btn div.cozen-btn-loader:before {
   left: 0;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
   -webkit-animation: tauLightUp 1500ms linear infinite;
           animation: tauLightUp 1500ms linear infinite;
 }
-div.cozen-btn > div.cozen-btn-loader > span {
+div.cozen-btn div.cozen-btn-loader span {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   -webkit-animation: tauLightUp 1500ms linear infinite 500ms;
           animation: tauLightUp 1500ms linear infinite 500ms;
 }
-div.cozen-btn > div.cozen-btn-loader:after {
+div.cozen-btn div.cozen-btn-loader:after {
   right: 0;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);

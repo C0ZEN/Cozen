@@ -10,7 +10,7 @@ div.cozen-btn {
   display:     block;
 
   // Label
-  & > span.cozen-btn-label {
+  span.cozen-btn-label {
     cursor:         inherit;
     font-size:      inherit;
     font-weight:    inherit;
@@ -19,22 +19,25 @@ div.cozen-btn {
   }
 
   // Icon
-  & > div.cozen-btn-icon {
+  div.cozen-btn-icon {
     display:        inline-block;
     cursor:         inherit;
     font-weight:    inherit;
     font-size:      inherit;
     vertical-align: sub;
     line-height:    inherit;
+    i {
+      vertical-align: middle;
+    }
   }
 
   // Loader
-  & > div.cozen-btn-loader {
+  div.cozen-btn-loader {
     position: relative;
     height:   inherit;
     margin:   0 auto;
     &:before,
-    & > span,
+    span,
     &:after {
       top:           50%;
       content:       '';
@@ -48,7 +51,7 @@ div.cozen-btn {
       transform: translate(0, -50%);
       animation: tauLightUp 1500ms linear infinite;
     }
-    & > span {
+    span {
       left:      50%;
       transform: translate(-50%, -50%);
       animation: tauLightUp 1500ms linear infinite 500ms;
