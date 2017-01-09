@@ -151,14 +151,12 @@
     };
 
     this.popupAnimationInAnimation = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationInAnimation');
-      else CONFIG.popup.animation.in.animation = value;
+      CONFIG.popup.animation.in.animation = value;
       return this;
     };
 
     this.popupAnimationOutAnimation = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOutAnimation');
-      else CONFIG.popup.animation.out.animation = value;
+      CONFIG.popup.animation.out.animation = value;
       return this;
     };
 

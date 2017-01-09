@@ -316,6 +316,7 @@
  * @param {string}  cozenBtnType        = 'default' > Type of the button (change the color)
  * @param {string}  cozenBtnTypePrimary             > Shortcut for primary type
  * @param {string}  cozenBtnTypeTransparent         > Shortcut for transparent type
+ * @param {string}  cozenBtnTypeCold                > Shortcut for cold type
  * @param {string}  cozenBtnTypeDefault             > Shortcut for default type
  * @param {string}  cozenBtnTypeInfo                > Shortcut for info type
  * @param {string}  cozenBtnTypeSuccess             > Shortcut for success type
@@ -396,6 +397,7 @@
                     if (angular.isDefined(attrs.cozenBtnTypeDefault)) scope._cozenBtnType = 'default';
                     else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
                     else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
+                    else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
                     else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
                     else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
                     else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
@@ -1092,14 +1094,12 @@
     };
 
     this.popupAnimationInAnimation = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationInAnimation');
-      else CONFIG.popup.animation.in.animation = value;
+      CONFIG.popup.animation.in.animation = value;
       return this;
     };
 
     this.popupAnimationOutAnimation = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOutAnimation');
-      else CONFIG.popup.animation.out.animation = value;
+      CONFIG.popup.animation.out.animation = value;
       return this;
     };
 
