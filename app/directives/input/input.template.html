@@ -69,7 +69,8 @@
                    onfocus="this.removeAttribute('readonly');"
                    readonly
                    ng-model-options="{allowInvalid: true}"
-                   id="{{ _cozenInputUuid }}">
+                   id="{{ _cozenInputUuid }}"
+                   spellcheck="{{ _cozenInputSpellCheck }}">
 
             <!-- Arrow up/down -->
             <div ng-if="_cozenInputType == 'number'"

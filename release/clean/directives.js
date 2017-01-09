@@ -2366,7 +2366,8 @@
  * @param {string}  cozenInputAutoComplete     = 'on'                     > Allow auto complete (on/off)
  * @param {string}  cozenInputLabel                                       > Add a label on the top of the input
  * @param {string}  cozenInputRequiredTooltip  = 'input_required_tooltip' > Text to display for the tooltip of the required element
- * @param {string}  class                                                 > Additionnal class
+ * @param {string}  class                                                 > Additional class
+ * @param {string}  cozenInputSpellCheck       = false                    > Disable the spell checking
  *
  * [cozenInputTypePasswordConfig]
  *
@@ -2536,6 +2537,7 @@
                 scope._cozenInputModelLength        = scope._cozenInputMaxLength;
                 scope._cozenInputRequiredConfig     = CONFIG.required;
                 scope._cozenInputRequiredTooltip    = angular.isDefined(attrs.cozenInputRequiredTooltip) ? attrs.cozenInputRequiredTooltip : 'input_required_tooltip';
+                scope._cozenInputSpellCheck         = angular.isDefined(attrs.cozenInputSpellCheck) ? JSON.parse(attrs.cozenInputSpellCheck) : false;
 
                 // Object overriding (typePasswordConfig)
                 if (scope._cozenInputType == 'password') {
