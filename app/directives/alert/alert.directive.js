@@ -120,8 +120,8 @@
 
         // Default values (attributes)
         scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
-        scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in.enabled;
-        scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out.enabled;
+        scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
+        scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
         scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
         scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
         scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
@@ -166,8 +166,8 @@
         if (!data.firstHide) {
           if (scope._cozenAlertAnimationIn) classList.push('animate-in');
           if (scope._cozenAlertAnimationOut) classList.push('animate-out');
-          if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push(CONFIG.alert.animation.in.animation);
-          if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push(CONFIG.alert.animation.in.animation);
+          if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push('fadeInUp');
+          if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push('fadeOutDown');
         }
         return classList;
       }
