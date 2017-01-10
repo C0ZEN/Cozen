@@ -317,6 +317,8 @@
  * @param {string}  cozenBtnTypePrimary             > Shortcut for primary type
  * @param {string}  cozenBtnTypeTransparent         > Shortcut for transparent type
  * @param {string}  cozenBtnTypeCold                > Shortcut for cold type
+ * @param {string}  cozenBtnTypePurple              > Shortcut for purple type
+ * @param {string}  cozenBtnTypeGreen               > Shortcut for green type
  * @param {string}  cozenBtnTypeDefault             > Shortcut for default type
  * @param {string}  cozenBtnTypeInfo                > Shortcut for info type
  * @param {string}  cozenBtnTypeSuccess             > Shortcut for success type
@@ -401,6 +403,8 @@
                     else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
                     else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
                     else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
+                    else if (angular.isDefined(attrs.cozenBtnTypePurple)) scope._cozenBtnType = 'purple';
+                    else if (angular.isDefined(attrs.cozenBtnTypeGreen)) scope._cozenBtnType = 'green';
                     else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
                     else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
                     else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
