@@ -258,15 +258,13 @@
         scope._cozenInputPatternRegExp = methods.getPattern();
 
         // Watch for the forced error change
-        $timeout(function () {
-          scope.$watch('vm.cozenInputHasError', function (newValue) {
-            var form = methods.getForm();
-            if (!Methods.isNullOrEmpty(form)) {
-              var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
-              input.$setValidity('hasError', newValue);
-            }
-          });
-        }, 3);
+        scope.$watch('vm.cozenInputHasError', function (newValue) {
+          var form = methods.getForm();
+          if (!Methods.isNullOrEmpty(form)) {
+            var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+            input.$setValidity('hasError', !newValue);
+          }
+        }, true);
 
         // Display the template (the timeout avoid a visual bug due to events)
         $timeout(function () {
@@ -317,7 +315,9 @@
 
       function onChange($event) {
         if (scope.vm.cozenInputDisabled) return;
-        if (Methods.isFunction(scope.vm.cozenInputOnChange)) scope.vm.cozenInputOnChange();
+        if (Methods.isFunction(scope.vm.cozenInputOnChange)) scope.vm.cozenInputOnChange({
+          newModel: scope.vm.cozenInputModel
+        });
         if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
         methods.getPasswordTooltipLabel();
         methods.updateModelLength();
