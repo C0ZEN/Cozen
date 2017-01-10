@@ -28,7 +28,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/btn/btn.template.html',
-    "<div ng-if=_isReady class=cozen-btn ng-class=_methods.getMainClass(); id=\"{{ _cozenBtnId }}\" tabindex=\"{{ _methods.getTabIndex(); }}\" ng-click=_methods.onClick($event)><div ng-if=\"_cozenBtnIconLeft != '' && !cozenBtnLoader\" class=\"cozen-btn-icon left\"><i ng-class=[_cozenBtnIconLeft]></i></div><span ng-if=!cozenBtnLoader class=cozen-btn-label>{{ _cozenBtnLabel | translate }}</span><div ng-if=\"_cozenBtnIconRight != '' && !cozenBtnLoader\" class=\"cozen-btn-icon right\"><i ng-class=[_cozenBtnIconRight]></i></div><div ng-if=cozenBtnLoader class=cozen-btn-loader><span></span></div></div>"
+    "<div ng-if=_isReady class=cozen-btn ng-class=_methods.getMainClass(); id=\"{{ _cozenBtnId }}\" tabindex=\"{{ _methods.getTabIndex(); }}\" ng-click=_methods.onClick($event)><div ng-if=\"_cozenBtnIconLeft != '' && !cozenBtnLoader\" class=\"cozen-btn-icon left\"><i ng-class=[_cozenBtnIconLeft]></i></div><div ng-if=\"_cozenBtnImgLeft != '' && !cozenBtnLoader\" class=\"cozen-btn-img left\"><img ng-src=\"{{ _cozenBtnImgLeft }}\"></div><span ng-if=!cozenBtnLoader class=cozen-btn-label>{{ _cozenBtnLabel | translate }}</span><div ng-if=\"_cozenBtnIconRight != '' && !cozenBtnLoader\" class=\"cozen-btn-icon right\"><i ng-class=[_cozenBtnIconRight]></i></div><div ng-if=cozenBtnLoader class=cozen-btn-loader><span></span></div></div>"
   );
 
 

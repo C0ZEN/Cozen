@@ -11,6 +11,12 @@
         <i ng-class="[_cozenBtnIconLeft]"></i>
     </div>
 
+    <!-- Left img -->
+    <div ng-if="_cozenBtnImgLeft != '' && !cozenBtnLoader"
+         class="cozen-btn-img left">
+        <img ng-src="{{ _cozenBtnImgLeft }}">
+    </div>
+
     <!-- Label -->
     <span ng-if="!cozenBtnLoader"
           class="cozen-btn-label">

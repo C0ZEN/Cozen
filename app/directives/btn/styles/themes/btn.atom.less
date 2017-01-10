@@ -6,16 +6,19 @@ div.cozen-btn.atom {
     .cozen-btn-size(@atom-space-small, @atom-font-h3, @atom-space-small @atom-space-medium);
     .cozen-btn-icon(@atom-space-small, 18px);
     .cozen-btn-loader((40px - @border-height * 2 - @atom-space-small * 2) / 2, 50px, 10px);
+    .cozen-btn-img-left(26px, 26px, 0);
   }
   &.normal {
     .cozen-btn-size(@atom-space-small, @atom-font-h3, 8px @atom-space-medium);
     .cozen-btn-icon(@atom-space-small, 18px);
     .cozen-btn-loader((40px - @border-height * 2 - @atom-space-small * 2) / 2, 50px, 10px);
+    .cozen-btn-img-left(26px, 26px, 0);
   }
   &.large {
     .cozen-btn-size(@atom-space-base, @atom-font-h3, @atom-space-base @atom-space-large);
     .cozen-btn-icon(@atom-space-base, 18px);
     .cozen-btn-loader((52px - @border-height * 2 - @atom-space-base * 2) / 2, 90px, 12px);
+    .cozen-btn-img-left(26px, 26px, 0);
   }
 
   // Type
@@ -52,6 +55,18 @@ div.cozen-btn.atom {
   &.green {
     .cozen-btn-type(@atom-color-white, @atom-color-green, @atom-color-green-active, 400);
     .cozen-btn-border(@border-height, solid, @atom-color-green, @atom-color-green-active, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.google {
+    .cozen-btn-type(@atom-color-white, #cf4332, #d35345, 400);
+    .cozen-btn-border(@border-height, solid, #cf4332, #d35345, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.facebook {
+    .cozen-btn-type(@atom-color-white, #3c66c4, #4e76ca, 400);
+    .cozen-btn-border(@border-height, solid, #3c66c4, #4e76ca, @cozen-radius);
     .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
     .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
   }

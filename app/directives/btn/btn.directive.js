@@ -26,6 +26,8 @@
  * @param {string}  cozenBtnTypeCold                > Shortcut for cold type
  * @param {string}  cozenBtnTypePurple              > Shortcut for purple type
  * @param {string}  cozenBtnTypeGreen               > Shortcut for green type
+ * @param {string}  cozenBtnTypeGoogle              > Shortcut for google type
+ * @param {string}  cozenBtnTypeFacebook            > Shortcut for facebook type
  * @param {string}  cozenBtnTypeDefault             > Shortcut for default type
  * @param {string}  cozenBtnTypeInfo                > Shortcut for info type
  * @param {string}  cozenBtnTypeSuccess             > Shortcut for success type
@@ -35,6 +37,7 @@
  * @param {string}  cozenBtnIconRight               > Add an icon the to right (write the class)
  * @param {boolean} cozenBtnAutoSizing  = false     > Shortcut to activate the auto sizing (instead of 100% width)
  * @param {string}  class                           > Custom class
+ * @param {string}  cozenBtnImgLeft                 > URL/path to the left img
  *
  */
 (function (angular) {
@@ -112,6 +115,8 @@
                     else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
                     else if (angular.isDefined(attrs.cozenBtnTypePurple)) scope._cozenBtnType = 'purple';
                     else if (angular.isDefined(attrs.cozenBtnTypeGreen)) scope._cozenBtnType = 'green';
+                    else if (angular.isDefined(attrs.cozenBtnTypeGoogle)) scope._cozenBtnType = 'google';
+                    else if (angular.isDefined(attrs.cozenBtnTypeFacebook)) scope._cozenBtnType = 'facebook';
                     else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
                     else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
                     else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
@@ -129,6 +134,7 @@
                 scope._cozenBtnLabel     = attrs.cozenBtnLabel;
                 scope._cozenBtnIconLeft  = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
                 scope._cozenBtnIconRight = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
+                scope._cozenBtnImgLeft   = angular.isDefined(attrs.cozenBtnImgLeft) ? attrs.cozenBtnImgLeft : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

@@ -69,6 +69,9 @@
 /************/
 /*   ICON   */
 /************/
+/***********/
+/*   IMG   */
+/***********/
 /************/
 /*   SIZE   */
 /************/
@@ -719,6 +722,9 @@ div.cozen-btn div.cozen-btn-icon {
 }
 div.cozen-btn div.cozen-btn-icon i {
   vertical-align: middle;
+}
+div.cozen-btn div.cozen-btn-img.left {
+  float: left;
 }
 div.cozen-btn div.cozen-btn-loader {
   position: relative;
@@ -2181,6 +2187,13 @@ div.cozen-btn.atom.small > div.cozen-btn-loader:after {
 div.cozen-btn.atom.small.auto > div.cozen-btn-loader {
   margin: 0 10px;
 }
+div.cozen-btn.atom.small div.cozen-btn-img.left {
+  margin: 0;
+}
+div.cozen-btn.atom.small div.cozen-btn-img.left img {
+  width: 26px;
+  height: 26px;
+}
 div.cozen-btn.atom.normal {
   padding: 6px;
   font-size: 16px;
@@ -2210,6 +2223,13 @@ div.cozen-btn.atom.normal > div.cozen-btn-loader:after {
 div.cozen-btn.atom.normal.auto > div.cozen-btn-loader {
   margin: 0 10px;
 }
+div.cozen-btn.atom.normal div.cozen-btn-img.left {
+  margin: 0;
+}
+div.cozen-btn.atom.normal div.cozen-btn-img.left img {
+  width: 26px;
+  height: 26px;
+}
 div.cozen-btn.atom.large {
   padding: 12px;
   font-size: 16px;
@@ -2238,6 +2258,13 @@ div.cozen-btn.atom.large > div.cozen-btn-loader:after {
 }
 div.cozen-btn.atom.large.auto > div.cozen-btn-loader {
   margin: 0 12px;
+}
+div.cozen-btn.atom.large div.cozen-btn-img.left {
+  margin: 0;
+}
+div.cozen-btn.atom.large div.cozen-btn-img.left img {
+  width: 26px;
+  height: 26px;
 }
 div.cozen-btn.atom.default {
   color: #ffffff;
@@ -2277,47 +2304,47 @@ div.cozen-btn.atom.default.loading {
 }
 div.cozen-btn.atom.default.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 400;
 }
 div.cozen-btn.atom.default.disabled:hover,
 div.cozen-btn.atom.default.disabled:focus,
 div.cozen-btn.atom.default.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.default.disabled:hover.loading,
 div.cozen-btn.atom.default.disabled:focus.loading,
 div.cozen-btn.atom.default.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.default.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.default.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.default.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.default.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.default.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.default.disabled:hover,
 div.cozen-btn.atom.default.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.default.disabled:hover.loading,
 div.cozen-btn.atom.default.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.default.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.primary {
   color: #2c9fdd;
   background-color: #ffffff;
   font-weight: 500;
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.primary:hover,
@@ -2340,52 +2367,52 @@ div.cozen-btn.atom.primary > div.cozen-btn-loader:after {
 }
 div.cozen-btn.atom.primary:hover,
 div.cozen-btn.atom.primary.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.primary:hover.loading,
 div.cozen-btn.atom.primary.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.primary.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.primary.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 500;
 }
 div.cozen-btn.atom.primary.disabled:hover,
 div.cozen-btn.atom.primary.disabled:focus,
 div.cozen-btn.atom.primary.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.primary.disabled:hover.loading,
 div.cozen-btn.atom.primary.disabled:focus.loading,
 div.cozen-btn.atom.primary.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.primary.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.primary.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.primary.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.primary.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.primary.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.primary.disabled:hover,
 div.cozen-btn.atom.primary.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.primary.disabled:hover.loading,
 div.cozen-btn.atom.primary.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.primary.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.transparent {
   color: #2c9fdd;
@@ -2425,41 +2452,41 @@ div.cozen-btn.atom.transparent.loading {
 }
 div.cozen-btn.atom.transparent.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 500;
 }
 div.cozen-btn.atom.transparent.disabled:hover,
 div.cozen-btn.atom.transparent.disabled:focus,
 div.cozen-btn.atom.transparent.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.transparent.disabled:hover.loading,
 div.cozen-btn.atom.transparent.disabled:focus.loading,
 div.cozen-btn.atom.transparent.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.transparent.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.transparent.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.transparent.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.transparent.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.transparent.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.transparent.disabled:hover,
 div.cozen-btn.atom.transparent.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.transparent.disabled:hover.loading,
 div.cozen-btn.atom.transparent.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.transparent.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.cold {
   color: #ffffff;
@@ -2499,41 +2526,41 @@ div.cozen-btn.atom.cold.loading {
 }
 div.cozen-btn.atom.cold.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 500;
 }
 div.cozen-btn.atom.cold.disabled:hover,
 div.cozen-btn.atom.cold.disabled:focus,
 div.cozen-btn.atom.cold.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.cold.disabled:hover.loading,
 div.cozen-btn.atom.cold.disabled:focus.loading,
 div.cozen-btn.atom.cold.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.cold.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.cold.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.cold.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.cold.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.cold.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.cold.disabled:hover,
 div.cozen-btn.atom.cold.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.cold.disabled:hover.loading,
 div.cozen-btn.atom.cold.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.cold.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.purple {
   color: #ffffff;
@@ -2573,41 +2600,41 @@ div.cozen-btn.atom.purple.loading {
 }
 div.cozen-btn.atom.purple.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 400;
 }
 div.cozen-btn.atom.purple.disabled:hover,
 div.cozen-btn.atom.purple.disabled:focus,
 div.cozen-btn.atom.purple.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.purple.disabled:hover.loading,
 div.cozen-btn.atom.purple.disabled:focus.loading,
 div.cozen-btn.atom.purple.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.purple.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.purple.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.purple.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.purple.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.purple.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.purple.disabled:hover,
 div.cozen-btn.atom.purple.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.purple.disabled:hover.loading,
 div.cozen-btn.atom.purple.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.purple.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.green {
   color: #ffffff;
@@ -2647,41 +2674,189 @@ div.cozen-btn.atom.green.loading {
 }
 div.cozen-btn.atom.green.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 400;
 }
 div.cozen-btn.atom.green.disabled:hover,
 div.cozen-btn.atom.green.disabled:focus,
 div.cozen-btn.atom.green.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.green.disabled:hover.loading,
 div.cozen-btn.atom.green.disabled:focus.loading,
 div.cozen-btn.atom.green.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.green.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.green.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.green.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.green.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.green.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.green.disabled:hover,
 div.cozen-btn.atom.green.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.green.disabled:hover.loading,
 div.cozen-btn.atom.green.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.green.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
+}
+div.cozen-btn.atom.google {
+  color: #ffffff;
+  background-color: #cf4332;
+  font-weight: 400;
+  border: 1px solid #cf4332;
+  border-radius: 3px;
+}
+div.cozen-btn.atom.google:hover,
+div.cozen-btn.atom.google:focus,
+div.cozen-btn.atom.google.active {
+  background-color: #d35345;
+}
+div.cozen-btn.atom.google:hover.loading,
+div.cozen-btn.atom.google:focus.loading,
+div.cozen-btn.atom.google.active.loading {
+  background-color: rgba(207, 67, 50, 0.4);
+}
+div.cozen-btn.atom.google.loading {
+  background-color: rgba(207, 67, 50, 0.4);
+}
+div.cozen-btn.atom.google > div.cozen-btn-loader:before,
+div.cozen-btn.atom.google > div.cozen-btn-loader > span,
+div.cozen-btn.atom.google > div.cozen-btn-loader:after {
+  background-color: #cf4332;
+}
+div.cozen-btn.atom.google:hover,
+div.cozen-btn.atom.google.active {
+  border: 1px solid #d35345;
+}
+div.cozen-btn.atom.google:hover.loading,
+div.cozen-btn.atom.google.active.loading {
+  border: 1px solid rgba(207, 67, 50, 0.2);
+}
+div.cozen-btn.atom.google.loading {
+  border: 1px solid rgba(207, 67, 50, 0.2);
+}
+div.cozen-btn.atom.google.disabled {
+  color: #ffffff;
+  background-color: #d6dbdb;
+  font-weight: 400;
+}
+div.cozen-btn.atom.google.disabled:hover,
+div.cozen-btn.atom.google.disabled:focus,
+div.cozen-btn.atom.google.disabled.active {
+  background-color: #d6dbdb;
+}
+div.cozen-btn.atom.google.disabled:hover.loading,
+div.cozen-btn.atom.google.disabled:focus.loading,
+div.cozen-btn.atom.google.disabled.active.loading {
+  background-color: rgba(214, 219, 219, 0.4);
+}
+div.cozen-btn.atom.google.disabled.loading {
+  background-color: rgba(214, 219, 219, 0.4);
+}
+div.cozen-btn.atom.google.disabled > div.cozen-btn-loader:before,
+div.cozen-btn.atom.google.disabled > div.cozen-btn-loader > span,
+div.cozen-btn.atom.google.disabled > div.cozen-btn-loader:after {
+  background-color: #d6dbdb;
+}
+div.cozen-btn.atom.google.disabled {
+  border: 1px solid #d6dbdb;
+  border-radius: 3px;
+}
+div.cozen-btn.atom.google.disabled:hover,
+div.cozen-btn.atom.google.disabled.active {
+  border: 1px solid #d6dbdb;
+}
+div.cozen-btn.atom.google.disabled:hover.loading,
+div.cozen-btn.atom.google.disabled.active.loading {
+  border: 1px solid rgba(214, 219, 219, 0.2);
+}
+div.cozen-btn.atom.google.disabled.loading {
+  border: 1px solid rgba(214, 219, 219, 0.2);
+}
+div.cozen-btn.atom.facebook {
+  color: #ffffff;
+  background-color: #3c66c4;
+  font-weight: 400;
+  border: 1px solid #3c66c4;
+  border-radius: 3px;
+}
+div.cozen-btn.atom.facebook:hover,
+div.cozen-btn.atom.facebook:focus,
+div.cozen-btn.atom.facebook.active {
+  background-color: #4e76ca;
+}
+div.cozen-btn.atom.facebook:hover.loading,
+div.cozen-btn.atom.facebook:focus.loading,
+div.cozen-btn.atom.facebook.active.loading {
+  background-color: rgba(60, 102, 196, 0.4);
+}
+div.cozen-btn.atom.facebook.loading {
+  background-color: rgba(60, 102, 196, 0.4);
+}
+div.cozen-btn.atom.facebook > div.cozen-btn-loader:before,
+div.cozen-btn.atom.facebook > div.cozen-btn-loader > span,
+div.cozen-btn.atom.facebook > div.cozen-btn-loader:after {
+  background-color: #3c66c4;
+}
+div.cozen-btn.atom.facebook:hover,
+div.cozen-btn.atom.facebook.active {
+  border: 1px solid #4e76ca;
+}
+div.cozen-btn.atom.facebook:hover.loading,
+div.cozen-btn.atom.facebook.active.loading {
+  border: 1px solid rgba(60, 102, 196, 0.2);
+}
+div.cozen-btn.atom.facebook.loading {
+  border: 1px solid rgba(60, 102, 196, 0.2);
+}
+div.cozen-btn.atom.facebook.disabled {
+  color: #ffffff;
+  background-color: #d6dbdb;
+  font-weight: 400;
+}
+div.cozen-btn.atom.facebook.disabled:hover,
+div.cozen-btn.atom.facebook.disabled:focus,
+div.cozen-btn.atom.facebook.disabled.active {
+  background-color: #d6dbdb;
+}
+div.cozen-btn.atom.facebook.disabled:hover.loading,
+div.cozen-btn.atom.facebook.disabled:focus.loading,
+div.cozen-btn.atom.facebook.disabled.active.loading {
+  background-color: rgba(214, 219, 219, 0.4);
+}
+div.cozen-btn.atom.facebook.disabled.loading {
+  background-color: rgba(214, 219, 219, 0.4);
+}
+div.cozen-btn.atom.facebook.disabled > div.cozen-btn-loader:before,
+div.cozen-btn.atom.facebook.disabled > div.cozen-btn-loader > span,
+div.cozen-btn.atom.facebook.disabled > div.cozen-btn-loader:after {
+  background-color: #d6dbdb;
+}
+div.cozen-btn.atom.facebook.disabled {
+  border: 1px solid #d6dbdb;
+  border-radius: 3px;
+}
+div.cozen-btn.atom.facebook.disabled:hover,
+div.cozen-btn.atom.facebook.disabled.active {
+  border: 1px solid #d6dbdb;
+}
+div.cozen-btn.atom.facebook.disabled:hover.loading,
+div.cozen-btn.atom.facebook.disabled.active.loading {
+  border: 1px solid rgba(214, 219, 219, 0.2);
+}
+div.cozen-btn.atom.facebook.disabled.loading {
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.info {
   color: #ffffff;
@@ -2721,41 +2896,41 @@ div.cozen-btn.atom.info.loading {
 }
 div.cozen-btn.atom.info.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 400;
 }
 div.cozen-btn.atom.info.disabled:hover,
 div.cozen-btn.atom.info.disabled:focus,
 div.cozen-btn.atom.info.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.info.disabled:hover.loading,
 div.cozen-btn.atom.info.disabled:focus.loading,
 div.cozen-btn.atom.info.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.info.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.info.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.info.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.info.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.info.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.info.disabled:hover,
 div.cozen-btn.atom.info.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.info.disabled:hover.loading,
 div.cozen-btn.atom.info.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.info.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.success {
   color: #ffffff;
@@ -2795,41 +2970,41 @@ div.cozen-btn.atom.success.loading {
 }
 div.cozen-btn.atom.success.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 400;
 }
 div.cozen-btn.atom.success.disabled:hover,
 div.cozen-btn.atom.success.disabled:focus,
 div.cozen-btn.atom.success.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.success.disabled:hover.loading,
 div.cozen-btn.atom.success.disabled:focus.loading,
 div.cozen-btn.atom.success.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.success.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.success.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.success.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.success.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.success.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.success.disabled:hover,
 div.cozen-btn.atom.success.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.success.disabled:hover.loading,
 div.cozen-btn.atom.success.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.success.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.warning {
   color: #ffffff;
@@ -2869,41 +3044,41 @@ div.cozen-btn.atom.warning.loading {
 }
 div.cozen-btn.atom.warning.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 400;
 }
 div.cozen-btn.atom.warning.disabled:hover,
 div.cozen-btn.atom.warning.disabled:focus,
 div.cozen-btn.atom.warning.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.warning.disabled:hover.loading,
 div.cozen-btn.atom.warning.disabled:focus.loading,
 div.cozen-btn.atom.warning.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.warning.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.warning.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.warning.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.warning.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.warning.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.warning.disabled:hover,
 div.cozen-btn.atom.warning.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.warning.disabled:hover.loading,
 div.cozen-btn.atom.warning.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.warning.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.error {
   color: #ffffff;
@@ -2943,41 +3118,41 @@ div.cozen-btn.atom.error.loading {
 }
 div.cozen-btn.atom.error.disabled {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
   font-weight: 400;
 }
 div.cozen-btn.atom.error.disabled:hover,
 div.cozen-btn.atom.error.disabled:focus,
 div.cozen-btn.atom.error.disabled.active {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.error.disabled:hover.loading,
 div.cozen-btn.atom.error.disabled:focus.loading,
 div.cozen-btn.atom.error.disabled.active.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.error.disabled.loading {
-  background-color: rgba(226, 230, 230, 0.4);
+  background-color: rgba(214, 219, 219, 0.4);
 }
 div.cozen-btn.atom.error.disabled > div.cozen-btn-loader:before,
 div.cozen-btn.atom.error.disabled > div.cozen-btn-loader > span,
 div.cozen-btn.atom.error.disabled > div.cozen-btn-loader:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn.atom.error.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-radius: 3px;
 }
 div.cozen-btn.atom.error.disabled:hover,
 div.cozen-btn.atom.error.disabled.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-btn.atom.error.disabled:hover.loading,
 div.cozen-btn.atom.error.disabled.active.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn.atom.error.disabled.loading {
-  border: 1px solid rgba(226, 230, 230, 0.2);
+  border: 1px solid rgba(214, 219, 219, 0.2);
 }
 div.cozen-btn-check.atom.small div.cozen-btn-check-container div.cozen-btn-check-square {
   width: 18px;
@@ -3023,14 +3198,14 @@ div.cozen-btn-check.atom.small.active div.cozen-btn-check-container:focus div.co
   color: #ffffff;
 }
 div.cozen-btn-check.atom.small.active.disabled div.cozen-btn-check-container div.cozen-btn-check-square {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-check.atom.small.active.disabled div.cozen-btn-check-container div.cozen-btn-check-square i.cozen-btn-check-inner {
   color: #ffffff;
 }
 div.cozen-btn-check.atom.small.active.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square,
 div.cozen-btn-check.atom.small.active.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-check.atom.small.active.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square i.cozen-btn-check-inner,
 div.cozen-btn-check.atom.small.active.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square i.cozen-btn-check-inner {
@@ -3051,11 +3226,11 @@ div.cozen-btn-check.atom.small.active div.cozen-btn-check-container:focus div.co
   border: 2px solid #32afe3;
 }
 div.cozen-btn-check.atom.small.disabled div.cozen-btn-check-container div.cozen-btn-check-square {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-check.atom.small.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square,
 div.cozen-btn-check.atom.small.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-check.atom.small div.cozen-btn-check-container label.cozen-btn-check-label {
   margin-left: 12px;
@@ -3133,14 +3308,14 @@ div.cozen-btn-check.atom.normal.active div.cozen-btn-check-container:focus div.c
   color: #ffffff;
 }
 div.cozen-btn-check.atom.normal.active.disabled div.cozen-btn-check-container div.cozen-btn-check-square {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-check.atom.normal.active.disabled div.cozen-btn-check-container div.cozen-btn-check-square i.cozen-btn-check-inner {
   color: #ffffff;
 }
 div.cozen-btn-check.atom.normal.active.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square,
 div.cozen-btn-check.atom.normal.active.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-check.atom.normal.active.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square i.cozen-btn-check-inner,
 div.cozen-btn-check.atom.normal.active.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square i.cozen-btn-check-inner {
@@ -3161,11 +3336,11 @@ div.cozen-btn-check.atom.normal.active div.cozen-btn-check-container:focus div.c
   border: 2px solid #32afe3;
 }
 div.cozen-btn-check.atom.normal.disabled div.cozen-btn-check-container div.cozen-btn-check-square {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-check.atom.normal.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square,
 div.cozen-btn-check.atom.normal.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-check.atom.normal div.cozen-btn-check-container label.cozen-btn-check-label {
   margin-left: 12px;
@@ -3243,14 +3418,14 @@ div.cozen-btn-check.atom.large.active div.cozen-btn-check-container:focus div.co
   color: #ffffff;
 }
 div.cozen-btn-check.atom.large.active.disabled div.cozen-btn-check-container div.cozen-btn-check-square {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-check.atom.large.active.disabled div.cozen-btn-check-container div.cozen-btn-check-square i.cozen-btn-check-inner {
   color: #ffffff;
 }
 div.cozen-btn-check.atom.large.active.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square,
 div.cozen-btn-check.atom.large.active.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-check.atom.large.active.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square i.cozen-btn-check-inner,
 div.cozen-btn-check.atom.large.active.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square i.cozen-btn-check-inner {
@@ -3271,11 +3446,11 @@ div.cozen-btn-check.atom.large.active div.cozen-btn-check-container:focus div.co
   border: 2px solid #32afe3;
 }
 div.cozen-btn-check.atom.large.disabled div.cozen-btn-check-container div.cozen-btn-check-square {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-check.atom.large.disabled div.cozen-btn-check-container:hover div.cozen-btn-check-square,
 div.cozen-btn-check.atom.large.disabled div.cozen-btn-check-container:focus div.cozen-btn-check-square {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-check.atom.large div.cozen-btn-check-container label.cozen-btn-check-label {
   margin-left: 12px;
@@ -3358,7 +3533,7 @@ div.cozen-btn-radio.atom.small.active.disabled div.cozen-btn-radio-container div
   background-color: #ffffff;
 }
 div.cozen-btn-radio.atom.small.active.disabled div.cozen-btn-radio-container div.cozen-btn-radio-bubble div.cozen-btn-radio-inner-bubble {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-radio.atom.small.active.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble,
 div.cozen-btn-radio.atom.small.active.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble {
@@ -3366,7 +3541,7 @@ div.cozen-btn-radio.atom.small.active.disabled div.cozen-btn-radio-container:foc
 }
 div.cozen-btn-radio.atom.small.active.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble i.cozen-btn-radio-inner-bubble,
 div.cozen-btn-radio.atom.small.active.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble i.cozen-btn-radio-inner-bubble {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-btn-radio.atom.small div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
   border: 2px solid #8c8c8c;
@@ -3383,11 +3558,11 @@ div.cozen-btn-radio.atom.small.active div.cozen-btn-radio-container:focus div.co
   border: 2px solid #32afe3;
 }
 div.cozen-btn-radio.atom.small.disabled div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-radio.atom.small.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble,
 div.cozen-btn-radio.atom.small.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-radio.atom.small div.cozen-btn-radio-container label.cozen-btn-radio-label {
   margin-left: 12px;
@@ -3466,7 +3641,7 @@ div.cozen-btn-radio.atom.normal.active.disabled div.cozen-btn-radio-container di
   background-color: #ffffff;
 }
 div.cozen-btn-radio.atom.normal.active.disabled div.cozen-btn-radio-container div.cozen-btn-radio-bubble div.cozen-btn-radio-inner-bubble {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-radio.atom.normal.active.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble,
 div.cozen-btn-radio.atom.normal.active.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble {
@@ -3474,7 +3649,7 @@ div.cozen-btn-radio.atom.normal.active.disabled div.cozen-btn-radio-container:fo
 }
 div.cozen-btn-radio.atom.normal.active.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble i.cozen-btn-radio-inner-bubble,
 div.cozen-btn-radio.atom.normal.active.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble i.cozen-btn-radio-inner-bubble {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-btn-radio.atom.normal div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
   border: 2px solid #8c8c8c;
@@ -3491,11 +3666,11 @@ div.cozen-btn-radio.atom.normal.active div.cozen-btn-radio-container:focus div.c
   border: 2px solid #32afe3;
 }
 div.cozen-btn-radio.atom.normal.disabled div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-radio.atom.normal.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble,
 div.cozen-btn-radio.atom.normal.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-radio.atom.normal div.cozen-btn-radio-container label.cozen-btn-radio-label {
   margin-left: 12px;
@@ -3574,7 +3749,7 @@ div.cozen-btn-radio.atom.large.active.disabled div.cozen-btn-radio-container div
   background-color: #ffffff;
 }
 div.cozen-btn-radio.atom.large.active.disabled div.cozen-btn-radio-container div.cozen-btn-radio-bubble div.cozen-btn-radio-inner-bubble {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-radio.atom.large.active.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble,
 div.cozen-btn-radio.atom.large.active.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble {
@@ -3582,7 +3757,7 @@ div.cozen-btn-radio.atom.large.active.disabled div.cozen-btn-radio-container:foc
 }
 div.cozen-btn-radio.atom.large.active.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble i.cozen-btn-radio-inner-bubble,
 div.cozen-btn-radio.atom.large.active.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble i.cozen-btn-radio-inner-bubble {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-btn-radio.atom.large div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
   border: 2px solid #8c8c8c;
@@ -3599,11 +3774,11 @@ div.cozen-btn-radio.atom.large.active div.cozen-btn-radio-container:focus div.co
   border: 2px solid #32afe3;
 }
 div.cozen-btn-radio.atom.large.disabled div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-radio.atom.large.disabled div.cozen-btn-radio-container:hover div.cozen-btn-radio-bubble,
 div.cozen-btn-radio.atom.large.disabled div.cozen-btn-radio-container:focus div.cozen-btn-radio-bubble {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-radio.atom.large div.cozen-btn-radio-container label.cozen-btn-radio-label {
   margin-left: 12px;
@@ -3657,7 +3832,7 @@ div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container div.coze
   background-color: #ffffff;
 }
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
@@ -3665,7 +3840,7 @@ div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container:hover di
 }
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch:after,
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.small.active div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
   background-color: #2c9fdd;
@@ -3685,7 +3860,7 @@ div.cozen-btn-toggle.atom.small.active.disabled div.cozen-btn-toggle-container d
   background-color: #ffffff;
 }
 div.cozen-btn-toggle.atom.small.active.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.active:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.small.active.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.small.active.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
@@ -3693,7 +3868,7 @@ div.cozen-btn-toggle.atom.small.active.disabled div.cozen-btn-toggle-container:h
 }
 div.cozen-btn-toggle.atom.small.active.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch.active:after,
 div.cozen-btn-toggle.atom.small.active.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch.active:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.small div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
   border: 2px solid #8c8c8c;
@@ -3710,11 +3885,11 @@ div.cozen-btn-toggle.atom.small.active div.cozen-btn-toggle-container:hover div.
   border: 2px solid #32afe3;
 }
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.small.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-toggle.atom.small div.cozen-btn-toggle-container label.cozen-btn-toggle-label {
   margin-left: 12px;
@@ -3768,7 +3943,7 @@ div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container div.coz
   background-color: #ffffff;
 }
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
@@ -3776,7 +3951,7 @@ div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container:hover d
 }
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch:after,
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.normal.active div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
   background-color: #2c9fdd;
@@ -3796,7 +3971,7 @@ div.cozen-btn-toggle.atom.normal.active.disabled div.cozen-btn-toggle-container 
   background-color: #ffffff;
 }
 div.cozen-btn-toggle.atom.normal.active.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.active:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.normal.active.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.normal.active.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
@@ -3804,7 +3979,7 @@ div.cozen-btn-toggle.atom.normal.active.disabled div.cozen-btn-toggle-container:
 }
 div.cozen-btn-toggle.atom.normal.active.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch.active:after,
 div.cozen-btn-toggle.atom.normal.active.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch.active:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.normal div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
   border: 2px solid #8c8c8c;
@@ -3821,11 +3996,11 @@ div.cozen-btn-toggle.atom.normal.active div.cozen-btn-toggle-container:hover div
   border: 2px solid #32afe3;
 }
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.normal.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-toggle.atom.normal div.cozen-btn-toggle-container label.cozen-btn-toggle-label {
   margin-left: 12px;
@@ -3879,7 +4054,7 @@ div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container div.coze
   background-color: #ffffff;
 }
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
@@ -3887,7 +4062,7 @@ div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container:hover di
 }
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch:after,
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.large.active div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
   background-color: #2c9fdd;
@@ -3907,7 +4082,7 @@ div.cozen-btn-toggle.atom.large.active.disabled div.cozen-btn-toggle-container d
   background-color: #ffffff;
 }
 div.cozen-btn-toggle.atom.large.active.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.active:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.large.active.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.large.active.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
@@ -3915,7 +4090,7 @@ div.cozen-btn-toggle.atom.large.active.disabled div.cozen-btn-toggle-container:h
 }
 div.cozen-btn-toggle.atom.large.active.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch.active:after,
 div.cozen-btn-toggle.atom.large.active.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch.active:after {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-btn-toggle.atom.large div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
   border: 2px solid #8c8c8c;
@@ -3932,11 +4107,11 @@ div.cozen-btn-toggle.atom.large.active div.cozen-btn-toggle-container:hover div.
   border: 2px solid #32afe3;
 }
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container div.cozen-btn-toggle-switch {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container:focus div.cozen-btn-toggle-switch,
 div.cozen-btn-toggle.atom.large.disabled div.cozen-btn-toggle-container:hover div.cozen-btn-toggle-switch {
-  border: 2px solid #e2e6e6;
+  border: 2px solid #d6dbdb;
 }
 div.cozen-btn-toggle.atom.large div.cozen-btn-toggle-container label.cozen-btn-toggle-label {
   margin-left: 12px;
@@ -3974,7 +4149,7 @@ div.cozen-dropdown.atom.small hr {
   border: none;
   margin: 6px 0;
   max-width: 100%;
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input {
   padding: 6px 12px;
@@ -4017,7 +4192,7 @@ div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:hover
 div.cozen-dropdown.atom.small.success-design.disabled,
 div.cozen-dropdown.atom.small.error-design.disabled,
 div.cozen-dropdown.atom.small.disabled {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content,
@@ -4061,7 +4236,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left,
@@ -4072,11 +4247,11 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container:hover div.co
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input:focus {
@@ -4094,7 +4269,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input:focus,
@@ -4102,68 +4277,68 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input:focus {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input::-moz-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:-moz-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.small div.cozen-dropdown-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small:hover div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small:hover div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small:hover div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small:hover div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content:hover input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content:hover input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content:hover input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content:hover input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
@@ -4171,7 +4346,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input::-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input::-moz-placeholder,
@@ -4179,7 +4354,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
@@ -4187,7 +4362,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input:-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input:-moz-placeholder,
@@ -4195,7 +4370,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
@@ -4203,7 +4378,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
@@ -4211,7 +4386,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
@@ -4219,7 +4394,7 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
@@ -4227,41 +4402,41 @@ div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.small.success-design.disabled div.cozen-dropdown-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled div.cozen-dropdown-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.small.disabled div.cozen-dropdown-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.small.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled:hover div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled:hover div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.small.disabled:hover div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.small.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.success-design.disabled:hover div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.small.error-design.disabled:hover div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.small.disabled:hover div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content div.cozen-dropdown-item-search-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-item-search-content:hover div.cozen-dropdown-item-search-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.small.icon-left div.cozen-dropdown-container div.cozen-dropdown-content input {
   padding-left: 33px;
@@ -4374,7 +4549,7 @@ div.cozen-dropdown.atom.small.success-design div.cozen-dropdown-label label.labe
 div.cozen-dropdown.atom.small div.cozen-dropdown-container div.cozen-dropdown-transclude {
   width: 100%;
   background-color: #ffffff;
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   box-shadow: 0 3px 13px rgba(100,100,100,0.3);;
 }
 div.cozen-dropdown.atom.small div.cozen-dropdown-label {
@@ -4423,7 +4598,7 @@ div.cozen-dropdown.atom.normal hr {
   border: none;
   margin: 6px 0;
   max-width: 100%;
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input {
   padding: 6px 12px;
@@ -4466,7 +4641,7 @@ div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:hove
 div.cozen-dropdown.atom.normal.success-design.disabled,
 div.cozen-dropdown.atom.normal.error-design.disabled,
 div.cozen-dropdown.atom.normal.disabled {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content,
@@ -4510,7 +4685,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-d
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left,
@@ -4521,11 +4696,11 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container:hover div.c
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input:focus {
@@ -4543,7 +4718,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input:focus,
@@ -4551,68 +4726,68 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input:focus {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input::-moz-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:-moz-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.normal div.cozen-dropdown-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal:hover div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal:hover div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal:hover div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal:hover div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content:hover input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content:hover input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content:hover input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content:hover input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
@@ -4620,7 +4795,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input::-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input::-moz-placeholder,
@@ -4628,7 +4803,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
@@ -4636,7 +4811,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input:-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input:-moz-placeholder,
@@ -4644,7 +4819,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
@@ -4652,7 +4827,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
@@ -4660,7 +4835,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
@@ -4668,7 +4843,7 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
@@ -4676,41 +4851,41 @@ div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-item-search-content i
 div.cozen-dropdown.atom.normal.success-design.disabled div.cozen-dropdown-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled div.cozen-dropdown-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.normal.disabled div.cozen-dropdown-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.normal.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled:hover div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled:hover div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.normal.disabled:hover div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.normal.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.success-design.disabled:hover div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.normal.error-design.disabled:hover div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.normal.disabled:hover div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content div.cozen-dropdown-item-search-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-item-search-content:hover div.cozen-dropdown-item-search-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.normal.icon-left div.cozen-dropdown-container div.cozen-dropdown-content input {
   padding-left: 33px;
@@ -4823,7 +4998,7 @@ div.cozen-dropdown.atom.normal.success-design div.cozen-dropdown-label label.lab
 div.cozen-dropdown.atom.normal div.cozen-dropdown-container div.cozen-dropdown-transclude {
   width: 100%;
   background-color: #ffffff;
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   box-shadow: 0 3px 13px rgba(100,100,100,0.3);;
 }
 div.cozen-dropdown.atom.normal div.cozen-dropdown-label {
@@ -4872,7 +5047,7 @@ div.cozen-dropdown.atom.large hr {
   border: none;
   margin: 6px 0;
   max-width: 100%;
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input {
   padding: 6px 12px;
@@ -4915,7 +5090,7 @@ div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:hover
 div.cozen-dropdown.atom.large.success-design.disabled,
 div.cozen-dropdown.atom.large.error-design.disabled,
 div.cozen-dropdown.atom.large.disabled {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-item-search-content,
@@ -4959,7 +5134,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dr
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left,
@@ -4970,11 +5145,11 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container:hover div.co
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input:focus {
@@ -4992,7 +5167,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input:focus,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input:focus,
@@ -5000,68 +5175,68 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input:focus,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input:focus {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-container:hover div.cozen-dropdown-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input::-moz-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:-moz-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.large div.cozen-dropdown-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large:hover div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large:hover div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large:hover div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large:hover div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content:hover input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content:hover input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content:hover input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content:hover input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input::-webkit-input-placeholder,
@@ -5069,7 +5244,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input::-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input::-moz-placeholder,
@@ -5077,7 +5252,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input:-ms-input-placeholder,
@@ -5085,7 +5260,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input:-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input:-moz-placeholder,
@@ -5093,7 +5268,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input:focus::-webkit-input-placeholder,
@@ -5101,7 +5276,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input:focus::-moz-placeholder,
@@ -5109,7 +5284,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input:focus::-moz-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input:focus:-ms-input-placeholder,
@@ -5117,7 +5292,7 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-item-search-content input:focus:-moz-placeholder,
@@ -5125,41 +5300,41 @@ div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-item-search-content in
 div.cozen-dropdown.atom.large.success-design.disabled div.cozen-dropdown-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled div.cozen-dropdown-content input:focus:-moz-placeholder,
 div.cozen-dropdown.atom.large.disabled div.cozen-dropdown-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder,
 div.cozen-dropdown.atom.large.disabled:hover div.cozen-dropdown-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled:hover div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled:hover div.cozen-dropdown-content input::-moz-placeholder,
 div.cozen-dropdown.atom.large.disabled:hover div.cozen-dropdown-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder,
 div.cozen-dropdown.atom.large.disabled:hover div.cozen-dropdown-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.success-design.disabled:hover div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.large.error-design.disabled:hover div.cozen-dropdown-content input:-moz-placeholder,
 div.cozen-dropdown.atom.large.disabled:hover div.cozen-dropdown-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-container:hover div.cozen-dropdown-content div.cozen-dropdown-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content div.cozen-dropdown-item-search-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-item-search-content:hover div.cozen-dropdown-item-search-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-dropdown.atom.large.icon-left div.cozen-dropdown-container div.cozen-dropdown-content input {
   padding-left: 33px;
@@ -5272,7 +5447,7 @@ div.cozen-dropdown.atom.large.success-design div.cozen-dropdown-label label.labe
 div.cozen-dropdown.atom.large div.cozen-dropdown-container div.cozen-dropdown-transclude {
   width: 100%;
   background-color: #ffffff;
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   box-shadow: 0 3px 13px rgba(100,100,100,0.3);;
 }
 div.cozen-dropdown.atom.large div.cozen-dropdown-label {
@@ -5440,12 +5615,12 @@ div.cozen-dropdown.atom.small .cozen-dropdown-item.cozen-dropdown-item-simple.di
 }
 div.cozen-dropdown.atom.small .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled {
   color: rgba(76, 89, 107, 0.5);
-  background-color: rgba(226, 230, 230, 0.2);
+  background-color: rgba(214, 219, 219, 0.2);
 }
 div.cozen-dropdown.atom.small .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled.active,
 div.cozen-dropdown.atom.small .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled:focus {
   color: rgba(76, 89, 107, 0.5);
-  background-color: rgba(226, 230, 230, 0.2);
+  background-color: rgba(214, 219, 219, 0.2);
 }
 div.cozen-dropdown.atom.small .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-content span.cozen-dropdown-item-simple-label small {
   color: rgba(76, 89, 107, 0.5);
@@ -5584,12 +5759,12 @@ div.cozen-dropdown.atom.normal .cozen-dropdown-item.cozen-dropdown-item-simple.d
 }
 div.cozen-dropdown.atom.normal .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled {
   color: rgba(76, 89, 107, 0.5);
-  background-color: rgba(226, 230, 230, 0.2);
+  background-color: rgba(214, 219, 219, 0.2);
 }
 div.cozen-dropdown.atom.normal .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled.active,
 div.cozen-dropdown.atom.normal .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled:focus {
   color: rgba(76, 89, 107, 0.5);
-  background-color: rgba(226, 230, 230, 0.2);
+  background-color: rgba(214, 219, 219, 0.2);
 }
 div.cozen-dropdown.atom.normal .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-content span.cozen-dropdown-item-simple-label small {
   color: rgba(76, 89, 107, 0.5);
@@ -5728,12 +5903,12 @@ div.cozen-dropdown.atom.large .cozen-dropdown-item.cozen-dropdown-item-simple.di
 }
 div.cozen-dropdown.atom.large .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled {
   color: rgba(76, 89, 107, 0.5);
-  background-color: rgba(226, 230, 230, 0.2);
+  background-color: rgba(214, 219, 219, 0.2);
 }
 div.cozen-dropdown.atom.large .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled.active,
 div.cozen-dropdown.atom.large .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled:focus {
   color: rgba(76, 89, 107, 0.5);
-  background-color: rgba(226, 230, 230, 0.2);
+  background-color: rgba(214, 219, 219, 0.2);
 }
 div.cozen-dropdown.atom.large .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-content span.cozen-dropdown-item-simple-label small {
   color: rgba(76, 89, 107, 0.5);
@@ -5902,7 +6077,7 @@ div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-
 div.cozen-input.atom.small.success-design.disabled,
 div.cozen-input.atom.small.error-design.disabled,
 div.cozen-input.atom.small.disabled {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content,
@@ -5925,15 +6100,15 @@ div.cozen-input.atom.small.disabled div.cozen-input-content input:focus {
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #e2e6e6;
+  border-bottom-color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
 div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #e2e6e6;
+  border-top-color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input:focus {
   border: 1px solid #32afe3;
@@ -5962,140 +6137,140 @@ div.cozen-input.atom.small.error-design div.cozen-input-content:hover input {
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input,
 div.cozen-input.atom.small.disabled div.cozen-input-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:focus {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content:hover input,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content:hover input,
 div.cozen-input.atom.small.disabled div.cozen-input-content:hover input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small:hover div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small:hover div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small:hover div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small:hover div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:focus::-webkit-input-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:focus::-webkit-input-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:focus::-moz-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:focus::-moz-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:focus:-ms-input-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:focus:-ms-input-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input:focus:-moz-placeholder,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:focus:-moz-placeholder,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled:hover div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.small.error-design.disabled:hover div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.small.disabled:hover div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled:hover div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.small.error-design.disabled:hover div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.small.disabled:hover div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled:hover div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.small.error-design.disabled:hover div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.small.disabled:hover div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled:hover div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.small.error-design.disabled:hover div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.small.disabled:hover div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.icon-left div.cozen-input-content input {
   padding-left: 33px;
 }
 div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.icon-left div.cozen-input-content input {
   padding-left: 33px;
 }
 div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.error-design div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.error-design.icon-left div.cozen-input-content input {
   padding-left: 33px;
@@ -6104,12 +6279,12 @@ div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.c
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-icon.left,
 div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content:hover div.cozen-input-icon.left,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content:hover div.cozen-input-icon.left,
 div.cozen-input.atom.small.disabled div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled.icon-left div.cozen-input-content input,
 div.cozen-input.atom.small.error-design.disabled.icon-left div.cozen-input-content input,
@@ -6128,10 +6303,10 @@ div.cozen-input.atom.small.icon-right div.cozen-input-content input {
 }
 div.cozen-input.atom.small div.cozen-input-content div.cozen-input-icon.right {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small div.cozen-input-content:hover div.cozen-input-icon.right {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.icon-right div.cozen-input-content input {
   padding-right: 33px;
@@ -6160,12 +6335,12 @@ div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.c
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-icon.right,
 div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-icon.right {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content:hover div.cozen-input-icon.right,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content:hover div.cozen-input-icon.right,
 div.cozen-input.atom.small.disabled div.cozen-input-content:hover div.cozen-input-icon.right {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.small.success-design.disabled.icon-right div.cozen-input-content input,
 div.cozen-input.atom.small.error-design.disabled.icon-right div.cozen-input-content input,
@@ -6327,7 +6502,7 @@ div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input
 div.cozen-input.atom.normal.success-design.disabled,
 div.cozen-input.atom.normal.error-design.disabled,
 div.cozen-input.atom.normal.disabled {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content,
@@ -6350,15 +6525,15 @@ div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus {
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #e2e6e6;
+  border-bottom-color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
 div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #e2e6e6;
+  border-top-color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input:focus {
   border: 1px solid #32afe3;
@@ -6387,140 +6562,140 @@ div.cozen-input.atom.normal.error-design div.cozen-input-content:hover input {
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content:hover input,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content:hover input,
 div.cozen-input.atom.normal.disabled div.cozen-input-content:hover input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal:hover div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal:hover div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal:hover div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal:hover div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:focus::-webkit-input-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:focus::-webkit-input-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:focus::-moz-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:focus::-moz-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:focus:-ms-input-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:focus:-ms-input-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content input:focus:-moz-placeholder,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:focus:-moz-placeholder,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled:hover div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.normal.error-design.disabled:hover div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.normal.disabled:hover div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled:hover div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.normal.error-design.disabled:hover div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.normal.disabled:hover div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled:hover div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.normal.error-design.disabled:hover div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.normal.disabled:hover div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled:hover div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.normal.error-design.disabled:hover div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.normal.disabled:hover div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.icon-left div.cozen-input-content input {
   padding-left: 33px;
 }
 div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.icon-left div.cozen-input-content input {
   padding-left: 33px;
 }
 div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.error-design div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.error-design.icon-left div.cozen-input-content input {
   padding-left: 33px;
@@ -6529,12 +6704,12 @@ div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-icon.left,
 div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content:hover div.cozen-input-icon.left,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content:hover div.cozen-input-icon.left,
 div.cozen-input.atom.normal.disabled div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled.icon-left div.cozen-input-content input,
 div.cozen-input.atom.normal.error-design.disabled.icon-left div.cozen-input-content input,
@@ -6553,10 +6728,10 @@ div.cozen-input.atom.normal.icon-right div.cozen-input-content input {
 }
 div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-icon.right {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal div.cozen-input-content:hover div.cozen-input-icon.right {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.icon-right div.cozen-input-content input {
   padding-right: 33px;
@@ -6585,12 +6760,12 @@ div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-icon.right,
 div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-icon.right {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content:hover div.cozen-input-icon.right,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content:hover div.cozen-input-icon.right,
 div.cozen-input.atom.normal.disabled div.cozen-input-content:hover div.cozen-input-icon.right {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.normal.success-design.disabled.icon-right div.cozen-input-content input,
 div.cozen-input.atom.normal.error-design.disabled.icon-right div.cozen-input-content input,
@@ -6752,7 +6927,7 @@ div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-
 div.cozen-input.atom.large.success-design.disabled,
 div.cozen-input.atom.large.error-design.disabled,
 div.cozen-input.atom.large.disabled {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content,
@@ -6775,15 +6950,15 @@ div.cozen-input.atom.large.disabled div.cozen-input-content input:focus {
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
 div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #e2e6e6;
+  border-bottom-color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
 div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #e2e6e6;
+  border-top-color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input:focus {
   border: 1px solid #32afe3;
@@ -6812,140 +6987,140 @@ div.cozen-input.atom.large.error-design div.cozen-input-content:hover input {
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input,
 div.cozen-input.atom.large.disabled div.cozen-input-content input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:focus {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content:hover input,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content:hover input,
 div.cozen-input.atom.large.disabled div.cozen-input-content:hover input {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large:hover div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large:hover div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large:hover div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large:hover div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:focus::-webkit-input-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:focus::-webkit-input-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:focus::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:focus::-moz-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:focus::-moz-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:focus::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:focus:-ms-input-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:focus:-ms-input-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:focus:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input:focus:-moz-placeholder,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:focus:-moz-placeholder,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:focus:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled:hover div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.large.error-design.disabled:hover div.cozen-input-content input::-webkit-input-placeholder,
 div.cozen-input.atom.large.disabled:hover div.cozen-input-content input::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled:hover div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.large.error-design.disabled:hover div.cozen-input-content input::-moz-placeholder,
 div.cozen-input.atom.large.disabled:hover div.cozen-input-content input::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled:hover div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.large.error-design.disabled:hover div.cozen-input-content input:-ms-input-placeholder,
 div.cozen-input.atom.large.disabled:hover div.cozen-input-content input:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled:hover div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.large.error-design.disabled:hover div.cozen-input-content input:-moz-placeholder,
 div.cozen-input.atom.large.disabled:hover div.cozen-input-content input:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.icon-left div.cozen-input-content input {
   padding-left: 33px;
 }
 div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.icon-left div.cozen-input-content input {
   padding-left: 33px;
 }
 div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.error-design div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.error-design.icon-left div.cozen-input-content input {
   padding-left: 33px;
@@ -6954,12 +7129,12 @@ div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.c
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-icon.left,
 div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-icon.left {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content:hover div.cozen-input-icon.left,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content:hover div.cozen-input-icon.left,
 div.cozen-input.atom.large.disabled div.cozen-input-content:hover div.cozen-input-icon.left {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled.icon-left div.cozen-input-content input,
 div.cozen-input.atom.large.error-design.disabled.icon-left div.cozen-input-content input,
@@ -6978,10 +7153,10 @@ div.cozen-input.atom.large.icon-right div.cozen-input-content input {
 }
 div.cozen-input.atom.large div.cozen-input-content div.cozen-input-icon.right {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large div.cozen-input-content:hover div.cozen-input-icon.right {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.icon-right div.cozen-input-content input {
   padding-right: 33px;
@@ -7010,12 +7185,12 @@ div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.c
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-icon.right,
 div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-icon.right {
   padding: 6px;
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content:hover div.cozen-input-icon.right,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content:hover div.cozen-input-icon.right,
 div.cozen-input.atom.large.disabled div.cozen-input-content:hover div.cozen-input-icon.right {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-input.atom.large.success-design.disabled.icon-right div.cozen-input-content input,
 div.cozen-input.atom.large.error-design.disabled.icon-right div.cozen-input-content input,
@@ -7111,7 +7286,7 @@ div.cozen-input.atom.large div.cozen-input-label label.required-icon:hover {
   color: #feb909;
 }
 .atom.cozen-input-password-tooltip li.complete {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-list.atom.small div.cozen-list-item {
   padding: 6px 12px;
@@ -7119,18 +7294,18 @@ div.cozen-list.atom.small div.cozen-list-item {
 div.cozen-list.atom.small hr {
   margin: 0;
   max-width: 100%;
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.small div.cozen-list-transclude div.cozen-list-item {
-  border-top: 1px solid #e2e6e6;
+  border-top: 1px solid #d6dbdb;
   border-right: none;
   border-left: none;
 }
 div.cozen-list.atom.small div.cozen-list-transclude :first-child div.cozen-list-item {
-  border-top: 1px solid #e2e6e6;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.small div.cozen-list-transclude :last-child div.cozen-list-item {
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.normal div.cozen-list-item {
   padding: 6px 12px;
@@ -7138,18 +7313,18 @@ div.cozen-list.atom.normal div.cozen-list-item {
 div.cozen-list.atom.normal hr {
   margin: 0;
   max-width: 100%;
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.normal div.cozen-list-transclude div.cozen-list-item {
-  border-top: 1px solid #e2e6e6;
+  border-top: 1px solid #d6dbdb;
   border-right: none;
   border-left: none;
 }
 div.cozen-list.atom.normal div.cozen-list-transclude :first-child div.cozen-list-item {
-  border-top: 1px solid #e2e6e6;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.normal div.cozen-list-transclude :last-child div.cozen-list-item {
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.large div.cozen-list-item {
   padding: 6px 12px;
@@ -7157,18 +7332,18 @@ div.cozen-list.atom.large div.cozen-list-item {
 div.cozen-list.atom.large hr {
   margin: 0;
   max-width: 100%;
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.large div.cozen-list-transclude div.cozen-list-item {
-  border-top: 1px solid #e2e6e6;
+  border-top: 1px solid #d6dbdb;
   border-right: none;
   border-left: none;
 }
 div.cozen-list.atom.large div.cozen-list-transclude :first-child div.cozen-list-item {
-  border-top: 1px solid #e2e6e6;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.large div.cozen-list-transclude :last-child div.cozen-list-item {
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3 {
   background-color: #ffffff;
@@ -7233,7 +7408,7 @@ div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3 div.cozen-list
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-media3 div.cozen-list-item-media3-content.media img {
   width: 57px;
   height: 57px;
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3 {
   background-color: #ffffff;
@@ -7298,7 +7473,7 @@ div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3 div.cozen-lis
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-media3 div.cozen-list-item-media3-content.media img {
   width: 57px;
   height: 57px;
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3 {
   background-color: #ffffff;
@@ -7363,7 +7538,7 @@ div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3 div.cozen-list
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-media3 div.cozen-list-item-media3-content.media img {
   width: 57px;
   height: 57px;
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.small .cozen-list-item.cozen-list-item-simple {
   font-size: 16px;
@@ -7427,15 +7602,15 @@ div.cozen-list.atom.small.disabled .cozen-list-item.cozen-list-item-simple div.c
   padding: 3px 6px;
   font-size: 12px;
   color: #ffffff;
-  background-color: #e2e6e6;
-  border: 1px solid #e2e6e6;
+  background-color: #d6dbdb;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.small.disabled .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn:focus,
 div.cozen-list.atom.small.disabled .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn:hover {
   padding: 3px 6px;
   color: #ffffff;
-  background-color: #e2e6e6;
-  border: 1px solid #e2e6e6;
+  background-color: #d6dbdb;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.normal .cozen-list-item.cozen-list-item-simple {
   font-size: 16px;
@@ -7499,15 +7674,15 @@ div.cozen-list.atom.normal.disabled .cozen-list-item.cozen-list-item-simple div.
   padding: 3px 6px;
   font-size: 12px;
   color: #ffffff;
-  background-color: #e2e6e6;
-  border: 1px solid #e2e6e6;
+  background-color: #d6dbdb;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.normal.disabled .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn:focus,
 div.cozen-list.atom.normal.disabled .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn:hover {
   padding: 3px 6px;
   color: #ffffff;
-  background-color: #e2e6e6;
-  border: 1px solid #e2e6e6;
+  background-color: #d6dbdb;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.large .cozen-list-item.cozen-list-item-simple {
   font-size: 16px;
@@ -7571,26 +7746,26 @@ div.cozen-list.atom.large.disabled .cozen-list-item.cozen-list-item-simple div.c
   padding: 3px 6px;
   font-size: 12px;
   color: #ffffff;
-  background-color: #e2e6e6;
-  border: 1px solid #e2e6e6;
+  background-color: #d6dbdb;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-list.atom.large.disabled .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn:focus,
 div.cozen-list.atom.large.disabled .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn:hover {
   padding: 3px 6px;
   color: #ffffff;
-  background-color: #e2e6e6;
-  border: 1px solid #e2e6e6;
+  background-color: #d6dbdb;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn {
   padding: 6px;
   font-size: 14px;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn:focus,
 div.cozen-pagination.atom.small div.cozen-pagination-btn:hover {
@@ -7606,11 +7781,11 @@ div.cozen-pagination.atom.small div.cozen-pagination-btn:hover + div {
   border-left: 1px solid #489eea;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.active:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.active:focus,
 div.cozen-pagination.atom.small div.cozen-pagination-btn.active:hover {
@@ -7626,24 +7801,24 @@ div.cozen-pagination.atom.small div.cozen-pagination-btn.active:hover + div {
   border-left: 1px solid #489eea;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:focus,
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:hover {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:focus:last-of-type,
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:hover:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:focus + div,
 div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:hover + div {
-  border-left: 1px solid #e2e6e6;
+  border-left: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.small div.cozen-pagination-btn {
   color: #2c9fdd;
@@ -7677,11 +7852,11 @@ div.cozen-pagination.atom.normal div.cozen-pagination-btn {
   font-size: 14px;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn:focus,
 div.cozen-pagination.atom.normal div.cozen-pagination-btn:hover {
@@ -7697,11 +7872,11 @@ div.cozen-pagination.atom.normal div.cozen-pagination-btn:hover + div {
   border-left: 1px solid #489eea;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.active:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.active:focus,
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.active:hover {
@@ -7717,24 +7892,24 @@ div.cozen-pagination.atom.normal div.cozen-pagination-btn.active:hover + div {
   border-left: 1px solid #489eea;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled:focus,
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled:hover {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled:focus:last-of-type,
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled:hover:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled:focus + div,
 div.cozen-pagination.atom.normal div.cozen-pagination-btn.disabled:hover + div {
-  border-left: 1px solid #e2e6e6;
+  border-left: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn {
   color: #2c9fdd;
@@ -7768,11 +7943,11 @@ div.cozen-pagination.atom.large div.cozen-pagination-btn {
   font-size: 14px;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn:focus,
 div.cozen-pagination.atom.large div.cozen-pagination-btn:hover {
@@ -7788,11 +7963,11 @@ div.cozen-pagination.atom.large div.cozen-pagination-btn:hover + div {
   border-left: 1px solid #489eea;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.active {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.active:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.active:focus,
 div.cozen-pagination.atom.large div.cozen-pagination-btn.active:hover {
@@ -7808,24 +7983,24 @@ div.cozen-pagination.atom.large div.cozen-pagination-btn.active:hover + div {
   border-left: 1px solid #489eea;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled:focus,
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled:hover {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
   border-right: none;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled:focus:last-of-type,
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled:hover:last-of-type {
-  border-right: 1px solid #e2e6e6;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled:focus + div,
 div.cozen-pagination.atom.large div.cozen-pagination-btn.disabled:hover + div {
-  border-left: 1px solid #e2e6e6;
+  border-left: 1px solid #d6dbdb;
 }
 div.cozen-pagination.atom.large div.cozen-pagination-btn {
   color: #2c9fdd;
@@ -7924,17 +8099,17 @@ div.cozen-panel.atom.default.no-hover div.cozen-panel-header:hover {
 }
 div.cozen-panel.atom.default.disabled div.cozen-panel-header {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.default.disabled div.cozen-panel-header:hover,
 div.cozen-panel.atom.default.disabled div.cozen-panel-header:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.default.disabled.no-hover div.cozen-panel-header,
 div.cozen-panel.atom.default.disabled.no-hover div.cozen-panel-header:hover {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.default div.cozen-panel-header {
   border: 1px solid #2c9fdd;
@@ -7965,12 +8140,12 @@ div.cozen-panel.atom.default div.cozen-panel-header div.cozen-panel-big-icon.lef
 }
 div.cozen-panel.atom.default.disabled div.cozen-panel-header div.cozen-panel-big-icon.left {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.default.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:hover,
 div.cozen-panel.atom.default.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.default div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #2c9fdd;
@@ -7983,12 +8158,12 @@ div.cozen-panel.atom.default div.cozen-panel-header div.cozen-panel-big-icon.rig
 }
 div.cozen-panel.atom.default.disabled div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.default.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:hover,
 div.cozen-panel.atom.default.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.default div.cozen-panel-header span.cozen-panel-label small {
   font-size: 70%;
@@ -8017,17 +8192,17 @@ div.cozen-panel.atom.info.no-hover div.cozen-panel-header:hover {
 }
 div.cozen-panel.atom.info.disabled div.cozen-panel-header {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.info.disabled div.cozen-panel-header:hover,
 div.cozen-panel.atom.info.disabled div.cozen-panel-header:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.info.disabled.no-hover div.cozen-panel-header,
 div.cozen-panel.atom.info.disabled.no-hover div.cozen-panel-header:hover {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.info div.cozen-panel-header {
   border: 1px solid #2c9fdd;
@@ -8058,12 +8233,12 @@ div.cozen-panel.atom.info div.cozen-panel-header div.cozen-panel-big-icon.left:f
 }
 div.cozen-panel.atom.info.disabled div.cozen-panel-header div.cozen-panel-big-icon.left {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.info.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:hover,
 div.cozen-panel.atom.info.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.info div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #2c9fdd;
@@ -8076,12 +8251,12 @@ div.cozen-panel.atom.info div.cozen-panel-header div.cozen-panel-big-icon.right:
 }
 div.cozen-panel.atom.info.disabled div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.info.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:hover,
 div.cozen-panel.atom.info.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.info div.cozen-panel-header span.cozen-panel-label small {
   font-size: 70%;
@@ -8110,17 +8285,17 @@ div.cozen-panel.atom.success.no-hover div.cozen-panel-header:hover {
 }
 div.cozen-panel.atom.success.disabled div.cozen-panel-header {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.success.disabled div.cozen-panel-header:hover,
 div.cozen-panel.atom.success.disabled div.cozen-panel-header:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.success.disabled.no-hover div.cozen-panel-header,
 div.cozen-panel.atom.success.disabled.no-hover div.cozen-panel-header:hover {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.success div.cozen-panel-header {
   border: 1px solid #2c9fdd;
@@ -8151,12 +8326,12 @@ div.cozen-panel.atom.success div.cozen-panel-header div.cozen-panel-big-icon.lef
 }
 div.cozen-panel.atom.success.disabled div.cozen-panel-header div.cozen-panel-big-icon.left {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.success.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:hover,
 div.cozen-panel.atom.success.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.success div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #2c9fdd;
@@ -8169,12 +8344,12 @@ div.cozen-panel.atom.success div.cozen-panel-header div.cozen-panel-big-icon.rig
 }
 div.cozen-panel.atom.success.disabled div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.success.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:hover,
 div.cozen-panel.atom.success.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.success div.cozen-panel-header span.cozen-panel-label small {
   font-size: 70%;
@@ -8203,17 +8378,17 @@ div.cozen-panel.atom.warning.no-hover div.cozen-panel-header:hover {
 }
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header:hover,
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.warning.disabled.no-hover div.cozen-panel-header,
 div.cozen-panel.atom.warning.disabled.no-hover div.cozen-panel-header:hover {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.warning div.cozen-panel-header {
   border: 1px solid #2c9fdd;
@@ -8244,12 +8419,12 @@ div.cozen-panel.atom.warning div.cozen-panel-header div.cozen-panel-big-icon.lef
 }
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header div.cozen-panel-big-icon.left {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:hover,
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.warning div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #2c9fdd;
@@ -8262,12 +8437,12 @@ div.cozen-panel.atom.warning div.cozen-panel-header div.cozen-panel-big-icon.rig
 }
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:hover,
 div.cozen-panel.atom.warning.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.warning div.cozen-panel-header span.cozen-panel-label small {
   font-size: 70%;
@@ -8296,17 +8471,17 @@ div.cozen-panel.atom.error.no-hover div.cozen-panel-header:hover {
 }
 div.cozen-panel.atom.error.disabled div.cozen-panel-header {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.error.disabled div.cozen-panel-header:hover,
 div.cozen-panel.atom.error.disabled div.cozen-panel-header:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.error.disabled.no-hover div.cozen-panel-header,
 div.cozen-panel.atom.error.disabled.no-hover div.cozen-panel-header:hover {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.error div.cozen-panel-header {
   border: 1px solid #2c9fdd;
@@ -8337,12 +8512,12 @@ div.cozen-panel.atom.error div.cozen-panel-header div.cozen-panel-big-icon.left:
 }
 div.cozen-panel.atom.error.disabled div.cozen-panel-header div.cozen-panel-big-icon.left {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.error.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:hover,
 div.cozen-panel.atom.error.disabled div.cozen-panel-header div.cozen-panel-big-icon.left:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.error div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #2c9fdd;
@@ -8355,12 +8530,12 @@ div.cozen-panel.atom.error div.cozen-panel-header div.cozen-panel-big-icon.right
 }
 div.cozen-panel.atom.error.disabled div.cozen-panel-header div.cozen-panel-big-icon.right {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.error.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:hover,
 div.cozen-panel.atom.error.disabled div.cozen-panel-header div.cozen-panel-big-icon.right:focus {
   color: #ffffff;
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-panel.atom.error div.cozen-panel-header span.cozen-panel-label small {
   font-size: 70%;
@@ -8482,25 +8657,25 @@ div.cozen-popup.atom.default div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #e2e6e6;
-  border-bottom: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #e2e6e6;
-  border-right: 1px solid #e2e6e6;
+  border-left: 1px solid #d6dbdb;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.default div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #e2e6e6;
-  border-top: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.info {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
   color: #4c596b;
@@ -8515,31 +8690,31 @@ div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.info div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #e2e6e6;
-  border-bottom: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #e2e6e6;
-  border-right: 1px solid #e2e6e6;
+  border-left: 1px solid #d6dbdb;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #e2e6e6;
-  border-top: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.success {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
   color: #4c596b;
@@ -8554,22 +8729,22 @@ div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.success div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #e2e6e6;
-  border-bottom: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #e2e6e6;
-  border-right: 1px solid #e2e6e6;
+  border-left: 1px solid #d6dbdb;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #e2e6e6;
-  border-top: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.warning {
   background-color: rgba(0, 0, 0, 0.85);
@@ -8600,7 +8775,7 @@ div.cozen-popup.atom.warning div.cozen-popup-container {
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-header {
   border: none;
-  border-bottom: 1px solid #e2e6e6;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-body {
   border-left: none;
@@ -8608,16 +8783,16 @@ div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-body {
 }
 div.cozen-popup.atom.warning div.cozen-popup-container div.cozen-popup-footer {
   border: none;
-  border-top: 1px solid #e2e6e6;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.error {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
   color: #4c596b;
@@ -8632,22 +8807,22 @@ div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #e2e6e6;
+  background-color: #d6dbdb;
 }
 div.cozen-popup.atom.error div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #e2e6e6;
-  border-bottom: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #e2e6e6;
-  border-right: 1px solid #e2e6e6;
+  border-left: 1px solid #d6dbdb;
+  border-right: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #e2e6e6;
-  border-top: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
+  border-top: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea {
   font-size: 16px;
@@ -8680,7 +8855,7 @@ div.cozen-textarea.atom.small.error-design textarea:hover {
 div.cozen-textarea.atom.small.success-design.disabled textarea,
 div.cozen-textarea.atom.small.error-design.disabled textarea,
 div.cozen-textarea.atom.small.disabled textarea {
-  color: #e2e6e6;
+  color: #d6dbdb;
   background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.small.success-design.disabled textarea:focus,
@@ -8692,7 +8867,7 @@ div.cozen-textarea.atom.small.disabled textarea:hover {
   background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.small textarea {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea:focus,
 div.cozen-textarea.atom.small textarea:hover {
@@ -8715,7 +8890,7 @@ div.cozen-textarea.atom.small.error-design textarea:hover {
 div.cozen-textarea.atom.small.success-design.disabled textarea,
 div.cozen-textarea.atom.small.error-design.disabled textarea,
 div.cozen-textarea.atom.small.disabled textarea {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.small.success-design.disabled textarea:focus,
 div.cozen-textarea.atom.small.error-design.disabled textarea:focus,
@@ -8723,63 +8898,63 @@ div.cozen-textarea.atom.small.disabled textarea:focus,
 div.cozen-textarea.atom.small.success-design.disabled textarea:hover,
 div.cozen-textarea.atom.small.error-design.disabled textarea:hover,
 div.cozen-textarea.atom.small.disabled textarea:hover {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea:focus::-webkit-input-placeholder,
 div.cozen-textarea.atom.small textarea:hover::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea:focus::-moz-placeholder,
 div.cozen-textarea.atom.small textarea:hover::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea:focus:-ms-input-placeholder,
 div.cozen-textarea.atom.small textarea:hover:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small textarea:focus:-moz-placeholder,
 div.cozen-textarea.atom.small textarea:hover:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea:focus::-webkit-input-placeholder,
 div.cozen-textarea.atom.small.disabled textarea:hover::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea:focus::-moz-placeholder,
 div.cozen-textarea.atom.small.disabled textarea:hover::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea:focus:-ms-input-placeholder,
 div.cozen-textarea.atom.small.disabled textarea:hover:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small.disabled textarea:focus:-moz-placeholder,
 div.cozen-textarea.atom.small.disabled textarea:hover:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.small div.cozen-textarea-label {
   margin-bottom: 6px;
@@ -8877,7 +9052,7 @@ div.cozen-textarea.atom.normal.error-design textarea:hover {
 div.cozen-textarea.atom.normal.success-design.disabled textarea,
 div.cozen-textarea.atom.normal.error-design.disabled textarea,
 div.cozen-textarea.atom.normal.disabled textarea {
-  color: #e2e6e6;
+  color: #d6dbdb;
   background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.normal.success-design.disabled textarea:focus,
@@ -8889,7 +9064,7 @@ div.cozen-textarea.atom.normal.disabled textarea:hover {
   background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.normal textarea {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea:focus,
 div.cozen-textarea.atom.normal textarea:hover {
@@ -8912,7 +9087,7 @@ div.cozen-textarea.atom.normal.error-design textarea:hover {
 div.cozen-textarea.atom.normal.success-design.disabled textarea,
 div.cozen-textarea.atom.normal.error-design.disabled textarea,
 div.cozen-textarea.atom.normal.disabled textarea {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.normal.success-design.disabled textarea:focus,
 div.cozen-textarea.atom.normal.error-design.disabled textarea:focus,
@@ -8920,63 +9095,63 @@ div.cozen-textarea.atom.normal.disabled textarea:focus,
 div.cozen-textarea.atom.normal.success-design.disabled textarea:hover,
 div.cozen-textarea.atom.normal.error-design.disabled textarea:hover,
 div.cozen-textarea.atom.normal.disabled textarea:hover {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea:focus::-webkit-input-placeholder,
 div.cozen-textarea.atom.normal textarea:hover::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea:focus::-moz-placeholder,
 div.cozen-textarea.atom.normal textarea:hover::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea:focus:-ms-input-placeholder,
 div.cozen-textarea.atom.normal textarea:hover:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal textarea:focus:-moz-placeholder,
 div.cozen-textarea.atom.normal textarea:hover:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea:focus::-webkit-input-placeholder,
 div.cozen-textarea.atom.normal.disabled textarea:hover::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea:focus::-moz-placeholder,
 div.cozen-textarea.atom.normal.disabled textarea:hover::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea:focus:-ms-input-placeholder,
 div.cozen-textarea.atom.normal.disabled textarea:hover:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal.disabled textarea:focus:-moz-placeholder,
 div.cozen-textarea.atom.normal.disabled textarea:hover:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.normal div.cozen-textarea-label {
   margin-bottom: 6px;
@@ -9074,7 +9249,7 @@ div.cozen-textarea.atom.large.error-design textarea:hover {
 div.cozen-textarea.atom.large.success-design.disabled textarea,
 div.cozen-textarea.atom.large.error-design.disabled textarea,
 div.cozen-textarea.atom.large.disabled textarea {
-  color: #e2e6e6;
+  color: #d6dbdb;
   background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.large.success-design.disabled textarea:focus,
@@ -9086,7 +9261,7 @@ div.cozen-textarea.atom.large.disabled textarea:hover {
   background-color: #f8f8f8;
 }
 div.cozen-textarea.atom.large textarea {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea:focus,
 div.cozen-textarea.atom.large textarea:hover {
@@ -9109,7 +9284,7 @@ div.cozen-textarea.atom.large.error-design textarea:hover {
 div.cozen-textarea.atom.large.success-design.disabled textarea,
 div.cozen-textarea.atom.large.error-design.disabled textarea,
 div.cozen-textarea.atom.large.disabled textarea {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.large.success-design.disabled textarea:focus,
 div.cozen-textarea.atom.large.error-design.disabled textarea:focus,
@@ -9117,63 +9292,63 @@ div.cozen-textarea.atom.large.disabled textarea:focus,
 div.cozen-textarea.atom.large.success-design.disabled textarea:hover,
 div.cozen-textarea.atom.large.error-design.disabled textarea:hover,
 div.cozen-textarea.atom.large.disabled textarea:hover {
-  border: 1px solid #e2e6e6;
+  border: 1px solid #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea:focus::-webkit-input-placeholder,
 div.cozen-textarea.atom.large textarea:hover::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea:focus::-moz-placeholder,
 div.cozen-textarea.atom.large textarea:hover::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea:focus:-ms-input-placeholder,
 div.cozen-textarea.atom.large textarea:hover:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large textarea:focus:-moz-placeholder,
 div.cozen-textarea.atom.large textarea:hover:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea:focus::-webkit-input-placeholder,
 div.cozen-textarea.atom.large.disabled textarea:hover::-webkit-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea:focus::-moz-placeholder,
 div.cozen-textarea.atom.large.disabled textarea:hover::-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea:focus:-ms-input-placeholder,
 div.cozen-textarea.atom.large.disabled textarea:hover:-ms-input-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large.disabled textarea:focus:-moz-placeholder,
 div.cozen-textarea.atom.large.disabled textarea:hover:-moz-placeholder {
-  color: #e2e6e6;
+  color: #d6dbdb;
 }
 div.cozen-textarea.atom.large div.cozen-textarea-label {
   margin-bottom: 6px;
@@ -9350,6 +9525,9 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 /************/
 /*   ICON   */
 /************/
+/***********/
+/*   IMG   */
+/***********/
 /************/
 /*   SIZE   */
 /************/
@@ -10016,6 +10194,9 @@ div.cozen-btn div.cozen-btn-icon {
 }
 div.cozen-btn div.cozen-btn-icon i {
   vertical-align: middle;
+}
+div.cozen-btn div.cozen-btn-img.left {
+  float: left;
 }
 div.cozen-btn div.cozen-btn-loader {
   position: relative;
