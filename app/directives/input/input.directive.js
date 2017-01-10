@@ -260,7 +260,7 @@
         // Watch for the forced error change
         scope.$watch('vm.cozenInputHasError', function (newValue) {
           var form = methods.getForm();
-          if (!Methods.isNullOrEmpty(form)) {
+          if (!Methods.isNullOrEmpty(form[scope._cozenInputFormCtrl])) {
             var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
             input.$setValidity('hasError', !newValue);
           }
