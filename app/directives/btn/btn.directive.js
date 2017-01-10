@@ -32,138 +32,139 @@
  * @param {string}  cozenBtnIconLeft                > Add an icon the to left (write the class)
  * @param {string}  cozenBtnIconRight               > Add an icon the to right (write the class)
  * @param {boolean} cozenBtnAutoSizing  = false     > Shortcut to activate the auto sizing (instead of 100% width)
+ * @param {string}  class                           > Custom class
  *
  */
 (function (angular) {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('cozenLib.btn', [])
-        .directive('cozenBtn', cozenBtn);
+  angular
+    .module('cozenLib.btn', [])
+    .directive('cozenBtn', cozenBtn);
 
-    cozenBtn.$inject = [
-        'Themes',
-        'CONFIG'
-    ];
+  cozenBtn.$inject = [
+    'Themes',
+    'CONFIG'
+  ];
 
-    function cozenBtn(Themes, CONFIG) {
-        return {
-            link       : link,
-            restrict   : 'E',
-            replace    : false,
-            transclude : false,
-            scope      : {
-                cozenBtnOnClick : '&',
-                cozenBtnActive  : '=?',
-                cozenBtnDisabled: '=?',
-                cozenBtnLoader  : '=?'
-            },
-            templateUrl: 'directives/btn/btn.template.html'
+  function cozenBtn(Themes, CONFIG) {
+    return {
+      link       : link,
+      restrict   : 'E',
+      replace    : false,
+      transclude : false,
+      scope      : {
+        cozenBtnOnClick : '&',
+        cozenBtnActive  : '=?',
+        cozenBtnDisabled: '=?',
+        cozenBtnLoader  : '=?'
+      },
+      templateUrl: 'directives/btn/btn.template.html'
+    };
+
+    function link(scope, element, attrs) {
+      var methods = {
+        init        : init,
+        hasError    : hasError,
+        destroy     : destroy,
+        getMainClass: getMainClass,
+        onClick     : onClick,
+        getTabIndex : getTabIndex
+      };
+
+      var data = {
+        directive: 'cozenBtn'
+      };
+
+      scope._isReady = false;
+
+      methods.init();
+
+      function init() {
+
+        // Public functions
+        scope._methods = {
+          getMainClass: getMainClass,
+          onClick     : onClick,
+          getTabIndex : getTabIndex
         };
 
-        function link(scope, element, attrs) {
-            var methods = {
-                init        : init,
-                hasError    : hasError,
-                destroy     : destroy,
-                getMainClass: getMainClass,
-                onClick     : onClick,
-                getTabIndex : getTabIndex
-            };
+        // Checking required stuff
+        if (methods.hasError()) return;
 
-            var data = {
-                directive: 'cozenBtn'
-            };
-
-            scope._isReady = false;
-
-            methods.init();
-
-            function init() {
-
-                // Public functions
-                scope._methods = {
-                    getMainClass: getMainClass,
-                    onClick     : onClick,
-                    getTabIndex : getTabIndex
-                };
-
-                // Checking required stuff
-                if (methods.hasError()) return;
-
-                // Shortcut values (size)
-                if (angular.isUndefined(attrs.cozenBtnSize)) {
-                    if (angular.isDefined(attrs.cozenBtnSizeSmall)) scope._cozenBtnSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnSizeNormal)) scope._cozenBtnSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnSizeLarge)) scope._cozenBtnSize = 'large';
-                    else scope._cozenBtnSize = 'normal';
-                }
-
-                // Shortcut values (type)
-                if (angular.isUndefined(attrs.cozenBtnType)) {
-                    if (angular.isDefined(attrs.cozenBtnTypeDefault)) scope._cozenBtnType = 'default';
-                    else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
-                    else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
-                    else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
-                    else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
-                    else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
-                    else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
-                    else if (angular.isDefined(attrs.cozenBtnTypeError)) scope._cozenBtnType = 'error';
-                    else scope._cozenBtnType = 'default';
-                }
-
-                // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnActive)) scope.cozenBtnActive = false;
-                if (angular.isUndefined(attrs.cozenBtnDisabled)) scope.cozenBtnDisabled = false;
-                if (angular.isUndefined(attrs.cozenBtnLoader)) scope.cozenBtnLoader = false;
-
-                // Default values (attributes)
-                scope._cozenBtnId        = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
-                scope._cozenBtnLabel     = attrs.cozenBtnLabel;
-                scope._cozenBtnIconLeft  = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
-                scope._cozenBtnIconRight = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
-
-                // Init stuff
-                element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
-
-                // Display the template
-                scope._isReady = true;
-            }
-
-            function hasError() {
-                return false;
-            }
-
-            function destroy() {
-                element.off('$destroy', methods.destroy);
-            }
-
-            function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType];
-                if (scope.cozenBtnActive) classList.push('active');
-                if (scope.cozenBtnDisabled) classList.push('disabled');
-                if (scope.cozenBtnLoader) classList.push('loading');
-                if (angular.isDefined(attrs.cozenBtnAutoSizing)) classList.push('auto');
-                return classList;
-            }
-
-            function onClick($event) {
-                $event.stopPropagation();
-                if (scope.cozenBtnDisabled) return;
-                if (scope.cozenBtnLoader) return;
-                if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
-            }
-
-            function getTabIndex() {
-                var tabIndex = 0;
-                if (scope.cozenBtnDisabled) tabIndex = -1;
-                else if (scope.cozenBtnLoader) tabIndex = -1;
-                return tabIndex;
-            }
+        // Shortcut values (size)
+        if (angular.isUndefined(attrs.cozenBtnSize)) {
+          if (angular.isDefined(attrs.cozenBtnSizeSmall)) scope._cozenBtnSize = 'small';
+          else if (angular.isDefined(attrs.cozenBtnSizeNormal)) scope._cozenBtnSize = 'normal';
+          else if (angular.isDefined(attrs.cozenBtnSizeLarge)) scope._cozenBtnSize = 'large';
+          else scope._cozenBtnSize = 'normal';
         }
+
+        // Shortcut values (type)
+        if (angular.isUndefined(attrs.cozenBtnType)) {
+          if (angular.isDefined(attrs.cozenBtnTypeDefault)) scope._cozenBtnType = 'default';
+          else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
+          else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
+          else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
+          else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
+          else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
+          else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
+          else if (angular.isDefined(attrs.cozenBtnTypeError)) scope._cozenBtnType = 'error';
+          else scope._cozenBtnType = 'default';
+        }
+
+        // Default values (scope)
+        if (angular.isUndefined(attrs.cozenBtnActive)) scope.cozenBtnActive = false;
+        if (angular.isUndefined(attrs.cozenBtnDisabled)) scope.cozenBtnDisabled = false;
+        if (angular.isUndefined(attrs.cozenBtnLoader)) scope.cozenBtnLoader = false;
+
+        // Default values (attributes)
+        scope._cozenBtnId        = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
+        scope._cozenBtnLabel     = attrs.cozenBtnLabel;
+        scope._cozenBtnIconLeft  = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
+        scope._cozenBtnIconRight = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
+
+        // Init stuff
+        element.on('$destroy', methods.destroy);
+        scope._activeTheme = Themes.getActiveTheme();
+
+        // Display the template
+        scope._isReady = true;
+      }
+
+      function hasError() {
+        return false;
+      }
+
+      function destroy() {
+        element.off('$destroy', methods.destroy);
+      }
+
+      function getMainClass() {
+        var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.class];
+        if (scope.cozenBtnActive) classList.push('active');
+        if (scope.cozenBtnDisabled) classList.push('disabled');
+        if (scope.cozenBtnLoader) classList.push('loading');
+        if (angular.isDefined(attrs.cozenBtnAutoSizing)) classList.push('auto');
+        return classList;
+      }
+
+      function onClick($event) {
+        $event.stopPropagation();
+        if (scope.cozenBtnDisabled) return;
+        if (scope.cozenBtnLoader) return;
+        if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
+        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
+      }
+
+      function getTabIndex() {
+        var tabIndex = 0;
+        if (scope.cozenBtnDisabled) tabIndex = -1;
+        else if (scope.cozenBtnLoader) tabIndex = -1;
+        return tabIndex;
+      }
     }
+  }
 
 })(window.angular);
 
