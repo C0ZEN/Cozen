@@ -2478,7 +2478,9 @@
                 }
             };
 
-            scope._isReady = false;
+            // After some test, wait too long for the load make things crappy
+            // So, I set it to true for now
+            scope._isReady = true;
 
             methods.init();
 
@@ -2504,7 +2506,7 @@
                     else if (angular.isDefined(attrs.cozenInputPatternLetter)) scope._cozenInputPattern = 'letter';
                     else if (angular.isDefined(attrs.cozenInputPatternName)) scope._cozenInputPattern = 'name';
                     else scope._cozenInputPattern = '';
-                } else scope._cozenInputPattern = attrs._cozenInputPattern;
+                } else scope._cozenInputPattern = attrs.cozenInputPattern;
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenInputSize)) {
@@ -2583,15 +2585,20 @@
                 scope._activeTheme       = Themes.getActiveTheme();
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);
                 scope.$on('cozenFormName', function (event, eventData) {
-                    scope._cozenInputForm = eventData.name;
+                    scope._cozenInputForm      = eventData.name;
+                    scope._cozenInputFormCtrl  = eventData.ctrl;
+                    scope._cozenInputFormModel = eventData.model;
                 });
                 scope._cozenInputPatternRegExp = methods.getPattern();
 
-                // Force the error
-                if (scope.cozenInputHasError) {
-                    methods.getForm()[scope._cozenInputName].$valid   = false;
-                    methods.getForm()[scope._cozenInputName].$invalid = true;
-                }
+                // Watch for the forced error change
+                scope.$watch('vm.cozenInputHasError', function (newValue) {
+                    var form = methods.getForm();
+                    if (!Methods.isNullOrEmpty(form[scope._cozenInputFormCtrl])) {
+                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                        input.$setValidity('hasError', !newValue);
+                    }
+                }, true);
 
                 // Display the template (the timeout avoid a visual bug due to events)
                 $timeout(function () {
@@ -2614,7 +2621,8 @@
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
                     var classList = [scope._activeTheme, scope._cozenInputSize, attrs.class];
-                    var input     = methods.getForm()[scope._cozenInputName];
+                    var input     = methods.getForm();
+                    input         = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                     if (!Methods.isNullOrEmpty(input)) {
                         if (scope._cozenInputValidatorEmpty || (!scope._cozenInputValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenInputModel))) {
                             switch (scope._cozenInputValidator) {
@@ -2641,7 +2649,9 @@
 
             function onChange($event) {
                 if (scope.vm.cozenInputDisabled) return;
-                if (Methods.isFunction(scope.cozenInputOnChange)) scope.cozenInputOnChange();
+                if (Methods.isFunction(scope.vm.cozenInputOnChange)) scope.vm.cozenInputOnChange({
+                    newModel: scope.vm.cozenInputModel
+                });
                 if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
@@ -2675,16 +2685,16 @@
             }
 
             function getForm() {
-                var form = scope.$parent.$parent[scope._cozenInputForm];
-                if (Methods.isNullOrEmpty(form)) {
-                    form = scope.$parent.$parent.$parent[scope._cozenInputForm];
-                    if (Methods.isNullOrEmpty(form)) {
-                        form = scope.$parent.$parent.$parent.$parent[scope._cozenInputForm];
-                        if (Methods.isNullOrEmpty(form)) {
-                            form = scope.$parent.$parent.$parent.$parent.$parent[scope._cozenInputForm];
-                            if (Methods.isNullOrEmpty(form)) {
-                                form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenInputForm];
-                                if (Methods.isNullOrEmpty(form)) {
+                var form = scope.$parent.$parent;
+                if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                    form = scope.$parent.$parent.$parent;
+                    if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                        form = scope.$parent.$parent.$parent.$parent;
+                        if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                            form = scope.$parent.$parent.$parent.$parent.$parent;
+                            if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                                form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
+                                if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                                     return form;
                                 } else return form;
                             } else return form;
