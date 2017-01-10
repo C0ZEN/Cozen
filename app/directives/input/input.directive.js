@@ -258,11 +258,14 @@
         scope._cozenInputPatternRegExp = methods.getPattern();
 
         // Watch for the forced error change
-        scope.$watch('cozenInputHasError', function (newValue) {
-          console.log(newValue);
+        scope.$watch('vm.cozenInputHasError', function (newValue) {
           var form  = methods.getForm();
-          var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
-          input.$setValidity('hasError', newValue);
+          console.log(1);
+          if (form != null) {
+            console.log(2);
+            var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+            input.$setValidity('hasError', newValue);
+          }
         });
 
         // Display the template (the timeout avoid a visual bug due to events)
