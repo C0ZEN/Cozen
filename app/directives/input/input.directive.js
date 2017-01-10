@@ -171,7 +171,11 @@
                     else if (angular.isDefined(attrs.cozenInputPatternLetter)) scope._cozenInputPattern = 'letter';
                     else if (angular.isDefined(attrs.cozenInputPatternName)) scope._cozenInputPattern = 'name';
                     else scope._cozenInputPattern = '';
+<<<<<<< HEAD
                 } else scope._cozenInputPattern = attrs.scope._cozenInputPattern;
+=======
+                } else scope._cozenInputPattern = attrs._cozenInputPattern;
+>>>>>>> f69871f233a14458cd929030ec2a8def6303d7b3
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenInputSize)) {
