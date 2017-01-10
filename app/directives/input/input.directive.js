@@ -261,7 +261,7 @@
         scope.$watch('vm.cozenInputHasError', function (newValue) {
           var form  = methods.getForm();
           console.log(1);
-          if (form != null) {
+          if (!Methods.isNullOrEmpty(form)) {
             console.log(2);
             var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
             input.$setValidity('hasError', newValue);
