@@ -29,7 +29,7 @@
         </label>
 
         <!-- Model length -->
-        <label ng-if="_cozenInputDisplayModelLength && vm.cozenInputModel.length > 0"
+        <label ng-if="_cozenInputDisplayModelLength && input.cozenInputModel.length > 0"
                class="model-length"
                ng-class="{'error': _cozenInputModelLength < 0}">
             {{ _cozenInputModelLength }}
@@ -53,11 +53,11 @@
             </div>
 
             <!-- Input -->
-            <input ng-model="vm.cozenInputModel"
+            <input ng-model="input.cozenInputModel"
                    ng-required="_cozenInputRequired"
                    ng-change="_methods.onChange($event);"
                    type="{{ _cozenInputType }}"
-                   ng-disabled="vm.cozenInputDisabled"
+                   ng-disabled="input.cozenInputDisabled"
                    placeholder="{{ _cozenInputPlaceholder | translate }}"
                    min="{{ _cozenInputMin }}"
                    max="{{ _cozenInputMax }}"
