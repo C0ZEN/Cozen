@@ -34,171 +34,171 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.alert', [])
-    .directive('cozenAlert', cozenAlert);
+    angular
+        .module('cozenLib.alert', [])
+        .directive('cozenAlert', cozenAlert);
 
-  cozenAlert.$inject = [
-    'Themes',
-    'CONFIG',
-    '$window',
-    '$timeout',
-    'rfc4122'
-  ];
+    cozenAlert.$inject = [
+        'Themes',
+        'CONFIG',
+        '$window',
+        '$timeout',
+        'rfc4122'
+    ];
 
-  function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : false,
-      scope      : {
-        cozenAlertOnShow : '&',
-        cozenAlertOnHide : '&',
-        cozenAlertDisplay: '=?'
-      },
-      templateUrl: 'directives/alert/alert.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init        : init,
-        hasError    : hasError,
-        destroy     : destroy,
-        getMainClass: getMainClass,
-        hide        : hide,
-        show        : show,
-        onClose     : onClose
-      };
-
-      var data = {
-        directive        : 'cozenAlert',
-        uuid             : rfc4122.v4(),
-        shown            : true,
-        firstHide        : true,
-        firstDisplayWatch: true
-      };
-
-      scope._isReady = false;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          hide        : hide,
-          onClose     : onClose
+    function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenAlertOnShow : '&',
+                cozenAlertOnHide : '&',
+                cozenAlertDisplay: '=?'
+            },
+            templateUrl: 'directives/alert/alert.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                hide        : hide,
+                show        : show,
+                onClose     : onClose
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenAlertSize)) {
-          if (angular.isDefined(attrs.cozenAlertSizeSmall)) scope._cozenAlertSize = 'small';
-          else if (angular.isDefined(attrs.cozenAlertSizeNormal)) scope._cozenAlertSize = 'normal';
-          else if (angular.isDefined(attrs.cozenAlertSizeLarge)) scope._cozenAlertSize = 'large';
-          else scope._cozenAlertSize = 'normal';
-        }
+            var data = {
+                directive        : 'cozenAlert',
+                uuid             : rfc4122.v4(),
+                shown            : true,
+                firstHide        : true,
+                firstDisplayWatch: true
+            };
 
-        // Shortcut values (type)
-        if (angular.isUndefined(attrs.cozenAlertType)) {
-          if (angular.isDefined(attrs.cozenAlertTypeDefault)) scope._cozenAlertType = 'default';
-          else if (angular.isDefined(attrs.cozenAlertTypeInfo)) scope._cozenAlertType = 'info';
-          else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) scope._cozenAlertType = 'success';
-          else if (angular.isDefined(attrs.cozenAlertTypeWarning)) scope._cozenAlertType = 'warning';
-          else if (angular.isDefined(attrs.cozenAlertTypeError)) scope._cozenAlertType = 'error';
-          else scope._cozenAlertType = 'default';
-        }
+            scope._isReady = false;
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
+            methods.init();
 
-        // Default values (attributes)
-        scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
-        scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
-        scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
-        scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
-        scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
-        scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
-        scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
-        scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+            function init() {
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-        scope.$on('cozenAlertShow', methods.show);
-        scope.$on('cozenAlertHide', methods.hide);
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    hide        : hide,
+                    onClose     : onClose
+                };
 
-        // To execute the hide and show stuff even if the value is changed elsewhere
-        scope.$watch('cozenAlertDisplay', function (newValue) {
-          if (!data.firstDisplayWatch) {
-            if (newValue) {
-              methods.show(null, {
-                uuid: data.uuid
-              });
-            } else {
-              methods.hide(null, {
-                uuid: data.uuid
-              });
+                // Checking required stuff
+                if (methods.hasError()) return;
+
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenAlertSize)) {
+                    if (angular.isDefined(attrs.cozenAlertSizeSmall)) scope._cozenAlertSize = 'small';
+                    else if (angular.isDefined(attrs.cozenAlertSizeNormal)) scope._cozenAlertSize = 'normal';
+                    else if (angular.isDefined(attrs.cozenAlertSizeLarge)) scope._cozenAlertSize = 'large';
+                    else scope._cozenAlertSize = 'normal';
+                } else scope._cozenAlertSize = attrs.cozenAlertSize;
+
+                // Shortcut values (type)
+                if (angular.isUndefined(attrs.cozenAlertType)) {
+                    if (angular.isDefined(attrs.cozenAlertTypeDefault)) scope._cozenAlertType = 'default';
+                    else if (angular.isDefined(attrs.cozenAlertTypeInfo)) scope._cozenAlertType = 'info';
+                    else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) scope._cozenAlertType = 'success';
+                    else if (angular.isDefined(attrs.cozenAlertTypeWarning)) scope._cozenAlertType = 'warning';
+                    else if (angular.isDefined(attrs.cozenAlertTypeError)) scope._cozenAlertType = 'error';
+                    else scope._cozenAlertType = 'default';
+                } else scope._cozenAlertType = attrs.cozenAlertType;
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
+
+                // Default values (attributes)
+                scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
+                scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
+                scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
+                scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
+                scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
+                scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
+                scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
+                scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+                scope.$on('cozenAlertShow', methods.show);
+                scope.$on('cozenAlertHide', methods.hide);
+
+                // To execute the hide and show stuff even if the value is changed elsewhere
+                scope.$watch('cozenAlertDisplay', function (newValue) {
+                    if (!data.firstDisplayWatch) {
+                        if (newValue) {
+                            methods.show(null, {
+                                uuid: data.uuid
+                            });
+                        } else {
+                            methods.hide(null, {
+                                uuid: data.uuid
+                            });
+                        }
+                    } else data.firstDisplayWatch = false;
+                });
+
+                // Display the template
+                scope._isReady = true;
             }
-          } else data.firstDisplayWatch = false;
-        });
 
-        // Display the template
-        scope._isReady = true;
-      }
+            function hasError() {
+                return false;
+            }
 
-      function hasError() {
-        return false;
-      }
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
 
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
+            function getMainClass() {
+                var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType];
+                if (!data.firstHide) {
+                    if (scope._cozenAlertAnimationIn) classList.push('animate-in');
+                    if (scope._cozenAlertAnimationOut) classList.push('animate-out');
+                    if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push('fadeInUp');
+                    if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push('fadeOutDown');
+                }
+                return classList;
+            }
 
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType];
-        if (!data.firstHide) {
-          if (scope._cozenAlertAnimationIn) classList.push('animate-in');
-          if (scope._cozenAlertAnimationOut) classList.push('animate-out');
-          if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push('fadeInUp');
-          if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push('fadeOutDown');
+            function hide($event, params) {
+                if (params.uuid == data.uuid) {
+                    data.firstHide          = false;
+                    scope.cozenAlertDisplay = false;
+                    if (Methods.isFunction(scope.cozenAlertOnHide)) scope.cozenAlertOnHide();
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
+                    Methods.safeApply(scope);
+                }
+            }
+
+            function show($event, params) {
+                if (params.uuid == data.uuid) {
+                    data.firstHide          = false;
+                    scope.cozenAlertDisplay = true;
+                    if (Methods.isFunction(scope.cozenAlertOnShow)) scope.cozenAlertOnShow();
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
+                    Methods.safeApply(scope);
+                }
+            }
+
+            function onClose() {
+                methods.hide(null, {
+                    uuid: data.uuid
+                });
+            }
         }
-        return classList;
-      }
-
-      function hide($event, params) {
-        if (params.uuid == data.uuid) {
-          data.firstHide          = false;
-          scope.cozenAlertDisplay = false;
-          if (Methods.isFunction(scope.cozenAlertOnHide)) scope.cozenAlertOnHide();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
-          Methods.safeApply(scope);
-        }
-      }
-
-      function show($event, params) {
-        if (params.uuid == data.uuid) {
-          data.firstHide          = false;
-          scope.cozenAlertDisplay = true;
-          if (Methods.isFunction(scope.cozenAlertOnShow)) scope.cozenAlertOnShow();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
-          Methods.safeApply(scope);
-        }
-      }
-
-      function onClose() {
-        methods.hide(null, {
-          uuid: data.uuid
-        });
-      }
     }
-  }
 
 })(window.angular);
 

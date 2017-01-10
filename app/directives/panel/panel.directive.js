@@ -115,7 +115,7 @@
           else if (angular.isDefined(attrs.cozenPanelSizeNormal)) scope._cozenPanelSize = 'normal';
           else if (angular.isDefined(attrs.cozenPanelSizeLarge)) scope._cozenPanelSize = 'large';
           else scope._cozenPanelSize = 'normal';
-        }
+        } else scope._cozenPanelSize = attrs.cozenPanelSize;
 
         // Shortcut values (type)
         if (angular.isUndefined(attrs.cozenPanelType)) {
@@ -125,7 +125,7 @@
           else if (angular.isDefined(attrs.cozenPanelTypeWarning)) scope._cozenPanelType = 'warning';
           else if (angular.isDefined(attrs.cozenPanelTypeError)) scope._cozenPanelType = 'error';
           else scope._cozenPanelType = 'default';
-        }
+        } else scope._cozenPanelType = attrs.cozenPanelType;
 
         // Default values (scope)
         if (angular.isUndefined(attrs.cozenPanelDisabled)) scope.cozenPanelDisabled = false;

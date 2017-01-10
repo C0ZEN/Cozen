@@ -79,7 +79,7 @@
                     else if (angular.isDefined(attrs.cozenListSizeNormal)) scope._cozenListSize = 'normal';
                     else if (angular.isDefined(attrs.cozenListSizeLarge)) scope._cozenListSize = 'large';
                     else scope._cozenListSize = 'normal';
-                }
+                } else scope._cozenListSize = attrs.cozenListSize;
 
                 // Default values (attributes)
                 scope._cozenListId = angular.isDefined(attrs.cozenListId) ? attrs.cozenListId : '';

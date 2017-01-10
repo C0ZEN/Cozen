@@ -86,7 +86,7 @@
                     else if (angular.isDefined(attrs.cozenBtnToggleSizeNormal)) scope._cozenBtnToggleSize = 'normal';
                     else if (angular.isDefined(attrs.cozenBtnToggleSizeLarge)) scope._cozenBtnToggleSize = 'large';
                     else scope._cozenBtnToggleSize = 'normal';
-                }
+                } else scope._cozenBtnToggleSize = attrs.cozenBtnToggleSize;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) scope.cozenBtnToggleDisabled = false;

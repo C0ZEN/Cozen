@@ -181,7 +181,7 @@
                     else if (angular.isDefined(attrs.cozenInputSizeNormal)) scope._cozenInputSize = 'normal';
                     else if (angular.isDefined(attrs.cozenInputSizeLarge)) scope._cozenInputSize = 'large';
                     else scope._cozenInputSize = 'normal';
-                }
+                } else scope._cozenInputSize = attrs.cozenInputSize;
 
                 // Shortcut values (type)
                 if (angular.isUndefined(attrs.cozenInputType)) {
@@ -189,7 +189,7 @@
                     else if (angular.isDefined(attrs.cozenInputTypeNumber)) scope._cozenInputType = 'number';
                     else if (angular.isDefined(attrs.cozenInputTypePassword)) scope._cozenInputType = 'password';
                     else scope._cozenInputType = 'text';
-                }
+                } else scope._cozenInputType = attrs.cozenInputType;
 
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenInputValidator)) {
@@ -197,7 +197,7 @@
                     else if (angular.isDefined(attrs.cozenInputValidatorTouched)) scope._cozenInputValidator = 'touched';
                     else if (angular.isDefined(attrs.cozenInputValidatorDirty)) scope._cozenInputValidator = 'dirty';
                     else scope._cozenInputValidator = 'dirty';
-                }
+                } else scope._cozenInputValidator = attrs.cozenInputValidator;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenInputDisabled)) scope.vm.cozenInputDisabled = false;

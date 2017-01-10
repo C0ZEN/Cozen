@@ -87,7 +87,7 @@
                     else if (angular.isDefined(attrs.cozenBtnCheckSizeNormal)) scope._cozenBtnCheckSize = 'normal';
                     else if (angular.isDefined(attrs.cozenBtnCheckSizeLarge)) scope._cozenBtnCheckSize = 'large';
                     else scope._cozenBtnCheckSize = 'normal';
-                }
+                } else scope._cozenBtnCheckSize = attrs.cozenBtnCheckSize;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenBtnCheckDisabled)) scope.cozenBtnCheckDisabled = false;

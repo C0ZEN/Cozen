@@ -101,7 +101,7 @@
           else if (angular.isDefined(attrs.cozenPaginationSizeNormal)) scope._cozenPaginationSize = 'normal';
           else if (angular.isDefined(attrs.cozenPaginationSizeLarge)) scope._cozenPaginationSize = 'large';
           else scope._cozenPaginationSize = 'normal';
-        }
+        } else scope._cozenPaginationSize = attrs.cozenPaginationSize;
 
         // Default values (scope)
         scope.cozenPaginationModel = 1;

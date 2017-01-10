@@ -96,7 +96,7 @@
                     else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) scope._cozenBtnRadioSize = 'normal';
                     else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) scope._cozenBtnRadioSize = 'large';
                     else scope._cozenBtnRadioSize = 'normal';
-                }
+                } else scope._cozenBtnRadioSize = attrs.cozenBtnRadioSize;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) scope.cozenBtnRadioDisabled = false;

@@ -34,171 +34,171 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.alert', [])
-    .directive('cozenAlert', cozenAlert);
+    angular
+        .module('cozenLib.alert', [])
+        .directive('cozenAlert', cozenAlert);
 
-  cozenAlert.$inject = [
-    'Themes',
-    'CONFIG',
-    '$window',
-    '$timeout',
-    'rfc4122'
-  ];
+    cozenAlert.$inject = [
+        'Themes',
+        'CONFIG',
+        '$window',
+        '$timeout',
+        'rfc4122'
+    ];
 
-  function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : false,
-      scope      : {
-        cozenAlertOnShow : '&',
-        cozenAlertOnHide : '&',
-        cozenAlertDisplay: '=?'
-      },
-      templateUrl: 'directives/alert/alert.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init        : init,
-        hasError    : hasError,
-        destroy     : destroy,
-        getMainClass: getMainClass,
-        hide        : hide,
-        show        : show,
-        onClose     : onClose
-      };
-
-      var data = {
-        directive        : 'cozenAlert',
-        uuid             : rfc4122.v4(),
-        shown            : true,
-        firstHide        : true,
-        firstDisplayWatch: true
-      };
-
-      scope._isReady = false;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          hide        : hide,
-          onClose     : onClose
+    function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenAlertOnShow : '&',
+                cozenAlertOnHide : '&',
+                cozenAlertDisplay: '=?'
+            },
+            templateUrl: 'directives/alert/alert.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                hide        : hide,
+                show        : show,
+                onClose     : onClose
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenAlertSize)) {
-          if (angular.isDefined(attrs.cozenAlertSizeSmall)) scope._cozenAlertSize = 'small';
-          else if (angular.isDefined(attrs.cozenAlertSizeNormal)) scope._cozenAlertSize = 'normal';
-          else if (angular.isDefined(attrs.cozenAlertSizeLarge)) scope._cozenAlertSize = 'large';
-          else scope._cozenAlertSize = 'normal';
-        }
+            var data = {
+                directive        : 'cozenAlert',
+                uuid             : rfc4122.v4(),
+                shown            : true,
+                firstHide        : true,
+                firstDisplayWatch: true
+            };
 
-        // Shortcut values (type)
-        if (angular.isUndefined(attrs.cozenAlertType)) {
-          if (angular.isDefined(attrs.cozenAlertTypeDefault)) scope._cozenAlertType = 'default';
-          else if (angular.isDefined(attrs.cozenAlertTypeInfo)) scope._cozenAlertType = 'info';
-          else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) scope._cozenAlertType = 'success';
-          else if (angular.isDefined(attrs.cozenAlertTypeWarning)) scope._cozenAlertType = 'warning';
-          else if (angular.isDefined(attrs.cozenAlertTypeError)) scope._cozenAlertType = 'error';
-          else scope._cozenAlertType = 'default';
-        }
+            scope._isReady = false;
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
+            methods.init();
 
-        // Default values (attributes)
-        scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
-        scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
-        scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
-        scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
-        scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
-        scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
-        scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
-        scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+            function init() {
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-        scope.$on('cozenAlertShow', methods.show);
-        scope.$on('cozenAlertHide', methods.hide);
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    hide        : hide,
+                    onClose     : onClose
+                };
 
-        // To execute the hide and show stuff even if the value is changed elsewhere
-        scope.$watch('cozenAlertDisplay', function (newValue) {
-          if (!data.firstDisplayWatch) {
-            if (newValue) {
-              methods.show(null, {
-                uuid: data.uuid
-              });
-            } else {
-              methods.hide(null, {
-                uuid: data.uuid
-              });
+                // Checking required stuff
+                if (methods.hasError()) return;
+
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenAlertSize)) {
+                    if (angular.isDefined(attrs.cozenAlertSizeSmall)) scope._cozenAlertSize = 'small';
+                    else if (angular.isDefined(attrs.cozenAlertSizeNormal)) scope._cozenAlertSize = 'normal';
+                    else if (angular.isDefined(attrs.cozenAlertSizeLarge)) scope._cozenAlertSize = 'large';
+                    else scope._cozenAlertSize = 'normal';
+                } else scope._cozenAlertSize = attrs.cozenAlertSize;
+
+                // Shortcut values (type)
+                if (angular.isUndefined(attrs.cozenAlertType)) {
+                    if (angular.isDefined(attrs.cozenAlertTypeDefault)) scope._cozenAlertType = 'default';
+                    else if (angular.isDefined(attrs.cozenAlertTypeInfo)) scope._cozenAlertType = 'info';
+                    else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) scope._cozenAlertType = 'success';
+                    else if (angular.isDefined(attrs.cozenAlertTypeWarning)) scope._cozenAlertType = 'warning';
+                    else if (angular.isDefined(attrs.cozenAlertTypeError)) scope._cozenAlertType = 'error';
+                    else scope._cozenAlertType = 'default';
+                } else scope._cozenAlertType = attrs.cozenAlertType;
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
+
+                // Default values (attributes)
+                scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
+                scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
+                scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
+                scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
+                scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
+                scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
+                scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
+                scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+                scope.$on('cozenAlertShow', methods.show);
+                scope.$on('cozenAlertHide', methods.hide);
+
+                // To execute the hide and show stuff even if the value is changed elsewhere
+                scope.$watch('cozenAlertDisplay', function (newValue) {
+                    if (!data.firstDisplayWatch) {
+                        if (newValue) {
+                            methods.show(null, {
+                                uuid: data.uuid
+                            });
+                        } else {
+                            methods.hide(null, {
+                                uuid: data.uuid
+                            });
+                        }
+                    } else data.firstDisplayWatch = false;
+                });
+
+                // Display the template
+                scope._isReady = true;
             }
-          } else data.firstDisplayWatch = false;
-        });
 
-        // Display the template
-        scope._isReady = true;
-      }
+            function hasError() {
+                return false;
+            }
 
-      function hasError() {
-        return false;
-      }
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
 
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
+            function getMainClass() {
+                var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType];
+                if (!data.firstHide) {
+                    if (scope._cozenAlertAnimationIn) classList.push('animate-in');
+                    if (scope._cozenAlertAnimationOut) classList.push('animate-out');
+                    if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push('fadeInUp');
+                    if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push('fadeOutDown');
+                }
+                return classList;
+            }
 
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType];
-        if (!data.firstHide) {
-          if (scope._cozenAlertAnimationIn) classList.push('animate-in');
-          if (scope._cozenAlertAnimationOut) classList.push('animate-out');
-          if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push('fadeInUp');
-          if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push('fadeOutDown');
+            function hide($event, params) {
+                if (params.uuid == data.uuid) {
+                    data.firstHide          = false;
+                    scope.cozenAlertDisplay = false;
+                    if (Methods.isFunction(scope.cozenAlertOnHide)) scope.cozenAlertOnHide();
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
+                    Methods.safeApply(scope);
+                }
+            }
+
+            function show($event, params) {
+                if (params.uuid == data.uuid) {
+                    data.firstHide          = false;
+                    scope.cozenAlertDisplay = true;
+                    if (Methods.isFunction(scope.cozenAlertOnShow)) scope.cozenAlertOnShow();
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
+                    Methods.safeApply(scope);
+                }
+            }
+
+            function onClose() {
+                methods.hide(null, {
+                    uuid: data.uuid
+                });
+            }
         }
-        return classList;
-      }
-
-      function hide($event, params) {
-        if (params.uuid == data.uuid) {
-          data.firstHide          = false;
-          scope.cozenAlertDisplay = false;
-          if (Methods.isFunction(scope.cozenAlertOnHide)) scope.cozenAlertOnHide();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
-          Methods.safeApply(scope);
-        }
-      }
-
-      function show($event, params) {
-        if (params.uuid == data.uuid) {
-          data.firstHide          = false;
-          scope.cozenAlertDisplay = true;
-          if (Methods.isFunction(scope.cozenAlertOnShow)) scope.cozenAlertOnShow();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
-          Methods.safeApply(scope);
-        }
-      }
-
-      function onClose() {
-        methods.hide(null, {
-          uuid: data.uuid
-        });
-      }
     }
-  }
 
 })(window.angular);
 
@@ -329,137 +329,137 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.btn', [])
-    .directive('cozenBtn', cozenBtn);
+    angular
+        .module('cozenLib.btn', [])
+        .directive('cozenBtn', cozenBtn);
 
-  cozenBtn.$inject = [
-    'Themes',
-    'CONFIG'
-  ];
+    cozenBtn.$inject = [
+        'Themes',
+        'CONFIG'
+    ];
 
-  function cozenBtn(Themes, CONFIG) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : false,
-      scope      : {
-        cozenBtnOnClick : '&',
-        cozenBtnActive  : '=?',
-        cozenBtnDisabled: '=?',
-        cozenBtnLoader  : '=?'
-      },
-      templateUrl: 'directives/btn/btn.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init        : init,
-        hasError    : hasError,
-        destroy     : destroy,
-        getMainClass: getMainClass,
-        onClick     : onClick,
-        getTabIndex : getTabIndex
-      };
-
-      var data = {
-        directive: 'cozenBtn'
-      };
-
-      // After some test, wait too long for the load make things crappy
-      // So, I set it to true for now
-      scope._isReady = true;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          onClick     : onClick,
-          getTabIndex : getTabIndex
+    function cozenBtn(Themes, CONFIG) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenBtnOnClick : '&',
+                cozenBtnActive  : '=?',
+                cozenBtnDisabled: '=?',
+                cozenBtnLoader  : '=?'
+            },
+            templateUrl: 'directives/btn/btn.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                onClick     : onClick,
+                getTabIndex : getTabIndex
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenBtnSize)) {
-          if (angular.isDefined(attrs.cozenBtnSizeSmall)) scope._cozenBtnSize = 'small';
-          else if (angular.isDefined(attrs.cozenBtnSizeNormal)) scope._cozenBtnSize = 'normal';
-          else if (angular.isDefined(attrs.cozenBtnSizeLarge)) scope._cozenBtnSize = 'large';
-          else scope._cozenBtnSize = 'normal';
+            var data = {
+                directive: 'cozenBtn'
+            };
+
+            // After some test, wait too long for the load make things crappy
+            // So, I set it to true for now
+            scope._isReady = true;
+
+            methods.init();
+
+            function init() {
+
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    onClick     : onClick,
+                    getTabIndex : getTabIndex
+                };
+
+                // Checking required stuff
+                if (methods.hasError()) return;
+
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenBtnSize)) {
+                    if (angular.isDefined(attrs.cozenBtnSizeSmall)) scope._cozenBtnSize = 'small';
+                    else if (angular.isDefined(attrs.cozenBtnSizeNormal)) scope._cozenBtnSize = 'normal';
+                    else if (angular.isDefined(attrs.cozenBtnSizeLarge)) scope._cozenBtnSize = 'large';
+                    else scope._cozenBtnSize = 'normal';
+                } else scope._cozenBtnSize = attrs.cozenBtnSize;
+
+                // Shortcut values (type)
+                if (angular.isUndefined(attrs.cozenBtnType)) {
+                    if (angular.isDefined(attrs.cozenBtnTypeDefault)) scope._cozenBtnType = 'default';
+                    else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
+                    else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
+                    else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
+                    else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
+                    else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
+                    else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
+                    else if (angular.isDefined(attrs.cozenBtnTypeError)) scope._cozenBtnType = 'error';
+                    else scope._cozenBtnType = 'default';
+                } else scope._cozenBtnType = attrs.cozenBtnType;
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenBtnActive)) scope.cozenBtnActive = false;
+                if (angular.isUndefined(attrs.cozenBtnDisabled)) scope.cozenBtnDisabled = false;
+                if (angular.isUndefined(attrs.cozenBtnLoader)) scope.cozenBtnLoader = false;
+
+                // Default values (attributes)
+                scope._cozenBtnId        = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
+                scope._cozenBtnLabel     = attrs.cozenBtnLabel;
+                scope._cozenBtnIconLeft  = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
+                scope._cozenBtnIconRight = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+
+                // Display the template
+                scope._isReady = true;
+            }
+
+            function hasError() {
+                return false;
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.class];
+                if (scope.cozenBtnActive) classList.push('active');
+                if (scope.cozenBtnDisabled) classList.push('disabled');
+                if (scope.cozenBtnLoader) classList.push('loading');
+                if (angular.isDefined(attrs.cozenBtnAutoSizing)) classList.push('auto');
+                return classList;
+            }
+
+            function onClick($event) {
+                $event.stopPropagation();
+                if (scope.cozenBtnDisabled) return;
+                if (scope.cozenBtnLoader) return;
+                if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
+            }
+
+            function getTabIndex() {
+                var tabIndex = 0;
+                if (scope.cozenBtnDisabled) tabIndex = -1;
+                else if (scope.cozenBtnLoader) tabIndex = -1;
+                return tabIndex;
+            }
         }
-
-        // Shortcut values (type)
-        if (angular.isUndefined(attrs.cozenBtnType)) {
-          if (angular.isDefined(attrs.cozenBtnTypeDefault)) scope._cozenBtnType = 'default';
-          else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
-          else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
-          else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
-          else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
-          else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
-          else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
-          else if (angular.isDefined(attrs.cozenBtnTypeError)) scope._cozenBtnType = 'error';
-          else scope._cozenBtnType = 'default';
-        }
-
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenBtnActive)) scope.cozenBtnActive = false;
-        if (angular.isUndefined(attrs.cozenBtnDisabled)) scope.cozenBtnDisabled = false;
-        if (angular.isUndefined(attrs.cozenBtnLoader)) scope.cozenBtnLoader = false;
-
-        // Default values (attributes)
-        scope._cozenBtnId        = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
-        scope._cozenBtnLabel     = attrs.cozenBtnLabel;
-        scope._cozenBtnIconLeft  = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
-        scope._cozenBtnIconRight = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
-
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-
-        // Display the template
-        scope._isReady = true;
-      }
-
-      function hasError() {
-        return false;
-      }
-
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
-
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.class];
-        if (scope.cozenBtnActive) classList.push('active');
-        if (scope.cozenBtnDisabled) classList.push('disabled');
-        if (scope.cozenBtnLoader) classList.push('loading');
-        if (angular.isDefined(attrs.cozenBtnAutoSizing)) classList.push('auto');
-        return classList;
-      }
-
-      function onClick($event) {
-        $event.stopPropagation();
-        if (scope.cozenBtnDisabled) return;
-        if (scope.cozenBtnLoader) return;
-        if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
-      }
-
-      function getTabIndex() {
-        var tabIndex = 0;
-        if (scope.cozenBtnDisabled) tabIndex = -1;
-        else if (scope.cozenBtnLoader) tabIndex = -1;
-        return tabIndex;
-      }
     }
-  }
 
 })(window.angular);
 
@@ -553,7 +553,7 @@
                     else if (angular.isDefined(attrs.cozenBtnCheckSizeNormal)) scope._cozenBtnCheckSize = 'normal';
                     else if (angular.isDefined(attrs.cozenBtnCheckSizeLarge)) scope._cozenBtnCheckSize = 'large';
                     else scope._cozenBtnCheckSize = 'normal';
-                }
+                } else scope._cozenBtnCheckSize = attrs.cozenBtnCheckSize;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenBtnCheckDisabled)) scope.cozenBtnCheckDisabled = false;
@@ -714,7 +714,7 @@
                     else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) scope._cozenBtnRadioSize = 'normal';
                     else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) scope._cozenBtnRadioSize = 'large';
                     else scope._cozenBtnRadioSize = 'normal';
-                }
+                } else scope._cozenBtnRadioSize = attrs.cozenBtnRadioSize;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) scope.cozenBtnRadioDisabled = false;
@@ -882,7 +882,7 @@
                     else if (angular.isDefined(attrs.cozenBtnToggleSizeNormal)) scope._cozenBtnToggleSize = 'normal';
                     else if (angular.isDefined(attrs.cozenBtnToggleSizeLarge)) scope._cozenBtnToggleSize = 'large';
                     else scope._cozenBtnToggleSize = 'normal';
-                }
+                } else scope._cozenBtnToggleSize = attrs.cozenBtnToggleSize;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) scope.cozenBtnToggleDisabled = false;
@@ -1171,507 +1171,507 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.dropdown', [
-      'cozenLib.dropdown.group',
-      'cozenLib.dropdown.search',
-      'cozenLib.dropdown.simple'
-    ])
-    .directive('cozenDropdown', cozenDropdown);
+    angular
+        .module('cozenLib.dropdown', [
+            'cozenLib.dropdown.group',
+            'cozenLib.dropdown.search',
+            'cozenLib.dropdown.simple'
+        ])
+        .directive('cozenDropdown', cozenDropdown);
 
-  cozenDropdown.$inject = [
-    'Themes',
-    'CONFIG',
-    '$window',
-    '$rootScope',
-    'rfc4122',
-    '$filter',
-    '$timeout'
-  ];
+    cozenDropdown.$inject = [
+        'Themes',
+        'CONFIG',
+        '$window',
+        '$rootScope',
+        'rfc4122',
+        '$filter',
+        '$timeout'
+    ];
 
-  function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout) {
-    return {
-      link            : link,
-      restrict        : 'E',
-      replace         : false,
-      transclude      : true,
-      scope           : {
-        cozenDropdownModel   : '=?',
-        cozenDropdownDisabled: '=?',
-        cozenDropdownOnChange: '&'
-      },
-      templateUrl     : 'directives/dropdown/dropdown.template.html',
-      bindToController: true,
-      controller      : cozenDropdownCtrl,
-      controllerAs    : 'vm'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init                     : init,
-        hasError                 : hasError,
-        destroy                  : destroy,
-        getMainClass             : getMainClass,
-        onHover                  : onHover,
-        onKeyDown                : onKeyDown,
-        onChange                 : onChange,
-        getForm                  : getForm,
-        onClick                  : onClick,
-        onAutoCloseOthers        : onAutoCloseOthers,
-        onWindowClick            : onWindowClick,
-        onChildSelected          : onChildSelected,
-        onChildSearched          : onChildSearched,
-        setScrollBarHeight       : setScrollBarHeight,
-        onActiveChild            : onActiveChild,
-        defineTranscludeDirection: defineTranscludeDirection,
-        getArrowClass            : getArrowClass,
-        getTranscludeStyle       : getTranscludeStyle
-      };
-
-      var data = {
-        directive       : 'cozenDropdown',
-        uuid            : rfc4122.v4(),
-        transcludeHeight: 0,
-        touched         : false
-      };
-
-      scope._isReady = false;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass      : getMainClass,
-          onHover           : onHover,
-          onChange          : onChange,
-          onClick           : onClick,
-          getArrowClass     : getArrowClass,
-          getTranscludeStyle: getTranscludeStyle
+    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout) {
+        return {
+            link            : link,
+            restrict        : 'E',
+            replace         : false,
+            transclude      : true,
+            scope           : {
+                cozenDropdownModel   : '=?',
+                cozenDropdownDisabled: '=?',
+                cozenDropdownOnChange: '&'
+            },
+            templateUrl     : 'directives/dropdown/dropdown.template.html',
+            bindToController: true,
+            controller      : cozenDropdownCtrl,
+            controllerAs    : 'vm'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init                     : init,
+                hasError                 : hasError,
+                destroy                  : destroy,
+                getMainClass             : getMainClass,
+                onHover                  : onHover,
+                onKeyDown                : onKeyDown,
+                onChange                 : onChange,
+                getForm                  : getForm,
+                onClick                  : onClick,
+                onAutoCloseOthers        : onAutoCloseOthers,
+                onWindowClick            : onWindowClick,
+                onChildSelected          : onChildSelected,
+                onChildSearched          : onChildSearched,
+                setScrollBarHeight       : setScrollBarHeight,
+                onActiveChild            : onActiveChild,
+                defineTranscludeDirection: defineTranscludeDirection,
+                getArrowClass            : getArrowClass,
+                getTranscludeStyle       : getTranscludeStyle
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenDropdownSize)) {
-          if (angular.isDefined(attrs.cozenDropdownSizeSmall)) scope._cozenDropdownSize = 'small';
-          else if (angular.isDefined(attrs.cozenDropdownSizeNormal)) scope._cozenDropdownSize = 'normal';
-          else if (angular.isDefined(attrs.cozenDropdownSizeLarge)) scope._cozenDropdownSize = 'large';
-          else scope._cozenDropdownSize = 'normal';
-        }
+            var data = {
+                directive       : 'cozenDropdown',
+                uuid            : rfc4122.v4(),
+                transcludeHeight: 0,
+                touched         : false
+            };
 
-        // Shortcut values (validator)
-        if (angular.isUndefined(attrs.cozenDropdownValidator)) {
-          if (angular.isDefined(attrs.cozenDropdownValidatorAll)) scope._cozenDropdownValidator = 'all';
-          else if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) scope._cozenDropdownValidator = 'touched';
-          else scope._cozenDropdownValidator = 'touched';
-        }
+            scope._isReady = false;
 
-        // Check the model enhanced mod
-        if (angular.isUndefined(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = 'last';
-        else {
-          if (attrs.cozenDropdownModelEnhanced == 'last') scope._cozenDropdownModelEnhanced = 'last';
-          else if (attrs.cozenDropdownModelEnhanced == 'count') scope._cozenDropdownModelEnhanced = 'count';
-          else if (attrs.cozenDropdownModelEnhanced == 'all') scope._cozenDropdownModelEnhanced = 'all';
-          else if (!isNaN(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = parseInt(attrs.cozenDropdownModelEnhanced);
-          else {
-            scope._cozenDropdownModelEnhanced = 'last';
-            Methods.directiveWarningUnmatched(data.directive, 'ModelEnhanced', 'last');
-          }
-        }
+            methods.init();
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenDropdownDisabled)) scope.vm.cozenDropdownDisabled = false;
-        scope.vm.cozenDropdownModelEnhanced = '';
+            function init() {
 
-        // Default values (attributes)
-        scope._cozenDropdownId              = angular.isDefined(attrs.cozenDropdownId) ? attrs.cozenDropdownId : '';
-        scope._cozenDropdownRequired        = angular.isDefined(attrs.cozenDropdownRequired) ? JSON.parse(attrs.cozenDropdownRequired) : false;
-        scope._cozenDropdownErrorDesign     = angular.isDefined(attrs.cozenDropdownErrorDesign) ? JSON.parse(attrs.cozenDropdownErrorDesign) : true;
-        scope._cozenDropdownSuccessDesign   = angular.isDefined(attrs.cozenDropdownSuccessDesign) ? JSON.parse(attrs.cozenDropdownSuccessDesign) : true;
-        scope._cozenDropdownPlaceholder     = angular.isDefined(attrs.cozenDropdownPlaceholder) ? attrs.cozenDropdownPlaceholder : '';
-        scope._cozenDropdownIconLeft        = angular.isDefined(attrs.cozenDropdownIconLeft) ? attrs.cozenDropdownIconLeft : '';
-        scope._cozenDropdownName            = angular.isDefined(attrs.cozenDropdownName) ? attrs.cozenDropdownName : data.uuid;
-        scope._cozenDropdownEasyNavigation  = angular.isDefined(attrs.cozenDropdownEasyNavigation) ? JSON.parse(attrs.cozenDropdownEasyNavigation) : true;
-        scope._cozenDropdownMultiple        = angular.isDefined(attrs.cozenDropdownMultiple) ? JSON.parse(attrs.cozenDropdownMultiple) : false;
-        scope._cozenDropdownAutoClose       = angular.isDefined(attrs.cozenDropdownAutoClose) ? JSON.parse(attrs.cozenDropdownAutoClose) : true;
-        scope._cozenDropdownEasyClose       = angular.isDefined(attrs.cozenDropdownEasyClose) ? JSON.parse(attrs.cozenDropdownEasyClose) : true;
-        scope._cozenDropdownShowTick        = angular.isDefined(attrs.cozenDropdownShowTick) ? JSON.parse(attrs.cozenDropdownShowTick) : true;
-        scope._cozenDropdownTickIcon        = angular.isDefined(attrs.cozenDropdownTickIcon) ? attrs.cozenDropdownTickIcon : 'fa fa-check';
-        scope._cozenDropdownMaxHeight       = angular.isDefined(attrs.cozenDropdownMaxHeight) ? JSON.parse(attrs.cozenDropdownMaxHeight) : 200;
-        scope._cozenDropdownDirection       = 'down';
-        scope._cozenDropdownLabel           = angular.isDefined(attrs.cozenDropdownLabel) ? attrs.cozenDropdownLabel : '';
-        scope._cozenDropdownRequiredConfig  = CONFIG.required;
-        scope._cozenDropdownRequiredTooltip = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
-        scope._cozenDropdownUuid            = data.uuid;
+                // Public functions
+                scope._methods = {
+                    getMainClass      : getMainClass,
+                    onHover           : onHover,
+                    onChange          : onChange,
+                    onClick           : onClick,
+                    getArrowClass     : getArrowClass,
+                    getTranscludeStyle: getTranscludeStyle
+                };
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme           = Themes.getActiveTheme();
-        scope.isHover                = false;
-        scope.childrenUuid           = [];
-        scope.activeChild            = 0;
-        scope._cozenDropdownCollapse = false;
+                // Checking required stuff
+                if (methods.hasError()) return;
 
-        // To get the name of the form
-        scope.$on('cozenFormName', function (event, eventData) {
-          scope._cozenDropdownForm = eventData.name;
-        });
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenDropdownSize)) {
+                    if (angular.isDefined(attrs.cozenDropdownSizeSmall)) scope._cozenDropdownSize = 'small';
+                    else if (angular.isDefined(attrs.cozenDropdownSizeNormal)) scope._cozenDropdownSize = 'normal';
+                    else if (angular.isDefined(attrs.cozenDropdownSizeLarge)) scope._cozenDropdownSize = 'large';
+                    else scope._cozenDropdownSize = 'normal';
+                } else scope._cozenDropdownSize = attrs.cozenDropdownSize;
 
-        // Watch the up/down key to navigate
-        $window.addEventListener('keydown', methods.onKeyDown);
+                // Shortcut values (validator)
+                if (angular.isUndefined(attrs.cozenDropdownValidator)) {
+                    if (angular.isDefined(attrs.cozenDropdownValidatorAll)) scope._cozenDropdownValidator = 'all';
+                    else if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) scope._cozenDropdownValidator = 'touched';
+                    else scope._cozenDropdownValidator = 'touched';
+                } else scope._cozenDropdownValidator = attrs.cozenDropdownValidator;
 
-        // To auto close when a drop down is show
-        scope.$on('cozenDropdownAutoCloseOthers', methods.onAutoCloseOthers);
+                // Check the model enhanced mod
+                if (angular.isUndefined(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = 'last';
+                else {
+                    if (attrs.cozenDropdownModelEnhanced == 'last') scope._cozenDropdownModelEnhanced = 'last';
+                    else if (attrs.cozenDropdownModelEnhanced == 'count') scope._cozenDropdownModelEnhanced = 'count';
+                    else if (attrs.cozenDropdownModelEnhanced == 'all') scope._cozenDropdownModelEnhanced = 'all';
+                    else if (!isNaN(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = parseInt(attrs.cozenDropdownModelEnhanced);
+                    else {
+                        scope._cozenDropdownModelEnhanced = 'last';
+                        Methods.directiveWarningUnmatched(data.directive, 'ModelEnhanced', 'last');
+                    }
+                }
 
-        // When a child is toggle
-        scope.$on('cozenDropdownSelected', methods.onChildSelected);
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenDropdownDisabled)) scope.vm.cozenDropdownDisabled = false;
+                scope.vm.cozenDropdownModelEnhanced = '';
 
-        // When the search change (from each child)
-        scope.$on('cozenDropdownItemDisabled', methods.onChildSearched);
+                // Default values (attributes)
+                scope._cozenDropdownId              = angular.isDefined(attrs.cozenDropdownId) ? attrs.cozenDropdownId : '';
+                scope._cozenDropdownRequired        = angular.isDefined(attrs.cozenDropdownRequired) ? JSON.parse(attrs.cozenDropdownRequired) : false;
+                scope._cozenDropdownErrorDesign     = angular.isDefined(attrs.cozenDropdownErrorDesign) ? JSON.parse(attrs.cozenDropdownErrorDesign) : true;
+                scope._cozenDropdownSuccessDesign   = angular.isDefined(attrs.cozenDropdownSuccessDesign) ? JSON.parse(attrs.cozenDropdownSuccessDesign) : true;
+                scope._cozenDropdownPlaceholder     = angular.isDefined(attrs.cozenDropdownPlaceholder) ? attrs.cozenDropdownPlaceholder : '';
+                scope._cozenDropdownIconLeft        = angular.isDefined(attrs.cozenDropdownIconLeft) ? attrs.cozenDropdownIconLeft : '';
+                scope._cozenDropdownName            = angular.isDefined(attrs.cozenDropdownName) ? attrs.cozenDropdownName : data.uuid;
+                scope._cozenDropdownEasyNavigation  = angular.isDefined(attrs.cozenDropdownEasyNavigation) ? JSON.parse(attrs.cozenDropdownEasyNavigation) : true;
+                scope._cozenDropdownMultiple        = angular.isDefined(attrs.cozenDropdownMultiple) ? JSON.parse(attrs.cozenDropdownMultiple) : false;
+                scope._cozenDropdownAutoClose       = angular.isDefined(attrs.cozenDropdownAutoClose) ? JSON.parse(attrs.cozenDropdownAutoClose) : true;
+                scope._cozenDropdownEasyClose       = angular.isDefined(attrs.cozenDropdownEasyClose) ? JSON.parse(attrs.cozenDropdownEasyClose) : true;
+                scope._cozenDropdownShowTick        = angular.isDefined(attrs.cozenDropdownShowTick) ? JSON.parse(attrs.cozenDropdownShowTick) : true;
+                scope._cozenDropdownTickIcon        = angular.isDefined(attrs.cozenDropdownTickIcon) ? attrs.cozenDropdownTickIcon : 'fa fa-check';
+                scope._cozenDropdownMaxHeight       = angular.isDefined(attrs.cozenDropdownMaxHeight) ? JSON.parse(attrs.cozenDropdownMaxHeight) : 200;
+                scope._cozenDropdownDirection       = 'down';
+                scope._cozenDropdownLabel           = angular.isDefined(attrs.cozenDropdownLabel) ? attrs.cozenDropdownLabel : '';
+                scope._cozenDropdownRequiredConfig  = CONFIG.required;
+                scope._cozenDropdownRequiredTooltip = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
+                scope._cozenDropdownUuid            = data.uuid;
 
-        // Update the active child when a change occur in a child
-        scope.$on('cozenDropdownActiveChild', methods.onActiveChild);
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme           = Themes.getActiveTheme();
+                scope.isHover                = false;
+                scope.childrenUuid           = [];
+                scope.activeChild            = 0;
+                scope._cozenDropdownCollapse = false;
 
-        // Define the transclude position
-        $window.addEventListener('scroll', methods.defineTranscludeDirection);
+                // To get the name of the form
+                scope.$on('cozenFormName', function (event, eventData) {
+                    scope._cozenDropdownForm = eventData.name;
+                });
 
-        // ScrollBar
-        scope._cozenScrollBar            = CONFIG.scrollsBar;
-        scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
-        scope._cozenScrollBarConfig.axis = 'y';
-        methods.setScrollBarHeight();
+                // Watch the up/down key to navigate
+                $window.addEventListener('keydown', methods.onKeyDown);
 
-        // Display the template
-        scope._isReady = true;
-      }
+                // To auto close when a drop down is show
+                scope.$on('cozenDropdownAutoCloseOthers', methods.onAutoCloseOthers);
 
-      function hasError() {
-        if (Methods.isNullOrEmpty(attrs.cozenDropdownModel)) {
-          Methods.directiveErrorRequired(data.directive, 'Model');
-          return true;
-        }
-        if (angular.isDefined(attrs.cozenDropdownName)) {
-          if (Methods.isNullOrEmpty(attrs.cozenDropdownName)) {
-            Methods.directiveErrorEmpty(data.directive, 'Name');
-            return true;
-          }
-        }
-        return false;
-      }
+                // When a child is toggle
+                scope.$on('cozenDropdownSelected', methods.onChildSelected);
 
-      function destroy() {
-        $window.removeEventListener('keydown', methods.onKeyDown);
-        $window.removeEventListener('click', methods.onWindowClick);
-        $window.removeEventListener('scroll', methods.onScroll);
-        element.off('$destroy', methods.destroy);
-      }
+                // When the search change (from each child)
+                scope.$on('cozenDropdownItemDisabled', methods.onChildSearched);
 
-      function getMainClass() {
-        if (!Methods.isNullOrEmpty(scope._cozenDropdownForm)) {
-          var classList = [scope._activeTheme, scope._cozenDropdownSize, 'icon-right', scope._cozenDropdownDirection];
-          switch (scope._cozenDropdownValidator) {
-            case 'touched':
-              if (data.touched) {
-                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
-                else if (scope._cozenDropdownRequired) classList.push('error-design');
-              }
-              break;
-            case 'all':
-              if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
-              else if (scope._cozenDropdownRequired) classList.push('error-design');
-              break;
-          }
-          if (scope.vm.cozenDropdownDisabled) classList.push('disabled');
-          if (scope._cozenDropdownIconLeft) classList.push('icon-left');
-          return classList;
-        }
-      }
+                // Update the active child when a change occur in a child
+                scope.$on('cozenDropdownActiveChild', methods.onActiveChild);
 
-      function onHover($event, state) {
-        scope.isHover = state;
-        if (!scope._cozenDropdownEasyNavigation) {
-          if (!scope.isHover) {
-            $rootScope.$broadcast('cozenDropdownActive', {
-              uuid: null
-            });
-          }
-        }
-      }
+                // Define the transclude position
+                $window.addEventListener('scroll', methods.defineTranscludeDirection);
 
-      function onKeyDown(event) {
-        if (scope.vm.cozenDropdownDisabled) return;
-        if (!scope._cozenDropdownCollapse) return;
-        if (!scope._cozenDropdownEasyNavigation) {
-          if (!scope.isHover) return;
-        }
-        if (event.keyCode == 38 || event.keyCode == 40) {
+                // ScrollBar
+                scope._cozenScrollBar            = CONFIG.scrollsBar;
+                scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
+                scope._cozenScrollBarConfig.axis = 'y';
+                methods.setScrollBarHeight();
 
-          event.stopPropagation();
-          event.preventDefault();
+                // Display the template
+                scope._isReady = true;
+            }
 
-          // Search for a new active child (escape disabled ones)
-          var length = scope.childrenUuid.length, i = 0;
-          var value  = angular.copy(scope.activeChild);
-          do {
-            if (event.keyCode == 38) value = decrease(value, length);
-            else if (event.keyCode == 40) value = increase(value, length);
-            if (!scope.childrenUuid[value].disabled) break;
-            i++;
-          } while (i < length);
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenDropdownModel)) {
+                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    return true;
+                }
+                if (angular.isDefined(attrs.cozenDropdownName)) {
+                    if (Methods.isNullOrEmpty(attrs.cozenDropdownName)) {
+                        Methods.directiveErrorEmpty(data.directive, 'Name');
+                        return true;
+                    }
+                }
+                return false;
+            }
 
-          scope.activeChild = value;
-          $rootScope.$broadcast('cozenDropdownActive', {
-            uuid: scope.childrenUuid[scope.activeChild].uuid
-          });
-        }
+            function destroy() {
+                $window.removeEventListener('keydown', methods.onKeyDown);
+                $window.removeEventListener('click', methods.onWindowClick);
+                $window.removeEventListener('scroll', methods.onScroll);
+                element.off('$destroy', methods.destroy);
+            }
 
-        function decrease(value, max) {
-          if (value > 0) value--;
-          else value = max - 1;
-          return value;
-        }
+            function getMainClass() {
+                if (!Methods.isNullOrEmpty(scope._cozenDropdownForm)) {
+                    var classList = [scope._activeTheme, scope._cozenDropdownSize, 'icon-right', scope._cozenDropdownDirection];
+                    switch (scope._cozenDropdownValidator) {
+                        case 'touched':
+                            if (data.touched) {
+                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
+                                else if (scope._cozenDropdownRequired) classList.push('error-design');
+                            }
+                            break;
+                        case 'all':
+                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
+                            else if (scope._cozenDropdownRequired) classList.push('error-design');
+                            break;
+                    }
+                    if (scope.vm.cozenDropdownDisabled) classList.push('disabled');
+                    if (scope._cozenDropdownIconLeft) classList.push('icon-left');
+                    return classList;
+                }
+            }
 
-        function increase(value, max) {
-          if (value < max - 1) value++;
-          else value = 0;
-          return value;
-        }
-      }
+            function onHover($event, state) {
+                scope.isHover = state;
+                if (!scope._cozenDropdownEasyNavigation) {
+                    if (!scope.isHover) {
+                        $rootScope.$broadcast('cozenDropdownActive', {
+                            uuid: null
+                        });
+                    }
+                }
+            }
 
-      function onChange($event) {
-        if (scope.vm.cozenDropdownDisabled) return;
-        if (Methods.isFunction(scope.cozenDropdownOnChange)) scope.cozenDropdownOnChange();
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
-      }
+            function onKeyDown(event) {
+                if (scope.vm.cozenDropdownDisabled) return;
+                if (!scope._cozenDropdownCollapse) return;
+                if (!scope._cozenDropdownEasyNavigation) {
+                    if (!scope.isHover) return;
+                }
+                if (event.keyCode == 38 || event.keyCode == 40) {
 
-      function getForm() {
-        var form = scope.$parent.$parent[scope._cozenDropdownForm];
-        if (Methods.isNullOrEmpty(form)) {
-          form = scope.$parent.$parent.$parent[scope._cozenDropdownForm];
-          if (Methods.isNullOrEmpty(form)) {
-            form = scope.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
-            if (Methods.isNullOrEmpty(form)) {
-              form = scope.$parent.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
-              if (Methods.isNullOrEmpty(form)) {
-                form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
+                    event.stopPropagation();
+                    event.preventDefault();
+
+                    // Search for a new active child (escape disabled ones)
+                    var length = scope.childrenUuid.length, i = 0;
+                    var value  = angular.copy(scope.activeChild);
+                    do {
+                        if (event.keyCode == 38) value = decrease(value, length);
+                        else if (event.keyCode == 40) value = increase(value, length);
+                        if (!scope.childrenUuid[value].disabled) break;
+                        i++;
+                    } while (i < length);
+
+                    scope.activeChild = value;
+                    $rootScope.$broadcast('cozenDropdownActive', {
+                        uuid: scope.childrenUuid[scope.activeChild].uuid
+                    });
+                }
+
+                function decrease(value, max) {
+                    if (value > 0) value--;
+                    else value = max - 1;
+                    return value;
+                }
+
+                function increase(value, max) {
+                    if (value < max - 1) value++;
+                    else value = 0;
+                    return value;
+                }
+            }
+
+            function onChange($event) {
+                if (scope.vm.cozenDropdownDisabled) return;
+                if (Methods.isFunction(scope.cozenDropdownOnChange)) scope.cozenDropdownOnChange();
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+            }
+
+            function getForm() {
+                var form = scope.$parent.$parent[scope._cozenDropdownForm];
                 if (Methods.isNullOrEmpty(form)) {
-                  return form;
+                    form = scope.$parent.$parent.$parent[scope._cozenDropdownForm];
+                    if (Methods.isNullOrEmpty(form)) {
+                        form = scope.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
+                        if (Methods.isNullOrEmpty(form)) {
+                            form = scope.$parent.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
+                            if (Methods.isNullOrEmpty(form)) {
+                                form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
+                                if (Methods.isNullOrEmpty(form)) {
+                                    return form;
+                                } else return form;
+                            } else return form;
+                        } else return form;
+                    } else return form;
                 } else return form;
-              } else return form;
-            } else return form;
-          } else return form;
-        } else return form;
-      }
-
-      function onClick($event) {
-        data.touched = true;
-        if (!Methods.isNullOrEmpty($event)) $event.stopPropagation();
-        if (!scope.vm.cozenDropdownDisabled) {
-          scope._cozenDropdownCollapse = !scope._cozenDropdownCollapse;
-          scope.$broadcast('cozenDropdownCollapse', {
-            collapse: scope._cozenDropdownCollapse
-          });
-
-          if (scope._cozenDropdownCollapse) {
-
-            // Auto close all other dropdown
-            if (CONFIG.dropdown.autoCloseOthers) {
-              $rootScope.$broadcast('cozenDropdownAutoCloseOthers', {
-                name: scope._cozenDropdownName
-              });
             }
 
-            // Watch the click
-            if (scope._cozenDropdownEasyClose) {
-              $window.addEventListener('click', methods.onWindowClick);
-            }
+            function onClick($event) {
+                data.touched = true;
+                if (!Methods.isNullOrEmpty($event)) $event.stopPropagation();
+                if (!scope.vm.cozenDropdownDisabled) {
+                    scope._cozenDropdownCollapse = !scope._cozenDropdownCollapse;
+                    scope.$broadcast('cozenDropdownCollapse', {
+                        collapse: scope._cozenDropdownCollapse
+                    });
 
-            $timeout(function () {
-              data.transcludeHeight = element.find('.cozen-dropdown-transclude .ng-transclude')[0].offsetHeight;
-              methods.defineTranscludeDirection();
-            }, 1);
-          } else {
-            $window.removeEventListener('click', methods.onWindowClick);
-          }
-        }
-      }
+                    if (scope._cozenDropdownCollapse) {
 
-      function onAutoCloseOthers(event, data) {
-        if (scope._cozenDropdownCollapse) {
-          if (scope._cozenDropdownName != data.name) {
-            methods.onClick();
-          }
-        }
-      }
+                        // Auto close all other dropdown
+                        if (CONFIG.dropdown.autoCloseOthers) {
+                            $rootScope.$broadcast('cozenDropdownAutoCloseOthers', {
+                                name: scope._cozenDropdownName
+                            });
+                        }
 
-      // Listener call it only if the dropdown is open and easy close at true
-      function onWindowClick() {
+                        // Watch the click
+                        if (scope._cozenDropdownEasyClose) {
+                            $window.addEventListener('click', methods.onWindowClick);
+                        }
 
-        // If not hover the dropdown, close it
-        if (!scope.isHover) {
-          methods.onClick();
-
-          // Required to refresh the DOM and see the change
-          Methods.safeApply(scope);
-        }
-      }
-
-      function onChildSelected(event, data) {
-        if (data.dropdown == scope._cozenDropdownName) {
-
-          // ModelEnhanced stuff
-          if (data.selected && scope._cozenDropdownModelEnhanced == 'last') scope.vm.cozenDropdownModelEnhanced = data.label;
-          else if (scope._cozenDropdownModelEnhanced != 'last') scope.vm.cozenDropdownModelEnhanced = '';
-
-          if (scope._cozenDropdownMultiple) {
-
-            // Update the array and forge the model
-            var selectedValues          = 0;
-            scope.vm.cozenDropdownModel = [];
-            scope.childrenUuid.forEach(function (child) {
-
-              // Updaye the new value
-              if (child.uuid == data.uuid) {
-                child.selected = data.selected;
-                child.value    = data.value;
-              }
-
-              // Update the model
-              if (!child.disabled && child.selected) {
-                scope.vm.cozenDropdownModel.push(child.value);
-
-                // ModelEnhanced : all & number
-                if (scope._cozenDropdownModelEnhanced == 'all' || typeof scope._cozenDropdownModelEnhanced == 'number') {
-                  if (selectedValues > 0) scope.vm.cozenDropdownModelEnhanced += ', ';
-                  scope.vm.cozenDropdownModelEnhanced += child.label;
-                  selectedValues++;
+                        $timeout(function () {
+                            data.transcludeHeight = element.find('.cozen-dropdown-transclude .ng-transclude')[0].offsetHeight;
+                            methods.defineTranscludeDirection();
+                        }, 1);
+                    } else {
+                        $window.removeEventListener('click', methods.onWindowClick);
+                    }
                 }
+            }
 
-                // ModelEnhanced : count (first result)
-                else if (scope._cozenDropdownModelEnhanced == 'count') {
-                  scope.vm.cozenDropdownModelEnhanced = child.label;
-                  selectedValues++;
+            function onAutoCloseOthers(event, data) {
+                if (scope._cozenDropdownCollapse) {
+                    if (scope._cozenDropdownName != data.name) {
+                        methods.onClick();
+                    }
                 }
-
-                // ModelEnhanced : last
-                else if (scope._cozenDropdownModelEnhanced == 'last') selectedValues++;
-              }
-            });
-
-            // ModelEnhanced : number
-            var useCount = false;
-            if (typeof scope._cozenDropdownModelEnhanced == 'number') {
-              if (selectedValues > scope._cozenDropdownModelEnhanced) {
-                useCount = true;
-              }
             }
 
-            // ModelEnhanced : count (if more than one result)
-            if ((scope._cozenDropdownModelEnhanced == 'count' && selectedValues > 1) || useCount) {
-              scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count', {
-                selected: selectedValues,
-                total   : scope.childrenUuid.length
-              });
+            // Listener call it only if the dropdown is open and easy close at true
+            function onWindowClick() {
+
+                // If not hover the dropdown, close it
+                if (!scope.isHover) {
+                    methods.onClick();
+
+                    // Required to refresh the DOM and see the change
+                    Methods.safeApply(scope);
+                }
             }
 
-            // ModelEnhanced : count (if all selected)
-            if ((scope._cozenDropdownModelEnhanced == 'count' || useCount) && selectedValues == scope.childrenUuid.length) {
-              scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count_all');
+            function onChildSelected(event, data) {
+                if (data.dropdown == scope._cozenDropdownName) {
+
+                    // ModelEnhanced stuff
+                    if (data.selected && scope._cozenDropdownModelEnhanced == 'last') scope.vm.cozenDropdownModelEnhanced = data.label;
+                    else if (scope._cozenDropdownModelEnhanced != 'last') scope.vm.cozenDropdownModelEnhanced = '';
+
+                    if (scope._cozenDropdownMultiple) {
+
+                        // Update the array and forge the model
+                        var selectedValues          = 0;
+                        scope.vm.cozenDropdownModel = [];
+                        scope.childrenUuid.forEach(function (child) {
+
+                            // Updaye the new value
+                            if (child.uuid == data.uuid) {
+                                child.selected = data.selected;
+                                child.value    = data.value;
+                            }
+
+                            // Update the model
+                            if (!child.disabled && child.selected) {
+                                scope.vm.cozenDropdownModel.push(child.value);
+
+                                // ModelEnhanced : all & number
+                                if (scope._cozenDropdownModelEnhanced == 'all' || typeof scope._cozenDropdownModelEnhanced == 'number') {
+                                    if (selectedValues > 0) scope.vm.cozenDropdownModelEnhanced += ', ';
+                                    scope.vm.cozenDropdownModelEnhanced += child.label;
+                                    selectedValues++;
+                                }
+
+                                // ModelEnhanced : count (first result)
+                                else if (scope._cozenDropdownModelEnhanced == 'count') {
+                                    scope.vm.cozenDropdownModelEnhanced = child.label;
+                                    selectedValues++;
+                                }
+
+                                // ModelEnhanced : last
+                                else if (scope._cozenDropdownModelEnhanced == 'last') selectedValues++;
+                            }
+                        });
+
+                        // ModelEnhanced : number
+                        var useCount = false;
+                        if (typeof scope._cozenDropdownModelEnhanced == 'number') {
+                            if (selectedValues > scope._cozenDropdownModelEnhanced) {
+                                useCount = true;
+                            }
+                        }
+
+                        // ModelEnhanced : count (if more than one result)
+                        if ((scope._cozenDropdownModelEnhanced == 'count' && selectedValues > 1) || useCount) {
+                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count', {
+                                selected: selectedValues,
+                                total   : scope.childrenUuid.length
+                            });
+                        }
+
+                        // ModelEnhanced : count (if all selected)
+                        if ((scope._cozenDropdownModelEnhanced == 'count' || useCount) && selectedValues == scope.childrenUuid.length) {
+                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count_all');
+                        }
+
+                        // No data selected
+                        if (selectedValues == 0) {
+                            scope.vm.cozenDropdownModel         = '';
+                            scope.vm.cozenDropdownModelEnhanced = '';
+                        }
+                    } else {
+
+                        // Change the model
+                        if (data.selected) {
+                            scope.vm.cozenDropdownModel = data.value;
+
+                            // Deselect the other children
+                            scope.$broadcast('cozenDropdownDeselect', {
+                                uuid: data.uuid
+                            });
+                        } else scope.vm.cozenDropdownModel = '';
+                        scope.vm.cozenDropdownModelEnhanced = scope.vm.cozenDropdownModel;
+                    }
+                }
             }
 
-            // No data selected
-            if (selectedValues == 0) {
-              scope.vm.cozenDropdownModel         = '';
-              scope.vm.cozenDropdownModelEnhanced = '';
+            function onChildSearched(event, params) {
+                if (scope._cozenDropdownName == params.dropdown) {
+                    var disabled = 0, length = scope.childrenUuid.length;
+                    for (var i = 0; i < length; i++) {
+                        if (scope.childrenUuid[i].uuid == params.uuid) {
+                            scope.childrenUuid[i].disabled = params.disabled;
+                        }
+                        if (scope.childrenUuid[i].disabled) disabled++;
+                    }
+
+                    // To show or hide the empty text
+                    scope.$broadcast('cozenDropdownEmpty', {
+                        empty   : disabled == length,
+                        dropdown: data.uuid
+                    });
+                }
             }
-          } else {
 
-            // Change the model
-            if (data.selected) {
-              scope.vm.cozenDropdownModel = data.value;
+            function setScrollBarHeight() {
+                $timeout(function () {
+                    var body       = element.find('.cozen-dropdown-transclude')[0];
+                    var transclude = element.find('.cozen-dropdown-transclude .ng-transclude')[0];
+                    if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
+                    Methods.safeApply(scope);
+                });
+            }
 
-              // Deselect the other children
-              scope.$broadcast('cozenDropdownDeselect', {
-                uuid: data.uuid
-              });
-            } else scope.vm.cozenDropdownModel = '';
-            scope.vm.cozenDropdownModelEnhanced = scope.vm.cozenDropdownModel;
-          }
+            function onActiveChild(event, params) {
+                if (scope._cozenDropdownName == params.dropdown) {
+                    scope.activeChild = params.activeChild;
+                }
+            }
+
+            function defineTranscludeDirection() {
+                var inputViewport = element.find('.cozen-dropdown-content')[0].getBoundingClientRect();
+                var windowHeight  = window.innerHeight;
+                var maxHeight     = data.transcludeHeight;
+                if (data.transcludeHeight > scope._cozenDropdownMaxHeight) maxHeight = scope._cozenDropdownMaxHeight + 8;
+                if (windowHeight - inputViewport.bottom < maxHeight) scope._cozenDropdownDirection = 'up';
+                else scope._cozenDropdownDirection = 'down';
+                Methods.safeApply(scope);
+            }
+
+            function getArrowClass() {
+                var classList = ['fa', 'fa-caret-down'];
+                if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
+                else if (scope._cozenDropdownDirection == 'up' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
+                else if (scope._cozenDropdownDirection == 'up' && !scope._cozenDropdownCollapse) classList.push('fa-rotate-180');
+                return classList;
+            }
+
+            function getTranscludeStyle() {
+                var styleList = {
+                    'max-height': scope._cozenDropdownMaxHeight + 'px'
+                };
+                if (scope._cozenDropdownDirection == 'down') styleList.top = '100%';
+                else styleList.bottom = '100%';
+                return styleList;
+            }
         }
-      }
-
-      function onChildSearched(event, params) {
-        if (scope._cozenDropdownName == params.dropdown) {
-          var disabled = 0, length = scope.childrenUuid.length;
-          for (var i = 0; i < length; i++) {
-            if (scope.childrenUuid[i].uuid == params.uuid) {
-              scope.childrenUuid[i].disabled = params.disabled;
-            }
-            if (scope.childrenUuid[i].disabled) disabled++;
-          }
-
-          // To show or hide the empty text
-          scope.$broadcast('cozenDropdownEmpty', {
-            empty   : disabled == length,
-            dropdown: data.uuid
-          });
-        }
-      }
-
-      function setScrollBarHeight() {
-        $timeout(function () {
-          var body       = element.find('.cozen-dropdown-transclude')[0];
-          var transclude = element.find('.cozen-dropdown-transclude .ng-transclude')[0];
-          if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
-          Methods.safeApply(scope);
-        });
-      }
-
-      function onActiveChild(event, params) {
-        if (scope._cozenDropdownName == params.dropdown) {
-          scope.activeChild = params.activeChild;
-        }
-      }
-
-      function defineTranscludeDirection() {
-        var inputViewport = element.find('.cozen-dropdown-content')[0].getBoundingClientRect();
-        var windowHeight  = window.innerHeight;
-        var maxHeight     = data.transcludeHeight;
-        if (data.transcludeHeight > scope._cozenDropdownMaxHeight) maxHeight = scope._cozenDropdownMaxHeight + 8;
-        if (windowHeight - inputViewport.bottom < maxHeight) scope._cozenDropdownDirection = 'up';
-        else scope._cozenDropdownDirection = 'down';
-        Methods.safeApply(scope);
-      }
-
-      function getArrowClass() {
-        var classList = ['fa', 'fa-caret-down'];
-        if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
-        else if (scope._cozenDropdownDirection == 'up' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
-        else if (scope._cozenDropdownDirection == 'up' && !scope._cozenDropdownCollapse) classList.push('fa-rotate-180');
-        return classList;
-      }
-
-      function getTranscludeStyle() {
-        var styleList = {
-          'max-height': scope._cozenDropdownMaxHeight + 'px'
-        };
-        if (scope._cozenDropdownDirection == 'down') styleList.top = '100%';
-        else styleList.bottom = '100%';
-        return styleList;
-      }
     }
-  }
 
-  cozenDropdownCtrl.$inject = [];
+    cozenDropdownCtrl.$inject = [];
 
-  function cozenDropdownCtrl() {
-    var vm = this;
-  }
+    function cozenDropdownCtrl() {
+        var vm = this;
+    }
 
 })(window.angular);
 
@@ -2514,7 +2514,7 @@
                     else if (angular.isDefined(attrs.cozenInputSizeNormal)) scope._cozenInputSize = 'normal';
                     else if (angular.isDefined(attrs.cozenInputSizeLarge)) scope._cozenInputSize = 'large';
                     else scope._cozenInputSize = 'normal';
-                }
+                } else scope._cozenInputSize = attrs.cozenInputSize;
 
                 // Shortcut values (type)
                 if (angular.isUndefined(attrs.cozenInputType)) {
@@ -2522,7 +2522,7 @@
                     else if (angular.isDefined(attrs.cozenInputTypeNumber)) scope._cozenInputType = 'number';
                     else if (angular.isDefined(attrs.cozenInputTypePassword)) scope._cozenInputType = 'password';
                     else scope._cozenInputType = 'text';
-                }
+                } else scope._cozenInputType = attrs.cozenInputType;
 
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenInputValidator)) {
@@ -2530,7 +2530,7 @@
                     else if (angular.isDefined(attrs.cozenInputValidatorTouched)) scope._cozenInputValidator = 'touched';
                     else if (angular.isDefined(attrs.cozenInputValidatorDirty)) scope._cozenInputValidator = 'dirty';
                     else scope._cozenInputValidator = 'dirty';
-                }
+                } else scope._cozenInputValidator = attrs.cozenInputValidator;
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenInputDisabled)) scope.vm.cozenInputDisabled = false;
@@ -2927,7 +2927,7 @@
                     else if (angular.isDefined(attrs.cozenListSizeNormal)) scope._cozenListSize = 'normal';
                     else if (angular.isDefined(attrs.cozenListSizeLarge)) scope._cozenListSize = 'large';
                     else scope._cozenListSize = 'normal';
-                }
+                } else scope._cozenListSize = attrs.cozenListSize;
 
                 // Default values (attributes)
                 scope._cozenListId = angular.isDefined(attrs.cozenListId) ? attrs.cozenListId : '';
@@ -3675,7 +3675,7 @@
           else if (angular.isDefined(attrs.cozenPaginationSizeNormal)) scope._cozenPaginationSize = 'normal';
           else if (angular.isDefined(attrs.cozenPaginationSizeLarge)) scope._cozenPaginationSize = 'large';
           else scope._cozenPaginationSize = 'normal';
-        }
+        } else scope._cozenPaginationSize = attrs.cozenPaginationSize;
 
         // Default values (scope)
         scope.cozenPaginationModel = 1;
@@ -3931,7 +3931,7 @@
           else if (angular.isDefined(attrs.cozenPanelSizeNormal)) scope._cozenPanelSize = 'normal';
           else if (angular.isDefined(attrs.cozenPanelSizeLarge)) scope._cozenPanelSize = 'large';
           else scope._cozenPanelSize = 'normal';
-        }
+        } else scope._cozenPanelSize = attrs.cozenPanelSize;
 
         // Shortcut values (type)
         if (angular.isUndefined(attrs.cozenPanelType)) {
@@ -3941,7 +3941,7 @@
           else if (angular.isDefined(attrs.cozenPanelTypeWarning)) scope._cozenPanelType = 'warning';
           else if (angular.isDefined(attrs.cozenPanelTypeError)) scope._cozenPanelType = 'error';
           else scope._cozenPanelType = 'default';
-        }
+        } else scope._cozenPanelType = attrs.cozenPanelType;
 
         // Default values (scope)
         if (angular.isUndefined(attrs.cozenPanelDisabled)) scope.cozenPanelDisabled = false;
@@ -4086,249 +4086,249 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.popup', [
-      'cozenLib.popup.factory'
-    ])
-    .directive('cozenPopup', cozenPopup);
+    angular
+        .module('cozenLib.popup', [
+            'cozenLib.popup.factory'
+        ])
+        .directive('cozenPopup', cozenPopup);
 
-  cozenPopup.$inject = [
-    'Themes',
-    'CONFIG',
-    '$window',
-    '$timeout'
-  ];
+    cozenPopup.$inject = [
+        'Themes',
+        'CONFIG',
+        '$window',
+        '$timeout'
+    ];
 
-  function cozenPopup(Themes, CONFIG, $window, $timeout) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : true,
-      scope      : {
-        cozenPopupOnShow: '&',
-        cozenPopupOnHide: '&',
-        cozenPopupIsOpen: '=?'
-      },
-      templateUrl: 'directives/popup/popup.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init              : init,
-        hasError          : hasError,
-        destroy           : destroy,
-        getMainClass      : getMainClass,
-        hide              : hide,
-        show              : show,
-        onClick           : onClick,
-        onEnter           : onEnter,
-        onLeave           : onLeave,
-        getPopupClass     : getPopupClass,
-        setScrollBarHeight: setScrollBarHeight,
-        onKeyDown         : onKeyDown,
-        setHeaderPictoSize: setHeaderPictoSize
-      };
-
-      var data = {
-        directive: 'cozenPopup',
-        isHover  : false,
-        firstHide: true
-      };
-
-      scope._isReady = false;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass : getMainClass,
-          hide         : hide,
-          onEnter      : onEnter,
-          onLeave      : onLeave,
-          getPopupClass: getPopupClass
+    function cozenPopup(Themes, CONFIG, $window, $timeout) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : true,
+            scope      : {
+                cozenPopupOnShow: '&',
+                cozenPopupOnHide: '&',
+                cozenPopupIsOpen: '=?'
+            },
+            templateUrl: 'directives/popup/popup.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init              : init,
+                hasError          : hasError,
+                destroy           : destroy,
+                getMainClass      : getMainClass,
+                hide              : hide,
+                show              : show,
+                onClick           : onClick,
+                onEnter           : onEnter,
+                onLeave           : onLeave,
+                getPopupClass     : getPopupClass,
+                setScrollBarHeight: setScrollBarHeight,
+                onKeyDown         : onKeyDown,
+                setHeaderPictoSize: setHeaderPictoSize
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenPopupSize)) {
-          if (angular.isDefined(attrs.cozenPopupSizeSmall)) scope._cozenPopupSize = 'small';
-          else if (angular.isDefined(attrs.cozenPopupSizeNormal)) scope._cozenPopupSize = 'normal';
-          else if (angular.isDefined(attrs.cozenPopupSizeLarge)) scope._cozenPopupSize = 'large';
-          else scope._cozenPopupSize = 'normal';
+            var data = {
+                directive: 'cozenPopup',
+                isHover  : false,
+                firstHide: true
+            };
+
+            scope._isReady = false;
+
+            methods.init();
+
+            function init() {
+
+                // Public functions
+                scope._methods = {
+                    getMainClass : getMainClass,
+                    hide         : hide,
+                    onEnter      : onEnter,
+                    onLeave      : onLeave,
+                    getPopupClass: getPopupClass
+                };
+
+                // Checking required stuff
+                if (methods.hasError()) return;
+
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenPopupSize)) {
+                    if (angular.isDefined(attrs.cozenPopupSizeSmall)) scope._cozenPopupSize = 'small';
+                    else if (angular.isDefined(attrs.cozenPopupSizeNormal)) scope._cozenPopupSize = 'normal';
+                    else if (angular.isDefined(attrs.cozenPopupSizeLarge)) scope._cozenPopupSize = 'large';
+                    else scope._cozenPopupSize = 'normal';
+                } else scope._cozenPopupSize = attrs.cozenPopupSize;
+
+                // Shortcut values (type)
+                if (angular.isUndefined(attrs.cozenPopupType)) {
+                    if (angular.isDefined(attrs.cozenPopupTypeDefault)) scope._cozenPopupType = 'default';
+                    else if (angular.isDefined(attrs.cozenPopupTypeInfo)) scope._cozenPopupType = 'info';
+                    else if (angular.isDefined(attrs.cozenPopupTypeSuccess)) scope._cozenPopupType = 'success';
+                    else if (angular.isDefined(attrs.cozenPopupTypeWarning)) scope._cozenPopupType = 'warning';
+                    else if (angular.isDefined(attrs.cozenPopupTypeError)) scope._cozenPopupType = 'error';
+                    else scope._cozenPopupType = 'default';
+                } else scope._cozenPopupType = attrs.cozenPopupType;
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenPopupIsOpen)) scope.cozenPopupIsOpen = false;
+
+                // Default values (attributes)
+                scope._cozenPopupId              = angular.isDefined(attrs.cozenPopupId) ? attrs.cozenPopupId : '';
+                scope._cozenPopupHeader          = angular.isDefined(attrs.cozenPopupHeader) ? JSON.parse(attrs.cozenPopupHeader) : CONFIG.popup.header;
+                scope._cozenPopupHeaderTitle     = angular.isDefined(attrs.cozenPopupHeaderTitle) ? attrs.cozenPopupHeaderTitle : '';
+                scope._cozenPopupHeaderSubTitle  = angular.isDefined(attrs.cozenPopupHeaderSubTitle) ? attrs.cozenPopupHeaderSubTitle : '';
+                scope._cozenPopupFooter          = angular.isDefined(attrs.cozenPopupFooter) ? JSON.parse(attrs.cozenPopupFooter) : CONFIG.popup.footer;
+                scope._cozenPopupName            = attrs.cozenPopupName;
+                scope._cozenPopupAnimationIn     = angular.isDefined(attrs.cozenPopupAnimationIn) ? JSON.parse(attrs.cozenPopupAnimationIn) : CONFIG.popup.animation.in.enabled;
+                scope._cozenPopupAnimationOut    = angular.isDefined(attrs.cozenPopupAnimationOut) ? JSON.parse(attrs.cozenPopupAnimationOut) : CONFIG.popup.animation.out.enabled;
+                scope._cozenPopupEasyClose       = angular.isDefined(attrs.cozenPopupEasyClose) ? JSON.parse(attrs.cozenPopupEasyClose) : CONFIG.popup.easeClose;
+                scope._cozenPopupCloseBtn        = angular.isDefined(attrs.cozenPopupCloseBtn) ? JSON.parse(attrs.cozenPopupCloseBtn) : CONFIG.popup.closeBtn;
+                scope._cozenPopupHeaderPictoLeft = angular.isDefined(attrs.cozenPopupHeaderPictoLeft) ? attrs.cozenPopupHeaderPictoLeft : '';
+
+                // ScrollBar
+                scope._cozenScrollBar            = CONFIG.scrollsBar;
+                scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
+                scope._cozenScrollBarConfig.axis = 'y';
+                methods.setScrollBarHeight();
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+                scope.$on('cozenPopupShow', methods.show);
+                scope.$on('cozenPopupHide', methods.hide);
+                methods.setHeaderPictoSize();
+
+                // Watch click when popup if instant show (easy-close)
+                if (scope._cozenPopupEasyClose && scope.cozenPopupIsOpen) {
+                    $window.addEventListener('click', methods.onClick);
+                    $window.addEventListener('keydown', methods.onKeyDown);
+                }
+
+                // Allow animation on first load if instant show
+                if (scope.cozenPopupIsOpen) data.firstHide = false;
+
+                // Display the template
+                scope._isReady = true;
+            }
+
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenPopupName)) {
+                    Methods.directiveErrorRequired(data.directive, 'Name');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                $window.removeEventListener('click', methods.onClick);
+                $window.removeEventListener('keydown', methods.onKeyDown);
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                var classList = [scope._activeTheme, scope._cozenPopupSize, scope._cozenPopupType];
+                if (scope._cozenPopupAnimationIn) classList.push('animate-in');
+                if (scope._cozenPopupAnimationOut && !data.firstHide) classList.push('animate-out');
+                return classList;
+            }
+
+            function hide($event, params) {
+                if (params.name == scope._cozenPopupName) {
+                    data.firstHide         = false;
+                    scope.cozenPopupIsOpen = false;
+                    if (Methods.isFunction(scope.cozenPopupOnHide)) scope.cozenPopupOnHide();
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
+                    Methods.safeApply(scope);
+                    $window.removeEventListener('click', methods.onClick);
+                    $window.removeEventListener('keydown', methods.onKeyDown);
+                }
+            }
+
+            function show($event, params) {
+                if (params.name == scope._cozenPopupName) {
+                    scope.cozenPopupIsOpen = true;
+                    if (Methods.isFunction(scope.cozenPopupOnShow)) scope.cozenPopupOnShow();
+                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
+                    Methods.safeApply(scope);
+                    if (scope._cozenPopupEasyClose) {
+                        $window.addEventListener('click', methods.onClick);
+                        $window.addEventListener('keydown', methods.onKeyDown);
+                    }
+                    methods.setScrollBarHeight();
+                    methods.setHeaderPictoSize();
+                }
+            }
+
+            function onClick() {
+                if (scope.cozenPopupIsOpen) {
+                    if (!data.isHover) {
+                        methods.hide(null, {
+                            name: scope._cozenPopupName
+                        });
+                    }
+                }
+            }
+
+            function onEnter() {
+                data.isHover = true;
+            }
+
+            function onLeave() {
+                data.isHover = false;
+            }
+
+            function getPopupClass() {
+                var classList = [];
+                if (scope.cozenPopupIsOpen && scope._cozenPopupAnimationIn) {
+                    classList.push(CONFIG.popup.animation.in.animation);
+                    classList.push('animation-in');
+                }
+                if (!scope.cozenPopupIsOpen && scope._cozenPopupAnimationOut) {
+                    classList.push(CONFIG.popup.animation.out.animation);
+                    classList.push('animation-out');
+                }
+                return classList;
+            }
+
+            function setScrollBarHeight() {
+                $timeout(function () {
+                    var body       = element.find('.cozen-popup-body')[0];
+                    var transclude = element.find('.cozen-popup-body .ng-transclude')[0];
+                    if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
+                    Methods.safeApply(scope);
+                });
+            }
+
+            function onKeyDown(event) {
+                event.stopPropagation();
+                switch (event.keyCode) {
+
+                    // Escape
+                    case 27:
+                        methods.hide(null, {name: scope._cozenPopupName});
+                        break;
+                }
+            }
+
+            function setHeaderPictoSize() {
+
+                // Set the height of the img (to auto fit)
+                if (scope._cozenPopupHeaderPictoLeft != '') {
+                    $timeout(function () {
+                        var img          = element.find('.cozen-popup-header .cozen-popup-header-img.left')[0];
+                        var title        = element.find('.cozen-popup-header .cozen-popup-header-title')[0];
+                        img.style.height = title.offsetHeight + 'px';
+                        img.style.width  = title.offsetHeight + 'px';
+                    });
+                }
+            }
         }
-
-        // Shortcut values (type)
-        if (angular.isUndefined(attrs.cozenPopupType)) {
-          if (angular.isDefined(attrs.cozenPopupTypeDefault)) scope._cozenPopupType = 'default';
-          else if (angular.isDefined(attrs.cozenPopupTypeInfo)) scope._cozenPopupType = 'info';
-          else if (angular.isDefined(attrs.cozenPopupTypeSuccess)) scope._cozenPopupType = 'success';
-          else if (angular.isDefined(attrs.cozenPopupTypeWarning)) scope._cozenPopupType = 'warning';
-          else if (angular.isDefined(attrs.cozenPopupTypeError)) scope._cozenPopupType = 'error';
-          else scope._cozenPopupType = 'default';
-        }
-
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenPopupIsOpen)) scope.cozenPopupIsOpen = false;
-
-        // Default values (attributes)
-        scope._cozenPopupId              = angular.isDefined(attrs.cozenPopupId) ? attrs.cozenPopupId : '';
-        scope._cozenPopupHeader          = angular.isDefined(attrs.cozenPopupHeader) ? JSON.parse(attrs.cozenPopupHeader) : CONFIG.popup.header;
-        scope._cozenPopupHeaderTitle     = angular.isDefined(attrs.cozenPopupHeaderTitle) ? attrs.cozenPopupHeaderTitle : '';
-        scope._cozenPopupHeaderSubTitle  = angular.isDefined(attrs.cozenPopupHeaderSubTitle) ? attrs.cozenPopupHeaderSubTitle : '';
-        scope._cozenPopupFooter          = angular.isDefined(attrs.cozenPopupFooter) ? JSON.parse(attrs.cozenPopupFooter) : CONFIG.popup.footer;
-        scope._cozenPopupName            = attrs.cozenPopupName;
-        scope._cozenPopupAnimationIn     = angular.isDefined(attrs.cozenPopupAnimationIn) ? JSON.parse(attrs.cozenPopupAnimationIn) : CONFIG.popup.animation.in.enabled;
-        scope._cozenPopupAnimationOut    = angular.isDefined(attrs.cozenPopupAnimationOut) ? JSON.parse(attrs.cozenPopupAnimationOut) : CONFIG.popup.animation.out.enabled;
-        scope._cozenPopupEasyClose       = angular.isDefined(attrs.cozenPopupEasyClose) ? JSON.parse(attrs.cozenPopupEasyClose) : CONFIG.popup.easeClose;
-        scope._cozenPopupCloseBtn        = angular.isDefined(attrs.cozenPopupCloseBtn) ? JSON.parse(attrs.cozenPopupCloseBtn) : CONFIG.popup.closeBtn;
-        scope._cozenPopupHeaderPictoLeft = angular.isDefined(attrs.cozenPopupHeaderPictoLeft) ? attrs.cozenPopupHeaderPictoLeft : '';
-
-        // ScrollBar
-        scope._cozenScrollBar            = CONFIG.scrollsBar;
-        scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
-        scope._cozenScrollBarConfig.axis = 'y';
-        methods.setScrollBarHeight();
-
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-        scope.$on('cozenPopupShow', methods.show);
-        scope.$on('cozenPopupHide', methods.hide);
-        methods.setHeaderPictoSize();
-
-        // Watch click when popup if instant show (easy-close)
-        if (scope._cozenPopupEasyClose && scope.cozenPopupIsOpen) {
-          $window.addEventListener('click', methods.onClick);
-          $window.addEventListener('keydown', methods.onKeyDown);
-        }
-
-        // Allow animation on first load if instant show
-        if (scope.cozenPopupIsOpen) data.firstHide = false;
-
-        // Display the template
-        scope._isReady = true;
-      }
-
-      function hasError() {
-        if (Methods.isNullOrEmpty(attrs.cozenPopupName)) {
-          Methods.directiveErrorRequired(data.directive, 'Name');
-          return true;
-        }
-        return false;
-      }
-
-      function destroy() {
-        $window.removeEventListener('click', methods.onClick);
-        $window.removeEventListener('keydown', methods.onKeyDown);
-        element.off('$destroy', methods.destroy);
-      }
-
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenPopupSize, scope._cozenPopupType];
-        if (scope._cozenPopupAnimationIn) classList.push('animate-in');
-        if (scope._cozenPopupAnimationOut && !data.firstHide) classList.push('animate-out');
-        return classList;
-      }
-
-      function hide($event, params) {
-        if (params.name == scope._cozenPopupName) {
-          data.firstHide         = false;
-          scope.cozenPopupIsOpen = false;
-          if (Methods.isFunction(scope.cozenPopupOnHide)) scope.cozenPopupOnHide();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
-          Methods.safeApply(scope);
-          $window.removeEventListener('click', methods.onClick);
-          $window.removeEventListener('keydown', methods.onKeyDown);
-        }
-      }
-
-      function show($event, params) {
-        if (params.name == scope._cozenPopupName) {
-          scope.cozenPopupIsOpen = true;
-          if (Methods.isFunction(scope.cozenPopupOnShow)) scope.cozenPopupOnShow();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
-          Methods.safeApply(scope);
-          if (scope._cozenPopupEasyClose) {
-            $window.addEventListener('click', methods.onClick);
-            $window.addEventListener('keydown', methods.onKeyDown);
-          }
-          methods.setScrollBarHeight();
-          methods.setHeaderPictoSize();
-        }
-      }
-
-      function onClick() {
-        if (scope.cozenPopupIsOpen) {
-          if (!data.isHover) {
-            methods.hide(null, {
-              name: scope._cozenPopupName
-            });
-          }
-        }
-      }
-
-      function onEnter() {
-        data.isHover = true;
-      }
-
-      function onLeave() {
-        data.isHover = false;
-      }
-
-      function getPopupClass() {
-        var classList = [];
-        if (scope.cozenPopupIsOpen && scope._cozenPopupAnimationIn) {
-          classList.push(CONFIG.popup.animation.in.animation);
-          classList.push('animation-in');
-        }
-        if (!scope.cozenPopupIsOpen && scope._cozenPopupAnimationOut) {
-          classList.push(CONFIG.popup.animation.out.animation);
-          classList.push('animation-out');
-        }
-        return classList;
-      }
-
-      function setScrollBarHeight() {
-        $timeout(function () {
-          var body       = element.find('.cozen-popup-body')[0];
-          var transclude = element.find('.cozen-popup-body .ng-transclude')[0];
-          if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
-          Methods.safeApply(scope);
-        });
-      }
-
-      function onKeyDown(event) {
-        event.stopPropagation();
-        switch (event.keyCode) {
-
-          // Escape
-          case 27:
-            methods.hide(null, {name: scope._cozenPopupName});
-            break;
-        }
-      }
-
-      function setHeaderPictoSize() {
-
-        // Set the height of the img (to auto fit)
-        if (scope._cozenPopupHeaderPictoLeft != '') {
-          $timeout(function () {
-            var img          = element.find('.cozen-popup-header .cozen-popup-header-img.left')[0];
-            var title        = element.find('.cozen-popup-header .cozen-popup-header-title')[0];
-            img.style.height = title.offsetHeight + 'px';
-            img.style.width  = title.offsetHeight + 'px';
-          });
-        }
-      }
     }
-  }
 
 })(window.angular);
 
@@ -4708,213 +4708,213 @@ function hasOwnProperty(obj, prop) {
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.textarea', [])
-    .directive('cozenTextarea', cozenTextarea);
+    angular
+        .module('cozenLib.textarea', [])
+        .directive('cozenTextarea', cozenTextarea);
 
-  cozenTextarea.$inject = [
-    'Themes',
-    'CONFIG',
-    'rfc4122',
-    '$timeout',
-    '$interval',
-    '$filter'
-  ];
+    cozenTextarea.$inject = [
+        'Themes',
+        'CONFIG',
+        'rfc4122',
+        '$timeout',
+        '$interval',
+        '$filter'
+    ];
 
-  function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter) {
-    return {
-      link            : link,
-      restrict        : 'E',
-      replace         : false,
-      transclude      : false,
-      scope           : {
-        cozenTextareaModel   : '=?',
-        cozenTextareaDisabled: '=?',
-        cozenTextareaOnChange: '&'
-      },
-      templateUrl     : 'directives/textarea/textarea.template.html',
-      bindToController: true,
-      controller      : cozenTextareaCtrl,
-      controllerAs    : 'vm'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init             : init,
-        hasError         : hasError,
-        destroy          : destroy,
-        getMainClass     : getMainClass,
-        onChange         : onChange,
-        getDesignClass   : getDesignClass,
-        getForm          : getForm,
-        updateModelLength: updateModelLength
-      };
-
-      var data = {
-        directive: 'cozenTextarea',
-        uuid     : rfc4122.v4()
-      };
-
-      scope._isReady = false;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          onChange    : onChange
+    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter) {
+        return {
+            link            : link,
+            restrict        : 'E',
+            replace         : false,
+            transclude      : false,
+            scope           : {
+                cozenTextareaModel   : '=?',
+                cozenTextareaDisabled: '=?',
+                cozenTextareaOnChange: '&'
+            },
+            templateUrl     : 'directives/textarea/textarea.template.html',
+            bindToController: true,
+            controller      : cozenTextareaCtrl,
+            controllerAs    : 'vm'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init             : init,
+                hasError         : hasError,
+                destroy          : destroy,
+                getMainClass     : getMainClass,
+                onChange         : onChange,
+                getDesignClass   : getDesignClass,
+                getForm          : getForm,
+                updateModelLength: updateModelLength
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenTextareaSize)) {
-          if (angular.isDefined(attrs.cozenTextareaSizeSmall)) scope._cozenTextareaSize = 'small';
-          else if (angular.isDefined(attrs.cozenTextareaSizeNormal)) scope._cozenTextareaSize = 'normal';
-          else if (angular.isDefined(attrs.cozenTextareaSizeLarge)) scope._cozenTextareaSize = 'large';
-          else scope._cozenTextareaSize = 'normal';
-        }
+            var data = {
+                directive: 'cozenTextarea',
+                uuid     : rfc4122.v4()
+            };
 
-        // Shortcut values (validator)
-        if (angular.isUndefined(attrs.cozenTextareaValidator)) {
-          if (angular.isDefined(attrs.cozenTextareaValidatorAll)) scope._cozenTextareaValidator = 'all';
-          if (angular.isDefined(attrs.cozenTextareaValidatorTouched)) scope._cozenTextareaValidator = 'touched';
-          else if (angular.isDefined(attrs.cozenTextareaValidatorDirty)) scope._cozenTextareaValidator = 'dirty';
-          else scope._cozenTextareaValidator = 'dirty';
-        }
+            scope._isReady = false;
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenTextareaDisabled)) scope.vm.cozenTextareaDisabled = false;
+            methods.init();
 
-        // Default values (attributes)
-        scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
-        scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
-        scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : 'outsideClick';
-        scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : false;
-        scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : true;
-        scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : true;
-        scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
-        scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? JSON.parse(attrs.cozenTextareaMinLength) : 0;
-        scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? JSON.parse(attrs.cozenTextareaMaxLength) : 100;
-        scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
-        scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : true;
-        scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
-        scope._cozenTextareaTooltipPlacement   = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : 'auto right';
-        scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : false;
-        scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : 2;
-        scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
-        scope._cozenTextareaUuid               = data.uuid;
-        scope._cozenTextareaDisplayModelLength = CONFIG.textarea.displayModelLength;
-        scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
-        scope._cozenTextareaRequiredConfig     = CONFIG.required;
-        scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
+            function init() {
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-        scope.$on('cozenFormName', function (event, eventData) {
-          scope._cozenTextareaForm = eventData.name;
-        });
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    onChange    : onChange
+                };
 
-        // Display the template
-        scope._isReady = true;
-      }
+                // Checking required stuff
+                if (methods.hasError()) return;
 
-      function hasError() {
-        if (Methods.isNullOrEmpty(attrs.cozenTextareaModel)) {
-          Methods.directiveErrorRequired(data.directive, 'Model');
-          return true;
-        }
-        return false;
-      }
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenTextareaSize)) {
+                    if (angular.isDefined(attrs.cozenTextareaSizeSmall)) scope._cozenTextareaSize = 'small';
+                    else if (angular.isDefined(attrs.cozenTextareaSizeNormal)) scope._cozenTextareaSize = 'normal';
+                    else if (angular.isDefined(attrs.cozenTextareaSizeLarge)) scope._cozenTextareaSize = 'large';
+                    else scope._cozenTextareaSize = 'normal';
+                } else scope._cozenTextareaSize = attrs.cozenTextareaSize;
 
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
+                // Shortcut values (validator)
+                if (angular.isUndefined(attrs.cozenTextareaValidator)) {
+                    if (angular.isDefined(attrs.cozenTextareaValidatorAll)) scope._cozenTextareaValidator = 'all';
+                    if (angular.isDefined(attrs.cozenTextareaValidatorTouched)) scope._cozenTextareaValidator = 'touched';
+                    else if (angular.isDefined(attrs.cozenTextareaValidatorDirty)) scope._cozenTextareaValidator = 'dirty';
+                    else scope._cozenTextareaValidator = 'dirty';
+                } else scope._cozenTextareaValidator = attrs.cozenTextareaValidator;
 
-      function getMainClass() {
-        if (!Methods.isNullOrEmpty(scope._cozenTextareaForm)) {
-          var classList = [scope._activeTheme, scope._cozenTextareaSize];
-          var textarea  = methods.getForm()[scope._cozenTextareaName];
-          if (!Methods.isNullOrEmpty(textarea)) {
-            if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
-              switch (scope._cozenTextareaValidator) {
-                case 'touched':
-                  if (textarea.$touched) classList.push(methods.getDesignClass(textarea));
-                  break;
-                case 'dirty':
-                  if (textarea.$dirty) classList.push(methods.getDesignClass(textarea));
-                  break;
-                case 'all':
-                  classList.push(methods.getDesignClass(textarea));
-                  break;
-              }
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenTextareaDisabled)) scope.vm.cozenTextareaDisabled = false;
+
+                // Default values (attributes)
+                scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
+                scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
+                scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : 'outsideClick';
+                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : false;
+                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : true;
+                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : true;
+                scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
+                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? JSON.parse(attrs.cozenTextareaMinLength) : 0;
+                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? JSON.parse(attrs.cozenTextareaMaxLength) : 100;
+                scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
+                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : true;
+                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
+                scope._cozenTextareaTooltipPlacement   = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : 'auto right';
+                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : false;
+                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : 2;
+                scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
+                scope._cozenTextareaUuid               = data.uuid;
+                scope._cozenTextareaDisplayModelLength = CONFIG.textarea.displayModelLength;
+                scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
+                scope._cozenTextareaRequiredConfig     = CONFIG.required;
+                scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+                scope.$on('cozenFormName', function (event, eventData) {
+                    scope._cozenTextareaForm = eventData.name;
+                });
+
+                // Display the template
+                scope._isReady = true;
             }
-          }
-          if (scope.vm.cozenTextareaDisabled) classList.push('disabled');
-          return classList;
-        }
-      }
 
-      function onChange($event) {
-        if (scope.vm.cozenTextareaDisabled) return;
-        if (Methods.isFunction(scope.cozenTextareaOnChange)) scope.cozenTextareaOnChange();
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
-        methods.updateModelLength();
-      }
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenTextareaModel)) {
+                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    return true;
+                }
+                return false;
+            }
 
-      function getDesignClass(textarea) {
-        if (scope._cozenTextareaErrorDesign) {
-          if (textarea.$invalid) {
-            scope._cozenTextareaHasFeedback = 'error';
-            return 'error-design';
-          }
-        }
-        if (scope._cozenTextareaSuccessDesign) {
-          if (textarea.$valid) {
-            scope._cozenTextareaHasFeedback = 'success';
-            return 'success-design';
-          }
-        }
-        scope._cozenTextareaHasFeedback = false;
-        return '';
-      }
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
 
-      function getForm() {
-        var form = scope.$parent.$parent[scope._cozenTextareaForm];
-        if (Methods.isNullOrEmpty(form)) {
-          form = scope.$parent.$parent.$parent[scope._cozenTextareaForm];
-          if (Methods.isNullOrEmpty(form)) {
-            form = scope.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
-            if (Methods.isNullOrEmpty(form)) {
-              form = scope.$parent.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
-              if (Methods.isNullOrEmpty(form)) {
-                form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
+            function getMainClass() {
+                if (!Methods.isNullOrEmpty(scope._cozenTextareaForm)) {
+                    var classList = [scope._activeTheme, scope._cozenTextareaSize];
+                    var textarea  = methods.getForm()[scope._cozenTextareaName];
+                    if (!Methods.isNullOrEmpty(textarea)) {
+                        if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
+                            switch (scope._cozenTextareaValidator) {
+                                case 'touched':
+                                    if (textarea.$touched) classList.push(methods.getDesignClass(textarea));
+                                    break;
+                                case 'dirty':
+                                    if (textarea.$dirty) classList.push(methods.getDesignClass(textarea));
+                                    break;
+                                case 'all':
+                                    classList.push(methods.getDesignClass(textarea));
+                                    break;
+                            }
+                        }
+                    }
+                    if (scope.vm.cozenTextareaDisabled) classList.push('disabled');
+                    return classList;
+                }
+            }
+
+            function onChange($event) {
+                if (scope.vm.cozenTextareaDisabled) return;
+                if (Methods.isFunction(scope.cozenTextareaOnChange)) scope.cozenTextareaOnChange();
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                methods.updateModelLength();
+            }
+
+            function getDesignClass(textarea) {
+                if (scope._cozenTextareaErrorDesign) {
+                    if (textarea.$invalid) {
+                        scope._cozenTextareaHasFeedback = 'error';
+                        return 'error-design';
+                    }
+                }
+                if (scope._cozenTextareaSuccessDesign) {
+                    if (textarea.$valid) {
+                        scope._cozenTextareaHasFeedback = 'success';
+                        return 'success-design';
+                    }
+                }
+                scope._cozenTextareaHasFeedback = false;
+                return '';
+            }
+
+            function getForm() {
+                var form = scope.$parent.$parent[scope._cozenTextareaForm];
                 if (Methods.isNullOrEmpty(form)) {
-                  return form;
+                    form = scope.$parent.$parent.$parent[scope._cozenTextareaForm];
+                    if (Methods.isNullOrEmpty(form)) {
+                        form = scope.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
+                        if (Methods.isNullOrEmpty(form)) {
+                            form = scope.$parent.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
+                            if (Methods.isNullOrEmpty(form)) {
+                                form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
+                                if (Methods.isNullOrEmpty(form)) {
+                                    return form;
+                                } else return form;
+                            } else return form;
+                        } else return form;
+                    } else return form;
                 } else return form;
-              } else return form;
-            } else return form;
-          } else return form;
-        } else return form;
-      }
+            }
 
-      function updateModelLength() {
-        scope._cozenTextareaModelLength = scope._cozenTextareaMaxLength - scope.vm.cozenTextareaModel.length;
-      }
+            function updateModelLength() {
+                scope._cozenTextareaModelLength = scope._cozenTextareaMaxLength - scope.vm.cozenTextareaModel.length;
+            }
+        }
     }
-  }
 
-  cozenTextareaCtrl.$inject = [];
+    cozenTextareaCtrl.$inject = [];
 
-  function cozenTextareaCtrl() {
-    var vm = this;
-  }
+    function cozenTextareaCtrl() {
+        var vm = this;
+    }
 
 })(window.angular);
 
