@@ -369,7 +369,9 @@
         directive: 'cozenBtn'
       };
 
-      scope._isReady = false;
+      // After some test, wait too long for the load make things crappy
+      // So, I set it to true for now
+      scope._isReady = true;
 
       methods.init();
 
@@ -2264,7 +2266,9 @@
         directive: 'cozenForm'
       };
 
-      scope._isReady = false;
+      // After some test, wait too long for the load make things crappy
+      // So, I set it to true for now
+      scope._isReady = true;
 
       methods.init();
 
@@ -2474,7 +2478,9 @@
         }
       };
 
-      scope._isReady = false;
+      // After some test, wait too long for the load make things crappy
+      // So, I set it to true for now
+      scope._isReady = true;
 
       methods.init();
 
