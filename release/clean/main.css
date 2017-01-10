@@ -5687,9 +5687,6 @@ div.cozen-dropdown.atom.large .cozen-dropdown-item.cozen-dropdown-item-simple.se
 div.cozen-dropdown.atom.large .cozen-dropdown-item.cozen-dropdown-item-simple.selected.disabled:focus div.cozen-dropdown-item-simple-content div.cozen-dropdown-item-simple-icon.right {
   color: rgba(76, 89, 107, 0.5);
 }
-div.cozen-input.atom ul.cozen-input-password-tooltip li.complete {
-  color: #e2e6e6;
-}
 div.cozen-input.atom.small {
   font-size: 16px;
   color: #4c596b;
@@ -6964,6 +6961,9 @@ div.cozen-input.atom.large div.cozen-input-label label.required-icon {
 }
 div.cozen-input.atom.large div.cozen-input-label label.required-icon:hover {
   color: #feb909;
+}
+.atom.cozen-input-password-tooltip li.complete {
+  color: #e2e6e6;
 }
 div.cozen-list.atom.small div.cozen-list-item {
   padding: 6px 12px;
@@ -13101,9 +13101,6 @@ div.cozen-dropdown.tau.large .cozen-dropdown-item.cozen-dropdown-item-simple div
 div.cozen-dropdown.tau.large .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-content span.cozen-dropdown-item-simple-label small:focus {
   color: #ecf0f1;
 }
-div.cozen-input.tau ul.cozen-input-password-tooltip li.complete {
-  color: #95a5a6;
-}
 div.cozen-input.tau.small {
   font-size: 13px;
   color: #34495e;
@@ -13517,6 +13514,9 @@ div.cozen-input.tau.large div.cozen-input-label label.required-icon {
 }
 div.cozen-input.tau.large div.cozen-input-label label.required-icon:hover {
   color: #d35400;
+}
+.tau.cozen-input-password-tooltip li.complete {
+  color: #95a5a6;
 }
 div.cozen-list.tau.small div.cozen-list-item {
   padding: 4px;

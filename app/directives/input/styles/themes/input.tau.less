@@ -11,8 +11,6 @@ div.cozen-input.tau {
   @cozen-input-tau-font-normal: 16px;
   @cozen-input-tau-font-large: 19px;
 
-  .cozen-input-tooltip-color(@cozen-color-grey);
-
   // Size
   &.small {
     .cozen-input-size(0, @cozen-input-tau-padding-small, @cozen-input-tau-font-small);
@@ -50,4 +48,7 @@ div.cozen-input.tau {
     .cozen-input-required-star(20px, @cozen-color-orange, 0 4px, @cozen-color-orange);
     .cozen-input-required-icon(16px, @cozen-color-orange, 0 7px, @cozen-color-orange-hover);
   }
+}
+.tau {
+  .cozen-input-tooltip-color(@cozen-color-grey);
 }
