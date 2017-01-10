@@ -2227,6 +2227,7 @@
  * [Attributes params]
  * @param {number} cozenFormId    > Id of the form
  * @param {string} cozenFormName  > Name of the form [required]
+ * @param {string} cozenFormCtrl  > Controller [required]
  * @param {string} cozenFormModel > Model [required]
  *
  */
@@ -2280,6 +2281,7 @@
         scope._cozenFormId    = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : '';
         scope._cozenFormName  = attrs.cozenFormName;
         scope._cozenFormModel = attrs.cozenFormModel;
+        scope._cozenFormCtrl  = attrs.cozenFormCtrl;
 
         // Init stuff
         element.on('$destroy', methods.destroy);
@@ -2291,6 +2293,10 @@
       function hasError() {
         if (Methods.isNullOrEmpty(attrs.cozenFormName)) {
           Methods.directiveErrorRequired(data.directive, 'Name');
+          return true;
+        }
+        if (Methods.isNullOrEmpty(attrs.cozenFormCtrl)) {
+          Methods.directiveErrorRequired(data.directive, 'Ctrl');
           return true;
         }
         if (Methods.isNullOrEmpty(attrs.cozenFormModel)) {
@@ -2307,7 +2313,9 @@
       function dispatchName() {
         $timeout(function () {
           scope.$broadcast('cozenFormName', {
-            name: scope._cozenFormName
+            name : scope._cozenFormName,
+            ctrl : scope._cozenFormCtrl,
+            model: scope._cozenFormModel
           });
         }, 1);
       }
@@ -2571,7 +2579,9 @@
         scope._activeTheme          = Themes.getActiveTheme();
         scope.input.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.input.cozenInputModel) ? '' : scope.input.cozenInputModel) + scope._cozenInputSuffix);
         scope.$on('cozenFormName', function (event, eventData) {
-          scope._cozenInputForm = eventData.name;
+          scope._cozenInputForm      = eventData.name;
+          scope._cozenInputFormCtrl  = eventData.ctrl;
+          scope._cozenInputFormModel = eventData.model;
         });
         scope._cozenInputPatternRegExp = methods.getPattern();
 
@@ -2602,7 +2612,8 @@
       function getMainClass() {
         if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
           var classList = [scope._activeTheme, scope._cozenInputSize, attrs.class];
-          var input     = methods.getForm()[scope._cozenInputName];
+          var input     = methods.getForm();
+          input         = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
           if (!Methods.isNullOrEmpty(input)) {
             if (scope._cozenInputValidatorEmpty || (!scope._cozenInputValidatorEmpty && !Methods.isNullOrEmpty(scope.input.cozenInputModel))) {
               switch (scope._cozenInputValidator) {
@@ -2664,15 +2675,15 @@
 
       function getForm() {
         var form = scope.$parent.$parent;
-        if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+        if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
           form = scope.$parent.$parent.$parent;
-          if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+          if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
             form = scope.$parent.$parent.$parent.$parent;
-            if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+            if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
               form = scope.$parent.$parent.$parent.$parent.$parent;
-              if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+              if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
-                if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+                if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                   return form;
                 } else return form;
               } else return form;
@@ -4343,185 +4354,193 @@
 'use strict';
 
 var Methods = {
-    isInList                  : isInList,
-    isNullOrEmpty             : isNullOrEmpty,
-    safeApply                 : safeApply,
-    isFunction                : isFunction,
-    directiveErrorRequired    : directiveErrorRequired,
-    directiveCallbackLog      : directiveCallbackLog,
-    getConsoleColor           : getConsoleColor,
-    capitalizeFirstLetter     : capitalizeFirstLetter,
-    directiveErrorFunction    : directiveErrorFunction,
-    directiveErrorBoolean     : directiveErrorBoolean,
-    isRegExpValid             : isRegExpValid,
-    getElementPaddingTopBottom: getElementPaddingTopBottom,
-    directiveErrorEmpty       : directiveErrorEmpty,
-    directiveWarningUnmatched : directiveWarningUnmatched,
-    dataMustBeBoolean         : dataMustBeBoolean,
-    dataMustBeObject          : dataMustBeObject,
-    dataMustBeInThisList: dataMustBeInThisList
+  isInList                  : isInList,
+  isNullOrEmpty             : isNullOrEmpty,
+  safeApply                 : safeApply,
+  isFunction                : isFunction,
+  directiveErrorRequired    : directiveErrorRequired,
+  directiveCallbackLog      : directiveCallbackLog,
+  getConsoleColor           : getConsoleColor,
+  capitalizeFirstLetter     : capitalizeFirstLetter,
+  directiveErrorFunction    : directiveErrorFunction,
+  directiveErrorBoolean     : directiveErrorBoolean,
+  isRegExpValid             : isRegExpValid,
+  getElementPaddingTopBottom: getElementPaddingTopBottom,
+  directiveErrorEmpty       : directiveErrorEmpty,
+  directiveWarningUnmatched : directiveWarningUnmatched,
+  dataMustBeBoolean         : dataMustBeBoolean,
+  dataMustBeObject          : dataMustBeObject,
+  dataMustBeInThisList      : dataMustBeInThisList,
+  hasOwnProperty            : hasOwnProperty
 };
 
 var Data = {
-    red   : '#c0392b',
-    purple: '#8e44ad',
-    black : '#2c3e50',
-    orange: '#d35400',
-    green : '#27ae60'
+  red   : '#c0392b',
+  purple: '#8e44ad',
+  black : '#2c3e50',
+  orange: '#d35400',
+  green : '#27ae60'
 };
 
 function isInList(list, value) {
-    return list.indexOf(value) != -1;
+  return list.indexOf(value) != -1;
 }
 
 function isNullOrEmpty(element) {
-    return element == null || element == '' || element == 'undefined';
+  return element == null || element == '' || element == 'undefined';
 }
 
 function safeApply(scope, fn) {
-    var phase = scope.$root.$$phase;
-    if (phase == '$apply' || phase == '$digest') {
-        if (fn && (typeof(fn) === 'function')) {
-            fn();
-        }
-    } else {
-        scope.$apply(fn);
+  var phase = scope.$root.$$phase;
+  if (phase == '$apply' || phase == '$digest') {
+    if (fn && (typeof(fn) === 'function')) {
+      fn();
     }
+  } else {
+    scope.$apply(fn);
+  }
 }
 
 function isFunction(fn) {
-    return typeof fn === 'function';
+  return typeof fn === 'function';
 }
 
 function directiveErrorRequired(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is required',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
+  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is required',
+    getConsoleColor(),
+    getConsoleColor('directive'),
+    getConsoleColor(),
+    getConsoleColor('fn'),
+    getConsoleColor()
+  );
 }
 
 function directiveCallbackLog(directive, fn) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Fn <%c' + fn + '%c> called',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
+  var now = moment().format('HH:mm:ss');
+  console.log('%c[%c' + directive + '%c][%c' + now + '%c] Fn <%c' + fn + '%c> called',
+    getConsoleColor(),
+    getConsoleColor('directive'),
+    getConsoleColor(),
+    getConsoleColor('time'),
+    getConsoleColor(),
+    getConsoleColor('fn'),
+    getConsoleColor()
+  );
 }
 
 function getConsoleColor(type) {
-    var color = 'color:';
-    switch (type) {
-        case 'red':
-        case 'directive':
-            return color + Data.red;
-        case 'purple':
-        case 'fn':
-            return color + Data.purple;
-        case 'orange':
-        case 'time':
-            return color + Data.orange;
-        case 'green':
-            return color + Data.green;
-        default:
-            return color + Data.black;
-    }
+  var color = 'color:';
+  switch (type) {
+    case 'red':
+    case 'directive':
+      return color + Data.red;
+    case 'purple':
+    case 'fn':
+      return color + Data.purple;
+    case 'orange':
+    case 'time':
+      return color + Data.orange;
+    case 'green':
+      return color + Data.green;
+    default:
+      return color + Data.black;
+  }
 }
 
 function capitalizeFirstLetter(string) {
-    if (Methods.isNullOrEmpty(string) || typeof string != 'string') return string;
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  if (Methods.isNullOrEmpty(string) || typeof string != 'string') return string;
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function directiveErrorFunction(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a function',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
+  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a function',
+    getConsoleColor(),
+    getConsoleColor('directive'),
+    getConsoleColor(),
+    getConsoleColor('fn'),
+    getConsoleColor()
+  );
 }
 
 function directiveErrorBoolean(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a boolean',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
+  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a boolean',
+    getConsoleColor(),
+    getConsoleColor('directive'),
+    getConsoleColor(),
+    getConsoleColor('fn'),
+    getConsoleColor()
+  );
 }
 
 function isRegExpValid(regexp, value) {
-    return !(!new RegExp(regexp).test(value) || isNullOrEmpty(value));
+  return !(!new RegExp(regexp).test(value) || isNullOrEmpty(value));
 }
 
 function getElementPaddingTopBottom(element) {
-    var styles = window.getComputedStyle(element);
-    return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+  var styles = window.getComputedStyle(element);
+  return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
 }
 
 function directiveErrorEmpty(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
+  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
+    getConsoleColor(),
+    getConsoleColor('directive'),
+    getConsoleColor(),
+    getConsoleColor('fn'),
+    getConsoleColor()
+  );
 }
 
 function directiveWarningUnmatched(directive, param, value) {
-    console.warn('%c[%c' + directive + '%c] Attr <%c' + param + '%c> value\'s was wrong\nThe default value <%c' + value + '%c> was set',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
+  console.warn('%c[%c' + directive + '%c] Attr <%c' + param + '%c> value\'s was wrong\nThe default value <%c' + value + '%c> was set',
+    getConsoleColor(),
+    getConsoleColor('directive'),
+    getConsoleColor(),
+    getConsoleColor('fn'),
+    getConsoleColor(),
+    getConsoleColor('fn'),
+    getConsoleColor()
+  );
 }
 
 function dataMustBeBoolean(attribute) {
-    console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor()
-    );
+  console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
+    getConsoleColor(),
+    getConsoleColor('red'),
+    getConsoleColor(),
+    getConsoleColor('purple'),
+    getConsoleColor(),
+    getConsoleColor('purple'),
+    getConsoleColor()
+  );
 }
 
 function dataMustBeObject(attribute) {
-    console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor()
-    );
+  console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
+    getConsoleColor(),
+    getConsoleColor('red'),
+    getConsoleColor(),
+    getConsoleColor('purple'),
+    getConsoleColor()
+  );
 }
 
 function dataMustBeInThisList(attribute, list) {
-    console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor()
-    );
+  console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
+    getConsoleColor(),
+    getConsoleColor('red'),
+    getConsoleColor(),
+    getConsoleColor('purple'),
+    getConsoleColor()
+  );
 }
+
+function hasOwnProperty(obj, prop) {
+  var proto = obj.__proto__ || obj.constructor.prototype;
+  return (prop in obj) &&
+    (!(prop in proto) || proto[prop] !== obj[prop]);
+}
+
 /**
  * @ngdoc directive
  * @name cozen-shortcut

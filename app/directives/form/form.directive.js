@@ -9,6 +9,7 @@
  * [Attributes params]
  * @param {number} cozenFormId    > Id of the form
  * @param {string} cozenFormName  > Name of the form [required]
+ * @param {string} cozenFormCtrl  > Controller [required]
  * @param {string} cozenFormModel > Model [required]
  *
  */
@@ -62,6 +63,7 @@
         scope._cozenFormId    = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : '';
         scope._cozenFormName  = attrs.cozenFormName;
         scope._cozenFormModel = attrs.cozenFormModel;
+        scope._cozenFormCtrl  = attrs.cozenFormCtrl;
 
         // Init stuff
         element.on('$destroy', methods.destroy);
@@ -73,6 +75,10 @@
       function hasError() {
         if (Methods.isNullOrEmpty(attrs.cozenFormName)) {
           Methods.directiveErrorRequired(data.directive, 'Name');
+          return true;
+        }
+        if (Methods.isNullOrEmpty(attrs.cozenFormCtrl)) {
+          Methods.directiveErrorRequired(data.directive, 'Ctrl');
           return true;
         }
         if (Methods.isNullOrEmpty(attrs.cozenFormModel)) {
@@ -89,7 +95,9 @@
       function dispatchName() {
         $timeout(function () {
           scope.$broadcast('cozenFormName', {
-            name: scope._cozenFormName
+            name : scope._cozenFormName,
+            ctrl : scope._cozenFormCtrl,
+            model: scope._cozenFormModel
           });
         }, 1);
       }

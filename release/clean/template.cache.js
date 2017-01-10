@@ -53,7 +53,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/form/form.template.html',
-    "<form ng-if=_isReady class=cozen-form name=\"{{ _cozenFormModel }}.{{ _cozenFormName }}\" id=\"{{ _cozenFormId }}\" cozen-when-ready=_methods.dispatchName(); cozen-wait-for-interpolation=true ng-transclude></form>"
+    "<form ng-if=_isReady class=cozen-form name=\"{{ _cozenFormCtrl }}.{{ _cozenFormModel }}.{{ _cozenFormName }}\" id=\"{{ _cozenFormId }}\" cozen-when-ready=_methods.dispatchName(); cozen-wait-for-interpolation=true ng-transclude></form>"
   );
 
 

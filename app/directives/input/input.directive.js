@@ -251,7 +251,9 @@
         scope._activeTheme          = Themes.getActiveTheme();
         scope.input.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.input.cozenInputModel) ? '' : scope.input.cozenInputModel) + scope._cozenInputSuffix);
         scope.$on('cozenFormName', function (event, eventData) {
-          scope._cozenInputForm = eventData.name;
+          scope._cozenInputForm      = eventData.name;
+          scope._cozenInputFormCtrl  = eventData.ctrl;
+          scope._cozenInputFormModel = eventData.model;
         });
         scope._cozenInputPatternRegExp = methods.getPattern();
 
@@ -282,7 +284,8 @@
       function getMainClass() {
         if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
           var classList = [scope._activeTheme, scope._cozenInputSize, attrs.class];
-          var input     = methods.getForm()[scope._cozenInputName];
+          var input     = methods.getForm();
+          input         = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
           if (!Methods.isNullOrEmpty(input)) {
             if (scope._cozenInputValidatorEmpty || (!scope._cozenInputValidatorEmpty && !Methods.isNullOrEmpty(scope.input.cozenInputModel))) {
               switch (scope._cozenInputValidator) {
@@ -344,15 +347,15 @@
 
       function getForm() {
         var form = scope.$parent.$parent;
-        if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+        if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
           form = scope.$parent.$parent.$parent;
-          if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+          if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
             form = scope.$parent.$parent.$parent.$parent;
-            if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+            if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
               form = scope.$parent.$parent.$parent.$parent.$parent;
-              if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+              if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
-                if (!Methods.isNullOrEmpty(form._cozenFormName)) {
+                if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                   return form;
                 } else return form;
               } else return form;
