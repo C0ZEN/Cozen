@@ -12,92 +12,93 @@
  * @param {string} cozenPillsSizeSmall             > Shortcut for small size
  * @param {string} cozenPillsSizeNormal            > Shortcut for normal size
  * @param {string} cozenPillsSizeLarge             > Shortcut for large size
+ * @param {string} cozenPillsClass                 > Custom class
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.pills', [
-      'cozenLib.pills.simple'
-    ])
-    .directive('cozenPills', cozenPills);
+    angular
+        .module('cozenLib.pills', [
+            'cozenLib.pills.simple'
+        ])
+        .directive('cozenPills', cozenPills);
 
-  cozenPills.$inject = [
-    'Themes',
-    'CONFIG'
-  ];
+    cozenPills.$inject = [
+        'Themes',
+        'CONFIG'
+    ];
 
-  function cozenPills(Themes, CONFIG) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : true,
-      templateUrl: 'directives/pills/pills.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init        : init,
-        hasError    : hasError,
-        destroy     : destroy,
-        getMainClass: getMainClass
-      };
-
-      var data = {
-        directive: 'cozenPills'
-      };
-
-      // After some test, wait too long for the load make things crappy
-      // So, I set it to true for now
-      scope._isReady = true;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass
+    function cozenPills(Themes, CONFIG) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : true,
+            templateUrl: 'directives/pills/pills.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenPillsSize)) {
-          if (angular.isDefined(attrs.cozenPillsSizeSmall)) scope._cozenPillsSize = 'small';
-          else if (angular.isDefined(attrs.cozenPillsSizeNormal)) scope._cozenPillsSize = 'normal';
-          else if (angular.isDefined(attrs.cozenPillsSizeLarge)) scope._cozenPillsSize = 'large';
-          else scope._cozenPillsSize = 'normal';
-        } else scope._cozenPillsSize = attrs.cozenPillsSize;
+            var data = {
+                directive: 'cozenPills'
+            };
 
-        // Default values (attributes)
-        scope._cozenPillsId = angular.isDefined(attrs.cozenPillsId) ? attrs.cozenPillsId : '';
+            // After some test, wait too long for the load make things crappy
+            // So, I set it to true for now
+            scope._isReady = true;
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
+            methods.init();
 
-        // Display the template
-        scope._isReady = true;
-      }
+            function init() {
 
-      function hasError() {
-        return false;
-      }
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass
+                };
 
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
+                // Checking required stuff
+                if (methods.hasError()) return;
 
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenPillsSize];
-        return classList;
-      }
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenPillsSize)) {
+                    if (angular.isDefined(attrs.cozenPillsSizeSmall)) scope._cozenPillsSize = 'small';
+                    else if (angular.isDefined(attrs.cozenPillsSizeNormal)) scope._cozenPillsSize = 'normal';
+                    else if (angular.isDefined(attrs.cozenPillsSizeLarge)) scope._cozenPillsSize = 'large';
+                    else scope._cozenPillsSize = 'normal';
+                } else scope._cozenPillsSize = attrs.cozenPillsSize;
+
+                // Default values (attributes)
+                scope._cozenPillsId = angular.isDefined(attrs.cozenPillsId) ? attrs.cozenPillsId : '';
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+
+                // Display the template
+                scope._isReady = true;
+            }
+
+            function hasError() {
+                return false;
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                var classList = [scope._activeTheme, scope._cozenPillsSize, attrs.cozenPillsClass];
+                return classList;
+            }
+        }
     }
-  }
 
 })(window.angular);
 
