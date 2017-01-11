@@ -20,126 +20,125 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.pills.simple', [])
-    .directive('cozenPillsItemSimple', cozenPillsItemSimple);
+    angular
+        .module('cozenLib.pills.simple', [])
+        .directive('cozenPillsItemSimple', cozenPillsItemSimple);
 
-  cozenPillsItemSimple.$inject = [
-    'CONFIG',
-    'rfc4122',
-    '$rootScope',
-    '$window',
-    '$timeout',
-    '$filter'
-  ];
+    cozenPillsItemSimple.$inject = [
+        'CONFIG',
+        'rfc4122',
+        '$rootScope',
+        '$window',
+        '$timeout',
+        '$filter'
+    ];
 
-  function cozenPillsItemSimple(CONFIG, rfc4122, $rootScope, $window, $timeout, $filter) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : false,
-      scope      : {
-        cozenPillsItemSimpleOnClick : '&',
-        cozenPillsItemSimpleDisabled: '=?',
-        cozenPillsItemSimpleSelected: '=?'
-      },
-      templateUrl: 'directives/pills/items/simple/pills.simple.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init        : init,
-        hasError    : hasError,
-        destroy     : destroy,
-        getMainClass: getMainClass,
-        onClick     : onClick,
-        getTabIndex : getTabIndex
-      };
-
-      var data = {
-        directive: 'cozenPillsItemSimple',
-        uuid     : rfc4122.v4()
-      };
-
-      scope._isReady = true;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          onClick     : onClick,
-          getTabIndex : getTabIndex
+    function cozenPillsItemSimple(CONFIG, rfc4122, $rootScope, $window, $timeout, $filter) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenPillsItemSimpleOnClick : '&',
+                cozenPillsItemSimpleDisabled: '=?',
+                cozenPillsItemSimpleSelected: '=?'
+            },
+            templateUrl: 'directives/pills/items/simple/pills.simple.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                onClick     : onClick,
+                getTabIndex : getTabIndex
+            };
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenPillsItemSimpleDisabled)) scope.cozenPillsItemSimpleDisabled = false;
-        if (angular.isUndefined(attrs.cozenPillsItemSimpleSelected)) {
-          scope.cozenPillsItemSimpleSelected = false;
+            var data = {
+                directive: 'cozenPillsItemSimple',
+                uuid     : rfc4122.v4()
+            };
+
+            scope._isReady = true;
+
+            methods.init();
+
+            function init() {
+
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    onClick     : onClick,
+                    getTabIndex : getTabIndex
+                };
+
+                // Checking required stuff
+                if (methods.hasError()) return;
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenPillsItemSimpleDisabled)) scope.cozenPillsItemSimpleDisabled = false;
+                if (angular.isUndefined(attrs.cozenPillsItemSimpleSelected)) {
+                    scope.cozenPillsItemSimpleSelected = false;
+                }
+                else if (typeof scope.cozenPillsItemSimpleSelected != "boolean") {
+                    scope.cozenPillsItemSimpleSelected = false;
+                }
+
+                // Default values (attributes)
+                scope._cozenPillsItemSimpleId        = angular.isDefined(attrs.cozenPillsItemSimpleId) ? attrs.cozenPillsItemSimpleId : '';
+                scope._cozenPillsItemSimpleLabel     = attrs.cozenPillsItemSimpleLabel;
+                scope._cozenPillsItemSimpleIconLeft  = angular.isDefined(attrs.cozenPillsItemSimpleIconLeft) ? attrs.cozenPillsItemSimpleIconLeft : '';
+                scope._cozenPillsItemSimpleIconRight = angular.isDefined(attrs.cozenPillsItemSimpleIconRight) ? attrs.cozenPillsItemSimpleIconRight : '';
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope.cozenPillsItemSimpleActive = false;
+
+                // Display the template
+                scope._isReady = true;
+            }
+
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenPillsItemSimpleLabel)) {
+                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                $window.removeEventListener('keydown', methods.onKeyDown);
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                var classList = [];
+                if (scope.cozenPillsItemSimpleDisabled) classList.push('disabled');
+                if (scope.cozenPillsItemSimpleSelected) classList.push('selected');
+                return classList;
+            }
+
+            function onClick($event) {
+                $event.stopPropagation();
+                if (scope.cozenPillsItemSimpleDisabled) return;
+                if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) scope.cozenPillsItemSimpleOnClick();
+                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClick');
+                scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
+                Methods.safeApply(scope);
+            }
+
+            function getTabIndex() {
+                var tabIndex = 0;
+                if (scope.cozenPillsItemSimpleDisabled) tabIndex = -1;
+                return tabIndex;
+            }
         }
-        else if (typeof scope.cozenPillsItemSimpleSelected != "boolean") {
-          scope.cozenPillsItemSimpleSelected = false;
-        }
-
-        // Default values (attributes)
-        scope._cozenPillsItemSimpleId        = angular.isDefined(attrs.cozenPillsItemSimpleId) ? attrs.cozenPillsItemSimpleId : '';
-        scope._cozenPillsItemSimpleLabel     = attrs.cozenPillsItemSimpleLabel;
-        scope._cozenPillsItemSimpleIconLeft  = angular.isDefined(attrs.cozenPillsItemSimpleIconLeft) ? attrs.cozenPillsItemSimpleIconLeft : '';
-        scope._cozenPillsItemSimpleIconRight = angular.isDefined(attrs.cozenPillsItemSimpleIconRight) ? attrs.cozenPillsItemSimpleIconRight : '';
-
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope.cozenPillsItemSimpleActive = false;
-
-        // Display the template
-        scope._isReady = true;
-      }
-
-      function hasError() {
-        if (Methods.isNullOrEmpty(attrs.cozenPillsItemSimpleLabel)) {
-          Methods.directiveErrorRequired(data.directive, 'Label');
-          return true;
-        }
-        return false;
-      }
-
-      function destroy() {
-        $window.removeEventListener('keydown', methods.onKeyDown);
-        element.off('$destroy', methods.destroy);
-      }
-
-      function getMainClass() {
-        var classList = [];
-        if (scope.cozenPillsItemSimpleDisabled) classList.push('disabled');
-        else if (scope.cozenPillsItemSimpleActive) classList.push('active');
-        if (scope.cozenPillsItemSimpleSelected) classList.push('selected');
-        return classList;
-      }
-
-      function onClick($event) {
-        $event.stopPropagation();
-        if (scope.cozenPillsItemSimpleDisabled) return;
-        if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) scope.cozenPillsItemSimpleOnClick();
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
-        scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
-        Methods.safeApply(scope);
-      }
-
-      function getTabIndex() {
-        var tabIndex = 0;
-        if (scope.cozenPillsItemSimpleDisabled) tabIndex = -1;
-        return tabIndex;
-      }
     }
-  }
 
 })(window.angular);
 

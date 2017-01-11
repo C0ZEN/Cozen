@@ -1,6 +1,9 @@
 /*********************/
 /*   BORDER BOTTOM   */
 /*********************/
-.cozen-pills-border-bottom(@border) {
-  border-bottom: @border;
+.cozen-pills-border-bottom(@height, @color) {
+  &:after {
+    height:           @height;
+    background-color: @color;
+  }
 }
