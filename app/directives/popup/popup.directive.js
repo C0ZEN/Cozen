@@ -24,6 +24,8 @@
  * @param {string}  cozenPopupTypeSuccess                 > Shortcut for success type
  * @param {string}  cozenPopupTypeWarning                 > Shortcut for warning type
  * @param {string}  cozenPopupTypeError                   > Shortcut for error type
+ * @param {string}  cozenPopupTypeGreen                   > Shortcut for green type
+ * @param {string}  cozenPopupTypePurple                  > Shortcut for purple type
  * @param {boolean} cozenPopupHeader          = true      > Display the header [config]
  * @param {string}  cozenPopupHeaderTitle                 > Text of the header title
  * @param {string}  cozenPopupHeaderSubTitle              > Text of the header sub-title
@@ -122,6 +124,8 @@
                     else if (angular.isDefined(attrs.cozenPopupTypeSuccess)) scope._cozenPopupType = 'success';
                     else if (angular.isDefined(attrs.cozenPopupTypeWarning)) scope._cozenPopupType = 'warning';
                     else if (angular.isDefined(attrs.cozenPopupTypeError)) scope._cozenPopupType = 'error';
+                    else if (angular.isDefined(attrs.cozenPopupTypeGreen)) scope._cozenPopupType = 'green';
+                    else if (angular.isDefined(attrs.cozenPopupTypePurple)) scope._cozenPopupType = 'purple';
                     else scope._cozenPopupType = 'default';
                 } else scope._cozenPopupType = attrs.cozenPopupType;
 
