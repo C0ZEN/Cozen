@@ -36,7 +36,7 @@
  * @param {string}  cozenBtnIconLeft                > Add an icon the to left (write the class)
  * @param {string}  cozenBtnIconRight               > Add an icon the to right (write the class)
  * @param {boolean} cozenBtnAutoSizing  = false     > Shortcut to activate the auto sizing (instead of 100% width)
- * @param {string}  class                           > Custom class
+ * @param {string}  cozenBtnClass                   > Custom class
  * @param {string}  cozenBtnImgLeft                 > URL/path to the left img
  *
  */
@@ -153,7 +153,7 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.class];
+                var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.cozenBtnClass];
                 if (scope.cozenBtnActive) classList.push('active');
                 if (scope.cozenBtnDisabled) classList.push('disabled');
                 if (scope.cozenBtnLoader) classList.push('loading');

@@ -329,7 +329,7 @@
  * @param {string}  cozenBtnIconLeft                > Add an icon the to left (write the class)
  * @param {string}  cozenBtnIconRight               > Add an icon the to right (write the class)
  * @param {boolean} cozenBtnAutoSizing  = false     > Shortcut to activate the auto sizing (instead of 100% width)
- * @param {string}  class                           > Custom class
+ * @param {string}  cozenBtnClass                   > Custom class
  * @param {string}  cozenBtnImgLeft                 > URL/path to the left img
  *
  */
@@ -446,7 +446,7 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.class];
+                var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.cozenBtnClass];
                 if (scope.cozenBtnActive) classList.push('active');
                 if (scope.cozenBtnDisabled) classList.push('disabled');
                 if (scope.cozenBtnLoader) classList.push('loading');
@@ -2396,7 +2396,7 @@
  * @param {string}  cozenInputAutoComplete     = 'on'                     > Allow auto complete (on/off)
  * @param {string}  cozenInputLabel                                       > Add a label on the top of the input
  * @param {string}  cozenInputRequiredTooltip  = 'input_required_tooltip' > Text to display for the tooltip of the required element
- * @param {string}  class                                                 > Additional class
+ * @param {string}  cozenInputClass                                       > Additional class
  * @param {string}  cozenInputSpellCheck       = false                    > Disable the spell checking
  *
  * [cozenInputTypePasswordConfig]
@@ -2630,7 +2630,7 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
-                    var classList = [scope._activeTheme, scope._cozenInputSize, attrs.class];
+                    var classList = [scope._activeTheme, scope._cozenInputSize, attrs.cozenInputClass];
                     var input     = methods.getForm();
                     input         = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                     if (!Methods.isNullOrEmpty(input)) {
