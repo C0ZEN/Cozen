@@ -8547,7 +8547,7 @@ div.cozen-panel.atom.error div.cozen-panel-header:focus span.cozen-panel-label s
 }
 div.cozen-popup.atom.small div.cozen-popup-container {
   margin: 16% auto;
-  width: 540px;
+  max-width: 540px;
 }
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-body,
@@ -8575,7 +8575,7 @@ div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header div.
 }
 div.cozen-popup.atom.normal div.cozen-popup-container {
   margin: 10% auto;
-  width: 760px;
+  max-width: 760px;
 }
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-body,
@@ -8603,7 +8603,7 @@ div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header div
 }
 div.cozen-popup.atom.large div.cozen-popup-container {
   margin: 5% auto;
-  width: 1040px;
+  max-width: 1040px;
 }
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-body,
@@ -14676,7 +14676,7 @@ div.cozen-panel.tau.error div.cozen-panel-header:focus span.cozen-panel-label sm
 }
 div.cozen-popup.tau.small div.cozen-popup-container {
   margin: 16% 26%;
-  width: 540px;
+  max-width: 540px;
 }
 div.cozen-popup.tau.small div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.tau.small div.cozen-popup-container div.cozen-popup-body,
@@ -14704,7 +14704,7 @@ div.cozen-popup.tau.small div.cozen-popup-container div.cozen-popup-header div.c
 }
 div.cozen-popup.tau.normal div.cozen-popup-container {
   margin: 10% 20%;
-  width: 760px;
+  max-width: 760px;
 }
 div.cozen-popup.tau.normal div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.tau.normal div.cozen-popup-container div.cozen-popup-body,
@@ -14732,7 +14732,7 @@ div.cozen-popup.tau.normal div.cozen-popup-container div.cozen-popup-header div.
 }
 div.cozen-popup.tau.large div.cozen-popup-container {
   margin: 5% 15%;
-  width: 1040px;
+  max-width: 1040px;
 }
 div.cozen-popup.tau.large div.cozen-popup-container div.cozen-popup-header,
 div.cozen-popup.tau.large div.cozen-popup-container div.cozen-popup-body,
