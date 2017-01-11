@@ -44,6 +44,7 @@
             'cozenLib.list',
             'cozenLib.pagination',
             'cozenLib.panel',
+            'cozenLib.pills',
             'cozenLib.popup',
             'cozenLib.textarea',
             'cozenLib.tooltip',

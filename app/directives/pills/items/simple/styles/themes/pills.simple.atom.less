@@ -1,0 +1,24 @@
+div.cozen-pills.atom {
+
+  // Size
+  &.small {
+  }
+  &.normal {
+    .cozen-pills-item-simple-size(@atom-font-h3, @atom-space-base @atom-space-medium, 400);
+    .cozen-pills-item-simple-color(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-blue-light);
+    .cozen-pills-item-simple-color-selected(@atom-color-blue, @atom-color-blue-active, @atom-color-white, @atom-color-blue-light);
+    .cozen-pills-item-simple-color-disabled(@atom-color-label-disabled, @atom-color-label-disabled, @atom-color-white, @atom-color-white);
+    .cozen-pills-item-simple-icon-left(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
+    .cozen-pills-item-simple-icon-left-selected(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
+    .cozen-pills-item-simple-icon-left-disabled(@atom-font-h3, @atom-color-label-disabled, @atom-color-label-disabled, 0 @atom-space-small);
+    .cozen-pills-item-simple-icon-right(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
+    .cozen-pills-item-simple-icon-right-selected(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
+    .cozen-pills-item-simple-icon-right-disabled(@atom-font-h3, @atom-color-label-disabled, @atom-color-label-disabled, 0 @atom-space-small);
+    .cozen-pills-item-simple-border(none, none, none, none, none, none, none, none);
+    .cozen-pills-item-simple-border-selected(2px solid @atom-color-blue, 1px solid @atom-color-line-rule, none, 1px solid @atom-color-line-rule, 2px solid @atom-color-blue-active, 1px solid @atom-color-line-rule, none, 1px solid @atom-color-line-rule);
+    .cozen-pills-item-simple-border-disabled(none, none, none, none, none, none, none, none);
+    .cozen-pills-item-simple-border-radius(@cozen-radius, 0);
+  }
+  &.large {
+  }
+}

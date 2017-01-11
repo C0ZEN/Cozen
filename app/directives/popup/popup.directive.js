@@ -91,7 +91,7 @@
                 firstHide: true
             };
 
-            scope._isReady = false;
+            scope._isReady = true;
 
             methods.init();
 

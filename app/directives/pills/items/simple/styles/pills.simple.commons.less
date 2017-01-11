@@ -1,0 +1,36 @@
+div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  cursor:          pointer;
+  outline:         @cozen-outline;
+
+  div.cozen-pills-item-simple-content {
+    align-self:  center;
+    line-height: inherit;
+    cursor:      inherit;
+    color:       inherit;
+    font-size:   inherit;
+
+    // Label
+    span.cozen-pills-item-simple-label {
+      cursor:         inherit;
+      font-weight:    normal;
+      font-size:      inherit;
+      vertical-align: sub;
+      line-height:    inherit;
+      color:          inherit;
+    }
+
+    // Icon
+    div.cozen-pills-item-simple-icon {
+      display:        inline-block;
+      cursor:         inherit;
+      font-weight:    normal;
+      vertical-align: sub;
+      outline:        @cozen-outline;
+      font-size:      inherit;
+      line-height:    inherit;
+    }
+  }
+}

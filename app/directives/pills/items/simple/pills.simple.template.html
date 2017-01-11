@@ -1,0 +1,29 @@
+<div ng-if="_isReady"
+     class="cozen-pills-item cozen-pills-item-simple"
+     ng-class="_methods.getMainClass();"
+     id="{{ _cozenPillsItemSimpleId }}"
+     tabindex="{{ _methods.getTabIndex(); }}"
+     ng-click="_methods.onClick($event);"
+     onclick="this.blur();">
+
+  <div class="cozen-pills-item-simple-content left">
+
+    <!-- Left icon -->
+    <div ng-if="_cozenPillsItemSimpleIconLeft != ''"
+         class="cozen-pills-item-simple-icon left">
+      <i ng-class="[_cozenPillsItemSimpleIconLeft]"></i>
+    </div>
+
+    <!-- Label -->
+    <span class="cozen-pills-item-simple-label">
+            {{ _cozenPillsItemSimpleLabel | translate }}
+        </span>
+
+    <!-- Right icon -->
+    <div ng-if="_cozenPillsItemSimpleIconRight != ''"
+         class="cozen-pills-item-simple-icon right">
+      <i ng-class="[_cozenPillsItemSimpleIconRight]"></i>
+    </div>
+  </div>
+</div>
+
