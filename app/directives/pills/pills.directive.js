@@ -20,6 +20,7 @@
 
     angular
         .module('cozenLib.pills', [
+            'cozenLib.pills.factory',
             'cozenLib.pills.simple'
         ])
         .directive('cozenPills', cozenPills);

@@ -17,6 +17,7 @@
  * @param {string} cozenPillsItemSimpleLabel     > Text of the item [required]
  * @param {string} cozenPillsItemSimpleIconLeft  > Icon left (name of the icon)
  * @param {string} cozenPillsItemSimpleIconRight > Icon right (name of the icon)
+ * @param {string} cozenPillsItemSimpleName      > Name of the pill (only for factory use)
  *
  */
 (function (angular) {
@@ -56,7 +57,8 @@
                 destroy     : destroy,
                 getMainClass: getMainClass,
                 onClick     : onClick,
-                getTabIndex : getTabIndex
+                getTabIndex : getTabIndex,
+                onActive    : onActive
             };
 
             var data = {
@@ -94,10 +96,14 @@
                 scope._cozenPillsItemSimpleLabel     = attrs.cozenPillsItemSimpleLabel;
                 scope._cozenPillsItemSimpleIconLeft  = angular.isDefined(attrs.cozenPillsItemSimpleIconLeft) ? attrs.cozenPillsItemSimpleIconLeft : '';
                 scope._cozenPillsItemSimpleIconRight = angular.isDefined(attrs.cozenPillsItemSimpleIconRight) ? attrs.cozenPillsItemSimpleIconRight : '';
+                scope._cozenPillsItemSimpleName      = angular.isDefined(attrs.cozenPillsItemSimpleName) ? attrs.cozenPillsItemSimpleName : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope.cozenPillsItemSimpleActive = false;
+
+                // From the factory, to toggle the active state
+                scope.$on('cozenPillsActive', methods.onActive);
 
                 // Display the template
                 scope._isReady = true;
@@ -136,6 +142,10 @@
                 var tabIndex = 0;
                 if (scope.cozenPillsItemSimpleDisabled) tabIndex = -1;
                 return tabIndex;
+            }
+
+            function onActive(event, data) {
+                scope.cozenPillsItemSimpleActive = scope._cozenPillsItemSimpleName == data.name;
             }
         }
     }
