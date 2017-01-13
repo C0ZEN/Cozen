@@ -145,7 +145,7 @@
             }
 
             function onActive(event, data) {
-                scope.cozenPillsItemSimpleActive = scope._cozenPillsItemSimpleName == data.name;
+                scope.cozenPillsItemSimpleSelected = scope._cozenPillsItemSimpleName == data.name;
             }
         }
     }
