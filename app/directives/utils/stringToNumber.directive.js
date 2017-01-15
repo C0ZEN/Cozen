@@ -7,6 +7,7 @@
  * @description
  *
  * [Attributes params]
+ * @param {boolean} cozenStringToNumberDisabled = false > Disable the behavior
  *
  */
 (function (angular) {
@@ -20,8 +21,33 @@
 
     function cozenStringToNumber() {
         return {
-            require: 'ngModel',
-            link   : function (scope, element, attrs, ngModel) {
+            link      : link,
+            restrict  : 'A',
+            replace   : false,
+            transclude: false,
+            require   : 'ngModel'
+        };
+
+        function link(scope, element, attrs, ngModel) {
+            var methods = {
+                init   : init,
+                destroy: destroy
+            };
+
+            var data = {
+                directive: 'cozenStringToNumber'
+            };
+
+            methods.init();
+
+            function init() {
+
+                // Disabled check
+                if (angular.isDefined(attrs.cozenStringToNumberDisabled)) {
+                    if (JSON.parse(attrs.cozenStringToNumberDisabled)) return;
+                }
+
+                // Behavior
                 ngModel.$parsers.push(function (value) {
                     return '' + value;
                 });
@@ -29,7 +55,11 @@
                     return parseFloat(value);
                 });
             }
-        };
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+        }
     }
 
 })(window.angular);

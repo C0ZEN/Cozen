@@ -70,6 +70,8 @@
              readonly
              ng-model-options="{allowInvalid: true}"
              id="{{ _cozenInputName }}"
+             cozen-string-to-number
+             cozen-string-to-number-disabled="{{ _cozenInputType != 'number' }}"
              spellcheck="{{ _cozenInputSpellCheck }}">
 
       <!-- Arrow up/down -->
