@@ -828,6 +828,7 @@
  * @param {string}  cozenBtnToggleLabel                 > Text added with the button toggle
  * @param {string}  cozenBtnToggleTooltip               > Text of the tooltip
  * @param {boolean} cozenBtnToggleStartRight = true     > Display the toggle on the right of the label
+ * @param {string}  cozenBtnToggleClass                 > Custom class
  *
  */
 (function (angular) {
@@ -929,7 +930,7 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnToggleSize];
+                var classList = [scope._activeTheme, scope._cozenBtnToggleSize, attrs.cozenBtnToggleClass];
                 if (scope.cozenBtnToggleDisabled) classList.push('disabled');
                 if (scope.cozenBtnToggleModel) classList.push('active');
                 if (scope._cozenBtnToggleStartRight) classList.push('switch-right');
