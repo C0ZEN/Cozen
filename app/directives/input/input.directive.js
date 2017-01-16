@@ -249,8 +249,12 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme       = Themes.getActiveTheme();
+                scope._activeTheme = Themes.getActiveTheme();
+
+                // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);
+
+                // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
                     scope._cozenInputForm      = eventData.name;
                     scope._cozenInputFormCtrl  = eventData.ctrl;
@@ -270,6 +274,7 @@
                 // Display the template (the timeout avoid a visual bug due to events)
                 $timeout(function () {
                     scope._isReady = true;
+                    methods.updateModelLength();
                 }, 1);
             }
 
@@ -407,7 +412,7 @@
                         pattern += '.{' + scope.vm.cozenInputTypePasswordConfig.minLength + ',}';
                         return pattern;
                     default:
-                        return '';
+                        return scope._cozenInputPattern;
                 }
             }
 
