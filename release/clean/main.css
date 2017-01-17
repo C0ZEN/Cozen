@@ -698,6 +698,9 @@ div.cozen-alert {
       align-content: space-between;
   border-radius: 3px;
   line-height: normal;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 div.cozen-alert.animate-in {
   -webkit-transition: 300ms ease-out;
@@ -2129,7 +2132,7 @@ div.cozen-alert.atom.large span.cozen-alert-label {
 div.cozen-alert.atom.default {
   box-shadow: none;
   border: 1px solid #1e88e5;
-  background-color: #489eea;
+  background-color: #d1e7fa;
 }
 div.cozen-alert.atom.default:hover {
   border: 1px solid #1e88e5;
@@ -2153,12 +2156,12 @@ div.cozen-alert.atom.default span.cozen-alert-label:hover {
   color: #4c596b;
 }
 div.cozen-alert.atom.default:hover {
-  background-color: #489eea;
+  background-color: #d1e7fa;
 }
 div.cozen-alert.atom.info {
   box-shadow: none;
   border: 1px solid #1e88e5;
-  background-color: #489eea;
+  background-color: #d1e7fa;
 }
 div.cozen-alert.atom.info:hover {
   border: 1px solid #1e88e5;
@@ -2182,12 +2185,12 @@ div.cozen-alert.atom.info span.cozen-alert-label:hover {
   color: #4c596b;
 }
 div.cozen-alert.atom.info:hover {
-  background-color: #489eea;
+  background-color: #d1e7fa;
 }
 div.cozen-alert.atom.success {
   box-shadow: none;
   border: 1px solid #7cb342;
-  background-color: #8ec157;
+  background-color: #e4f1da;
 }
 div.cozen-alert.atom.success:hover {
   border: 1px solid #7cb342;
@@ -2211,12 +2214,12 @@ div.cozen-alert.atom.success span.cozen-alert-label:hover {
   color: #4c596b;
 }
 div.cozen-alert.atom.success:hover {
-  background-color: #8ec157;
+  background-color: #e4f1da;
 }
 div.cozen-alert.atom.warning {
   box-shadow: none;
   border: 1px solid #ffb330;
-  background-color: #ffbe4d;
+  background-color: #ffeccc;
 }
 div.cozen-alert.atom.warning:hover {
   border: 1px solid #ffb330;
@@ -2240,12 +2243,12 @@ div.cozen-alert.atom.warning span.cozen-alert-label:hover {
   color: #4c596b;
 }
 div.cozen-alert.atom.warning:hover {
-  background-color: #ffbe4d;
+  background-color: #ffeccc;
 }
 div.cozen-alert.atom.error {
   box-shadow: none;
   border: 1px solid #e53935;
-  background-color: #ea6361;
+  background-color: #f9d3d2;
 }
 div.cozen-alert.atom.error:hover {
   border: 1px solid #e53935;
@@ -2269,7 +2272,7 @@ div.cozen-alert.atom.error span.cozen-alert-label:hover {
   color: #4c596b;
 }
 div.cozen-alert.atom.error:hover {
-  background-color: #ea6361;
+  background-color: #f9d3d2;
 }
 div.cozen-btn.atom.small {
   padding: 6px;
@@ -10516,6 +10519,9 @@ div.cozen-alert {
       align-content: space-between;
   border-radius: 3px;
   line-height: normal;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 div.cozen-alert.animate-in {
   -webkit-transition: 300ms ease-out;

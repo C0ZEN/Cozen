@@ -31,6 +31,7 @@
  * @param {string}  cozenAlertLabel                       > Text to display
  * @param {string}  cozenAlertTextAlign       = 'justify' > Alignment of the label [config.json]
  * @param {boolean} cozenAlertCloseBtnTooltip = true      > Display a tooltip on the close btn [config.json]
+ * @param {string}  cozenAlertClass                       > Custom class
  *
  */
 (function (angular) {
@@ -162,7 +163,7 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType];
+                var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType, attrs.cozenAlertClass];
                 if (!data.firstHide) {
                     if (scope._cozenAlertAnimationIn) classList.push('animate-in');
                     if (scope._cozenAlertAnimationOut) classList.push('animate-out');
