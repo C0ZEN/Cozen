@@ -8940,78 +8940,78 @@ div.cozen-popup.atom.info {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header {
-  background-color: #d6dbdb;
+  background-color: #1e88e5;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #d6dbdb;
+  background-color: #1e88e5;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.sub-title {
-  color: #8c8c8c;
+  color: #ffffff;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-close {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #d6dbdb;
+  background-color: #1e88e5;
 }
 div.cozen-popup.atom.info div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #d6dbdb;
+  border: none;
   border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #d6dbdb;
-  border-right: 1px solid #d6dbdb;
+  border-left: none;
+  border-right: none;
 }
 div.cozen-popup.atom.info div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #d6dbdb;
+  border: none;
   border-top: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.success {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header {
-  background-color: #d6dbdb;
+  background-color: #7cb342;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #d6dbdb;
+  background-color: #7cb342;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.sub-title {
-  color: #8c8c8c;
+  color: #ffffff;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-close {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #d6dbdb;
+  background-color: #7cb342;
 }
 div.cozen-popup.atom.success div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #d6dbdb;
+  border: none;
   border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #d6dbdb;
-  border-right: 1px solid #d6dbdb;
+  border-left: none;
+  border-right: none;
 }
 div.cozen-popup.atom.success div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #d6dbdb;
+  border: none;
   border-top: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.warning {
@@ -9057,39 +9057,39 @@ div.cozen-popup.atom.error {
   background-color: rgba(0, 0, 0, 0.85);
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header {
-  background-color: #d6dbdb;
+  background-color: #e53935;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header:hover {
-  background-color: #d6dbdb;
+  background-color: #e53935;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.title {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-title span.sub-title {
-  color: #8c8c8c;
+  color: #ffffff;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header div.cozen-popup-header-close {
-  color: #4c596b;
+  color: #ffffff;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-body {
   background-color: #ffffff;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-footer {
-  background-color: #d6dbdb;
+  background-color: #e53935;
 }
 div.cozen-popup.atom.error div.cozen-popup-container {
   box-shadow: 0 2px 8px rgba(100,100,100,0.3);;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-header {
-  border: 1px solid #d6dbdb;
+  border: none;
   border-bottom: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-body {
-  border-left: 1px solid #d6dbdb;
-  border-right: 1px solid #d6dbdb;
+  border-left: none;
+  border-right: none;
 }
 div.cozen-popup.atom.error div.cozen-popup-container div.cozen-popup-footer {
-  border: 1px solid #d6dbdb;
+  border: none;
   border-top: 1px solid #d6dbdb;
 }
 div.cozen-popup.atom.green {
