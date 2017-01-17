@@ -80,7 +80,6 @@
                 onEnter           : onEnter,
                 onLeave           : onLeave,
                 getPopupClass     : getPopupClass,
-                setScrollBarHeight: setScrollBarHeight,
                 onKeyDown         : onKeyDown,
                 setHeaderPictoSize: setHeaderPictoSize
             };
@@ -149,7 +148,6 @@
                 scope._cozenScrollBar            = CONFIG.scrollsBar;
                 scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
                 scope._cozenScrollBarConfig.axis = 'y';
-                methods.setScrollBarHeight();
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -214,7 +212,6 @@
                         $window.addEventListener('click', methods.onClick);
                         $window.addEventListener('keydown', methods.onKeyDown);
                     }
-                    methods.setScrollBarHeight();
                     methods.setHeaderPictoSize();
                 }
             }
@@ -248,15 +245,6 @@
                     classList.push('animation-out');
                 }
                 return classList;
-            }
-
-            function setScrollBarHeight() {
-                $timeout(function () {
-                    var body       = element.find('.cozen-popup-body')[0];
-                    var transclude = element.find('.cozen-popup-body .ng-transclude')[0];
-                    if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
-                    Methods.safeApply(scope);
-                });
             }
 
             function onKeyDown(event) {
