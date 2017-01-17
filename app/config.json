@@ -57,6 +57,11 @@
       "out": true
     }
   },
+  "btnToggle": {
+    "animation": true,
+    "tooltipType": "default",
+    "startRight": true
+  },
   "popup": {
     "header": true,
     "footer": true,

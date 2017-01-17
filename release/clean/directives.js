@@ -269,6 +269,11 @@
       "out": true
     }
   },
+  "btnToggle": {
+    "animation": true,
+    "tooltipType": "default",
+    "startRight": true
+  },
   "popup": {
     "header": true,
     "footer": true,
@@ -827,6 +832,7 @@
  * @param {boolean} cozenBtnToggleAnimation  = true     > Add an animation on toggle
  * @param {string}  cozenBtnToggleLabel                 > Text added with the button toggle
  * @param {string}  cozenBtnToggleTooltip               > Text of the tooltip
+ * @param {string}  cozenBtnToggleTooltipType           > Type of the tooltip
  * @param {boolean} cozenBtnToggleStartRight = true     > Display the toggle on the right of the label
  * @param {string}  cozenBtnToggleClass                 > Custom class
  *
@@ -871,7 +877,7 @@
                 directive: 'cozenBtnToggle'
             };
 
-            scope._isReady = false;
+            scope._isReady = true;
 
             methods.init();
 
@@ -899,11 +905,12 @@
                 if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) scope.cozenBtnToggleDisabled = false;
 
                 // Default values (attributes)
-                scope._cozenBtnToggleId         = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
-                scope._cozenBtnToggleAnimation  = angular.isDefined(attrs.cozenBtnToggleAnimation) ? JSON.parse(attrs.cozenBtnToggleAnimation) : true;
-                scope._cozenBtnToggleLabel      = angular.isDefined(attrs.cozenBtnToggleLabel) ? attrs.cozenBtnToggleLabel : '';
-                scope._cozenBtnToggleTooltip    = angular.isDefined(attrs.cozenBtnToggleTooltip) ? attrs.cozenBtnToggleTooltip : '';
-                scope._cozenBtnToggleStartRight = angular.isDefined(attrs.cozenBtnToggleStartRight) ? JSON.parse(attrs.cozenBtnToggleStartRight) : true;
+                scope._cozenBtnToggleId          = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
+                scope._cozenBtnToggleAnimation   = angular.isDefined(attrs.cozenBtnToggleAnimation) ? JSON.parse(attrs.cozenBtnToggleAnimation) : CONFIG.btnToggle.animation;
+                scope._cozenBtnToggleLabel       = angular.isDefined(attrs.cozenBtnToggleLabel) ? attrs.cozenBtnToggleLabel : '';
+                scope._cozenBtnToggleTooltip     = angular.isDefined(attrs.cozenBtnToggleTooltip) ? attrs.cozenBtnToggleTooltip : '';
+                scope._cozenBtnToggleTooltipType = angular.isDefined(attrs.cozenBtnToggleTooltipType) ? attrs.cozenBtnToggleTooltipType : CONFIG.btnToggle.tooltipType;
+                scope._cozenBtnToggleStartRight  = angular.isDefined(attrs.cozenBtnToggleStartRight) ? JSON.parse(attrs.cozenBtnToggleStartRight) : CONFIG.btnToggle.startRight;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -956,187 +963,204 @@
 
 
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib')
-    .provider('Config', ConfigProvider);
+    angular
+        .module('cozenLib')
+        .provider('Config', ConfigProvider);
 
-  ConfigProvider.$inject = [
-    'CONFIG'
-  ];
+    ConfigProvider.$inject = [
+        'CONFIG'
+    ];
 
-  function ConfigProvider(CONFIG) {
+    function ConfigProvider(CONFIG) {
 
-    this.debug = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('debug');
-      else CONFIG.debug = value;
-      return this;
-    };
+        this.debug = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('debug');
+            else CONFIG.debug = value;
+            return this;
+        };
 
-    this.currentLanguage = function (value) {
-      var list = CONFIG.languages;
-      if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('currentLanguage', list);
-      else CONFIG.currentLanguage = value;
-      return this;
-    };
+        this.currentLanguage = function (value) {
+            var list = CONFIG.languages;
+            if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('currentLanguage', list);
+            else CONFIG.currentLanguage = value;
+            return this;
+        };
 
-    this.scrollsBar = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('scrollsBar');
-      else CONFIG.scrollsBar = value;
-      return this;
-    };
+        this.scrollsBar = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('scrollsBar');
+            else CONFIG.scrollsBar = value;
+            return this;
+        };
 
-    this.scrollsBarConfig = function (config) {
-      if (typeof config != 'object') Methods.dataMustBeObject('scrollsBarConfig');
-      else CONFIG.scrollsBarConfig = config;
-      return this;
-    };
+        this.scrollsBarConfig = function (config) {
+            if (typeof config != 'object') Methods.dataMustBeObject('scrollsBarConfig');
+            else CONFIG.scrollsBarConfig = config;
+            return this;
+        };
 
-    this.dropdownAutoCloseOthers = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
-      else CONFIG.dropdown.autoCloseOthers = value;
-      return this;
-    };
+        this.dropdownAutoCloseOthers = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
+            else CONFIG.dropdown.autoCloseOthers = value;
+            return this;
+        };
 
-    this.inputDisplayModelLength = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('inputDisplayModelLength');
-      else CONFIG.input.displayModelLength = value;
-      return this;
-    };
+        this.inputDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('inputDisplayModelLength');
+            else CONFIG.input.displayModelLength = value;
+            return this;
+        };
 
-    this.textareaDisplayModelLength = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaDisplayModelLength');
-      else CONFIG.textarea.displayModelLength = value;
-      return this;
-    };
+        this.textareaDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaDisplayModelLength');
+            else CONFIG.textarea.displayModelLength = value;
+            return this;
+        };
 
-    this.dropdownDisplayModelLength = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownDisplayModelLength');
-      else CONFIG.dropdown.displayModelLength = value;
-      return this;
-    };
+        this.dropdownDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownDisplayModelLength');
+            else CONFIG.dropdown.displayModelLength = value;
+            return this;
+        };
 
-    this.requiredType = function (value) {
-      var list = ['star', 'icon'];
-      if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('requiredType', list);
-      else CONFIG.required.type = value;
-      return this;
-    };
+        this.requiredType = function (value) {
+            var list = ['star', 'icon'];
+            if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('requiredType', list);
+            else CONFIG.required.type = value;
+            return this;
+        };
 
-    this.requiredIcon = function (value) {
-      CONFIG.required.icon = value;
-      return this;
-    };
+        this.requiredIcon = function (value) {
+            CONFIG.required.icon = value;
+            return this;
+        };
 
-    this.alertTextAlign = function (value) {
-      CONFIG.alert.textAlign = value;
-      return this;
-    };
+        this.alertTextAlign = function (value) {
+            CONFIG.alert.textAlign = value;
+            return this;
+        };
 
-    this.alertCloseBtnEnabled = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnEnabled');
-      else CONFIG.alert.closeBtn.enabled = value;
-      return this;
-    };
+        this.alertCloseBtnEnabled = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnEnabled');
+            else CONFIG.alert.closeBtn.enabled = value;
+            return this;
+        };
 
-    this.alertCloseBtnTootlip = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnTootlip');
-      else CONFIG.alert.closeBtn.tooltip = value;
-      return this;
-    };
+        this.alertCloseBtnTootlip = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnTootlip');
+            else CONFIG.alert.closeBtn.tooltip = value;
+            return this;
+        };
 
-    this.alertAnimationIn = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationIn');
-      else CONFIG.alert.animation.in = value;
-      return this;
-    };
+        this.alertAnimationIn = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationIn');
+            else CONFIG.alert.animation.in = value;
+            return this;
+        };
 
-    this.alertAnimationOut = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationOut');
-      else CONFIG.alert.animation.out = value;
-      return this;
-    };
+        this.alertAnimationOut = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationOut');
+            else CONFIG.alert.animation.out = value;
+            return this;
+        };
 
-    this.alertIconLeftDefault = function (value) {
-      CONFIG.alert.iconLeft.default = value;
-      return this;
-    };
+        this.alertIconLeftDefault = function (value) {
+            CONFIG.alert.iconLeft.default = value;
+            return this;
+        };
 
-    this.alertIconLeftInfo = function (value) {
-      CONFIG.alert.iconLeft.info = value;
-      return this;
-    };
+        this.alertIconLeftInfo = function (value) {
+            CONFIG.alert.iconLeft.info = value;
+            return this;
+        };
 
-    this.alertIconLeftSuccess = function (value) {
-      CONFIG.alert.iconLeft.success = value;
-      return this;
-    };
+        this.alertIconLeftSuccess = function (value) {
+            CONFIG.alert.iconLeft.success = value;
+            return this;
+        };
 
-    this.alertIconLeftWarning = function (value) {
-      CONFIG.alert.iconLeft.warning = value;
-      return this;
-    };
+        this.alertIconLeftWarning = function (value) {
+            CONFIG.alert.iconLeft.warning = value;
+            return this;
+        };
 
-    this.alertIconLeftError = function (value) {
-      CONFIG.alert.iconLeft.error = value;
-      return this;
-    };
+        this.alertIconLeftError = function (value) {
+            CONFIG.alert.iconLeft.error = value;
+            return this;
+        };
 
-    this.popupHeader = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupHeader');
-      else CONFIG.popup.header = value;
-      return this;
-    };
+        this.btnToggleAnimation = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('btnToggleAnimation');
+            else CONFIG.btnToggle.animation = value;
+            return this;
+        };
 
-    this.popupFooter = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupFooter');
-      else CONFIG.popup.footer = value;
-      return this;
-    };
+        this.btnToggleTooltipType = function (value) {
+            CONFIG.btnToggle.tooltipType = value;
+            return this;
+        };
 
-    this.popupAnimationInEnabled = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationInEnabled');
-      else CONFIG.popup.animation.in.enabled = value;
-      return this;
-    };
+        this.btnToggleStartRight = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('btnToggleStartRight');
+            else CONFIG.btnToggle.startRight = value;
+            return this;
+        };
 
-    this.popupAnimationOutEnabled = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOutEnabled');
-      else CONFIG.popup.animation.out.enabled = value;
-      return this;
-    };
+        this.popupHeader = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupHeader');
+            else CONFIG.popup.header = value;
+            return this;
+        };
 
-    this.popupAnimationInAnimation = function (value) {
-      CONFIG.popup.animation.in.animation = value;
-      return this;
-    };
+        this.popupFooter = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupFooter');
+            else CONFIG.popup.footer = value;
+            return this;
+        };
 
-    this.popupAnimationOutAnimation = function (value) {
-      CONFIG.popup.animation.out.animation = value;
-      return this;
-    };
+        this.popupAnimationInEnabled = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationInEnabled');
+            else CONFIG.popup.animation.in.enabled = value;
+            return this;
+        };
 
-    this.popupEasyClose = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupEasyClose');
-      else CONFIG.popup.easyClose = value;
-      return this;
-    };
+        this.popupAnimationOutEnabled = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOutEnabled');
+            else CONFIG.popup.animation.out.enabled = value;
+            return this;
+        };
 
-    this.popupCloseBtn = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupCloseBtn');
-      else CONFIG.popup.closeBtn = value;
-      return this;
-    };
+        this.popupAnimationInAnimation = function (value) {
+            CONFIG.popup.animation.in.animation = value;
+            return this;
+        };
 
-    this.$get = Config;
+        this.popupAnimationOutAnimation = function (value) {
+            CONFIG.popup.animation.out.animation = value;
+            return this;
+        };
 
-    Config.$inject = [];
+        this.popupEasyClose = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupEasyClose');
+            else CONFIG.popup.easyClose = value;
+            return this;
+        };
 
-    function Config() {
-      return {};
+        this.popupCloseBtn = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupCloseBtn');
+            else CONFIG.popup.closeBtn = value;
+            return this;
+        };
+
+        this.$get = Config;
+
+        Config.$inject = [];
+
+        function Config() {
+            return {};
+        }
     }
-  }
 
 })(window.angular);
 

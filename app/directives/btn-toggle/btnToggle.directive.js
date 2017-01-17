@@ -21,6 +21,7 @@
  * @param {boolean} cozenBtnToggleAnimation  = true     > Add an animation on toggle
  * @param {string}  cozenBtnToggleLabel                 > Text added with the button toggle
  * @param {string}  cozenBtnToggleTooltip               > Text of the tooltip
+ * @param {string}  cozenBtnToggleTooltipType           > Type of the tooltip
  * @param {boolean} cozenBtnToggleStartRight = true     > Display the toggle on the right of the label
  * @param {string}  cozenBtnToggleClass                 > Custom class
  *
@@ -65,7 +66,7 @@
                 directive: 'cozenBtnToggle'
             };
 
-            scope._isReady = false;
+            scope._isReady = true;
 
             methods.init();
 
@@ -93,11 +94,12 @@
                 if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) scope.cozenBtnToggleDisabled = false;
 
                 // Default values (attributes)
-                scope._cozenBtnToggleId         = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
-                scope._cozenBtnToggleAnimation  = angular.isDefined(attrs.cozenBtnToggleAnimation) ? JSON.parse(attrs.cozenBtnToggleAnimation) : true;
-                scope._cozenBtnToggleLabel      = angular.isDefined(attrs.cozenBtnToggleLabel) ? attrs.cozenBtnToggleLabel : '';
-                scope._cozenBtnToggleTooltip    = angular.isDefined(attrs.cozenBtnToggleTooltip) ? attrs.cozenBtnToggleTooltip : '';
-                scope._cozenBtnToggleStartRight = angular.isDefined(attrs.cozenBtnToggleStartRight) ? JSON.parse(attrs.cozenBtnToggleStartRight) : true;
+                scope._cozenBtnToggleId          = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
+                scope._cozenBtnToggleAnimation   = angular.isDefined(attrs.cozenBtnToggleAnimation) ? JSON.parse(attrs.cozenBtnToggleAnimation) : CONFIG.btnToggle.animation;
+                scope._cozenBtnToggleLabel       = angular.isDefined(attrs.cozenBtnToggleLabel) ? attrs.cozenBtnToggleLabel : '';
+                scope._cozenBtnToggleTooltip     = angular.isDefined(attrs.cozenBtnToggleTooltip) ? attrs.cozenBtnToggleTooltip : '';
+                scope._cozenBtnToggleTooltipType = angular.isDefined(attrs.cozenBtnToggleTooltipType) ? attrs.cozenBtnToggleTooltipType : CONFIG.btnToggle.tooltipType;
+                scope._cozenBtnToggleStartRight  = angular.isDefined(attrs.cozenBtnToggleStartRight) ? JSON.parse(attrs.cozenBtnToggleStartRight) : CONFIG.btnToggle.startRight;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
