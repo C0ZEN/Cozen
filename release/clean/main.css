@@ -2318,7 +2318,7 @@ div.cozen-btn.atom.normal.auto {
   padding: 8px 24px;
 }
 div.cozen-btn.atom.normal div.cozen-btn-icon i {
-  font-size: 18px;
+  font-size: 14px;
 }
 div.cozen-btn.atom.normal div.cozen-btn-icon.left {
   padding-right: 6px;
@@ -2354,7 +2354,7 @@ div.cozen-btn.atom.large.auto {
   padding: 12px 36px;
 }
 div.cozen-btn.atom.large div.cozen-btn-icon i {
-  font-size: 18px;
+  font-size: 16px;
 }
 div.cozen-btn.atom.large div.cozen-btn-icon.left {
   padding-right: 12px;
