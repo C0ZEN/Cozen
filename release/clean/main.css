@@ -8817,7 +8817,7 @@ div.cozen-pills.atom.normal .cozen-pills-item.cozen-pills-item-simple {
   border-bottom-right-radius: 0;
 }
 div.cozen-popup.atom.small div.cozen-popup-container {
-  margin: 16% auto;
+  margin: 100px auto;
   max-width: 540px;
 }
 div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header,
@@ -8845,7 +8845,7 @@ div.cozen-popup.atom.small div.cozen-popup-container div.cozen-popup-header div.
   font-weight: 500;
 }
 div.cozen-popup.atom.normal div.cozen-popup-container {
-  margin: 10% auto;
+  margin: 100px auto;
   max-width: 760px;
 }
 div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header,
@@ -8873,7 +8873,7 @@ div.cozen-popup.atom.normal div.cozen-popup-container div.cozen-popup-header div
   font-weight: 500;
 }
 div.cozen-popup.atom.large div.cozen-popup-container {
-  margin: 5% auto;
+  margin: 100px auto;
   max-width: 1040px;
 }
 div.cozen-popup.atom.large div.cozen-popup-container div.cozen-popup-header,
