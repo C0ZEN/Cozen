@@ -7964,8 +7964,8 @@ div.cozen-pagination.atom.small div.cozen-pagination-btn.disabled:hover {
   background-color: #ffffff;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn {
-  padding: 6px;
-  font-size: 14px;
+  padding: 9px 10px 8px 10px;
+  font-size: 16px;
 }
 div.cozen-pagination.atom.normal div.cozen-pagination-btn {
   border: 1px solid #d6dbdb;
