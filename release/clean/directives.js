@@ -2099,7 +2099,7 @@
                 dropdown.childrenUuid.push({
                     uuid    : data.uuid,
                     disabled: scope.cozenDropdownItemSimpleDisabled,
-                    label   : scope._cozenDropdownItemSimpleLabel
+                    label   : $filter('translate')(scope._cozenDropdownItemSimpleLabel)
                 });
                 data.dropdown.name = dropdown._cozenDropdownName;
                 methods.updateParentModel();

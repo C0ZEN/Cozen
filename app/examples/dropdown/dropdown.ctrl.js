@@ -1,48 +1,49 @@
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('test')
-    .controller('DropdownCtrl', DropdownCtrl);
+    angular
+        .module('test')
+        .controller('DropdownCtrl', DropdownCtrl);
 
-  DropdownCtrl.$inject = [];
+    DropdownCtrl.$inject = [];
 
-  function DropdownCtrl() {
-    var vm     = this;
-    vm.grgege  = 'ffzfzf';
-    vm.onClick = function (id, index) {
-      console.log(arguments);
-    };
-    vm.cars    = [
-      {
-        name: 'lambo',
-        id  : 1
-      },
-      {
-        name    : 'ferar',
-        id      : 2,
-        selected: true
-      },
-      {
-        name: 'gtr',
-        id  : 3
-      }
-    ];
-    vm.names   = [
-      {
-        name: 'cozen',
-        id  : 1
-      },
-      {
-        name: 'djagataëlle',
-        id  : 2
-      },
-      {
-        name: 'O\'Connor',
-        id  : 3
-      }
-    ];
-  }
+    function DropdownCtrl() {
+        var vm     = this;
+        vm.grgege  = 'ffzfzf';
+        vm.onClick = function (id, index) {
+            console.log(arguments);
+        };
+        vm.form    = {};
+        vm.cars    = [
+            {
+                name: 'lambo',
+                id  : 1
+            },
+            {
+                name    : 'ferar',
+                id      : 2,
+                selected: true
+            },
+            {
+                name: 'gtr',
+                id  : 3
+            }
+        ];
+        vm.names   = [
+            {
+                name: 'cozen',
+                id  : 1
+            },
+            {
+                name: 'djagataëlle',
+                id  : 2
+            },
+            {
+                name: 'O\'Connor',
+                id  : 3
+            }
+        ];
+    }
 
 })(window.angular);
 
