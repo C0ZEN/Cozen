@@ -1205,6 +1205,7 @@
  * @param {string}  cozenDropdownLabel                                          > Add a label on the top of the dropdown
  * @param {string}  cozenDropdownRequiredTooltip  = 'dropdown_required_tooltip' > Text to display for the tooltip of the required element
  * @param {string}  cozenDropdownClass                                          > Custom class
+ * @param {string}  cozenDropdownAllSelectedText  = 'dropdown_count_all'        >  Text to display when all elements are selected
  *
  */
 (function (angular) {
@@ -1345,6 +1346,7 @@
                 scope._cozenDropdownRequiredConfig  = CONFIG.required;
                 scope._cozenDropdownRequiredTooltip = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
                 scope._cozenDropdownUuid            = data.uuid;
+                scope._cozenDropdownAllSelectedText = angular.isDefined(attrs.cozenDropdownAllSelectedText) ? attrs.cozenDropdownAllSelectedText : 'dropdown_count_all';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -1618,7 +1620,7 @@
 
                         // ModelEnhanced : count (if all selected)
                         if ((scope._cozenDropdownModelEnhanced == 'count' || useCount) && selectedValues == scope.childrenUuid.length) {
-                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count_all');
+                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')(scope._cozenDropdownAllSelectedText);
                         }
 
                         // No data selected
