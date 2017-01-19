@@ -455,7 +455,8 @@
                 if (scope.vm.cozenInputDisabled) return;
                 $timeout.cancel(data.arrowTimeout);
                 data.arrowDown   = false;
-                var input        = methods.getForm()[scope._cozenInputName];
+                var form         = methods.getForm();
+                var input        = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                 input.$touched   = true;
                 input.$untouched = false;
                 input.$dirty     = true;

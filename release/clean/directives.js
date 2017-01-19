@@ -2824,7 +2824,8 @@
                 if (scope.vm.cozenInputDisabled) return;
                 $timeout.cancel(data.arrowTimeout);
                 data.arrowDown   = false;
-                var input        = methods.getForm()[scope._cozenInputName];
+                var form         = methods.getForm();
+                var input        = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                 input.$touched   = true;
                 input.$untouched = false;
                 input.$dirty     = true;
@@ -4389,6 +4390,7 @@
  * @param {function} cozenPopupOnShow         > Callback function called on show
  * @param {function} cozenPopupOnHide         > Callback function called on hide
  * @param {boolean}  cozenPopupIsOpen = false > Display the popup without event
+ * @param {object}   cozenPopupData           > Custom data gave through the factory events
  *
  * [Attributes params]
  * @param {number}  cozenPopupId                          > Id of the popup
@@ -4591,6 +4593,7 @@
                         $window.addEventListener('keydown', methods.onKeyDown);
                     }
                     methods.setHeaderPictoSize();
+                    scope.cozenPopupData = params.data;
                 }
             }
 

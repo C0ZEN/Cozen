@@ -11,6 +11,7 @@
  * @param {function} cozenPopupOnShow         > Callback function called on show
  * @param {function} cozenPopupOnHide         > Callback function called on hide
  * @param {boolean}  cozenPopupIsOpen = false > Display the popup without event
+ * @param {object}   cozenPopupData           > Custom data gave through the factory events
  *
  * [Attributes params]
  * @param {number}  cozenPopupId                          > Id of the popup
@@ -213,6 +214,7 @@
                         $window.addEventListener('keydown', methods.onKeyDown);
                     }
                     methods.setHeaderPictoSize();
+                    scope.cozenPopupData = params.data;
                 }
             }
 
