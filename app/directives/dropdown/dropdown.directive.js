@@ -37,6 +37,7 @@
  * @param {number}  cozenDropdownMaxHeight        = 200                         > Max-height of the dropdown
  * @param {string}  cozenDropdownLabel                                          > Add a label on the top of the dropdown
  * @param {string}  cozenDropdownRequiredTooltip  = 'dropdown_required_tooltip' > Text to display for the tooltip of the required element
+ * @param {string}  cozenDropdownClass                                          > Custom class
  *
  */
 (function (angular) {
@@ -242,7 +243,7 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenDropdownForm)) {
-                    var classList = [scope._activeTheme, scope._cozenDropdownSize, 'icon-right', scope._cozenDropdownDirection];
+                    var classList = [scope._activeTheme, scope._cozenDropdownSize, 'icon-right', scope._cozenDropdownDirection, attrs.cozenDropdownClass];
                     switch (scope._cozenDropdownValidator) {
                         case 'touched':
                             if (data.touched) {
