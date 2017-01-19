@@ -4443,7 +4443,8 @@
             scope      : {
                 cozenPopupOnShow: '&',
                 cozenPopupOnHide: '&',
-                cozenPopupIsOpen: '=?'
+                cozenPopupIsOpen: '=?',
+                cozenPopupData  : '=?'
             },
             templateUrl: 'directives/popup/popup.template.html'
         };
