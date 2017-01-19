@@ -926,10 +926,6 @@
                     Methods.directiveErrorRequired(data.directive, 'Model');
                     return true;
                 }
-                else if (typeof scope.cozenBtnToggleModel != 'boolean') {
-                    Methods.directiveErrorBoolean(data.directive, 'Model');
-                    return true;
-                }
                 return false;
             }
 
