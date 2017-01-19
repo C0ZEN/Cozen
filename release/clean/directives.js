@@ -3641,6 +3641,7 @@
  * @param {string}  cozenPaginationSizeLarge               > Shortcut for large size
  * @param {boolean} cozenPaginationWithTooltips = true     > Display/hide the tooltips
  * @param {boolean} cozenPaginationAutoHide     = false    > Hide the pagination if there is only one page
+ * @param {string}  cozenPaginationClass                   > Custom class
  *
  */
 (function (angular, window) {
@@ -3758,7 +3759,7 @@
       }
 
       function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenPaginationSize];
+        var classList = [scope._activeTheme, scope._cozenPaginationSize, attrs.cozenPaginationClass];
         if (scope.cozenPaginationDisabled) classList.push('disabled');
         return classList;
       }
