@@ -1,0 +1,81 @@
+{
+  "languages": [
+    "fr",
+    "en"
+  ],
+  "currentLanguage": "fr",
+  "themes": [
+    "tau",
+    "atom"
+  ],
+  "debug": false,
+  "scrollsBar": true,
+  "scrollsBarConfig": {
+    "autoHideScrollbar": true,
+    "theme": "dark",
+    "advanced": {
+      "updateOnContentResize": true,
+      "updateOnSelectorChange": true
+    },
+    "setHeight": 0,
+    "scrollInertia": 100,
+    "axis": "yx",
+    "scrollButtons": {
+      "scrollAmount": "auto",
+      "enable": false
+    }
+  },
+  "dropdown": {
+    "autoCloseOthers": true,
+    "displayModelLength": false
+  },
+  "input": {
+    "displayModelLength": false
+  },
+  "textarea": {
+    "displayModelLength": false
+  },
+  "required": {
+    "type": "star",
+    "icon": "fa fa-exclamation-circle"
+  },
+  "alert": {
+    "textAlign": "justify",
+    "closeBtn": {
+      "tooltip": true,
+      "enabled": true
+    },
+    "iconLeft": {
+      "default": "",
+      "info": "fa fa-info-circle",
+      "success": "fa fa-check-circle",
+      "warning": "fa fa-exclamation-triangle",
+      "error": "fa fa-exclamation-circle"
+    },
+    "animation": {
+      "in": true,
+      "out": true
+    }
+  },
+  "btnToggle": {
+    "animation": true,
+    "tooltipType": "default",
+    "startRight": true
+  },
+  "popup": {
+    "header": true,
+    "footer": true,
+    "animation": {
+      "in": {
+        "enabled": true,
+        "animation": "fadeInUp"
+      },
+      "out": {
+        "enabled": true,
+        "animation": "fadeOutDown"
+      }
+    },
+    "easeClose": true,
+    "closeBtn": true
+  }
+}
