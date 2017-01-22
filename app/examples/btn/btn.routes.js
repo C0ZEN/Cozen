@@ -32,6 +32,13 @@
                 controller  : 'BtnCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Btn - Primary'}
+            })
+            .state('examples.btn.upload', {
+                url         : '/upload',
+                templateUrl : 'examples/btn/templates/btn.upload.html',
+                controller  : 'BtnCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Btn - Upload'}
             });
     }
 

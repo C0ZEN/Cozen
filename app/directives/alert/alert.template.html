@@ -1,5 +1,4 @@
-<div ng-if="_isReady"
-     ng-show="cozenAlertDisplay"
+<div ng-show="cozenAlertDisplay"
      class="cozen-alert"
      ng-class="_methods.getMainClass();"
      id="{{ _cozenAlertId }}">
@@ -12,8 +11,8 @@
 
     <!-- Label -->
     <span class="cozen-alert-label"
+          ng-bind-html="cozenAlertLabel | translate:cozenAlertLabelValues"
           ng-style="{'text-align': _cozenAlertTextAlign}">
-        {{ _cozenAlertLabel | translate }}
     </span>
 
     <!-- Btn close -->

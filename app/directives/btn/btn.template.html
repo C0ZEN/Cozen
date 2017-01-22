@@ -1,37 +1,117 @@
-<div ng-if="_isReady"
-     class="cozen-btn"
+<div class="cozen-btn"
      ng-class="_methods.getMainClass();"
-     id="{{ _cozenBtnId }}"
-     tabindex="{{ _methods.getTabIndex(); }}"
-     ng-click="_methods.onClick($event)">
+     id="{{ _cozenBtnId }}">
 
-    <!-- Left icon -->
-    <div ng-if="_cozenBtnIconLeft != '' && !cozenBtnLoader"
-         class="cozen-btn-icon left">
-        <i ng-class="[_cozenBtnIconLeft]"></i>
+    <div ng-if="_cozenBtnUpperLabel != ''"
+         class="cozen-btn-label">
+
+        <!-- Label -->
+        <label class="label">{{ _cozenBtnUpperLabel | translate }}</label>
+
+        <!-- Required star -->
+        <label ng-if="_cozenBtnRequired && _cozenBtnRequiredConfig.type == 'star'"
+               class="required-star">
+            *
+        </label>
+
+        <!-- Required icon -->
+        <label ng-if="_cozenBtnRequired && _cozenBtnRequiredConfig.type == 'icon'"
+               class="required-icon">
+            <cozen-tooltip cozen-tooltip-label="_cozenBtnRequiredTooltip"
+                           cozen-tooltip-display="block"
+                           cozen-tooltip-disabled="_cozenBtnRequiredTooltip == ''">
+                <i class="{{ _cozenBtnRequiredConfig.icon }}"></i>
+            </cozen-tooltip>
+        </label>
     </div>
 
-    <!-- Left img -->
-    <div ng-if="_cozenBtnImgLeft != '' && !cozenBtnLoader"
-         class="cozen-btn-img left">
-        <img ng-src="{{ _cozenBtnImgLeft }}">
+    <div class="cozen-btn-content-container">
+
+        <!-- Btn -->
+        <div class="cozen-btn-content"
+             ngf-select
+             ngf-drop
+             ngf-change="_methods.upload($files, $file, $newFiles, $duplicateFiles, $invalidFiles, $event)"
+             ng-required="{{ _cozenBtnUploadRequired }}"
+             ng-model="cozenBtnUploadModel"
+             name="{{ _cozenBtnName }}"
+             ngf-pattern="'{{ cozenBtnUploadConfig.pattern }}'"
+             ngf-accept="'{{ cozenBtnUploadConfig.pattern }}'"
+             ngf-max-size="{{ cozenBtnUploadConfig.maxSize }}"
+             ngf-min-height="{{ cozenBtnUploadConfig.minHeight }}"
+             ngf-max-height="{{ cozenBtnUploadConfig.maxHeight }}"
+             ngf-min-width="{{ cozenBtnUploadConfig.minWidth }}"
+             ngf-max-width="{{ cozenBtnUploadConfig.maxWidth }}"
+             ngf-resize="{{ cozenBtnUploadConfig.resize }}"
+             ngf-drag-over-class="{{ cozenBtnUploadConfig.dragOverClass }}"
+             ngf-select-disabled="{{ !_cozenBtnIsUpload || cozenBtnLoader || cozenBtnDisabled }}"
+             tabindex="{{ _methods.getTabIndex(); }}"
+             ng-click="_methods.onClick($event)">
+
+            <!-- Left icon -->
+            <div ng-if="_cozenBtnIconLeft != '' && !cozenBtnLoader"
+                 class="cozen-btn-icon left">
+                <i ng-class="[_cozenBtnIconLeft]"></i>
+            </div>
+
+            <!-- Left img -->
+            <div ng-if="_cozenBtnImgLeft != '' && !cozenBtnLoader"
+                 class="cozen-btn-img left">
+                <img ng-src="{{ _cozenBtnImgLeft }}">
+            </div>
+
+            <!-- Label -->
+            <span ng-if="!cozenBtnLoader"
+                  class="cozen-btn-label">
+            {{ _isUploading ? (_uploadingText | translate) : (_cozenBtnLabel | translate) }}
+        </span>
+
+            <!-- Right icon -->
+            <div ng-if="_cozenBtnIconRight != '' && !cozenBtnLoader"
+                 class="cozen-btn-icon right">
+                <i ng-class="[_cozenBtnIconRight]"></i>
+            </div>
+
+            <!-- Loader -->
+            <div ng-if="cozenBtnLoader"
+                 class="cozen-btn-loader">
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="cozen-btn-preview fadeInRight"
+             ng-mouseenter="displayPreview = true"
+             ng-mouseleave="displayPreview = false"
+             ng-show="cozenBtnUploadModel.result.url != '' && cozenBtnUploadModel.result.url != null">
+
+            <!-- Preview icon -->
+            <div class="cozen-btn-preview-btn">
+                <i ng-class="[_cozenBtnPreviewIcon]"></i>
+            </div>
+
+            <!-- Preview content -->
+            <div class="cozen-btn-preview-img zoomIn"
+                 ng-show="displayPreview">
+                <span class="title">
+                    {{ cozenBtnUploadModel.result.original_filename + '.' + cozenBtnUploadModel.result.format }}
+                    <small>{{ cozenBtnUploadModel.result.width + 'x' + cozenBtnUploadModel.result.height }}</small>
+                </span>
+                <img ng-src="{{ cozenBtnUploadModel.result.url }}">
+            </div>
+        </div>
     </div>
 
-    <!-- Label -->
-    <span ng-if="!cozenBtnLoader"
-          class="cozen-btn-label">
-        {{ _cozenBtnLabel | translate }}
-    </span>
-
-    <!-- Right icon -->
-    <div ng-if="_cozenBtnIconRight != '' && !cozenBtnLoader"
-         class="cozen-btn-icon right">
-        <i ng-class="[_cozenBtnIconRight]"></i>
-    </div>
-
-    <!-- Loader -->
-    <div ng-if="cozenBtnLoader"
-         class="cozen-btn-loader">
-        <span></span>
+    <!-- Alert for upload -->
+    <div class="cozen-btn-alert zoomIn"
+         ng-show="_hasUploadError">
+        <cozen-alert cozen-alert-label="_uploadErrorLabel"
+                     cozen-alert-label-values="_uploadErrorValues"
+                     cozen-alert-type-error
+                     cozen-alert-size-small
+                     cozen-alert-animation-in="false"
+                     cozen-alert-close-btn="false"
+                     cozen-alert-animation-out="false">
+        </cozen-alert>
     </div>
 </div>

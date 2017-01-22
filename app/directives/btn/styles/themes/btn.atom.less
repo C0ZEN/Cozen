@@ -7,18 +7,21 @@ div.cozen-btn.atom {
     .cozen-btn-icon(@atom-space-small, 18px);
     .cozen-btn-loader((40px - @border-height * 2 - @atom-space-small * 2) / 2, 50px, 10px);
     .cozen-btn-img-left(26px, 26px, 0);
+    .cozen-btn-alert(@atom-space-small 0 0 0);
   }
   &.normal {
     .cozen-btn-size(@atom-space-small, @atom-font-h3, 8px @atom-space-medium);
     .cozen-btn-icon(@atom-space-small, 14px);
     .cozen-btn-loader((40px - @border-height * 2 - @atom-space-small * 2) / 2, 50px, 10px);
     .cozen-btn-img-left(26px, 26px, 0);
+    .cozen-btn-alert(@atom-space-small 0 0 0);
   }
   &.large {
     .cozen-btn-size(@atom-space-base, @atom-font-h3, @atom-space-base @atom-space-large);
     .cozen-btn-icon(@atom-space-base, 16px);
     .cozen-btn-loader((52px - @border-height * 2 - @atom-space-base * 2) / 2, 90px, 12px);
     .cozen-btn-img-left(26px, 26px, 0);
+    .cozen-btn-alert(@atom-space-small 0 0 0);
   }
 
   // Type
@@ -27,6 +30,21 @@ div.cozen-btn.atom {
     .cozen-btn-border(@border-height, solid, @atom-color-blue, @atom-color-blue-active, @cozen-radius);
     .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
     .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+    .cozen-btn-upload(1px solid @atom-color-blue, @atom-color-white, @atom-color-blue);
+    .cozen-btn-upload-hover(1px dashed @atom-color-blue, @atom-color-blue, @atom-color-white);
+    .cozen-btn-drag-over-accept(1px dashed @atom-color-success, @atom-color-success, @atom-color-white);
+    .cozen-btn-drag-over-reject(1px dashed @atom-color-error, @atom-color-error, @atom-color-white);
+    .cozen-btn-label(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
+    .cozen-btn-label-success(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
+    .cozen-btn-label-error(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
+    .cozen-btn-label-disabled(@atom-font-h3, @atom-color-label-disabled, 0, 400, @atom-space-small);
+    .cozen-btn-required-star(@atom-font-h3, @atom-color-yellow, 0 3px, @atom-color-yellow);
+    .cozen-btn-required-icon(@atom-font-body, @atom-color-yellow, 0 5px, @atom-color-yellow);
+    .cozen-btn-preview-icon(0 @atom-space-base, @atom-color-blue, @atom-font-h3);
+    .cozen-btn-preview-icon-hover(0 @atom-space-base, @atom-color-blue-active, @atom-font-h3);
+    .cozen-btn-preview-img(@atom-space-base, @atom-color-white, 1px solid @atom-color-line-rule);
+    .cozen-btn-preview-img-title(@atom-color-font, @atom-font-h3, 500);
+    .cozen-btn-preview-img-subtitle(@atom-color-label, @atom-font-h4, 400);
   }
   &.primary {
     .cozen-btn-type(@atom-color-blue, @atom-color-white, @atom-color-blue-light, 500);

@@ -11,6 +11,8 @@
  * @param {function} cozenAlertOnShow         > Callback function called on show
  * @param {function} cozenAlertOnHide         > Callback function called on hide
  * @param {boolean}  cozenAlertDisplay = true > To hide or show the popup
+ * @param {string}   cozenAlertLabel          > Text to display
+ * @param {string}   cozenAlertLabelValues    > Values for translate label
  *
  * [Attributes params]
  * @param {number}  cozenAlertId                          > Id of the button
@@ -28,7 +30,6 @@
  * @param {boolean} cozenAlertAnimationOut    = true      > Add an animation before hide [config.json]
  * @param {boolean} cozenAlertCloseBtn        = true      > Display the close btn (top-right) [config.json]
  * @param {string}  cozenAlertIconLeft        = Multiple  > Text of the icon left [config.json]
- * @param {string}  cozenAlertLabel                       > Text to display
  * @param {string}  cozenAlertTextAlign       = 'justify' > Alignment of the label [config.json]
  * @param {boolean} cozenAlertCloseBtnTooltip = true      > Display a tooltip on the close btn [config.json]
  * @param {string}  cozenAlertClass                       > Custom class
@@ -56,9 +57,11 @@
             replace    : false,
             transclude : false,
             scope      : {
-                cozenAlertOnShow : '&',
-                cozenAlertOnHide : '&',
-                cozenAlertDisplay: '=?'
+                cozenAlertOnShow     : '&',
+                cozenAlertOnHide     : '&',
+                cozenAlertDisplay    : '=?',
+                cozenAlertLabel      : '=?',
+                cozenAlertLabelValues: '=?'
             },
             templateUrl: 'directives/alert/alert.template.html'
         };
@@ -81,8 +84,6 @@
                 firstHide        : true,
                 firstDisplayWatch: true
             };
-
-            scope._isReady = true;
 
             methods.init();
 
@@ -118,6 +119,7 @@
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
+                if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertLabel = '';
 
                 // Default values (attributes)
                 scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
@@ -125,7 +127,6 @@
                 scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
                 scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
                 scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
-                scope._cozenAlertLabel           = angular.isDefined(attrs.cozenAlertLabel) ? attrs.cozenAlertLabel : '';
                 scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
                 scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
 
@@ -149,9 +150,6 @@
                         }
                     } else data.firstDisplayWatch = false;
                 });
-
-                // Display the template
-                scope._isReady = true;
             }
 
             function hasError() {

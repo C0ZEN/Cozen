@@ -32,6 +32,7 @@
             'ngScrollbars',
             'uuid',
             'monospaced.elastic',
+            'ngFileUpload',
 
             'cozenLib.alert',
             'cozenLib.btn',
