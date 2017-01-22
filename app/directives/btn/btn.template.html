@@ -9,13 +9,13 @@
         <label class="label">{{ _cozenBtnUpperLabel | translate }}</label>
 
         <!-- Required star -->
-        <label ng-if="_cozenBtnRequired && _cozenBtnRequiredConfig.type == 'star'"
+        <label ng-if="_cozenBtnUploadRequired && _cozenBtnRequiredConfig.type == 'star'"
                class="required-star">
             *
         </label>
 
         <!-- Required icon -->
-        <label ng-if="_cozenBtnRequired && _cozenBtnRequiredConfig.type == 'icon'"
+        <label ng-if="_cozenBtnUploadRequired && _cozenBtnRequiredConfig.type == 'icon'"
                class="required-icon">
             <cozen-tooltip cozen-tooltip-label="_cozenBtnRequiredTooltip"
                            cozen-tooltip-display="block"
@@ -32,9 +32,11 @@
              ngf-select
              ngf-drop
              ngf-change="_methods.upload($files, $file, $newFiles, $duplicateFiles, $invalidFiles, $event)"
+             ngf-keep="{{ cozenBtnUploadConfig.keep }}"
              ng-required="{{ _cozenBtnUploadRequired }}"
              ng-model="cozenBtnUploadModel"
              name="{{ _cozenBtnName }}"
+             ngf-model-options="{{ cozenBtnUploadConfig.options }}"
              ngf-pattern="'{{ cozenBtnUploadConfig.pattern }}'"
              ngf-accept="'{{ cozenBtnUploadConfig.pattern }}'"
              ngf-max-size="{{ cozenBtnUploadConfig.maxSize }}"

@@ -104,7 +104,8 @@
                     getMainClass: getMainClass,
                     onClick     : onClick,
                     getTabIndex : getTabIndex,
-                    upload      : upload
+                    upload      : upload,
+                    getForm     : getForm
                 };
 
                 // Checking required stuff
@@ -168,18 +169,29 @@
                             pattern: '.jpg,.jpeg,.png',
                             accept : 'drop-accept',
                             reject : 'drop-reject'
+                        },
+                        keep         : false,
+                        options      : {
+                            updateOn: 'change drop dropUrl paste'
                         }
                     };
                     scope.cozenBtnUploadConfig = angular.merge({}, data.defaultUploadConfig, scope.cozenBtnUploadConfig);
                 }
                 scope._hasUploadError = false;
                 scope._isUploading    = false;
+                scope._uploadingText  = '0%';
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
-                    scope._cozenBtnForm      = eventData.name;
                     scope._cozenBtnFormCtrl  = eventData.ctrl;
                     scope._cozenBtnFormModel = eventData.model;
+                    scope._cozenBtnForm      = eventData.name;
+
+                    // Set error to parent if model is empty
+                    if (Methods.isNullOrEmpty(scope.cozenBtnUploadModel)) {
+                        var btn = methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
+                        if (!Methods.isNullOrEmpty(btn)) btn.$setValidity('isUploadSet', false);
+                    }
                 });
 
                 // Init stuff
@@ -242,53 +254,52 @@
             function upload($files, $file, $newFiles, $duplicateFiles, $invalidFiles, $event) {
                 if (!Methods.isNullOrEmpty($newFiles)) {
 
-                    // Invalid files
-                    if ($invalidFiles.length >= 1) {
+                    // Error file
+                    if (!Methods.isNullOrEmpty($newFiles[0].$error)) {
                         scope._hasUploadError = true;
-                        console.log($invalidFiles[0]);
-                        switch ($invalidFiles[0].$error) {
+                        switch ($newFiles[0].$error) {
                             case 'maxWidth':
                                 scope._uploadErrorLabel  = 'btn_upload_error_maxWidth';
                                 scope._uploadErrorValues = {
                                     maxWidth: scope.cozenBtnUploadConfig.maxWidth,
-                                    width   : $invalidFiles[0].$ngfWidth
+                                    width   : $newFiles[0].$ngfWidth
                                 };
                                 break;
                             case 'minWidth':
                                 scope._uploadErrorLabel  = 'btn_upload_error_minWidth';
                                 scope._uploadErrorValues = {
                                     minWidth: scope.cozenBtnUploadConfig.minWidth,
-                                    width   : $invalidFiles[0].$ngfWidth
+                                    width   : $newFiles[0].$ngfWidth
                                 };
                                 break;
                             case 'maxHeight':
                                 scope._uploadErrorLabel  = 'btn_upload_error_maxHeight';
                                 scope._uploadErrorValues = {
                                     maxHeight: scope.cozenBtnUploadConfig.maxHeight,
-                                    height   : $invalidFiles[0].$ngfHeight
+                                    height   : $newFiles[0].$ngfHeight
                                 };
                                 break;
                             case 'minHeight':
                                 scope._uploadErrorLabel  = 'btn_upload_error_minHeight';
                                 scope._uploadErrorValues = {
                                     maxHeight: scope.cozenBtnUploadConfig.minHeight,
-                                    height   : $invalidFiles[0].$ngfHeight
+                                    height   : $newFiles[0].$ngfHeight
                                 };
                                 break;
                             case 'maxSize':
                                 scope._uploadErrorLabel  = 'btn_upload_error_maxSize';
                                 scope._uploadErrorValues = {
                                     maxSize: scope.cozenBtnUploadConfig.maxSize,
-                                    size   : $invalidFiles[0].size
+                                    size   : $newFiles[0].size
                                 };
                                 break;
                             case 'pattern':
                                 scope._uploadErrorLabel  = 'btn_upload_error_pattern';
-                                var types                = $invalidFiles[0].$errorParam;
+                                var types                = $newFiles[0].$errorParam;
                                 types                    = types.replace(/,/g, ', ');
                                 types                    = types.replace(/\./g, '');
                                 scope._uploadErrorValues = {
-                                    type : $invalidFiles[0].type,
+                                    type : $newFiles[0].type,
                                     types: types.toUpperCase()
                                 };
                                 break;
@@ -299,7 +310,7 @@
 
                     // Upload
                     else {
-                        CloudinaryUpload.upload($files, scope, {
+                        CloudinaryUpload.upload($files[$files.length - 1], scope, {
                             upload_preset: 'wt5h2jyz',
                             tags         : 'cozen'
                         });

@@ -2,11 +2,17 @@
 /*   SIZE   */
 /************/
 .cozen-btn-size(@padding, @font-size, @auto-padding) {
-  div.cozen-btn-content {
-    padding:   @padding;
-    font-size: @font-size;
-    &.auto {
-      padding: @auto-padding;
+  div.cozen-btn-content-container {
+    div.cozen-btn-content {
+      padding:   @padding;
+      font-size: @font-size;
+    }
+  }
+  &.auto {
+    div.cozen-btn-content-container {
+      div.cozen-btn-content {
+        padding: @auto-padding;
+      }
     }
   }
 }

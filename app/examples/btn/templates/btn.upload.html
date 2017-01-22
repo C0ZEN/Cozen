@@ -4,18 +4,26 @@
                     cozen-form-ctrl="vm"
                     cozen-form-model="form">
             <div class="col-xs-12">
-                <cozen-btn cozen-btn-label="Un label"></cozen-btn>
-                <p>{{ 'btn_upload_error_unknown' | translate }}</p>
-            </div>
-            <div class="col-xs-12">
                 <cozen-btn cozen-btn-label="Un label"
-                           cozen-btn-upload-model="vm.uploadImage"
+                           cozen-btn-upload-model="vm.uploadImage1"
                            cozen-btn-is-upload="true">
                 </cozen-btn>
             </div>
             <div class="col-xs-12">
                 <cozen-btn cozen-btn-label="Un label"
-                           cozen-btn-upload-model="vm.uploadImage"
+                           cozen-btn-upload-model="vm.uploadImage2"
+                           cozen-btn-upper-label="zsfzefzefz"
+                           cozen-btn-upload-required="true"
+                           cozen-btn-is-upload="true">
+                </cozen-btn>
+            </div>
+        </cozen-form>
+        <cozen-form cozen-form-name="upload2"
+                    cozen-form-ctrl="vm"
+                    cozen-form-model="form">
+            <div class="col-xs-12">
+                <cozen-btn cozen-btn-label="Un label"
+                           cozen-btn-upload-model="vm.uploadImage3"
                            cozen-btn-upper-label="zsfzefzefz"
                            cozen-btn-upload-required="true"
                            cozen-btn-is-upload="true">

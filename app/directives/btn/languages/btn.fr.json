@@ -1,6 +1,6 @@
 {
   "btn_label": "Je suis un label",
-  "btn_required_tooltip": "Champ requis",
+  "btn_required_tooltip": "Upload requis",
   "btn_upload_error_maxWidth": "La largeur de l'image est de <strong>{{width}}px</strong> alors qu'elle doit être inférieur à <strong>{{maxWidth}}px</strong>",
   "btn_upload_error_minWidth": "La largeur de l'image est de <strong>{{width}}px</strong> alors qu'elle doit être supérieur à <strong>{{minWidth}}px</strong>",
   "btn_upload_error_maxHeight": "La hauteur de l'image est de <strong>{{height}}px</strong> alors qu'elle doit être inférieur à <strong>{{maxHeight}}px</strong>",
