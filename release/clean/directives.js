@@ -373,7 +373,7 @@
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {
                             var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-                            btn.$setValidity('isUploadSet', true);
+                            if (!Methods.isNullOrEmpty(btn)) btn.$setValidity('isUploadSet', true);
                         }
                     }).error(function (data, status, headers, config) {
                         file.result             = data;
@@ -383,7 +383,7 @@
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {
                             var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-                            btn.$setValidity('isUploadSet', false);
+                            if (!Methods.isNullOrEmpty(btn)) btn.$setValidity('isUploadSet', false);
                         }
                     });
                 }
@@ -442,7 +442,7 @@
  * @param {boolean} cozenBtnPreviewIcon     = 'fa fa-fw fa-eye'      > Preview icon on the right
  *
  */
-(function (angular) {
+(function (angular, document) {
     'use strict';
 
     angular
@@ -715,7 +715,7 @@
         }
     }
 
-})(window.angular);
+})(window.angular, document);
 /**
  * @ngdoc directive
  * @name cozen-btn-check

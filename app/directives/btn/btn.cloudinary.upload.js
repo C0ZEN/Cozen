@@ -76,7 +76,7 @@
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {
                             var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-                            btn.$setValidity('isUploadSet', true);
+                            if (!Methods.isNullOrEmpty(btn)) btn.$setValidity('isUploadSet', true);
                         }
                     }).error(function (data, status, headers, config) {
                         file.result             = data;
@@ -86,7 +86,7 @@
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {
                             var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-                            btn.$setValidity('isUploadSet', false);
+                            if (!Methods.isNullOrEmpty(btn)) btn.$setValidity('isUploadSet', false);
                         }
                     });
                 }

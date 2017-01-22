@@ -47,7 +47,7 @@
  * @param {boolean} cozenBtnPreviewIcon     = 'fa fa-fw fa-eye'      > Preview icon on the right
  *
  */
-(function (angular) {
+(function (angular, document) {
     'use strict';
 
     angular
@@ -320,4 +320,4 @@
         }
     }
 
-})(window.angular);
+})(window.angular, document);
