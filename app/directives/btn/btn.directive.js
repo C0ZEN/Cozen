@@ -187,8 +187,8 @@
                     scope._cozenBtnFormModel = eventData.model;
                     scope._cozenBtnForm      = eventData.name;
 
-                    // Set error to parent if model is empty
-                    if (Methods.isNullOrEmpty(scope.cozenBtnUploadModel)) {
+                    // Set error to parent if model is empty and required
+                    if (Methods.isNullOrEmpty(scope.cozenBtnUploadModel) && scope._cozenBtnUploadRequired) {
                         var btn = methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
                         if (!Methods.isNullOrEmpty(btn)) btn.$setValidity('isUploadSet', false);
                     }

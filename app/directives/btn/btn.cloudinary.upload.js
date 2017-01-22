@@ -74,16 +74,20 @@
                         if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'upload');
 
                         // Update form validity
-                        var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-                        btn.$setValidity('isUploadSet', true);
+                        if (scope._cozenBtnUploadRequired) {
+                            var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
+                            btn.$setValidity('isUploadSet', true);
+                        }
                     }).error(function (data, status, headers, config) {
                         file.result             = data;
                         scope._hasUploadError   = true;
                         scope._uploadErrorLabel = 'btn_upload_error_occurred';
 
                         // Update form validity
-                        var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-                        btn.$setValidity('isUploadSet', false);
+                        if (scope._cozenBtnUploadRequired) {
+                            var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
+                            btn.$setValidity('isUploadSet', false);
+                        }
                     });
                 }
             }
