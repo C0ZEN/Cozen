@@ -166,7 +166,7 @@
                         maxWidth     : 1920,
                         resize       : {},
                         dragOverClass: {
-                            pattern: '.jpg,.jpeg,.png',
+                            pattern: 'image/*',
                             accept : 'drop-accept',
                             reject : 'drop-reject'
                         },
