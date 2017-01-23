@@ -1944,6 +1944,13 @@ div.cozen-pills:after {
   content: '';
   z-index: -1;
 }
+div.cozen-pills.disabled {
+  cursor: not-allowed;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12100,6 +12107,13 @@ div.cozen-pills:after {
   width: 100%;
   content: '';
   z-index: -1;
+}
+div.cozen-pills.disabled {
+  cursor: not-allowed;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
   display: -webkit-box;
