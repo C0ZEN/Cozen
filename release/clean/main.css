@@ -1608,6 +1608,7 @@ div.cozen-input div.cozen-input-content input {
   -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
+  line-height: initial;
 }
 div.cozen-input div.cozen-input-content input[readonly] {
   cursor: text;
@@ -11764,6 +11765,7 @@ div.cozen-input div.cozen-input-content input {
   -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
+  line-height: initial;
 }
 div.cozen-input div.cozen-input-content input[readonly] {
   cursor: text;
