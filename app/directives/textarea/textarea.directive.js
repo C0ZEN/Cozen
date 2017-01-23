@@ -15,26 +15,26 @@
  * [Attributes params]
  * @param {number}  cozenTextareaId                                             > Id of the textarea
  * @param {string}  cozenTextareaTooltip                                        > Text of the tooltip
- * @param {string}  cozenTextareaTooltipPlacement = 'auto right'                > Change the position of the tooltip
- * @param {string}  cozenTextareaTooltipTrigger   = 'outsideClick'              > Type of trigger to show the tooltip
- * @param {boolean} cozenTextareaRequired         = false                       > Required textarea
- * @param {boolean} cozenTextareaErrorDesign      = true                        > Add style when error
- * @param {boolean} cozenTextareaSuccessDesign    = true                        > Add style when success
+ * @param {string}  cozenTextareaTooltipPlacement = 'auto right'                > Change the position of the tooltip [config]
+ * @param {string}  cozenTextareaTooltipTrigger   = 'outsideClick'              > Type of trigger to show the tooltip [config]
+ * @param {boolean} cozenTextareaRequired         = false                       > Required textarea [config]
+ * @param {boolean} cozenTextareaErrorDesign      = true                        > Add style when error [config]
+ * @param {boolean} cozenTextareaSuccessDesign    = true                        > Add style when success [config]
  * @param {string}  cozenTextareaSize             = 'normal'                    > Size of the button
  * @param {string}  cozenTextareaSizeSmall                                      > Shortcut for small size
  * @param {string}  cozenTextareaSizeNormal                                     > Shortcut for normal size
  * @param {string}  cozenTextareaSizeLarge                                      > Shortcut for large size
  * @param {string}  cozenTextareaPlaceholder                                    > Text for the placeholder
- * @param {number}  cozenTextareaMinLength        = 0                           > Minimum char length
- * @param {number}  cozenTextareaMaxLength        = 100                         > Maximum char length
+ * @param {number}  cozenTextareaMinLength        = 0                           > Minimum char length [config]
+ * @param {number}  cozenTextareaMaxLength        = 200                         > Maximum char length [config]
  * @param {string}  cozenTextareaName             = uuid                        > Name of the textarea
- * @param {boolean} cozenTextareaValidator        = 'dirty'                     > Define after what type of event the textarea must add more ui color
+ * @param {boolean} cozenTextareaValidator        = 'dirty'                     > Define after what type of event the textarea must add more ui color [config]
  * @param {boolean} cozenTextareaValidatorAll                                   > Shortcut for all type
  * @param {boolean} cozenTextareaValidatorTouched                               > Shortcut for touched type
  * @param {boolean} cozenTextareaValidatorDirty                                 > Shortcut for dirty type
- * @param {boolean} cozenTextareaValidatorEmpty   = true                        > Display ui color even if textarea empty
- * @param {boolean} cozenTextareaElastic          = false                       > Auto resize the textarea depending of his content
- * @param {number}  cozenTextareaRows             = 2                           > Number of rows
+ * @param {boolean} cozenTextareaValidatorEmpty   = true                        > Display ui color even if textarea empty [config]
+ * @param {boolean} cozenTextareaElastic          = true                        > Auto resize the textarea depending of his content [config]
+ * @param {number}  cozenTextareaRows             = 2                           > Number of rows [config]
  * @param {string}  cozenTextareaLabel                                          > Add a label on the top of the textarea
  * @param {string}  cozenTextareaRequiredTooltip  = 'textarea_required_tooltip' > Text to display for the tooltip of the required element
  * @param {string}  cozenTextareaClass                                          > Custom class

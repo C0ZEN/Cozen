@@ -54,6 +54,69 @@
             return this;
         };
 
+        this.textareaRequired = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaRequired');
+            else CONFIG.textarea.required = value;
+            return this;
+        };
+
+        this.textareaErrorDesign = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaErrorDesign');
+            else CONFIG.textarea.errorDesign = value;
+            return this;
+        };
+
+        this.textareaSuccessDesign = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaSuccessDesign');
+            else CONFIG.textarea.successDesign = value;
+            return this;
+        };
+
+        this.textareaMinLength = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('textareaMinLength');
+            else CONFIG.textarea.minLength = value;
+            return this;
+        };
+
+        this.textareaMaxLength = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('textareaMaxLength');
+            else CONFIG.textarea.maxLength = value;
+            return this;
+        };
+
+        this.textareaValidatorType = function (value) {
+            CONFIG.validator.validator.type = value;
+            return this;
+        };
+
+        this.textareaValidatorEmpty = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaValidatorEmpty');
+            else CONFIG.textarea.validator.empty = value;
+            return this;
+        };
+
+        this.textareaElastic = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaElastic');
+            else CONFIG.textarea.elastic = value;
+            return this;
+        };
+
+        this.textareaRows = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('textareaRows');
+            else CONFIG.textarea.rows = value;
+            return this;
+        };
+
+        this.textareaTooltipPlacement = function (value) {
+            CONFIG.validator.tooltip.placement = value;
+            return this;
+        };
+
+        this.textareaTooltipTrigger = function (value) {
+            CONFIG.validator.tooltip.trigger = value;
+            return this;
+        };
+
         this.dropdownDisplayModelLength = function (value) {
             if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownDisplayModelLength');
             else CONFIG.dropdown.displayModelLength = value;

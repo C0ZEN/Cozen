@@ -244,7 +244,22 @@
     "displayModelLength": false
   },
   "textarea": {
-    "displayModelLength": false
+    "displayModelLength": false,
+    "required": false,
+    "errorDesign": true,
+    "successDesign": true,
+    "minLength": 0,
+    "maxLength": 200,
+    "validator": {
+      "type": "dirty",
+      "empty": true
+    },
+    "elastic": true,
+    "rows": 2,
+    "tooltip": {
+      "placement": "auto right",
+      "trigger": "outsideClick"
+    }
   },
   "required": {
     "type": "star",
@@ -1249,6 +1264,69 @@
         this.textareaDisplayModelLength = function (value) {
             if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaDisplayModelLength');
             else CONFIG.textarea.displayModelLength = value;
+            return this;
+        };
+
+        this.textareaRequired = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaRequired');
+            else CONFIG.textarea.required = value;
+            return this;
+        };
+
+        this.textareaErrorDesign = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaErrorDesign');
+            else CONFIG.textarea.errorDesign = value;
+            return this;
+        };
+
+        this.textareaSuccessDesign = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaSuccessDesign');
+            else CONFIG.textarea.successDesign = value;
+            return this;
+        };
+
+        this.textareaMinLength = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('textareaMinLength');
+            else CONFIG.textarea.minLength = value;
+            return this;
+        };
+
+        this.textareaMaxLength = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('textareaMaxLength');
+            else CONFIG.textarea.maxLength = value;
+            return this;
+        };
+
+        this.textareaValidatorType = function (value) {
+            CONFIG.validator.validator.type = value;
+            return this;
+        };
+
+        this.textareaValidatorEmpty = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaValidatorEmpty');
+            else CONFIG.textarea.validator.empty = value;
+            return this;
+        };
+
+        this.textareaElastic = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaElastic');
+            else CONFIG.textarea.elastic = value;
+            return this;
+        };
+
+        this.textareaRows = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('textareaRows');
+            else CONFIG.textarea.rows = value;
+            return this;
+        };
+
+        this.textareaTooltipPlacement = function (value) {
+            CONFIG.validator.tooltip.placement = value;
+            return this;
+        };
+
+        this.textareaTooltipTrigger = function (value) {
+            CONFIG.validator.tooltip.trigger = value;
             return this;
         };
 
@@ -4926,191 +5004,202 @@
 'use strict';
 
 var Methods = {
-  isInList                  : isInList,
-  isNullOrEmpty             : isNullOrEmpty,
-  safeApply                 : safeApply,
-  isFunction                : isFunction,
-  directiveErrorRequired    : directiveErrorRequired,
-  directiveCallbackLog      : directiveCallbackLog,
-  getConsoleColor           : getConsoleColor,
-  capitalizeFirstLetter     : capitalizeFirstLetter,
-  directiveErrorFunction    : directiveErrorFunction,
-  directiveErrorBoolean     : directiveErrorBoolean,
-  isRegExpValid             : isRegExpValid,
-  getElementPaddingTopBottom: getElementPaddingTopBottom,
-  directiveErrorEmpty       : directiveErrorEmpty,
-  directiveWarningUnmatched : directiveWarningUnmatched,
-  dataMustBeBoolean         : dataMustBeBoolean,
-  dataMustBeObject          : dataMustBeObject,
-  dataMustBeInThisList      : dataMustBeInThisList,
-  hasOwnProperty            : hasOwnProperty
+    isInList                  : isInList,
+    isNullOrEmpty             : isNullOrEmpty,
+    safeApply                 : safeApply,
+    isFunction                : isFunction,
+    directiveErrorRequired    : directiveErrorRequired,
+    directiveCallbackLog      : directiveCallbackLog,
+    getConsoleColor           : getConsoleColor,
+    capitalizeFirstLetter     : capitalizeFirstLetter,
+    directiveErrorFunction    : directiveErrorFunction,
+    directiveErrorBoolean     : directiveErrorBoolean,
+    isRegExpValid             : isRegExpValid,
+    getElementPaddingTopBottom: getElementPaddingTopBottom,
+    directiveErrorEmpty       : directiveErrorEmpty,
+    directiveWarningUnmatched : directiveWarningUnmatched,
+    dataMustBeBoolean         : dataMustBeBoolean,
+    dataMustBeNumber          : dataMustBeNumber,
+    dataMustBeObject          : dataMustBeObject,
+    dataMustBeInThisList      : dataMustBeInThisList,
+    hasOwnProperty            : hasOwnProperty
 };
 
 var Data = {
-  red   : '#c0392b',
-  purple: '#8e44ad',
-  black : '#2c3e50',
-  orange: '#d35400',
-  green : '#27ae60'
+    red   : '#c0392b',
+    purple: '#8e44ad',
+    black : '#2c3e50',
+    orange: '#d35400',
+    green : '#27ae60'
 };
 
 function isInList(list, value) {
-  return list.indexOf(value) != -1;
+    return list.indexOf(value) != -1;
 }
 
 function isNullOrEmpty(element) {
-  return element == null || element == '' || element == 'undefined';
+    return element == null || element == '' || element == 'undefined';
 }
 
 function safeApply(scope, fn) {
-  var phase = scope.$root.$$phase;
-  if (phase == '$apply' || phase == '$digest') {
-    if (fn && (typeof(fn) === 'function')) {
-      fn();
+    var phase = scope.$root.$$phase;
+    if (phase == '$apply' || phase == '$digest') {
+        if (fn && (typeof(fn) === 'function')) {
+            fn();
+        }
+    } else {
+        scope.$apply(fn);
     }
-  } else {
-    scope.$apply(fn);
-  }
 }
 
 function isFunction(fn) {
-  return typeof fn === 'function';
+    return typeof fn === 'function';
 }
 
 function directiveErrorRequired(directive, param) {
-  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is required',
-    getConsoleColor(),
-    getConsoleColor('directive'),
-    getConsoleColor(),
-    getConsoleColor('fn'),
-    getConsoleColor()
-  );
+    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is required',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }
 
 function directiveCallbackLog(directive, fn) {
-  var now = moment().format('HH:mm:ss');
-  console.log('%c[%c' + directive + '%c][%c' + now + '%c] Fn <%c' + fn + '%c> called',
-    getConsoleColor(),
-    getConsoleColor('directive'),
-    getConsoleColor(),
-    getConsoleColor('time'),
-    getConsoleColor(),
-    getConsoleColor('fn'),
-    getConsoleColor()
-  );
+    var now = moment().format('HH:mm:ss');
+    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Fn <%c' + fn + '%c> called',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('time'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }
 
 function getConsoleColor(type) {
-  var color = 'color:';
-  switch (type) {
-    case 'red':
-    case 'directive':
-      return color + Data.red;
-    case 'purple':
-    case 'fn':
-      return color + Data.purple;
-    case 'orange':
-    case 'time':
-      return color + Data.orange;
-    case 'green':
-      return color + Data.green;
-    default:
-      return color + Data.black;
-  }
+    var color = 'color:';
+    switch (type) {
+        case 'red':
+        case 'directive':
+            return color + Data.red;
+        case 'purple':
+        case 'fn':
+            return color + Data.purple;
+        case 'orange':
+        case 'time':
+            return color + Data.orange;
+        case 'green':
+            return color + Data.green;
+        default:
+            return color + Data.black;
+    }
 }
 
 function capitalizeFirstLetter(string) {
-  if (Methods.isNullOrEmpty(string) || typeof string != 'string') return string;
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    if (Methods.isNullOrEmpty(string) || typeof string != 'string') return string;
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function directiveErrorFunction(directive, param) {
-  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a function',
-    getConsoleColor(),
-    getConsoleColor('directive'),
-    getConsoleColor(),
-    getConsoleColor('fn'),
-    getConsoleColor()
-  );
+    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a function',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }
 
 function directiveErrorBoolean(directive, param) {
-  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a boolean',
-    getConsoleColor(),
-    getConsoleColor('directive'),
-    getConsoleColor(),
-    getConsoleColor('fn'),
-    getConsoleColor()
-  );
+    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a boolean',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }
 
 function isRegExpValid(regexp, value) {
-  return !(!new RegExp(regexp).test(value) || isNullOrEmpty(value));
+    return !(!new RegExp(regexp).test(value) || isNullOrEmpty(value));
 }
 
 function getElementPaddingTopBottom(element) {
-  var styles = window.getComputedStyle(element);
-  return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+    var styles = window.getComputedStyle(element);
+    return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
 }
 
 function directiveErrorEmpty(directive, param) {
-  console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
-    getConsoleColor(),
-    getConsoleColor('directive'),
-    getConsoleColor(),
-    getConsoleColor('fn'),
-    getConsoleColor()
-  );
+    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }
 
 function directiveWarningUnmatched(directive, param, value) {
-  console.warn('%c[%c' + directive + '%c] Attr <%c' + param + '%c> value\'s was wrong\nThe default value <%c' + value + '%c> was set',
-    getConsoleColor(),
-    getConsoleColor('directive'),
-    getConsoleColor(),
-    getConsoleColor('fn'),
-    getConsoleColor(),
-    getConsoleColor('fn'),
-    getConsoleColor()
-  );
+    console.warn('%c[%c' + directive + '%c] Attr <%c' + param + '%c> value\'s was wrong\nThe default value <%c' + value + '%c> was set',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }
 
 function dataMustBeBoolean(attribute) {
-  console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
-    getConsoleColor(),
-    getConsoleColor('red'),
-    getConsoleColor(),
-    getConsoleColor('purple'),
-    getConsoleColor(),
-    getConsoleColor('purple'),
-    getConsoleColor()
-  );
+    console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
+}
+
+function dataMustBeNumber(attribute) {
+    console.error('%c<%c' + attribute + '%c> must be an <%cnumber%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
 }
 
 function dataMustBeObject(attribute) {
-  console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
-    getConsoleColor(),
-    getConsoleColor('red'),
-    getConsoleColor(),
-    getConsoleColor('purple'),
-    getConsoleColor()
-  );
+    console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
 }
 
 function dataMustBeInThisList(attribute, list) {
-  console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
-    getConsoleColor(),
-    getConsoleColor('red'),
-    getConsoleColor(),
-    getConsoleColor('purple'),
-    getConsoleColor()
-  );
+    console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
 }
 
 function hasOwnProperty(obj, prop) {
-  var proto = obj.__proto__ || obj.constructor.prototype;
-  return (prop in obj) &&
-    (!(prop in proto) || proto[prop] !== obj[prop]);
+    var proto = obj.__proto__ || obj.constructor.prototype;
+    return (prop in obj) &&
+        (!(prop in proto) || proto[prop] !== obj[prop]);
 }
 
 /**
@@ -5310,26 +5399,26 @@ function hasOwnProperty(obj, prop) {
  * [Attributes params]
  * @param {number}  cozenTextareaId                                             > Id of the textarea
  * @param {string}  cozenTextareaTooltip                                        > Text of the tooltip
- * @param {string}  cozenTextareaTooltipPlacement = 'auto right'                > Change the position of the tooltip
- * @param {string}  cozenTextareaTooltipTrigger   = 'outsideClick'              > Type of trigger to show the tooltip
- * @param {boolean} cozenTextareaRequired         = false                       > Required textarea
- * @param {boolean} cozenTextareaErrorDesign      = true                        > Add style when error
- * @param {boolean} cozenTextareaSuccessDesign    = true                        > Add style when success
+ * @param {string}  cozenTextareaTooltipPlacement = 'auto right'                > Change the position of the tooltip [config]
+ * @param {string}  cozenTextareaTooltipTrigger   = 'outsideClick'              > Type of trigger to show the tooltip [config]
+ * @param {boolean} cozenTextareaRequired         = false                       > Required textarea [config]
+ * @param {boolean} cozenTextareaErrorDesign      = true                        > Add style when error [config]
+ * @param {boolean} cozenTextareaSuccessDesign    = true                        > Add style when success [config]
  * @param {string}  cozenTextareaSize             = 'normal'                    > Size of the button
  * @param {string}  cozenTextareaSizeSmall                                      > Shortcut for small size
  * @param {string}  cozenTextareaSizeNormal                                     > Shortcut for normal size
  * @param {string}  cozenTextareaSizeLarge                                      > Shortcut for large size
  * @param {string}  cozenTextareaPlaceholder                                    > Text for the placeholder
- * @param {number}  cozenTextareaMinLength        = 0                           > Minimum char length
- * @param {number}  cozenTextareaMaxLength        = 100                         > Maximum char length
+ * @param {number}  cozenTextareaMinLength        = 0                           > Minimum char length [config]
+ * @param {number}  cozenTextareaMaxLength        = 200                         > Maximum char length [config]
  * @param {string}  cozenTextareaName             = uuid                        > Name of the textarea
- * @param {boolean} cozenTextareaValidator        = 'dirty'                     > Define after what type of event the textarea must add more ui color
+ * @param {boolean} cozenTextareaValidator        = 'dirty'                     > Define after what type of event the textarea must add more ui color [config]
  * @param {boolean} cozenTextareaValidatorAll                                   > Shortcut for all type
  * @param {boolean} cozenTextareaValidatorTouched                               > Shortcut for touched type
  * @param {boolean} cozenTextareaValidatorDirty                                 > Shortcut for dirty type
- * @param {boolean} cozenTextareaValidatorEmpty   = true                        > Display ui color even if textarea empty
- * @param {boolean} cozenTextareaElastic          = false                       > Auto resize the textarea depending of his content
- * @param {number}  cozenTextareaRows             = 2                           > Number of rows
+ * @param {boolean} cozenTextareaValidatorEmpty   = true                        > Display ui color even if textarea empty [config]
+ * @param {boolean} cozenTextareaElastic          = true                        > Auto resize the textarea depending of his content [config]
+ * @param {number}  cozenTextareaRows             = 2                           > Number of rows [config]
  * @param {string}  cozenTextareaLabel                                          > Add a label on the top of the textarea
  * @param {string}  cozenTextareaRequiredTooltip  = 'textarea_required_tooltip' > Text to display for the tooltip of the required element
  * @param {string}  cozenTextareaClass                                          > Custom class
