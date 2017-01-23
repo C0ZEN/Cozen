@@ -85,7 +85,7 @@
         };
 
         this.textareaValidatorType = function (value) {
-            CONFIG.validator.validator.type = value;
+            CONFIG.textarea.validator.type = value;
             return this;
         };
 
