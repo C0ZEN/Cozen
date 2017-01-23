@@ -1944,13 +1944,6 @@ div.cozen-pills:after {
   content: '';
   z-index: -1;
 }
-div.cozen-pills.disabled {
-  cursor: not-allowed;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
 div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1992,6 +1985,13 @@ div.cozen-pills .cozen-pills-item.cozen-pills-item-simple div.cozen-pills-item-s
   outline: 0;
   font-size: inherit;
   line-height: inherit;
+}
+div.cozen-pills .cozen-pills-item.cozen-pills-item-simple.disabled {
+  cursor: not-allowed;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 div.cozen-popup {
   box-sizing: border-box;
@@ -12108,13 +12108,6 @@ div.cozen-pills:after {
   content: '';
   z-index: -1;
 }
-div.cozen-pills.disabled {
-  cursor: not-allowed;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
 div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12156,6 +12149,13 @@ div.cozen-pills .cozen-pills-item.cozen-pills-item-simple div.cozen-pills-item-s
   outline: 0;
   font-size: inherit;
   line-height: inherit;
+}
+div.cozen-pills .cozen-pills-item.cozen-pills-item-simple.disabled {
+  cursor: not-allowed;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 div.cozen-popup {
   box-sizing: border-box;
