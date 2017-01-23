@@ -108,12 +108,12 @@
         };
 
         this.textareaTooltipPlacement = function (value) {
-            CONFIG.validator.tooltip.placement = value;
+            CONFIG.textarea.tooltip.placement = value;
             return this;
         };
 
         this.textareaTooltipTrigger = function (value) {
-            CONFIG.validator.tooltip.trigger = value;
+            CONFIG.textarea.tooltip.trigger = value;
             return this;
         };
 

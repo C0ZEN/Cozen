@@ -1321,12 +1321,12 @@
         };
 
         this.textareaTooltipPlacement = function (value) {
-            CONFIG.validator.tooltip.placement = value;
+            CONFIG.textarea.tooltip.placement = value;
             return this;
         };
 
         this.textareaTooltipTrigger = function (value) {
-            CONFIG.validator.tooltip.trigger = value;
+            CONFIG.textarea.tooltip.trigger = value;
             return this;
         };
 
@@ -5502,7 +5502,7 @@ function hasOwnProperty(obj, prop) {
                     if (angular.isDefined(attrs.cozenTextareaValidatorAll)) scope._cozenTextareaValidator = 'all';
                     if (angular.isDefined(attrs.cozenTextareaValidatorTouched)) scope._cozenTextareaValidator = 'touched';
                     else if (angular.isDefined(attrs.cozenTextareaValidatorDirty)) scope._cozenTextareaValidator = 'dirty';
-                    else scope._cozenTextareaValidator = CONFIG.validator.validator.type;
+                    else scope._cozenTextareaValidator = CONFIG.textarea.validator.type;
                 } else scope._cozenTextareaValidator = attrs.cozenTextareaValidator;
 
                 // Default values (scope)
@@ -5511,7 +5511,7 @@ function hasOwnProperty(obj, prop) {
                 // Default values (attributes)
                 scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
                 scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
-                scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.validator.tooltip.trigger;
+                scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
                 scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
                 scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
                 scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
