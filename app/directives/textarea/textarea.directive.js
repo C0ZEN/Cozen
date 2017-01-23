@@ -90,7 +90,7 @@
                 uuid     : rfc4122.v4()
             };
 
-            scope._isReady = false;
+            scope._isReady = true;
 
             methods.init();
 
@@ -158,8 +158,11 @@
                     scope._cozenTextareaFormModel = eventData.model;
                 });
 
-                // Display the template
-                scope._isReady = true;
+                // Display the template (the timeout avoid a visual bug due to events)
+                $timeout(function () {
+                    scope._isReady = true;
+                    methods.updateModelLength();
+                }, 1);
             }
 
             function hasError() {
