@@ -5332,6 +5332,7 @@ function hasOwnProperty(obj, prop) {
  * @param {number}  cozenTextareaRows             = 2                           > Number of rows
  * @param {string}  cozenTextareaLabel                                          > Add a label on the top of the textarea
  * @param {string}  cozenTextareaRequiredTooltip  = 'textarea_required_tooltip' > Text to display for the tooltip of the required element
+ * @param {string}  cozenTextareaClass                                          > Custom class
  *
  */
 (function (angular) {
@@ -5444,8 +5445,12 @@ function hasOwnProperty(obj, prop) {
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
+
+                // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
-                    scope._cozenTextareaForm = eventData.name;
+                    scope._cozenTextareaForm      = eventData.name;
+                    scope._cozenTextareaFormCtrl  = eventData.ctrl;
+                    scope._cozenTextareaFormModel = eventData.model;
                 });
 
                 // Display the template
@@ -5466,8 +5471,9 @@ function hasOwnProperty(obj, prop) {
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenTextareaForm)) {
-                    var classList = [scope._activeTheme, scope._cozenTextareaSize];
-                    var textarea  = methods.getForm()[scope._cozenTextareaName];
+                    var classList = [scope._activeTheme, scope._cozenTextareaSize, attrs.cozenTextareaClass];
+                    var textarea  = methods.getForm();
+                    textarea      = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
                     if (!Methods.isNullOrEmpty(textarea)) {
                         if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
                             switch (scope._cozenTextareaValidator) {
@@ -5513,16 +5519,16 @@ function hasOwnProperty(obj, prop) {
             }
 
             function getForm() {
-                var form = scope.$parent.$parent[scope._cozenTextareaForm];
-                if (Methods.isNullOrEmpty(form)) {
-                    form = scope.$parent.$parent.$parent[scope._cozenTextareaForm];
-                    if (Methods.isNullOrEmpty(form)) {
-                        form = scope.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
-                        if (Methods.isNullOrEmpty(form)) {
-                            form = scope.$parent.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
-                            if (Methods.isNullOrEmpty(form)) {
-                                form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenTextareaForm];
-                                if (Methods.isNullOrEmpty(form)) {
+                var form = scope.$parent.$parent;
+                if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                    form = scope.$parent.$parent.$parent;
+                    if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                        form = scope.$parent.$parent.$parent.$parent;
+                        if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                            form = scope.$parent.$parent.$parent.$parent.$parent;
+                            if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
+                                form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
+                                if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                                     return form;
                                 } else return form;
                             } else return form;
