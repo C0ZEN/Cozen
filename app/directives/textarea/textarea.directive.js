@@ -116,7 +116,7 @@
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenTextareaValidator)) {
                     if (angular.isDefined(attrs.cozenTextareaValidatorAll)) scope._cozenTextareaValidator = 'all';
-                    if (angular.isDefined(attrs.cozenTextareaValidatorTouched)) scope._cozenTextareaValidator = 'touched';
+                    else if (angular.isDefined(attrs.cozenTextareaValidatorTouched)) scope._cozenTextareaValidator = 'touched';
                     else if (angular.isDefined(attrs.cozenTextareaValidatorDirty)) scope._cozenTextareaValidator = 'dirty';
                     else scope._cozenTextareaValidator = CONFIG.textarea.validator.type;
                 } else scope._cozenTextareaValidator = attrs.cozenTextareaValidator;
