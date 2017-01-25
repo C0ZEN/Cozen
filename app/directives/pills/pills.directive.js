@@ -7,12 +7,13 @@
  * @description
  *
  * [Attributes params]
- * @param {number} cozenPillsId                    > Id of the pills
- * @param {string} cozenPillsSize       = 'normal' > Size of the pills
- * @param {string} cozenPillsSizeSmall             > Shortcut for small size
- * @param {string} cozenPillsSizeNormal            > Shortcut for normal size
- * @param {string} cozenPillsSizeLarge             > Shortcut for large size
- * @param {string} cozenPillsClass                 > Custom class
+ * @param {number}  cozenPillsId                          > Id of the pills
+ * @param {string}  cozenPillsSize            = 'normal'  > Size of the pills
+ * @param {string}  cozenPillsSizeSmall                   > Shortcut for small size
+ * @param {string}  cozenPillsSizeNormal                  > Shortcut for normal size
+ * @param {string}  cozenPillsSizeLarge                   > Shortcut for large size
+ * @param {string}  cozenPillsClass                       > Custom class
+ * @param {boolean} cozenPillsAutoUpdateModel = true      > Auto update the ng-model on click
  *
  */
 (function (angular) {
@@ -36,6 +37,7 @@
             restrict   : 'E',
             replace    : false,
             transclude : true,
+            scope      : true,
             templateUrl: 'directives/pills/pills.template.html'
         };
 
@@ -76,7 +78,8 @@
                 } else scope._cozenPillsSize = attrs.cozenPillsSize;
 
                 // Default values (attributes)
-                scope._cozenPillsId = angular.isDefined(attrs.cozenPillsId) ? attrs.cozenPillsId : '';
+                scope._cozenPillsId              = angular.isDefined(attrs.cozenPillsId) ? attrs.cozenPillsId : '';
+                scope._cozenPillsAutoUpdateModel = angular.isDefined(attrs.cozenPillsAutoUpdateModel) ? JSON.parse(attrs.cozenPillsAutoUpdateModel) : true;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

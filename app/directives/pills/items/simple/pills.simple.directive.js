@@ -134,8 +134,10 @@
                 if (scope.cozenPillsItemSimpleDisabled) return;
                 if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) scope.cozenPillsItemSimpleOnClick();
                 if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClick');
-                scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
-                Methods.safeApply(scope);
+                if (scope.$parent.$parent.$parent._cozenPillsAutoUpdateModel) {
+                    scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
+                    Methods.safeApply(scope);
+                }
             }
 
             function getTabIndex() {
