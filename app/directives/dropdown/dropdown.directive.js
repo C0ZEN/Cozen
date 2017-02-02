@@ -469,16 +469,15 @@
                         if (data.selected) {
                             scope.vm.cozenDropdownModel = data.value;
 
-                            // Display the label instead of the value
-                            if (scope._cozenDropdownSingleDisplaySelectedLabel) scope.vm.cozenDropdownModelEnhanced = $filter('translate')(data.label);
-                            else scope.vm.cozenDropdownModelEnhanced = data.value;
-
                             // Deselect the other children
                             scope.$broadcast('cozenDropdownDeselect', {
                                 uuid: data.uuid
                             });
                         } else scope.vm.cozenDropdownModel = '';
-                        scope.vm.cozenDropdownModelEnhanced = scope.vm.cozenDropdownModel;
+
+                        // Display the label instead of the value
+                        if (scope._cozenDropdownSingleDisplaySelectedLabel) scope.vm.cozenDropdownModelEnhanced = $filter('translate')(data.label);
+                        else scope.vm.cozenDropdownModelEnhanced = data.value;
                     }
                 }
             }
