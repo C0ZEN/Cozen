@@ -14,31 +14,32 @@
  *
  * [Attributes params]
  * @param {number}  cozenDropdownId                                             > Id of the dropdown
- * @param {string}  cozenDropdownSize             = 'normal'                    > Size of the dropdown
- * @param {string}  cozenDropdownSizeSmall                                      > Shortcut for small size
- * @param {string}  cozenDropdownSizeNormal                                     > Shortcut for normal size
- * @param {string}  cozenDropdownSizeLarge                                      > Shortcut for large size
- * @param {boolean} cozenDropdownRequired         = false                       > Required input
- * @param {boolean} cozenDropdownErrorDesign      = true                        > Add style when error
- * @param {boolean} cozenDropdownSuccessDesign    = true                        > Add style when success
- * @param {string}  cozenDropdownPlaceholder                                    > Text for the placeholder
- * @param {string}  cozenDropdownIconLeft                                       > Text for the icon left (font)
- * @param {string}  cozenDropdownName             = uuid                        > Name of the input
- * @param {boolean} cozenDropdownValidator        = 'touched'                   > Define after what type of event the input must add more ui color
- * @param {boolean} cozenDropdownValidatorAll                                   > Shortcut for all type
- * @param {boolean} cozenDropdownValidatorTouched                               > Shortcut for touched type
- * @param {boolean} cozenDropdownEasyNavigation   = true                        > Allow to navigate with arrows even if the pointer is out of the dropdown
- * @param {boolean} cozenDropdownMultiple         = false                       > Allow to select multiple data
- * @param {boolean} cozenDropdownAutoClose        = true                        > Close the dropdown after had selected a data (only for single)
- * @param {boolean} cozenDropdownEasyClose        = true                        > Auto close the dropdown when a click is outside
- * @param {boolean} cozenDropdownShowTick         = true                        > Display an icon to the right when a data is selected
- * @param {boolean} cozenDropdownTickIcon         = 'fa fa-check'               > Define what type of icon should it be
- * @param {string}  cozenDropdownModelEnhanced    = 'last'                      > Choose the way of display the selected data text in the input [last, all, count, number (value expected)]
- * @param {number}  cozenDropdownMaxHeight        = 200                         > Max-height of the dropdown
- * @param {string}  cozenDropdownLabel                                          > Add a label on the top of the dropdown
- * @param {string}  cozenDropdownRequiredTooltip  = 'dropdown_required_tooltip' > Text to display for the tooltip of the required element
- * @param {string}  cozenDropdownClass                                          > Custom class
- * @param {string}  cozenDropdownAllSelectedText  = 'dropdown_count_all'        >  Text to display when all elements are selected
+ * @param {string}  cozenDropdownSize                       = 'normal'                    > Size of the dropdown
+ * @param {string}  cozenDropdownSizeSmall                                                > Shortcut for small size
+ * @param {string}  cozenDropdownSizeNormal                                               > Shortcut for normal size
+ * @param {string}  cozenDropdownSizeLarge                                                > Shortcut for large size
+ * @param {boolean} cozenDropdownRequired                   = false                       > Required input
+ * @param {boolean} cozenDropdownErrorDesign                = true                        > Add style when error
+ * @param {boolean} cozenDropdownSuccessDesign              = true                        > Add style when success
+ * @param {string}  cozenDropdownPlaceholder                                              > Text for the placeholder
+ * @param {string}  cozenDropdownIconLeft                                                 > Text for the icon left (font)
+ * @param {string}  cozenDropdownName                       = uuid                        > Name of the input
+ * @param {boolean} cozenDropdownValidator                  = 'touched'                   > Define after what type of event the input must add more ui color
+ * @param {boolean} cozenDropdownValidatorAll                                             > Shortcut for all type
+ * @param {boolean} cozenDropdownValidatorTouched                                         > Shortcut for touched type
+ * @param {boolean} cozenDropdownEasyNavigation             = true                        > Allow to navigate with arrows even if the pointer is out of the dropdown
+ * @param {boolean} cozenDropdownMultiple                   = false                       > Allow to select multiple data
+ * @param {boolean} cozenDropdownAutoClose                  = true                        > Close the dropdown after had selected a data (only for single)
+ * @param {boolean} cozenDropdownEasyClose                  = true                        > Auto close the dropdown when a click is outside
+ * @param {boolean} cozenDropdownShowTick                   = true                        > Display an icon to the right when a data is selected
+ * @param {boolean} cozenDropdownTickIcon                   = 'fa fa-check'               > Define what type of icon should it be
+ * @param {string}  cozenDropdownModelEnhanced              = 'last'                      > Choose the way of display the selected data text in the input [last, all, count, number (value expected)]
+ * @param {number}  cozenDropdownMaxHeight                  = 200                         > Max-height of the dropdown
+ * @param {string}  cozenDropdownLabel                                                    > Add a label on the top of the dropdown
+ * @param {string}  cozenDropdownRequiredTooltip            = 'dropdown_required_tooltip' > Text to display for the tooltip of the required element
+ * @param {string}  cozenDropdownClass                                                    > Custom class
+ * @param {string}  cozenDropdownAllSelectedText            = 'dropdown_count_all'        > Text to display when all elements are selected
+ * @param {string}  cozenDropdownSingleDisplaySelectedLabel = false                       > Display the label instead of the value (if the value was set - the model still have the value)
  *
  */
 (function (angular) {
@@ -160,26 +161,27 @@
                 scope.vm.cozenDropdownModelEnhanced = '';
 
                 // Default values (attributes)
-                scope._cozenDropdownId              = angular.isDefined(attrs.cozenDropdownId) ? attrs.cozenDropdownId : '';
-                scope._cozenDropdownRequired        = angular.isDefined(attrs.cozenDropdownRequired) ? JSON.parse(attrs.cozenDropdownRequired) : false;
-                scope._cozenDropdownErrorDesign     = angular.isDefined(attrs.cozenDropdownErrorDesign) ? JSON.parse(attrs.cozenDropdownErrorDesign) : true;
-                scope._cozenDropdownSuccessDesign   = angular.isDefined(attrs.cozenDropdownSuccessDesign) ? JSON.parse(attrs.cozenDropdownSuccessDesign) : true;
-                scope._cozenDropdownPlaceholder     = angular.isDefined(attrs.cozenDropdownPlaceholder) ? attrs.cozenDropdownPlaceholder : '';
-                scope._cozenDropdownIconLeft        = angular.isDefined(attrs.cozenDropdownIconLeft) ? attrs.cozenDropdownIconLeft : '';
-                scope._cozenDropdownName            = angular.isDefined(attrs.cozenDropdownName) ? attrs.cozenDropdownName : data.uuid;
-                scope._cozenDropdownEasyNavigation  = angular.isDefined(attrs.cozenDropdownEasyNavigation) ? JSON.parse(attrs.cozenDropdownEasyNavigation) : true;
-                scope._cozenDropdownMultiple        = angular.isDefined(attrs.cozenDropdownMultiple) ? JSON.parse(attrs.cozenDropdownMultiple) : false;
-                scope._cozenDropdownAutoClose       = angular.isDefined(attrs.cozenDropdownAutoClose) ? JSON.parse(attrs.cozenDropdownAutoClose) : true;
-                scope._cozenDropdownEasyClose       = angular.isDefined(attrs.cozenDropdownEasyClose) ? JSON.parse(attrs.cozenDropdownEasyClose) : true;
-                scope._cozenDropdownShowTick        = angular.isDefined(attrs.cozenDropdownShowTick) ? JSON.parse(attrs.cozenDropdownShowTick) : true;
-                scope._cozenDropdownTickIcon        = angular.isDefined(attrs.cozenDropdownTickIcon) ? attrs.cozenDropdownTickIcon : 'fa fa-check';
-                scope._cozenDropdownMaxHeight       = angular.isDefined(attrs.cozenDropdownMaxHeight) ? JSON.parse(attrs.cozenDropdownMaxHeight) : 200;
-                scope._cozenDropdownDirection       = 'down';
-                scope._cozenDropdownLabel           = angular.isDefined(attrs.cozenDropdownLabel) ? attrs.cozenDropdownLabel : '';
-                scope._cozenDropdownRequiredConfig  = CONFIG.required;
-                scope._cozenDropdownRequiredTooltip = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
-                scope._cozenDropdownUuid            = data.uuid;
-                scope._cozenDropdownAllSelectedText = angular.isDefined(attrs.cozenDropdownAllSelectedText) ? attrs.cozenDropdownAllSelectedText : 'dropdown_count_all';
+                scope._cozenDropdownId                         = angular.isDefined(attrs.cozenDropdownId) ? attrs.cozenDropdownId : '';
+                scope._cozenDropdownRequired                   = angular.isDefined(attrs.cozenDropdownRequired) ? JSON.parse(attrs.cozenDropdownRequired) : false;
+                scope._cozenDropdownErrorDesign                = angular.isDefined(attrs.cozenDropdownErrorDesign) ? JSON.parse(attrs.cozenDropdownErrorDesign) : true;
+                scope._cozenDropdownSuccessDesign              = angular.isDefined(attrs.cozenDropdownSuccessDesign) ? JSON.parse(attrs.cozenDropdownSuccessDesign) : true;
+                scope._cozenDropdownPlaceholder                = angular.isDefined(attrs.cozenDropdownPlaceholder) ? attrs.cozenDropdownPlaceholder : '';
+                scope._cozenDropdownIconLeft                   = angular.isDefined(attrs.cozenDropdownIconLeft) ? attrs.cozenDropdownIconLeft : '';
+                scope._cozenDropdownName                       = angular.isDefined(attrs.cozenDropdownName) ? attrs.cozenDropdownName : data.uuid;
+                scope._cozenDropdownEasyNavigation             = angular.isDefined(attrs.cozenDropdownEasyNavigation) ? JSON.parse(attrs.cozenDropdownEasyNavigation) : true;
+                scope._cozenDropdownMultiple                   = angular.isDefined(attrs.cozenDropdownMultiple) ? JSON.parse(attrs.cozenDropdownMultiple) : false;
+                scope._cozenDropdownAutoClose                  = angular.isDefined(attrs.cozenDropdownAutoClose) ? JSON.parse(attrs.cozenDropdownAutoClose) : true;
+                scope._cozenDropdownEasyClose                  = angular.isDefined(attrs.cozenDropdownEasyClose) ? JSON.parse(attrs.cozenDropdownEasyClose) : true;
+                scope._cozenDropdownShowTick                   = angular.isDefined(attrs.cozenDropdownShowTick) ? JSON.parse(attrs.cozenDropdownShowTick) : true;
+                scope._cozenDropdownTickIcon                   = angular.isDefined(attrs.cozenDropdownTickIcon) ? attrs.cozenDropdownTickIcon : 'fa fa-check';
+                scope._cozenDropdownMaxHeight                  = angular.isDefined(attrs.cozenDropdownMaxHeight) ? JSON.parse(attrs.cozenDropdownMaxHeight) : 200;
+                scope._cozenDropdownDirection                  = 'down';
+                scope._cozenDropdownLabel                      = angular.isDefined(attrs.cozenDropdownLabel) ? attrs.cozenDropdownLabel : '';
+                scope._cozenDropdownRequiredConfig             = CONFIG.required;
+                scope._cozenDropdownRequiredTooltip            = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
+                scope._cozenDropdownUuid                       = data.uuid;
+                scope._cozenDropdownAllSelectedText            = angular.isDefined(attrs.cozenDropdownAllSelectedText) ? attrs.cozenDropdownAllSelectedText : 'dropdown_count_all';
+                scope._cozenDropdownSingleDisplaySelectedLabel = angular.isDefined(attrs.cozenDropdownSingleDisplaySelectedLabel) ? JSON.parse(attrs.cozenDropdownSingleDisplaySelectedLabel) : false;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -466,6 +468,10 @@
                         // Change the model
                         if (data.selected) {
                             scope.vm.cozenDropdownModel = data.value;
+
+                            // Display the label instead of the value
+                            if (scope._cozenDropdownSingleDisplaySelectedLabel) scope.vm.cozenDropdownModelEnhanced = $filter('translate')(data.label);
+                            else scope.vm.cozenDropdownModelEnhanced = data.value;
 
                             // Deselect the other children
                             scope.$broadcast('cozenDropdownDeselect', {
