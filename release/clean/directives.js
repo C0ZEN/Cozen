@@ -1517,6 +1517,7 @@
  * @param {string}  cozenDropdownRequiredTooltip            = 'dropdown_required_tooltip' > Text to display for the tooltip of the required element
  * @param {string}  cozenDropdownClass                                                    > Custom class
  * @param {string}  cozenDropdownAllSelectedText            = 'dropdown_count_all'        > Text to display when all elements are selected
+ * @param {string}  cozenDropdownCountText                  = 'dropdown_count'            > Text to display when some elements are selected [variables: {{selected}} {{total}}
  * @param {string}  cozenDropdownSingleDisplaySelectedLabel = false                       > Display the label instead of the value (if the value was set - the model still have the value)
  *
  */
@@ -1659,6 +1660,7 @@
                 scope._cozenDropdownRequiredTooltip            = angular.isDefined(attrs.cozenDropdownRequiredTooltip) ? attrs.cozenDropdownRequiredTooltip : 'dropdown_required_tooltip';
                 scope._cozenDropdownUuid                       = data.uuid;
                 scope._cozenDropdownAllSelectedText            = angular.isDefined(attrs.cozenDropdownAllSelectedText) ? attrs.cozenDropdownAllSelectedText : 'dropdown_count_all';
+                scope._cozenDropdownCountText                  = angular.isDefined(attrs.cozenDropdownCountText) ? attrs.cozenDropdownCountText : 'dropdown_count';
                 scope._cozenDropdownSingleDisplaySelectedLabel = angular.isDefined(attrs.cozenDropdownSingleDisplaySelectedLabel) ? JSON.parse(attrs.cozenDropdownSingleDisplaySelectedLabel) : false;
 
                 // Init stuff
@@ -1925,7 +1927,7 @@
 
                         // ModelEnhanced : count (if more than one result)
                         if ((scope._cozenDropdownModelEnhanced == 'count' && selectedValues > 1) || useCount) {
-                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')('dropdown_count', {
+                            scope.vm.cozenDropdownModelEnhanced = $filter('translate')(scope._cozenDropdownCountText, {
                                 selected: selectedValues,
                                 total   : scope.childrenUuid.length
                             });
