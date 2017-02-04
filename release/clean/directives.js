@@ -1731,13 +1731,13 @@
                     switch (scope._cozenDropdownValidator) {
                         case 'touched':
                             if (data.touched) {
-                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
-                                else if (scope._cozenDropdownRequired) classList.push('error-design');
+                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) classList.push('success-design');
+                                else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) classList.push('error-design');
                             }
                             break;
                         case 'all':
-                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced)) classList.push('success-design');
-                            else if (scope._cozenDropdownRequired) classList.push('error-design');
+                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) classList.push('success-design');
+                            else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) classList.push('error-design');
                             break;
                     }
                     if (scope.vm.cozenDropdownDisabled) classList.push('disabled');
