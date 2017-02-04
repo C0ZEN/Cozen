@@ -14,10 +14,10 @@
  * @param {boolean}  cozenBtnLoader       = false > Active a loader (replace all the content and disable visual state)
  * @param {object}   cozenBtnUploadConfig         > Config of the upload (see ng-file-upload doc)
  * @param {object}   cozenBtnUploadModel          > Model (ng-model) which contain the uploaded image
+ * @param {string}   cozenBtnLabel                > Text of the button
  *
  * [Attributes params]
  * @param {number}  cozenBtnId                                       > Id of the button
- * @param {string}  cozenBtnLabel                                    > Text of the button
  * @param {string}  cozenBtnSize            = 'normal'               > Size of the button
  * @param {string}  cozenBtnSizeSmall                                > Shortcut for small size
  * @param {string}  cozenBtnSizeNormal                               > Shortcut for normal size
@@ -73,7 +73,8 @@
                 cozenBtnDisabled    : '=?',
                 cozenBtnLoader      : '=?',
                 cozenBtnUploadConfig: '=?',
-                cozenBtnUploadModel : '=?'
+                cozenBtnUploadModel : '=?',
+                cozenBtnLabel       : '=?'
             },
             templateUrl: 'directives/btn/btn.template.html'
         };
@@ -143,7 +144,6 @@
 
                 // Default values (attributes)
                 scope._cozenBtnId              = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
-                scope._cozenBtnLabel           = attrs.cozenBtnLabel;
                 scope._cozenBtnIconLeft        = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
                 scope._cozenBtnIconRight       = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
                 scope._cozenBtnImgLeft         = angular.isDefined(attrs.cozenBtnImgLeft) ? attrs.cozenBtnImgLeft : '';
