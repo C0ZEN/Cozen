@@ -78,7 +78,7 @@
                 }
             };
 
-            scope._isReady = false;
+            scope._isReady = true;
 
             methods.init();
 
@@ -129,6 +129,13 @@
                 });
                 data.dropdown.name = dropdown._cozenDropdownName;
                 methods.updateParentModel();
+
+                // If attr selected is set, look at the change (for out of the box change) and update the parent
+                if (angular.isDefined(attrs.cozenDropdownItemSimpleSelected)) {
+                    scope.$watch('cozenDropdownItemSimpleSelected', function (newValue) {
+                        methods.updateParentModel();
+                    });
+                }
 
                 $rootScope.$on('cozenDropdownActive', methods.onActive);
                 scope.$on('cozenDropdownCollapse', methods.onCollapse);
