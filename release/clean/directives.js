@@ -2694,7 +2694,6 @@
 
             function dispatchName() {
                 $timeout(function () {
-                    console.log(1);
                     scope.$broadcast('cozenFormName', {
                         name : scope._cozenFormName,
                         ctrl : scope._cozenFormCtrl,
@@ -5065,7 +5064,8 @@ var Methods = {
     dataMustBeNumber          : dataMustBeNumber,
     dataMustBeObject          : dataMustBeObject,
     dataMustBeInThisList      : dataMustBeInThisList,
-    hasOwnProperty            : hasOwnProperty
+    hasOwnProperty            : hasOwnProperty,
+    httpRequestLog            : httpRequestLog
 };
 
 var Data = {
@@ -5243,6 +5243,22 @@ function hasOwnProperty(obj, prop) {
     var proto = obj.__proto__ || obj.constructor.prototype;
     return (prop in obj) &&
         (!(prop in proto) || proto[prop] !== obj[prop]);
+}
+
+function httpRequestLog(request) {
+    console.log('%c[%c' + request.methods + '%c][%c' + now + '%c] ' + request.url + '\n' +
+        '%cSession:%c ' + request.data.session + '\n%c' +
+        'Data:%c ' + request.data.data,
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('time'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
 }
 
 /**

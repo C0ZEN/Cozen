@@ -104,7 +104,6 @@
 
             function dispatchName() {
                 $timeout(function () {
-                    console.log(1);
                     scope.$broadcast('cozenFormName', {
                         name : scope._cozenFormName,
                         ctrl : scope._cozenFormCtrl,
