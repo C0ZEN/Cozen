@@ -5246,6 +5246,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 function httpRequestLog(request) {
+    var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + request.methods + '%c][%c' + now + '%c] ' + request.url + '\n' +
         '%cSession:%c ' + request.data.session + '\n%c' +
         'Data:%c ' + request.data.data,
