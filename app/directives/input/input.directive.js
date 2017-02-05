@@ -77,10 +77,11 @@
         'rfc4122',
         '$timeout',
         '$interval',
-        '$filter'
+        '$filter',
+        '$rootScope'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter) {
+    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -250,6 +251,10 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
+
+                // Ask the parent to launch the cozenFormName event to get the data
+                // -> Avoid problems when elements are added to the DOM after the form loading
+                $rootScope.$broadcast('cozenFormChildInit');
 
                 // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);

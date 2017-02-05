@@ -22,10 +22,11 @@
         .directive('cozenForm', cozenForm);
 
     cozenForm.$inject = [
-        '$timeout'
+        '$timeout',
+        '$rootScope'
     ];
 
-    function cozenForm($timeout) {
+    function cozenForm($timeout, $rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -73,6 +74,10 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
 
+                // Give to the child the require stuff
+                // Occur when a child ask for it
+                $rootScope.$on('cozenFormChildInit', methods.dispatchName);
+
                 // Display the template
                 scope._isReady = true;
             }
@@ -99,6 +104,7 @@
 
             function dispatchName() {
                 $timeout(function () {
+                    console.log(1);
                     scope.$broadcast('cozenFormName', {
                         name : scope._cozenFormName,
                         ctrl : scope._cozenFormCtrl,

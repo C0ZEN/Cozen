@@ -2612,10 +2612,11 @@
         .directive('cozenForm', cozenForm);
 
     cozenForm.$inject = [
-        '$timeout'
+        '$timeout',
+        '$rootScope'
     ];
 
-    function cozenForm($timeout) {
+    function cozenForm($timeout, $rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -2663,6 +2664,10 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
 
+                // Give to the child the require stuff
+                // Occur when a child ask for it
+                $rootScope.$on('cozenFormChildInit', methods.dispatchName);
+
                 // Display the template
                 scope._isReady = true;
             }
@@ -2689,6 +2694,7 @@
 
             function dispatchName() {
                 $timeout(function () {
+                    console.log(1);
                     scope.$broadcast('cozenFormName', {
                         name : scope._cozenFormName,
                         ctrl : scope._cozenFormCtrl,
@@ -2787,10 +2793,11 @@
         'rfc4122',
         '$timeout',
         '$interval',
-        '$filter'
+        '$filter',
+        '$rootScope'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter) {
+    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -2960,6 +2967,10 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
+
+                // Ask the parent to launch the cozenFormName event to get the data
+                // -> Avoid problems when elements are added to the DOM after the form loading
+                $rootScope.$broadcast('cozenFormChildInit');
 
                 // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);
