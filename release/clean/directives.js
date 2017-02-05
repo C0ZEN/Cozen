@@ -2647,7 +2647,8 @@
 
                 // Public functions
                 scope._methods = {
-                    dispatchName: dispatchName
+                    dispatchName: dispatchName,
+                    getMainClass: getMainClass
                 };
 
                 // Checking required stuff
