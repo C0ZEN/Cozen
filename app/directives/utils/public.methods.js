@@ -20,7 +20,8 @@ var Methods = {
     dataMustBeObject          : dataMustBeObject,
     dataMustBeInThisList      : dataMustBeInThisList,
     hasOwnProperty            : hasOwnProperty,
-    httpRequestLog            : httpRequestLog
+    httpRequestLog            : httpRequestLog,
+    firstLoadLog              : firstLoadLog
 };
 
 var Data = {
@@ -213,6 +214,18 @@ function httpRequestLog(request) {
         getConsoleColor('purple'),
         getConsoleColor(),
         getConsoleColor('purple'),
+        getConsoleColor()
+    );
+}
+
+function firstLoadLog(isStarting) {
+    var now  = moment().format('HH:mm:ss.SSS');
+    var text = isStarting ? 'Starting' : 'Ready';
+    console.log('%c[%c' + text + '%c][%c' + now + '%c]',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('time'),
         getConsoleColor()
     );
 }
