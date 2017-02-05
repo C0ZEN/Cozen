@@ -252,6 +252,51 @@
             return this;
         };
 
+        this.floatingFeedWidth = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('floatingFeedWidth');
+            else CONFIG.floatingFeed.width = value;
+            return this;
+        };
+
+        this.floatingFeedSize = function (value) {
+            CONFIG.floatingFeed.size = value;
+            return this;
+        };
+
+        this.floatingFeedAnimationIn = function (value) {
+            CONFIG.floatingFeed.animation.in = value;
+            return this;
+        };
+
+        this.floatingFeedAnimationOut = function (value) {
+            CONFIG.floatingFeed.animation.out = value;
+            return this;
+        };
+
+        this.floatingFeedCloseBtn = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('floatingFeedCloseBtn');
+            else CONFIG.floatingFeed.closeBtn = value;
+            return this;
+        };
+
+        this.floatingFeedLeftIcon = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('floatingFeedLeftIcon');
+            else CONFIG.floatingFeed.leftIcon = value;
+            return this;
+        };
+
+        this.floatingFeedRight = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('floatingFeedRight');
+            else CONFIG.floatingFeed.right = value;
+            return this;
+        };
+
+        this.floatingFeedBottom = function (value) {
+            if (typeof value != 'number') Methods.dataMustBeNumber('floatingFeedBottom');
+            else CONFIG.floatingFeed.bottom = value;
+            return this;
+        };
+
         this.$get = Config;
 
         Config.$inject = [];

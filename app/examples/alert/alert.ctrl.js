@@ -5,10 +5,13 @@
         .module('test')
         .controller('AlertCtrl', AlertCtrl);
 
-    AlertCtrl.$inject = [];
+    AlertCtrl.$inject = [
+        'cozenFloatingFeedFactory'
+    ];
 
-    function AlertCtrl() {
-        var vm = this;
+    function AlertCtrl(cozenFloatingFeedFactory) {
+        var vm          = this;
+        vm.floatingFeed = cozenFloatingFeedFactory;
     }
 
 })(window.angular);

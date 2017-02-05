@@ -25,6 +25,13 @@
                 controller  : 'AlertCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Alert - Default'}
+            })
+            .state('examples.alert.floatingFeed', {
+                url         : '/floating-feed',
+                templateUrl : 'examples/alert/templates/alert.floatingFeed.html',
+                controller  : 'AlertCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Alert - Floating Feed'}
             });
     }
 

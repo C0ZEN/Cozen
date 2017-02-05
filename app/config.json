@@ -92,5 +92,17 @@
     },
     "easeClose": true,
     "closeBtn": true
+  },
+  "floatingFeed": {
+    "width": 460,
+    "size": "normal",
+    "animation": {
+      "in": "fadeInDown",
+      "out": ""
+    },
+    "closeBtn": true,
+    "leftIcon": true,
+    "right": 20,
+    "bottom": 60
   }
 }

@@ -39,7 +39,10 @@
     'use strict';
 
     angular
-        .module('cozenLib.alert', [])
+        .module('cozenLib.alert', [
+            'cozenLib.alert.floatingFeed',
+            'cozenLib.alert.floatingFeedFactory'
+        ])
         .directive('cozenAlert', cozenAlert);
 
     cozenAlert.$inject = [

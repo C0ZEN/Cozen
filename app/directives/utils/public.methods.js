@@ -21,7 +21,8 @@ var Methods = {
     dataMustBeInThisList      : dataMustBeInThisList,
     hasOwnProperty            : hasOwnProperty,
     httpRequestLog            : httpRequestLog,
-    firstLoadLog              : firstLoadLog
+    firstLoadLog              : firstLoadLog,
+    missingKeyLog: missingKeyLog
 };
 
 var Data = {
@@ -226,6 +227,16 @@ function firstLoadLog(isStarting) {
         getConsoleColor('red'),
         getConsoleColor(),
         getConsoleColor('time'),
+        getConsoleColor()
+    );
+}
+
+function missingKeyLog(directive, key, when) {
+    console.error('%c[%c' + directive + '%c] Missing key <%c' + key + '%c> when ' + when,
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
         getConsoleColor()
     );
 }
