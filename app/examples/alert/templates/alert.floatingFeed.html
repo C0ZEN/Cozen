@@ -1,17 +1,21 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <cozen-floating-feed></cozen-floating-feed>
-        </div>
-        <div class="col-xs-12">
-            <cozen-btn cozen-btn-label="'Good'"
-                       cozen-btn-auto-sizing="true"
-                       cozen-btn-on-click="vm.floatingFeed.addAlert({label: 'lol', type: 'success'})">
-            </cozen-btn>
-            <cozen-btn cozen-btn-label="'Bad'"
-                       cozen-btn-auto-sizing="true"
-                       cozen-btn-on-click="vm.floatingFeed.addAlert()">
-            </cozen-btn>
-        </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <cozen-floating-feed></cozen-floating-feed>
     </div>
+    <div class="col-xs-12">
+      <cozen-btn cozen-btn-label="'Good'"
+                 cozen-btn-auto-sizing="true"
+                 cozen-btn-on-click="vm.floatingFeed.addAlert({label: 'lol', type: 'success'})">
+      </cozen-btn>
+      <cozen-btn cozen-btn-label="'Bad'"
+                 cozen-btn-auto-sizing="true"
+                 cozen-btn-on-click="vm.floatingFeed.addAlert()">
+      </cozen-btn>
+      <cozen-btn cozen-btn-label="'Remove all'"
+                 cozen-btn-auto-sizing="true"
+                 cozen-btn-on-click="vm.floatingFeed.removeAll()">
+      </cozen-btn>
+    </div>
+  </div>
 </div>

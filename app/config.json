@@ -72,7 +72,8 @@
       "inClass": "fadeInUp",
       "out": true,
       "outClass": "fadeOutDown"
-    }
+    },
+    "timeout": 0
   },
   "btnToggle": {
     "animation": true,
@@ -100,7 +101,7 @@
     "size": "normal",
     "animation": {
       "in": "fadeInDown",
-      "out": ""
+      "out": "fadeOutDown"
     },
     "closeBtn": true,
     "iconLeft": true,

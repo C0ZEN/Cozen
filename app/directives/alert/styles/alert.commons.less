@@ -19,16 +19,14 @@ div.cozen-alert {
     transition:       @cozen-animation-duration-out-fast ease-out;
     background-color: transparent !important;
   }
-  &.fadeInUp,
-  &.fadeInDown,
-  &.fadeOutDown {
+  &.with-animation-in,
+  &.with-animation-out {
     animation-fill-mode: @cozen-animation-fill;
   }
-  &.fadeInUp,
-  &.fadeInDown {
+  &.with-animation-in {
     animation-duration: @cozen-animation-duration-in-fast;
   }
-  &.fadeOutDown {
+  &.with-animation-out {
     animation-duration: @cozen-animation-duration-out-fast;
   }
 
