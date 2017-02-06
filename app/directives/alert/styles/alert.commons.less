@@ -20,10 +20,12 @@ div.cozen-alert {
     background-color: transparent !important;
   }
   &.fadeInUp,
+  &.fadeInDown,
   &.fadeOutDown {
     animation-fill-mode: @cozen-animation-fill;
   }
-  &.fadeInUp {
+  &.fadeInUp,
+  &.fadeInDown {
     animation-duration: @cozen-animation-duration-in-fast;
   }
   &.fadeOutDown {

@@ -15,7 +15,7 @@
  * @param {boolean} cozenFloatingFeedCloseBtn     = true         > Display the close btn of the popups [config.json]
  * @param {boolean} cozenFloatingFeedIconLeft     = true         > Display the left icon of the popups [config.json]
  * @param {number}  cozenFloatingFeedRight        = 20           > Pixel form the right [config.json]
- * @param {number}  cozenFloatingFeedBottom       = 60           > Pixel from the bottom [config.json]
+ * @param {number}  cozenFloatingFeedBottom       = 20           > Pixel from the bottom [config.json]
  *
  */
 (function (angular) {
@@ -27,10 +27,11 @@
 
     cozenFloatingFeed.$inject = [
         'CONFIG',
-        '$rootScope'
+        '$rootScope',
+        'Themes'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope) {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes) {
         return {
             link       : link,
             restrict   : 'E',
@@ -46,7 +47,8 @@
                 getMainClass: getMainClass,
                 getMainStyle: getMainStyle,
                 add         : add,
-                removeAll   : removeAll
+                removeAll   : removeAll,
+                onHideAlert : onHideAlert
             };
 
             var data = {
@@ -70,12 +72,13 @@
                 scope._cozenFloatingFeedAnimationIn  = angular.isDefined(attrs.cozenFloatingFeedAnimationIn) ? attrs.cozenFloatingFeedAnimationIn : CONFIG.floatingFeed.animation.in;
                 scope._cozenFloatingFeedAnimationOut = angular.isDefined(attrs.cozenFloatingFeedAnimationOut) ? attrs.cozenFloatingFeedAnimationOut : CONFIG.floatingFeed.animation.out;
                 scope._cozenFloatingFeedCloseBtn     = angular.isDefined(attrs.cozenFloatingFeedCloseBtn) ? JSON.parse(attrs.cozenFloatingFeedCloseBtn) : CONFIG.floatingFeed.closeBtn;
-                scope._cozenFloatingFeedLeftIcon     = angular.isDefined(attrs.cozenFloatingFeedLeftIcon) ? JSON.parse(attrs.cozenFloatingFeedLeftIcon) : CONFIG.floatingFeed.leftIcon;
+                scope._cozenFloatingFeedIconLeft     = angular.isDefined(attrs.cozenFloatingFeedIconLeft) ? JSON.parse(attrs.cozenFloatingFeedIconLeft) : CONFIG.floatingFeed.iconLeft;
                 scope._cozenFloatingFeedRight        = angular.isDefined(attrs.cozenFloatingFeedRight) ? attrs.cozenFloatingFeedRight : CONFIG.floatingFeed.right;
                 scope._cozenFloatingFeedBottom       = angular.isDefined(attrs.cozenFloatingFeedBottom) ? attrs.cozenFloatingFeedBottom : CONFIG.floatingFeed.bottom;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
 
                 // Contain all the alert
                 scope._cozenFloatingAlerts = [];
@@ -90,8 +93,7 @@
             }
 
             function getMainClass() {
-                var classList = [];
-                return classList;
+                return [scope._activeTheme];
             }
 
             function getMainStyle() {
@@ -107,13 +109,18 @@
                     if (!Methods.hasOwnProperty(alert, 'label')) Methods.missingKeyLog(data.directive, 'label', 'adding alert');
                     else if (!Methods.hasOwnProperty(alert, 'type')) Methods.missingKeyLog(data.directive, 'type', 'adding alert');
                     else {
-                        alert.addedOn = moment().unix();
+                        alert.addedOn                    = moment().unix();
+                        scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
                         scope._cozenFloatingAlerts.push(alert);
                     }
-                }
+                } else Methods.directiveErrorRequired(data.directive, 'alert');
             }
 
             function removeAll() {
+
+            }
+
+            function onHideAlert($index) {
 
             }
         }

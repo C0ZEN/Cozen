@@ -74,3 +74,37 @@
 .zoomOut {
   animation-name: zoomOut;
 }
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity:   0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity:   1;
+    transform: none;
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity:   0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity:   1;
+    transform: none;
+  }
+}
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+@-webkit-keyframes fadeInDownBig {
+  from {
+    opacity:   0;
+    transform: translate3d(0, -2000px, 0);
+  }
+  to {
+    opacity:   1;
+    transform: none;
+  }
+}

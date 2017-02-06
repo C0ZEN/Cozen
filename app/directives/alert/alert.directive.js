@@ -15,24 +15,27 @@
  * @param {string}   cozenAlertLabelValues    > Values for translate label
  *
  * [Attributes params]
- * @param {number}  cozenAlertId                          > Id of the button
- * @param {string}  cozenAlertSize            = 'normal'  > Size of the button
- * @param {string}  cozenAlertSizeSmall                   > Shortcut for small size
- * @param {string}  cozenAlertSizeNormal                  > Shortcut for normal size
- * @param {string}  cozenAlertSizeLarge                   > Shortcut for large size
- * @param {string}  cozenAlertType            = 'default' > Type of the button (change the color)
- * @param {string}  cozenAlertTypeDefault                 > Shortcut for default type
- * @param {string}  cozenAlertTypeInfo                    > Shortcut for info type
- * @param {string}  cozenAlertTypeSuccess                 > Shortcut for success type
- * @param {string}  cozenAlertTypeWarning                 > Shortcut for warning type
- * @param {string}  cozenAlertTypeError                   > Shortcut for error type
- * @param {boolean} cozenAlertAnimationIn     = true      > Add an animation before show [config.json]
- * @param {boolean} cozenAlertAnimationOut    = true      > Add an animation before hide [config.json]
- * @param {boolean} cozenAlertCloseBtn        = true      > Display the close btn (top-right) [config.json]
- * @param {string}  cozenAlertIconLeft        = Multiple  > Text of the icon left [config.json]
- * @param {string}  cozenAlertTextAlign       = 'justify' > Alignment of the label [config.json]
- * @param {boolean} cozenAlertCloseBtnTooltip = true      > Display a tooltip on the close btn [config.json]
- * @param {string}  cozenAlertClass                       > Custom class
+ * @param {number}  cozenAlertId                                > Id of the button
+ * @param {string}  cozenAlertSize              = 'normal'      > Size of the button
+ * @param {string}  cozenAlertSizeSmall                         > Shortcut for small size
+ * @param {string}  cozenAlertSizeNormal                        > Shortcut for normal size
+ * @param {string}  cozenAlertSizeLarge                         > Shortcut for large size
+ * @param {string}  cozenAlertType              = 'default'     > Type of the button (change the color)
+ * @param {string}  cozenAlertTypeDefault                       > Shortcut for default type
+ * @param {string}  cozenAlertTypeInfo                          > Shortcut for info type
+ * @param {string}  cozenAlertTypeSuccess                       > Shortcut for success type
+ * @param {string}  cozenAlertTypeWarning                       > Shortcut for warning type
+ * @param {string}  cozenAlertTypeError                         > Shortcut for error type
+ * @param {boolean} cozenAlertAnimationIn       = true          > Add an animation before show [config.json]
+ * @param {boolean} cozenAlertAnimationOut      = true          > Add an animation before hide [config.json]
+ * @param {boolean} cozenAlertCloseBtn          = true          > Display the close btn (top-right) [config.json]
+ * @param {string}  cozenAlertIconLeft          = Multiple      > Text of the icon left [config.json]
+ * @param {string}  cozenAlertTextAlign         = 'justify'     > Alignment of the label [config.json]
+ * @param {boolean} cozenAlertCloseBtnTooltip   = true          > Display a tooltip on the close btn [config.json]
+ * @param {string}  cozenAlertClass                             > Custom class
+ * @param {boolean} cozenAlertForceAnimation    = false         > Force to launch the animation
+ * @param {string}  cozenAlertAnimationInClass  = 'fadeInUp'    > Define the kind of animation when showing [config.json]
+ * @param {string}  cozenAlertAnimationOutClass = 'fadeOutDown' > Define the kind of animation when hiding [config.json]
  *
  */
 (function (angular) {
@@ -122,22 +125,26 @@
 
                 // Default values (scope)
                 if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
-                if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertLabel = '';
+                // if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertLabel = '';
 
                 // Default values (attributes)
-                scope._cozenAlertId              = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
-                scope._cozenAlertAnimationIn     = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
-                scope._cozenAlertAnimationOut    = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
-                scope._cozenAlertCloseBtn        = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
-                scope._cozenAlertIconLeft        = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
-                scope._cozenAlertTextAlign       = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
-                scope._cozenAlertCloseBtnTooltip = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+                scope._cozenAlertId                = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
+                scope._cozenAlertAnimationIn       = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
+                scope._cozenAlertAnimationOut      = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
+                scope._cozenAlertCloseBtn          = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
+                scope._cozenAlertIconLeft          = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
+                scope._cozenAlertTextAlign         = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
+                scope._cozenAlertCloseBtnTooltip   = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+                scope._cozenAlertForceAnimation    = angular.isDefined(attrs.cozenAlertForceAnimation) ? JSON.parse(attrs.cozenAlertForceAnimation) : false;
+                scope._cozenAlertAnimationInClass  = angular.isDefined(attrs.cozenAlertAnimationInClass) ? attrs.cozenAlertAnimationInClass : CONFIG.alert.animation.inClass;
+                scope._cozenAlertAnimationOutClass = angular.isDefined(attrs.cozenAlertAnimationOutClass) ? attrs.cozenAlertAnimationOutClass : CONFIG.alert.animation.outClass;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
                 scope.$on('cozenAlertShow', methods.show);
                 scope.$on('cozenAlertHide', methods.hide);
+                data.firstHide = !scope._cozenAlertForceAnimation;
 
                 // To execute the hide and show stuff even if the value is changed elsewhere
                 scope.$watch('cozenAlertDisplay', function (newValue) {
@@ -168,9 +175,10 @@
                 if (!data.firstHide) {
                     if (scope._cozenAlertAnimationIn) classList.push('animate-in');
                     if (scope._cozenAlertAnimationOut) classList.push('animate-out');
-                    if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push('fadeInUp');
-                    if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push('fadeOutDown');
+                    if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) classList.push(scope._cozenAlertAnimationInClass);
+                    if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) classList.push(scope._cozenAlertAnimationOutClass);
                 }
+                console.log(classList);
                 return classList;
             }
 

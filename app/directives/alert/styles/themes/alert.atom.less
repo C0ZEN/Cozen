@@ -57,7 +57,7 @@ div.cozen-alert.atom {
     .cozen-alert-color(@atom-color-error-ultra-light, @atom-color-error-ultra-light);
   }
 }
-div.cozen-floating-feed {
+div.cozen-floating-feed.atom {
   position:         fixed;
   box-sizing:       border-box;
   content:          '';
@@ -67,7 +67,7 @@ div.cozen-floating-feed {
   background-color: transparent;
   z-index:          200;
   height:           auto;
-  div.cozen-floating-alert {
-    padding: @atom-space-small 0;
-  }
+
+  // Alert
+  .cozen-floating-alert(@atom-space-base);
 }

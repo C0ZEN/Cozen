@@ -69,7 +69,9 @@
     },
     "animation": {
       "in": true,
-      "out": true
+      "inClass": "fadeInUp",
+      "out": true,
+      "outClass": "fadeOutDown"
     }
   },
   "btnToggle": {
@@ -101,8 +103,8 @@
       "out": ""
     },
     "closeBtn": true,
-    "leftIcon": true,
+    "iconLeft": true,
     "right": 20,
-    "bottom": 60
+    "bottom": 20
   }
 }

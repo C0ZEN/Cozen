@@ -158,9 +158,19 @@
             return this;
         };
 
+        this.alertAnimationInClass = function (value) {
+            CONFIG.alert.animation.inClass = value;
+            return this;
+        };
+
         this.alertAnimationOut = function (value) {
             if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationOut');
             else CONFIG.alert.animation.out = value;
+            return this;
+        };
+
+        this.alertAnimationOutClass = function (value) {
+            CONFIG.alert.animation.outClass = value;
             return this;
         };
 
@@ -279,9 +289,9 @@
             return this;
         };
 
-        this.floatingFeedLeftIcon = function (value) {
-            if (typeof value != 'boolean') Methods.dataMustBeBoolean('floatingFeedLeftIcon');
-            else CONFIG.floatingFeed.leftIcon = value;
+        this.floatingFeedIconLeft = function (value) {
+            if (typeof value != 'boolean') Methods.dataMustBeBoolean('floatingFeedIconLeft');
+            else CONFIG.floatingFeed.iconLeft = value;
             return this;
         };
 
