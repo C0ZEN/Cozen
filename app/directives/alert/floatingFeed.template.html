@@ -5,11 +5,12 @@
 
   <!-- Alert -->
   <cozen-alert ng-repeat="alert in _cozenFloatingAlerts track by $index"
+               id="float-feed-alert-{{ $index }}"
                cozen-alert-label="alert.label"
                cozen-alert-label-values="alert.labelValues"
                cozen-alert-size="{{ _cozenFloatingFeedSize }}"
                cozen-alert-type="{{ alert.type }}"
-               cozen-alert-animation-in="{{ _cozenFloatingFeedAnimationIn != '' }}"
+               cozen-alert-animation-in="false"
                cozen-alert-animation-out="{{ _cozenFloatingFeedAnimationOut != '' }}"
                cozen-alert-animation-in-class="{{ _cozenFloatingFeedAnimationIn }}"
                cozen-alert-animation-out-class="{{ _cozenFloatingFeedAnimationOut }}"

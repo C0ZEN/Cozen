@@ -29,10 +29,12 @@
     'CONFIG',
     '$rootScope',
     'Themes',
-    'rfc4122'
+    'rfc4122',
+    '$timeout',
+    '$animate'
   ];
 
-  function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122) {
+  function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate) {
     return {
       link       : link,
       restrict   : 'E',
@@ -117,6 +119,13 @@
             alert.uuid                       = rfc4122.v4();
             scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
             scope._cozenFloatingAlerts.unshift(alert);
+
+              var child = element[0].querySelector('#float-feed-alert-0');
+              $animate.addClass(child, 'animated fadeInDown').then(function () {
+                console.log(1);
+                $animate.removeClass(child, 'animated fadeInDown');
+              });
+
           }
         } else Methods.directiveErrorRequired(data.directive, 'alert');
       }
