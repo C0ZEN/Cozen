@@ -7,15 +7,15 @@
  * @description
  *
  * [Attributes params]
- * @param {number}  cozenFloatingFeedId                          > Id of the floatingFeed
- * @param {number}  cozenFloatingFeedWidth        = 460          > Width of the floating feed in pixel [config.json]
- * @param {string}  cozenFloatingFeedSize         = 'normal'     > Size of the popup [config.json]
- * @param {string}  cozenFloatingFeedAnimationIn  = 'fadeInDown' > Animation when showing the popup [config.json]
- * @param {string}  cozenFloatingFeedAnimationOut = ''           > Animation when hiding the popup [config.json]
- * @param {boolean} cozenFloatingFeedCloseBtn     = true         > Display the close btn of the popups [config.json]
- * @param {boolean} cozenFloatingFeedIconLeft     = true         > Display the left icon of the popups [config.json]
- * @param {number}  cozenFloatingFeedRight        = 20           > Pixel form the right [config.json]
- * @param {number}  cozenFloatingFeedBottom       = 20           > Pixel from the bottom [config.json]
+ * @param {number}  cozenFloatingFeedId                           > Id of the floatingFeed
+ * @param {number}  cozenFloatingFeedWidth        = 460           > Width of the floating feed in pixel [config.json]
+ * @param {string}  cozenFloatingFeedSize         = 'normal'      > Size of the popup [config.json]
+ * @param {string}  cozenFloatingFeedAnimationIn  = 'fadeInDown'  > Animation when showing the popup [config.json]
+ * @param {string}  cozenFloatingFeedAnimationOut = 'fadeOutDown' > Animation when hiding the popup [config.json]
+ * @param {boolean} cozenFloatingFeedCloseBtn     = true          > Display the close btn of the popups [config.json]
+ * @param {boolean} cozenFloatingFeedIconLeft     = true          > Display the left icon of the popups [config.json]
+ * @param {number}  cozenFloatingFeedRight        = 20            > Pixel form the right [config.json]
+ * @param {number}  cozenFloatingFeedBottom       = 20            > Pixel from the bottom [config.json]
  *
  */
 (function (angular) {
@@ -91,6 +91,17 @@
         // Watch for events
         $rootScope.$on('cozenFloatingFeedAdd', methods.add);
         $rootScope.$on('cozenFloatingFeedRemoveAll', methods.removeAll);
+        scope.$on('onFloatingFeedFinished', function () {
+
+          // Animation when adding
+          if (scope._cozenFloatingFeedAnimationIn != '') {
+            var child = element[0].querySelector('#float-feed-alert-0');
+            scope.hideFirst = false;
+            $animate.addClass(child, 'floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn).then(function () {
+              $animate.removeClass(child, 'hidden floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn);
+            });
+          }
+        });
       }
 
       function destroy() {
@@ -119,13 +130,7 @@
             alert.uuid                       = rfc4122.v4();
             scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
             scope._cozenFloatingAlerts.unshift(alert);
-
-              var child = element[0].querySelector('#float-feed-alert-0');
-              $animate.addClass(child, 'animated fadeInDown').then(function () {
-                console.log(1);
-                $animate.removeClass(child, 'animated fadeInDown');
-              });
-
+            scope.hideFirst = true;
           }
         } else Methods.directiveErrorRequired(data.directive, 'alert');
       }
