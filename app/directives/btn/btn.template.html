@@ -85,7 +85,7 @@
         <div class="cozen-btn-preview fadeInRight"
              ng-mouseenter="displayPreview = true"
              ng-mouseleave="displayPreview = false"
-             ng-show="cozenBtnUploadModel.result.url != '' && cozenBtnUploadModel.result.url != null">
+             ng-show="cozenBtnUploadModel.url != '' && cozenBtnUploadModel.url != null">
 
             <!-- Preview icon -->
             <div class="cozen-btn-preview-btn">
@@ -96,10 +96,10 @@
             <div class="cozen-btn-preview-img zoomIn"
                  ng-show="displayPreview">
                 <span class="title">
-                    {{ cozenBtnUploadModel.result.original_filename + '.' + cozenBtnUploadModel.result.format }}
-                    <small>{{ cozenBtnUploadModel.result.width + 'x' + cozenBtnUploadModel.result.height }}</small>
+                    {{ cozenBtnUploadModel.name }}
+                    <small>{{ cozenBtnUploadModel.width + 'x' + cozenBtnUploadModel.height }}</small>
                 </span>
-                <img ng-src="{{ cozenBtnUploadModel.result.url }}">
+                <img ng-src="{{ cozenBtnUploadModel.url }}">
             </div>
         </div>
     </div>
