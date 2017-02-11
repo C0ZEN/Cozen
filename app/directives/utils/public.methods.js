@@ -22,7 +22,7 @@ var Methods = {
     hasOwnProperty            : hasOwnProperty,
     httpRequestLog            : httpRequestLog,
     firstLoadLog              : firstLoadLog,
-    missingKeyLog: missingKeyLog
+    missingKeyLog             : missingKeyLog
 };
 
 var Data = {
@@ -47,7 +47,8 @@ function safeApply(scope, fn) {
         if (fn && (typeof(fn) === 'function')) {
             fn();
         }
-    } else {
+    }
+    else {
         scope.$apply(fn);
     }
 }
@@ -99,7 +100,9 @@ function getConsoleColor(type) {
 }
 
 function capitalizeFirstLetter(string) {
-    if (Methods.isNullOrEmpty(string) || typeof string != 'string') return string;
+    if (Methods.isNullOrEmpty(string) || typeof string != 'string') {
+        return string;
+    }
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -204,17 +207,11 @@ function hasOwnProperty(obj, prop) {
 
 function httpRequestLog(request) {
     var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + request.methods + '%c][%c' + now + '%c] ' + request.url + '\n' +
-        '%cSession:%c ' + request.data.session + '\n%c' +
-        'Data:%c ' + request.data.data,
+    console.log('%c[%c' + request.methods + '%c][%c' + now + '%c] ' + request.url,
         getConsoleColor(),
         getConsoleColor('red'),
         getConsoleColor(),
         getConsoleColor('time'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
         getConsoleColor()
     );
 }
