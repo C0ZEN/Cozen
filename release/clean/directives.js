@@ -5225,13 +5225,13 @@
  * @description
  *
  * [Scope params]
- * @param {function} cozenPopupOnShow         > Callback function called on show
- * @param {function} cozenPopupOnHide         > Callback function called on hide
+ * @param {function} cozenPopupOnShow         > Callback function called on show (id)
+ * @param {function} cozenPopupOnHide         > Callback function called on hide (id)
  * @param {boolean}  cozenPopupIsOpen = false > Display the popup without event
  * @param {object}   cozenPopupData           > Custom data gave through the factory events
  *
  * [Attributes params]
- * @param {number}  cozenPopupId                          > Id of the popup
+ * @param {number}  cozenPopupId              = uuid      > Id of the popup
  * @param {string}  cozenPopupSize            = 'normal'  > Size of the popup
  * @param {string}  cozenPopupSizeSmall                   > Shortcut for small size
  * @param {string}  cozenPopupSizeNormal                  > Shortcut for normal size
@@ -5269,10 +5269,11 @@
         'Themes',
         'CONFIG',
         '$window',
-        '$timeout'
+        '$timeout',
+        'rfc4122'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout) {
+    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122) {
         return {
             link       : link,
             restrict   : 'E',
@@ -5306,7 +5307,8 @@
             var data = {
                 directive: 'cozenPopup',
                 isHover  : false,
-                firstHide: true
+                firstHide: true,
+                uuid     : rfc4122.v4()
             };
 
             scope._isReady = true;
@@ -5325,33 +5327,67 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenPopupSize)) {
-                    if (angular.isDefined(attrs.cozenPopupSizeSmall)) scope._cozenPopupSize = 'small';
-                    else if (angular.isDefined(attrs.cozenPopupSizeNormal)) scope._cozenPopupSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenPopupSizeLarge)) scope._cozenPopupSize = 'large';
-                    else scope._cozenPopupSize = 'normal';
-                } else scope._cozenPopupSize = attrs.cozenPopupSize;
+                    if (angular.isDefined(attrs.cozenPopupSizeSmall)) {
+                        scope._cozenPopupSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupSizeNormal)) {
+                        scope._cozenPopupSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupSizeLarge)) {
+                        scope._cozenPopupSize = 'large';
+                    }
+                    else {
+                        scope._cozenPopupSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenPopupSize = attrs.cozenPopupSize;
+                }
 
                 // Shortcut values (type)
                 if (angular.isUndefined(attrs.cozenPopupType)) {
-                    if (angular.isDefined(attrs.cozenPopupTypeDefault)) scope._cozenPopupType = 'default';
-                    else if (angular.isDefined(attrs.cozenPopupTypeInfo)) scope._cozenPopupType = 'info';
-                    else if (angular.isDefined(attrs.cozenPopupTypeSuccess)) scope._cozenPopupType = 'success';
-                    else if (angular.isDefined(attrs.cozenPopupTypeWarning)) scope._cozenPopupType = 'warning';
-                    else if (angular.isDefined(attrs.cozenPopupTypeError)) scope._cozenPopupType = 'error';
-                    else if (angular.isDefined(attrs.cozenPopupTypeGreen)) scope._cozenPopupType = 'green';
-                    else if (angular.isDefined(attrs.cozenPopupTypePurple)) scope._cozenPopupType = 'purple';
-                    else scope._cozenPopupType = 'default';
-                } else scope._cozenPopupType = attrs.cozenPopupType;
+                    if (angular.isDefined(attrs.cozenPopupTypeDefault)) {
+                        scope._cozenPopupType = 'default';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupTypeInfo)) {
+                        scope._cozenPopupType = 'info';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupTypeSuccess)) {
+                        scope._cozenPopupType = 'success';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupTypeWarning)) {
+                        scope._cozenPopupType = 'warning';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupTypeError)) {
+                        scope._cozenPopupType = 'error';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupTypeGreen)) {
+                        scope._cozenPopupType = 'green';
+                    }
+                    else if (angular.isDefined(attrs.cozenPopupTypePurple)) {
+                        scope._cozenPopupType = 'purple';
+                    }
+                    else {
+                        scope._cozenPopupType = 'default';
+                    }
+                }
+                else {
+                    scope._cozenPopupType = attrs.cozenPopupType;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenPopupIsOpen)) scope.cozenPopupIsOpen = false;
+                if (angular.isUndefined(attrs.cozenPopupIsOpen)) {
+                    scope.cozenPopupIsOpen = false;
+                }
 
                 // Default values (attributes)
-                scope._cozenPopupId              = angular.isDefined(attrs.cozenPopupId) ? attrs.cozenPopupId : '';
+                scope._cozenPopupId              = angular.isDefined(attrs.cozenPopupId) ? attrs.cozenPopupId : data.uuid;
                 scope._cozenPopupHeader          = angular.isDefined(attrs.cozenPopupHeader) ? JSON.parse(attrs.cozenPopupHeader) : CONFIG.popup.header;
                 scope._cozenPopupHeaderTitle     = angular.isDefined(attrs.cozenPopupHeaderTitle) ? attrs.cozenPopupHeaderTitle : '';
                 scope._cozenPopupHeaderSubTitle  = angular.isDefined(attrs.cozenPopupHeaderSubTitle) ? attrs.cozenPopupHeaderSubTitle : '';
@@ -5382,7 +5418,9 @@
                 }
 
                 // Allow animation on first load if instant show
-                if (scope.cozenPopupIsOpen) data.firstHide = false;
+                if (scope.cozenPopupIsOpen) {
+                    data.firstHide = false;
+                }
 
                 // Display the template
                 scope._isReady = true;
@@ -5404,8 +5442,12 @@
 
             function getMainClass() {
                 var classList = [scope._activeTheme, scope._cozenPopupSize, scope._cozenPopupType];
-                if (scope._cozenPopupAnimationIn) classList.push('animate-in');
-                if (scope._cozenPopupAnimationOut && !data.firstHide) classList.push('animate-out');
+                if (scope._cozenPopupAnimationIn) {
+                    classList.push('animate-in');
+                }
+                if (scope._cozenPopupAnimationOut && !data.firstHide) {
+                    classList.push('animate-out');
+                }
                 return classList;
             }
 
@@ -5413,8 +5455,14 @@
                 if (params.name == scope._cozenPopupName) {
                     data.firstHide         = false;
                     scope.cozenPopupIsOpen = false;
-                    if (Methods.isFunction(scope.cozenPopupOnHide)) scope.cozenPopupOnHide();
-                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
+                    if (Methods.isFunction(scope.cozenPopupOnHide)) {
+                        scope.cozenPopupOnHide({
+                            id: scope._cozenPopupId
+                        });
+                    }
+                    if (CONFIG.debug) {
+                        Methods.directiveCallbackLog(data.directive, 'OnHide');
+                    }
                     Methods.safeApply(scope);
                     $window.removeEventListener('click', methods.onClick);
                     $window.removeEventListener('keydown', methods.onKeyDown);
@@ -5424,8 +5472,14 @@
             function show($event, params) {
                 if (params.name == scope._cozenPopupName) {
                     scope.cozenPopupIsOpen = true;
-                    if (Methods.isFunction(scope.cozenPopupOnShow)) scope.cozenPopupOnShow();
-                    if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
+                    if (Methods.isFunction(scope.cozenPopupOnShow)) {
+                        scope.cozenPopupOnShow({
+                            id: scope._cozenPopupId
+                        });
+                    }
+                    if (CONFIG.debug) {
+                        Methods.directiveCallbackLog(data.directive, 'OnShow');
+                    }
                     Methods.safeApply(scope);
                     if (scope._cozenPopupEasyClose) {
                         $window.addEventListener('click', methods.onClick);
