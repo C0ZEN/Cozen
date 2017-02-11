@@ -3161,10 +3161,6 @@
                 }
             };
 
-            // After some test, wait too long for the load make things crappy
-            // So, I set it to true for now
-            scope._isReady = true;
-
             methods.init();
 
             function init() {
@@ -3181,43 +3177,77 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (pattern)
                 if (angular.isUndefined(attrs.cozenInputPattern)) {
-                    if (angular.isDefined(attrs.cozenInputPatternEmail)) scope._cozenInputPattern = 'email';
-                    else if (angular.isDefined(attrs.cozenInputPatternLetter)) scope._cozenInputPattern = 'letter';
-                    else if (angular.isDefined(attrs.cozenInputPatternName)) scope._cozenInputPattern = 'name';
-                    else scope._cozenInputPattern = '';
-                } else scope._cozenInputPattern = attrs.cozenInputPattern;
+                    if (angular.isDefined(attrs.cozenInputPatternEmail)) {
+                        scope._cozenInputPattern = 'email';
+                    } else if (angular.isDefined(attrs.cozenInputPatternLetter)) {
+                        scope._cozenInputPattern = 'letter';
+                    } else if (angular.isDefined(attrs.cozenInputPatternName)) {
+                        scope._cozenInputPattern = 'name';
+                    } else {
+                        scope._cozenInputPattern = '';
+                    }
+                } else {
+                    scope._cozenInputPattern = attrs.cozenInputPattern;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenInputSize)) {
-                    if (angular.isDefined(attrs.cozenInputSizeSmall)) scope._cozenInputSize = 'small';
-                    else if (angular.isDefined(attrs.cozenInputSizeNormal)) scope._cozenInputSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenInputSizeLarge)) scope._cozenInputSize = 'large';
-                    else scope._cozenInputSize = 'normal';
-                } else scope._cozenInputSize = attrs.cozenInputSize;
+                    if (angular.isDefined(attrs.cozenInputSizeSmall)) {
+                        scope._cozenInputSize = 'small';
+                    } else if (angular.isDefined(attrs.cozenInputSizeNormal)) {
+                        scope._cozenInputSize = 'normal';
+                    } else if (angular.isDefined(attrs.cozenInputSizeLarge)) {
+                        scope._cozenInputSize = 'large';
+                    } else {
+                        scope._cozenInputSize = 'normal';
+                    }
+                } else {
+                    scope._cozenInputSize = attrs.cozenInputSize;
+                }
 
                 // Shortcut values (type)
                 if (angular.isUndefined(attrs.cozenInputType)) {
-                    if (angular.isDefined(attrs.cozenInputTypeText)) scope._cozenInputType = 'text';
-                    else if (angular.isDefined(attrs.cozenInputTypeNumber)) scope._cozenInputType = 'number';
-                    else if (angular.isDefined(attrs.cozenInputTypePassword)) scope._cozenInputType = 'password';
-                    else scope._cozenInputType = 'text';
-                } else scope._cozenInputType = attrs.cozenInputType;
+                    if (angular.isDefined(attrs.cozenInputTypeText)) {
+                        scope._cozenInputType = 'text';
+                    } else if (angular.isDefined(attrs.cozenInputTypeNumber)) {
+                        scope._cozenInputType = 'number';
+                    } else if (angular.isDefined(attrs.cozenInputTypePassword)) {
+                        scope._cozenInputType = 'password';
+                    } else {
+                        scope._cozenInputType = 'text';
+                    }
+                } else {
+                    scope._cozenInputType = attrs.cozenInputType;
+                }
 
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenInputValidator)) {
-                    if (angular.isDefined(attrs.cozenInputValidatorAll)) scope._cozenInputValidator = 'all';
-                    else if (angular.isDefined(attrs.cozenInputValidatorTouched)) scope._cozenInputValidator = 'touched';
-                    else if (angular.isDefined(attrs.cozenInputValidatorDirty)) scope._cozenInputValidator = 'dirty';
-                    else scope._cozenInputValidator = 'dirty';
-                } else scope._cozenInputValidator = attrs.cozenInputValidator;
+                    if (angular.isDefined(attrs.cozenInputValidatorAll)) {
+                        scope._cozenInputValidator = 'all';
+                    } else if (angular.isDefined(attrs.cozenInputValidatorTouched)) {
+                        scope._cozenInputValidator = 'touched';
+                    } else if (angular.isDefined(attrs.cozenInputValidatorDirty)) {
+                        scope._cozenInputValidator = 'dirty';
+                    } else {
+                        scope._cozenInputValidator = 'dirty';
+                    }
+                } else {
+                    scope._cozenInputValidator = attrs.cozenInputValidator;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenInputDisabled)) scope.vm.cozenInputDisabled = false;
-                if (angular.isUndefined(attrs.cozenInputHasError)) scope.vm.cozenInputHasError = false;
+                if (angular.isUndefined(attrs.cozenInputDisabled)) {
+                    scope.vm.cozenInputDisabled = false;
+                }
+                if (angular.isUndefined(attrs.cozenInputHasError)) {
+                    scope.vm.cozenInputHasError = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenInputId                 = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
@@ -3279,6 +3309,13 @@
                     scope._cozenInputForm      = eventData.name;
                     scope._cozenInputFormCtrl  = eventData.ctrl;
                     scope._cozenInputFormModel = eventData.model;
+
+                    if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
+                        var input      = methods.getForm();
+                        input          = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                        input.$dirty   = true;
+                        input.$touched = true;
+                    }
                 });
                 scope._cozenInputPatternRegExp = methods.getPattern();
 
@@ -3293,7 +3330,6 @@
 
                 // Display the template (the timeout avoid a visual bug due to events)
                 $timeout(function () {
-                    scope._isReady = true;
                     methods.updateModelLength();
                 }, 1);
             }
@@ -3319,10 +3355,14 @@
                         if (scope._cozenInputValidatorEmpty || (!scope._cozenInputValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenInputModel))) {
                             switch (scope._cozenInputValidator) {
                                 case 'touched':
-                                    if (input.$touched) classList.push(methods.getDesignClass(input));
+                                    if (input.$touched) {
+                                        classList.push(methods.getDesignClass(input));
+                                    }
                                     break;
                                 case 'dirty':
-                                    if (input.$dirty) classList.push(methods.getDesignClass(input));
+                                    if (input.$dirty) {
+                                        classList.push(methods.getDesignClass(input));
+                                    }
                                     break;
                                 case 'all':
                                     classList.push(methods.getDesignClass(input));
@@ -3330,21 +3370,37 @@
                             }
                         }
                     }
-                    if (scope.vm.cozenInputDisabled) classList.push('disabled');
-                    if (scope._cozenInputIconLeft) classList.push('icon-left');
-                    if (methods.isIconRightDisplay()) classList.push('icon-right');
-                    if (scope._cozenInputType == 'password') classList.push('password');
-                    if (scope._cozenInputType == 'number') classList.push('number');
+                    if (scope.vm.cozenInputDisabled) {
+                        classList.push('disabled');
+                    }
+                    if (scope._cozenInputIconLeft) {
+                        classList.push('icon-left');
+                    }
+                    if (methods.isIconRightDisplay()) {
+                        classList.push('icon-right');
+                    }
+                    if (scope._cozenInputType == 'password') {
+                        classList.push('password');
+                    }
+                    if (scope._cozenInputType == 'number') {
+                        classList.push('number');
+                    }
                     return classList;
                 }
             }
 
             function onChange($event) {
-                if (scope.vm.cozenInputDisabled) return;
-                if (Methods.isFunction(scope.vm.cozenInputOnChange)) scope.vm.cozenInputOnChange({
-                    newModel: scope.vm.cozenInputModel
-                });
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (scope.vm.cozenInputDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.vm.cozenInputOnChange)) {
+                    scope.vm.cozenInputOnChange({
+                        newModel: scope.vm.cozenInputModel
+                    });
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
 
@@ -3388,11 +3444,21 @@
                                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                                     return form;
-                                } else return form;
-                            } else return form;
-                        } else return form;
-                    } else return form;
-                } else return form;
+                                } else {
+                                    return form;
+                                }
+                            } else {
+                                return form;
+                            }
+                        } else {
+                            return form;
+                        }
+                    } else {
+                        return form;
+                    }
+                } else {
+                    return form;
+                }
             }
 
             function getIconRightClass() {
@@ -3407,8 +3473,9 @@
             }
 
             function isIconRightDisplay() {
-                if (!Methods.isNullOrEmpty(scope._cozenInputIconRight)) return true;
-                else if (scope._cozenInputValidatorIcon && scope._cozenInputHasFeedback) {
+                if (!Methods.isNullOrEmpty(scope._cozenInputIconRight)) {
+                    return true;
+                } else if (scope._cozenInputValidatorIcon && scope._cozenInputHasFeedback) {
                     return !(!scope._cozenInputValidatorEmpty && Methods.isNullOrEmpty(scope.vm.cozenInputModel));
                 }
                 return false;
@@ -3425,10 +3492,18 @@
                         return '[a-zA-Z\'-\\s]*';
                     case 'password':
                         var pattern = '';
-                        if (scope.vm.cozenInputTypePasswordConfig.lowercase) pattern += '(?=.*' + data.password.lowercase.regexp + ')';
-                        if (scope.vm.cozenInputTypePasswordConfig.uppercase) pattern += '(?=.*' + data.password.uppercase.regexp + ')';
-                        if (scope.vm.cozenInputTypePasswordConfig.number) pattern += '(?=.*' + data.password.number.regexp + ')';
-                        if (scope.vm.cozenInputTypePasswordConfig.specialChar) pattern += '(?=.*' + data.password.specialChar.regexp + ')';
+                        if (scope.vm.cozenInputTypePasswordConfig.lowercase) {
+                            pattern += '(?=.*' + data.password.lowercase.regexp + ')';
+                        }
+                        if (scope.vm.cozenInputTypePasswordConfig.uppercase) {
+                            pattern += '(?=.*' + data.password.uppercase.regexp + ')';
+                        }
+                        if (scope.vm.cozenInputTypePasswordConfig.number) {
+                            pattern += '(?=.*' + data.password.number.regexp + ')';
+                        }
+                        if (scope.vm.cozenInputTypePasswordConfig.specialChar) {
+                            pattern += '(?=.*' + data.password.specialChar.regexp + ')';
+                        }
                         pattern += '.{' + scope.vm.cozenInputTypePasswordConfig.minLength + ',}';
                         return pattern;
                     default:
@@ -3437,7 +3512,9 @@
             }
 
             function onArrowDown($event, arrow) {
-                if (scope.vm.cozenInputDisabled) return;
+                if (scope.vm.cozenInputDisabled) {
+                    return;
+                }
                 data.arrowDown = true;
                 if (typeof scope.vm.cozenInputModel != 'number') {
                     scope.vm.cozenInputModel = scope._cozenInputMin;
@@ -3472,7 +3549,9 @@
             }
 
             function onArrowUp($event) {
-                if (scope.vm.cozenInputDisabled) return;
+                if (scope.vm.cozenInputDisabled) {
+                    return;
+                }
                 $timeout.cancel(data.arrowTimeout);
                 data.arrowDown   = false;
                 var form         = methods.getForm();
@@ -3483,7 +3562,9 @@
             }
 
             function getPasswordTooltipLabel() {
-                if (scope._cozenInputType != 'password') return;
+                if (scope._cozenInputType != 'password') {
+                    return;
+                }
 
                 // Test the regexp
                 data.password.lowercase.complete   = Methods.isRegExpValid(data.password.lowercase.regexp, scope.vm.cozenInputModel);
@@ -3492,7 +3573,9 @@
                 data.password.specialChar.complete = Methods.isRegExpValid(data.password.specialChar.regexp, scope.vm.cozenInputModel);
                 if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
                     data.password.minLength.complete = scope.vm.cozenInputModel.length >= scope.vm.cozenInputTypePasswordConfig.minLength;
-                } else data.password.minLength.complete = false;
+                } else {
+                    data.password.minLength.complete = false;
+                }
 
                 // Create the tooltip
                 scope._cozenInputTooltip = '<ul class="cozen-input-password-tooltip ' + scope._activeTheme + '">';
@@ -3519,7 +3602,9 @@
 
             function getPasswordStateClass(regexp) {
                 var classList = [];
-                if (data.password[regexp].complete) classList.push('active');
+                if (data.password[regexp].complete) {
+                    classList.push('active');
+                }
                 return classList;
             }
 
