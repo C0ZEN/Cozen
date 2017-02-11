@@ -8,8 +8,8 @@
  * @description
  *
  * [Scope params]
- * @param {function} cozenPopupOnShow         > Callback function called on show (id)
- * @param {function} cozenPopupOnHide         > Callback function called on hide (id)
+ * @param {function} cozenPopupOnShow         > Callback function called on show (id, name)
+ * @param {function} cozenPopupOnHide         > Callback function called on hide (id, name)
  * @param {boolean}  cozenPopupIsOpen = false > Display the popup without event
  * @param {object}   cozenPopupData           > Custom data gave through the factory events
  *
@@ -240,7 +240,8 @@
                     scope.cozenPopupIsOpen = false;
                     if (Methods.isFunction(scope.cozenPopupOnHide)) {
                         scope.cozenPopupOnHide({
-                            id: scope._cozenPopupId
+                            id  : scope._cozenPopupId,
+                            name: scope._cozenPopupName
                         });
                     }
                     if (CONFIG.debug) {
@@ -257,7 +258,8 @@
                     scope.cozenPopupIsOpen = true;
                     if (Methods.isFunction(scope.cozenPopupOnShow)) {
                         scope.cozenPopupOnShow({
-                            id: scope._cozenPopupId
+                            id  : scope._cozenPopupId,
+                            name: scope._cozenPopupName
                         });
                     }
                     if (CONFIG.debug) {
