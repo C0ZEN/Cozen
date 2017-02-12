@@ -10246,6 +10246,9 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 .atom.tooltip {
   padding: 6px;
 }
+.atom.tooltip > .tooltip-inner {
+  max-width: inherit;
+}
 
 /**************/
 /*   COLORS   */
@@ -16393,4 +16396,7 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
 }
 .tau.tooltip {
   padding: 8px;
+}
+.tau.tooltip > .tooltip-inner {
+  max-width: inherit;
 }

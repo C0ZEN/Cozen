@@ -52,6 +52,9 @@
 .cozen-tooltip-size(@padding) {
     &.tooltip {
         padding : @padding;
+        > .tooltip-inner {
+            max-width : inherit;
+        }
     }
 }
 /***********************/
