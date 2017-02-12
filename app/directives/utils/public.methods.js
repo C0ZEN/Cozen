@@ -239,15 +239,38 @@ function missingKeyLog(directive, key, when) {
     );
 }
 
-function changeRouteLog(directive, route) {
+function changeRouteLog(directive, route, params) {
     var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Redirection to <%c' + route + '%c>',
+    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Redirection to <%c' + route + '%c>' + getFormattedParams(params),
         getConsoleColor(),
         getConsoleColor('directive'),
         getConsoleColor(),
         getConsoleColor('time'),
         getConsoleColor(),
         getConsoleColor('fn'),
-        getConsoleColor()
+        getConsoleColor(),
+        getConsoleColor('fn')
     );
+
+    function getFormattedParams(params) {
+        var text = '', count = 0;
+        if (!Methods.isNullOrEmpty(params) && Object.keys(params).length > 0) {
+            text += '\nParams:%c ';
+            Object.keys(params).forEach(function (key) {
+                if (count > 0) {
+                    text += ', ';
+                }
+                else {
+                    text += '{'
+                }
+                text += key + ':' + params[key];
+                count++;
+            });
+            text += '}';
+        }
+        else {
+            text += '%c';
+        }
+        return text;
+    }
 }
