@@ -1,0 +1,115 @@
+div.cozen-btn.atom {
+  @border-height: 1px;
+
+  // Size
+  &.small {
+    .cozen-btn-size(@atom-space-small, @atom-font-h3, @atom-space-small @atom-space-medium);
+    .cozen-btn-icon(@atom-space-small, 18px);
+    .cozen-btn-loader((40px - @border-height * 2 - @atom-space-small * 2) / 2, 50px, 10px);
+    .cozen-btn-img-left(26px, 26px, 0);
+    .cozen-btn-alert(@atom-space-small 0 0 0);
+  }
+  &.normal {
+    .cozen-btn-size(@atom-space-small, @atom-font-h3, @atom-space-small @atom-space-medium);
+    .cozen-btn-icon(@atom-space-small, 14px);
+    .cozen-btn-loader((40px - @border-height * 2 - @atom-space-small * 2) / 2, 50px, 10px);
+    .cozen-btn-img-left(26px, 26px, 0);
+    .cozen-btn-alert(@atom-space-small 0 0 0);
+  }
+  &.large {
+    .cozen-btn-size(@atom-space-base, @atom-font-h3, @atom-space-base @atom-space-large);
+    .cozen-btn-icon(@atom-space-base, 16px);
+    .cozen-btn-loader((52px - @border-height * 2 - @atom-space-base * 2) / 2, 90px, 12px);
+    .cozen-btn-img-left(26px, 26px, 0);
+    .cozen-btn-alert(@atom-space-small 0 0 0);
+  }
+
+  // Type
+  &.default {
+    .cozen-btn-type(@atom-color-white, @atom-color-blue, @atom-color-blue-active, 400);
+    .cozen-btn-border(@border-height, solid, @atom-color-blue, @atom-color-blue-active, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+    .cozen-btn-upload(1px solid @atom-color-blue, @atom-color-white, @atom-color-blue);
+    .cozen-btn-upload-hover(1px dashed @atom-color-blue, @atom-color-blue, @atom-color-white);
+    .cozen-btn-drag-over-accept(1px dashed @atom-color-success, @atom-color-success, @atom-color-white);
+    .cozen-btn-drag-over-reject(1px dashed @atom-color-error, @atom-color-error, @atom-color-white);
+    .cozen-btn-label(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
+    .cozen-btn-label-success(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
+    .cozen-btn-label-error(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
+    .cozen-btn-label-disabled(@atom-font-h3, @atom-color-label-disabled, 0, 400, @atom-space-small);
+    .cozen-btn-required-star(@atom-font-h3, @atom-color-yellow, 0 3px, @atom-color-yellow);
+    .cozen-btn-required-icon(@atom-font-body, @atom-color-yellow, 0 5px, @atom-color-yellow);
+    .cozen-btn-preview-icon(0 @atom-space-base, @atom-color-blue, @atom-font-h3);
+    .cozen-btn-preview-icon-hover(0 @atom-space-base, @atom-color-blue-active, @atom-font-h3);
+    .cozen-btn-preview-img(@atom-space-base, @atom-color-white, 1px solid @atom-color-line-rule);
+    .cozen-btn-preview-img-title(@atom-color-font, @atom-font-h3, 500);
+    .cozen-btn-preview-img-subtitle(@atom-color-label, @atom-font-h4, 400);
+  }
+  &.primary {
+    .cozen-btn-type(@atom-color-blue, @atom-color-white, @atom-color-blue-light, 500);
+    .cozen-btn-border(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 500);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.transparent {
+    .cozen-btn-type(@atom-color-blue, transparent, rgba(0, 0, 0, 0.1), 500);
+    .cozen-btn-border(@border-height, solid, transparent, rgba(0, 0, 0, 0.1), @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 500);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.cold {
+    .cozen-btn-type(@atom-color-white, #bdc3c7, #d6d9dc, 500);
+    .cozen-btn-border(@border-height, solid, #bdc3c7, #d6d9dc, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 500);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.purple {
+    .cozen-btn-type(@atom-color-white, @atom-color-purple, @atom-color-purple-active, 400);
+    .cozen-btn-border(@border-height, solid, @atom-color-purple, @atom-color-purple-active, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.green {
+    .cozen-btn-type(@atom-color-white, @atom-color-green, @atom-color-green-active, 400);
+    .cozen-btn-border(@border-height, solid, @atom-color-green, @atom-color-green-active, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.google {
+    .cozen-btn-type(@atom-color-white, #cf4332, #d35345, 400);
+    .cozen-btn-border(@border-height, solid, #cf4332, #d35345, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.facebook {
+    .cozen-btn-type(@atom-color-white, #3c66c4, #4e76ca, 400);
+    .cozen-btn-border(@border-height, solid, #3c66c4, #4e76ca, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.info {
+    .cozen-btn-type(@atom-color-white, @atom-color-info, @atom-color-info-light, 400);
+    .cozen-btn-border(@border-height, solid, @atom-color-info, @atom-color-info-light, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.success {
+    .cozen-btn-type(@atom-color-white, @atom-color-success, @atom-color-success-light, 400);
+    .cozen-btn-border(@border-height, solid, @atom-color-success, @atom-color-success-light, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.warning {
+    .cozen-btn-type(@atom-color-white, @atom-color-warning, @atom-color-warning-light, 400);
+    .cozen-btn-border(@border-height, solid, @atom-color-warning, @atom-color-warning-light, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+  &.error {
+    .cozen-btn-type(@atom-color-white, @atom-color-error, @atom-color-error-light, 400);
+    .cozen-btn-border(@border-height, solid, @atom-color-error, @atom-color-error-light, @cozen-radius);
+    .cozen-btn-type-disabled(@atom-color-white, @atom-color-line-rule, @atom-color-line-rule, 400);
+    .cozen-btn-border-disabled(@border-height, solid, @atom-color-line-rule, @atom-color-line-rule, @cozen-radius);
+  }
+}

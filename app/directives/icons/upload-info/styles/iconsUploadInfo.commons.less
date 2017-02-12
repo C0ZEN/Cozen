@@ -1,0 +1,178 @@
+div.cozen-btn {
+    text-align  : center;
+    transition  : @cozen-transition;
+    box-sizing  : border-box;
+    position    : relative;
+    line-height : inherit;
+    outline     : @cozen-outline;
+    width       : 100%;
+    display     : block;
+
+    // Label
+    div.cozen-btn-label {
+        display     : flex;
+        align-items : center;
+        label {
+            font-size   : inherit;
+            color       : inherit;
+            font-weight : inherit;
+            margin      : 0;
+            padding     : 0;
+            &.label {
+                cursor : pointer;
+            }
+            &.required-star {
+                line-height : 0;
+            }
+            &.required-icon {
+                cursor : pointer;
+            }
+        }
+    }
+
+    div.cozen-btn-content-container {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : space-between;
+        align-items     : center;
+
+        // Content
+        div.cozen-btn-content {
+            flex       : 1;
+            cursor     : pointer;
+            outline    : @cozen-outline;
+            transition : @cozen-transition;
+
+            // Label
+            span.cozen-btn-label {
+                cursor         : inherit;
+                font-size      : inherit;
+                font-weight    : inherit;
+                vertical-align : sub;
+                line-height    : inherit;
+            }
+
+            // Icon
+            div.cozen-btn-icon {
+                display        : inline-block;
+                cursor         : inherit;
+                font-weight    : inherit;
+                font-size      : inherit;
+                vertical-align : sub;
+                line-height    : inherit;
+                i {
+                    vertical-align : middle;
+                }
+            }
+
+            // Img
+            div.cozen-btn-img {
+                &.left {
+                    float : left;
+                }
+            }
+
+            // Loader
+            div.cozen-btn-loader {
+                position : relative;
+                height   : inherit;
+                margin   : 0 auto;
+                &:before,
+                span,
+                &:after {
+                    top           : 50%;
+                    content       : '';
+                    position      : absolute;
+                    display       : block;
+                    border-radius : 50%;
+                    opacity       : 0.2;
+                }
+                &:before {
+                    left      : 0;
+                    transform : translate(0, -50%);
+                    animation : tauLightUp 1500ms linear infinite;
+                }
+                span {
+                    left      : 50%;
+                    transform : translate(-50%, -50%);
+                    animation : tauLightUp 1500ms linear infinite 500ms;
+                }
+                &:after {
+                    right     : 0;
+                    transform : translate(0, -50%);
+                    animation : tauLightUp 1500ms linear infinite 1000ms;
+                }
+            }
+        }
+
+        // Preview
+        div.cozen-btn-preview {
+            position            : relative;
+            animation-fill-mode : @cozen-animation-fill;
+            animation-duration  : @cozen-animation-duration-in-fast;
+            &.ng-hide {
+                display : none !important;
+            }
+            div.cozen-btn-preview-btn {
+                cursor     : pointer;
+                outline    : @cozen-outline;
+                transition : @cozen-transition;
+                i {
+                    vertical-align : middle;
+                }
+            }
+            div.cozen-btn-preview-img {
+                border-radius       : @cozen-radius;
+                position            : absolute;
+                top                 : 0;
+                right               : 100%;
+                content             : '';
+                z-index             : 100;
+                animation-fill-mode : @cozen-animation-fill;
+                animation-duration  : @cozen-animation-duration-in-fast;
+                &.ng-hide {
+                    display : none !important;
+                }
+            }
+        }
+    }
+
+    // Alert
+    div.cozen-btn-alert {
+        animation-fill-mode : @cozen-animation-fill;
+        animation-duration  : @cozen-animation-duration-in;
+        &.ng-hide {
+            display : none !important;
+        }
+    }
+
+    // Disabled
+    &.disabled {
+        div.cozen-btn-content-container {
+            div.cozen-btn-content {
+                cursor      : not-allowed;
+                user-select : none;
+            }
+        }
+    }
+
+    // Loading
+    &.loading {
+        div.cozen-btn-content-container {
+            div.cozen-btn-content {
+                cursor : wait;
+            }
+        }
+    }
+
+    // Auto sizing
+    &.auto {
+        width   : auto;
+        margin  : 0 auto;
+        display : inline-flex;
+        &.loading {
+            padding-left  : 0 !important;
+            padding-right : 0 !important;
+        }
+    }
+}
