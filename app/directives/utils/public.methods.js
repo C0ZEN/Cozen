@@ -22,7 +22,8 @@ var Methods = {
     hasOwnProperty            : hasOwnProperty,
     httpRequestLog            : httpRequestLog,
     firstLoadLog              : firstLoadLog,
-    missingKeyLog             : missingKeyLog
+    missingKeyLog             : missingKeyLog,
+    changeRouteLog            : changeRouteLog
 };
 
 var Data = {
@@ -232,6 +233,19 @@ function missingKeyLog(directive, key, when) {
     console.error('%c[%c' + directive + '%c] Missing key <%c' + key + '%c> when ' + when,
         getConsoleColor(),
         getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
+}
+
+function changeRouteLog(directive, route) {
+    var now = moment().format('HH:mm:ss');
+    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Redirection to <%c' + route + '%c>',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('time'),
         getConsoleColor(),
         getConsoleColor('fn'),
         getConsoleColor()
