@@ -8,9 +8,10 @@
  * @description
  *
  * [Scope params]
- * @param {string}   cozenTextareaModel            > Value edited by the textarea [required]
- * @param {boolean}  cozenTextareaDisabled = false > Disable the textarea
- * @param {function} cozenTextareaOnChange         > Callback function called on change
+ * @param {string}   cozenTextareaModel                           > Value edited by the textarea [required]
+ * @param {boolean}  cozenTextareaDisabled = false                > Disable the textarea
+ * @param {function} cozenTextareaOnChange                        > Callback function called on change
+ * @param {string}   cozenTextareaTooltipMaxWidth = max-width-200 > Max width of the tooltip
  *
  * [Attributes params]
  * @param {number}  cozenTextareaId                                           > Id of the textarea
@@ -38,7 +39,7 @@
  * @param {string}  cozenTextareaLabel                                        > Add a label on the top of the textarea
  * @param {string}  cozenTextareaRequiredTooltip  = textarea_required_tooltip > Text to display for the tooltip of the required element
  * @param {string}  cozenTextareaClass                                        > Custom class
- * @param {string}  cozenTextAreaTooltipType      = default                   > Type of the tooltip
+ * @param {string}  cozenTextareaTooltipType      = default                   > Type of the tooltip
  *
  */
 (function (angular) {
@@ -64,9 +65,10 @@
             replace         : false,
             transclude      : false,
             scope           : {
-                cozenTextareaModel   : '=?',
-                cozenTextareaDisabled: '=?',
-                cozenTextareaOnChange: '&'
+                cozenTextareaModel          : '=?',
+                cozenTextareaDisabled       : '=?',
+                cozenTextareaOnChange       : '&',
+                cozenTextareaTooltipMaxWidth: '=?'
             },
             templateUrl     : 'directives/textarea/textarea.template.html',
             bindToController: true,
@@ -147,9 +149,8 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenTextareaDisabled)) {
-                    scope.vm.cozenTextareaDisabled = false;
-                }
+                angular.isUndefined(attrs.cozenTextareaDisabled) ? scope.vm.cozenTextareaDisabled = false : null;
+                angular.isUndefined(attrs.cozenTextareaTooltipMaxWidth) ? scope.vm.cozenTextareaTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attributes)
                 scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
@@ -173,7 +174,7 @@
                 scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
                 scope._cozenTextareaRequiredConfig     = CONFIG.required;
                 scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
-                scope._cozenTextAreaTooltipType        = angular.isDefined(attrs.cozenTextAreaTooltipType) ? attrs.cozenTextAreaTooltipType : 'default';
+                scope._cozenTextareaTooltipType        = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
