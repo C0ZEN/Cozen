@@ -720,6 +720,9 @@
 /************/
 /*   SIZE   */
 /************/
+/***********************/
+/*   MAX WIDTH CLASS   */
+/***********************/
 .atom {
   font-family: 'Catamaran', Arial, sans-serif;
 }
@@ -2159,6 +2162,30 @@ div.cozen-tooltip > div.cozen-tooltip-html {
 }
 .tooltip > .tooltip-inner {
   border-radius: 3px;
+}
+.max-width-100 {
+  max-width: 100px;
+}
+.max-width-150 {
+  max-width: 150px;
+}
+.max-width-200 {
+  max-width: 200px;
+}
+.max-width-250 {
+  max-width: 250px;
+}
+.max-width-300 {
+  max-width: 300px;
+}
+.max-width-350 {
+  max-width: 350px;
+}
+.max-width-400 {
+  max-width: 400px;
+}
+.max-width-450 {
+  max-width: 450px;
 }
 @-webkit-keyframes tauLightUp {
   0% {
@@ -10218,7 +10245,6 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 }
 .atom.tooltip {
   padding: 6px;
-  max-width: 200px;
 }
 
 /**************/
@@ -10939,6 +10965,9 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 /************/
 /*   SIZE   */
 /************/
+/***********************/
+/*   MAX WIDTH CLASS   */
+/***********************/
 .tau {
   font-family: 'Hind', Arial, sans-serif;
 }
@@ -12394,6 +12423,30 @@ div.cozen-tooltip > div.cozen-tooltip-html {
 }
 .tooltip > .tooltip-inner {
   border-radius: 3px;
+}
+.max-width-100 {
+  max-width: 100px;
+}
+.max-width-150 {
+  max-width: 150px;
+}
+.max-width-200 {
+  max-width: 200px;
+}
+.max-width-250 {
+  max-width: 250px;
+}
+.max-width-300 {
+  max-width: 300px;
+}
+.max-width-350 {
+  max-width: 350px;
+}
+.max-width-400 {
+  max-width: 400px;
+}
+.max-width-450 {
+  max-width: 450px;
 }
 @-webkit-keyframes tauLightUp {
   0% {
@@ -16340,5 +16393,4 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
 }
 .tau.tooltip {
   padding: 8px;
-  max-width: 200px;
 }

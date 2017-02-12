@@ -8,19 +8,20 @@
  * @description
  *
  * [Scope params]
- * @param {string}  cozenTooltipLabel            > Text of the tooltip (could be html as well) [required]
- * @param {boolean} cozenTooltipDisabled = false > Disable the tooltip (allow empty label)
-
+ * @param {string}  cozenTooltipLabel                    > Text of the tooltip (could be html as well) [required]
+ * @param {boolean} cozenTooltipDisabled = false         > Disable the tooltip (allow empty label)
+ * @param {string}  cozenTooltipMaxWidth = max-width-200 > Max width of the tooltip (must be a class custom or predefined) [ex: max-width-[100-450])
+ *
  * [Attributes params]
- * @param {string}  cozenTooltipPlacement   = 'auto right' > Position of the tooltip (ui-tooltip placement)
- * @param {boolean} cozenTooltipBody        = true         > Tooltip append to body
- * @param {number}  cozenTooltipCloseDelay  = 100          > Delay before hide
- * @param {number}  cozenTooltipDelay       = 250          > Delay before show
- * @param {string}  cozenTooltipTrigger     = 'mouseenter' > Define what trigger the tooltip
- * @param {string}  cozenTooltipType        = 'default'    > Define what type of tooltip is required
- * @param {string}  cozenTooltipTypeDefault                > Shortcut for default type
- * @param {string}  cozenTooltipTypeHtml                   > Shortcut for html type
- * @param {string}  cozenTooltipDisplay                    > Change the display (only when there are problem)
+ * @param {string}  cozenTooltipPlacement   = auto right > Position of the tooltip (ui-tooltip placement)
+ * @param {boolean} cozenTooltipBody        = true       > Tooltip append to body
+ * @param {number}  cozenTooltipCloseDelay  = 100        > Delay before hide
+ * @param {number}  cozenTooltipDelay       = 250        > Delay before show
+ * @param {string}  cozenTooltipTrigger     = mouseenter > Define what trigger the tooltip
+ * @param {string}  cozenTooltipType        = default    > Define what type of tooltip is required
+ * @param {string}  cozenTooltipTypeDefault              > Shortcut for default type
+ * @param {string}  cozenTooltipTypeHtml                 > Shortcut for html type
+ * @param {string}  cozenTooltipDisplay                  > Change the display (only when there are problem)
  *
  */
 (function (angular) {
@@ -42,7 +43,8 @@
             transclude : true,
             scope      : {
                 cozenTooltipLabel   : '=?',
-                cozenTooltipDisabled: '=?'
+                cozenTooltipDisabled: '=?',
+                cozenTooltipMaxWidth: '=?'
             },
             templateUrl: 'directives/tooltip/tooltip.template.html'
         };
@@ -69,17 +71,29 @@
                 scope._methods = {};
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (type)
                 if (angular.isUndefined(attrs.cozenTooltipType)) {
-                    if (angular.isDefined(attrs.cozenTooltipTypeDefault)) scope._cozenTooltipType = 'default';
-                    else if (angular.isDefined(attrs.cozenTooltipTypeHtml)) scope._cozenTooltipType = 'html';
-                    else scope._cozenTooltipType = 'default';
-                } else scope._cozenTooltipType = attrs.cozenTooltipType;
+                    if (angular.isDefined(attrs.cozenTooltipTypeDefault)) {
+                        scope._cozenTooltipType = 'default';
+                    }
+                    else if (angular.isDefined(attrs.cozenTooltipTypeHtml)) {
+                        scope._cozenTooltipType = 'html';
+                    }
+                    else {
+                        scope._cozenTooltipType = 'default';
+                    }
+                }
+                else {
+                    scope._cozenTooltipType = attrs.cozenTooltipType;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenTooltipDisabled)) scope.cozenTooltipDisabled = false;
+                angular.isUndefined(attrs.cozenTooltipDisabled) ? scope.cozenTooltipDisabled = false : null;
+                angular.isUndefined(attrs.cozenTooltipMaxWidth) ? scope.cozenTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attributes)
                 scope._cozenTooltipPlacement  = angular.isDefined(attrs.cozenTooltipPlacement) ? attrs.cozenTooltipPlacement : 'auto right';
