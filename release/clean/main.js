@@ -49,7 +49,8 @@
             'cozenLib.popup',
             'cozenLib.textarea',
             'cozenLib.tooltip',
-            'cozenLib.view'
+            'cozenLib.view',
+            'cozenLib.icons'
         ]);
 
 })(window.angular, window);

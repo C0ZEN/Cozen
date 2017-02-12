@@ -14,7 +14,7 @@
             *
         </label>
 
-        <!-- Required icon -->
+        <!-- Info icon -->
         <label ng-if="_cozenBtnUploadRequired && _cozenBtnRequiredConfig.type == 'icon'"
                class="required-icon">
             <cozen-tooltip cozen-tooltip-label="_cozenBtnRequiredTooltip"
@@ -23,6 +23,11 @@
                 <i class="{{ _cozenBtnRequiredConfig.icon }}"></i>
             </cozen-tooltip>
         </label>
+
+        <!-- Required icon -->
+        <cozen-upload-info cozen-upload-info-config="cozenBtnUploadConfig"
+                           cozen-upload-info-display="_cozenBtnIsUpload && _cozenBtnUploadInfoIcon">
+        </cozen-upload-info>
     </div>
 
     <div class="cozen-btn-content-container">
@@ -65,8 +70,8 @@
             <!-- Label -->
             <span ng-if="!cozenBtnLoader"
                   class="cozen-btn-label">
-            {{ _isUploading ? (_uploadingText | translate) : (cozenBtnLabel | translate) }}
-        </span>
+                {{ _isUploading ? (_uploadingText | translate) : (cozenBtnLabel | translate) }}
+            </span>
 
             <!-- Right icon -->
             <div ng-if="_cozenBtnIconRight != '' && !cozenBtnLoader"

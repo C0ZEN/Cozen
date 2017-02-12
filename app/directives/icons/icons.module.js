@@ -1,3 +1,11 @@
-/**
- * Created by C0ZEN on 12/02/2017.
- */
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.icons', [
+            'cozenLib.icons.uploadInfo'
+        ]);
+
+})(window.angular);
+
+

@@ -326,7 +326,7 @@ module.exports = function (grunt) {
                     '.tmp/release/main.min.js': '<%= yeoman.app %>/directives/utils/app.modules.js'
                 }
             },
-            releaseCache: {
+            releaseCache     : {
                 files: {
                     '.tmp/release/template.cache.min.js': '<%= yeoman.release %>/clean/template.cache.js'
                 }
@@ -615,8 +615,8 @@ module.exports = function (grunt) {
                     {'<%= yeoman.release %>/optional.reset.min.css': '.tmp/release/reset.min.css'}
                 ]
             },
-            allInOne: {
-                src: [
+            allInOne    : {
+                src : [
                     '.tmp/release/main.min.js',
                     '.tmp/release/template.cache.min.js',
                     '.tmp/release/directives.min.js'

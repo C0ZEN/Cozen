@@ -723,6 +723,9 @@
 /***********************/
 /*   MAX WIDTH CLASS   */
 /***********************/
+/************/
+/*   SIZE   */
+/************/
 .atom {
   font-family: 'Catamaran', Arial, sans-serif;
 }
@@ -2186,6 +2189,23 @@ div.cozen-tooltip > div.cozen-tooltip-html {
 }
 .max-width-450 {
   max-width: 450px;
+}
+label.cozen-upload-info {
+  -webkit-transition: all 80ms ease-out;
+  transition: all 80ms ease-out;
+  box-sizing: border-box;
+  position: relative;
+  outline: 0;
+  display: block;
+  font-size: inherit;
+  cursor: pointer;
+}
+label.cozen-upload-info i {
+  color: inherit;
+  font-size: inherit;
+}
+.cozen-text-left-tooltip-inner > .tooltip-inner {
+  text-align: left;
 }
 @-webkit-keyframes tauLightUp {
   0% {
@@ -10249,6 +10269,17 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 .atom.tooltip > .tooltip-inner {
   max-width: inherit;
 }
+label.cozen-upload-info.atom {
+  color: #2c9fdd !important;
+}
+label.cozen-upload-info.atom:focus,
+label.cozen-upload-info.atom:active,
+label.cozen-upload-info.atom:hover {
+  color: #32afe3 !important;
+}
+.tooltip.atom .cozen-upload-info-value {
+  color: #d6dbdb;
+}
 
 /**************/
 /*   COLORS   */
@@ -10971,6 +11002,9 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 /***********************/
 /*   MAX WIDTH CLASS   */
 /***********************/
+/************/
+/*   SIZE   */
+/************/
 .tau {
   font-family: 'Hind', Arial, sans-serif;
 }
@@ -12450,6 +12484,23 @@ div.cozen-tooltip > div.cozen-tooltip-html {
 }
 .max-width-450 {
   max-width: 450px;
+}
+label.cozen-upload-info {
+  -webkit-transition: all 80ms ease-out;
+  transition: all 80ms ease-out;
+  box-sizing: border-box;
+  position: relative;
+  outline: 0;
+  display: block;
+  font-size: inherit;
+  cursor: pointer;
+}
+label.cozen-upload-info i {
+  color: inherit;
+  font-size: inherit;
+}
+.cozen-text-left-tooltip-inner > .tooltip-inner {
+  text-align: left;
 }
 @-webkit-keyframes tauLightUp {
   0% {
@@ -16399,4 +16450,7 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
 }
 .tau.tooltip > .tooltip-inner {
   max-width: inherit;
+}
+.tooltip.tau .cozen-upload-info-value {
+  color: grey;
 }

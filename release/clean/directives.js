@@ -355,111 +355,111 @@
 })(window.angular);
 
 (function (angular) {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('cozenLib')
-		.provider('CloudinaryUpload', CloudinaryUploadProvider);
+    angular
+        .module('cozenLib')
+        .provider('CloudinaryUpload', CloudinaryUploadProvider);
 
-	CloudinaryUploadProvider.$inject = [
-		'CONFIG'
-	];
+    CloudinaryUploadProvider.$inject = [
+        'CONFIG'
+    ];
 
-	function CloudinaryUploadProvider(CONFIG) {
+    function CloudinaryUploadProvider(CONFIG) {
 
-		// Default values
-		var data = {
-			url      : 'https://api.cloudinary.com/',
-			version  : 'v1_1/',
-			cloudName: 'cozen',
-			action   : '/upload'
-		};
+        // Default values
+        var data = {
+            url      : 'https://api.cloudinary.com/',
+            version  : 'v1_1/',
+            cloudName: 'cozen',
+            action   : '/upload'
+        };
 
-		this.url = function (url) {
-			data.url = url;
-			return this;
-		};
+        this.url = function (url) {
+            data.url = url;
+            return this;
+        };
 
-		this.version = function (version) {
-			data.version = version;
-			return this;
-		};
+        this.version = function (version) {
+            data.version = version;
+            return this;
+        };
 
-		this.cloudName = function (cloudName) {
-			data.cloudName = cloudName;
-			return this;
-		};
+        this.cloudName = function (cloudName) {
+            data.cloudName = cloudName;
+            return this;
+        };
 
-		this.action = function (action) {
-			data.action = action;
-			return this;
-		};
+        this.action = function (action) {
+            data.action = action;
+            return this;
+        };
 
-		this.$get = Cloudinary;
+        this.$get = Cloudinary;
 
-		Cloudinary.$inject = [
-			'Upload',
-			'CONFIG'
-		];
+        Cloudinary.$inject = [
+            'Upload',
+            'CONFIG'
+        ];
 
-		function Cloudinary(Upload, CONFIG) {
-			return {
-				upload: upload
-			};
+        function Cloudinary(Upload, CONFIG) {
+            return {
+                upload: upload
+            };
 
-			function upload(file, scope, commonData) {
-				scope._hasUploadError = false;
-				if (Methods.isNullOrEmpty(file)) {
-					return;
-				}
-				scope._isUploading = true;
+            function upload(file, scope, commonData) {
+                scope._hasUploadError = false;
+                if (Methods.isNullOrEmpty(file)) {
+                    return;
+                }
+                scope._isUploading = true;
 
-				if (file && !file.$error) {
+                if (file && !file.$error) {
 
-					// Upload it
-					file.upload = Upload.upload({
-						url : data.url + data.version + data.cloudName + data.action,
-						data: angular.merge({
-							context: 'photo=' + file.$ngfName,
-							file   : file
-						}, commonData)
-					}).progress(function (e) {
-						scope._uploadingText = Math.round((e.loaded * 100.0) / e.total) + '%';
-					}).success(function (data, status, headers, config) {
-						file.name          = file.$ngfName;
-						file.width         = data.width;
-						file.height        = data.height;
-						file.format        = data.format;
-						file.url           = data.url;
-						scope._isUploading = false;
-						if (CONFIG.debug) {
-							Methods.directiveCallbackLog(data.directive, 'upload');
-						}
+                    // Upload it
+                    file.upload = Upload.upload({
+                        url : data.url + data.version + data.cloudName + data.action,
+                        data: angular.merge({
+                            context: 'photo=' + file.$ngfName,
+                            file   : file
+                        }, commonData)
+                    }).progress(function (e) {
+                        scope._uploadingText = Math.round((e.loaded * 100.0) / e.total) + '%';
+                    }).success(function (data, status, headers, config) {
+                        file.name          = file.$ngfName;
+                        file.width         = data.width;
+                        file.height        = data.height;
+                        file.format        = data.format;
+                        file.url           = data.url;
+                        scope._isUploading = false;
+                        if (CONFIG.debug) {
+                            Methods.directiveCallbackLog(data.directive, 'upload');
+                        }
 
-						// Update form validity
-						if (scope._cozenBtnUploadRequired) {
-							var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-							if (!Methods.isNullOrEmpty(btn)) {
-								btn.$setValidity('isUploadSet', true);
-							}
-						}
-					}).error(function (data, status, headers, config) {
-						file.result             = data;
-						scope._hasUploadError   = true;
-						scope._uploadErrorLabel = 'btn_upload_error_occurred';
+                        // Update form validity
+                        if (scope._cozenBtnUploadRequired) {
+                            var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
+                            if (!Methods.isNullOrEmpty(btn)) {
+                                btn.$setValidity('isUploadSet', true);
+                            }
+                        }
+                    }).error(function (data, status, headers, config) {
+                        file.result             = data;
+                        scope._hasUploadError   = true;
+                        scope._uploadErrorLabel = 'btn_upload_error_occurred';
 
-						// Update form validity
-						if (scope._cozenBtnUploadRequired) {
-							var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-							if (!Methods.isNullOrEmpty(btn)) {
-								btn.$setValidity('isUploadSet', false);
-							}
-						}
-					});
-				}
-			}
-		}
-	}
+                        // Update form validity
+                        if (scope._cozenBtnUploadRequired) {
+                            var btn = scope._methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
+                            if (!Methods.isNullOrEmpty(btn)) {
+                                btn.$setValidity('isUploadSet', false);
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
 
 })(window.angular);
 
@@ -482,34 +482,35 @@
  * @param {string}   cozenBtnLabel                > Text of the button
  *
  * [Attributes params]
- * @param {number}  cozenBtnId                                       > Id of the button
- * @param {string}  cozenBtnSize            = 'normal'               > Size of the button
- * @param {string}  cozenBtnSizeSmall                                > Shortcut for small size
- * @param {string}  cozenBtnSizeNormal                               > Shortcut for normal size
- * @param {string}  cozenBtnSizeLarge                                > Shortcut for large size
- * @param {string}  cozenBtnType            = 'default'              > Type of the button (change the color)
- * @param {string}  cozenBtnTypePrimary                              > Shortcut for primary type
- * @param {string}  cozenBtnTypeTransparent                          > Shortcut for transparent type
- * @param {string}  cozenBtnTypeCold                                 > Shortcut for cold type
- * @param {string}  cozenBtnTypePurple                               > Shortcut for purple type
- * @param {string}  cozenBtnTypeGreen                                > Shortcut for green type
- * @param {string}  cozenBtnTypeGoogle                               > Shortcut for google type
- * @param {string}  cozenBtnTypeFacebook                             > Shortcut for facebook type
- * @param {string}  cozenBtnTypeDefault                              > Shortcut for default type
- * @param {string}  cozenBtnTypeInfo                                 > Shortcut for info type
- * @param {string}  cozenBtnTypeSuccess                              > Shortcut for success type
- * @param {string}  cozenBtnTypeWarning                              > Shortcut for warning type
- * @param {string}  cozenBtnTypeError                                > Shortcut for error type
- * @param {string}  cozenBtnIconLeft                                 > Add an icon the to left (write the class)
- * @param {string}  cozenBtnIconRight                                > Add an icon the to right (write the class)
- * @param {boolean} cozenBtnAutoSizing      = false                  > Shortcut to activate the auto sizing (instead of 100% width)
- * @param {string}  cozenBtnClass                                    > Custom class
- * @param {string}  cozenBtnImgLeft                                  > URL/path to the left img
- * @param {boolean} cozenBtnIsUpload        = false                  > Active the upload mod
- * @param {string}  cozenBtnUpperLabel                               > Add a label on the top of the btn
- * @param {string}  cozenBtnRequiredTooltip = 'btn_required_tooltip' > Text to display for the tooltip of the required element
- * @param {boolean} cozenBtnUploadRequired  = false                  > Required upload model
- * @param {boolean} cozenBtnPreviewIcon     = 'fa fa-fw fa-eye'      > Preview icon on the right
+ * @param {number}  cozenBtnId                                     > Id of the button
+ * @param {string}  cozenBtnSize            = normal               > Size of the button
+ * @param {string}  cozenBtnSizeSmall                              > Shortcut for small size
+ * @param {string}  cozenBtnSizeNormal                             > Shortcut for normal size
+ * @param {string}  cozenBtnSizeLarge                              > Shortcut for large size
+ * @param {string}  cozenBtnType            = default              > Type of the button (change the color)
+ * @param {string}  cozenBtnTypePrimary                            > Shortcut for primary type
+ * @param {string}  cozenBtnTypeTransparent                        > Shortcut for transparent type
+ * @param {string}  cozenBtnTypeCold                               > Shortcut for cold type
+ * @param {string}  cozenBtnTypePurple                             > Shortcut for purple type
+ * @param {string}  cozenBtnTypeGreen                              > Shortcut for green type
+ * @param {string}  cozenBtnTypeGoogle                             > Shortcut for google type
+ * @param {string}  cozenBtnTypeFacebook                           > Shortcut for facebook type
+ * @param {string}  cozenBtnTypeDefault                            > Shortcut for default type
+ * @param {string}  cozenBtnTypeInfo                               > Shortcut for info type
+ * @param {string}  cozenBtnTypeSuccess                            > Shortcut for success type
+ * @param {string}  cozenBtnTypeWarning                            > Shortcut for warning type
+ * @param {string}  cozenBtnTypeError                              > Shortcut for error type
+ * @param {string}  cozenBtnIconLeft                               > Add an icon the to left (write the class)
+ * @param {string}  cozenBtnIconRight                              > Add an icon the to right (write the class)
+ * @param {boolean} cozenBtnAutoSizing      = false                > Shortcut to activate the auto sizing (instead of 100% width)
+ * @param {string}  cozenBtnClass                                  > Custom class
+ * @param {string}  cozenBtnImgLeft                                > URL/path to the left img
+ * @param {boolean} cozenBtnIsUpload        = false                > Active the upload mod
+ * @param {string}  cozenBtnUpperLabel                             > Add a label on the top of the btn
+ * @param {string}  cozenBtnRequiredTooltip = btn_required_tooltip > Text to display for the tooltip of the required element
+ * @param {boolean} cozenBtnUploadRequired  = false                > Required upload model
+ * @param {boolean} cozenBtnPreviewIcon     = fa fa-fw fa-eye      > Preview icon on the right
+ * @param {boolean} cozenBtnUploadInfoIcon  = true                 > Display an info icon to show the upload requirements
  *
  */
 (function (angular, document) {
@@ -575,37 +576,85 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenBtnSize)) {
-                    if (angular.isDefined(attrs.cozenBtnSizeSmall)) scope._cozenBtnSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnSizeNormal)) scope._cozenBtnSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnSizeLarge)) scope._cozenBtnSize = 'large';
-                    else scope._cozenBtnSize = 'normal';
-                } else scope._cozenBtnSize = attrs.cozenBtnSize;
+                    if (angular.isDefined(attrs.cozenBtnSizeSmall)) {
+                        scope._cozenBtnSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnSizeNormal)) {
+                        scope._cozenBtnSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnSizeLarge)) {
+                        scope._cozenBtnSize = 'large';
+                    }
+                    else {
+                        scope._cozenBtnSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenBtnSize = attrs.cozenBtnSize;
+                }
 
                 // Shortcut values (type)
                 if (angular.isUndefined(attrs.cozenBtnType)) {
-                    if (angular.isDefined(attrs.cozenBtnTypeDefault)) scope._cozenBtnType = 'default';
-                    else if (angular.isDefined(attrs.cozenBtnTypePrimary)) scope._cozenBtnType = 'primary';
-                    else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) scope._cozenBtnType = 'transparent';
-                    else if (angular.isDefined(attrs.cozenBtnTypeCold)) scope._cozenBtnType = 'cold';
-                    else if (angular.isDefined(attrs.cozenBtnTypePurple)) scope._cozenBtnType = 'purple';
-                    else if (angular.isDefined(attrs.cozenBtnTypeGreen)) scope._cozenBtnType = 'green';
-                    else if (angular.isDefined(attrs.cozenBtnTypeGoogle)) scope._cozenBtnType = 'google';
-                    else if (angular.isDefined(attrs.cozenBtnTypeFacebook)) scope._cozenBtnType = 'facebook';
-                    else if (angular.isDefined(attrs.cozenBtnTypeInfo)) scope._cozenBtnType = 'info';
-                    else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) scope._cozenBtnType = 'success';
-                    else if (angular.isDefined(attrs.cozenBtnTypeWarning)) scope._cozenBtnType = 'warning';
-                    else if (angular.isDefined(attrs.cozenBtnTypeError)) scope._cozenBtnType = 'error';
-                    else scope._cozenBtnType = 'default';
-                } else scope._cozenBtnType = attrs.cozenBtnType;
+                    if (angular.isDefined(attrs.cozenBtnTypeDefault)) {
+                        scope._cozenBtnType = 'default';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypePrimary)) {
+                        scope._cozenBtnType = 'primary';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeTransparent)) {
+                        scope._cozenBtnType = 'transparent';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeCold)) {
+                        scope._cozenBtnType = 'cold';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypePurple)) {
+                        scope._cozenBtnType = 'purple';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeGreen)) {
+                        scope._cozenBtnType = 'green';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeGoogle)) {
+                        scope._cozenBtnType = 'google';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeFacebook)) {
+                        scope._cozenBtnType = 'facebook';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeInfo)) {
+                        scope._cozenBtnType = 'info';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeSuccess)) {
+                        scope._cozenBtnType = 'success';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeWarning)) {
+                        scope._cozenBtnType = 'warning';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnTypeError)) {
+                        scope._cozenBtnType = 'error';
+                    }
+                    else {
+                        scope._cozenBtnType = 'default';
+                    }
+                }
+                else {
+                    scope._cozenBtnType = attrs.cozenBtnType;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnActive)) scope.cozenBtnActive = false;
-                if (angular.isUndefined(attrs.cozenBtnDisabled)) scope.cozenBtnDisabled = false;
-                if (angular.isUndefined(attrs.cozenBtnLoader)) scope.cozenBtnLoader = false;
+                if (angular.isUndefined(attrs.cozenBtnActive)) {
+                    scope.cozenBtnActive = false;
+                }
+                if (angular.isUndefined(attrs.cozenBtnDisabled)) {
+                    scope.cozenBtnDisabled = false;
+                }
+                if (angular.isUndefined(attrs.cozenBtnLoader)) {
+                    scope.cozenBtnLoader = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenBtnId              = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
@@ -619,6 +668,7 @@
                 scope._cozenBtnRequiredTooltip = angular.isDefined(attrs.cozenBtnRequiredTooltip) ? attrs.cozenBtnRequiredTooltip : 'btn_required_tooltip';
                 scope._cozenBtnUploadRequired  = angular.isDefined(attrs.cozenBtnUploadRequired) ? JSON.parse(attrs.cozenBtnUploadRequired) : false;
                 scope._cozenBtnPreviewIcon     = angular.isDefined(attrs.cozenBtnPreviewIcon) ? attrs.cozenBtnPreviewIcon : 'fa fa-fw fa-eye';
+                scope._cozenBtnUploadInfoIcon  = angular.isDefined(attrs.cozenBtnUploadInfoIcon) ? JSON.parse(attrs.cozenBtnUploadInfoIcon) : true;
 
                 // Upload config
                 if (scope._cozenBtnIsUpload) {
@@ -655,7 +705,9 @@
                     // Set error to parent if model is empty and required
                     if (Methods.isNullOrEmpty(scope.cozenBtnUploadModel) && scope._cozenBtnUploadRequired) {
                         var btn = methods.getForm()[scope._cozenBtnFormCtrl][scope._cozenBtnFormModel][scope._cozenBtnForm][scope._cozenBtnName];
-                        if (!Methods.isNullOrEmpty(btn)) btn.$setValidity('isUploadSet', false);
+                        if (!Methods.isNullOrEmpty(btn)) {
+                            btn.$setValidity('isUploadSet', false);
+                        }
                     }
                 });
 
@@ -674,26 +726,48 @@
 
             function getMainClass() {
                 var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.cozenBtnClass];
-                if (scope.cozenBtnActive) classList.push('active');
-                if (scope.cozenBtnDisabled) classList.push('disabled');
-                if (scope.cozenBtnLoader) classList.push('loading');
-                if (angular.isDefined(attrs.cozenBtnAutoSizing)) classList.push('auto');
-                if (scope._cozenBtnIsUpload) classList.push('upload');
+                if (scope.cozenBtnActive) {
+                    classList.push('active');
+                }
+                if (scope.cozenBtnDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenBtnLoader) {
+                    classList.push('loading');
+                }
+                if (angular.isDefined(attrs.cozenBtnAutoSizing)) {
+                    classList.push('auto');
+                }
+                if (scope._cozenBtnIsUpload) {
+                    classList.push('upload');
+                }
                 return classList;
             }
 
             function onClick($event) {
                 $event.stopPropagation();
-                if (scope.cozenBtnDisabled) return;
-                if (scope.cozenBtnLoader) return;
-                if (Methods.isFunction(scope.cozenBtnOnClick)) scope.cozenBtnOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnClick');
+                if (scope.cozenBtnDisabled) {
+                    return;
+                }
+                if (scope.cozenBtnLoader) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenBtnOnClick)) {
+                    scope.cozenBtnOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'OnClick');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenBtnDisabled) tabIndex = -1;
-                else if (scope.cozenBtnLoader) tabIndex = -1;
+                if (scope.cozenBtnDisabled) {
+                    tabIndex = -1;
+                }
+                else if (scope.cozenBtnLoader) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
@@ -709,11 +783,26 @@
                                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                                     return form;
-                                } else return form;
-                            } else return form;
-                        } else return form;
-                    } else return form;
-                } else return form;
+                                }
+                                else {
+                                    return form;
+                                }
+                            }
+                            else {
+                                return form;
+                            }
+                        }
+                        else {
+                            return form;
+                        }
+                    }
+                    else {
+                        return form;
+                    }
+                }
+                else {
+                    return form;
+                }
             }
 
             function upload($files, $file, $newFiles, $duplicateFiles, $invalidFiles, $event) {
@@ -2953,7 +3042,9 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (attributes)
                 scope._cozenFormId    = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : '';
@@ -3006,6 +3097,18 @@
             }
         }
     }
+
+})(window.angular);
+
+
+
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.icons', [
+            'cozenLib.icons.uploadInfo'
+        ]);
 
 })(window.angular);
 
@@ -6464,11 +6567,12 @@ function changeRouteLog(directive, route, params) {
  * @param {boolean} cozenTooltipBody        = true       > Tooltip append to body
  * @param {number}  cozenTooltipCloseDelay  = 100        > Delay before hide
  * @param {number}  cozenTooltipDelay       = 250        > Delay before show
- * @param {string}  cozenTooltipTrigger     = mouseenter > Define what trigger the tooltip
+ * @param {string}  cozenTooltipTrigger     = mouseenter > Define what trigger the tooltip (mouseenter, click, outsideClick, focus, none)
  * @param {string}  cozenTooltipType        = default    > Define what type of tooltip is required
  * @param {string}  cozenTooltipTypeDefault              > Shortcut for default type
  * @param {string}  cozenTooltipTypeHtml                 > Shortcut for html type
  * @param {string}  cozenTooltipDisplay                  > Change the display (only when there are problem)
+ * @param {string}  cozenTooltipClass                    > Add a custom class on the tooltip
  *
  */
 (function (angular) {
@@ -6549,6 +6653,7 @@ function changeRouteLog(directive, route, params) {
                 scope._cozenTooltipDelay      = angular.isDefined(attrs.cozenTooltipDelay) ? JSON.parse(attrs.cozenTooltipDelay) : 250;
                 scope._cozenTooltipTrigger    = angular.isDefined(attrs.cozenTooltipTrigger) ? attrs.cozenTooltipTrigger : 'mouseenter';
                 scope._cozenTooltipDisplay    = angular.isDefined(attrs.cozenTooltipDisplay) ? attrs.cozenTooltipDisplay : '';
+                scope._cozenTooltipClass      = angular.isDefined(attrs.cozenTooltipClass) ? attrs.cozenTooltipClass : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -6580,6 +6685,160 @@ function changeRouteLog(directive, route, params) {
     }
 
 })(window.angular);
+
+
+/**
+ * @ngdoc directive
+ * @name cozen-upload-info
+ * @restrict E
+ * @replace false
+ * @transclude false
+ * @description
+ *
+ * [Scope params]
+ * @param {object}  cozenUploadInfoConfig         > Label of the tooltip [required]
+ * @param {boolean} cozenUploadInfoDisplay = true > Hide or show the info icon
+ *
+ */
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.icons.uploadInfo', [])
+        .directive('cozenUploadInfo', cozenUploadInfo);
+
+    cozenUploadInfo.$inject = [
+        '$filter',
+        'Themes'
+    ];
+
+    function cozenUploadInfo($filter, Themes) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenUploadInfoConfig : '=?',
+                cozenUploadInfoDisplay: '=?'
+            },
+            templateUrl: 'directives/icons/upload-info/uploadInfo.template.html'
+        };
+
+        function link(scope, element, attrs) {
+            var methods = {
+                init    : init,
+                destroy : destroy,
+                hasError: hasError
+            };
+
+            var data = {
+                directive: 'cozenUploadInfo'
+            };
+
+            methods.init();
+
+            function init() {
+
+                // Checking required stuff
+                if (methods.hasError()) {
+                    return;
+                }
+
+                // Default values (scope)
+                angular.isUndefined(attrs.cozenUploadInfoDisplay) ? scope.cozenUploadInfoDisplay = true : null;
+
+                // Forge the label
+                scope.cozenUploadInfoLabel = '<span>';
+                if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'pattern')) {
+
+                    // Remove dots and comma, split types into one array
+                    var types = scope.cozenUploadInfoConfig.pattern;
+                    types     = types.replace(/\./g, '');
+                    types     = types.split(',');
+
+                    // Title
+                    if (types.length > 1) {
+                        scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_types');
+                    }
+                    else {
+                        scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_type');
+                    }
+
+                    // Add the types
+                    scope.cozenUploadInfoLabel += '<span class="cozen-upload-info-value">';
+                    for (var i = 0, length = types.length; i < length; i++) {
+                        scope.cozenUploadInfoLabel += types[i].toUpperCase();
+                        if (i < length - 1) {
+                            scope.cozenUploadInfoLabel += ', ';
+                        }
+                    }
+                    scope.cozenUploadInfoLabel += '</span><br>';
+                }
+                if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'maxSize')) {
+                    scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_maxSize');
+                    scope.cozenUploadInfoLabel += '<span class="cozen-upload-info-value">';
+                    scope.cozenUploadInfoLabel += scope.cozenUploadInfoConfig.maxSize;
+                    scope.cozenUploadInfoLabel += '</span><br>';
+                }
+                if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'minHeight') || Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'maxHeight')) {
+                    scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_height');
+                    scope.cozenUploadInfoLabel += '<span class="cozen-upload-info-value">';
+                    if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'minHeight')) {
+                        scope.cozenUploadInfoLabel += scope.cozenUploadInfoConfig.minHeight;
+                    }
+                    else {
+                        scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_undefined');
+                    }
+                    scope.cozenUploadInfoLabel += 'x';
+                    if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'maxHeight')) {
+                        scope.cozenUploadInfoLabel += scope.cozenUploadInfoConfig.maxHeight;
+                    }
+                    else {
+                        scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_undefined');
+                    }
+                    scope.cozenUploadInfoLabel += '</span><br>';
+                }
+                if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'minWidth') || Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'maxWidth')) {
+                    scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_width');
+                    scope.cozenUploadInfoLabel += '<span class="cozen-upload-info-value">';
+                    if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'minWidth')) {
+                        scope.cozenUploadInfoLabel += scope.cozenUploadInfoConfig.minWidth;
+                    }
+                    else {
+                        scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_undefined');
+                    }
+                    scope.cozenUploadInfoLabel += 'x';
+                    if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'maxWidth')) {
+                        scope.cozenUploadInfoLabel += scope.cozenUploadInfoConfig.maxWidth;
+                    }
+                    else {
+                        scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_undefined');
+                    }
+                    scope.cozenUploadInfoLabel += '</span><br>';
+                }
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+            }
+
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenUploadInfoConfig)) {
+                    Methods.directiveErrorRequired(data.directive, 'Config');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+        }
+    }
+
+})(window.angular);
+
 
 
 /**

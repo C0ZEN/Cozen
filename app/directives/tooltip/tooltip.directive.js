@@ -17,11 +17,12 @@
  * @param {boolean} cozenTooltipBody        = true       > Tooltip append to body
  * @param {number}  cozenTooltipCloseDelay  = 100        > Delay before hide
  * @param {number}  cozenTooltipDelay       = 250        > Delay before show
- * @param {string}  cozenTooltipTrigger     = mouseenter > Define what trigger the tooltip
+ * @param {string}  cozenTooltipTrigger     = mouseenter > Define what trigger the tooltip (mouseenter, click, outsideClick, focus, none)
  * @param {string}  cozenTooltipType        = default    > Define what type of tooltip is required
  * @param {string}  cozenTooltipTypeDefault              > Shortcut for default type
  * @param {string}  cozenTooltipTypeHtml                 > Shortcut for html type
  * @param {string}  cozenTooltipDisplay                  > Change the display (only when there are problem)
+ * @param {string}  cozenTooltipClass                    > Add a custom class on the tooltip
  *
  */
 (function (angular) {
@@ -102,6 +103,7 @@
                 scope._cozenTooltipDelay      = angular.isDefined(attrs.cozenTooltipDelay) ? JSON.parse(attrs.cozenTooltipDelay) : 250;
                 scope._cozenTooltipTrigger    = angular.isDefined(attrs.cozenTooltipTrigger) ? attrs.cozenTooltipTrigger : 'mouseenter';
                 scope._cozenTooltipDisplay    = angular.isDefined(attrs.cozenTooltipDisplay) ? attrs.cozenTooltipDisplay : '';
+                scope._cozenTooltipClass      = angular.isDefined(attrs.cozenTooltipClass) ? attrs.cozenTooltipClass : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
