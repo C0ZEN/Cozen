@@ -55,10 +55,11 @@
         'rfc4122',
         '$timeout',
         '$interval',
-        '$filter'
+        '$filter',
+        '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter) {
+    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -179,6 +180,10 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
+
+                // Ask the parent to launch the cozenFormName event to get the data
+                // -> Avoid problems when elements are added to the DOM after the form loading
+                $rootScope.$broadcast('cozenFormChildInit');
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {

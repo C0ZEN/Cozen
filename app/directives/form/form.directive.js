@@ -103,13 +103,11 @@
             }
 
             function dispatchName() {
-                $timeout(function () {
-                    scope.$broadcast('cozenFormName', {
-                        name : scope._cozenFormName,
-                        ctrl : scope._cozenFormCtrl,
-                        model: scope._cozenFormModel
-                    });
-                }, 1);
+                scope.$broadcast('cozenFormName', {
+                    name : scope._cozenFormName,
+                    ctrl : scope._cozenFormCtrl,
+                    model: scope._cozenFormModel
+                });
             }
 
             function getMainClass() {
