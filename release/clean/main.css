@@ -2199,7 +2199,7 @@ label.cozen-upload-info {
   display: block;
   font-size: inherit;
   cursor: pointer;
-  padding: 0 5px;
+  padding: 0 5px !important;
 }
 label.cozen-upload-info i {
   color: inherit;
@@ -12496,7 +12496,7 @@ label.cozen-upload-info {
   display: block;
   font-size: inherit;
   cursor: pointer;
-  padding: 0 5px;
+  padding: 0 5px !important;
 }
 label.cozen-upload-info i {
   color: inherit;
