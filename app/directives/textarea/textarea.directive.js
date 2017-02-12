@@ -190,6 +190,14 @@
                     scope._cozenTextareaForm      = eventData.name;
                     scope._cozenTextareaFormCtrl  = eventData.ctrl;
                     scope._cozenTextareaFormModel = eventData.model;
+
+                    // Force to dirty and touched if the model is not empty
+                    if (!Methods.isNullOrEmpty(scope.vm.cozenTextareaModel)) {
+                        var textarea      = methods.getForm();
+                        textarea          = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
+                        textarea.$dirty   = true;
+                        textarea.$touched = true;
+                    }
                 });
 
                 // Display the template (the timeout avoid a visual bug due to events)

@@ -170,14 +170,18 @@
                 if (angular.isUndefined(attrs.cozenInputPattern)) {
                     if (angular.isDefined(attrs.cozenInputPatternEmail)) {
                         scope._cozenInputPattern = 'email';
-                    } else if (angular.isDefined(attrs.cozenInputPatternLetter)) {
+                    }
+                    else if (angular.isDefined(attrs.cozenInputPatternLetter)) {
                         scope._cozenInputPattern = 'letter';
-                    } else if (angular.isDefined(attrs.cozenInputPatternName)) {
+                    }
+                    else if (angular.isDefined(attrs.cozenInputPatternName)) {
                         scope._cozenInputPattern = 'name';
-                    } else {
+                    }
+                    else {
                         scope._cozenInputPattern = '';
                     }
-                } else {
+                }
+                else {
                     scope._cozenInputPattern = attrs.cozenInputPattern;
                 }
 
@@ -185,14 +189,18 @@
                 if (angular.isUndefined(attrs.cozenInputSize)) {
                     if (angular.isDefined(attrs.cozenInputSizeSmall)) {
                         scope._cozenInputSize = 'small';
-                    } else if (angular.isDefined(attrs.cozenInputSizeNormal)) {
-                        scope._cozenInputSize = 'normal';
-                    } else if (angular.isDefined(attrs.cozenInputSizeLarge)) {
-                        scope._cozenInputSize = 'large';
-                    } else {
+                    }
+                    else if (angular.isDefined(attrs.cozenInputSizeNormal)) {
                         scope._cozenInputSize = 'normal';
                     }
-                } else {
+                    else if (angular.isDefined(attrs.cozenInputSizeLarge)) {
+                        scope._cozenInputSize = 'large';
+                    }
+                    else {
+                        scope._cozenInputSize = 'normal';
+                    }
+                }
+                else {
                     scope._cozenInputSize = attrs.cozenInputSize;
                 }
 
@@ -200,14 +208,18 @@
                 if (angular.isUndefined(attrs.cozenInputType)) {
                     if (angular.isDefined(attrs.cozenInputTypeText)) {
                         scope._cozenInputType = 'text';
-                    } else if (angular.isDefined(attrs.cozenInputTypeNumber)) {
+                    }
+                    else if (angular.isDefined(attrs.cozenInputTypeNumber)) {
                         scope._cozenInputType = 'number';
-                    } else if (angular.isDefined(attrs.cozenInputTypePassword)) {
+                    }
+                    else if (angular.isDefined(attrs.cozenInputTypePassword)) {
                         scope._cozenInputType = 'password';
-                    } else {
+                    }
+                    else {
                         scope._cozenInputType = 'text';
                     }
-                } else {
+                }
+                else {
                     scope._cozenInputType = attrs.cozenInputType;
                 }
 
@@ -215,14 +227,18 @@
                 if (angular.isUndefined(attrs.cozenInputValidator)) {
                     if (angular.isDefined(attrs.cozenInputValidatorAll)) {
                         scope._cozenInputValidator = 'all';
-                    } else if (angular.isDefined(attrs.cozenInputValidatorTouched)) {
+                    }
+                    else if (angular.isDefined(attrs.cozenInputValidatorTouched)) {
                         scope._cozenInputValidator = 'touched';
-                    } else if (angular.isDefined(attrs.cozenInputValidatorDirty)) {
-                        scope._cozenInputValidator = 'dirty';
-                    } else {
+                    }
+                    else if (angular.isDefined(attrs.cozenInputValidatorDirty)) {
                         scope._cozenInputValidator = 'dirty';
                     }
-                } else {
+                    else {
+                        scope._cozenInputValidator = 'dirty';
+                    }
+                }
+                else {
                     scope._cozenInputValidator = attrs.cozenInputValidator;
                 }
 
@@ -295,6 +311,7 @@
                     scope._cozenInputFormCtrl  = eventData.ctrl;
                     scope._cozenInputFormModel = eventData.model;
 
+                    // Force to dirty and touched if the model is not empty
                     if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
                         var input      = methods.getForm();
                         input          = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
@@ -429,19 +446,24 @@
                                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                                     return form;
-                                } else {
+                                }
+                                else {
                                     return form;
                                 }
-                            } else {
+                            }
+                            else {
                                 return form;
                             }
-                        } else {
+                        }
+                        else {
                             return form;
                         }
-                    } else {
+                    }
+                    else {
                         return form;
                     }
-                } else {
+                }
+                else {
                     return form;
                 }
             }
@@ -460,7 +482,8 @@
             function isIconRightDisplay() {
                 if (!Methods.isNullOrEmpty(scope._cozenInputIconRight)) {
                     return true;
-                } else if (scope._cozenInputValidatorIcon && scope._cozenInputHasFeedback) {
+                }
+                else if (scope._cozenInputValidatorIcon && scope._cozenInputHasFeedback) {
                     return !(!scope._cozenInputValidatorEmpty && Methods.isNullOrEmpty(scope.vm.cozenInputModel));
                 }
                 return false;
@@ -512,7 +535,8 @@
                     data.arrowInterval = $interval(function () {
                         if (data.arrowDown) {
                             methods.arrowUpdateModel($event, arrow);
-                        } else {
+                        }
+                        else {
                             $interval.cancel(data.arrowInterval);
                         }
                     }, 60);
@@ -525,7 +549,8 @@
                         scope.vm.cozenInputModel += 1;
                         methods.onChange($event);
                     }
-                } else {
+                }
+                else {
                     if (scope.vm.cozenInputModel > scope._cozenInputMin) {
                         scope.vm.cozenInputModel -= 1;
                         methods.onChange($event);
@@ -558,7 +583,8 @@
                 data.password.specialChar.complete = Methods.isRegExpValid(data.password.specialChar.regexp, scope.vm.cozenInputModel);
                 if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
                     data.password.minLength.complete = scope.vm.cozenInputModel.length >= scope.vm.cozenInputTypePasswordConfig.minLength;
-                } else {
+                }
+                else {
                     data.password.minLength.complete = false;
                 }
 
