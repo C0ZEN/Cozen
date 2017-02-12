@@ -6106,26 +6106,52 @@ function missingKeyLog(directive, key, when) {
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenTextareaSize)) {
-                    if (angular.isDefined(attrs.cozenTextareaSizeSmall)) scope._cozenTextareaSize = 'small';
-                    else if (angular.isDefined(attrs.cozenTextareaSizeNormal)) scope._cozenTextareaSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenTextareaSizeLarge)) scope._cozenTextareaSize = 'large';
-                    else scope._cozenTextareaSize = 'normal';
-                } else scope._cozenTextareaSize = attrs.cozenTextareaSize;
+                    if (angular.isDefined(attrs.cozenTextareaSizeSmall)) {
+                        scope._cozenTextareaSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenTextareaSizeNormal)) {
+                        scope._cozenTextareaSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenTextareaSizeLarge)) {
+                        scope._cozenTextareaSize = 'large';
+                    }
+                    else {
+                        scope._cozenTextareaSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenTextareaSize = attrs.cozenTextareaSize;
+                }
 
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenTextareaValidator)) {
-                    if (angular.isDefined(attrs.cozenTextareaValidatorAll)) scope._cozenTextareaValidator = 'all';
-                    else if (angular.isDefined(attrs.cozenTextareaValidatorTouched)) scope._cozenTextareaValidator = 'touched';
-                    else if (angular.isDefined(attrs.cozenTextareaValidatorDirty)) scope._cozenTextareaValidator = 'dirty';
-                    else scope._cozenTextareaValidator = CONFIG.textarea.validator.type;
-                } else scope._cozenTextareaValidator = attrs.cozenTextareaValidator;
+                    if (angular.isDefined(attrs.cozenTextareaValidatorAll)) {
+                        scope._cozenTextareaValidator = 'all';
+                    }
+                    else if (angular.isDefined(attrs.cozenTextareaValidatorTouched)) {
+                        scope._cozenTextareaValidator = 'touched';
+                    }
+                    else if (angular.isDefined(attrs.cozenTextareaValidatorDirty)) {
+                        scope._cozenTextareaValidator = 'dirty';
+                    }
+                    else {
+                        scope._cozenTextareaValidator = CONFIG.textarea.validator.type;
+                    }
+                }
+                else {
+                    scope._cozenTextareaValidator = attrs.cozenTextareaValidator;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenTextareaDisabled)) scope.vm.cozenTextareaDisabled = false;
+                if (angular.isUndefined(attrs.cozenTextareaDisabled)) {
+                    scope.vm.cozenTextareaDisabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
@@ -6189,10 +6215,14 @@ function missingKeyLog(directive, key, when) {
                         if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
                             switch (scope._cozenTextareaValidator) {
                                 case 'touched':
-                                    if (textarea.$touched) classList.push(methods.getDesignClass(textarea));
+                                    if (textarea.$touched) {
+                                        classList.push(methods.getDesignClass(textarea));
+                                    }
                                     break;
                                 case 'dirty':
-                                    if (textarea.$dirty) classList.push(methods.getDesignClass(textarea));
+                                    if (textarea.$dirty) {
+                                        classList.push(methods.getDesignClass(textarea));
+                                    }
                                     break;
                                 case 'all':
                                     classList.push(methods.getDesignClass(textarea));
@@ -6200,15 +6230,23 @@ function missingKeyLog(directive, key, when) {
                             }
                         }
                     }
-                    if (scope.vm.cozenTextareaDisabled) classList.push('disabled');
+                    if (scope.vm.cozenTextareaDisabled) {
+                        classList.push('disabled');
+                    }
                     return classList;
                 }
             }
 
             function onChange($event) {
-                if (scope.vm.cozenTextareaDisabled) return;
-                if (Methods.isFunction(scope.cozenTextareaOnChange)) scope.cozenTextareaOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (scope.vm.cozenTextareaDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenTextareaOnChange)) {
+                    scope.cozenTextareaOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
                 methods.updateModelLength();
             }
 
@@ -6241,15 +6279,35 @@ function missingKeyLog(directive, key, when) {
                                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (!Methods.hasOwnProperty(form, '_cozenFormName')) {
                                     return form;
-                                } else return form;
-                            } else return form;
-                        } else return form;
-                    } else return form;
-                } else return form;
+                                }
+                                else {
+                                    return form;
+                                }
+                            }
+                            else {
+                                return form;
+                            }
+                        }
+                        else {
+                            return form;
+                        }
+                    }
+                    else {
+                        return form;
+                    }
+                }
+                else {
+                    return form;
+                }
             }
 
             function updateModelLength() {
-                scope._cozenTextareaModelLength = scope._cozenTextareaMaxLength - scope.vm.cozenTextareaModel.length;
+                if (Methods.isNullOrEmpty(scope.vm.cozenTextareaModel)) {
+                    scope._cozenTextareaModelLength = scope._cozenTextareaMaxLength
+                }
+                else {
+                    scope._cozenTextareaModelLength = scope._cozenTextareaMaxLength - scope.vm.cozenTextareaModel.length;
+                }
             }
         }
     }
