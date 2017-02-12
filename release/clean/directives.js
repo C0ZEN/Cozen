@@ -292,7 +292,7 @@
   },
   "required": {
     "type": "star",
-    "icon": "fa fa-exclamation-circle"
+    "icon": "fa fa-fw fa-exclamation-circle"
   },
   "alert": {
     "textAlign": "justify",
