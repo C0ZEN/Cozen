@@ -6790,7 +6790,7 @@ function changeRouteLog(directive, route, params) {
                     else {
                         scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_undefined');
                     }
-                    scope.cozenUploadInfoLabel += 'x';
+                    scope.cozenUploadInfoLabel += ' x ';
                     if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'maxHeight')) {
                         scope.cozenUploadInfoLabel += scope.cozenUploadInfoConfig.maxHeight;
                     }
@@ -6808,7 +6808,7 @@ function changeRouteLog(directive, route, params) {
                     else {
                         scope.cozenUploadInfoLabel += $filter('translate')('cozen_icons_uploadInfo_undefined');
                     }
-                    scope.cozenUploadInfoLabel += 'x';
+                    scope.cozenUploadInfoLabel += ' x ';
                     if (Methods.hasOwnProperty(scope.cozenUploadInfoConfig, 'maxWidth')) {
                         scope.cozenUploadInfoLabel += scope.cozenUploadInfoConfig.maxWidth;
                     }
