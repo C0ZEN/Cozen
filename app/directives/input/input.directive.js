@@ -313,10 +313,12 @@
 
                     // Force to dirty and touched if the model is not empty
                     if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
-                        var input      = methods.getForm();
-                        input          = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
-                        input.$dirty   = true;
-                        input.$touched = true;
+                        var input = methods.getForm();
+                        input     = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                        if (!Methods.isNullOrEmpty(input)) {
+                            input.$dirty   = true;
+                            input.$touched = true;
+                        }
                     }
                 });
                 scope._cozenInputPatternRegExp = methods.getPattern();

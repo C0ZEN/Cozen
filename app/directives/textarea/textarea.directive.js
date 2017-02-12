@@ -193,10 +193,12 @@
 
                     // Force to dirty and touched if the model is not empty
                     if (!Methods.isNullOrEmpty(scope.vm.cozenTextareaModel)) {
-                        var textarea      = methods.getForm();
-                        textarea          = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
-                        textarea.$dirty   = true;
-                        textarea.$touched = true;
+                        var textarea = methods.getForm();
+                        textarea     = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
+                        if (!Methods.isNullOrEmpty(textarea)) {
+                            textarea.$dirty   = true;
+                            textarea.$touched = true;
+                        }
                     }
                 });
 
