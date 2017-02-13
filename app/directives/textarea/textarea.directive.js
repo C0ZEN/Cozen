@@ -161,8 +161,8 @@
                 scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
                 scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
                 scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
-                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? JSON.parse(attrs.cozenTextareaMinLength) : CONFIG.textarea.minLength;
-                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? JSON.parse(attrs.cozenTextareaMaxLength) : CONFIG.textarea.maxLength;
+                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
+                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
                 scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
                 scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
                 scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
