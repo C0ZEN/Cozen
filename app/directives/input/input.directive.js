@@ -26,6 +26,7 @@
  * @param {string}  cozenInputPatternEmail                                > Shortcut for email pattern
  * @param {string}  cozenInputPatternLetter                               > Shortcut for letter pattern
  * @param {string}  cozenInputPatternName                                 > Shortcut for name pattern
+ * @param {string}  cozenInputPatternWord                                 > Shortcut for word pattern
  * @param {string}  cozenInputSize             = 'normal'                 > Size of the button
  * @param {string}  cozenInputSizeSmall                                   > Shortcut for small size
  * @param {string}  cozenInputSizeNormal                                  > Shortcut for normal size
@@ -179,6 +180,9 @@
                     }
                     else if (angular.isDefined(attrs.cozenInputPatternName)) {
                         scope._cozenInputPattern = 'name';
+                    }
+                    else if (angular.isDefined(attrs.cozenInputPatternWord)) {
+                        scope._cozenInputPattern = 'word';
                     }
                     else {
                         scope._cozenInputPattern = '';
@@ -537,6 +541,8 @@
                         }
                         pattern += '.{' + scope.vm.cozenInputTypePasswordConfig.minLength + ',}';
                         return pattern;
+                    case 'word':
+                        return '[A-Za-z\u00C0-\u017F]+$';
                     default:
                         return scope._cozenInputPattern;
                 }
