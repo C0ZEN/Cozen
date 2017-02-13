@@ -3430,13 +3430,16 @@
                     var interval      = $interval(function () {
                         var input = methods.getForm();
                         try {
-                            input = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                            input = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
                             if (!Methods.isNullOrEmpty(input)) {
-                                if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
-                                    input.$dirty   = true;
-                                    input.$touched = true;
+                                input = input[scope._cozenInputName];
+                                if (!Methods.isNullOrEmpty(input)) {
+                                    if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
+                                        input.$dirty   = true;
+                                        input.$touched = true;
+                                    }
+                                    $interval.cancel(interval);
                                 }
-                                $interval.cancel(interval);
                             }
                         } finally {
                             methods.updateModelLength();
