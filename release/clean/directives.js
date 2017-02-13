@@ -3426,7 +3426,8 @@
 
                     // Force to dirty and touched if the model is not empty
                     // The interval is required because the digest is random so a timeout wasn't enough
-                    var interval = $interval(function () {
+                    var intervalCount = 0;
+                    var interval      = $interval(function () {
                         var input = methods.getForm();
                         input     = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                         if (!Methods.isNullOrEmpty(input)) {
@@ -3437,6 +3438,10 @@
                             $interval.cancel(interval);
                         }
                         methods.updateModelLength();
+                        intervalCount++;
+                        if (intervalCount > 10) {
+                            $interval.cancel(interval);
+                        }
                     }, 10);
                 });
                 scope._cozenInputPatternRegExp = methods.getPattern();
