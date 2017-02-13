@@ -723,9 +723,12 @@
 /***********************/
 /*   MAX WIDTH CLASS   */
 /***********************/
-/************/
-/*   SIZE   */
-/************/
+/*************/
+/*   COLOR   */
+/*************/
+/*************/
+/*   COLOR   */
+/*************/
 /************/
 /*   SIZE   */
 /************/
@@ -2212,18 +2215,20 @@ label.cozen-upload-info i {
 .cozen-text-left-tooltip-inner > .tooltip-inner {
   text-align: left;
 }
-label.cozen-icons-info {
+label.cozen-icon-info {
   -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
   outline: 0;
-  display: block;
+  display: inline-block;
   font-size: inherit;
   cursor: pointer;
   padding: 0 5px !important;
+  margin: 0;
+  vertical-align: middle;
 }
-label.cozen-icons-info i {
+label.cozen-icon-info i {
   color: inherit;
   font-size: inherit;
   vertical-align: middle;
@@ -10301,13 +10306,14 @@ label.cozen-upload-info.atom:hover {
 .tooltip.atom .cozen-upload-info-value {
   color: #d6dbdb;
 }
-label.cozen-icons-info.atom {
-  color: #2c9fdd !important;
+label.cozen-icon-info.atom {
+  color: #2c9fdd;
+  font-size: 14px;
 }
-label.cozen-icons-info.atom:focus,
-label.cozen-icons-info.atom:active,
-label.cozen-icons-info.atom:hover {
-  color: #32afe3 !important;
+label.cozen-icon-info.atom:focus,
+label.cozen-icon-info.atom:active,
+label.cozen-icon-info.atom:hover {
+  color: #32afe3;
 }
 
 /**************/
@@ -11031,9 +11037,12 @@ label.cozen-icons-info.atom:hover {
 /***********************/
 /*   MAX WIDTH CLASS   */
 /***********************/
-/************/
-/*   SIZE   */
-/************/
+/*************/
+/*   COLOR   */
+/*************/
+/*************/
+/*   COLOR   */
+/*************/
 /************/
 /*   SIZE   */
 /************/
@@ -12536,18 +12545,20 @@ label.cozen-upload-info i {
 .cozen-text-left-tooltip-inner > .tooltip-inner {
   text-align: left;
 }
-label.cozen-icons-info {
+label.cozen-icon-info {
   -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
   outline: 0;
-  display: block;
+  display: inline-block;
   font-size: inherit;
   cursor: pointer;
   padding: 0 5px !important;
+  margin: 0;
+  vertical-align: middle;
 }
-label.cozen-icons-info i {
+label.cozen-icon-info i {
   color: inherit;
   font-size: inherit;
   vertical-align: middle;

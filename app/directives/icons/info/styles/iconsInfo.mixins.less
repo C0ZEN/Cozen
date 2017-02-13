@@ -1,11 +1,17 @@
-/************/
-/*   SIZE   */
-/************/
+/*************/
+/*   COLOR   */
+/*************/
 .cozen-icons-info-color(@color, @color-hover) {
-    color : @color !important;
+    color : @color;
     &:focus,
     &:active,
     &:hover {
-        color : @color-hover !important;
+        color : @color-hover;
     }
+}
+/************/
+/*   SIZE   */
+/************/
+.cozen-icons-info-size(@size) {
+    font-size : @size;
 }
