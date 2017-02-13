@@ -542,7 +542,7 @@
                         pattern += '.{' + scope.vm.cozenInputTypePasswordConfig.minLength + ',}';
                         return pattern;
                     case 'word':
-                        return '[A-Za-z\u00C0-\u017F]+$';
+                        return '[A-Za-z\\u00C0-\\u017F]+$';
                     default:
                         return scope._cozenInputPattern;
                 }
