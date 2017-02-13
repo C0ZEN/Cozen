@@ -352,7 +352,9 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
-                    var classList = [scope._activeTheme, scope._cozenInputSize, attrs.cozenInputClass];
+                    var classList = [scope._activeTheme,
+                        scope._cozenInputSize,
+                        attrs.cozenInputClass];
                     var input     = methods.getForm();
                     input         = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                     if (!Methods.isNullOrEmpty(input)) {
