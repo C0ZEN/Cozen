@@ -7,8 +7,9 @@
  * @description
  *
  * [Scope params]
- * @param {boolean} cozenIconInfoDisplay = true > Hide or show the info icon
- * @param {string}  cozenIconInfoTooltipLabel   > Label of the tooltip [required]
+ * @param {boolean} cozenIconInfoDisplay = true                  > Hide or show the info icon
+ * @param {string}  cozenIconInfoTooltipLabel                    > Label of the tooltip [required]
+ * @param {string}  cozenIconInfoTooltipMaxWidth = max-width-200 > Max width of the tooltip
  *
  * [Attribute params]
  * @param {string} cozenIconInfoTooltipType = default > Type of the tooltip
@@ -33,8 +34,9 @@
             replace    : false,
             transclude : false,
             scope      : {
-                cozenIconInfoDisplay     : '=?',
-                cozenIconInfoTooltipLabel: '=?'
+                cozenIconInfoDisplay        : '=?',
+                cozenIconInfoTooltipLabel   : '=?',
+                cozenIconInfoTooltipMaxWidth: '=?'
             },
             templateUrl: 'directives/icons/info/info.template.html'
         };
@@ -62,6 +64,7 @@
                 // Default values (scope)
                 angular.isUndefined(attrs.cozenIconInfoDisplay) ? scope.cozenIconInfoDisplay = true : null;
                 angular.isUndefined(attrs.cozenIconInfoTooltipLabel) ? scope.cozenIconInfoTooltipLabel = '' : null;
+                angular.isUndefined(attrs.cozenIconInfoTooltipMaxWidth) ? scope.cozenIconInfoTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attribute)
                 scope._cozenIconInfoTooltipType = angular.isDefined(attrs.cozenIconInfoTooltipType) ? attrs.cozenIconInfoTooltipType : 'default';
