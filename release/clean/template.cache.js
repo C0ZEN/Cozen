@@ -62,6 +62,11 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('directives/icons/info/info.template.html',
+    "<label class=cozen-icons-info ng-class=[_activeTheme] ng-show=cozenIconInfoDisplay><cozen-tooltip cozen-tooltip-label=cozenIconInfoTooltipLabel cozen-tooltip-type=\"{{ _cozenIconInfoTooltipType }}\" cozen-tooltip-placement=\"auto right\" cozen-tooltip-display=block><i class=\"fa fa-fw fa-info-circle\"></i></cozen-tooltip></label>"
+  );
+
+
   $templateCache.put('directives/icons/upload-info/uploadInfo.template.html',
     "<label class=cozen-upload-info ng-class=[_activeTheme] ng-show=cozenUploadInfoDisplay><cozen-tooltip cozen-tooltip-label=cozenUploadInfoLabel cozen-tooltip-type-html cozen-tooltip-placement=\"auto right\" cozen-tooltip-class=cozen-text-left-tooltip-inner cozen-tooltip-display=block><i class=\"fa fa-fw fa-info-circle\"></i></cozen-tooltip></label>"
   );

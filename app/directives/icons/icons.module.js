@@ -3,7 +3,8 @@
 
     angular
         .module('cozenLib.icons', [
-            'cozenLib.icons.uploadInfo'
+            'cozenLib.icons.uploadInfo',
+            'cozenLib.icons.info'
         ]);
 
 })(window.angular);

@@ -726,6 +726,9 @@
 /************/
 /*   SIZE   */
 /************/
+/************/
+/*   SIZE   */
+/************/
 .atom {
   font-family: 'Catamaran', Arial, sans-serif;
 }
@@ -2208,6 +2211,22 @@ label.cozen-upload-info i {
 }
 .cozen-text-left-tooltip-inner > .tooltip-inner {
   text-align: left;
+}
+label.cozen-icons-info {
+  -webkit-transition: all 80ms ease-out;
+  transition: all 80ms ease-out;
+  box-sizing: border-box;
+  position: relative;
+  outline: 0;
+  display: block;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0 5px !important;
+}
+label.cozen-icons-info i {
+  color: inherit;
+  font-size: inherit;
+  vertical-align: middle;
 }
 @-webkit-keyframes tauLightUp {
   0% {
@@ -10282,6 +10301,14 @@ label.cozen-upload-info.atom:hover {
 .tooltip.atom .cozen-upload-info-value {
   color: #d6dbdb;
 }
+label.cozen-icons-info.atom {
+  color: #2c9fdd !important;
+}
+label.cozen-icons-info.atom:focus,
+label.cozen-icons-info.atom:active,
+label.cozen-icons-info.atom:hover {
+  color: #32afe3 !important;
+}
 
 /**************/
 /*   COLORS   */
@@ -11004,6 +11031,9 @@ label.cozen-upload-info.atom:hover {
 /***********************/
 /*   MAX WIDTH CLASS   */
 /***********************/
+/************/
+/*   SIZE   */
+/************/
 /************/
 /*   SIZE   */
 /************/
@@ -12505,6 +12535,22 @@ label.cozen-upload-info i {
 }
 .cozen-text-left-tooltip-inner > .tooltip-inner {
   text-align: left;
+}
+label.cozen-icons-info {
+  -webkit-transition: all 80ms ease-out;
+  transition: all 80ms ease-out;
+  box-sizing: border-box;
+  position: relative;
+  outline: 0;
+  display: block;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0 5px !important;
+}
+label.cozen-icons-info i {
+  color: inherit;
+  font-size: inherit;
+  vertical-align: middle;
 }
 @-webkit-keyframes tauLightUp {
   0% {
@@ -16454,6 +16500,9 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
 }
 .tau.tooltip > .tooltip-inner {
   max-width: inherit;
+}
+.tooltip.tau .cozen-upload-info-value {
+  color: grey;
 }
 .tooltip.tau .cozen-upload-info-value {
   color: grey;
