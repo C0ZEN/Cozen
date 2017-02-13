@@ -3429,18 +3429,21 @@
                     var intervalCount = 0;
                     var interval      = $interval(function () {
                         var input = methods.getForm();
-                        input     = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
-                        if (!Methods.isNullOrEmpty(input)) {
-                            if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
-                                input.$dirty   = true;
-                                input.$touched = true;
+                        try {
+                            input = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                            if (!Methods.isNullOrEmpty(input)) {
+                                if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
+                                    input.$dirty   = true;
+                                    input.$touched = true;
+                                }
+                                $interval.cancel(interval);
                             }
-                            $interval.cancel(interval);
-                        }
-                        methods.updateModelLength();
-                        intervalCount++;
-                        if (intervalCount > 10) {
-                            $interval.cancel(interval);
+                        } finally {
+                            methods.updateModelLength();
+                            intervalCount++;
+                            if (intervalCount > 10) {
+                                $interval.cancel(interval);
+                            }
                         }
                     }, 10);
                 });
