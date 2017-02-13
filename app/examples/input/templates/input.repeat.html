@@ -1,0 +1,36 @@
+<div class="container">
+    <cozen-form cozen-form-name="test2"
+                cozen-form-ctrl="vm"
+                cozen-form-model="form">
+        <div class="row">
+            <div class="col-xs-12">
+                <div ng-repeat="channel in vm.newGroup.channels track by $index"
+                     style="display: flex; align-items: center; justify-content: space-around; flex-direction: row;">
+
+                    <cozen-input cozen-input-model="channel.name"
+                                 cozen-input-placeholder="ffzefczetrfze"
+                                 cozen-input-required="true"
+                                 cozen-input-name="{{ channel.id }}"
+                                 cozen-input-pattern-name
+                                 cozen-input-max-length="60"
+                                 style="flex: 1;">
+                    </cozen-input>
+
+                    <!-- Add -->
+                    <div ng-show="$last"
+                         class="atom-add-btn"
+                         ng-click="vm.addChannel()">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                    </div>
+
+                    <!-- Trash -->
+                    <div ng-show="!$last"
+                         class="atom-remove-btn"
+                         ng-click="vm.newGroup.channels.splice($index, 1)">
+                        <i class="fa fa-fw fa-trash-o"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </cozen-form>
+</div>

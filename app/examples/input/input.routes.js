@@ -25,6 +25,13 @@
                 controller  : 'InputCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Input - Default'}
+            })
+            .state('examples.input.repeat', {
+                url         : '/repeat',
+                templateUrl : 'examples/input/templates/input.repeat.html',
+                controller  : 'InputCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Input - Repeat'}
             });
     }
 

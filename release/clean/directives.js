@@ -3023,13 +3023,10 @@
                 getMainClass: getMainClass
             };
 
-            var data = {
+            var data       = {
                 directive: 'cozenForm'
             };
-
-            // After some test, wait too long for the load make things crappy
-            // So, I set it to true for now
-            scope._isReady = true;
+            scope._isReady = false;
 
             methods.init();
 
@@ -3266,6 +3263,9 @@
 
             function init() {
 
+                // Show only when the input know his parent (all the stuff is prepared)
+                scope.cozenInputHasParentKnowledge = false;
+
                 // Public functions
                 scope._methods = {
                     getMainClass         : getMainClass,
@@ -3414,28 +3414,30 @@
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
 
-                // Ask the parent to launch the cozenFormName event to get the data
-                // -> Avoid problems when elements are added to the DOM after the form loading
-                $rootScope.$broadcast('cozenFormChildInit');
-
                 // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
-                    scope._cozenInputForm      = eventData.name;
-                    scope._cozenInputFormCtrl  = eventData.ctrl;
-                    scope._cozenInputFormModel = eventData.model;
+                    scope._cozenInputForm              = eventData.name;
+                    scope._cozenInputFormCtrl          = eventData.ctrl;
+                    scope._cozenInputFormModel         = eventData.model;
+                    scope.cozenInputHasParentKnowledge = true;
 
                     // Force to dirty and touched if the model is not empty
-                    if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
+                    // The interval is required because the digest is random so a timeout wasn't enough
+                    var interval = $interval(function () {
                         var input = methods.getForm();
                         input     = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                         if (!Methods.isNullOrEmpty(input)) {
-                            input.$dirty   = true;
-                            input.$touched = true;
+                            if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
+                                input.$dirty   = true;
+                                input.$touched = true;
+                            }
+                            $interval.cancel(interval);
                         }
-                    }
+                        methods.updateModelLength();
+                    }, 10);
                 });
                 scope._cozenInputPatternRegExp = methods.getPattern();
 
@@ -3444,14 +3446,15 @@
                     var form = methods.getForm();
                     if (!Methods.isNullOrEmpty(form[scope._cozenInputFormCtrl])) {
                         var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
-                        input.$setValidity('hasError', !newValue);
+                        if (!Methods.isNullOrEmpty(input)) {
+                            input.$setValidity('hasError', !newValue);
+                        }
                     }
                 }, true);
 
-                // Display the template (the timeout avoid a visual bug due to events)
-                $timeout(function () {
-                    methods.updateModelLength();
-                }, 1);
+                // Ask the parent to launch the cozenFormName event to get the data
+                // -> Avoid problems when elements are added to the DOM after the form loading
+                $rootScope.$broadcast('cozenFormChildInit');
             }
 
             function hasError() {
@@ -3468,9 +3471,11 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
-                    var classList = [scope._activeTheme,
+                    var classList = [
+                        scope._activeTheme,
                         scope._cozenInputSize,
-                        attrs.cozenInputClass];
+                        attrs.cozenInputClass
+                    ];
                     var input     = methods.getForm();
                     input         = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                     if (!Methods.isNullOrEmpty(input)) {
