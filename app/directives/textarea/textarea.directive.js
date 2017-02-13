@@ -54,12 +54,12 @@
         'CONFIG',
         'rfc4122',
         '$timeout',
-        '$parse',
+        '$interval',
         '$filter',
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $parse, $filter, $rootScope) {
+    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -157,18 +157,18 @@
                 scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
                 scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
                 scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
-                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? $parse(attrs.cozenTextareaRequired)(scope) : CONFIG.textarea.required;
-                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? $parse(attrs.cozenTextareaErrorDesign)(scope) : CONFIG.textarea.errorDesign;
-                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? $parse(attrs.cozenTextareaSuccessDesign)(scope) : CONFIG.textarea.successDesign;
+                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
+                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
+                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
                 scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
-                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? $parse(attrs.cozenTextareaMinLength)(scope) : CONFIG.textarea.minLength;
-                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? $parse(attrs.cozenTextareaMaxLength)(scope) : CONFIG.textarea.maxLength;
+                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
+                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
                 scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
-                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? $parse(attrs.cozenTextareaValidatorEmpty)(scope) : CONFIG.textarea.validator.empty;
-                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? $parse(attrs.cozenTextareaValidatorIcon)(scope) : true;
+                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
+                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
                 scope._cozenTextareaTooltipPlacement   = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
-                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? $parse(attrs.cozenTextareaElastic)(scope) : CONFIG.textarea.elastic;
-                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? $parse(attrs.cozenTextareaRows)(scope) : CONFIG.textarea.rows;
+                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
+                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
                 scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
                 scope._cozenTextareaUuid               = data.uuid;
                 scope._cozenTextareaDisplayModelLength = CONFIG.textarea.displayModelLength;
@@ -223,29 +223,25 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenTextareaForm)) {
-                    var classList = [
-                        scope._activeTheme,
-                        scope._cozenTextareaSize,
-                        attrs.cozenTextareaClass
-                    ];
+                    var classList = [scope._activeTheme, scope._cozenTextareaSize, attrs.cozenTextareaClass];
                     var textarea  = methods.getForm();
                     textarea      = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
                     if (!Methods.isNullOrEmpty(textarea)) {
                         if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
                             switch (scope._cozenTextareaValidator) {
-                            case 'touched':
-                                if (textarea.$touched) {
+                                case 'touched':
+                                    if (textarea.$touched) {
+                                        classList.push(methods.getDesignClass(textarea));
+                                    }
+                                    break;
+                                case 'dirty':
+                                    if (textarea.$dirty) {
+                                        classList.push(methods.getDesignClass(textarea));
+                                    }
+                                    break;
+                                case 'all':
                                     classList.push(methods.getDesignClass(textarea));
-                                }
-                                break;
-                            case 'dirty':
-                                if (textarea.$dirty) {
-                                    classList.push(methods.getDesignClass(textarea));
-                                }
-                                break;
-                            case 'all':
-                                classList.push(methods.getDesignClass(textarea));
-                                break;
+                                    break;
                             }
                         }
                     }
