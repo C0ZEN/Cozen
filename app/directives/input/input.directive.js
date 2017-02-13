@@ -254,21 +254,21 @@
                 scope._cozenInputId                 = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
                 scope._cozenInputTooltip            = angular.isDefined(attrs.cozenInputTooltip) ? attrs.cozenInputTooltip : '';
                 scope._cozenInputTooltipTrigger     = angular.isDefined(attrs.cozenInputTooltipTrigger) ? attrs.cozenInputTooltipTrigger : 'outsideClick';
-                scope._cozenInputRequired           = angular.isDefined(attrs.cozenInputRequired) && !Methods.isNullOrEmpty(attrs.cozenInputRequired) ? JSON.parse(attrs.cozenInputRequired) : false;
-                scope._cozenInputErrorDesign        = angular.isDefined(attrs.cozenInputErrorDesign) && !Methods.isNullOrEmpty(attrs.cozenInputErrorDesign) ? JSON.parse(attrs.cozenInputErrorDesign) : true;
-                scope._cozenInputSuccessDesign      = angular.isDefined(attrs.cozenInputSuccessDesign) && !Methods.isNullOrEmpty(attrs.cozenInputSuccessDesign) ? JSON.parse(attrs.cozenInputSuccessDesign) : true;
+                scope._cozenInputRequired           = angular.isDefined(attrs.cozenInputRequired) ? JSON.parse(attrs.cozenInputRequired) : false;
+                scope._cozenInputErrorDesign        = angular.isDefined(attrs.cozenInputErrorDesign) ? JSON.parse(attrs.cozenInputErrorDesign) : true;
+                scope._cozenInputSuccessDesign      = angular.isDefined(attrs.cozenInputSuccessDesign) ? JSON.parse(attrs.cozenInputSuccessDesign) : true;
                 scope._cozenInputPrefix             = angular.isDefined(attrs.cozenInputPrefix) ? attrs.cozenInputPrefix : '';
                 scope._cozenInputSuffix             = angular.isDefined(attrs.cozenInputSuffix) ? attrs.cozenInputSuffix : '';
                 scope._cozenInputPlaceholder        = angular.isDefined(attrs.cozenInputPlaceholder) ? attrs.cozenInputPlaceholder : '';
-                scope._cozenInputMin                = angular.isDefined(attrs.cozenInputMin) && !Methods.isNullOrEmpty(attrs.cozenInputMin) ? JSON.parse(attrs.cozenInputMin) : 0;
-                scope._cozenInputMax                = angular.isDefined(attrs.cozenInputMax) && !Methods.isNullOrEmpty(attrs.cozenInputMax) ? JSON.parse(attrs.cozenInputMax) : 1000;
-                scope._cozenInputMinLength          = angular.isDefined(attrs.cozenInputMinLength) && !Methods.isNullOrEmpty(attrs.cozenInputMinLength) ? JSON.parse(attrs.cozenInputMinLength) : 0;
-                scope._cozenInputMaxLength          = angular.isDefined(attrs.cozenInputMaxLength) && !Methods.isNullOrEmpty(attrs.cozenInputMaxLength) ? JSON.parse(attrs.cozenInputMaxLength) : 100;
+                scope._cozenInputMin                = angular.isDefined(attrs.cozenInputMin) ? JSON.parse(attrs.cozenInputMin) : 0;
+                scope._cozenInputMax                = angular.isDefined(attrs.cozenInputMax) ? JSON.parse(attrs.cozenInputMax) : 1000;
+                scope._cozenInputMinLength          = angular.isDefined(attrs.cozenInputMinLength) ? JSON.parse(attrs.cozenInputMinLength) : 0;
+                scope._cozenInputMaxLength          = angular.isDefined(attrs.cozenInputMaxLength) ? JSON.parse(attrs.cozenInputMaxLength) : 100;
                 scope._cozenInputIconLeft           = angular.isDefined(attrs.cozenInputIconLeft) ? attrs.cozenInputIconLeft : '';
                 scope._cozenInputIconRight          = angular.isDefined(attrs.cozenInputIconRight) ? attrs.cozenInputIconRight : '';
                 scope._cozenInputName               = angular.isDefined(attrs.cozenInputName) ? attrs.cozenInputName : data.uuid;
-                scope._cozenInputValidatorEmpty     = angular.isDefined(attrs.cozenInputValidatorEmpty) && !Methods.isNullOrEmpty(attrs.cozenInputValidatorEmpty) ? JSON.parse(attrs.cozenInputValidatorEmpty) : true;
-                scope._cozenInputValidatorIcon      = angular.isDefined(attrs.cozenInputValidatorIcon) && !Methods.isNullOrEmpty(attrs.cozenInputValidatorIcon) ? JSON.parse(attrs.cozenInputValidatorIcon) : true;
+                scope._cozenInputValidatorEmpty     = angular.isDefined(attrs.cozenInputValidatorEmpty) ? JSON.parse(attrs.cozenInputValidatorEmpty) : true;
+                scope._cozenInputValidatorIcon      = angular.isDefined(attrs.cozenInputValidatorIcon) ? JSON.parse(attrs.cozenInputValidatorIcon) : true;
                 scope._cozenInputTooltipType        = scope._cozenInputType == 'password' ? 'html' : 'default';
                 scope._cozenInputAutoComplete       = angular.isDefined(attrs.cozenInputAutoComplete) ? attrs.cozenInputAutoComplete : 'on';
                 scope._cozenInputTooltipPlacement   = angular.isDefined(attrs.cozenInputTooltipPlacement) ? attrs.cozenInputTooltipPlacement : 'auto right';
@@ -278,7 +278,7 @@
                 scope._cozenInputModelLength        = scope._cozenInputMaxLength;
                 scope._cozenInputRequiredConfig     = CONFIG.required;
                 scope._cozenInputRequiredTooltip    = angular.isDefined(attrs.cozenInputRequiredTooltip) ? attrs.cozenInputRequiredTooltip : 'input_required_tooltip';
-                scope._cozenInputSpellCheck         = angular.isDefined(attrs.cozenInputSpellCheck) && !Methods.isNullOrEmpty(attrs.cozenInputSpellCheck) ? JSON.parse(attrs.cozenInputSpellCheck) : false;
+                scope._cozenInputSpellCheck         = angular.isDefined(attrs.cozenInputSpellCheck) ? JSON.parse(attrs.cozenInputSpellCheck) : false;
 
                 // Object overriding (typePasswordConfig)
                 if (scope._cozenInputType == 'password') {
