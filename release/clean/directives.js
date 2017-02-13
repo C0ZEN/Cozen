@@ -3194,10 +3194,11 @@
         '$timeout',
         '$interval',
         '$filter',
-        '$rootScope'
+        '$rootScope',
+        '$parse'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
+    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, $parse) {
         return {
             link            : link,
             restrict        : 'E',
@@ -3370,21 +3371,21 @@
                 scope._cozenInputId                 = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
                 scope._cozenInputTooltip            = angular.isDefined(attrs.cozenInputTooltip) ? attrs.cozenInputTooltip : '';
                 scope._cozenInputTooltipTrigger     = angular.isDefined(attrs.cozenInputTooltipTrigger) ? attrs.cozenInputTooltipTrigger : 'outsideClick';
-                scope._cozenInputRequired           = angular.isDefined(attrs.cozenInputRequired) ? JSON.parse(attrs.cozenInputRequired) : false;
-                scope._cozenInputErrorDesign        = angular.isDefined(attrs.cozenInputErrorDesign) ? JSON.parse(attrs.cozenInputErrorDesign) : true;
-                scope._cozenInputSuccessDesign      = angular.isDefined(attrs.cozenInputSuccessDesign) ? JSON.parse(attrs.cozenInputSuccessDesign) : true;
+                scope._cozenInputRequired           = angular.isDefined(attrs.cozenInputRequired) ? $parse(attrs.cozenInputRequired)(scope) : false;
+                scope._cozenInputErrorDesign        = angular.isDefined(attrs.cozenInputErrorDesign) ? $parse(attrs.cozenInputErrorDesign)(scope) : true;
+                scope._cozenInputSuccessDesign      = angular.isDefined(attrs.cozenInputSuccessDesign) ? $parse(attrs.cozenInputSuccessDesign)(scope) : true;
                 scope._cozenInputPrefix             = angular.isDefined(attrs.cozenInputPrefix) ? attrs.cozenInputPrefix : '';
                 scope._cozenInputSuffix             = angular.isDefined(attrs.cozenInputSuffix) ? attrs.cozenInputSuffix : '';
                 scope._cozenInputPlaceholder        = angular.isDefined(attrs.cozenInputPlaceholder) ? attrs.cozenInputPlaceholder : '';
-                scope._cozenInputMin                = angular.isDefined(attrs.cozenInputMin) ? JSON.parse(attrs.cozenInputMin) : 0;
-                scope._cozenInputMax                = angular.isDefined(attrs.cozenInputMax) ? JSON.parse(attrs.cozenInputMax) : 1000;
-                scope._cozenInputMinLength          = angular.isDefined(attrs.cozenInputMinLength) ? JSON.parse(attrs.cozenInputMinLength) : 0;
-                scope._cozenInputMaxLength          = angular.isDefined(attrs.cozenInputMaxLength) ? JSON.parse(attrs.cozenInputMaxLength) : 100;
+                scope._cozenInputMin                = angular.isDefined(attrs.cozenInputMin) ? $parse(attrs.cozenInputMin)(scope) : 0;
+                scope._cozenInputMax                = angular.isDefined(attrs.cozenInputMax) ? $parse(attrs.cozenInputMax)(scope) : 1000;
+                scope._cozenInputMinLength          = angular.isDefined(attrs.cozenInputMinLength) ? $parse(attrs.cozenInputMinLength)(scope) : 0;
+                scope._cozenInputMaxLength          = angular.isDefined(attrs.cozenInputMaxLength) ? $parse(attrs.cozenInputMaxLength)(scope) : 100;
                 scope._cozenInputIconLeft           = angular.isDefined(attrs.cozenInputIconLeft) ? attrs.cozenInputIconLeft : '';
                 scope._cozenInputIconRight          = angular.isDefined(attrs.cozenInputIconRight) ? attrs.cozenInputIconRight : '';
                 scope._cozenInputName               = angular.isDefined(attrs.cozenInputName) ? attrs.cozenInputName : data.uuid;
-                scope._cozenInputValidatorEmpty     = angular.isDefined(attrs.cozenInputValidatorEmpty) ? JSON.parse(attrs.cozenInputValidatorEmpty) : true;
-                scope._cozenInputValidatorIcon      = angular.isDefined(attrs.cozenInputValidatorIcon) ? JSON.parse(attrs.cozenInputValidatorIcon) : true;
+                scope._cozenInputValidatorEmpty     = angular.isDefined(attrs.cozenInputValidatorEmpty) ? $parse(attrs.cozenInputValidatorEmpty)(scope) : true;
+                scope._cozenInputValidatorIcon      = angular.isDefined(attrs.cozenInputValidatorIcon) ? $parse(attrs.cozenInputValidatorIcon)(scope) : true;
                 scope._cozenInputTooltipType        = scope._cozenInputType == 'password' ? 'html' : 'default';
                 scope._cozenInputAutoComplete       = angular.isDefined(attrs.cozenInputAutoComplete) ? attrs.cozenInputAutoComplete : 'on';
                 scope._cozenInputTooltipPlacement   = angular.isDefined(attrs.cozenInputTooltipPlacement) ? attrs.cozenInputTooltipPlacement : 'auto right';
@@ -3468,25 +3469,29 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenInputForm)) {
-                    var classList = [scope._activeTheme, scope._cozenInputSize, attrs.cozenInputClass];
+                    var classList = [
+                        scope._activeTheme,
+                        scope._cozenInputSize,
+                        attrs.cozenInputClass
+                    ];
                     var input     = methods.getForm();
                     input         = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
                     if (!Methods.isNullOrEmpty(input)) {
                         if (scope._cozenInputValidatorEmpty || (!scope._cozenInputValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenInputModel))) {
                             switch (scope._cozenInputValidator) {
-                                case 'touched':
-                                    if (input.$touched) {
-                                        classList.push(methods.getDesignClass(input));
-                                    }
-                                    break;
-                                case 'dirty':
-                                    if (input.$dirty) {
-                                        classList.push(methods.getDesignClass(input));
-                                    }
-                                    break;
-                                case 'all':
+                            case 'touched':
+                                if (input.$touched) {
                                     classList.push(methods.getDesignClass(input));
-                                    break;
+                                }
+                                break;
+                            case 'dirty':
+                                if (input.$dirty) {
+                                    classList.push(methods.getDesignClass(input));
+                                }
+                                break;
+                            case 'all':
+                                classList.push(methods.getDesignClass(input));
+                                break;
                             }
                         }
                     }
@@ -3588,12 +3593,12 @@
 
             function getIconRightClass() {
                 switch (scope._cozenInputHasFeedback) {
-                    case 'error':
-                        return 'fa fa-times';
-                    case 'success':
-                        return 'fa fa-check';
-                    default:
-                        return scope._cozenInputIconRight;
+                case 'error':
+                    return 'fa fa-times';
+                case 'success':
+                    return 'fa fa-check';
+                default:
+                    return scope._cozenInputIconRight;
                 }
             }
 
@@ -3609,31 +3614,31 @@
 
             function getPattern() {
                 switch (scope._cozenInputPattern) {
-                    case 'email':
-                        // Note: Double backslash because one is deleted during injection in the DOM
-                        return '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-                    case 'letter':
-                        return '[a-zA-Z]*';
-                    case 'name':
-                        return '[a-zA-Z\'-\\s]*';
-                    case 'password':
-                        var pattern = '';
-                        if (scope.vm.cozenInputTypePasswordConfig.lowercase) {
-                            pattern += '(?=.*' + data.password.lowercase.regexp + ')';
-                        }
-                        if (scope.vm.cozenInputTypePasswordConfig.uppercase) {
-                            pattern += '(?=.*' + data.password.uppercase.regexp + ')';
-                        }
-                        if (scope.vm.cozenInputTypePasswordConfig.number) {
-                            pattern += '(?=.*' + data.password.number.regexp + ')';
-                        }
-                        if (scope.vm.cozenInputTypePasswordConfig.specialChar) {
-                            pattern += '(?=.*' + data.password.specialChar.regexp + ')';
-                        }
-                        pattern += '.{' + scope.vm.cozenInputTypePasswordConfig.minLength + ',}';
-                        return pattern;
-                    default:
-                        return scope._cozenInputPattern;
+                case 'email':
+                    // Note: Double backslash because one is deleted during injection in the DOM
+                    return '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+                case 'letter':
+                    return '[a-zA-Z]*';
+                case 'name':
+                    return '[a-zA-Z\'-\\s]*';
+                case 'password':
+                    var pattern = '';
+                    if (scope.vm.cozenInputTypePasswordConfig.lowercase) {
+                        pattern += '(?=.*' + data.password.lowercase.regexp + ')';
+                    }
+                    if (scope.vm.cozenInputTypePasswordConfig.uppercase) {
+                        pattern += '(?=.*' + data.password.uppercase.regexp + ')';
+                    }
+                    if (scope.vm.cozenInputTypePasswordConfig.number) {
+                        pattern += '(?=.*' + data.password.number.regexp + ')';
+                    }
+                    if (scope.vm.cozenInputTypePasswordConfig.specialChar) {
+                        pattern += '(?=.*' + data.password.specialChar.regexp + ')';
+                    }
+                    pattern += '.{' + scope.vm.cozenInputTypePasswordConfig.minLength + ',}';
+                    return pattern;
+                default:
+                    return scope._cozenInputPattern;
                 }
             }
 
@@ -6223,12 +6228,12 @@ function changeRouteLog(directive, route, params) {
         'CONFIG',
         'rfc4122',
         '$timeout',
-        '$interval',
+        '$parse',
         '$filter',
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
+    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $parse, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -6326,18 +6331,18 @@ function changeRouteLog(directive, route, params) {
                 scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
                 scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
                 scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
-                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
-                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
-                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
+                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? $parse(attrs.cozenTextareaRequired)(scope) : CONFIG.textarea.required;
+                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? $parse(attrs.cozenTextareaErrorDesign)(scope) : CONFIG.textarea.errorDesign;
+                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? $parse(attrs.cozenTextareaSuccessDesign)(scope) : CONFIG.textarea.successDesign;
                 scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
-                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
-                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
+                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? $parse(attrs.cozenTextareaMinLength)(scope) : CONFIG.textarea.minLength;
+                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? $parse(attrs.cozenTextareaMaxLength)(scope) : CONFIG.textarea.maxLength;
                 scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
-                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
-                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
+                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? $parse(attrs.cozenTextareaValidatorEmpty)(scope) : CONFIG.textarea.validator.empty;
+                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? $parse(attrs.cozenTextareaValidatorIcon)(scope) : true;
                 scope._cozenTextareaTooltipPlacement   = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
-                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
-                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
+                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? $parse(attrs.cozenTextareaElastic)(scope) : CONFIG.textarea.elastic;
+                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? $parse(attrs.cozenTextareaRows)(scope) : CONFIG.textarea.rows;
                 scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
                 scope._cozenTextareaUuid               = data.uuid;
                 scope._cozenTextareaDisplayModelLength = CONFIG.textarea.displayModelLength;
@@ -6392,25 +6397,29 @@ function changeRouteLog(directive, route, params) {
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenTextareaForm)) {
-                    var classList = [scope._activeTheme, scope._cozenTextareaSize, attrs.cozenTextareaClass];
+                    var classList = [
+                        scope._activeTheme,
+                        scope._cozenTextareaSize,
+                        attrs.cozenTextareaClass
+                    ];
                     var textarea  = methods.getForm();
                     textarea      = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
                     if (!Methods.isNullOrEmpty(textarea)) {
                         if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
                             switch (scope._cozenTextareaValidator) {
-                                case 'touched':
-                                    if (textarea.$touched) {
-                                        classList.push(methods.getDesignClass(textarea));
-                                    }
-                                    break;
-                                case 'dirty':
-                                    if (textarea.$dirty) {
-                                        classList.push(methods.getDesignClass(textarea));
-                                    }
-                                    break;
-                                case 'all':
+                            case 'touched':
+                                if (textarea.$touched) {
                                     classList.push(methods.getDesignClass(textarea));
-                                    break;
+                                }
+                                break;
+                            case 'dirty':
+                                if (textarea.$dirty) {
+                                    classList.push(methods.getDesignClass(textarea));
+                                }
+                                break;
+                            case 'all':
+                                classList.push(methods.getDesignClass(textarea));
+                                break;
                             }
                         }
                     }
