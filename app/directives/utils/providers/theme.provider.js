@@ -22,7 +22,8 @@
                     getConsoleColor('purple'),
                     getConsoleColor()
                 );
-            } else {
+            }
+            else {
                 activeTheme = theme;
             }
             return this;

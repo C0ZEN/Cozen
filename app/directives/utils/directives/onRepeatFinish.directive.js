@@ -20,32 +20,32 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib')
-    .directive('cozenOnRepeatFinish', cozenOnRepeatFinish);
+    angular
+        .module('cozenLib')
+        .directive('cozenOnRepeatFinish', cozenOnRepeatFinish);
 
-  cozenOnRepeatFinish.$inject = [
-    '$timeout'
-  ];
+    cozenOnRepeatFinish.$inject = [
+        '$timeout'
+    ];
 
-  function cozenOnRepeatFinish($timeout) {
-    return {
-      link      : link,
-      restrict  : 'A',
-      replace   : false,
-      transclude: false
-    };
+    function cozenOnRepeatFinish($timeout) {
+        return {
+            link      : link,
+            restrict  : 'A',
+            replace   : false,
+            transclude: false
+        };
 
-    function link(scope, element, attrs) {
-      if (scope.$last === true) {
-        $timeout(function () {
-          scope.$emit(attrs.cozenOnRepeatFinish);
-        });
-      }
+        function link(scope, element, attrs) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attrs.cozenOnRepeatFinish);
+                });
+            }
+        }
     }
-  }
 
 })(window.angular);
 

@@ -1,72 +1,72 @@
 div.cozen-panel {
-  cursor:      pointer;
-  transition:  @cozen-transition;
-  box-sizing:  border-box;
-  position:    relative;
-  line-height: normal;
-  outline:     @cozen-outline;
-  width:       100%;
+    cursor      : pointer;
+    transition  : @cozen-transition;
+    box-sizing  : border-box;
+    position    : relative;
+    line-height : normal;
+    outline     : @cozen-outline;
+    width       : 100%;
 
-  // Header
-  div.cozen-panel-header {
-    cursor:         inherit;
-    outline:        inherit;
-    transition:     @cozen-transition;
-    display:        flex;
-    flex-direction: row;
-    align-items:     center;
+    // Header
+    div.cozen-panel-header {
+        cursor         : inherit;
+        outline        : inherit;
+        transition     : @cozen-transition;
+        display        : flex;
+        flex-direction : row;
+        align-items    : center;
 
-    // Label
-    span.cozen-panel-label {
-      cursor:         inherit;
-      font-weight:    normal;
-      font-size:      inherit;
-      vertical-align: sub;
-      line-height:    inherit;
-      small {
-        font-weight: normal;
-      }
+        // Label
+        span.cozen-panel-label {
+            cursor         : inherit;
+            font-weight    : normal;
+            font-size      : inherit;
+            vertical-align : sub;
+            line-height    : inherit;
+            small {
+                font-weight : normal;
+            }
+        }
+
+        // Icon
+        div.cozen-panel-icon,
+        div.cozen-panel-big-icon {
+            display        : inline-block;
+            cursor         : inherit;
+            font-weight    : normal;
+            vertical-align : sub;
+            outline        : @cozen-outline;
+            transition     : @cozen-transition;
+        }
+        div.cozen-panel-icon {
+            font-size   : inherit;
+            line-height : inherit;
+        }
+        div.cozen-panel-big-icon {
+            display       : inline-flex;
+            border-radius : @cozen-radius;
+            &.right {
+                margin-left : auto;
+            }
+            i {
+                vertical-align : middle;
+                height         : inherit;
+                line-height    : inherit;
+                transition     : @cozen-transition;
+            }
+        }
     }
 
-    // Icon
-    div.cozen-panel-icon,
-    div.cozen-panel-big-icon {
-      display:        inline-block;
-      cursor:         inherit;
-      font-weight:    normal;
-      vertical-align: sub;
-      outline:        @cozen-outline;
-      transition:     @cozen-transition;
+    // Body
+    div.cozen-panel-body {
+        cursor     : default;
+        overflow-y : auto;
+        overflow-x : hidden;
     }
-    div.cozen-panel-icon {
-      font-size:   inherit;
-      line-height: inherit;
-    }
-    div.cozen-panel-big-icon {
-      display:       inline-flex;
-      border-radius: @cozen-radius;
-      &.right {
-        margin-left: auto;
-      }
-      i {
-        vertical-align: middle;
-        height:         inherit;
-        line-height:    inherit;
-        transition:     @cozen-transition;
-      }
-    }
-  }
 
-  // Body
-  div.cozen-panel-body {
-    cursor:     default;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  // Disabled
-  &.disabled {
-    cursor:      not-allowed;
-    user-select: none;
-  }
+    // Disabled
+    &.disabled {
+        cursor      : not-allowed;
+        user-select : none;
+    }
 }

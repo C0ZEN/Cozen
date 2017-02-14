@@ -67,15 +67,28 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenPillsSize)) {
-                    if (angular.isDefined(attrs.cozenPillsSizeSmall)) scope._cozenPillsSize = 'small';
-                    else if (angular.isDefined(attrs.cozenPillsSizeNormal)) scope._cozenPillsSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenPillsSizeLarge)) scope._cozenPillsSize = 'large';
-                    else scope._cozenPillsSize = 'normal';
-                } else scope._cozenPillsSize = attrs.cozenPillsSize;
+                    if (angular.isDefined(attrs.cozenPillsSizeSmall)) {
+                        scope._cozenPillsSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenPillsSizeNormal)) {
+                        scope._cozenPillsSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenPillsSizeLarge)) {
+                        scope._cozenPillsSize = 'large';
+                    }
+                    else {
+                        scope._cozenPillsSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenPillsSize = attrs.cozenPillsSize;
+                }
 
                 // Default values (attributes)
                 scope._cozenPillsId              = angular.isDefined(attrs.cozenPillsId) ? attrs.cozenPillsId : '';
@@ -98,7 +111,9 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenPillsSize, attrs.cozenPillsClass];
+                var classList = [scope._activeTheme,
+                    scope._cozenPillsSize,
+                    attrs.cozenPillsClass];
                 return classList;
             }
         }

@@ -71,15 +71,28 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenListSize)) {
-                    if (angular.isDefined(attrs.cozenListSizeSmall)) scope._cozenListSize = 'small';
-                    else if (angular.isDefined(attrs.cozenListSizeNormal)) scope._cozenListSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenListSizeLarge)) scope._cozenListSize = 'large';
-                    else scope._cozenListSize = 'normal';
-                } else scope._cozenListSize = attrs.cozenListSize;
+                    if (angular.isDefined(attrs.cozenListSizeSmall)) {
+                        scope._cozenListSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenListSizeNormal)) {
+                        scope._cozenListSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenListSizeLarge)) {
+                        scope._cozenListSize = 'large';
+                    }
+                    else {
+                        scope._cozenListSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenListSize = attrs.cozenListSize;
+                }
 
                 // Default values (attributes)
                 scope._cozenListId = angular.isDefined(attrs.cozenListId) ? attrs.cozenListId : '';
@@ -106,7 +119,8 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenListSize];
+                var classList = [scope._activeTheme,
+                    scope._cozenListSize];
                 return classList;
             }
 
@@ -120,14 +134,20 @@
             }
 
             function onKeyDown(event) {
-                if (!scope.isHover) return;
+                if (!scope.isHover) {
+                    return;
+                }
                 switch (event.keyCode) {
 
                     // Arrow up
                     case 38:
                         event.stopPropagation();
-                        if (scope.activeChild > 1) scope.activeChild--;
-                        else scope.activeChild = scope.childrenUuid.length;
+                        if (scope.activeChild > 1) {
+                            scope.activeChild--;
+                        }
+                        else {
+                            scope.activeChild = scope.childrenUuid.length;
+                        }
                         $rootScope.$broadcast('cozenListActive', {
                             uuid: scope.childrenUuid[scope.activeChild - 1]
                         });
@@ -136,8 +156,12 @@
                     // Arrow down
                     case 40:
                         event.stopPropagation();
-                        if (scope.activeChild < scope.childrenUuid.length) scope.activeChild++;
-                        else scope.activeChild = 1;
+                        if (scope.activeChild < scope.childrenUuid.length) {
+                            scope.activeChild++;
+                        }
+                        else {
+                            scope.activeChild = 1;
+                        }
                         $rootScope.$broadcast('cozenListActive', {
                             uuid: scope.childrenUuid[scope.activeChild - 1]
                         });

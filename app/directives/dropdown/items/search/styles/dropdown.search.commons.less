@@ -1,64 +1,64 @@
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search {
-  cursor:      default;
-  box-sizing:  border-box;
-  position:    relative;
-  line-height: 1;
-  width:       100%;
-  display:     inline-block;
-  transition:  @cozen-transition;
+    cursor      : default;
+    box-sizing  : border-box;
+    position    : relative;
+    line-height : 1;
+    width       : 100%;
+    display     : inline-block;
+    transition  : @cozen-transition;
 
-  div.cozen-dropdown-item-search-content {
-    cursor:     inherit;
-    display:    inline-block;
-    width:      100%;
-    transition: none;
-    position:   relative;
+    div.cozen-dropdown-item-search-content {
+        cursor     : inherit;
+        display    : inline-block;
+        width      : 100%;
+        transition : none;
+        position   : relative;
 
-    // Icon
-    div.cozen-dropdown-item-search-icon {
-      font-weight:      normal;
-      line-height:      inherit;
-      font-size:        inherit;
-      color:            inherit;
-      background-color: transparent;
-      transition:       none;
-      position:         absolute;
-      top:              0;
-      content:          '';
-      height:           100%;
-      display:          flex;
-      align-items:      center;
-      cursor:           pointer;
-      &.left {
-        left: 0;
-      }
-      &.right {
-        right: 0;
-      }
-      i {
-        width:      1.28571429em;
-        text-align: center;
-        transition: @cozen-transition;
-      }
+        // Icon
+        div.cozen-dropdown-item-search-icon {
+            font-weight      : normal;
+            line-height      : inherit;
+            font-size        : inherit;
+            color            : inherit;
+            background-color : transparent;
+            transition       : none;
+            position         : absolute;
+            top              : 0;
+            content          : '';
+            height           : 100%;
+            display          : flex;
+            align-items      : center;
+            cursor           : pointer;
+            &.left {
+                left : 0;
+            }
+            &.right {
+                right : 0;
+            }
+            i {
+                width      : 1.28571429em;
+                text-align : center;
+                transition : @cozen-transition;
+            }
+        }
+
+        // Input
+        input {
+            font-size        : inherit;
+            color            : inherit;
+            background-color : inherit;
+            display          : inline-block;
+            width            : 100%;
+            border-radius    : @cozen-radius;
+            transition       : @cozen-transition;
+            outline          : @cozen-outline;
+        }
     }
 
-    // Input
-    input {
-      font-size:        inherit;
-      color:            inherit;
-      background-color: inherit;
-      display:          inline-block;
-      width:            100%;
-      border-radius:    @cozen-radius;
-      transition:       @cozen-transition;
-      outline:          @cozen-outline;
+    div.cozen-dropdown-item-search-empty {
+        span {
+            font-size : inherit;
+            color     : inherit;
+        }
     }
-  }
-
-  div.cozen-dropdown-item-search-empty {
-    span {
-      font-size: inherit;
-      color:     inherit;
-    }
-  }
 }

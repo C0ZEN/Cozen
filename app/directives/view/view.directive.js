@@ -49,7 +49,9 @@
             function init() {
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (attributes)
                 scope._cozenScrollBar       = CONFIG.scrollsBar;

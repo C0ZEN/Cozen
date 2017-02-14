@@ -5,7 +5,7 @@
         .module('test')
         .controller('BtnToggleCtrl', BtnToggleCtrl);
 
-  BtnToggleCtrl.$inject = [];
+    BtnToggleCtrl.$inject = [];
 
     function BtnToggleCtrl() {
         var vm    = this;

@@ -5,7 +5,7 @@
         .module('test')
         .controller('BtnCheckCtrl', BtnCheckCtrl);
 
-  BtnCheckCtrl.$inject = [];
+    BtnCheckCtrl.$inject = [];
 
     function BtnCheckCtrl() {
         var vm    = this;

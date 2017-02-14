@@ -127,30 +127,62 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenDropdownSize)) {
-                    if (angular.isDefined(attrs.cozenDropdownSizeSmall)) scope._cozenDropdownSize = 'small';
-                    else if (angular.isDefined(attrs.cozenDropdownSizeNormal)) scope._cozenDropdownSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenDropdownSizeLarge)) scope._cozenDropdownSize = 'large';
-                    else scope._cozenDropdownSize = 'normal';
-                } else scope._cozenDropdownSize = attrs.cozenDropdownSize;
+                    if (angular.isDefined(attrs.cozenDropdownSizeSmall)) {
+                        scope._cozenDropdownSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenDropdownSizeNormal)) {
+                        scope._cozenDropdownSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenDropdownSizeLarge)) {
+                        scope._cozenDropdownSize = 'large';
+                    }
+                    else {
+                        scope._cozenDropdownSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenDropdownSize = attrs.cozenDropdownSize;
+                }
 
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenDropdownValidator)) {
-                    if (angular.isDefined(attrs.cozenDropdownValidatorAll)) scope._cozenDropdownValidator = 'all';
-                    else if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) scope._cozenDropdownValidator = 'touched';
-                    else scope._cozenDropdownValidator = 'touched';
-                } else scope._cozenDropdownValidator = attrs.cozenDropdownValidator;
+                    if (angular.isDefined(attrs.cozenDropdownValidatorAll)) {
+                        scope._cozenDropdownValidator = 'all';
+                    }
+                    else if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) {
+                        scope._cozenDropdownValidator = 'touched';
+                    }
+                    else {
+                        scope._cozenDropdownValidator = 'touched';
+                    }
+                }
+                else {
+                    scope._cozenDropdownValidator = attrs.cozenDropdownValidator;
+                }
 
                 // Check the model enhanced mod
-                if (angular.isUndefined(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = 'last';
+                if (angular.isUndefined(attrs.cozenDropdownModelEnhanced)) {
+                    scope._cozenDropdownModelEnhanced = 'last';
+                }
                 else {
-                    if (attrs.cozenDropdownModelEnhanced == 'last') scope._cozenDropdownModelEnhanced = 'last';
-                    else if (attrs.cozenDropdownModelEnhanced == 'count') scope._cozenDropdownModelEnhanced = 'count';
-                    else if (attrs.cozenDropdownModelEnhanced == 'all') scope._cozenDropdownModelEnhanced = 'all';
-                    else if (!isNaN(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = parseInt(attrs.cozenDropdownModelEnhanced);
+                    if (attrs.cozenDropdownModelEnhanced == 'last') {
+                        scope._cozenDropdownModelEnhanced = 'last';
+                    }
+                    else if (attrs.cozenDropdownModelEnhanced == 'count') {
+                        scope._cozenDropdownModelEnhanced = 'count';
+                    }
+                    else if (attrs.cozenDropdownModelEnhanced == 'all') {
+                        scope._cozenDropdownModelEnhanced = 'all';
+                    }
+                    else if (!isNaN(attrs.cozenDropdownModelEnhanced)) {
+                        scope._cozenDropdownModelEnhanced = parseInt(attrs.cozenDropdownModelEnhanced);
+                    }
                     else {
                         scope._cozenDropdownModelEnhanced = 'last';
                         Methods.directiveWarningUnmatched(data.directive, 'ModelEnhanced', 'last');
@@ -158,7 +190,9 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenDropdownDisabled)) scope.vm.cozenDropdownDisabled = false;
+                if (angular.isUndefined(attrs.cozenDropdownDisabled)) {
+                    scope.vm.cozenDropdownDisabled = false;
+                }
                 scope.vm.cozenDropdownModelEnhanced = '';
 
                 // Default values (attributes)
@@ -249,21 +283,37 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenDropdownForm)) {
-                    var classList = [scope._activeTheme, scope._cozenDropdownSize, 'icon-right', scope._cozenDropdownDirection, attrs.cozenDropdownClass];
+                    var classList = [scope._activeTheme,
+                        scope._cozenDropdownSize,
+                        'icon-right',
+                        scope._cozenDropdownDirection,
+                        attrs.cozenDropdownClass];
                     switch (scope._cozenDropdownValidator) {
                         case 'touched':
                             if (data.touched) {
-                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) classList.push('success-design');
-                                else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) classList.push('error-design');
+                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) {
+                                    classList.push('success-design');
+                                }
+                                else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) {
+                                    classList.push('error-design');
+                                }
                             }
                             break;
                         case 'all':
-                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) classList.push('success-design');
-                            else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) classList.push('error-design');
+                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) {
+                                classList.push('success-design');
+                            }
+                            else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) {
+                                classList.push('error-design');
+                            }
                             break;
                     }
-                    if (scope.vm.cozenDropdownDisabled) classList.push('disabled');
-                    if (scope._cozenDropdownIconLeft) classList.push('icon-left');
+                    if (scope.vm.cozenDropdownDisabled) {
+                        classList.push('disabled');
+                    }
+                    if (scope._cozenDropdownIconLeft) {
+                        classList.push('icon-left');
+                    }
                     return classList;
                 }
             }
@@ -280,10 +330,16 @@
             }
 
             function onKeyDown(event) {
-                if (scope.vm.cozenDropdownDisabled) return;
-                if (!scope._cozenDropdownCollapse) return;
+                if (scope.vm.cozenDropdownDisabled) {
+                    return;
+                }
+                if (!scope._cozenDropdownCollapse) {
+                    return;
+                }
                 if (!scope._cozenDropdownEasyNavigation) {
-                    if (!scope.isHover) return;
+                    if (!scope.isHover) {
+                        return;
+                    }
                 }
                 if (event.keyCode == 38 || event.keyCode == 40) {
 
@@ -294,9 +350,15 @@
                     var length = scope.childrenUuid.length, i = 0;
                     var value  = angular.copy(scope.activeChild);
                     do {
-                        if (event.keyCode == 38) value = decrease(value, length);
-                        else if (event.keyCode == 40) value = increase(value, length);
-                        if (!scope.childrenUuid[value].disabled) break;
+                        if (event.keyCode == 38) {
+                            value = decrease(value, length);
+                        }
+                        else if (event.keyCode == 40) {
+                            value = increase(value, length);
+                        }
+                        if (!scope.childrenUuid[value].disabled) {
+                            break;
+                        }
                         i++;
                     } while (i < length);
 
@@ -307,22 +369,36 @@
                 }
 
                 function decrease(value, max) {
-                    if (value > 0) value--;
-                    else value = max - 1;
+                    if (value > 0) {
+                        value--;
+                    }
+                    else {
+                        value = max - 1;
+                    }
                     return value;
                 }
 
                 function increase(value, max) {
-                    if (value < max - 1) value++;
-                    else value = 0;
+                    if (value < max - 1) {
+                        value++;
+                    }
+                    else {
+                        value = 0;
+                    }
                     return value;
                 }
             }
 
             function onChange($event) {
-                if (scope.vm.cozenDropdownDisabled) return;
-                if (Methods.isFunction(scope.cozenDropdownOnChange)) scope.cozenDropdownOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (scope.vm.cozenDropdownDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenDropdownOnChange)) {
+                    scope.cozenDropdownOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
             }
 
             function getForm() {
@@ -337,16 +413,33 @@
                                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
                                 if (Methods.isNullOrEmpty(form)) {
                                     return form;
-                                } else return form;
-                            } else return form;
-                        } else return form;
-                    } else return form;
-                } else return form;
+                                }
+                                else {
+                                    return form;
+                                }
+                            }
+                            else {
+                                return form;
+                            }
+                        }
+                        else {
+                            return form;
+                        }
+                    }
+                    else {
+                        return form;
+                    }
+                }
+                else {
+                    return form;
+                }
             }
 
             function onClick($event) {
                 data.touched = true;
-                if (!Methods.isNullOrEmpty($event)) $event.stopPropagation();
+                if (!Methods.isNullOrEmpty($event)) {
+                    $event.stopPropagation();
+                }
                 if (!scope.vm.cozenDropdownDisabled) {
                     scope._cozenDropdownCollapse = !scope._cozenDropdownCollapse;
                     scope.$broadcast('cozenDropdownCollapse', {
@@ -371,7 +464,8 @@
                             data.transcludeHeight = element.find('.cozen-dropdown-transclude .ng-transclude')[0].offsetHeight;
                             methods.defineTranscludeDirection();
                         }, 1);
-                    } else {
+                    }
+                    else {
                         $window.removeEventListener('click', methods.onWindowClick);
                     }
                 }
@@ -401,8 +495,12 @@
                 if (data.dropdown == scope._cozenDropdownName) {
 
                     // ModelEnhanced stuff
-                    if (data.selected && scope._cozenDropdownModelEnhanced == 'last') scope.vm.cozenDropdownModelEnhanced = data.label;
-                    else if (scope._cozenDropdownModelEnhanced != 'last') scope.vm.cozenDropdownModelEnhanced = '';
+                    if (data.selected && scope._cozenDropdownModelEnhanced == 'last') {
+                        scope.vm.cozenDropdownModelEnhanced = data.label;
+                    }
+                    else if (scope._cozenDropdownModelEnhanced != 'last') {
+                        scope.vm.cozenDropdownModelEnhanced = '';
+                    }
 
                     if (scope._cozenDropdownMultiple) {
 
@@ -423,7 +521,9 @@
 
                                 // ModelEnhanced : all & number
                                 if (scope._cozenDropdownModelEnhanced == 'all' || typeof scope._cozenDropdownModelEnhanced == 'number') {
-                                    if (selectedValues > 0) scope.vm.cozenDropdownModelEnhanced += ', ';
+                                    if (selectedValues > 0) {
+                                        scope.vm.cozenDropdownModelEnhanced += ', ';
+                                    }
                                     scope.vm.cozenDropdownModelEnhanced += child.label;
                                     selectedValues++;
                                 }
@@ -435,7 +535,9 @@
                                 }
 
                                 // ModelEnhanced : last
-                                else if (scope._cozenDropdownModelEnhanced == 'last') selectedValues++;
+                                else if (scope._cozenDropdownModelEnhanced == 'last') {
+                                    selectedValues++;
+                                }
                             }
                         });
 
@@ -465,21 +567,27 @@
                             scope.vm.cozenDropdownModel         = '';
                             scope.vm.cozenDropdownModelEnhanced = '';
                         }
-                    } else {
+                    }
+                    else {
 
                         // Change the model
                         if (data.selected) {
                             scope.vm.cozenDropdownModel = data.value;
 
                             // Display the label instead of the value
-                            if (scope._cozenDropdownSingleDisplaySelectedLabel) scope.vm.cozenDropdownModelEnhanced = $filter('translate')(data.label);
-                            else scope.vm.cozenDropdownModelEnhanced = data.value;
+                            if (scope._cozenDropdownSingleDisplaySelectedLabel) {
+                                scope.vm.cozenDropdownModelEnhanced = $filter('translate')(data.label);
+                            }
+                            else {
+                                scope.vm.cozenDropdownModelEnhanced = data.value;
+                            }
 
                             // Deselect the other children
                             scope.$broadcast('cozenDropdownDeselect', {
                                 uuid: data.uuid
                             });
-                        } else {
+                        }
+                        else {
                             scope.vm.cozenDropdownModel         = '';
                             scope.vm.cozenDropdownModelEnhanced = scope.vm.cozenDropdownModel;
                         }
@@ -494,7 +602,9 @@
                         if (scope.childrenUuid[i].uuid == params.uuid) {
                             scope.childrenUuid[i].disabled = params.disabled;
                         }
-                        if (scope.childrenUuid[i].disabled) disabled++;
+                        if (scope.childrenUuid[i].disabled) {
+                            disabled++;
+                        }
                     }
 
                     // To show or hide the empty text
@@ -509,7 +619,9 @@
                 $timeout(function () {
                     var body       = element.find('.cozen-dropdown-transclude')[0];
                     var transclude = element.find('.cozen-dropdown-transclude .ng-transclude')[0];
-                    if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
+                    if (transclude.offsetHeight > 0) {
+                        body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
+                    }
                     Methods.safeApply(scope);
                 });
             }
@@ -524,17 +636,30 @@
                 var inputViewport = element.find('.cozen-dropdown-content')[0].getBoundingClientRect();
                 var windowHeight  = window.innerHeight;
                 var maxHeight     = data.transcludeHeight;
-                if (data.transcludeHeight > scope._cozenDropdownMaxHeight) maxHeight = scope._cozenDropdownMaxHeight + 8;
-                if (windowHeight - inputViewport.bottom < maxHeight) scope._cozenDropdownDirection = 'up';
-                else scope._cozenDropdownDirection = 'down';
+                if (data.transcludeHeight > scope._cozenDropdownMaxHeight) {
+                    maxHeight = scope._cozenDropdownMaxHeight + 8;
+                }
+                if (windowHeight - inputViewport.bottom < maxHeight) {
+                    scope._cozenDropdownDirection = 'up';
+                }
+                else {
+                    scope._cozenDropdownDirection = 'down';
+                }
                 Methods.safeApply(scope);
             }
 
             function getArrowClass() {
-                var classList = ['fa', 'fa-caret-down'];
-                if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
-                else if (scope._cozenDropdownDirection == 'up' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
-                else if (scope._cozenDropdownDirection == 'up' && !scope._cozenDropdownCollapse) classList.push('fa-rotate-180');
+                var classList = ['fa',
+                    'fa-caret-down'];
+                if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) {
+                    classList.push('fa-rotate-90');
+                }
+                else if (scope._cozenDropdownDirection == 'up' && scope._cozenDropdownCollapse) {
+                    classList.push('fa-rotate-90');
+                }
+                else if (scope._cozenDropdownDirection == 'up' && !scope._cozenDropdownCollapse) {
+                    classList.push('fa-rotate-180');
+                }
                 return classList;
             }
 
@@ -542,8 +667,12 @@
                 var styleList = {
                     'max-height': scope._cozenDropdownMaxHeight + 'px'
                 };
-                if (scope._cozenDropdownDirection == 'down') styleList.top = '100%';
-                else styleList.bottom = '100%';
+                if (scope._cozenDropdownDirection == 'down') {
+                    styleList.top = '100%';
+                }
+                else {
+                    styleList.bottom = '100%';
+                }
                 return styleList;
             }
         }

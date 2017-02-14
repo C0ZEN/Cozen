@@ -41,192 +41,245 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.alert', [
-      'cozenLib.alert.floatingFeed',
-      'cozenLib.alert.floatingFeedFactory'
-    ])
-    .directive('cozenAlert', cozenAlert);
+    angular
+        .module('cozenLib.alert', [
+            'cozenLib.alert.floatingFeed',
+            'cozenLib.alert.floatingFeedFactory'
+        ])
+        .directive('cozenAlert', cozenAlert);
 
-  cozenAlert.$inject = [
-    'Themes',
-    'CONFIG',
-    '$window',
-    '$timeout',
-    'rfc4122'
-  ];
+    cozenAlert.$inject = [
+        'Themes',
+        'CONFIG',
+        '$window',
+        '$timeout',
+        'rfc4122'
+    ];
 
-  function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : false,
-      scope      : {
-        cozenAlertOnShow     : '&',
-        cozenAlertOnHide     : '&',
-        cozenAlertDisplay    : '=?',
-        cozenAlertLabel      : '=?',
-        cozenAlertLabelValues: '=?',
-        cozenAlertOnHideDone : '&'
-      },
-      templateUrl: 'directives/alert/alert.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init        : init,
-        hasError    : hasError,
-        destroy     : destroy,
-        getMainClass: getMainClass,
-        hide        : hide,
-        show        : show,
-        onClose     : onClose
-      };
-
-      var data = {
-        directive        : 'cozenAlert',
-        uuid             : rfc4122.v4(),
-        shown            : true,
-        firstHide        : true,
-        firstDisplayWatch: true
-      };
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          hide        : hide,
-          onClose     : onClose
+    function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenAlertOnShow     : '&',
+                cozenAlertOnHide     : '&',
+                cozenAlertDisplay    : '=?',
+                cozenAlertLabel      : '=?',
+                cozenAlertLabelValues: '=?',
+                cozenAlertOnHideDone : '&'
+            },
+            templateUrl: 'directives/alert/alert.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                hide        : hide,
+                show        : show,
+                onClose     : onClose
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenAlertSize)) {
-          if (angular.isDefined(attrs.cozenAlertSizeSmall)) scope._cozenAlertSize = 'small';
-          else if (angular.isDefined(attrs.cozenAlertSizeNormal)) scope._cozenAlertSize = 'normal';
-          else if (angular.isDefined(attrs.cozenAlertSizeLarge)) scope._cozenAlertSize = 'large';
-          else scope._cozenAlertSize = 'normal';
-        } else scope._cozenAlertSize = attrs.cozenAlertSize;
+            var data = {
+                directive        : 'cozenAlert',
+                uuid             : rfc4122.v4(),
+                shown            : true,
+                firstHide        : true,
+                firstDisplayWatch: true
+            };
 
-        // Shortcut values (type)
-        if (angular.isUndefined(attrs.cozenAlertType)) {
-          if (angular.isDefined(attrs.cozenAlertTypeDefault)) scope._cozenAlertType = 'default';
-          else if (angular.isDefined(attrs.cozenAlertTypeInfo)) scope._cozenAlertType = 'info';
-          else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) scope._cozenAlertType = 'success';
-          else if (angular.isDefined(attrs.cozenAlertTypeWarning)) scope._cozenAlertType = 'warning';
-          else if (angular.isDefined(attrs.cozenAlertTypeError)) scope._cozenAlertType = 'error';
-          else scope._cozenAlertType = 'default';
-        } else scope._cozenAlertType = attrs.cozenAlertType;
+            methods.init();
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertDisplay = true;
-        // if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertLabel = '';
+            function init() {
 
-        // Default values (attributes)
-        scope._cozenAlertId                = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
-        scope._cozenAlertAnimationIn       = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
-        scope._cozenAlertAnimationOut      = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
-        scope._cozenAlertCloseBtn          = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
-        scope._cozenAlertIconLeft          = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
-        scope._cozenAlertTextAlign         = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
-        scope._cozenAlertCloseBtnTooltip   = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
-        scope._cozenAlertForceAnimation    = angular.isDefined(attrs.cozenAlertForceAnimation) ? JSON.parse(attrs.cozenAlertForceAnimation) : false;
-        scope._cozenAlertAnimationInClass  = angular.isDefined(attrs.cozenAlertAnimationInClass) ? attrs.cozenAlertAnimationInClass : CONFIG.alert.animation.inClass;
-        scope._cozenAlertAnimationOutClass = angular.isDefined(attrs.cozenAlertAnimationOutClass) ? attrs.cozenAlertAnimationOutClass : CONFIG.alert.animation.outClass;
-        scope._cozenAlertTimeout           = angular.isDefined(attrs.cozenAlertTimeout) ? JSON.parse(attrs.cozenAlertTimeout) : CONFIG.alert.timeout;
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    hide        : hide,
+                    onClose     : onClose
+                };
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-        scope.$on('cozenAlertShow', methods.show);
-        scope.$on('cozenAlertHide', methods.hide);
-        data.firstHide = false;
+                // Checking required stuff
+                if (methods.hasError()) {
+                    return;
+                }
 
-        // To force the popup to get his stuff done as a normal show (with animation)
-        if (scope._cozenAlertForceAnimation) methods.show(null, {
-          uuid: data.uuid
-        });
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenAlertSize)) {
+                    if (angular.isDefined(attrs.cozenAlertSizeSmall)) {
+                        scope._cozenAlertSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertSizeNormal)) {
+                        scope._cozenAlertSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertSizeLarge)) {
+                        scope._cozenAlertSize = 'large';
+                    }
+                    else {
+                        scope._cozenAlertSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenAlertSize = attrs.cozenAlertSize;
+                }
 
-        // To execute the hide and show stuff even if the value is changed elsewhere
-        scope.$watch('cozenAlertDisplay', function (newValue) {
-          if (!data.firstDisplayWatch) {
-            if (newValue) {
-              methods.show(null, {});
-            } else {
-              methods.hide(null, {
-                uuid: data.uuid
-              });
+                // Shortcut values (type)
+                if (angular.isUndefined(attrs.cozenAlertType)) {
+                    if (angular.isDefined(attrs.cozenAlertTypeDefault)) {
+                        scope._cozenAlertType = 'default';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertTypeInfo)) {
+                        scope._cozenAlertType = 'info';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertTypeSuccess)) {
+                        scope._cozenAlertType = 'success';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertTypeWarning)) {
+                        scope._cozenAlertType = 'warning';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertTypeError)) {
+                        scope._cozenAlertType = 'error';
+                    }
+                    else {
+                        scope._cozenAlertType = 'default';
+                    }
+                }
+                else {
+                    scope._cozenAlertType = attrs.cozenAlertType;
+                }
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenAlertDisplay)) {
+                    scope.cozenAlertDisplay = true;
+                }
+                // if (angular.isUndefined(attrs.cozenAlertDisplay)) scope.cozenAlertLabel = '';
+
+                // Default values (attributes)
+                scope._cozenAlertId                = angular.isDefined(attrs.cozenAlertId) ? attrs.cozenAlertId : '';
+                scope._cozenAlertAnimationIn       = angular.isDefined(attrs.cozenAlertAnimationIn) ? JSON.parse(attrs.cozenAlertAnimationIn) : CONFIG.alert.animation.in;
+                scope._cozenAlertAnimationOut      = angular.isDefined(attrs.cozenAlertAnimationOut) ? JSON.parse(attrs.cozenAlertAnimationOut) : CONFIG.alert.animation.out;
+                scope._cozenAlertCloseBtn          = angular.isDefined(attrs.cozenAlertCloseBtn) ? JSON.parse(attrs.cozenAlertCloseBtn) : CONFIG.alert.closeBtn.enabled;
+                scope._cozenAlertIconLeft          = angular.isDefined(attrs.cozenAlertIconLeft) ? attrs.cozenAlertIconLeft : CONFIG.alert.iconLeft[scope._cozenAlertType];
+                scope._cozenAlertTextAlign         = angular.isDefined(attrs.cozenAlertTextAlign) ? attrs.cozenAlertTextAlign : CONFIG.alert.textAlign;
+                scope._cozenAlertCloseBtnTooltip   = angular.isDefined(attrs.cozenAlertCloseBtnTooltip) ? JSON.parse(attrs.cozenAlertCloseBtnTooltip) : CONFIG.alert.closeBtn.tooltip;
+                scope._cozenAlertForceAnimation    = angular.isDefined(attrs.cozenAlertForceAnimation) ? JSON.parse(attrs.cozenAlertForceAnimation) : false;
+                scope._cozenAlertAnimationInClass  = angular.isDefined(attrs.cozenAlertAnimationInClass) ? attrs.cozenAlertAnimationInClass : CONFIG.alert.animation.inClass;
+                scope._cozenAlertAnimationOutClass = angular.isDefined(attrs.cozenAlertAnimationOutClass) ? attrs.cozenAlertAnimationOutClass : CONFIG.alert.animation.outClass;
+                scope._cozenAlertTimeout           = angular.isDefined(attrs.cozenAlertTimeout) ? JSON.parse(attrs.cozenAlertTimeout) : CONFIG.alert.timeout;
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+                scope.$on('cozenAlertShow', methods.show);
+                scope.$on('cozenAlertHide', methods.hide);
+                data.firstHide = false;
+
+                // To force the popup to get his stuff done as a normal show (with animation)
+                if (scope._cozenAlertForceAnimation) {
+                    methods.show(null, {
+                        uuid: data.uuid
+                    });
+                }
+
+                // To execute the hide and show stuff even if the value is changed elsewhere
+                scope.$watch('cozenAlertDisplay', function (newValue) {
+                    if (!data.firstDisplayWatch) {
+                        if (newValue) {
+                            methods.show(null, {});
+                        }
+                        else {
+                            methods.hide(null, {
+                                uuid: data.uuid
+                            });
+                        }
+                    }
+                    else {
+                        data.firstDisplayWatch = false;
+                    }
+                });
             }
-          } else data.firstDisplayWatch = false;
-        });
-      }
 
-      function hasError() {
-        return false;
-      }
+            function hasError() {
+                return false;
+            }
 
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
 
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenAlertSize, scope._cozenAlertType, attrs.cozenAlertClass];
-        if (!data.firstHide) {
-          if (scope._cozenAlertAnimationIn) classList.push('animate-in');
-          if (scope._cozenAlertAnimationOut) classList.push('animate-out');
-          if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) {
-            classList.push(scope._cozenAlertAnimationInClass);
-            classList.push('with-animation-in');
-          }
-          if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) {
-            classList.push(scope._cozenAlertAnimationOutClass);
-            classList.push('with-animation-out');
-          }
+            function getMainClass() {
+                var classList = [scope._activeTheme,
+                    scope._cozenAlertSize,
+                    scope._cozenAlertType,
+                    attrs.cozenAlertClass];
+                if (!data.firstHide) {
+                    if (scope._cozenAlertAnimationIn) {
+                        classList.push('animate-in');
+                    }
+                    if (scope._cozenAlertAnimationOut) {
+                        classList.push('animate-out');
+                    }
+                    if (scope.cozenAlertDisplay && scope._cozenAlertAnimationIn) {
+                        classList.push(scope._cozenAlertAnimationInClass);
+                        classList.push('with-animation-in');
+                    }
+                    if (!scope.cozenAlertDisplay && scope._cozenAlertAnimationOut) {
+                        classList.push(scope._cozenAlertAnimationOutClass);
+                        classList.push('with-animation-out');
+                    }
+                }
+                return classList;
+            }
+
+            function hide($event, params) {
+                if (params.uuid == data.uuid) {
+                    data.firstHide          = false;
+                    scope.cozenAlertDisplay = false;
+                    if (Methods.isFunction(scope.cozenAlertOnHide)) {
+                        scope.cozenAlertOnHide();
+                    }
+                    if (CONFIG.debug) {
+                        Methods.directiveCallbackLog(data.directive, 'OnHide');
+                    }
+                    Methods.safeApply(scope);
+
+                    // @todo instead of added a fix value (corresponding to animation-duration-out) we could:
+                    // - Add a parameter (attr + config) to set the time
+                    // - Get a real callback when the hide animation is done
+                    var timeout = scope._cozenAlertAnimationOut ? 200 : 0;
+                    $timeout(function () {
+                        if (Methods.isFunction(scope.cozenAlertOnHideDone)) {
+                            scope.cozenAlertOnHideDone();
+                        }
+                    }, timeout);
+                }
+            }
+
+            function show($event, params) {
+                if (params.uuid == data.uuid) {
+                    data.firstHide          = false;
+                    scope.cozenAlertDisplay = true;
+                    if (Methods.isFunction(scope.cozenAlertOnShow)) {
+                        scope.cozenAlertOnShow();
+                    }
+                    if (CONFIG.debug) {
+                        Methods.directiveCallbackLog(data.directive, 'OnShow');
+                    }
+                    Methods.safeApply(scope);
+                }
+            }
+
+            function onClose() {
+                scope.cozenAlertDisplay = false;
+            }
         }
-        return classList;
-      }
-
-      function hide($event, params) {
-        if (params.uuid == data.uuid) {
-          data.firstHide          = false;
-          scope.cozenAlertDisplay = false;
-          if (Methods.isFunction(scope.cozenAlertOnHide)) scope.cozenAlertOnHide();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnHide');
-          Methods.safeApply(scope);
-
-          // @todo instead of added a fix value (corresponding to animation-duration-out) we could:
-          // - Add a parameter (attr + config) to set the time
-          // - Get a real callback when the hide animation is done
-          var timeout = scope._cozenAlertAnimationOut ? 200 : 0;
-          $timeout(function () {
-            if (Methods.isFunction(scope.cozenAlertOnHideDone)) scope.cozenAlertOnHideDone();
-          }, timeout);
-        }
-      }
-
-      function show($event, params) {
-        if (params.uuid == data.uuid) {
-          data.firstHide          = false;
-          scope.cozenAlertDisplay = true;
-          if (Methods.isFunction(scope.cozenAlertOnShow)) scope.cozenAlertOnShow();
-          if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'OnShow');
-          Methods.safeApply(scope);
-        }
-      }
-
-      function onClose() {
-        scope.cozenAlertDisplay = false;
-      }
     }
-  }
 
 })(window.angular);
 
@@ -239,115 +292,115 @@
         .constant('CONFIG'
              ,
             {
-  "languages": [
-    "fr",
-    "en"
-  ],
-  "currentLanguage": "fr",
-  "themes": [
-    "tau",
-    "atom"
-  ],
-  "debug": false,
-  "scrollsBar": true,
-  "scrollsBarConfig": {
-    "autoHideScrollbar": true,
-    "theme": "dark",
-    "advanced": {
-      "updateOnContentResize": true,
-      "updateOnSelectorChange": true
+    "languages": [
+        "fr",
+        "en"
+    ],
+    "currentLanguage": "fr",
+    "themes": [
+        "tau",
+        "atom"
+    ],
+    "debug": false,
+    "scrollsBar": true,
+    "scrollsBarConfig": {
+        "autoHideScrollbar": true,
+        "theme": "dark",
+        "advanced": {
+            "updateOnContentResize": true,
+            "updateOnSelectorChange": true
+        },
+        "setHeight": 0,
+        "scrollInertia": 100,
+        "axis": "yx",
+        "scrollButtons": {
+            "scrollAmount": "auto",
+            "enable": false
+        }
     },
-    "setHeight": 0,
-    "scrollInertia": 100,
-    "axis": "yx",
-    "scrollButtons": {
-      "scrollAmount": "auto",
-      "enable": false
+    "dropdown": {
+        "autoCloseOthers": true,
+        "displayModelLength": false
+    },
+    "input": {
+        "displayModelLength": false
+    },
+    "textarea": {
+        "displayModelLength": false,
+        "required": false,
+        "errorDesign": true,
+        "successDesign": true,
+        "minLength": 0,
+        "maxLength": 200,
+        "validator": {
+            "type": "dirty",
+            "empty": true
+        },
+        "elastic": true,
+        "rows": 2,
+        "tooltip": {
+            "placement": "auto right",
+            "trigger": "outsideClick"
+        }
+    },
+    "required": {
+        "type": "star",
+        "icon": "fa fa-fw fa-exclamation-circle"
+    },
+    "alert": {
+        "textAlign": "justify",
+        "closeBtn": {
+            "tooltip": true,
+            "enabled": true
+        },
+        "iconLeft": {
+            "default": "",
+            "info": "fa fa-info-circle",
+            "success": "fa fa-check-circle",
+            "warning": "fa fa-exclamation-triangle",
+            "error": "fa fa-exclamation-circle"
+        },
+        "animation": {
+            "in": true,
+            "inClass": "fadeInUp",
+            "out": true,
+            "outClass": "fadeOutDown"
+        },
+        "timeout": 0
+    },
+    "btnToggle": {
+        "animation": true,
+        "tooltipType": "default",
+        "startRight": true
+    },
+    "popup": {
+        "header": true,
+        "footer": true,
+        "animation": {
+            "in": {
+                "enabled": true,
+                "animation": "fadeInUp"
+            },
+            "out": {
+                "enabled": true,
+                "animation": "fadeOutDown"
+            }
+        },
+        "easeClose": true,
+        "closeBtn": true
+    },
+    "floatingFeed": {
+        "width": 460,
+        "size": "normal",
+        "animation": {
+            "in": "fadeInDown",
+            "out": "fadeOutDown"
+        },
+        "closeBtn": true,
+        "iconLeft": true,
+        "right": 20,
+        "bottom": 20
     }
-  },
-  "dropdown": {
-    "autoCloseOthers": true,
-    "displayModelLength": false
-  },
-  "input": {
-    "displayModelLength": false
-  },
-  "textarea": {
-    "displayModelLength": false,
-    "required": false,
-    "errorDesign": true,
-    "successDesign": true,
-    "minLength": 0,
-    "maxLength": 200,
-    "validator": {
-      "type": "dirty",
-      "empty": true
-    },
-    "elastic": true,
-    "rows": 2,
-    "tooltip": {
-      "placement": "auto right",
-      "trigger": "outsideClick"
-    }
-  },
-  "required": {
-    "type": "star",
-    "icon": "fa fa-fw fa-exclamation-circle"
-  },
-  "alert": {
-    "textAlign": "justify",
-    "closeBtn": {
-      "tooltip": true,
-      "enabled": true
-    },
-    "iconLeft": {
-      "default": "",
-      "info": "fa fa-info-circle",
-      "success": "fa fa-check-circle",
-      "warning": "fa fa-exclamation-triangle",
-      "error": "fa fa-exclamation-circle"
-    },
-    "animation": {
-      "in": true,
-      "inClass": "fadeInUp",
-      "out": true,
-      "outClass": "fadeOutDown"
-    },
-    "timeout": 0
-  },
-  "btnToggle": {
-    "animation": true,
-    "tooltipType": "default",
-    "startRight": true
-  },
-  "popup": {
-    "header": true,
-    "footer": true,
-    "animation": {
-      "in": {
-        "enabled": true,
-        "animation": "fadeInUp"
-      },
-      "out": {
-        "enabled": true,
-        "animation": "fadeOutDown"
-      }
-    },
-    "easeClose": true,
-    "closeBtn": true
-  },
-  "floatingFeed": {
-    "width": 460,
-    "size": "normal",
-    "animation": {
-      "in": "fadeInDown",
-      "out": "fadeOutDown"
-    },
-    "closeBtn": true,
-    "iconLeft": true,
-    "right": 20,
-    "bottom": 20
-  }
 }
 
         );
@@ -725,7 +778,10 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnSize, scope._cozenBtnType, attrs.cozenBtnClass];
+                var classList = [scope._activeTheme,
+                    scope._cozenBtnSize,
+                    scope._cozenBtnType,
+                    attrs.cozenBtnClass];
                 if (scope.cozenBtnActive) {
                     classList.push('active');
                 }
@@ -957,18 +1013,33 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenBtnCheckSize)) {
-                    if (angular.isDefined(attrs.cozenBtnCheckSizeSmall)) scope._cozenBtnCheckSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnCheckSizeNormal)) scope._cozenBtnCheckSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnCheckSizeLarge)) scope._cozenBtnCheckSize = 'large';
-                    else scope._cozenBtnCheckSize = 'normal';
-                } else scope._cozenBtnCheckSize = attrs.cozenBtnCheckSize;
+                    if (angular.isDefined(attrs.cozenBtnCheckSizeSmall)) {
+                        scope._cozenBtnCheckSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnCheckSizeNormal)) {
+                        scope._cozenBtnCheckSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnCheckSizeLarge)) {
+                        scope._cozenBtnCheckSize = 'large';
+                    }
+                    else {
+                        scope._cozenBtnCheckSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenBtnCheckSize = attrs.cozenBtnCheckSize;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnCheckDisabled)) scope.cozenBtnCheckDisabled = false;
+                if (angular.isUndefined(attrs.cozenBtnCheckDisabled)) {
+                    scope.cozenBtnCheckDisabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenBtnCheckId           = angular.isDefined(attrs.cozenBtnCheckId) ? attrs.cozenBtnCheckId : '';
@@ -1003,23 +1074,38 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnCheckSize];
-                if (scope.cozenBtnCheckDisabled) classList.push('disabled');
-                if (scope.cozenBtnCheckModel) classList.push('active');
-                if (scope._cozenBtnCheckStartRight) classList.push('check-right');
+                var classList = [scope._activeTheme,
+                    scope._cozenBtnCheckSize];
+                if (scope.cozenBtnCheckDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenBtnCheckModel) {
+                    classList.push('active');
+                }
+                if (scope._cozenBtnCheckStartRight) {
+                    classList.push('check-right');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenBtnCheckDisabled) return;
+                if (scope.cozenBtnCheckDisabled) {
+                    return;
+                }
                 scope.cozenBtnCheckModel = !scope.cozenBtnCheckModel;
-                if (Methods.isFunction(scope.cozenBtnCheckOnChange)) scope.cozenBtnCheckOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (Methods.isFunction(scope.cozenBtnCheckOnChange)) {
+                    scope.cozenBtnCheckOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenBtnCheckDisabled) tabIndex = -1;
+                if (scope.cozenBtnCheckDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
         }
@@ -1118,18 +1204,33 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenBtnRadioSize)) {
-                    if (angular.isDefined(attrs.cozenBtnRadioSizeSmall)) scope._cozenBtnRadioSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) scope._cozenBtnRadioSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) scope._cozenBtnRadioSize = 'large';
-                    else scope._cozenBtnRadioSize = 'normal';
-                } else scope._cozenBtnRadioSize = attrs.cozenBtnRadioSize;
+                    if (angular.isDefined(attrs.cozenBtnRadioSizeSmall)) {
+                        scope._cozenBtnRadioSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) {
+                        scope._cozenBtnRadioSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) {
+                        scope._cozenBtnRadioSize = 'large';
+                    }
+                    else {
+                        scope._cozenBtnRadioSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenBtnRadioSize = attrs.cozenBtnRadioSize;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) scope.cozenBtnRadioDisabled = false;
+                if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) {
+                    scope.cozenBtnRadioDisabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenBtnRadioId           = angular.isDefined(attrs.cozenBtnRadioId) ? attrs.cozenBtnRadioId : '';
@@ -1169,19 +1270,34 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnRadioSize];
-                if (scope.cozenBtnRadioDisabled) classList.push('disabled');
-                if (scope.cozenBtnRadioModel) classList.push('active');
-                if (scope._cozenBtnRadioStartRight) classList.push('bubble-right');
+                var classList = [scope._activeTheme,
+                    scope._cozenBtnRadioSize];
+                if (scope.cozenBtnRadioDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenBtnRadioModel) {
+                    classList.push('active');
+                }
+                if (scope._cozenBtnRadioStartRight) {
+                    classList.push('bubble-right');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenBtnRadioDisabled) return;
-                if (scope.cozenBtnRadioModel) return;
+                if (scope.cozenBtnRadioDisabled) {
+                    return;
+                }
+                if (scope.cozenBtnRadioModel) {
+                    return;
+                }
                 scope.cozenBtnRadioModel = true;
-                if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
+                    scope.cozenBtnRadioOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
                 $rootScope.$broadcast(data.groupEvent.onChange, data);
             }
 
@@ -1193,10 +1309,16 @@
             function onGroupChanged(event, eventData) {
                 if (eventData.group == data.group) {
                     if (eventData.uuid != data.uuid) {
-                        if (!scope.cozenBtnRadioModel) return;
+                        if (!scope.cozenBtnRadioModel) {
+                            return;
+                        }
                         scope.cozenBtnRadioModel = false;
-                        if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
-                        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                        if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
+                            scope.cozenBtnRadioOnChange();
+                        }
+                        if (CONFIG.debug) {
+                            Methods.directiveCallbackLog(data.directive, 'onChange');
+                        }
                     }
                 }
             }
@@ -1288,18 +1410,33 @@
                 };
 
                 // Toggleing required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenBtnToggleSize)) {
-                    if (angular.isDefined(attrs.cozenBtnToggleSizeSmall)) scope._cozenBtnToggleSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnToggleSizeNormal)) scope._cozenBtnToggleSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnToggleSizeLarge)) scope._cozenBtnToggleSize = 'large';
-                    else scope._cozenBtnToggleSize = 'normal';
-                } else scope._cozenBtnToggleSize = attrs.cozenBtnToggleSize;
+                    if (angular.isDefined(attrs.cozenBtnToggleSizeSmall)) {
+                        scope._cozenBtnToggleSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnToggleSizeNormal)) {
+                        scope._cozenBtnToggleSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnToggleSizeLarge)) {
+                        scope._cozenBtnToggleSize = 'large';
+                    }
+                    else {
+                        scope._cozenBtnToggleSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenBtnToggleSize = attrs.cozenBtnToggleSize;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) scope.cozenBtnToggleDisabled = false;
+                if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) {
+                    scope.cozenBtnToggleDisabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenBtnToggleId          = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
@@ -1330,23 +1467,39 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnToggleSize, attrs.cozenBtnToggleClass];
-                if (scope.cozenBtnToggleDisabled) classList.push('disabled');
-                if (scope.cozenBtnToggleModel) classList.push('active');
-                if (scope._cozenBtnToggleStartRight) classList.push('switch-right');
+                var classList = [scope._activeTheme,
+                    scope._cozenBtnToggleSize,
+                    attrs.cozenBtnToggleClass];
+                if (scope.cozenBtnToggleDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenBtnToggleModel) {
+                    classList.push('active');
+                }
+                if (scope._cozenBtnToggleStartRight) {
+                    classList.push('switch-right');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenBtnToggleDisabled) return;
+                if (scope.cozenBtnToggleDisabled) {
+                    return;
+                }
                 scope.cozenBtnToggleModel = !scope.cozenBtnToggleModel;
-                if (Methods.isFunction(scope.cozenBtnToggleOnChange)) scope.cozenBtnToggleOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (Methods.isFunction(scope.cozenBtnToggleOnChange)) {
+                    scope.cozenBtnToggleOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenBtnToggleDisabled) tabIndex = -1;
+                if (scope.cozenBtnToggleDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
         }
@@ -1356,328 +1509,469 @@
 
 
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib')
-    .provider('Config', ConfigProvider);
+    angular
+        .module('cozenLib')
+        .provider('Config', ConfigProvider);
 
-  ConfigProvider.$inject = [
-    'CONFIG'
-  ];
+    ConfigProvider.$inject = [
+        'CONFIG'
+    ];
 
-  function ConfigProvider(CONFIG) {
+    function ConfigProvider(CONFIG) {
 
-    this.debug = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('debug');
-      else CONFIG.debug = value;
-      return this;
-    };
+        this.debug = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('debug');
+            }
+            else {
+                CONFIG.debug = value;
+            }
+            return this;
+        };
 
-    this.currentLanguage = function (value) {
-      var list = CONFIG.languages;
-      if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('currentLanguage', list);
-      else CONFIG.currentLanguage = value;
-      return this;
-    };
+        this.currentLanguage = function (value) {
+            var list = CONFIG.languages;
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('currentLanguage', list);
+            }
+            else {
+                CONFIG.currentLanguage = value;
+            }
+            return this;
+        };
 
-    this.scrollsBar = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('scrollsBar');
-      else CONFIG.scrollsBar = value;
-      return this;
-    };
+        this.scrollsBar = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('scrollsBar');
+            }
+            else {
+                CONFIG.scrollsBar = value;
+            }
+            return this;
+        };
 
-    this.scrollsBarConfig = function (config) {
-      if (typeof config != 'object') Methods.dataMustBeObject('scrollsBarConfig');
-      else CONFIG.scrollsBarConfig = config;
-      return this;
-    };
+        this.scrollsBarConfig = function (config) {
+            if (typeof config != 'object') {
+                Methods.dataMustBeObject('scrollsBarConfig');
+            }
+            else {
+                CONFIG.scrollsBarConfig = config;
+            }
+            return this;
+        };
 
-    this.dropdownAutoCloseOthers = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
-      else CONFIG.dropdown.autoCloseOthers = value;
-      return this;
-    };
+        this.dropdownAutoCloseOthers = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
+            }
+            else {
+                CONFIG.dropdown.autoCloseOthers = value;
+            }
+            return this;
+        };
 
-    this.inputDisplayModelLength = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('inputDisplayModelLength');
-      else CONFIG.input.displayModelLength = value;
-      return this;
-    };
+        this.inputDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('inputDisplayModelLength');
+            }
+            else {
+                CONFIG.input.displayModelLength = value;
+            }
+            return this;
+        };
 
-    this.textareaDisplayModelLength = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaDisplayModelLength');
-      else CONFIG.textarea.displayModelLength = value;
-      return this;
-    };
+        this.textareaDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaDisplayModelLength');
+            }
+            else {
+                CONFIG.textarea.displayModelLength = value;
+            }
+            return this;
+        };
 
-    this.textareaRequired = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaRequired');
-      else CONFIG.textarea.required = value;
-      return this;
-    };
+        this.textareaRequired = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaRequired');
+            }
+            else {
+                CONFIG.textarea.required = value;
+            }
+            return this;
+        };
 
-    this.textareaErrorDesign = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaErrorDesign');
-      else CONFIG.textarea.errorDesign = value;
-      return this;
-    };
+        this.textareaErrorDesign = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaErrorDesign');
+            }
+            else {
+                CONFIG.textarea.errorDesign = value;
+            }
+            return this;
+        };
 
-    this.textareaSuccessDesign = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaSuccessDesign');
-      else CONFIG.textarea.successDesign = value;
-      return this;
-    };
+        this.textareaSuccessDesign = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaSuccessDesign');
+            }
+            else {
+                CONFIG.textarea.successDesign = value;
+            }
+            return this;
+        };
 
-    this.textareaMinLength = function (value) {
-      if (typeof value != 'number') Methods.dataMustBeNumber('textareaMinLength');
-      else CONFIG.textarea.minLength = value;
-      return this;
-    };
+        this.textareaMinLength = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('textareaMinLength');
+            }
+            else {
+                CONFIG.textarea.minLength = value;
+            }
+            return this;
+        };
 
-    this.textareaMaxLength = function (value) {
-      if (typeof value != 'number') Methods.dataMustBeNumber('textareaMaxLength');
-      else CONFIG.textarea.maxLength = value;
-      return this;
-    };
+        this.textareaMaxLength = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('textareaMaxLength');
+            }
+            else {
+                CONFIG.textarea.maxLength = value;
+            }
+            return this;
+        };
 
-    this.textareaValidatorType = function (value) {
-      CONFIG.textarea.validator.type = value;
-      return this;
-    };
+        this.textareaValidatorType = function (value) {
+            CONFIG.textarea.validator.type = value;
+            return this;
+        };
 
-    this.textareaValidatorEmpty = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaValidatorEmpty');
-      else CONFIG.textarea.validator.empty = value;
-      return this;
-    };
+        this.textareaValidatorEmpty = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaValidatorEmpty');
+            }
+            else {
+                CONFIG.textarea.validator.empty = value;
+            }
+            return this;
+        };
 
-    this.textareaElastic = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('textareaElastic');
-      else CONFIG.textarea.elastic = value;
-      return this;
-    };
+        this.textareaElastic = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaElastic');
+            }
+            else {
+                CONFIG.textarea.elastic = value;
+            }
+            return this;
+        };
 
-    this.textareaRows = function (value) {
-      if (typeof value != 'number') Methods.dataMustBeNumber('textareaRows');
-      else CONFIG.textarea.rows = value;
-      return this;
-    };
+        this.textareaRows = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('textareaRows');
+            }
+            else {
+                CONFIG.textarea.rows = value;
+            }
+            return this;
+        };
 
-    this.textareaTooltipPlacement = function (value) {
-      CONFIG.textarea.tooltip.placement = value;
-      return this;
-    };
+        this.textareaTooltipPlacement = function (value) {
+            CONFIG.textarea.tooltip.placement = value;
+            return this;
+        };
 
-    this.textareaTooltipTrigger = function (value) {
-      CONFIG.textarea.tooltip.trigger = value;
-      return this;
-    };
+        this.textareaTooltipTrigger = function (value) {
+            CONFIG.textarea.tooltip.trigger = value;
+            return this;
+        };
 
-    this.dropdownDisplayModelLength = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('dropdownDisplayModelLength');
-      else CONFIG.dropdown.displayModelLength = value;
-      return this;
-    };
+        this.dropdownDisplayModelLength = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('dropdownDisplayModelLength');
+            }
+            else {
+                CONFIG.dropdown.displayModelLength = value;
+            }
+            return this;
+        };
 
-    this.requiredType = function (value) {
-      var list = ['star', 'icon'];
-      if (!Methods.isInList(list, value)) Methods.dataMustBeInThisList('requiredType', list);
-      else CONFIG.required.type = value;
-      return this;
-    };
+        this.requiredType = function (value) {
+            var list = ['star',
+                'icon'];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('requiredType', list);
+            }
+            else {
+                CONFIG.required.type = value;
+            }
+            return this;
+        };
 
-    this.requiredIcon = function (value) {
-      CONFIG.required.icon = value;
-      return this;
-    };
+        this.requiredIcon = function (value) {
+            CONFIG.required.icon = value;
+            return this;
+        };
 
-    this.alertTextAlign = function (value) {
-      CONFIG.alert.textAlign = value;
-      return this;
-    };
+        this.alertTextAlign = function (value) {
+            CONFIG.alert.textAlign = value;
+            return this;
+        };
 
-    this.alertCloseBtnEnabled = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnEnabled');
-      else CONFIG.alert.closeBtn.enabled = value;
-      return this;
-    };
+        this.alertCloseBtnEnabled = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('alertCloseBtnEnabled');
+            }
+            else {
+                CONFIG.alert.closeBtn.enabled = value;
+            }
+            return this;
+        };
 
-    this.alertCloseBtnTootlip = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertCloseBtnTootlip');
-      else CONFIG.alert.closeBtn.tooltip = value;
-      return this;
-    };
+        this.alertCloseBtnTootlip = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('alertCloseBtnTootlip');
+            }
+            else {
+                CONFIG.alert.closeBtn.tooltip = value;
+            }
+            return this;
+        };
 
-    this.alertAnimationIn = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationIn');
-      else CONFIG.alert.animation.in = value;
-      return this;
-    };
+        this.alertAnimationIn = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('alertAnimationIn');
+            }
+            else {
+                CONFIG.alert.animation.in = value;
+            }
+            return this;
+        };
 
-    this.alertAnimationInClass = function (value) {
-      CONFIG.alert.animation.inClass = value;
-      return this;
-    };
+        this.alertAnimationInClass = function (value) {
+            CONFIG.alert.animation.inClass = value;
+            return this;
+        };
 
-    this.alertAnimationOut = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('alertAnimationOut');
-      else CONFIG.alert.animation.out = value;
-      return this;
-    };
+        this.alertAnimationOut = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('alertAnimationOut');
+            }
+            else {
+                CONFIG.alert.animation.out = value;
+            }
+            return this;
+        };
 
-    this.alertAnimationOutClass = function (value) {
-      CONFIG.alert.animation.outClass = value;
-      return this;
-    };
+        this.alertAnimationOutClass = function (value) {
+            CONFIG.alert.animation.outClass = value;
+            return this;
+        };
 
-    this.alertIconLeftDefault = function (value) {
-      CONFIG.alert.iconLeft.default = value;
-      return this;
-    };
+        this.alertIconLeftDefault = function (value) {
+            CONFIG.alert.iconLeft.default = value;
+            return this;
+        };
 
-    this.alertIconLeftInfo = function (value) {
-      CONFIG.alert.iconLeft.info = value;
-      return this;
-    };
+        this.alertIconLeftInfo = function (value) {
+            CONFIG.alert.iconLeft.info = value;
+            return this;
+        };
 
-    this.alertIconLeftSuccess = function (value) {
-      CONFIG.alert.iconLeft.success = value;
-      return this;
-    };
+        this.alertIconLeftSuccess = function (value) {
+            CONFIG.alert.iconLeft.success = value;
+            return this;
+        };
 
-    this.alertIconLeftWarning = function (value) {
-      CONFIG.alert.iconLeft.warning = value;
-      return this;
-    };
+        this.alertIconLeftWarning = function (value) {
+            CONFIG.alert.iconLeft.warning = value;
+            return this;
+        };
 
-    this.alertIconLeftError = function (value) {
-      CONFIG.alert.iconLeft.error = value;
-      return this;
-    };
+        this.alertIconLeftError = function (value) {
+            CONFIG.alert.iconLeft.error = value;
+            return this;
+        };
 
-    this.alertTimeout = function (value) {
-      if (typeof value != 'number') Methods.dataMustBeNumber('alertTimeout');
-      else CONFIG.alert.timeout = value;
-      return this;
-    };
+        this.alertTimeout = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('alertTimeout');
+            }
+            else {
+                CONFIG.alert.timeout = value;
+            }
+            return this;
+        };
 
-    this.btnToggleAnimation = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('btnToggleAnimation');
-      else CONFIG.btnToggle.animation = value;
-      return this;
-    };
+        this.btnToggleAnimation = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('btnToggleAnimation');
+            }
+            else {
+                CONFIG.btnToggle.animation = value;
+            }
+            return this;
+        };
 
-    this.btnToggleTooltipType = function (value) {
-      CONFIG.btnToggle.tooltipType = value;
-      return this;
-    };
+        this.btnToggleTooltipType = function (value) {
+            CONFIG.btnToggle.tooltipType = value;
+            return this;
+        };
 
-    this.btnToggleStartRight = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('btnToggleStartRight');
-      else CONFIG.btnToggle.startRight = value;
-      return this;
-    };
+        this.btnToggleStartRight = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('btnToggleStartRight');
+            }
+            else {
+                CONFIG.btnToggle.startRight = value;
+            }
+            return this;
+        };
 
-    this.popupHeader = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupHeader');
-      else CONFIG.popup.header = value;
-      return this;
-    };
+        this.popupHeader = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('popupHeader');
+            }
+            else {
+                CONFIG.popup.header = value;
+            }
+            return this;
+        };
 
-    this.popupFooter = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupFooter');
-      else CONFIG.popup.footer = value;
-      return this;
-    };
+        this.popupFooter = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('popupFooter');
+            }
+            else {
+                CONFIG.popup.footer = value;
+            }
+            return this;
+        };
 
-    this.popupAnimationInEnabled = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationInEnabled');
-      else CONFIG.popup.animation.in.enabled = value;
-      return this;
-    };
+        this.popupAnimationInEnabled = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('popupAnimationInEnabled');
+            }
+            else {
+                CONFIG.popup.animation.in.enabled = value;
+            }
+            return this;
+        };
 
-    this.popupAnimationOutEnabled = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupAnimationOutEnabled');
-      else CONFIG.popup.animation.out.enabled = value;
-      return this;
-    };
+        this.popupAnimationOutEnabled = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('popupAnimationOutEnabled');
+            }
+            else {
+                CONFIG.popup.animation.out.enabled = value;
+            }
+            return this;
+        };
 
-    this.popupAnimationInAnimation = function (value) {
-      CONFIG.popup.animation.in.animation = value;
-      return this;
-    };
+        this.popupAnimationInAnimation = function (value) {
+            CONFIG.popup.animation.in.animation = value;
+            return this;
+        };
 
-    this.popupAnimationOutAnimation = function (value) {
-      CONFIG.popup.animation.out.animation = value;
-      return this;
-    };
+        this.popupAnimationOutAnimation = function (value) {
+            CONFIG.popup.animation.out.animation = value;
+            return this;
+        };
 
-    this.popupEasyClose = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupEasyClose');
-      else CONFIG.popup.easyClose = value;
-      return this;
-    };
+        this.popupEasyClose = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('popupEasyClose');
+            }
+            else {
+                CONFIG.popup.easyClose = value;
+            }
+            return this;
+        };
 
-    this.popupCloseBtn = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('popupCloseBtn');
-      else CONFIG.popup.closeBtn = value;
-      return this;
-    };
+        this.popupCloseBtn = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('popupCloseBtn');
+            }
+            else {
+                CONFIG.popup.closeBtn = value;
+            }
+            return this;
+        };
 
-    this.floatingFeedWidth = function (value) {
-      if (typeof value != 'number') Methods.dataMustBeNumber('floatingFeedWidth');
-      else CONFIG.floatingFeed.width = value;
-      return this;
-    };
+        this.floatingFeedWidth = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('floatingFeedWidth');
+            }
+            else {
+                CONFIG.floatingFeed.width = value;
+            }
+            return this;
+        };
 
-    this.floatingFeedSize = function (value) {
-      CONFIG.floatingFeed.size = value;
-      return this;
-    };
+        this.floatingFeedSize = function (value) {
+            CONFIG.floatingFeed.size = value;
+            return this;
+        };
 
-    this.floatingFeedAnimationIn = function (value) {
-      CONFIG.floatingFeed.animation.in = value;
-      return this;
-    };
+        this.floatingFeedAnimationIn = function (value) {
+            CONFIG.floatingFeed.animation.in = value;
+            return this;
+        };
 
-    this.floatingFeedAnimationOut = function (value) {
-      CONFIG.floatingFeed.animation.out = value;
-      return this;
-    };
+        this.floatingFeedAnimationOut = function (value) {
+            CONFIG.floatingFeed.animation.out = value;
+            return this;
+        };
 
-    this.floatingFeedCloseBtn = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('floatingFeedCloseBtn');
-      else CONFIG.floatingFeed.closeBtn = value;
-      return this;
-    };
+        this.floatingFeedCloseBtn = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('floatingFeedCloseBtn');
+            }
+            else {
+                CONFIG.floatingFeed.closeBtn = value;
+            }
+            return this;
+        };
 
-    this.floatingFeedIconLeft = function (value) {
-      if (typeof value != 'boolean') Methods.dataMustBeBoolean('floatingFeedIconLeft');
-      else CONFIG.floatingFeed.iconLeft = value;
-      return this;
-    };
+        this.floatingFeedIconLeft = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('floatingFeedIconLeft');
+            }
+            else {
+                CONFIG.floatingFeed.iconLeft = value;
+            }
+            return this;
+        };
 
-    this.floatingFeedRight = function (value) {
-      if (typeof value != 'number') Methods.dataMustBeNumber('floatingFeedRight');
-      else CONFIG.floatingFeed.right = value;
-      return this;
-    };
+        this.floatingFeedRight = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('floatingFeedRight');
+            }
+            else {
+                CONFIG.floatingFeed.right = value;
+            }
+            return this;
+        };
 
-    this.floatingFeedBottom = function (value) {
-      if (typeof value != 'number') Methods.dataMustBeNumber('floatingFeedBottom');
-      else CONFIG.floatingFeed.bottom = value;
-      return this;
-    };
+        this.floatingFeedBottom = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('floatingFeedBottom');
+            }
+            else {
+                CONFIG.floatingFeed.bottom = value;
+            }
+            return this;
+        };
 
-    this.$get = Config;
+        this.$get = Config;
 
-    Config.$inject = [];
+        Config.$inject = [];
 
-    function Config() {
-      return {};
+        function Config() {
+            return {};
+        }
     }
-  }
 
 })(window.angular);
 
@@ -1810,30 +2104,62 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenDropdownSize)) {
-                    if (angular.isDefined(attrs.cozenDropdownSizeSmall)) scope._cozenDropdownSize = 'small';
-                    else if (angular.isDefined(attrs.cozenDropdownSizeNormal)) scope._cozenDropdownSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenDropdownSizeLarge)) scope._cozenDropdownSize = 'large';
-                    else scope._cozenDropdownSize = 'normal';
-                } else scope._cozenDropdownSize = attrs.cozenDropdownSize;
+                    if (angular.isDefined(attrs.cozenDropdownSizeSmall)) {
+                        scope._cozenDropdownSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenDropdownSizeNormal)) {
+                        scope._cozenDropdownSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenDropdownSizeLarge)) {
+                        scope._cozenDropdownSize = 'large';
+                    }
+                    else {
+                        scope._cozenDropdownSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenDropdownSize = attrs.cozenDropdownSize;
+                }
 
                 // Shortcut values (validator)
                 if (angular.isUndefined(attrs.cozenDropdownValidator)) {
-                    if (angular.isDefined(attrs.cozenDropdownValidatorAll)) scope._cozenDropdownValidator = 'all';
-                    else if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) scope._cozenDropdownValidator = 'touched';
-                    else scope._cozenDropdownValidator = 'touched';
-                } else scope._cozenDropdownValidator = attrs.cozenDropdownValidator;
+                    if (angular.isDefined(attrs.cozenDropdownValidatorAll)) {
+                        scope._cozenDropdownValidator = 'all';
+                    }
+                    else if (angular.isDefined(attrs.cozenDropdownValidatorTouched)) {
+                        scope._cozenDropdownValidator = 'touched';
+                    }
+                    else {
+                        scope._cozenDropdownValidator = 'touched';
+                    }
+                }
+                else {
+                    scope._cozenDropdownValidator = attrs.cozenDropdownValidator;
+                }
 
                 // Check the model enhanced mod
-                if (angular.isUndefined(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = 'last';
+                if (angular.isUndefined(attrs.cozenDropdownModelEnhanced)) {
+                    scope._cozenDropdownModelEnhanced = 'last';
+                }
                 else {
-                    if (attrs.cozenDropdownModelEnhanced == 'last') scope._cozenDropdownModelEnhanced = 'last';
-                    else if (attrs.cozenDropdownModelEnhanced == 'count') scope._cozenDropdownModelEnhanced = 'count';
-                    else if (attrs.cozenDropdownModelEnhanced == 'all') scope._cozenDropdownModelEnhanced = 'all';
-                    else if (!isNaN(attrs.cozenDropdownModelEnhanced)) scope._cozenDropdownModelEnhanced = parseInt(attrs.cozenDropdownModelEnhanced);
+                    if (attrs.cozenDropdownModelEnhanced == 'last') {
+                        scope._cozenDropdownModelEnhanced = 'last';
+                    }
+                    else if (attrs.cozenDropdownModelEnhanced == 'count') {
+                        scope._cozenDropdownModelEnhanced = 'count';
+                    }
+                    else if (attrs.cozenDropdownModelEnhanced == 'all') {
+                        scope._cozenDropdownModelEnhanced = 'all';
+                    }
+                    else if (!isNaN(attrs.cozenDropdownModelEnhanced)) {
+                        scope._cozenDropdownModelEnhanced = parseInt(attrs.cozenDropdownModelEnhanced);
+                    }
                     else {
                         scope._cozenDropdownModelEnhanced = 'last';
                         Methods.directiveWarningUnmatched(data.directive, 'ModelEnhanced', 'last');
@@ -1841,7 +2167,9 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenDropdownDisabled)) scope.vm.cozenDropdownDisabled = false;
+                if (angular.isUndefined(attrs.cozenDropdownDisabled)) {
+                    scope.vm.cozenDropdownDisabled = false;
+                }
                 scope.vm.cozenDropdownModelEnhanced = '';
 
                 // Default values (attributes)
@@ -1932,21 +2260,37 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenDropdownForm)) {
-                    var classList = [scope._activeTheme, scope._cozenDropdownSize, 'icon-right', scope._cozenDropdownDirection, attrs.cozenDropdownClass];
+                    var classList = [scope._activeTheme,
+                        scope._cozenDropdownSize,
+                        'icon-right',
+                        scope._cozenDropdownDirection,
+                        attrs.cozenDropdownClass];
                     switch (scope._cozenDropdownValidator) {
                         case 'touched':
                             if (data.touched) {
-                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) classList.push('success-design');
-                                else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) classList.push('error-design');
+                                if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) {
+                                    classList.push('success-design');
+                                }
+                                else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) {
+                                    classList.push('error-design');
+                                }
                             }
                             break;
                         case 'all':
-                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) classList.push('success-design');
-                            else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) classList.push('error-design');
+                            if (!Methods.isNullOrEmpty(scope.vm.cozenDropdownModelEnhanced) && scope._cozenDropdownSuccessDesign) {
+                                classList.push('success-design');
+                            }
+                            else if (scope._cozenDropdownRequired && scope._cozenDropdownErrorDesign) {
+                                classList.push('error-design');
+                            }
                             break;
                     }
-                    if (scope.vm.cozenDropdownDisabled) classList.push('disabled');
-                    if (scope._cozenDropdownIconLeft) classList.push('icon-left');
+                    if (scope.vm.cozenDropdownDisabled) {
+                        classList.push('disabled');
+                    }
+                    if (scope._cozenDropdownIconLeft) {
+                        classList.push('icon-left');
+                    }
                     return classList;
                 }
             }
@@ -1963,10 +2307,16 @@
             }
 
             function onKeyDown(event) {
-                if (scope.vm.cozenDropdownDisabled) return;
-                if (!scope._cozenDropdownCollapse) return;
+                if (scope.vm.cozenDropdownDisabled) {
+                    return;
+                }
+                if (!scope._cozenDropdownCollapse) {
+                    return;
+                }
                 if (!scope._cozenDropdownEasyNavigation) {
-                    if (!scope.isHover) return;
+                    if (!scope.isHover) {
+                        return;
+                    }
                 }
                 if (event.keyCode == 38 || event.keyCode == 40) {
 
@@ -1977,9 +2327,15 @@
                     var length = scope.childrenUuid.length, i = 0;
                     var value  = angular.copy(scope.activeChild);
                     do {
-                        if (event.keyCode == 38) value = decrease(value, length);
-                        else if (event.keyCode == 40) value = increase(value, length);
-                        if (!scope.childrenUuid[value].disabled) break;
+                        if (event.keyCode == 38) {
+                            value = decrease(value, length);
+                        }
+                        else if (event.keyCode == 40) {
+                            value = increase(value, length);
+                        }
+                        if (!scope.childrenUuid[value].disabled) {
+                            break;
+                        }
                         i++;
                     } while (i < length);
 
@@ -1990,22 +2346,36 @@
                 }
 
                 function decrease(value, max) {
-                    if (value > 0) value--;
-                    else value = max - 1;
+                    if (value > 0) {
+                        value--;
+                    }
+                    else {
+                        value = max - 1;
+                    }
                     return value;
                 }
 
                 function increase(value, max) {
-                    if (value < max - 1) value++;
-                    else value = 0;
+                    if (value < max - 1) {
+                        value++;
+                    }
+                    else {
+                        value = 0;
+                    }
                     return value;
                 }
             }
 
             function onChange($event) {
-                if (scope.vm.cozenDropdownDisabled) return;
-                if (Methods.isFunction(scope.cozenDropdownOnChange)) scope.cozenDropdownOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (scope.vm.cozenDropdownDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenDropdownOnChange)) {
+                    scope.cozenDropdownOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
             }
 
             function getForm() {
@@ -2020,16 +2390,33 @@
                                 form = scope.$parent.$parent.$parent.$parent.$parent.$parent[scope._cozenDropdownForm];
                                 if (Methods.isNullOrEmpty(form)) {
                                     return form;
-                                } else return form;
-                            } else return form;
-                        } else return form;
-                    } else return form;
-                } else return form;
+                                }
+                                else {
+                                    return form;
+                                }
+                            }
+                            else {
+                                return form;
+                            }
+                        }
+                        else {
+                            return form;
+                        }
+                    }
+                    else {
+                        return form;
+                    }
+                }
+                else {
+                    return form;
+                }
             }
 
             function onClick($event) {
                 data.touched = true;
-                if (!Methods.isNullOrEmpty($event)) $event.stopPropagation();
+                if (!Methods.isNullOrEmpty($event)) {
+                    $event.stopPropagation();
+                }
                 if (!scope.vm.cozenDropdownDisabled) {
                     scope._cozenDropdownCollapse = !scope._cozenDropdownCollapse;
                     scope.$broadcast('cozenDropdownCollapse', {
@@ -2054,7 +2441,8 @@
                             data.transcludeHeight = element.find('.cozen-dropdown-transclude .ng-transclude')[0].offsetHeight;
                             methods.defineTranscludeDirection();
                         }, 1);
-                    } else {
+                    }
+                    else {
                         $window.removeEventListener('click', methods.onWindowClick);
                     }
                 }
@@ -2084,8 +2472,12 @@
                 if (data.dropdown == scope._cozenDropdownName) {
 
                     // ModelEnhanced stuff
-                    if (data.selected && scope._cozenDropdownModelEnhanced == 'last') scope.vm.cozenDropdownModelEnhanced = data.label;
-                    else if (scope._cozenDropdownModelEnhanced != 'last') scope.vm.cozenDropdownModelEnhanced = '';
+                    if (data.selected && scope._cozenDropdownModelEnhanced == 'last') {
+                        scope.vm.cozenDropdownModelEnhanced = data.label;
+                    }
+                    else if (scope._cozenDropdownModelEnhanced != 'last') {
+                        scope.vm.cozenDropdownModelEnhanced = '';
+                    }
 
                     if (scope._cozenDropdownMultiple) {
 
@@ -2106,7 +2498,9 @@
 
                                 // ModelEnhanced : all & number
                                 if (scope._cozenDropdownModelEnhanced == 'all' || typeof scope._cozenDropdownModelEnhanced == 'number') {
-                                    if (selectedValues > 0) scope.vm.cozenDropdownModelEnhanced += ', ';
+                                    if (selectedValues > 0) {
+                                        scope.vm.cozenDropdownModelEnhanced += ', ';
+                                    }
                                     scope.vm.cozenDropdownModelEnhanced += child.label;
                                     selectedValues++;
                                 }
@@ -2118,7 +2512,9 @@
                                 }
 
                                 // ModelEnhanced : last
-                                else if (scope._cozenDropdownModelEnhanced == 'last') selectedValues++;
+                                else if (scope._cozenDropdownModelEnhanced == 'last') {
+                                    selectedValues++;
+                                }
                             }
                         });
 
@@ -2148,21 +2544,27 @@
                             scope.vm.cozenDropdownModel         = '';
                             scope.vm.cozenDropdownModelEnhanced = '';
                         }
-                    } else {
+                    }
+                    else {
 
                         // Change the model
                         if (data.selected) {
                             scope.vm.cozenDropdownModel = data.value;
 
                             // Display the label instead of the value
-                            if (scope._cozenDropdownSingleDisplaySelectedLabel) scope.vm.cozenDropdownModelEnhanced = $filter('translate')(data.label);
-                            else scope.vm.cozenDropdownModelEnhanced = data.value;
+                            if (scope._cozenDropdownSingleDisplaySelectedLabel) {
+                                scope.vm.cozenDropdownModelEnhanced = $filter('translate')(data.label);
+                            }
+                            else {
+                                scope.vm.cozenDropdownModelEnhanced = data.value;
+                            }
 
                             // Deselect the other children
                             scope.$broadcast('cozenDropdownDeselect', {
                                 uuid: data.uuid
                             });
-                        } else {
+                        }
+                        else {
                             scope.vm.cozenDropdownModel         = '';
                             scope.vm.cozenDropdownModelEnhanced = scope.vm.cozenDropdownModel;
                         }
@@ -2177,7 +2579,9 @@
                         if (scope.childrenUuid[i].uuid == params.uuid) {
                             scope.childrenUuid[i].disabled = params.disabled;
                         }
-                        if (scope.childrenUuid[i].disabled) disabled++;
+                        if (scope.childrenUuid[i].disabled) {
+                            disabled++;
+                        }
                     }
 
                     // To show or hide the empty text
@@ -2192,7 +2596,9 @@
                 $timeout(function () {
                     var body       = element.find('.cozen-dropdown-transclude')[0];
                     var transclude = element.find('.cozen-dropdown-transclude .ng-transclude')[0];
-                    if (transclude.offsetHeight > 0) body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
+                    if (transclude.offsetHeight > 0) {
+                        body.style.height = transclude.offsetHeight + Methods.getElementPaddingTopBottom(body) + 'px';
+                    }
                     Methods.safeApply(scope);
                 });
             }
@@ -2207,17 +2613,30 @@
                 var inputViewport = element.find('.cozen-dropdown-content')[0].getBoundingClientRect();
                 var windowHeight  = window.innerHeight;
                 var maxHeight     = data.transcludeHeight;
-                if (data.transcludeHeight > scope._cozenDropdownMaxHeight) maxHeight = scope._cozenDropdownMaxHeight + 8;
-                if (windowHeight - inputViewport.bottom < maxHeight) scope._cozenDropdownDirection = 'up';
-                else scope._cozenDropdownDirection = 'down';
+                if (data.transcludeHeight > scope._cozenDropdownMaxHeight) {
+                    maxHeight = scope._cozenDropdownMaxHeight + 8;
+                }
+                if (windowHeight - inputViewport.bottom < maxHeight) {
+                    scope._cozenDropdownDirection = 'up';
+                }
+                else {
+                    scope._cozenDropdownDirection = 'down';
+                }
                 Methods.safeApply(scope);
             }
 
             function getArrowClass() {
-                var classList = ['fa', 'fa-caret-down'];
-                if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
-                else if (scope._cozenDropdownDirection == 'up' && scope._cozenDropdownCollapse) classList.push('fa-rotate-90');
-                else if (scope._cozenDropdownDirection == 'up' && !scope._cozenDropdownCollapse) classList.push('fa-rotate-180');
+                var classList = ['fa',
+                    'fa-caret-down'];
+                if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) {
+                    classList.push('fa-rotate-90');
+                }
+                else if (scope._cozenDropdownDirection == 'up' && scope._cozenDropdownCollapse) {
+                    classList.push('fa-rotate-90');
+                }
+                else if (scope._cozenDropdownDirection == 'up' && !scope._cozenDropdownCollapse) {
+                    classList.push('fa-rotate-180');
+                }
                 return classList;
             }
 
@@ -2225,8 +2644,12 @@
                 var styleList = {
                     'max-height': scope._cozenDropdownMaxHeight + 'px'
                 };
-                if (scope._cozenDropdownDirection == 'down') styleList.top = '100%';
-                else styleList.bottom = '100%';
+                if (scope._cozenDropdownDirection == 'down') {
+                    styleList.top = '100%';
+                }
+                else {
+                    styleList.bottom = '100%';
+                }
                 return styleList;
             }
         }
@@ -2306,7 +2729,9 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (attributes)
                 scope._cozenDropdownItemGroupId       = angular.isDefined(attrs.cozenDropdownItemGroupId) ? attrs.cozenDropdownItemGroupId : '';
@@ -2424,7 +2849,9 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (attributes)
                 scope._cozenDropdownItemSearchId          = angular.isDefined(attrs.cozenDropdownItemSearchId) ? attrs.cozenDropdownItemSearchId : '';
@@ -2454,8 +2881,12 @@
 
             function getMainClass() {
                 var classList = [];
-                if (scope._cozenDropdownItemSearchIconLeft != '') classList.push('icon-left');
-                if (scope._cozenDropdownItemSearchIconRight != '') classList.push('icon-right');
+                if (scope._cozenDropdownItemSearchIconLeft != '') {
+                    classList.push('icon-left');
+                }
+                if (scope._cozenDropdownItemSearchIconRight != '') {
+                    classList.push('icon-right');
+                }
                 return classList;
             }
 
@@ -2471,11 +2902,26 @@
                                 dropdown = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
                                     return dropdown;
-                                } else return dropdown;
-                            } else return dropdown;
-                        } else return dropdown;
-                    } else return dropdown;
-                } else return dropdown;
+                                }
+                                else {
+                                    return dropdown;
+                                }
+                            }
+                            else {
+                                return dropdown;
+                            }
+                        }
+                        else {
+                            return dropdown;
+                        }
+                    }
+                    else {
+                        return dropdown;
+                    }
+                }
+                else {
+                    return dropdown;
+                }
             }
 
             function onChange($event) {
@@ -2599,10 +3045,14 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled)) scope.cozenDropdownItemSimpleDisabled = false;
+                if (angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled)) {
+                    scope.cozenDropdownItemSimpleDisabled = false;
+                }
                 if (angular.isUndefined(attrs.cozenDropdownItemSimpleSelected)) {
                     scope.cozenDropdownItemSimpleSelected = false;
                 }
@@ -2618,7 +3068,8 @@
                 scope._cozenDropdownItemSimpleIconRight = angular.isDefined(attrs.cozenDropdownItemSimpleIconRight) ? attrs.cozenDropdownItemSimpleIconRight : '';
                 scope._cozenDropdownItemSimpleShowTick  = methods.getDropdown()._cozenDropdownShowTick;
                 scope._cozenDropdownItemSimpleTickIcon  = methods.getDropdown()._cozenDropdownTickIcon;
-                scope._cozenDropdownSearch              = [scope._cozenDropdownItemSimpleLabel, scope._cozenDropdownItemSimpleSubLabel];
+                scope._cozenDropdownSearch              = [scope._cozenDropdownItemSimpleLabel,
+                    scope._cozenDropdownItemSimpleSubLabel];
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -2665,20 +3116,36 @@
 
             function getMainClass() {
                 var classList = [];
-                if (scope.cozenDropdownItemSimpleDisabled) classList.push('disabled');
-                else if (scope.cozenDropdownItemSimpleActive) classList.push('active');
-                if (scope.cozenDropdownItemSimpleSelected) classList.push('selected');
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    classList.push('disabled');
+                }
+                else if (scope.cozenDropdownItemSimpleActive) {
+                    classList.push('active');
+                }
+                if (scope.cozenDropdownItemSimpleSelected) {
+                    classList.push('selected');
+                }
                 return classList;
             }
 
             function onClickItem($event) {
                 $event.stopPropagation();
                 var dropdown = methods.getDropdown();
-                if (!dropdown._cozenDropdownCollapse) return;
-                if (scope.cozenDropdownItemSimpleDisabled) return;
-                if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) scope.cozenDropdownItemSimpleOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
-                if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) dropdown._methods.onClick();
+                if (!dropdown._cozenDropdownCollapse) {
+                    return;
+                }
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) {
+                    scope.cozenDropdownItemSimpleOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                }
+                if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) {
+                    dropdown._methods.onClick();
+                }
 
                 // Toggle and inform the parent
                 scope.cozenDropdownItemSimpleSelected = !scope.cozenDropdownItemSimpleSelected;
@@ -2688,19 +3155,27 @@
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenDropdownItemSimpleDisabled) tabIndex = -1;
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
             function onActive(event, eventData) {
-                if (scope.cozenDropdownItemSimpleDisabled) return;
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    return;
+                }
                 scope.cozenDropdownItemSimpleActive = eventData.uuid == data.uuid;
                 Methods.safeApply(scope);
             }
 
             function onKeyDown(event) {
-                if (scope.cozenDropdownItemSimpleDisabled) return;
-                if (!scope.cozenDropdownItemSimpleActive) return;
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    return;
+                }
+                if (!scope.cozenDropdownItemSimpleActive) {
+                    return;
+                }
                 event.stopPropagation();
                 switch (event.keyCode) {
 
@@ -2712,7 +3187,9 @@
             }
 
             function onHover($event) {
-                if (scope.cozenDropdownItemSimpleActive) return;
+                if (scope.cozenDropdownItemSimpleActive) {
+                    return;
+                }
 
                 // Search the active child
                 var activeChild = 0;
@@ -2737,7 +3214,8 @@
             function onCollapse(event, data) {
                 if (data.collapse) {
                     $window.addEventListener('keydown', methods.onKeyDown);
-                } else {
+                }
+                else {
                     $window.removeEventListener('keydown', methods.onKeyDown);
                 }
             }
@@ -2754,11 +3232,26 @@
                                 dropdown = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
                                     return dropdown;
-                                } else return dropdown;
-                            } else return dropdown;
-                        } else return dropdown;
-                    } else return dropdown;
-                } else return dropdown;
+                                }
+                                else {
+                                    return dropdown;
+                                }
+                            }
+                            else {
+                                return dropdown;
+                            }
+                        }
+                        else {
+                            return dropdown;
+                        }
+                    }
+                    else {
+                        return dropdown;
+                    }
+                }
+                else {
+                    return dropdown;
+                }
             }
 
             function updateParentModel() {
@@ -2779,7 +3272,8 @@
 
             function search(event, params) {
                 if (data.dropdown.name == params.dropdown) {
-                    scope._cozenDropdownSearch = $filter('filter')([scope._cozenDropdownItemSimpleLabel, scope._cozenDropdownItemSimpleSubLabel], params.value);
+                    scope._cozenDropdownSearch = $filter('filter')([scope._cozenDropdownItemSimpleLabel,
+                        scope._cozenDropdownItemSimpleSubLabel], params.value);
                     $rootScope.$broadcast('cozenDropdownItemDisabled', {
                         uuid    : data.uuid,
                         disabled: scope._cozenDropdownSearch.length == 0,
@@ -2814,165 +3308,172 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.alert.floatingFeed', [])
-    .directive('cozenFloatingFeed', cozenFloatingFeed);
+    angular
+        .module('cozenLib.alert.floatingFeed', [])
+        .directive('cozenFloatingFeed', cozenFloatingFeed);
 
-  cozenFloatingFeed.$inject = [
-    'CONFIG',
-    '$rootScope',
-    'Themes',
-    'rfc4122',
-    '$timeout',
-    '$animate'
-  ];
+    cozenFloatingFeed.$inject = [
+        'CONFIG',
+        '$rootScope',
+        'Themes',
+        'rfc4122',
+        '$timeout',
+        '$animate'
+    ];
 
-  function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : false,
-      templateUrl: 'directives/alert/floatingFeed.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init        : init,
-        destroy     : destroy,
-        getMainClass: getMainClass,
-        getMainStyle: getMainStyle,
-        add         : add,
-        removeAll   : removeAll,
-        onHideAlert : onHideAlert
-      };
-
-      var data = {
-        directive: 'cozenFloatingFeed',
-        uuid     : rfc4122.v4()
-      };
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass: getMainClass,
-          getMainStyle: getMainStyle,
-          onHideAlert : onHideAlert
-        };
-
-        // Default values (attributes)
-        scope._cozenFloatingFeedId           = angular.isDefined(attrs.cozenFloatingFeedId) ? attrs.cozenFloatingFeedId : data.uuid;
-        scope._cozenFloatingFeedWidth        = angular.isDefined(attrs.cozenFloatingFeedWidth) ? attrs.cozenFloatingFeedWidth : CONFIG.floatingFeed.width;
-        scope._cozenFloatingFeedSize         = angular.isDefined(attrs.cozenFloatingFeedSize) ? attrs.cozenFloatingFeedSize : CONFIG.floatingFeed.size;
-        scope._cozenFloatingFeedAnimationIn  = angular.isDefined(attrs.cozenFloatingFeedAnimationIn) ? attrs.cozenFloatingFeedAnimationIn : CONFIG.floatingFeed.animation.in;
-        scope._cozenFloatingFeedAnimationOut = angular.isDefined(attrs.cozenFloatingFeedAnimationOut) ? attrs.cozenFloatingFeedAnimationOut : CONFIG.floatingFeed.animation.out;
-        scope._cozenFloatingFeedCloseBtn     = angular.isDefined(attrs.cozenFloatingFeedCloseBtn) ? JSON.parse(attrs.cozenFloatingFeedCloseBtn) : CONFIG.floatingFeed.closeBtn;
-        scope._cozenFloatingFeedIconLeft     = angular.isDefined(attrs.cozenFloatingFeedIconLeft) ? JSON.parse(attrs.cozenFloatingFeedIconLeft) : CONFIG.floatingFeed.iconLeft;
-        scope._cozenFloatingFeedRight        = angular.isDefined(attrs.cozenFloatingFeedRight) ? attrs.cozenFloatingFeedRight : CONFIG.floatingFeed.right;
-        scope._cozenFloatingFeedBottom       = angular.isDefined(attrs.cozenFloatingFeedBottom) ? attrs.cozenFloatingFeedBottom : CONFIG.floatingFeed.bottom;
-
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-
-        // Contain all the alert
-        scope._cozenFloatingAlerts = [];
-
-        // Watch for events
-        $rootScope.$on('cozenFloatingFeedAdd', methods.add);
-        $rootScope.$on('cozenFloatingFeedRemoveAll', methods.removeAll);
-        scope.$on('onFloatingFeedFinished', function () {
-
-          // Animation when adding
-          if (scope._cozenFloatingFeedAnimationIn != '') {
-            var child = element[0].querySelector('#float-feed-alert-0');
-            scope.hideFirst = false;
-            $animate.addClass(child, 'floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn).then(function () {
-              $animate.removeClass(child, 'hidden floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn);
-            });
-          }
-        });
-      }
-
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
-
-      function getMainClass() {
-        return [scope._activeTheme];
-      }
-
-      function getMainStyle() {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate) {
         return {
-          width : scope._cozenFloatingFeedWidth,
-          right : scope._cozenFloatingFeedRight,
-          bottom: scope._cozenFloatingFeedBottom
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            templateUrl: 'directives/alert/floatingFeed.template.html'
         };
-      }
 
-      function add($event, alert) {
-        if (!Methods.isNullOrEmpty(alert)) {
-          if (!Methods.hasOwnProperty(alert, 'label')) Methods.missingKeyLog(data.directive, 'label', 'adding alert');
-          else if (!Methods.hasOwnProperty(alert, 'type')) Methods.missingKeyLog(data.directive, 'type', 'adding alert');
-          else {
-            alert.addedOn                    = moment().unix();
-            alert.display                    = true;
-            alert.uuid                       = rfc4122.v4();
-            scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
-            scope._cozenFloatingAlerts.unshift(alert);
-            scope.hideFirst = true;
-          }
-        } else Methods.directiveErrorRequired(data.directive, 'alert');
-      }
+        function link(scope, element, attrs) {
+            var methods = {
+                init        : init,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                getMainStyle: getMainStyle,
+                add         : add,
+                removeAll   : removeAll,
+                onHideAlert : onHideAlert
+            };
 
-      function removeAll() {
-        scope._cozenFloatingAlerts = [];
-      }
+            var data = {
+                directive: 'cozenFloatingFeed',
+                uuid     : rfc4122.v4()
+            };
 
-      function onHideAlert(popupUuid) {
-        for (var i = 0, length = scope._cozenFloatingAlerts.length; i < length; i++) {
-          if (scope._cozenFloatingAlerts[i].uuid == popupUuid) {
-            scope._cozenFloatingAlerts.splice(i, 1);
-            break;
-          }
+            methods.init();
+
+            function init() {
+
+                // Public functions
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    getMainStyle: getMainStyle,
+                    onHideAlert : onHideAlert
+                };
+
+                // Default values (attributes)
+                scope._cozenFloatingFeedId           = angular.isDefined(attrs.cozenFloatingFeedId) ? attrs.cozenFloatingFeedId : data.uuid;
+                scope._cozenFloatingFeedWidth        = angular.isDefined(attrs.cozenFloatingFeedWidth) ? attrs.cozenFloatingFeedWidth : CONFIG.floatingFeed.width;
+                scope._cozenFloatingFeedSize         = angular.isDefined(attrs.cozenFloatingFeedSize) ? attrs.cozenFloatingFeedSize : CONFIG.floatingFeed.size;
+                scope._cozenFloatingFeedAnimationIn  = angular.isDefined(attrs.cozenFloatingFeedAnimationIn) ? attrs.cozenFloatingFeedAnimationIn : CONFIG.floatingFeed.animation.in;
+                scope._cozenFloatingFeedAnimationOut = angular.isDefined(attrs.cozenFloatingFeedAnimationOut) ? attrs.cozenFloatingFeedAnimationOut : CONFIG.floatingFeed.animation.out;
+                scope._cozenFloatingFeedCloseBtn     = angular.isDefined(attrs.cozenFloatingFeedCloseBtn) ? JSON.parse(attrs.cozenFloatingFeedCloseBtn) : CONFIG.floatingFeed.closeBtn;
+                scope._cozenFloatingFeedIconLeft     = angular.isDefined(attrs.cozenFloatingFeedIconLeft) ? JSON.parse(attrs.cozenFloatingFeedIconLeft) : CONFIG.floatingFeed.iconLeft;
+                scope._cozenFloatingFeedRight        = angular.isDefined(attrs.cozenFloatingFeedRight) ? attrs.cozenFloatingFeedRight : CONFIG.floatingFeed.right;
+                scope._cozenFloatingFeedBottom       = angular.isDefined(attrs.cozenFloatingFeedBottom) ? attrs.cozenFloatingFeedBottom : CONFIG.floatingFeed.bottom;
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+
+                // Contain all the alert
+                scope._cozenFloatingAlerts = [];
+
+                // Watch for events
+                $rootScope.$on('cozenFloatingFeedAdd', methods.add);
+                $rootScope.$on('cozenFloatingFeedRemoveAll', methods.removeAll);
+                scope.$on('onFloatingFeedFinished', function () {
+
+                    // Animation when adding
+                    if (scope._cozenFloatingFeedAnimationIn != '') {
+                        var child       = element[0].querySelector('#float-feed-alert-0');
+                        scope.hideFirst = false;
+                        $animate.addClass(child, 'floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn).then(function () {
+                            $animate.removeClass(child, 'hidden floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn);
+                        });
+                    }
+                });
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                return [scope._activeTheme];
+            }
+
+            function getMainStyle() {
+                return {
+                    width : scope._cozenFloatingFeedWidth,
+                    right : scope._cozenFloatingFeedRight,
+                    bottom: scope._cozenFloatingFeedBottom
+                };
+            }
+
+            function add($event, alert) {
+                if (!Methods.isNullOrEmpty(alert)) {
+                    if (!Methods.hasOwnProperty(alert, 'label')) {
+                        Methods.missingKeyLog(data.directive, 'label', 'adding alert');
+                    }
+                    else if (!Methods.hasOwnProperty(alert, 'type')) {
+                        Methods.missingKeyLog(data.directive, 'type', 'adding alert');
+                    }
+                    else {
+                        alert.addedOn                    = moment().unix();
+                        alert.display                    = true;
+                        alert.uuid                       = rfc4122.v4();
+                        scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
+                        scope._cozenFloatingAlerts.unshift(alert);
+                        scope.hideFirst = true;
+                    }
+                }
+                else {
+                    Methods.directiveErrorRequired(data.directive, 'alert');
+                }
+            }
+
+            function removeAll() {
+                scope._cozenFloatingAlerts = [];
+            }
+
+            function onHideAlert(popupUuid) {
+                for (var i = 0, length = scope._cozenFloatingAlerts.length; i < length; i++) {
+                    if (scope._cozenFloatingAlerts[i].uuid == popupUuid) {
+                        scope._cozenFloatingAlerts.splice(i, 1);
+                        break;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 
 })(window.angular);
 
 
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.alert.floatingFeedFactory', [])
-    .factory('cozenFloatingFeedFactory', cozenFloatingFeedFactory);
+    angular
+        .module('cozenLib.alert.floatingFeedFactory', [])
+        .factory('cozenFloatingFeedFactory', cozenFloatingFeedFactory);
 
-  cozenFloatingFeedFactory.$inject = [
-    '$rootScope'
-  ];
+    cozenFloatingFeedFactory.$inject = [
+        '$rootScope'
+    ];
 
-  function cozenFloatingFeedFactory($rootScope) {
-    return {
-      addAlert : addAlert,
-      removeAll: removeAll
-    };
+    function cozenFloatingFeedFactory($rootScope) {
+        return {
+            addAlert : addAlert,
+            removeAll: removeAll
+        };
 
-    function addAlert(alert) {
-      $rootScope.$broadcast('cozenFloatingFeedAdd', alert);
+        function addAlert(alert) {
+            $rootScope.$broadcast('cozenFloatingFeedAdd', alert);
+        }
+
+        function removeAll() {
+            $rootScope.$broadcast('cozenFloatingFeedRemoveAll');
+        }
     }
-
-    function removeAll() {
-      $rootScope.$broadcast('cozenFloatingFeedRemoveAll');
-    }
-  }
 
 })(window.angular);
 
@@ -3555,9 +4056,14 @@
                 scope.$watch('vm.cozenInputHasError', function (newValue) {
                     var form = methods.getForm();
                     if (!Methods.isNullOrEmpty(form[scope._cozenInputFormCtrl])) {
-                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
                         if (!Methods.isNullOrEmpty(input)) {
-                            input.$setValidity('hasError', !newValue);
+                            input = input[scope._cozenInputName];
+                            if (!Methods.isNullOrEmpty(input)) {
+                                input.$setValidity('hasError', !newValue);
+                                input.$dirty   = true;
+                                input.$touched = true;
+                            }
                         }
                     }
                 }, true);
@@ -3945,15 +4451,28 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenListSize)) {
-                    if (angular.isDefined(attrs.cozenListSizeSmall)) scope._cozenListSize = 'small';
-                    else if (angular.isDefined(attrs.cozenListSizeNormal)) scope._cozenListSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenListSizeLarge)) scope._cozenListSize = 'large';
-                    else scope._cozenListSize = 'normal';
-                } else scope._cozenListSize = attrs.cozenListSize;
+                    if (angular.isDefined(attrs.cozenListSizeSmall)) {
+                        scope._cozenListSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenListSizeNormal)) {
+                        scope._cozenListSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenListSizeLarge)) {
+                        scope._cozenListSize = 'large';
+                    }
+                    else {
+                        scope._cozenListSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenListSize = attrs.cozenListSize;
+                }
 
                 // Default values (attributes)
                 scope._cozenListId = angular.isDefined(attrs.cozenListId) ? attrs.cozenListId : '';
@@ -3980,7 +4499,8 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenListSize];
+                var classList = [scope._activeTheme,
+                    scope._cozenListSize];
                 return classList;
             }
 
@@ -3994,14 +4514,20 @@
             }
 
             function onKeyDown(event) {
-                if (!scope.isHover) return;
+                if (!scope.isHover) {
+                    return;
+                }
                 switch (event.keyCode) {
 
                     // Arrow up
                     case 38:
                         event.stopPropagation();
-                        if (scope.activeChild > 1) scope.activeChild--;
-                        else scope.activeChild = scope.childrenUuid.length;
+                        if (scope.activeChild > 1) {
+                            scope.activeChild--;
+                        }
+                        else {
+                            scope.activeChild = scope.childrenUuid.length;
+                        }
                         $rootScope.$broadcast('cozenListActive', {
                             uuid: scope.childrenUuid[scope.activeChild - 1]
                         });
@@ -4010,8 +4536,12 @@
                     // Arrow down
                     case 40:
                         event.stopPropagation();
-                        if (scope.activeChild < scope.childrenUuid.length) scope.activeChild++;
-                        else scope.activeChild = 1;
+                        if (scope.activeChild < scope.childrenUuid.length) {
+                            scope.activeChild++;
+                        }
+                        else {
+                            scope.activeChild = 1;
+                        }
                         $rootScope.$broadcast('cozenListActive', {
                             uuid: scope.childrenUuid[scope.activeChild - 1]
                         });
@@ -4105,10 +4635,14 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenListItemMedia3Disabled)) scope.cozenListItemMedia3Disabled = false;
+                if (angular.isUndefined(attrs.cozenListItemMedia3Disabled)) {
+                    scope.cozenListItemMedia3Disabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenLisItemMedia3Id        = angular.isDefined(attrs.cozenLisItemMedia3Id) ? attrs.cozenLisItemMedia3Id : '';
@@ -4151,36 +4685,62 @@
 
             function getMainClass() {
                 var classList = [];
-                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) classList.push('no-action');
-                if (scope.cozenListItemMedia3Disabled) classList.push('disabled');
-                else if (scope.cozenListItemMedia3Active) classList.push('active');
-                if (scope.$id % 2 != 0) classList.push('odd');
+                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) {
+                    classList.push('no-action');
+                }
+                if (scope.cozenListItemMedia3Disabled) {
+                    classList.push('disabled');
+                }
+                else if (scope.cozenListItemMedia3Active) {
+                    classList.push('active');
+                }
+                if (scope.$id % 2 != 0) {
+                    classList.push('odd');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenListItemMedia3Disabled) return;
-                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) return;
-                if (Methods.isFunction(scope.cozenListItemMedia3OnClick)) scope.cozenListItemMedia3OnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                if (scope.cozenListItemMedia3Disabled) {
+                    return;
+                }
+                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenListItemMedia3OnClick)) {
+                    scope.cozenListItemMedia3OnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenListItemMedia3Disabled) tabIndex = -1;
-                else if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) tabIndex = -1;
+                if (scope.cozenListItemMedia3Disabled) {
+                    tabIndex = -1;
+                }
+                else if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
             function onActive(event, eventData) {
-                if (scope.cozenListItemMedia3Disabled) return;
+                if (scope.cozenListItemMedia3Disabled) {
+                    return;
+                }
                 scope.cozenListItemMedia3Active = eventData.uuid == data.uuid;
                 Methods.safeApply(scope);
             }
 
             function onKeyDown(event) {
-                if (scope.cozenListItemMedia3Disabled) return;
-                if (!scope.cozenListItemMedia3Active) return;
+                if (scope.cozenListItemMedia3Disabled) {
+                    return;
+                }
+                if (!scope.cozenListItemMedia3Active) {
+                    return;
+                }
                 event.preventDefault();
                 switch (event.keyCode) {
 
@@ -4192,7 +4752,9 @@
             }
 
             function onHover($event) {
-                if (scope.cozenListItemMedia3Active) return;
+                if (scope.cozenListItemMedia3Active) {
+                    return;
+                }
                 scope.$parent.$parent.$parent.$parent.activeChild = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
                 $rootScope.$broadcast('cozenListActive', {
                     uuid: data.uuid
@@ -4295,11 +4857,17 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenListItemSimpleDisabled)) scope.cozenListItemSimpleDisabled = false;
-                if (angular.isUndefined(attrs.cozenListItemSimpleBtnRight)) scope.cozenListItemSimpleBtnRight = false;
+                if (angular.isUndefined(attrs.cozenListItemSimpleDisabled)) {
+                    scope.cozenListItemSimpleDisabled = false;
+                }
+                if (angular.isUndefined(attrs.cozenListItemSimpleBtnRight)) {
+                    scope.cozenListItemSimpleBtnRight = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenLisItemSimpleId               = angular.isDefined(attrs.cozenLisItemSimpleId) ? attrs.cozenLisItemSimpleId : '';
@@ -4339,43 +4907,75 @@
 
             function getMainClass() {
                 var classList = [];
-                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) classList.push('no-action');
-                if (scope.cozenListItemSimpleDisabled) classList.push('disabled');
-                else if (scope.cozenListItemSimpleActive) classList.push('active');
-                if (scope.$id % 2 != 0) classList.push('odd');
+                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) {
+                    classList.push('no-action');
+                }
+                if (scope.cozenListItemSimpleDisabled) {
+                    classList.push('disabled');
+                }
+                else if (scope.cozenListItemSimpleActive) {
+                    classList.push('active');
+                }
+                if (scope.$id % 2 != 0) {
+                    classList.push('odd');
+                }
                 return classList;
             }
 
             function onClickItem($event) {
-                if (scope.cozenListItemSimpleDisabled) return;
-                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) return;
-                if (Methods.isFunction(scope.cozenListItemSimpleOnClick)) scope.cozenListItemSimpleOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
+                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenListItemSimpleOnClick)) {
+                    scope.cozenListItemSimpleOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenListItemSimpleDisabled) tabIndex = -1;
-                else if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) tabIndex = -1;
+                if (scope.cozenListItemSimpleDisabled) {
+                    tabIndex = -1;
+                }
+                else if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
             function onClickBtnRight($event) {
-                if (scope.cozenListItemSimpleDisabled) return;
-                if (Methods.isFunction(scope.cozenListItemSimpleBtnRightOnClick)) scope.cozenListItemSimpleBtnRightOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenListItemSimpleBtnRightOnClick)) {
+                    scope.cozenListItemSimpleBtnRightOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
+                }
                 $event.stopPropagation();
             }
 
             function onActive(event, eventData) {
-                if (scope.cozenListItemSimpleDisabled) return;
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
                 scope.cozenListItemSimpleActive = eventData.uuid == data.uuid;
                 Methods.safeApply(scope);
             }
 
             function onKeyDown(event) {
-                if (scope.cozenListItemSimpleDisabled) return;
-                if (!scope.cozenListItemSimpleActive) return;
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
+                if (!scope.cozenListItemSimpleActive) {
+                    return;
+                }
                 event.preventDefault();
                 switch (event.keyCode) {
 
@@ -4387,7 +4987,9 @@
             }
 
             function onHover($event) {
-                if (scope.cozenListItemSimpleActive) return;
+                if (scope.cozenListItemSimpleActive) {
+                    return;
+                }
                 scope.$parent.$parent.$parent.$parent.activeChild = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
                 scope.$parent.$parent.$parent.activeChild         = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
                 $rootScope.$broadcast('cozenListActive', {
@@ -4415,86 +5017,96 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib')
-    .directive('cozenOnBlur', cozenOnBlur);
+    angular
+        .module('cozenLib')
+        .directive('cozenOnBlur', cozenOnBlur);
 
-  cozenOnBlur.$inject = [
-    '$parse'
-  ];
+    cozenOnBlur.$inject = [
+        '$parse'
+    ];
 
-  function cozenOnBlur($parse) {
-    return {
-      link      : link,
-      restrict  : 'A',
-      replace   : false,
-      transclude: false
-    };
+    function cozenOnBlur($parse) {
+        return {
+            link      : link,
+            restrict  : 'A',
+            replace   : false,
+            transclude: false
+        };
 
-    function link(scope, element, attrs) {
-      var methods = {
-        init          : init,
-        hasError      : hasError,
-        destroy       : destroy,
-        startListening: startListening,
-        stopListening : stopListening
-      };
+        function link(scope, element, attrs) {
+            var methods = {
+                init          : init,
+                hasError      : hasError,
+                destroy       : destroy,
+                startListening: startListening,
+                stopListening : stopListening
+            };
 
-      var data = {
-        directive: 'cozenOnBlur'
-      };
+            var data = {
+                directive: 'cozenOnBlur'
+            };
 
-      methods.init();
+            methods.init();
 
-      function init() {
+            function init() {
 
-        // To avoid using a new isolated scope, parse the attributes
-        data.callback = $parse(attrs.cozenOnBlurCallback);
-        data.disabled = $parse(attrs.cozenOnBlurDisabled);
+                // To avoid using a new isolated scope, parse the attributes
+                data.callback = $parse(attrs.cozenOnBlurCallback);
+                data.disabled = $parse(attrs.cozenOnBlurDisabled);
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+                // Checking required stuff
+                if (methods.hasError()) {
+                    return;
+                }
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenOnBlurDisabled)) data.disabled = false;
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenOnBlurDisabled)) {
+                    data.disabled = false;
+                }
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
+                // Init stuff
+                element.on('$destroy', methods.destroy);
 
-        // Start listening if not disabled
-        if (!data.disabled) methods.startListening();
+                // Start listening if not disabled
+                if (!data.disabled) {
+                    methods.startListening();
+                }
 
-        // Start/stop listening when disabled change
-        scope.$watch('cozenOnBlurDisabled', function (newValue, oldValue) {
-          if (newValue) methods.stopListening();
-          else methods.startListening();
-        });
-      }
+                // Start/stop listening when disabled change
+                scope.$watch('cozenOnBlurDisabled', function (newValue, oldValue) {
+                    if (newValue) {
+                        methods.stopListening();
+                    }
+                    else {
+                        methods.startListening();
+                    }
+                });
+            }
 
-      function hasError() {
-        if (!Methods.isFunction(data.callback)) {
-          Methods.directiveErrorFunction(data.directive, 'cozenOnBlurCallback');
-          return true;
+            function hasError() {
+                if (!Methods.isFunction(data.callback)) {
+                    Methods.directiveErrorFunction(data.directive, 'cozenOnBlurCallback');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                methods.stopListening();
+                element.off('$destroy', methods.destroy);
+            }
+
+            function startListening() {
+                element[0].addEventListener('blur', data.callback);
+            }
+
+            function stopListening() {
+                element[0].removeEventListener('blur', data.callback);
+            }
         }
-        return false;
-      }
-
-      function destroy() {
-        methods.stopListening();
-        element.off('$destroy', methods.destroy);
-      }
-
-      function startListening() {
-        element[0].addEventListener('blur', data.callback);
-      }
-
-      function stopListening() {
-        element[0].removeEventListener('blur', data.callback);
-      }
     }
-  }
 
 })(window.angular);
 
@@ -4554,21 +5166,31 @@
                 data.disabled = $parse(attrs.cozenOnFocusDisabled);
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenOnFocusDisabled)) data.disabled = false;
+                if (angular.isUndefined(attrs.cozenOnFocusDisabled)) {
+                    data.disabled = false;
+                }
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
 
                 // Start listening if not disabled
-                if (!data.disabled) methods.startListening();
+                if (!data.disabled) {
+                    methods.startListening();
+                }
 
                 // Start/stop listening when disabled change
                 scope.$watch('cozenOnFocusDisabled', function (newValue, oldValue) {
-                    if (newValue) methods.stopListening();
-                    else methods.startListening();
+                    if (newValue) {
+                        methods.stopListening();
+                    }
+                    else {
+                        methods.startListening();
+                    }
                 });
             }
 
@@ -4620,32 +5242,32 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib')
-    .directive('cozenOnRepeatFinish', cozenOnRepeatFinish);
+    angular
+        .module('cozenLib')
+        .directive('cozenOnRepeatFinish', cozenOnRepeatFinish);
 
-  cozenOnRepeatFinish.$inject = [
-    '$timeout'
-  ];
+    cozenOnRepeatFinish.$inject = [
+        '$timeout'
+    ];
 
-  function cozenOnRepeatFinish($timeout) {
-    return {
-      link      : link,
-      restrict  : 'A',
-      replace   : false,
-      transclude: false
-    };
+    function cozenOnRepeatFinish($timeout) {
+        return {
+            link      : link,
+            restrict  : 'A',
+            replace   : false,
+            transclude: false
+        };
 
-    function link(scope, element, attrs) {
-      if (scope.$last === true) {
-        $timeout(function () {
-          scope.$emit(attrs.cozenOnRepeatFinish);
-        });
-      }
+        function link(scope, element, attrs) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attrs.cozenOnRepeatFinish);
+                });
+            }
+        }
     }
-  }
 
 })(window.angular);
 
@@ -4660,35 +5282,39 @@
  * Version: 1.0.0
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib')
-    .filter('cozenOnRepeatFinish', cozenOnRepeatFinish);
+    angular
+        .module('cozenLib')
+        .filter('cozenOnRepeatFinish', cozenOnRepeatFinish);
 
-  cozenOnRepeatFinish.$inject = [
-    '$timeout',
-    '$rootScope'
-  ];
+    cozenOnRepeatFinish.$inject = [
+        '$timeout',
+        '$rootScope'
+    ];
 
-  function cozenOnRepeatFinish($timeout, $rootScope) {
-    return cozenOnRepeatFinishFilter;
+    function cozenOnRepeatFinish($timeout, $rootScope) {
+        return cozenOnRepeatFinishFilter;
 
-    function cozenOnRepeatFinishFilter(data, eventName) {
-      var flagProperty = '__finishedRendering__';
-      if (!data[flagProperty]) {
-        Object.defineProperty(
-          data,
-          flagProperty,
-          {enumerable: false, configurable: true, writable: false, value: {}});
-        $timeout(function () {
-          delete data[flagProperty];
-          $rootScope.$emit(eventName);
-        }, 0, false);
-      }
-      return data;
+        function cozenOnRepeatFinishFilter(data, eventName) {
+            var flagProperty = '__finishedRendering__';
+            if (!data[flagProperty]) {
+                Object.defineProperty(
+                    data,
+                    flagProperty,
+                    {enumerable: false,
+                        configurable: true,
+                        writable: false,
+                        value: {}
+                    });
+                $timeout(function () {
+                    delete data[flagProperty];
+                    $rootScope.$emit(eventName);
+                }, 0, false);
+            }
+            return data;
+        }
     }
-  }
 
 })(window.angular);
 
@@ -4727,213 +5353,257 @@
  *
  */
 (function (angular, window) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.pagination', [])
-    .directive('cozenPagination', cozenPagination);
+    angular
+        .module('cozenLib.pagination', [])
+        .directive('cozenPagination', cozenPagination);
 
-  cozenPagination.$inject = [
-    'CONFIG',
-    'Themes'
-  ];
+    cozenPagination.$inject = [
+        'CONFIG',
+        'Themes'
+    ];
 
-  function cozenPagination(CONFIG, Themes) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : true,
-      scope      : {
-        cozenPaginationModel        : '=?',
-        cozenPaginationDisabled     : '=?',
-        cozenPaginationLimitPerPage : '=?',
-        cozenPaginationTotalElements: '=?',
-        cozenPaginationOnChange     : '&'
-      },
-      templateUrl: 'directives/pagination/pagination.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init         : init,
-        hasError     : hasError,
-        destroy      : destroy,
-        getMainClass : getMainClass,
-        onClick      : onClick,
-        getPages     : getPages,
-        getTotalPage : getTotalPage,
-        show         : show,
-        nextBlock    : nextBlock,
-        getMaxBlock  : getMaxBlock,
-        previousBlock: previousBlock
-      };
-
-      var data = {
-        directive: 'cozenPagination'
-      };
-
-      scope._isReady = true;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass : getMainClass,
-          onClick      : onClick,
-          getPages     : getPages,
-          getTotalPage : getTotalPage,
-          show         : show,
-          nextBlock    : nextBlock,
-          previousBlock: previousBlock
+    function cozenPagination(CONFIG, Themes) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : true,
+            scope      : {
+                cozenPaginationModel        : '=?',
+                cozenPaginationDisabled     : '=?',
+                cozenPaginationLimitPerPage : '=?',
+                cozenPaginationTotalElements: '=?',
+                cozenPaginationOnChange     : '&'
+            },
+            templateUrl: 'directives/pagination/pagination.template.html'
         };
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+        function link(scope, element, attrs) {
+            var methods = {
+                init         : init,
+                hasError     : hasError,
+                destroy      : destroy,
+                getMainClass : getMainClass,
+                onClick      : onClick,
+                getPages     : getPages,
+                getTotalPage : getTotalPage,
+                show         : show,
+                nextBlock    : nextBlock,
+                getMaxBlock  : getMaxBlock,
+                previousBlock: previousBlock
+            };
 
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenPaginationSize)) {
-          if (angular.isDefined(attrs.cozenPaginationSizeSmall)) scope._cozenPaginationSize = 'small';
-          else if (angular.isDefined(attrs.cozenPaginationSizeNormal)) scope._cozenPaginationSize = 'normal';
-          else if (angular.isDefined(attrs.cozenPaginationSizeLarge)) scope._cozenPaginationSize = 'large';
-          else scope._cozenPaginationSize = 'normal';
-        } else scope._cozenPaginationSize = attrs.cozenPaginationSize;
+            var data = {
+                directive: 'cozenPagination'
+            };
 
-        // Default values (scope)
-        scope.cozenPaginationModel = 1;
-        if (angular.isUndefined(attrs.cozenPaginationDisabled)) scope.cozenPaginationDisabled = false;
-        if (angular.isUndefined(attrs.cozenPaginationLimitPerPage)) scope.cozenPaginationLimitPerPage = 20;
+            scope._isReady = true;
 
-        // Default values (attributes)
-        scope._cozenPaginationId           = angular.isDefined(attrs.cozenPaginationId) ? attrs.cozenPaginationId : '';
-        scope._cozenPaginationFirst        = angular.isDefined(attrs.cozenPaginationFirst) ? attrs.cozenPaginationFirst : true;
-        scope._cozenPaginationPrevious     = angular.isDefined(attrs.cozenPaginationPrevious) ? attrs.cozenPaginationPrevious : true;
-        scope._cozenPaginationNext         = angular.isDefined(attrs.cozenPaginationNext) ? attrs.cozenPaginationNext : true;
-        scope._cozenPaginationLast         = angular.isDefined(attrs.cozenPaginationLast) ? attrs.cozenPaginationLast : true;
-        scope._cozenPaginationWithTooltips = angular.isDefined(attrs.cozenPaginationWithTooltips) ? attrs.cozenPaginationWithTooltips : true;
-        scope._cozenPaginationAutoHide     = angular.isDefined(attrs.cozenPaginationAutoHide) ? attrs.cozenPaginationAutoHide : false;
+            methods.init();
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme         = Themes.getActiveTheme();
-        scope.cozenPaginationBlock = 0;
+            function init() {
 
-        // Display the template
-        scope._isReady = true;
-      }
+                // Public functions
+                scope._methods = {
+                    getMainClass : getMainClass,
+                    onClick      : onClick,
+                    getPages     : getPages,
+                    getTotalPage : getTotalPage,
+                    show         : show,
+                    nextBlock    : nextBlock,
+                    previousBlock: previousBlock
+                };
 
-      function hasError() {
-        if (Methods.isNullOrEmpty(attrs.cozenPaginationModel)) {
-          Methods.directiveErrorRequired(data.directive, 'Model');
-          return true;
-        }
-        else if (Methods.isNullOrEmpty(attrs.cozenPaginationTotalElements)) {
-          Methods.directiveErrorRequired(data.directive, 'TotalElements');
-          return true;
-        }
-        return false;
-      }
+                // Checking required stuff
+                if (methods.hasError()) {
+                    return;
+                }
 
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenPaginationSize)) {
+                    if (angular.isDefined(attrs.cozenPaginationSizeSmall)) {
+                        scope._cozenPaginationSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenPaginationSizeNormal)) {
+                        scope._cozenPaginationSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenPaginationSizeLarge)) {
+                        scope._cozenPaginationSize = 'large';
+                    }
+                    else {
+                        scope._cozenPaginationSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenPaginationSize = attrs.cozenPaginationSize;
+                }
 
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenPaginationSize, attrs.cozenPaginationClass];
-        if (scope.cozenPaginationDisabled) classList.push('disabled');
-        return classList;
-      }
+                // Default values (scope)
+                scope.cozenPaginationModel = 1;
+                if (angular.isUndefined(attrs.cozenPaginationDisabled)) {
+                    scope.cozenPaginationDisabled = false;
+                }
+                if (angular.isUndefined(attrs.cozenPaginationLimitPerPage)) {
+                    scope.cozenPaginationLimitPerPage = 20;
+                }
 
-      function onClick($event, type, page) {
-        if (scope.cozenPaginationDisabled) return;
-        if (page == null) page = '';
-        var oldModel = angular.copy(scope.cozenPaginationModel);
-        var max      = methods.getTotalPage();
-        switch (type) {
-          case 'first':
-            if (max <= 1) return;
-            scope.cozenPaginationModel = 1;
-            scope.cozenPaginationBlock = 0;
-            break;
-          case 'previous':
-            if (max <= 1) return;
-            scope.cozenPaginationModel > 1 ? scope.cozenPaginationModel-- : scope.cozenPaginationModel;
-            if (oldModel != scope.cozenPaginationModel) {
-              if (scope.cozenPaginationModel % 5 == 0) {
-                scope.cozenPaginationBlock--;
-              }
+                // Default values (attributes)
+                scope._cozenPaginationId           = angular.isDefined(attrs.cozenPaginationId) ? attrs.cozenPaginationId : '';
+                scope._cozenPaginationFirst        = angular.isDefined(attrs.cozenPaginationFirst) ? attrs.cozenPaginationFirst : true;
+                scope._cozenPaginationPrevious     = angular.isDefined(attrs.cozenPaginationPrevious) ? attrs.cozenPaginationPrevious : true;
+                scope._cozenPaginationNext         = angular.isDefined(attrs.cozenPaginationNext) ? attrs.cozenPaginationNext : true;
+                scope._cozenPaginationLast         = angular.isDefined(attrs.cozenPaginationLast) ? attrs.cozenPaginationLast : true;
+                scope._cozenPaginationWithTooltips = angular.isDefined(attrs.cozenPaginationWithTooltips) ? attrs.cozenPaginationWithTooltips : true;
+                scope._cozenPaginationAutoHide     = angular.isDefined(attrs.cozenPaginationAutoHide) ? attrs.cozenPaginationAutoHide : false;
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme         = Themes.getActiveTheme();
+                scope.cozenPaginationBlock = 0;
+
+                // Display the template
+                scope._isReady = true;
             }
-            break;
-          case 'next':
-            if (max <= 1) return;
-            if (scope.cozenPaginationModel < max) {
-              scope.cozenPaginationModel++;
+
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenPaginationModel)) {
+                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    return true;
+                }
+                else if (Methods.isNullOrEmpty(attrs.cozenPaginationTotalElements)) {
+                    Methods.directiveErrorRequired(data.directive, 'TotalElements');
+                    return true;
+                }
+                return false;
             }
-            if (oldModel != scope.cozenPaginationModel) {
-              if (oldModel % 5 == 0) {
-                scope.cozenPaginationBlock++;
-              }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
             }
-            break;
-          case 'last':
-            if (max <= 1) return;
-            scope.cozenPaginationModel = max;
-            scope.cozenPaginationBlock = methods.getMaxBlock();
-            break;
-          case 'next-block':
-            scope.cozenPaginationBlock++;
-            scope.cozenPaginationModel = 5 * scope.cozenPaginationBlock + 1;
-            break;
-          case 'previous-block':
-            scope.cozenPaginationBlock--;
-            scope.cozenPaginationModel = 5 * scope.cozenPaginationBlock + 5;
-            break;
-          default:
-            if (scope.cozenPaginationModel == page) return;
-            scope.cozenPaginationModel = page;
-            break;
+
+            function getMainClass() {
+                var classList = [scope._activeTheme,
+                    scope._cozenPaginationSize,
+                    attrs.cozenPaginationClass];
+                if (scope.cozenPaginationDisabled) {
+                    classList.push('disabled');
+                }
+                return classList;
+            }
+
+            function onClick($event, type, page) {
+                if (scope.cozenPaginationDisabled) {
+                    return;
+                }
+                if (page == null) {
+                    page = '';
+                }
+                var oldModel = angular.copy(scope.cozenPaginationModel);
+                var max      = methods.getTotalPage();
+                switch (type) {
+                    case 'first':
+                        if (max <= 1) {
+                            return;
+                        }
+                        scope.cozenPaginationModel = 1;
+                        scope.cozenPaginationBlock = 0;
+                        break;
+                    case 'previous':
+                        if (max <= 1) {
+                            return;
+                        }
+                        scope.cozenPaginationModel > 1 ? scope.cozenPaginationModel-- : scope.cozenPaginationModel;
+                        if (oldModel != scope.cozenPaginationModel) {
+                            if (scope.cozenPaginationModel % 5 == 0) {
+                                scope.cozenPaginationBlock--;
+                            }
+                        }
+                        break;
+                    case 'next':
+                        if (max <= 1) {
+                            return;
+                        }
+                        if (scope.cozenPaginationModel < max) {
+                            scope.cozenPaginationModel++;
+                        }
+                        if (oldModel != scope.cozenPaginationModel) {
+                            if (oldModel % 5 == 0) {
+                                scope.cozenPaginationBlock++;
+                            }
+                        }
+                        break;
+                    case 'last':
+                        if (max <= 1) {
+                            return;
+                        }
+                        scope.cozenPaginationModel = max;
+                        scope.cozenPaginationBlock = methods.getMaxBlock();
+                        break;
+                    case 'next-block':
+                        scope.cozenPaginationBlock++;
+                        scope.cozenPaginationModel = 5 * scope.cozenPaginationBlock + 1;
+                        break;
+                    case 'previous-block':
+                        scope.cozenPaginationBlock--;
+                        scope.cozenPaginationModel = 5 * scope.cozenPaginationBlock + 5;
+                        break;
+                    default:
+                        if (scope.cozenPaginationModel == page) {
+                            return;
+                        }
+                        scope.cozenPaginationModel = page;
+                        break;
+                }
+                if (oldModel != scope.cozenPaginationModel && Methods.isFunction(scope.cozenPaginationOnChange)) {
+                    scope.cozenPaginationOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
+                }
+            }
+
+            function getPages() {
+                var page  = methods.getTotalPage();
+                var pages = [];
+                if (page > 5) {
+                    page = 5;
+                }
+                for (var i = 0; i < page; i++) {
+                    pages.push(i + 1 + (5 * scope.cozenPaginationBlock));
+                }
+                return pages;
+            }
+
+            function getTotalPage() {
+                return Math.ceil(parseInt(scope.cozenPaginationTotalElements) / parseInt(scope.cozenPaginationLimitPerPage));
+            }
+
+            function show() {
+                if (scope._cozenPaginationAutoHide) {
+                    return methods.getTotalPage() > 1;
+                }
+                else {
+                    return true;
+                }
+            }
+
+            function nextBlock() {
+                var nextBlock = (scope.cozenPaginationBlock + 1) * 5;
+                return nextBlock < methods.getTotalPage();
+            }
+
+            function getMaxBlock() {
+                return Math.ceil(methods.getTotalPage() / 5) - 1;
+            }
+
+            function previousBlock() {
+                var previousBlock = scope.cozenPaginationBlock * 5;
+                return previousBlock >= 5;
+            }
         }
-        if (oldModel != scope.cozenPaginationModel && Methods.isFunction(scope.cozenPaginationOnChange)) scope.cozenPaginationOnChange();
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
-      }
-
-      function getPages() {
-        var page  = methods.getTotalPage();
-        var pages = [];
-        if (page > 5) page = 5;
-        for (var i = 0; i < page; i++) {
-          pages.push(i + 1 + (5 * scope.cozenPaginationBlock));
-        }
-        return pages;
-      }
-
-      function getTotalPage() {
-        return Math.ceil(parseInt(scope.cozenPaginationTotalElements) / parseInt(scope.cozenPaginationLimitPerPage));
-      }
-
-      function show() {
-        if (scope._cozenPaginationAutoHide) {
-          return methods.getTotalPage() > 1;
-        } else return true;
-      }
-
-      function nextBlock() {
-        var nextBlock = (scope.cozenPaginationBlock + 1) * 5;
-        return nextBlock < methods.getTotalPage();
-      }
-
-      function getMaxBlock() {
-        return Math.ceil(methods.getTotalPage() / 5) - 1;
-      }
-
-      function previousBlock() {
-        var previousBlock = scope.cozenPaginationBlock * 5;
-        return previousBlock >= 5;
-      }
     }
-  }
 
 })(window.angular, window);
 
@@ -4980,193 +5650,261 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib.panel', [])
-    .directive('cozenPanel', cozenPanel);
+    angular
+        .module('cozenLib.panel', [])
+        .directive('cozenPanel', cozenPanel);
 
-  cozenPanel.$inject = [
-    'Themes',
-    'CONFIG'
-  ];
+    cozenPanel.$inject = [
+        'Themes',
+        'CONFIG'
+    ];
 
-  function cozenPanel(Themes, CONFIG) {
-    return {
-      link       : link,
-      restrict   : 'E',
-      replace    : false,
-      transclude : true,
-      scope      : {
-        cozenPanelOnClick            : '&',
-        cozenPanelDisabled           : '=?',
-        cozenPanelOpen               : '=?',
-        cozenPanelOnToggle           : '&',
-        cozenPanelOnClickBigIconLeft : '&',
-        cozenPanelOnClickBigIconRight: '&'
-      },
-      templateUrl: 'directives/panel/panel.template.html'
-    };
-
-    function link(scope, element, attrs) {
-      var methods = {
-        init               : init,
-        hasError           : hasError,
-        destroy            : destroy,
-        getMainClass       : getMainClass,
-        onClickHeader      : onClickHeader,
-        startWatching      : startWatching,
-        onClickBigIconLeft : onClickBigIconLeft,
-        onClickBigIconRight: onClickBigIconRight,
-        bigIconHover       : bigIconHover,
-        getTabIndex        : getTabIndex,
-        getBodyStyles      : getBodyStyles
-      };
-
-      var data = {
-        directive: 'cozenPanel'
-      };
-
-      scope._isReady = false;
-
-      methods.init();
-
-      function init() {
-
-        // Public functions
-        scope._methods = {
-          getMainClass : getMainClass,
-          onClick      : {
-            header      : onClickHeader,
-            bigIconLeft : onClickBigIconLeft,
-            bigIconRight: onClickBigIconRight
-          },
-          bigIconHover : bigIconHover,
-          getTabIndex  : getTabIndex,
-          getBodyStyles: getBodyStyles
-        };
-
-        // Checking required stuff
-        if (methods.hasError()) return;
-
-        // Shortcut values (size)
-        if (angular.isUndefined(attrs.cozenPanelSize)) {
-          if (angular.isDefined(attrs.cozenPanelSizeSmall)) scope._cozenPanelSize = 'small';
-          else if (angular.isDefined(attrs.cozenPanelSizeNormal)) scope._cozenPanelSize = 'normal';
-          else if (angular.isDefined(attrs.cozenPanelSizeLarge)) scope._cozenPanelSize = 'large';
-          else scope._cozenPanelSize = 'normal';
-        } else scope._cozenPanelSize = attrs.cozenPanelSize;
-
-        // Shortcut values (type)
-        if (angular.isUndefined(attrs.cozenPanelType)) {
-          if (angular.isDefined(attrs.cozenPanelTypeDefault)) scope._cozenPanelType = 'default';
-          else if (angular.isDefined(attrs.cozenPanelTypeInfo)) scope._cozenPanelType = 'info';
-          else if (angular.isDefined(attrs.cozenPanelTypeSuccess)) scope._cozenPanelType = 'success';
-          else if (angular.isDefined(attrs.cozenPanelTypeWarning)) scope._cozenPanelType = 'warning';
-          else if (angular.isDefined(attrs.cozenPanelTypeError)) scope._cozenPanelType = 'error';
-          else scope._cozenPanelType = 'default';
-        } else scope._cozenPanelType = attrs.cozenPanelType;
-
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenPanelDisabled)) scope.cozenPanelDisabled = false;
-        if (angular.isUndefined(attrs.cozenPanelOpen)) scope.cozenPanelOpen = true;
-
-        // Default values (attributes)
-        scope._cozenPanelId                  = angular.isDefined(attrs.cozenPanelId) ? attrs.cozenPanelId : '';
-        scope._cozenPanelLabel               = attrs.cozenPanelLabel;
-        scope._cozenPanelIconLeft            = angular.isDefined(attrs.cozenPanelIconLeft) ? attrs.cozenPanelIconLeft : '';
-        scope._cozenPanelIconRight           = angular.isDefined(attrs.cozenPanelIconRight) ? attrs.cozenPanelIconRight : '';
-        scope._cozenPanelBigIconLeft         = angular.isDefined(attrs.cozenPanelBigIconLeft) ? attrs.cozenPanelBigIconLeft : '';
-        scope._cozenPanelBigIconRight        = angular.isDefined(attrs.cozenPanelBigIconRight) ? attrs.cozenPanelBigIconRight : '';
-        scope._bigIconHover                  = false;
-        scope._cozenPanelFrozen              = angular.isDefined(attrs.cozenPanelFrozen);
-        scope._cozenPanelBigIconLeftTooltip  = angular.isDefined(attrs.cozenPanelBigIconLeftTooltip) ? attrs.cozenPanelBigIconLeftTooltip : '';
-        scope._cozenPanelBigIconRightTooltip = angular.isDefined(attrs.cozenPanelBigIconRightTooltip) ? attrs.cozenPanelBigIconRightTooltip : '';
-        scope._cozenPanelSubLabel            = angular.isDefined(attrs.cozenPanelSubLabel) ? attrs.cozenPanelSubLabel : '';
-        scope._cozenPanelMaxHeight           = angular.isDefined(attrs.cozenPanelMaxHeight) ? attrs.cozenPanelMaxHeight : 'auto';
-
-        // ScrollBar
-        scope._cozenScrollBar       = CONFIG.scrollsBar && scope._cozenPanelMaxHeight != 'auto';
-        scope._cozenScrollBarConfig = CONFIG.scrollsBarConfig;
-
-        // Init stuff
-        element.on('$destroy', methods.destroy);
-        scope._activeTheme = Themes.getActiveTheme();
-        methods.startWatching();
-
-        // Display the template
-        scope._isReady = true;
-      }
-
-      function hasError() {
-        if (Methods.isNullOrEmpty(attrs.cozenPanelLabel)) {
-          Methods.directiveErrorRequired(data.directive, 'Label');
-          return true;
-        }
-        return false;
-      }
-
-      function destroy() {
-        element.off('$destroy', methods.destroy);
-      }
-
-      function getMainClass() {
-        var classList = [scope._activeTheme, scope._cozenPanelSize, scope._cozenPanelType];
-        if (scope.cozenPanelDisabled) classList.push('disabled');
-        if (scope.cozenPanelOpen || scope._cozenPanelFrozen) classList.push('open');
-        if (scope._bigIconHover) classList.push('no-hover');
-        return classList;
-      }
-
-      function onClickHeader($event) {
-        if (scope.cozenPanelDisabled) return;
-        if (Methods.isFunction(scope.cozenPanelOnClick)) scope.cozenPanelOnClick();
-        if (Methods.isFunction(scope.cozenPanelOnToggle) && !scope._cozenPanelFrozen) scope.cozenPanelOnToggle();
-        if (!scope._cozenPanelFrozen) scope.cozenPanelOpen = !scope.cozenPanelOpen;
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickHeader');
-      }
-
-      function startWatching() {
-        scope.$watch('cozenPanelDisabled', function (newValue, oldValue) {
-          if (newValue && scope.cozenPanelOpen && !scope._cozenPanelFrozen) {
-            scope.cozenPanelOpen = false;
-            if (Methods.isFunction(scope.cozenPanelOnToggle)) scope.cozenPanelOnToggle();
-          }
-        });
-      }
-
-      function onClickBigIconLeft($event) {
-        $event.stopPropagation();
-        if (scope.cozenPanelDisabled) return;
-        if (Methods.isFunction(scope.cozenPanelOnClickBigIconLeft)) scope.cozenPanelOnClickBigIconLeft();
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickBigIconLeft');
-      }
-
-      function onClickBigIconRight($event) {
-        $event.stopPropagation();
-        if (scope.cozenPanelDisabled) return;
-        if (Methods.isFunction(scope.cozenPanelOnClickBigIconRight)) scope.cozenPanelOnClickBigIconRight();
-        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickBigIconRight');
-      }
-
-      function bigIconHover(hover) {
-        scope._bigIconHover = hover;
-      }
-
-      function getTabIndex() {
-        var tabIndex = 0;
-        if (scope.cozenPanelDisabled) tabIndex = -1;
-        else if (scope._cozenPanelFrozen) tabIndex = -1;
-        return tabIndex;
-      }
-
-      function getBodyStyles() {
+    function cozenPanel(Themes, CONFIG) {
         return {
-          'max-height': scope._cozenPanelMaxHeight
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : true,
+            scope      : {
+                cozenPanelOnClick            : '&',
+                cozenPanelDisabled           : '=?',
+                cozenPanelOpen               : '=?',
+                cozenPanelOnToggle           : '&',
+                cozenPanelOnClickBigIconLeft : '&',
+                cozenPanelOnClickBigIconRight: '&'
+            },
+            templateUrl: 'directives/panel/panel.template.html'
         };
-      }
+
+        function link(scope, element, attrs) {
+            var methods = {
+                init               : init,
+                hasError           : hasError,
+                destroy            : destroy,
+                getMainClass       : getMainClass,
+                onClickHeader      : onClickHeader,
+                startWatching      : startWatching,
+                onClickBigIconLeft : onClickBigIconLeft,
+                onClickBigIconRight: onClickBigIconRight,
+                bigIconHover       : bigIconHover,
+                getTabIndex        : getTabIndex,
+                getBodyStyles      : getBodyStyles
+            };
+
+            var data = {
+                directive: 'cozenPanel'
+            };
+
+            scope._isReady = false;
+
+            methods.init();
+
+            function init() {
+
+                // Public functions
+                scope._methods = {
+                    getMainClass : getMainClass,
+                    onClick      : {
+                        header      : onClickHeader,
+                        bigIconLeft : onClickBigIconLeft,
+                        bigIconRight: onClickBigIconRight
+                    },
+                    bigIconHover : bigIconHover,
+                    getTabIndex  : getTabIndex,
+                    getBodyStyles: getBodyStyles
+                };
+
+                // Checking required stuff
+                if (methods.hasError()) {
+                    return;
+                }
+
+                // Shortcut values (size)
+                if (angular.isUndefined(attrs.cozenPanelSize)) {
+                    if (angular.isDefined(attrs.cozenPanelSizeSmall)) {
+                        scope._cozenPanelSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenPanelSizeNormal)) {
+                        scope._cozenPanelSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenPanelSizeLarge)) {
+                        scope._cozenPanelSize = 'large';
+                    }
+                    else {
+                        scope._cozenPanelSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenPanelSize = attrs.cozenPanelSize;
+                }
+
+                // Shortcut values (type)
+                if (angular.isUndefined(attrs.cozenPanelType)) {
+                    if (angular.isDefined(attrs.cozenPanelTypeDefault)) {
+                        scope._cozenPanelType = 'default';
+                    }
+                    else if (angular.isDefined(attrs.cozenPanelTypeInfo)) {
+                        scope._cozenPanelType = 'info';
+                    }
+                    else if (angular.isDefined(attrs.cozenPanelTypeSuccess)) {
+                        scope._cozenPanelType = 'success';
+                    }
+                    else if (angular.isDefined(attrs.cozenPanelTypeWarning)) {
+                        scope._cozenPanelType = 'warning';
+                    }
+                    else if (angular.isDefined(attrs.cozenPanelTypeError)) {
+                        scope._cozenPanelType = 'error';
+                    }
+                    else {
+                        scope._cozenPanelType = 'default';
+                    }
+                }
+                else {
+                    scope._cozenPanelType = attrs.cozenPanelType;
+                }
+
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenPanelDisabled)) {
+                    scope.cozenPanelDisabled = false;
+                }
+                if (angular.isUndefined(attrs.cozenPanelOpen)) {
+                    scope.cozenPanelOpen = true;
+                }
+
+                // Default values (attributes)
+                scope._cozenPanelId                  = angular.isDefined(attrs.cozenPanelId) ? attrs.cozenPanelId : '';
+                scope._cozenPanelLabel               = attrs.cozenPanelLabel;
+                scope._cozenPanelIconLeft            = angular.isDefined(attrs.cozenPanelIconLeft) ? attrs.cozenPanelIconLeft : '';
+                scope._cozenPanelIconRight           = angular.isDefined(attrs.cozenPanelIconRight) ? attrs.cozenPanelIconRight : '';
+                scope._cozenPanelBigIconLeft         = angular.isDefined(attrs.cozenPanelBigIconLeft) ? attrs.cozenPanelBigIconLeft : '';
+                scope._cozenPanelBigIconRight        = angular.isDefined(attrs.cozenPanelBigIconRight) ? attrs.cozenPanelBigIconRight : '';
+                scope._bigIconHover                  = false;
+                scope._cozenPanelFrozen              = angular.isDefined(attrs.cozenPanelFrozen);
+                scope._cozenPanelBigIconLeftTooltip  = angular.isDefined(attrs.cozenPanelBigIconLeftTooltip) ? attrs.cozenPanelBigIconLeftTooltip : '';
+                scope._cozenPanelBigIconRightTooltip = angular.isDefined(attrs.cozenPanelBigIconRightTooltip) ? attrs.cozenPanelBigIconRightTooltip : '';
+                scope._cozenPanelSubLabel            = angular.isDefined(attrs.cozenPanelSubLabel) ? attrs.cozenPanelSubLabel : '';
+                scope._cozenPanelMaxHeight           = angular.isDefined(attrs.cozenPanelMaxHeight) ? attrs.cozenPanelMaxHeight : 'auto';
+
+                // ScrollBar
+                scope._cozenScrollBar       = CONFIG.scrollsBar && scope._cozenPanelMaxHeight != 'auto';
+                scope._cozenScrollBarConfig = CONFIG.scrollsBarConfig;
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+                methods.startWatching();
+
+                // Display the template
+                scope._isReady = true;
+            }
+
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenPanelLabel)) {
+                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                var classList = [scope._activeTheme,
+                    scope._cozenPanelSize,
+                    scope._cozenPanelType];
+                if (scope.cozenPanelDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenPanelOpen || scope._cozenPanelFrozen) {
+                    classList.push('open');
+                }
+                if (scope._bigIconHover) {
+                    classList.push('no-hover');
+                }
+                return classList;
+            }
+
+            function onClickHeader($event) {
+                if (scope.cozenPanelDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenPanelOnClick)) {
+                    scope.cozenPanelOnClick();
+                }
+                if (Methods.isFunction(scope.cozenPanelOnToggle) && !scope._cozenPanelFrozen) {
+                    scope.cozenPanelOnToggle();
+                }
+                if (!scope._cozenPanelFrozen) {
+                    scope.cozenPanelOpen = !scope.cozenPanelOpen;
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickHeader');
+                }
+            }
+
+            function startWatching() {
+                scope.$watch('cozenPanelDisabled', function (newValue, oldValue) {
+                    if (newValue && scope.cozenPanelOpen && !scope._cozenPanelFrozen) {
+                        scope.cozenPanelOpen = false;
+                        if (Methods.isFunction(scope.cozenPanelOnToggle)) {
+                            scope.cozenPanelOnToggle();
+                        }
+                    }
+                });
+            }
+
+            function onClickBigIconLeft($event) {
+                $event.stopPropagation();
+                if (scope.cozenPanelDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenPanelOnClickBigIconLeft)) {
+                    scope.cozenPanelOnClickBigIconLeft();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickBigIconLeft');
+                }
+            }
+
+            function onClickBigIconRight($event) {
+                $event.stopPropagation();
+                if (scope.cozenPanelDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenPanelOnClickBigIconRight)) {
+                    scope.cozenPanelOnClickBigIconRight();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickBigIconRight');
+                }
+            }
+
+            function bigIconHover(hover) {
+                scope._bigIconHover = hover;
+            }
+
+            function getTabIndex() {
+                var tabIndex = 0;
+                if (scope.cozenPanelDisabled) {
+                    tabIndex = -1;
+                }
+                else if (scope._cozenPanelFrozen) {
+                    tabIndex = -1;
+                }
+                return tabIndex;
+            }
+
+            function getBodyStyles() {
+                return {
+                    'max-height': scope._cozenPanelMaxHeight
+                };
+            }
+        }
     }
-  }
 
 })(window.angular);
 
@@ -5240,15 +5978,28 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenPillsSize)) {
-                    if (angular.isDefined(attrs.cozenPillsSizeSmall)) scope._cozenPillsSize = 'small';
-                    else if (angular.isDefined(attrs.cozenPillsSizeNormal)) scope._cozenPillsSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenPillsSizeLarge)) scope._cozenPillsSize = 'large';
-                    else scope._cozenPillsSize = 'normal';
-                } else scope._cozenPillsSize = attrs.cozenPillsSize;
+                    if (angular.isDefined(attrs.cozenPillsSizeSmall)) {
+                        scope._cozenPillsSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenPillsSizeNormal)) {
+                        scope._cozenPillsSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenPillsSizeLarge)) {
+                        scope._cozenPillsSize = 'large';
+                    }
+                    else {
+                        scope._cozenPillsSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenPillsSize = attrs.cozenPillsSize;
+                }
 
                 // Default values (attributes)
                 scope._cozenPillsId              = angular.isDefined(attrs.cozenPillsId) ? attrs.cozenPillsId : '';
@@ -5271,7 +6022,9 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenPillsSize, attrs.cozenPillsClass];
+                var classList = [scope._activeTheme,
+                    scope._cozenPillsSize,
+                    attrs.cozenPillsClass];
                 return classList;
             }
         }
@@ -5388,10 +6141,14 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenPillsItemSimpleDisabled)) scope.cozenPillsItemSimpleDisabled = false;
+                if (angular.isUndefined(attrs.cozenPillsItemSimpleDisabled)) {
+                    scope.cozenPillsItemSimpleDisabled = false;
+                }
                 if (angular.isUndefined(attrs.cozenPillsItemSimpleSelected)) {
                     scope.cozenPillsItemSimpleSelected = false;
                 }
@@ -5432,16 +6189,26 @@
 
             function getMainClass() {
                 var classList = [];
-                if (scope.cozenPillsItemSimpleDisabled) classList.push('disabled');
-                if (scope.cozenPillsItemSimpleSelected) classList.push('selected');
+                if (scope.cozenPillsItemSimpleDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenPillsItemSimpleSelected) {
+                    classList.push('selected');
+                }
                 return classList;
             }
 
             function onClick($event) {
                 $event.stopPropagation();
-                if (scope.cozenPillsItemSimpleDisabled) return;
-                if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) scope.cozenPillsItemSimpleOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClick');
+                if (scope.cozenPillsItemSimpleDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) {
+                    scope.cozenPillsItemSimpleOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClick');
+                }
                 if (scope.$parent.$parent.$parent._cozenPillsAutoUpdateModel) {
                     scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
                     Methods.safeApply(scope);
@@ -5450,7 +6217,9 @@
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenPillsItemSimpleDisabled) tabIndex = -1;
+                if (scope.cozenPillsItemSimpleDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
@@ -5689,7 +6458,9 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenPopupSize, scope._cozenPopupType];
+                var classList = [scope._activeTheme,
+                    scope._cozenPopupSize,
+                    scope._cozenPopupType];
                 if (scope._cozenPopupAnimationIn) {
                     classList.push('animate-in');
                 }
@@ -5854,7 +6625,8 @@ var Methods = {
     httpRequestLog            : httpRequestLog,
     firstLoadLog              : firstLoadLog,
     missingKeyLog             : missingKeyLog,
-    changeRouteLog            : changeRouteLog
+    changeRouteLog            : changeRouteLog,
+    hasDuplicates             : hasDuplicates
 };
 
 var Data = {
@@ -6106,6 +6878,9 @@ function changeRouteLog(directive, route, params) {
     }
 }
 
+function hasDuplicates(array) {
+    return (new Set(array)).size !== array.length;
+}
 /**
  * @ngdoc directive
  * @name cozen-shortcut
@@ -6195,7 +6970,7 @@ function changeRouteLog(directive, route, params) {
 
             function shortcutsLog() {
                 var log = '';
-                Object.keys(Shortcuts).forEach(function(key) {
+                Object.keys(Shortcuts).forEach(function (key) {
                     log += '%c[%c' + Methods.capitalizeFirstLetter(key) + ' %c' + Shortcuts[key] + '%c]';
                 });
 
@@ -6266,7 +7041,9 @@ function changeRouteLog(directive, route, params) {
 
                 // Disabled check
                 if (angular.isDefined(attrs.cozenStringToNumberDisabled)) {
-                    if (JSON.parse(attrs.cozenStringToNumberDisabled)) return;
+                    if (JSON.parse(attrs.cozenStringToNumberDisabled)) {
+                        return;
+                    }
                 }
 
                 // Behavior
@@ -6511,7 +7288,9 @@ function changeRouteLog(directive, route, params) {
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenTextareaForm)) {
-                    var classList = [scope._activeTheme, scope._cozenTextareaSize, attrs.cozenTextareaClass];
+                    var classList = [scope._activeTheme,
+                        scope._cozenTextareaSize,
+                        attrs.cozenTextareaClass];
                     var textarea  = methods.getForm();
                     textarea      = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
                     if (!Methods.isNullOrEmpty(textarea)) {
@@ -6649,7 +7428,8 @@ function changeRouteLog(directive, route, params) {
                     getConsoleColor('purple'),
                     getConsoleColor()
                 );
-            } else {
+            }
+            else {
                 activeTheme = theme;
             }
             return this;
@@ -7015,7 +7795,9 @@ function changeRouteLog(directive, route, params) {
             function init() {
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (attributes)
                 scope._cozenScrollBar       = CONFIG.scrollsBar;
@@ -7137,11 +7919,13 @@ function changeRouteLog(directive, route, params) {
                     isReadyCheckTrue     = !(hasReadyCheckExpression && !scope.$eval(attrs.cozenReadyCheck));
                     if (isInterpolated && isReadyCheckTrue) {
                         evalExpressions(expressions);
-                    } else {
+                    }
+                    else {
                         requestAnimationFrame(checkIfReady);
                     }
                 });
-            } else {
+            }
+            else {
                 evalExpressions(expressions);
             }
         }

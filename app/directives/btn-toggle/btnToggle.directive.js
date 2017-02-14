@@ -80,18 +80,33 @@
                 };
 
                 // Toggleing required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenBtnToggleSize)) {
-                    if (angular.isDefined(attrs.cozenBtnToggleSizeSmall)) scope._cozenBtnToggleSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnToggleSizeNormal)) scope._cozenBtnToggleSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnToggleSizeLarge)) scope._cozenBtnToggleSize = 'large';
-                    else scope._cozenBtnToggleSize = 'normal';
-                } else scope._cozenBtnToggleSize = attrs.cozenBtnToggleSize;
+                    if (angular.isDefined(attrs.cozenBtnToggleSizeSmall)) {
+                        scope._cozenBtnToggleSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnToggleSizeNormal)) {
+                        scope._cozenBtnToggleSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnToggleSizeLarge)) {
+                        scope._cozenBtnToggleSize = 'large';
+                    }
+                    else {
+                        scope._cozenBtnToggleSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenBtnToggleSize = attrs.cozenBtnToggleSize;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) scope.cozenBtnToggleDisabled = false;
+                if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) {
+                    scope.cozenBtnToggleDisabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenBtnToggleId          = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
@@ -122,23 +137,39 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnToggleSize, attrs.cozenBtnToggleClass];
-                if (scope.cozenBtnToggleDisabled) classList.push('disabled');
-                if (scope.cozenBtnToggleModel) classList.push('active');
-                if (scope._cozenBtnToggleStartRight) classList.push('switch-right');
+                var classList = [scope._activeTheme,
+                    scope._cozenBtnToggleSize,
+                    attrs.cozenBtnToggleClass];
+                if (scope.cozenBtnToggleDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenBtnToggleModel) {
+                    classList.push('active');
+                }
+                if (scope._cozenBtnToggleStartRight) {
+                    classList.push('switch-right');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenBtnToggleDisabled) return;
+                if (scope.cozenBtnToggleDisabled) {
+                    return;
+                }
                 scope.cozenBtnToggleModel = !scope.cozenBtnToggleModel;
-                if (Methods.isFunction(scope.cozenBtnToggleOnChange)) scope.cozenBtnToggleOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (Methods.isFunction(scope.cozenBtnToggleOnChange)) {
+                    scope.cozenBtnToggleOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenBtnToggleDisabled) tabIndex = -1;
+                if (scope.cozenBtnToggleDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
         }

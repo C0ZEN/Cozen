@@ -87,7 +87,7 @@
 
             function shortcutsLog() {
                 var log = '';
-                Object.keys(Shortcuts).forEach(function(key) {
+                Object.keys(Shortcuts).forEach(function (key) {
                     log += '%c[%c' + Methods.capitalizeFirstLetter(key) + ' %c' + Shortcuts[key] + '%c]';
                 });
 

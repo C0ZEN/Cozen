@@ -53,21 +53,31 @@
                 data.disabled = $parse(attrs.cozenOnFocusDisabled);
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenOnFocusDisabled)) data.disabled = false;
+                if (angular.isUndefined(attrs.cozenOnFocusDisabled)) {
+                    data.disabled = false;
+                }
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
 
                 // Start listening if not disabled
-                if (!data.disabled) methods.startListening();
+                if (!data.disabled) {
+                    methods.startListening();
+                }
 
                 // Start/stop listening when disabled change
                 scope.$watch('cozenOnFocusDisabled', function (newValue, oldValue) {
-                    if (newValue) methods.stopListening();
-                    else methods.startListening();
+                    if (newValue) {
+                        methods.stopListening();
+                    }
+                    else {
+                        methods.startListening();
+                    }
                 });
             }
 

@@ -3,78 +3,78 @@
      ng-class="_methods.getMainClass();"
      id="{{ _cozenDropdownId }}">
 
-  <!-- Label stuff -->
-  <div ng-if="_cozenDropdownLabel != ''"
-       class="cozen-dropdown-label">
+    <!-- Label stuff -->
+    <div ng-if="_cozenDropdownLabel != ''"
+         class="cozen-dropdown-label">
 
-    <!-- Label -->
-    <label class="label"
-           for="{{ _cozenDropdownUuid }}">
-      {{ _cozenDropdownLabel | translate }}
-    </label>
+        <!-- Label -->
+        <label class="label"
+               for="{{ _cozenDropdownUuid }}">
+            {{ _cozenDropdownLabel | translate }}
+        </label>
 
-    <!-- Required star -->
-    <label ng-if="_cozenDropdownRequired && _cozenDropdownRequiredConfig.type == 'star'"
-           class="required-star">
-      *
-    </label>
+        <!-- Required star -->
+        <label ng-if="_cozenDropdownRequired && _cozenDropdownRequiredConfig.type == 'star'"
+               class="required-star">
+            *
+        </label>
 
-    <!-- Required icon -->
-    <label ng-if="_cozenDropdownRequired && _cozenDropdownRequiredConfig.type == 'icon'"
-           class="required-icon">
-      <cozen-tooltip cozen-tooltip-label="_cozenDropdownRequiredTooltip"
-                     cozen-tooltip-display="block"
-                     cozen-tooltip-disabled="_cozenDropdownRequiredTooltip == ''">
-        <i class="{{ _cozenDropdownRequiredConfig.icon }}"></i>
-      </cozen-tooltip>
-    </label>
-  </div>
+        <!-- Required icon -->
+        <label ng-if="_cozenDropdownRequired && _cozenDropdownRequiredConfig.type == 'icon'"
+               class="required-icon">
+            <cozen-tooltip cozen-tooltip-label="_cozenDropdownRequiredTooltip"
+                           cozen-tooltip-display="block"
+                           cozen-tooltip-disabled="_cozenDropdownRequiredTooltip == ''">
+                <i class="{{ _cozenDropdownRequiredConfig.icon }}"></i>
+            </cozen-tooltip>
+        </label>
+    </div>
 
-  <div class="cozen-dropdown-container"
-       ng-mouseenter="_methods.onHover($event, true)"
-       ng-mouseleave="_methods.onHover($event, false)">
+    <div class="cozen-dropdown-container"
+         ng-mouseenter="_methods.onHover($event, true)"
+         ng-mouseleave="_methods.onHover($event, false)">
 
-    <!-- Visual input -->
-    <div ng-click="_methods.onClick($event);"
-         onclick="this.blur();"
-         tabindex="-1"
-         class="cozen-dropdown-content">
-
-      <!-- Left icon -->
-      <div ng-if="_cozenDropdownIconLeft != ''"
-           class="cozen-dropdown-icon left">
-        <i ng-class="[_cozenDropdownIconLeft]"></i>
-      </div>
-
-      <!-- Input -->
-      <input ng-model="vm.cozenDropdownModelEnhanced"
-             ng-required="_cozenDropdownRequired"
-             ng-change="_methods.onChange($event);"
-             type="text"
-             ng-disabled="vm.cozenDropdownDisabled"
-             placeholder="{{ _cozenDropdownPlaceholder | translate }}"
-             name="{{ _cozenDropdownName }}"
-             readonly
+        <!-- Visual input -->
+        <div ng-click="_methods.onClick($event);"
              onclick="this.blur();"
-             onkeydown="this.blur();"
-             ng-model-options="{allowInvalid: true}"
-             id="{{ _cozenDropdownUuid }}">
+             tabindex="-1"
+             class="cozen-dropdown-content">
 
-      <!-- Right icon -->
-      <div class="cozen-dropdown-icon right">
-        <i ng-class="_methods.getArrowClass();">
-        </i>
-      </div>
-    </div>
+            <!-- Left icon -->
+            <div ng-if="_cozenDropdownIconLeft != ''"
+                 class="cozen-dropdown-icon left">
+                <i ng-class="[_cozenDropdownIconLeft]"></i>
+            </div>
 
-    <!-- Dropdown items -->
-    <div ng-show="_cozenDropdownCollapse"
-         class="cozen-dropdown-transclude"
-         ng-style="_methods.getTranscludeStyle()"
-         ng-scrollbars
-         ng-scrollbars-disabled="!_cozenScrollBar"
-         ng-scrollbars-config="_cozenScrollBarConfig">
-      <div class="ng-transclude"></div>
+            <!-- Input -->
+            <input ng-model="vm.cozenDropdownModelEnhanced"
+                   ng-required="_cozenDropdownRequired"
+                   ng-change="_methods.onChange($event);"
+                   type="text"
+                   ng-disabled="vm.cozenDropdownDisabled"
+                   placeholder="{{ _cozenDropdownPlaceholder | translate }}"
+                   name="{{ _cozenDropdownName }}"
+                   readonly
+                   onclick="this.blur();"
+                   onkeydown="this.blur();"
+                   ng-model-options="{allowInvalid: true}"
+                   id="{{ _cozenDropdownUuid }}">
+
+            <!-- Right icon -->
+            <div class="cozen-dropdown-icon right">
+                <i ng-class="_methods.getArrowClass();">
+                </i>
+            </div>
+        </div>
+
+        <!-- Dropdown items -->
+        <div ng-show="_cozenDropdownCollapse"
+             class="cozen-dropdown-transclude"
+             ng-style="_methods.getTranscludeStyle()"
+             ng-scrollbars
+             ng-scrollbars-disabled="!_cozenScrollBar"
+             ng-scrollbars-config="_cozenScrollBarConfig">
+            <div class="ng-transclude"></div>
+        </div>
     </div>
-  </div>
 </div>

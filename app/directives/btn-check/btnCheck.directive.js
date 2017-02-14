@@ -79,18 +79,33 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenBtnCheckSize)) {
-                    if (angular.isDefined(attrs.cozenBtnCheckSizeSmall)) scope._cozenBtnCheckSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnCheckSizeNormal)) scope._cozenBtnCheckSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnCheckSizeLarge)) scope._cozenBtnCheckSize = 'large';
-                    else scope._cozenBtnCheckSize = 'normal';
-                } else scope._cozenBtnCheckSize = attrs.cozenBtnCheckSize;
+                    if (angular.isDefined(attrs.cozenBtnCheckSizeSmall)) {
+                        scope._cozenBtnCheckSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnCheckSizeNormal)) {
+                        scope._cozenBtnCheckSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnCheckSizeLarge)) {
+                        scope._cozenBtnCheckSize = 'large';
+                    }
+                    else {
+                        scope._cozenBtnCheckSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenBtnCheckSize = attrs.cozenBtnCheckSize;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnCheckDisabled)) scope.cozenBtnCheckDisabled = false;
+                if (angular.isUndefined(attrs.cozenBtnCheckDisabled)) {
+                    scope.cozenBtnCheckDisabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenBtnCheckId           = angular.isDefined(attrs.cozenBtnCheckId) ? attrs.cozenBtnCheckId : '';
@@ -125,23 +140,38 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnCheckSize];
-                if (scope.cozenBtnCheckDisabled) classList.push('disabled');
-                if (scope.cozenBtnCheckModel) classList.push('active');
-                if (scope._cozenBtnCheckStartRight) classList.push('check-right');
+                var classList = [scope._activeTheme,
+                    scope._cozenBtnCheckSize];
+                if (scope.cozenBtnCheckDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenBtnCheckModel) {
+                    classList.push('active');
+                }
+                if (scope._cozenBtnCheckStartRight) {
+                    classList.push('check-right');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenBtnCheckDisabled) return;
+                if (scope.cozenBtnCheckDisabled) {
+                    return;
+                }
                 scope.cozenBtnCheckModel = !scope.cozenBtnCheckModel;
-                if (Methods.isFunction(scope.cozenBtnCheckOnChange)) scope.cozenBtnCheckOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (Methods.isFunction(scope.cozenBtnCheckOnChange)) {
+                    scope.cozenBtnCheckOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenBtnCheckDisabled) tabIndex = -1;
+                if (scope.cozenBtnCheckDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
         }

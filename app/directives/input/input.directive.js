@@ -347,9 +347,14 @@
                 scope.$watch('vm.cozenInputHasError', function (newValue) {
                     var form = methods.getForm();
                     if (!Methods.isNullOrEmpty(form[scope._cozenInputFormCtrl])) {
-                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
                         if (!Methods.isNullOrEmpty(input)) {
-                            input.$setValidity('hasError', !newValue);
+                            input = input[scope._cozenInputName];
+                            if (!Methods.isNullOrEmpty(input)) {
+                                input.$setValidity('hasError', !newValue);
+                                input.$dirty   = true;
+                                input.$touched = true;
+                            }
                         }
                     }
                 }, true);

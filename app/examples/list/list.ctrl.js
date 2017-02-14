@@ -1,19 +1,19 @@
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('test')
-    .controller('ListCtrl', ListCtrl);
+    angular
+        .module('test')
+        .controller('ListCtrl', ListCtrl);
 
-  ListCtrl.$inject = [];
+    ListCtrl.$inject = [];
 
-  function ListCtrl() {
-    var vm = this;
+    function ListCtrl() {
+        var vm = this;
 
-    vm.onClick = function ($index) {
-      console.log('onClick', $index);
+        vm.onClick = function ($index) {
+            console.log('onClick', $index);
+        }
     }
-  }
 
 })(window.angular);
 

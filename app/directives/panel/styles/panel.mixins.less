@@ -2,182 +2,182 @@
 /*   SIZE   */
 /************/
 .cozen-panel-size(@padding-label, @padding-body, @font-size, @weight) {
-  div.cozen-panel-header {
-    font-size:   @font-size;
-    font-weight: @weight;
-    span.cozen-panel-label {
-      padding: @padding-label;
+    div.cozen-panel-header {
+        font-size   : @font-size;
+        font-weight : @weight;
+        span.cozen-panel-label {
+            padding : @padding-label;
+        }
     }
-  }
-  div.cozen-panel-body {
-    padding: @padding-body;
-  }
+    div.cozen-panel-body {
+        padding : @padding-body;
+    }
 }
 /*******************/
 /*   TYPE HEADER   */
 /*******************/
 .cozen-panel-type-header(@color, @color-hover, @background-color, @background-color-hover) {
-  .cozen-panel-type-header-internal(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-panel-type-header-internal(@color, @color-hover, @background-color, @background-color-hover);
 }
 /****************************/
 /*   TYPE HEADER DISABLED   */
 /****************************/
 .cozen-panel-type-header-disabled(@color, @color-hover, @background-color, @background-color-hover) {
-  &.disabled {
-    .cozen-panel-type-header-internal(@color, @color-hover, @background-color, @background-color-hover);
-  }
+    &.disabled {
+        .cozen-panel-type-header-internal(@color, @color-hover, @background-color, @background-color-hover);
+    }
 }
 /****************************/
 /*   TYPE HEADER INTERNAL   */
 /****************************/
 .cozen-panel-type-header-internal(@color, @color-hover, @background-color, @background-color-hover) {
-  div.cozen-panel-header {
-    color:            @color;
-    background-color: @background-color;
-    &:hover,
-    &:focus {
-      color:            @color-hover;
-      background-color: @background-color-hover;
+    div.cozen-panel-header {
+        color            : @color;
+        background-color : @background-color;
+        &:hover,
+        &:focus {
+            color            : @color-hover;
+            background-color : @background-color-hover;
+        }
     }
-  }
-  &.no-hover {
-    div.cozen-panel-header,
-    div.cozen-panel-header:hover {
-      color:            @color-hover;
-      background-color: @background-color;
+    &.no-hover {
+        div.cozen-panel-header,
+        div.cozen-panel-header:hover {
+            color            : @color-hover;
+            background-color : @background-color;
+        }
     }
-  }
 }
 /*****************/
 /*   TYPE BODY   */
 /*****************/
 .cozen-panel-type-body(@background-color) {
-  background-color: @background-color;
+    background-color : @background-color;
 }
 /**************/
 /*   BORDER   */
 /**************/
 .cozen-panel-border(@size, @type, @color, @color-hover, @radius) {
-  div.cozen-panel-header {
-    border:        @size @type @color;
-    border-radius: @radius;
-    &:hover {
-      border: @size @type @color-hover;
-    }
-  }
-  div.cozen-panel-body {
-    border:                     @size @type @color;
-    border-top:                 none;
-    border-bottom-left-radius:  @radius;
-    border-bottom-right-radius: @radius;
-  }
-  &.open {
     div.cozen-panel-header {
-      border-radius:           0;
-      border-top-left-radius:  @radius;
-      border-top-right-radius: @radius;
+        border        : @size @type @color;
+        border-radius : @radius;
+        &:hover {
+            border : @size @type @color-hover;
+        }
     }
-  }
+    div.cozen-panel-body {
+        border                     : @size @type @color;
+        border-top                 : none;
+        border-bottom-left-radius  : @radius;
+        border-bottom-right-radius : @radius;
+    }
+    &.open {
+        div.cozen-panel-header {
+            border-radius           : 0;
+            border-top-left-radius  : @radius;
+            border-top-right-radius : @radius;
+        }
+    }
 }
 /************/
 /*   ICON   */
 /************/
 .cozen-panel-icon(@padding) {
-  div.cozen-panel-header {
-    div.cozen-panel-icon {
-      padding: @padding;
+    div.cozen-panel-header {
+        div.cozen-panel-icon {
+            padding : @padding;
+        }
     }
-  }
 }
 /****************/
 /*   BIG ICON   */
 /****************/
 .cozen-panel-big-icon(@size, @padding) {
-  div.cozen-panel-header {
-    div.cozen-panel-big-icon {
-      font-size: @size;
-      padding:   @padding;
+    div.cozen-panel-header {
+        div.cozen-panel-big-icon {
+            font-size : @size;
+            padding   : @padding;
+        }
     }
-  }
 }
 /**************************/
 /*   BIG ICON COLOR LEFT  */
 /**************************/
 .cozen-panel-big-icon-color-left(@color, @color-hover, @background-color, @background-color-hover) {
-  .cozen-panel-big-icon-color-left-internal(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-panel-big-icon-color-left-internal(@color, @color-hover, @background-color, @background-color-hover);
 }
 /**************************/
 /*   BIG ICON COLOR LEFT  */
 /**************************/
 .cozen-panel-big-icon-color-left-disabled(@color, @color-hover, @background-color, @background-color-hover) {
-  &.disabled {
-    .cozen-panel-big-icon-color-left-internal(@color, @color-hover, @background-color, @background-color-hover);
-  }
+    &.disabled {
+        .cozen-panel-big-icon-color-left-internal(@color, @color-hover, @background-color, @background-color-hover);
+    }
 }
 /***********************************/
 /*   BIG ICON COLOR LEFT INTERNAL  */
 /***********************************/
 .cozen-panel-big-icon-color-left-internal(@color, @color-hover, @background-color, @background-color-hover) {
-  div.cozen-panel-header {
-    div.cozen-panel-big-icon {
-      &.left {
-        color:            @color;
-        background-color: @background-color;
-        &:hover,
-        &:focus {
-          color:            @color-hover;
-          background-color: @background-color-hover;
+    div.cozen-panel-header {
+        div.cozen-panel-big-icon {
+            &.left {
+                color            : @color;
+                background-color : @background-color;
+                &:hover,
+                &:focus {
+                    color            : @color-hover;
+                    background-color : @background-color-hover;
+                }
+            }
         }
-      }
     }
-  }
 }
 /***************************/
 /*   BIG ICON COLOR RIGHT  */
 /***************************/
 .cozen-panel-big-icon-color-right(@color, @color-hover, @background-color, @background-color-hover) {
-  .cozen-panel-big-icon-color-right-internal(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-panel-big-icon-color-right-internal(@color, @color-hover, @background-color, @background-color-hover);
 }
 /*************************************/
 /*   BIG ICON COLOR RIGHT DISABLED   */
 /*************************************/
 .cozen-panel-big-icon-color-right-disabled(@color, @color-hover, @background-color, @background-color-hover) {
-  &.disabled {
-    .cozen-panel-big-icon-color-right-internal(@color, @color-hover, @background-color, @background-color-hover);
-  }
+    &.disabled {
+        .cozen-panel-big-icon-color-right-internal(@color, @color-hover, @background-color, @background-color-hover);
+    }
 }
 /*************************************/
 /*   BIG ICON COLOR RIGHT INTERNAL   */
 /*************************************/
 .cozen-panel-big-icon-color-right-internal(@color, @color-hover, @background-color, @background-color-hover) {
-  div.cozen-panel-header {
-    div.cozen-panel-big-icon {
-      &.right {
-        color:            @color;
-        background-color: @background-color;
-        &:hover,
-        &:focus {
-          color:            @color-hover;
-          background-color: @background-color-hover;
+    div.cozen-panel-header {
+        div.cozen-panel-big-icon {
+            &.right {
+                color            : @color;
+                background-color : @background-color;
+                &:hover,
+                &:focus {
+                    color            : @color-hover;
+                    background-color : @background-color-hover;
+                }
+            }
         }
-      }
     }
-  }
 }
 /*****************/
 /*   SUB LABEL   */
 /*****************/
 .cozen-panel-sub-label(@size, @color, @color-hover) {
-  div.cozen-panel-header {
-    span.cozen-panel-label small {
-      font-size: @size;
-      color:     @color;
+    div.cozen-panel-header {
+        span.cozen-panel-label small {
+            font-size : @size;
+            color     : @color;
+        }
+        &:hover,
+        &:focus {
+            span.cozen-panel-label small {
+                color : @color-hover;
+            }
+        }
     }
-    &:hover,
-    &:focus {
-      span.cozen-panel-label small {
-        color: @color-hover;
-      }
-    }
-  }
 }

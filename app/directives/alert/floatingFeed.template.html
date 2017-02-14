@@ -3,24 +3,24 @@
      ng-style="_methods.getMainStyle();"
      id="{{ _cozenFloatingFeedId }}">
 
-  <!-- Alert -->
-  <cozen-alert ng-repeat="alert in _cozenFloatingAlerts track by $index"
-               id="float-feed-alert-{{ $index }}"
-               ng-class="hideFirst && $first ? 'hidden' : ''"
-               cozen-alert-label="alert.label"
-               cozen-alert-label-values="alert.labelValues"
-               cozen-alert-size="{{ _cozenFloatingFeedSize }}"
-               cozen-alert-type="{{ alert.type }}"
-               cozen-alert-animation-in="false"
-               cozen-alert-animation-out="{{ _cozenFloatingFeedAnimationOut != '' }}"
-               cozen-alert-animation-out-class="{{ _cozenFloatingFeedAnimationOut }}"
-               cozen-alert-close-btn="{{ _cozenFloatingFeedCloseBtn }}"
-               cozen-alert-icon-left="{{ _cozenFloatingFeedIconLeft }}"
-               cozen-alert-close-btn-tooltip="false"
-               cozen-alert-force-animation="true"
-               cozen-alert-display="alert.display"
-               cozen-alert-on-hide-done="_methods.onHideAlert(alert.uuid)"
-               cozen-alert-class="cozen-floating-alert"
-               cozen-on-repeat-finish="onFloatingFeedFinished">
-  </cozen-alert>
+    <!-- Alert -->
+    <cozen-alert ng-repeat="alert in _cozenFloatingAlerts track by $index"
+                 id="float-feed-alert-{{ $index }}"
+                 ng-class="hideFirst && $first ? 'hidden' : ''"
+                 cozen-alert-label="alert.label"
+                 cozen-alert-label-values="alert.labelValues"
+                 cozen-alert-size="{{ _cozenFloatingFeedSize }}"
+                 cozen-alert-type="{{ alert.type }}"
+                 cozen-alert-animation-in="false"
+                 cozen-alert-animation-out="{{ _cozenFloatingFeedAnimationOut != '' }}"
+                 cozen-alert-animation-out-class="{{ _cozenFloatingFeedAnimationOut }}"
+                 cozen-alert-close-btn="{{ _cozenFloatingFeedCloseBtn }}"
+                 cozen-alert-icon-left="{{ _cozenFloatingFeedIconLeft }}"
+                 cozen-alert-close-btn-tooltip="false"
+                 cozen-alert-force-animation="true"
+                 cozen-alert-display="alert.display"
+                 cozen-alert-on-hide-done="_methods.onHideAlert(alert.uuid)"
+                 cozen-alert-class="cozen-floating-alert"
+                 cozen-on-repeat-finish="onFloatingFeedFinished">
+    </cozen-alert>
 </div>

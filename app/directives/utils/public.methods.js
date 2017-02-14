@@ -23,7 +23,8 @@ var Methods = {
     httpRequestLog            : httpRequestLog,
     firstLoadLog              : firstLoadLog,
     missingKeyLog             : missingKeyLog,
-    changeRouteLog            : changeRouteLog
+    changeRouteLog            : changeRouteLog,
+    hasDuplicates             : hasDuplicates
 };
 
 var Data = {
@@ -273,4 +274,8 @@ function changeRouteLog(directive, route, params) {
         }
         return text;
     }
+}
+
+function hasDuplicates(array) {
+    return (new Set(array)).size !== array.length;
 }

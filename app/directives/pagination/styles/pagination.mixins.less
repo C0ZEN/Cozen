@@ -2,89 +2,89 @@
 /*   SIZE   */
 /************/
 .cozen-pagination-btn-size(@padding, @font-size) {
-  div.cozen-pagination-btn {
-    padding:   @padding;
-    font-size: @font-size;
-  }
+    div.cozen-pagination-btn {
+        padding   : @padding;
+        font-size : @font-size;
+    }
 }
 /**************/
 /*   BORDER   */
 /**************/
 .cozen-pagination-btn-border(@border, @border-hover) {
-  div.cozen-pagination-btn {
-    .cozen-pagination-btn-border-internal(@border, @border-hover);
-  }
+    div.cozen-pagination-btn {
+        .cozen-pagination-btn-border-internal(@border, @border-hover);
+    }
 }
 /*********************/
 /*   BORDER ACTIVE   */
 /*********************/
 .cozen-pagination-btn-border-active(@border, @border-hover) {
-  div.cozen-pagination-btn.active {
-    .cozen-pagination-btn-border-internal(@border, @border-hover);
-  }
+    div.cozen-pagination-btn.active {
+        .cozen-pagination-btn-border-internal(@border, @border-hover);
+    }
 }
 /***********************/
 /*   BORDER DISABLED   */
 /***********************/
 .cozen-pagination-btn-border-disabled(@border, @border-hover) {
-  div.cozen-pagination-btn.disabled {
-    .cozen-pagination-btn-border-internal(@border, @border-hover);
-  }
+    div.cozen-pagination-btn.disabled {
+        .cozen-pagination-btn-border-internal(@border, @border-hover);
+    }
 }
 /***********************/
 /*   BORDER INTERNAL   */
 /***********************/
 .cozen-pagination-btn-border-internal(@border, @border-hover) {
-  border:       @border;
-  border-right: none;
-  &:last-of-type {
-    border-right: @border;
-  }
-  &:focus,
-  &:hover {
-    border:       @border-hover;
-    border-right: none;
+    border       : @border;
+    border-right : none;
     &:last-of-type {
-      border-right: @border-hover;
+        border-right : @border;
     }
-    & + div {
-      border-left: @border-hover;
+    &:focus,
+    &:hover {
+        border       : @border-hover;
+        border-right : none;
+        &:last-of-type {
+            border-right : @border-hover;
+        }
+        & + div {
+            border-left : @border-hover;
+        }
     }
-  }
 }
 /*************/
 /*   COLOR   */
 /*************/
 .cozen-pagination-btn-color(@color, @color-hover, @background-color, @background-color-hover) {
-  div.cozen-pagination-btn {
-    .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
-  }
+    div.cozen-pagination-btn {
+        .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+    }
 }
 /********************/
 /*   COLOR ACTIVE   */
 /********************/
 .cozen-pagination-btn-color-active(@color, @color-hover, @background-color, @background-color-hover) {
-  div.cozen-pagination-btn.active {
-    .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
-  }
+    div.cozen-pagination-btn.active {
+        .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+    }
 }
 /**********************/
 /*   COLOR DISABLED   */
 /**********************/
 .cozen-pagination-btn-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
-  div.cozen-pagination-btn.disabled {
-    .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
-  }
+    div.cozen-pagination-btn.disabled {
+        .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+    }
 }
 /**********************/
 /*   COLOR INTERNAL   */
 /**********************/
 .cozen-pagination-btn-color-internal(@color, @color-hover, @background-color, @background-color-hover) {
-  color:            @color;
-  background-color: @background-color;
-  &:focus,
-  &:hover {
-    color:            @color-hover;
-    background-color: @background-color-hover;
-  }
+    color            : @color;
+    background-color : @background-color;
+    &:focus,
+    &:hover {
+        color            : @color-hover;
+        background-color : @background-color-hover;
+    }
 }

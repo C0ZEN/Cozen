@@ -1,5 +1,5 @@
 {
-  "dropdown_count": "{{selected}} éléments sélectionnés sur {{total}}",
-  "dropdown_count_all": "Tous les éléments sélectionnés",
-  "dropdown_required_tooltip": "Champ requis"
+    "dropdown_count": "{{selected}} éléments sélectionnés sur {{total}}",
+    "dropdown_count_all": "Tous les éléments sélectionnés",
+    "dropdown_required_tooltip": "Champ requis"
 }

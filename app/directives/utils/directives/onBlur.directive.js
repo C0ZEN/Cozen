@@ -13,86 +13,96 @@
  *
  */
 (function (angular) {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('cozenLib')
-    .directive('cozenOnBlur', cozenOnBlur);
+    angular
+        .module('cozenLib')
+        .directive('cozenOnBlur', cozenOnBlur);
 
-  cozenOnBlur.$inject = [
-    '$parse'
-  ];
+    cozenOnBlur.$inject = [
+        '$parse'
+    ];
 
-  function cozenOnBlur($parse) {
-    return {
-      link      : link,
-      restrict  : 'A',
-      replace   : false,
-      transclude: false
-    };
+    function cozenOnBlur($parse) {
+        return {
+            link      : link,
+            restrict  : 'A',
+            replace   : false,
+            transclude: false
+        };
 
-    function link(scope, element, attrs) {
-      var methods = {
-        init          : init,
-        hasError      : hasError,
-        destroy       : destroy,
-        startListening: startListening,
-        stopListening : stopListening
-      };
+        function link(scope, element, attrs) {
+            var methods = {
+                init          : init,
+                hasError      : hasError,
+                destroy       : destroy,
+                startListening: startListening,
+                stopListening : stopListening
+            };
 
-      var data = {
-        directive: 'cozenOnBlur'
-      };
+            var data = {
+                directive: 'cozenOnBlur'
+            };
 
-      methods.init();
+            methods.init();
 
-      function init() {
+            function init() {
 
-        // To avoid using a new isolated scope, parse the attributes
-        data.callback = $parse(attrs.cozenOnBlurCallback);
-        data.disabled = $parse(attrs.cozenOnBlurDisabled);
+                // To avoid using a new isolated scope, parse the attributes
+                data.callback = $parse(attrs.cozenOnBlurCallback);
+                data.disabled = $parse(attrs.cozenOnBlurDisabled);
 
-        // Checking required stuff
-        if (methods.hasError()) return;
+                // Checking required stuff
+                if (methods.hasError()) {
+                    return;
+                }
 
-        // Default values (scope)
-        if (angular.isUndefined(attrs.cozenOnBlurDisabled)) data.disabled = false;
+                // Default values (scope)
+                if (angular.isUndefined(attrs.cozenOnBlurDisabled)) {
+                    data.disabled = false;
+                }
 
-        // Init stuff
-        element.on('$destroy', methods.destroy);
+                // Init stuff
+                element.on('$destroy', methods.destroy);
 
-        // Start listening if not disabled
-        if (!data.disabled) methods.startListening();
+                // Start listening if not disabled
+                if (!data.disabled) {
+                    methods.startListening();
+                }
 
-        // Start/stop listening when disabled change
-        scope.$watch('cozenOnBlurDisabled', function (newValue, oldValue) {
-          if (newValue) methods.stopListening();
-          else methods.startListening();
-        });
-      }
+                // Start/stop listening when disabled change
+                scope.$watch('cozenOnBlurDisabled', function (newValue, oldValue) {
+                    if (newValue) {
+                        methods.stopListening();
+                    }
+                    else {
+                        methods.startListening();
+                    }
+                });
+            }
 
-      function hasError() {
-        if (!Methods.isFunction(data.callback)) {
-          Methods.directiveErrorFunction(data.directive, 'cozenOnBlurCallback');
-          return true;
+            function hasError() {
+                if (!Methods.isFunction(data.callback)) {
+                    Methods.directiveErrorFunction(data.directive, 'cozenOnBlurCallback');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                methods.stopListening();
+                element.off('$destroy', methods.destroy);
+            }
+
+            function startListening() {
+                element[0].addEventListener('blur', data.callback);
+            }
+
+            function stopListening() {
+                element[0].removeEventListener('blur', data.callback);
+            }
         }
-        return false;
-      }
-
-      function destroy() {
-        methods.stopListening();
-        element.off('$destroy', methods.destroy);
-      }
-
-      function startListening() {
-        element[0].addEventListener('blur', data.callback);
-      }
-
-      function stopListening() {
-        element[0].removeEventListener('blur', data.callback);
-      }
     }
-  }
 
 })(window.angular);
 

@@ -2,131 +2,131 @@
 /*   SIZE   */
 /************/
 .cozen-list-item-simple-size(@font-size) {
-  .cozen-list-item.cozen-list-item-simple {
-    font-size: @font-size;
-    div.cozen-list-item-simple-content {
-      div.cozen-list-item-simple-icon.left {
-        margin-right: @font-size / 6;
-      }
+    .cozen-list-item.cozen-list-item-simple {
+        font-size : @font-size;
+        div.cozen-list-item-simple-content {
+            div.cozen-list-item-simple-icon.left {
+                margin-right : @font-size / 6;
+            }
+        }
     }
-  }
 }
 /*************/
 /*   COLOR   */
 /*************/
 .cozen-list-item-simple-color(@color, @color-hover, @background-color, @background-color-hover) {
-  .cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+    .cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover);
 }
 /*****************/
 /*   COLOR ODD   */
 /*****************/
 .cozen-list-item-simple-color-odd(@background-color, @background-color-hover) {
-  .cozen-list-item.cozen-list-item-simple.odd {
-    background-color: @background-color;
-    &.active,
-    &:focus {
-      background-color: @background-color-hover;
+    .cozen-list-item.cozen-list-item-simple.odd {
+        background-color : @background-color;
+        &.active,
+        &:focus {
+            background-color : @background-color-hover;
+        }
     }
-  }
 }
 /**********************/
 /*   COLOR DISABLED   */
 /**********************/
 .cozen-list-item-simple-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
-  &.odd.disabled,
-  &.disabled {
-    .cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover);
-  }
+    &.odd.disabled,
+    &.disabled {
+        .cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover);
+    }
 }
 /**********************/
 /*   COLOR INTERNAL   */
 /**********************/
 .cozen-list-item-simple-color-internal(@color, @color-hover, @background-color, @background-color-hover) {
-  .cozen-list-item.cozen-list-item-simple {
-    color:            @color;
-    background-color: @background-color;
-    &.active,
-    &:focus {
-      color:            @color-hover;
-      background-color: @background-color-hover;
+    .cozen-list-item.cozen-list-item-simple {
+        color            : @color;
+        background-color : @background-color;
+        &.active,
+        &:focus {
+            color            : @color-hover;
+            background-color : @background-color-hover;
+        }
     }
-  }
 }
 /*****************/
 /*   SUB-COLOR   */
 /*****************/
 .cozen-list-item-simple-sub-color(@color, @color-hover) {
-  .cozen-list-item.cozen-list-item-simple {
-    div.cozen-list-item-simple-content {
-      span.cozen-list-item-simple-label small {
-        color: @color;
-        &.active,
-        &:focus {
-          color: @color-hover;
+    .cozen-list-item.cozen-list-item-simple {
+        div.cozen-list-item-simple-content {
+            span.cozen-list-item-simple-label small {
+                color : @color;
+                &.active,
+                &:focus {
+                    color : @color-hover;
+                }
+                &.disabled {
+                    color : @color;
+                }
+            }
         }
-        &.disabled {
-          color: @color;
-        }
-      }
     }
-  }
 }
 /***********/
 /*   BTN   */
 /***********/
 .cozen-list-item-simple-btn(@padding, @font-size, @color, @background-color, @border) {
-  .cozen-list-item.cozen-list-item-simple {
-    div.cozen-list-item-simple-content {
-      div.cozen-list-item-simple-btn {
-        padding:          @padding;
-        font-size:        @font-size;
-        color:            @color;
-        background-color: @background-color;
-        border:           @border;
-      }
+    .cozen-list-item.cozen-list-item-simple {
+        div.cozen-list-item-simple-content {
+            div.cozen-list-item-simple-btn {
+                padding          : @padding;
+                font-size        : @font-size;
+                color            : @color;
+                background-color : @background-color;
+                border           : @border;
+            }
+        }
     }
-  }
 }
 /*****************/
 /*   BTN HOVER   */
 /*****************/
 .cozen-list-item-simple-btn-hover(@padding, @font-size, @color, @background-color, @border) {
-  .cozen-list-item.cozen-list-item-simple {
-    div.cozen-list-item-simple-content {
-      div.cozen-list-item-simple-btn {
-        &:focus,
-        &:hover {
-          padding:          @padding;
-          color:            @color;
-          background-color: @background-color;
-          border:           @border;
+    .cozen-list-item.cozen-list-item-simple {
+        div.cozen-list-item-simple-content {
+            div.cozen-list-item-simple-btn {
+                &:focus,
+                &:hover {
+                    padding          : @padding;
+                    color            : @color;
+                    background-color : @background-color;
+                    border           : @border;
+                }
+            }
         }
-      }
     }
-  }
 }
 /********************/
 /*   BTN DISABLED   */
 /********************/
 .cozen-list-item-simple-btn-disabled(@padding, @font-size, @color, @background-color, @border) {
-  &.disabled {
-    .cozen-list-item.cozen-list-item-simple {
-      div.cozen-list-item-simple-content {
-        div.cozen-list-item-simple-btn {
-          padding:          @padding;
-          font-size:        @font-size;
-          color:            @color;
-          background-color: @background-color;
-          border:           @border;
-          &:focus,
-          &:hover {
-            padding:          @padding;
-            color:            @color;
-            background-color: @background-color;
-            border:           @border;
-          }
+    &.disabled {
+        .cozen-list-item.cozen-list-item-simple {
+            div.cozen-list-item-simple-content {
+                div.cozen-list-item-simple-btn {
+                    padding          : @padding;
+                    font-size        : @font-size;
+                    color            : @color;
+                    background-color : @background-color;
+                    border           : @border;
+                    &:focus,
+                    &:hover {
+                        padding          : @padding;
+                        color            : @color;
+                        background-color : @background-color;
+                        border           : @border;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }

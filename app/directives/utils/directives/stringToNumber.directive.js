@@ -44,7 +44,9 @@
 
                 // Disabled check
                 if (angular.isDefined(attrs.cozenStringToNumberDisabled)) {
-                    if (JSON.parse(attrs.cozenStringToNumberDisabled)) return;
+                    if (JSON.parse(attrs.cozenStringToNumberDisabled)) {
+                        return;
+                    }
                 }
 
                 // Behavior

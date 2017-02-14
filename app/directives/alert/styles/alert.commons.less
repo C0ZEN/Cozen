@@ -1,57 +1,57 @@
 div.cozen-alert {
-  box-sizing:     border-box;
-  width:          100%;
-  display:        flex;
-  flex-direction: row;
-  align-content:  space-between;
-  border-radius:  @cozen-radius;
-  line-height:    normal;
-  align-items:    center;
+    box-sizing     : border-box;
+    width          : 100%;
+    display        : flex;
+    flex-direction : row;
+    align-content  : space-between;
+    border-radius  : @cozen-radius;
+    line-height    : normal;
+    align-items    : center;
 
-  &.animate-in {
-    transition: @cozen-animation-duration-in-fast ease-out;
-  }
-  &.ng-hide {
-    transition:       none;
-    background-color: transparent !important;
-  }
-  &.ng-hide-add-active.animate-out {
-    transition:       @cozen-animation-duration-out-fast ease-out;
-    background-color: transparent !important;
-  }
-  &.with-animation-in,
-  &.with-animation-out {
-    animation-fill-mode: @cozen-animation-fill;
-  }
-  &.with-animation-in {
-    animation-duration: @cozen-animation-duration-in-fast;
-  }
-  &.with-animation-out {
-    animation-duration: @cozen-animation-duration-out-fast;
-  }
-
-  // Icon
-  div.cozen-alert-icon {
-    outline:     @cozen-outline;
-    font-weight: inherit;
-    i {
-      vertical-align: middle;
+    &.animate-in {
+        transition : @cozen-animation-duration-in-fast ease-out;
     }
-    &.right {
-      cursor:      pointer;
-      margin-left: auto;
+    &.ng-hide {
+        transition       : none;
+        background-color : transparent !important;
     }
-  }
+    &.ng-hide-add-active.animate-out {
+        transition       : @cozen-animation-duration-out-fast ease-out;
+        background-color : transparent !important;
+    }
+    &.with-animation-in,
+    &.with-animation-out {
+        animation-fill-mode : @cozen-animation-fill;
+    }
+    &.with-animation-in {
+        animation-duration : @cozen-animation-duration-in-fast;
+    }
+    &.with-animation-out {
+        animation-duration : @cozen-animation-duration-out-fast;
+    }
 
-  // Label
-  span.cozen-alert-label {
-    width:       100%;
-    font-weight: inherit;
-  }
+    // Icon
+    div.cozen-alert-icon {
+        outline     : @cozen-outline;
+        font-weight : inherit;
+        i {
+            vertical-align : middle;
+        }
+        &.right {
+            cursor      : pointer;
+            margin-left : auto;
+        }
+    }
+
+    // Label
+    span.cozen-alert-label {
+        width       : 100%;
+        font-weight : inherit;
+    }
 }
 div.cozen-floating-feed {
-  .floating-alert-animation-in {
-    animation-fill-mode: @cozen-animation-fill;
-    animation-duration:  @cozen-animation-duration-in;
-  }
+    .floating-alert-animation-in {
+        animation-fill-mode : @cozen-animation-fill;
+        animation-duration  : @cozen-animation-duration-in;
+    }
 }

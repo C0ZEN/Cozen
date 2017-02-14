@@ -5,7 +5,7 @@
         .module('test')
         .controller('PillsCtrl', PillsCtrl);
 
-  PillsCtrl.$inject = [];
+    PillsCtrl.$inject = [];
 
     function PillsCtrl() {
         var vm = this;

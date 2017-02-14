@@ -1,50 +1,50 @@
 div.cozen-list .cozen-list-item.cozen-list-item-simple {
-  display:         flex;
-  flex-direction:  row;
-  justify-content: space-between;
-  line-height:     1;
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-between;
+    line-height     : 1;
 
-  div.cozen-list-item-simple-content {
-    align-self:  center;
-    line-height: inherit;
+    div.cozen-list-item-simple-content {
+        align-self  : center;
+        line-height : inherit;
 
-    // Label
-    & > span.cozen-list-item-simple-label {
-      cursor:         inherit;
-      font-weight:    normal;
-      font-size:      inherit;
-      vertical-align: sub;
-      line-height:    inherit;
-      small {
-        font-weight: normal;
-      }
+        // Label
+        & > span.cozen-list-item-simple-label {
+            cursor         : inherit;
+            font-weight    : normal;
+            font-size      : inherit;
+            vertical-align : sub;
+            line-height    : inherit;
+            small {
+                font-weight : normal;
+            }
+        }
+
+        // Icon
+        & > div.cozen-list-item-simple-icon {
+            display        : inline-block;
+            cursor         : inherit;
+            font-weight    : normal;
+            vertical-align : sub;
+            outline        : @cozen-outline;
+            transition     : @cozen-transition;
+            font-size      : inherit;
+            line-height    : inherit;
+        }
+
+        // Btn
+        & div.cozen-list-item-simple-btn {
+            outline       : @cozen-outline;
+            transition    : @cozen-transition;
+            border-radius : @cozen-radius;
+            display       : inline-block;
+            height        : 100%;
+            i,
+            span {
+                font-size      : inherit;
+                color          : inherit;
+                vertical-align : middle;
+            }
+        }
     }
-
-    // Icon
-    & > div.cozen-list-item-simple-icon {
-      display:        inline-block;
-      cursor:         inherit;
-      font-weight:    normal;
-      vertical-align: sub;
-      outline:        @cozen-outline;
-      transition:     @cozen-transition;
-      font-size:      inherit;
-      line-height:    inherit;
-    }
-
-    // Btn
-    & div.cozen-list-item-simple-btn {
-      outline:       @cozen-outline;
-      transition:    @cozen-transition;
-      border-radius: @cozen-radius;
-      display:       inline-block;
-      height:        100%;
-      i,
-      span {
-        font-size:      inherit;
-        color:          inherit;
-        vertical-align: middle;
-      }
-    }
-  }
 }

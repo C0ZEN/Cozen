@@ -80,7 +80,9 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (attributes)
                 scope._cozenDropdownItemSearchId          = angular.isDefined(attrs.cozenDropdownItemSearchId) ? attrs.cozenDropdownItemSearchId : '';
@@ -110,8 +112,12 @@
 
             function getMainClass() {
                 var classList = [];
-                if (scope._cozenDropdownItemSearchIconLeft != '') classList.push('icon-left');
-                if (scope._cozenDropdownItemSearchIconRight != '') classList.push('icon-right');
+                if (scope._cozenDropdownItemSearchIconLeft != '') {
+                    classList.push('icon-left');
+                }
+                if (scope._cozenDropdownItemSearchIconRight != '') {
+                    classList.push('icon-right');
+                }
                 return classList;
             }
 
@@ -127,11 +133,26 @@
                                 dropdown = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
                                     return dropdown;
-                                } else return dropdown;
-                            } else return dropdown;
-                        } else return dropdown;
-                    } else return dropdown;
-                } else return dropdown;
+                                }
+                                else {
+                                    return dropdown;
+                                }
+                            }
+                            else {
+                                return dropdown;
+                            }
+                        }
+                        else {
+                            return dropdown;
+                        }
+                    }
+                    else {
+                        return dropdown;
+                    }
+                }
+                else {
+                    return dropdown;
+                }
             }
 
             function onChange($event) {

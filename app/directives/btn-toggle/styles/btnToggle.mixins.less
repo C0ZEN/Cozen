@@ -2,214 +2,214 @@
 /*   SIZE   */
 /************/
 .cozen-btn-toggle-size(@padding, @width, @height) {
-  div.cozen-btn-toggle-container {
-    div.cozen-btn-toggle-switch {
-      padding:     @padding;
-      width:       @width;
-      height:      @height;
-      line-height: @height;
+    div.cozen-btn-toggle-container {
+        div.cozen-btn-toggle-switch {
+            padding     : @padding;
+            width       : @width;
+            height      : @height;
+            line-height : @height;
+        }
     }
-  }
 }
 /*************/
 /*   COLOR   */
 /*************/
 .cozen-btn-toggle-color(@background-color, @background-color-hover, @switch-color, @switch-color-hover) {
-  div.cozen-btn-toggle-container {
-    div.cozen-btn-toggle-switch {
-      background-color: @background-color;
-      &:after {
-        background-color: @switch-color;
-      }
-    }
-    &:focus,
-    &:hover {
-      div.cozen-btn-toggle-switch {
-        background-color: @background-color-hover;
-        &:after {
-          background-color: @switch-color-hover;
+    div.cozen-btn-toggle-container {
+        div.cozen-btn-toggle-switch {
+            background-color : @background-color;
+            &:after {
+                background-color : @switch-color;
+            }
         }
-      }
+        &:focus,
+        &:hover {
+            div.cozen-btn-toggle-switch {
+                background-color : @background-color-hover;
+                &:after {
+                    background-color : @switch-color-hover;
+                }
+            }
+        }
     }
-  }
 }
 /**********************/
 /*   COLOR DISABLED   */
 /**********************/
 .cozen-btn-toggle-color-disabled(@background-color, @background-color-hover, @switch-color, @switch-color-hover) {
-  &.disabled {
-    div.cozen-btn-toggle-container {
-      div.cozen-btn-toggle-switch {
-        background-color: @background-color;
-        &:after {
-          background-color: @switch-color;
+    &.disabled {
+        div.cozen-btn-toggle-container {
+            div.cozen-btn-toggle-switch {
+                background-color : @background-color;
+                &:after {
+                    background-color : @switch-color;
+                }
+            }
+            &:focus,
+            &:hover {
+                div.cozen-btn-toggle-switch {
+                    background-color : @background-color-hover;
+                    &:after {
+                        background-color : @switch-color-hover;
+                    }
+                }
+            }
         }
-      }
-      &:focus,
-      &:hover {
-        div.cozen-btn-toggle-switch {
-          background-color: @background-color-hover;
-          &:after {
-            background-color: @switch-color-hover;
-          }
-        }
-      }
     }
-  }
 }
 /*********************/
 /*   COLOR CHECKED   */
 /*********************/
 .cozen-btn-toggle-color-checked(@background-color, @background-color-hover, @switch-color, @switch-color-hover) {
-  &.active {
-    div.cozen-btn-toggle-container {
-      div.cozen-btn-toggle-switch {
-        background-color: @background-color;
-        &.active:after {
-          background-color: @switch-color;
+    &.active {
+        div.cozen-btn-toggle-container {
+            div.cozen-btn-toggle-switch {
+                background-color : @background-color;
+                &.active:after {
+                    background-color : @switch-color;
+                }
+            }
+            &:focus,
+            &:hover {
+                div.cozen-btn-toggle-switch {
+                    background-color : @background-color-hover;
+                    &.active:after {
+                        background-color : @switch-color-hover;
+                    }
+                }
+            }
         }
-      }
-      &:focus,
-      &:hover {
-        div.cozen-btn-toggle-switch {
-          background-color: @background-color-hover;
-          &.active:after {
-            background-color: @switch-color-hover;
-          }
-        }
-      }
     }
-  }
 }
 /*****************************/
 /*   COLOR CHECKED DISABLED  */
 /*****************************/
 .cozen-btn-toggle-color-checked-disabled(@background-color, @background-color-hover, @switch-color, @switch-color-hover) {
-  &.active.disabled {
-    div.cozen-btn-toggle-container {
-      div.cozen-btn-toggle-switch {
-        background-color: @background-color;
-        &.active:after {
-          background-color: @switch-color;
+    &.active.disabled {
+        div.cozen-btn-toggle-container {
+            div.cozen-btn-toggle-switch {
+                background-color : @background-color;
+                &.active:after {
+                    background-color : @switch-color;
+                }
+            }
+            &:focus,
+            &:hover {
+                div.cozen-btn-toggle-switch {
+                    background-color : @background-color-hover;
+                    &.active:after {
+                        background-color : @switch-color-hover;
+                    }
+                }
+            }
         }
-      }
-      &:focus,
-      &:hover {
-        div.cozen-btn-toggle-switch {
-          background-color: @background-color-hover;
-          &.active:after {
-            background-color: @switch-color-hover;
-          }
-        }
-      }
     }
-  }
 }
 /**************/
 /*   BORDER   */
 /**************/
 .cozen-btn-toggle-border(@size, @type, @color, @color-hover) {
-  div.cozen-btn-toggle-container {
-    div.cozen-btn-toggle-switch {
-      border: @size @type @color;
+    div.cozen-btn-toggle-container {
+        div.cozen-btn-toggle-switch {
+            border : @size @type @color;
+        }
+        &:focus,
+        &:hover {
+            div.cozen-btn-toggle-switch {
+                border : @size @type @color-hover;
+            }
+        }
     }
-    &:focus,
-    &:hover {
-      div.cozen-btn-toggle-switch {
-        border: @size @type @color-hover;
-      }
-    }
-  }
 }
 /**********************/
 /*   BORDER CHECKED   */
 /**********************/
 .cozen-btn-toggle-border-checked(@size, @type, @color, @color-hover) {
-  &.active {
-    div.cozen-btn-toggle-container {
-      div.cozen-btn-toggle-switch {
-        border: @size @type @color;
-      }
-      &:focus,
-      &:hover {
-        div.cozen-btn-toggle-switch {
-          border: @size @type @color-hover;
+    &.active {
+        div.cozen-btn-toggle-container {
+            div.cozen-btn-toggle-switch {
+                border : @size @type @color;
+            }
+            &:focus,
+            &:hover {
+                div.cozen-btn-toggle-switch {
+                    border : @size @type @color-hover;
+                }
+            }
         }
-      }
     }
-  }
 }
 /***********************/
 /*   BORDER DISABLED   */
 /***********************/
 .cozen-btn-toggle-border-disabled(@size, @type, @color, @color-hover) {
-  &.disabled {
-    div.cozen-btn-toggle-container {
-      div.cozen-btn-toggle-switch {
-        border: @size @type @color;
-      }
-      &:focus,
-      &:hover {
-        div.cozen-btn-toggle-switch {
-          border: @size @type @color-hover;
+    &.disabled {
+        div.cozen-btn-toggle-container {
+            div.cozen-btn-toggle-switch {
+                border : @size @type @color;
+            }
+            &:focus,
+            &:hover {
+                div.cozen-btn-toggle-switch {
+                    border : @size @type @color-hover;
+                }
+            }
         }
-      }
     }
-  }
 }
 /*************/
 /*   LABEL   */
 /*************/
 .cozen-btn-toggle-label(@margin, @color, @color-hover, @font-size, @weight) {
-  div.cozen-btn-toggle-container {
-    label.cozen-btn-toggle-label {
-      margin-left: @margin;
-      color:       @color;
-      font-size:   @font-size;
-      font-weight: @weight;
-    }
-    &:hover,
-    &:focus {
-      label.cozen-btn-toggle-label {
-        color: @color-hover;
-      }
-    }
-  }
-  &.switch-right {
     div.cozen-btn-toggle-container {
-      label.cozen-btn-toggle-label {
-        margin-left:  0;
-        margin-right: @margin;
-      }
+        label.cozen-btn-toggle-label {
+            margin-left : @margin;
+            color       : @color;
+            font-size   : @font-size;
+            font-weight : @weight;
+        }
+        &:hover,
+        &:focus {
+            label.cozen-btn-toggle-label {
+                color : @color-hover;
+            }
+        }
     }
-  }
+    &.switch-right {
+        div.cozen-btn-toggle-container {
+            label.cozen-btn-toggle-label {
+                margin-left  : 0;
+                margin-right : @margin;
+            }
+        }
+    }
 }
 /*********************/
 /*   LABEL DISABLED  */
 /*********************/
 .cozen-btn-toggle-label-disabled(@margin, @color, @color-hover, @font-size, @weight) {
-  &.disabled {
-    div.cozen-btn-toggle-container {
-      label.cozen-btn-toggle-label {
-        margin-left: @margin;
-        color:       @color;
-        font-size:   @font-size;
-        font-weight: @weight;
-      }
-      &:hover,
-      &:focus {
-        label.cozen-btn-toggle-label {
-          color: @color-hover;
+    &.disabled {
+        div.cozen-btn-toggle-container {
+            label.cozen-btn-toggle-label {
+                margin-left : @margin;
+                color       : @color;
+                font-size   : @font-size;
+                font-weight : @weight;
+            }
+            &:hover,
+            &:focus {
+                label.cozen-btn-toggle-label {
+                    color : @color-hover;
+                }
+            }
         }
-      }
-    }
-    &.switch-right {
-      div.cozen-btn-toggle-container {
-        label.cozen-btn-toggle-label {
-          margin-left:  0;
-          margin-right: @margin;
+        &.switch-right {
+            div.cozen-btn-toggle-container {
+                label.cozen-btn-toggle-label {
+                    margin-left  : 0;
+                    margin-right : @margin;
+                }
+            }
         }
-      }
     }
-  }
 }

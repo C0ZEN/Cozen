@@ -79,10 +79,14 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenListItemMedia3Disabled)) scope.cozenListItemMedia3Disabled = false;
+                if (angular.isUndefined(attrs.cozenListItemMedia3Disabled)) {
+                    scope.cozenListItemMedia3Disabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenLisItemMedia3Id        = angular.isDefined(attrs.cozenLisItemMedia3Id) ? attrs.cozenLisItemMedia3Id : '';
@@ -125,36 +129,62 @@
 
             function getMainClass() {
                 var classList = [];
-                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) classList.push('no-action');
-                if (scope.cozenListItemMedia3Disabled) classList.push('disabled');
-                else if (scope.cozenListItemMedia3Active) classList.push('active');
-                if (scope.$id % 2 != 0) classList.push('odd');
+                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) {
+                    classList.push('no-action');
+                }
+                if (scope.cozenListItemMedia3Disabled) {
+                    classList.push('disabled');
+                }
+                else if (scope.cozenListItemMedia3Active) {
+                    classList.push('active');
+                }
+                if (scope.$id % 2 != 0) {
+                    classList.push('odd');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenListItemMedia3Disabled) return;
-                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) return;
-                if (Methods.isFunction(scope.cozenListItemMedia3OnClick)) scope.cozenListItemMedia3OnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                if (scope.cozenListItemMedia3Disabled) {
+                    return;
+                }
+                if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenListItemMedia3OnClick)) {
+                    scope.cozenListItemMedia3OnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenListItemMedia3Disabled) tabIndex = -1;
-                else if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) tabIndex = -1;
+                if (scope.cozenListItemMedia3Disabled) {
+                    tabIndex = -1;
+                }
+                else if (angular.isUndefined(attrs.cozenListItemMedia3OnClick)) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
             function onActive(event, eventData) {
-                if (scope.cozenListItemMedia3Disabled) return;
+                if (scope.cozenListItemMedia3Disabled) {
+                    return;
+                }
                 scope.cozenListItemMedia3Active = eventData.uuid == data.uuid;
                 Methods.safeApply(scope);
             }
 
             function onKeyDown(event) {
-                if (scope.cozenListItemMedia3Disabled) return;
-                if (!scope.cozenListItemMedia3Active) return;
+                if (scope.cozenListItemMedia3Disabled) {
+                    return;
+                }
+                if (!scope.cozenListItemMedia3Active) {
+                    return;
+                }
                 event.preventDefault();
                 switch (event.keyCode) {
 
@@ -166,7 +196,9 @@
             }
 
             function onHover($event) {
-                if (scope.cozenListItemMedia3Active) return;
+                if (scope.cozenListItemMedia3Active) {
+                    return;
+                }
                 scope.$parent.$parent.$parent.$parent.activeChild = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
                 $rootScope.$broadcast('cozenListActive', {
                     uuid: data.uuid

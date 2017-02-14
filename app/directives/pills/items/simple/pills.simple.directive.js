@@ -80,10 +80,14 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenPillsItemSimpleDisabled)) scope.cozenPillsItemSimpleDisabled = false;
+                if (angular.isUndefined(attrs.cozenPillsItemSimpleDisabled)) {
+                    scope.cozenPillsItemSimpleDisabled = false;
+                }
                 if (angular.isUndefined(attrs.cozenPillsItemSimpleSelected)) {
                     scope.cozenPillsItemSimpleSelected = false;
                 }
@@ -124,16 +128,26 @@
 
             function getMainClass() {
                 var classList = [];
-                if (scope.cozenPillsItemSimpleDisabled) classList.push('disabled');
-                if (scope.cozenPillsItemSimpleSelected) classList.push('selected');
+                if (scope.cozenPillsItemSimpleDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenPillsItemSimpleSelected) {
+                    classList.push('selected');
+                }
                 return classList;
             }
 
             function onClick($event) {
                 $event.stopPropagation();
-                if (scope.cozenPillsItemSimpleDisabled) return;
-                if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) scope.cozenPillsItemSimpleOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClick');
+                if (scope.cozenPillsItemSimpleDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) {
+                    scope.cozenPillsItemSimpleOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClick');
+                }
                 if (scope.$parent.$parent.$parent._cozenPillsAutoUpdateModel) {
                     scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
                     Methods.safeApply(scope);
@@ -142,7 +156,9 @@
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenPillsItemSimpleDisabled) tabIndex = -1;
+                if (scope.cozenPillsItemSimpleDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 

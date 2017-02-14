@@ -89,11 +89,17 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenListItemSimpleDisabled)) scope.cozenListItemSimpleDisabled = false;
-                if (angular.isUndefined(attrs.cozenListItemSimpleBtnRight)) scope.cozenListItemSimpleBtnRight = false;
+                if (angular.isUndefined(attrs.cozenListItemSimpleDisabled)) {
+                    scope.cozenListItemSimpleDisabled = false;
+                }
+                if (angular.isUndefined(attrs.cozenListItemSimpleBtnRight)) {
+                    scope.cozenListItemSimpleBtnRight = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenLisItemSimpleId               = angular.isDefined(attrs.cozenLisItemSimpleId) ? attrs.cozenLisItemSimpleId : '';
@@ -133,43 +139,75 @@
 
             function getMainClass() {
                 var classList = [];
-                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) classList.push('no-action');
-                if (scope.cozenListItemSimpleDisabled) classList.push('disabled');
-                else if (scope.cozenListItemSimpleActive) classList.push('active');
-                if (scope.$id % 2 != 0) classList.push('odd');
+                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) {
+                    classList.push('no-action');
+                }
+                if (scope.cozenListItemSimpleDisabled) {
+                    classList.push('disabled');
+                }
+                else if (scope.cozenListItemSimpleActive) {
+                    classList.push('active');
+                }
+                if (scope.$id % 2 != 0) {
+                    classList.push('odd');
+                }
                 return classList;
             }
 
             function onClickItem($event) {
-                if (scope.cozenListItemSimpleDisabled) return;
-                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) return;
-                if (Methods.isFunction(scope.cozenListItemSimpleOnClick)) scope.cozenListItemSimpleOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
+                if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenListItemSimpleOnClick)) {
+                    scope.cozenListItemSimpleOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                }
             }
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenListItemSimpleDisabled) tabIndex = -1;
-                else if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) tabIndex = -1;
+                if (scope.cozenListItemSimpleDisabled) {
+                    tabIndex = -1;
+                }
+                else if (angular.isUndefined(attrs.cozenListItemSimpleOnClick)) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
             function onClickBtnRight($event) {
-                if (scope.cozenListItemSimpleDisabled) return;
-                if (Methods.isFunction(scope.cozenListItemSimpleBtnRightOnClick)) scope.cozenListItemSimpleBtnRightOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenListItemSimpleBtnRightOnClick)) {
+                    scope.cozenListItemSimpleBtnRightOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
+                }
                 $event.stopPropagation();
             }
 
             function onActive(event, eventData) {
-                if (scope.cozenListItemSimpleDisabled) return;
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
                 scope.cozenListItemSimpleActive = eventData.uuid == data.uuid;
                 Methods.safeApply(scope);
             }
 
             function onKeyDown(event) {
-                if (scope.cozenListItemSimpleDisabled) return;
-                if (!scope.cozenListItemSimpleActive) return;
+                if (scope.cozenListItemSimpleDisabled) {
+                    return;
+                }
+                if (!scope.cozenListItemSimpleActive) {
+                    return;
+                }
                 event.preventDefault();
                 switch (event.keyCode) {
 
@@ -181,7 +219,9 @@
             }
 
             function onHover($event) {
-                if (scope.cozenListItemSimpleActive) return;
+                if (scope.cozenListItemSimpleActive) {
+                    return;
+                }
                 scope.$parent.$parent.$parent.$parent.activeChild = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
                 scope.$parent.$parent.$parent.activeChild         = scope.$parent.$parent.$parent.childrenUuid.indexOf(data.uuid) + 1;
                 $rootScope.$broadcast('cozenListActive', {

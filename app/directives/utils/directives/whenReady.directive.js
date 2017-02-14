@@ -87,11 +87,13 @@
                     isReadyCheckTrue     = !(hasReadyCheckExpression && !scope.$eval(attrs.cozenReadyCheck));
                     if (isInterpolated && isReadyCheckTrue) {
                         evalExpressions(expressions);
-                    } else {
+                    }
+                    else {
                         requestAnimationFrame(checkIfReady);
                     }
                 });
-            } else {
+            }
+            else {
                 evalExpressions(expressions);
             }
         }

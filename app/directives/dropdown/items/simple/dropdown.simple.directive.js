@@ -95,10 +95,14 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled)) scope.cozenDropdownItemSimpleDisabled = false;
+                if (angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled)) {
+                    scope.cozenDropdownItemSimpleDisabled = false;
+                }
                 if (angular.isUndefined(attrs.cozenDropdownItemSimpleSelected)) {
                     scope.cozenDropdownItemSimpleSelected = false;
                 }
@@ -114,7 +118,8 @@
                 scope._cozenDropdownItemSimpleIconRight = angular.isDefined(attrs.cozenDropdownItemSimpleIconRight) ? attrs.cozenDropdownItemSimpleIconRight : '';
                 scope._cozenDropdownItemSimpleShowTick  = methods.getDropdown()._cozenDropdownShowTick;
                 scope._cozenDropdownItemSimpleTickIcon  = methods.getDropdown()._cozenDropdownTickIcon;
-                scope._cozenDropdownSearch              = [scope._cozenDropdownItemSimpleLabel, scope._cozenDropdownItemSimpleSubLabel];
+                scope._cozenDropdownSearch              = [scope._cozenDropdownItemSimpleLabel,
+                    scope._cozenDropdownItemSimpleSubLabel];
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -161,20 +166,36 @@
 
             function getMainClass() {
                 var classList = [];
-                if (scope.cozenDropdownItemSimpleDisabled) classList.push('disabled');
-                else if (scope.cozenDropdownItemSimpleActive) classList.push('active');
-                if (scope.cozenDropdownItemSimpleSelected) classList.push('selected');
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    classList.push('disabled');
+                }
+                else if (scope.cozenDropdownItemSimpleActive) {
+                    classList.push('active');
+                }
+                if (scope.cozenDropdownItemSimpleSelected) {
+                    classList.push('selected');
+                }
                 return classList;
             }
 
             function onClickItem($event) {
                 $event.stopPropagation();
                 var dropdown = methods.getDropdown();
-                if (!dropdown._cozenDropdownCollapse) return;
-                if (scope.cozenDropdownItemSimpleDisabled) return;
-                if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) scope.cozenDropdownItemSimpleOnClick();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onClickItem');
-                if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) dropdown._methods.onClick();
+                if (!dropdown._cozenDropdownCollapse) {
+                    return;
+                }
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    return;
+                }
+                if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) {
+                    scope.cozenDropdownItemSimpleOnClick();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                }
+                if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) {
+                    dropdown._methods.onClick();
+                }
 
                 // Toggle and inform the parent
                 scope.cozenDropdownItemSimpleSelected = !scope.cozenDropdownItemSimpleSelected;
@@ -184,19 +205,27 @@
 
             function getTabIndex() {
                 var tabIndex = 0;
-                if (scope.cozenDropdownItemSimpleDisabled) tabIndex = -1;
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    tabIndex = -1;
+                }
                 return tabIndex;
             }
 
             function onActive(event, eventData) {
-                if (scope.cozenDropdownItemSimpleDisabled) return;
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    return;
+                }
                 scope.cozenDropdownItemSimpleActive = eventData.uuid == data.uuid;
                 Methods.safeApply(scope);
             }
 
             function onKeyDown(event) {
-                if (scope.cozenDropdownItemSimpleDisabled) return;
-                if (!scope.cozenDropdownItemSimpleActive) return;
+                if (scope.cozenDropdownItemSimpleDisabled) {
+                    return;
+                }
+                if (!scope.cozenDropdownItemSimpleActive) {
+                    return;
+                }
                 event.stopPropagation();
                 switch (event.keyCode) {
 
@@ -208,7 +237,9 @@
             }
 
             function onHover($event) {
-                if (scope.cozenDropdownItemSimpleActive) return;
+                if (scope.cozenDropdownItemSimpleActive) {
+                    return;
+                }
 
                 // Search the active child
                 var activeChild = 0;
@@ -233,7 +264,8 @@
             function onCollapse(event, data) {
                 if (data.collapse) {
                     $window.addEventListener('keydown', methods.onKeyDown);
-                } else {
+                }
+                else {
                     $window.removeEventListener('keydown', methods.onKeyDown);
                 }
             }
@@ -250,11 +282,26 @@
                                 dropdown = scope.$parent.$parent.$parent.$parent.$parent.$parent;
                                 if (Methods.isNullOrEmpty(dropdown._cozenDropdownName)) {
                                     return dropdown;
-                                } else return dropdown;
-                            } else return dropdown;
-                        } else return dropdown;
-                    } else return dropdown;
-                } else return dropdown;
+                                }
+                                else {
+                                    return dropdown;
+                                }
+                            }
+                            else {
+                                return dropdown;
+                            }
+                        }
+                        else {
+                            return dropdown;
+                        }
+                    }
+                    else {
+                        return dropdown;
+                    }
+                }
+                else {
+                    return dropdown;
+                }
             }
 
             function updateParentModel() {
@@ -275,7 +322,8 @@
 
             function search(event, params) {
                 if (data.dropdown.name == params.dropdown) {
-                    scope._cozenDropdownSearch = $filter('filter')([scope._cozenDropdownItemSimpleLabel, scope._cozenDropdownItemSimpleSubLabel], params.value);
+                    scope._cozenDropdownSearch = $filter('filter')([scope._cozenDropdownItemSimpleLabel,
+                        scope._cozenDropdownItemSimpleSubLabel], params.value);
                     $rootScope.$broadcast('cozenDropdownItemDisabled', {
                         uuid    : data.uuid,
                         disabled: scope._cozenDropdownSearch.length == 0,

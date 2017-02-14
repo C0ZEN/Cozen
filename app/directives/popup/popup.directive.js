@@ -224,7 +224,9 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenPopupSize, scope._cozenPopupType];
+                var classList = [scope._activeTheme,
+                    scope._cozenPopupSize,
+                    scope._cozenPopupType];
                 if (scope._cozenPopupAnimationIn) {
                     classList.push('animate-in');
                 }

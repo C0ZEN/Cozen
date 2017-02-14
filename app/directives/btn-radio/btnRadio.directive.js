@@ -88,18 +88,33 @@
                 };
 
                 // Checking required stuff
-                if (methods.hasError()) return;
+                if (methods.hasError()) {
+                    return;
+                }
 
                 // Shortcut values (size)
                 if (angular.isUndefined(attrs.cozenBtnRadioSize)) {
-                    if (angular.isDefined(attrs.cozenBtnRadioSizeSmall)) scope._cozenBtnRadioSize = 'small';
-                    else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) scope._cozenBtnRadioSize = 'normal';
-                    else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) scope._cozenBtnRadioSize = 'large';
-                    else scope._cozenBtnRadioSize = 'normal';
-                } else scope._cozenBtnRadioSize = attrs.cozenBtnRadioSize;
+                    if (angular.isDefined(attrs.cozenBtnRadioSizeSmall)) {
+                        scope._cozenBtnRadioSize = 'small';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnRadioSizeNormal)) {
+                        scope._cozenBtnRadioSize = 'normal';
+                    }
+                    else if (angular.isDefined(attrs.cozenBtnRadioSizeLarge)) {
+                        scope._cozenBtnRadioSize = 'large';
+                    }
+                    else {
+                        scope._cozenBtnRadioSize = 'normal';
+                    }
+                }
+                else {
+                    scope._cozenBtnRadioSize = attrs.cozenBtnRadioSize;
+                }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) scope.cozenBtnRadioDisabled = false;
+                if (angular.isUndefined(attrs.cozenBtnRadioDisabled)) {
+                    scope.cozenBtnRadioDisabled = false;
+                }
 
                 // Default values (attributes)
                 scope._cozenBtnRadioId           = angular.isDefined(attrs.cozenBtnRadioId) ? attrs.cozenBtnRadioId : '';
@@ -139,19 +154,34 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme, scope._cozenBtnRadioSize];
-                if (scope.cozenBtnRadioDisabled) classList.push('disabled');
-                if (scope.cozenBtnRadioModel) classList.push('active');
-                if (scope._cozenBtnRadioStartRight) classList.push('bubble-right');
+                var classList = [scope._activeTheme,
+                    scope._cozenBtnRadioSize];
+                if (scope.cozenBtnRadioDisabled) {
+                    classList.push('disabled');
+                }
+                if (scope.cozenBtnRadioModel) {
+                    classList.push('active');
+                }
+                if (scope._cozenBtnRadioStartRight) {
+                    classList.push('bubble-right');
+                }
                 return classList;
             }
 
             function onClick($event) {
-                if (scope.cozenBtnRadioDisabled) return;
-                if (scope.cozenBtnRadioModel) return;
+                if (scope.cozenBtnRadioDisabled) {
+                    return;
+                }
+                if (scope.cozenBtnRadioModel) {
+                    return;
+                }
                 scope.cozenBtnRadioModel = true;
-                if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
-                if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
+                    scope.cozenBtnRadioOnChange();
+                }
+                if (CONFIG.debug) {
+                    Methods.directiveCallbackLog(data.directive, 'onChange');
+                }
                 $rootScope.$broadcast(data.groupEvent.onChange, data);
             }
 
@@ -163,10 +193,16 @@
             function onGroupChanged(event, eventData) {
                 if (eventData.group == data.group) {
                     if (eventData.uuid != data.uuid) {
-                        if (!scope.cozenBtnRadioModel) return;
+                        if (!scope.cozenBtnRadioModel) {
+                            return;
+                        }
                         scope.cozenBtnRadioModel = false;
-                        if (Methods.isFunction(scope.cozenBtnRadioOnChange)) scope.cozenBtnRadioOnChange();
-                        if (CONFIG.debug) Methods.directiveCallbackLog(data.directive, 'onChange');
+                        if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
+                            scope.cozenBtnRadioOnChange();
+                        }
+                        if (CONFIG.debug) {
+                            Methods.directiveCallbackLog(data.directive, 'onChange');
+                        }
                     }
                 }
             }
