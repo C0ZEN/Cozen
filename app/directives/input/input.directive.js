@@ -319,15 +319,15 @@
                     // The interval is required because the digest is random so a timeout wasn't enough
                     var intervalCount = 0;
                     var interval      = $interval(function () {
-                        var input = methods.getForm();
+                        var form = methods.getForm();
                         try {
-                            input = input[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
+                            var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
                             if (!Methods.isNullOrEmpty(input)) {
                                 input = input[scope._cozenInputName];
                                 if (!Methods.isNullOrEmpty(input)) {
                                     if (!Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
-                                        input.$dirty   = true;
-                                        input.$touched = true;
+                                        input.$setDirty();
+                                        input.$setTouched();
                                     }
                                     $interval.cancel(interval);
                                 }
@@ -345,18 +345,27 @@
 
                 // Watch for the forced error change
                 scope.$watch('vm.cozenInputHasError', function (newValue) {
-                    var form = methods.getForm();
-                    if (!Methods.isNullOrEmpty(form[scope._cozenInputFormCtrl])) {
-                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
-                        if (!Methods.isNullOrEmpty(input)) {
-                            input = input[scope._cozenInputName];
+                    var intervalCount = 0;
+                    var interval      = $interval(function () {
+                        var form = methods.getForm();
+                        try {
+                            var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
                             if (!Methods.isNullOrEmpty(input)) {
-                                input.$setValidity('hasError', !newValue);
-                                input.$dirty   = true;
-                                input.$touched = true;
+                                input = input[scope._cozenInputName];
+                                if (!Methods.isNullOrEmpty(input)) {
+                                    input.$setValidity('hasError', !newValue);
+                                    input.$setDirty();
+                                    input.$setTouched();
+                                    $interval.cancel(interval);
+                                }
+                            }
+                        } finally {
+                            intervalCount++;
+                            if (intervalCount > 10) {
+                                $interval.cancel(interval);
                             }
                         }
-                    }
+                    }, 10);
                 }, true);
 
                 // Ask the parent to launch the cozenFormName event to get the data
@@ -597,12 +606,11 @@
                     return;
                 }
                 $timeout.cancel(data.arrowTimeout);
-                data.arrowDown   = false;
-                var form         = methods.getForm();
-                var input        = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
-                input.$touched   = true;
-                input.$untouched = false;
-                input.$dirty     = true;
+                data.arrowDown = false;
+                var form       = methods.getForm();
+                var input      = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm][scope._cozenInputName];
+                input.$setTouched();
+                input.$setDirty();
             }
 
             function getPasswordTooltipLabel() {
