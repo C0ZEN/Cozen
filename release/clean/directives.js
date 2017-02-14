@@ -4054,27 +4054,29 @@
 
                 // Watch for the forced error change
                 scope.$watch('vm.cozenInputHasError', function (newValue) {
-                    var intervalCount = 0;
-                    var interval      = $interval(function () {
-                        var form = methods.getForm();
-                        try {
-                            var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
-                            if (!Methods.isNullOrEmpty(input)) {
-                                input = input[scope._cozenInputName];
+                    if (angular.isDefined(attrs.cozenInputHasError)) {
+                        var intervalCount = 0;
+                        var interval      = $interval(function () {
+                            var form = methods.getForm();
+                            try {
+                                var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
                                 if (!Methods.isNullOrEmpty(input)) {
-                                    input.$setValidity('hasError', !newValue);
-                                    input.$setDirty();
-                                    input.$setTouched();
+                                    input = input[scope._cozenInputName];
+                                    if (!Methods.isNullOrEmpty(input)) {
+                                        input.$setValidity('hasError', !newValue);
+                                        input.$setDirty();
+                                        input.$setTouched();
+                                        $interval.cancel(interval);
+                                    }
+                                }
+                            } finally {
+                                intervalCount++;
+                                if (intervalCount > 10) {
                                     $interval.cancel(interval);
                                 }
                             }
-                        } finally {
-                            intervalCount++;
-                            if (intervalCount > 10) {
-                                $interval.cancel(interval);
-                            }
-                        }
-                    }, 10);
+                        }, 10);
+                    }
                 }, true);
 
                 // Ask the parent to launch the cozenFormName event to get the data
