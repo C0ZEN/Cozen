@@ -355,8 +355,10 @@
                                     input = input[scope._cozenInputName];
                                     if (!Methods.isNullOrEmpty(input)) {
                                         input.$setValidity('hasError', !newValue);
-                                        input.$setDirty();
-                                        input.$setTouched();
+                                        if (newValue) {
+                                            input.$setDirty();
+                                            input.$setTouched();
+                                        }
                                         $interval.cancel(interval);
                                     }
                                 }
