@@ -6905,9 +6905,9 @@ function hasDuplicates(array) {
  * @description
  *
  * [Scope params]
- * @param {boolean} cozenIconRequiredDisplay         = true          > Hide or show the required icon
- * @param {string}  cozenIconRequiredTooltipLabel                    > Label of the tooltip [required]
- * @param {string}  cozenIconRequiredTooltipMaxWidth = max-width-200 > Max width of the tooltip
+ * @param {boolean} cozenIconRequiredDisplay         = true                   > Hide or show the required icon
+ * @param {string}  cozenIconRequiredTooltipLabel    = input_required_tooltip > Label of the tooltip
+ * @param {string}  cozenIconRequiredTooltipMaxWidth = max-width-200          > Max width of the tooltip
  *
  * [Attribute params]
  * @param {string} cozenIconRequiredTooltipType = default > Type of the tooltip
@@ -6922,11 +6922,10 @@ function hasDuplicates(array) {
         .directive('cozenIconRequired', cozenIconRequired);
 
     cozenIconRequired.$inject = [
-        '$filter',
         'Themes'
     ];
 
-    function cozenIconRequired($filter, Themes) {
+    function cozenIconRequired(Themes) {
         return {
             link       : link,
             restrict   : 'E',
@@ -6942,9 +6941,8 @@ function hasDuplicates(array) {
 
         function link(scope, element, attrs) {
             var methods = {
-                init    : init,
-                destroy : destroy,
-                hasError: hasError
+                init   : init,
+                destroy: destroy
             };
 
             var data = {
@@ -6955,14 +6953,9 @@ function hasDuplicates(array) {
 
             function init() {
 
-                // Checking required stuff
-                if (methods.hasError()) {
-                    return;
-                }
-
                 // Default values (scope)
                 angular.isUndefined(attrs.cozenIconRequiredDisplay) ? scope.cozenIconRequiredDisplay = true : null;
-                angular.isUndefined(attrs.cozenIconRequiredTooltipLabel) ? scope.cozenIconRequiredTooltipLabel = '' : null;
+                angular.isUndefined(attrs.cozenIconRequiredTooltipLabel) ? scope.cozenIconRequiredTooltipLabel = 'input_required_tooltip' : null;
                 angular.isUndefined(attrs.cozenIconRequiredTooltipMaxWidth) ? scope.cozenIconRequiredTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attribute)
@@ -6972,14 +6965,6 @@ function hasDuplicates(array) {
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
-            }
-
-            function hasError() {
-                if (Methods.isNullOrEmpty(attrs.cozenIconRequiredTooltipLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
-                    return true;
-                }
-                return false;
             }
 
             function destroy() {
