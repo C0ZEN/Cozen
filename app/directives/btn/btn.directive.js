@@ -290,11 +290,11 @@
                 if (scope.cozenBtnLoader) {
                     return;
                 }
-                if (Methods.isFunction(scope.cozenBtnOnClick)) {
-                    scope.cozenBtnOnClick();
-                }
                 if (CONFIG.debug) {
                     Methods.directiveCallbackLog(data.directive, 'OnClick');
+                }
+                if (Methods.isFunction(scope.cozenBtnOnClick)) {
+                    scope.cozenBtnOnClick();
                 }
             }
 
