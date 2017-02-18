@@ -7,7 +7,7 @@
  * @description
  *
  * [Scope params]
- * @param {boolean} cozenIconInfoDisplay = true                  > Hide or show the info icon
+ * @param {boolean} cozenIconInfoDisplay         = true          > Hide or show the info icon
  * @param {string}  cozenIconInfoTooltipLabel                    > Label of the tooltip [required]
  * @param {string}  cozenIconInfoTooltipMaxWidth = max-width-200 > Max width of the tooltip
  *

@@ -732,6 +732,12 @@
 /************/
 /*   SIZE   */
 /************/
+/*************/
+/*   COLOR   */
+/*************/
+/************/
+/*   SIZE   */
+/************/
 .atom {
   font-family: 'Catamaran', Arial, sans-serif;
 }
@@ -2229,6 +2235,24 @@ label.cozen-icon-info {
   vertical-align: middle;
 }
 label.cozen-icon-info i {
+  color: inherit;
+  font-size: inherit;
+  vertical-align: middle;
+}
+label.cozen-icon-required {
+  -webkit-transition: all 80ms ease-out;
+  transition: all 80ms ease-out;
+  box-sizing: border-box;
+  position: relative;
+  outline: 0;
+  display: inline-block;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0 5px !important;
+  margin: 0;
+  vertical-align: middle;
+}
+label.cozen-icon-required i {
   color: inherit;
   font-size: inherit;
   vertical-align: middle;
@@ -10315,6 +10339,15 @@ label.cozen-icon-info.atom:active,
 label.cozen-icon-info.atom:hover {
   color: #32afe3;
 }
+label.cozen-icon-required.atom {
+  color: #ffb330;
+  font-size: 14px;
+}
+label.cozen-icon-required.atom:focus,
+label.cozen-icon-required.atom:active,
+label.cozen-icon-required.atom:hover {
+  color: #ffbe4d;
+}
 
 /**************/
 /*   COLORS   */
@@ -11040,6 +11073,12 @@ label.cozen-icon-info.atom:hover {
 /*************/
 /*   COLOR   */
 /*************/
+/*************/
+/*   COLOR   */
+/*************/
+/************/
+/*   SIZE   */
+/************/
 /*************/
 /*   COLOR   */
 /*************/
@@ -12559,6 +12598,24 @@ label.cozen-icon-info {
   vertical-align: middle;
 }
 label.cozen-icon-info i {
+  color: inherit;
+  font-size: inherit;
+  vertical-align: middle;
+}
+label.cozen-icon-required {
+  -webkit-transition: all 80ms ease-out;
+  transition: all 80ms ease-out;
+  box-sizing: border-box;
+  position: relative;
+  outline: 0;
+  display: inline-block;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0 5px !important;
+  margin: 0;
+  vertical-align: middle;
+}
+label.cozen-icon-required i {
   color: inherit;
   font-size: inherit;
   vertical-align: middle;

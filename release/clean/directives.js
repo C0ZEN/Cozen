@@ -3606,7 +3606,8 @@
     angular
         .module('cozenLib.icons', [
             'cozenLib.icons.uploadInfo',
-            'cozenLib.icons.info'
+            'cozenLib.icons.info',
+            'cozenLib.icons.required'
         ]);
 
 })(window.angular);
@@ -3622,7 +3623,7 @@
  * @description
  *
  * [Scope params]
- * @param {boolean} cozenIconInfoDisplay = true                  > Hide or show the info icon
+ * @param {boolean} cozenIconInfoDisplay         = true          > Hide or show the info icon
  * @param {string}  cozenIconInfoTooltipLabel                    > Label of the tooltip [required]
  * @param {string}  cozenIconInfoTooltipMaxWidth = max-width-200 > Max width of the tooltip
  *
@@ -6893,6 +6894,100 @@ function changeRouteLog(directive, route, params) {
 function hasDuplicates(array) {
     return (new Set(array)).size !== array.length;
 }
+/**
+ * @ngdoc directive
+ * @name cozen-icon-required
+ * @restrict E
+ * @replace false
+ * @transclude false
+ * @description
+ *
+ * [Scope params]
+ * @param {boolean} cozenIconRequiredDisplay         = true          > Hide or show the required icon
+ * @param {string}  cozenIconRequiredTooltipLabel                    > Label of the tooltip [required]
+ * @param {string}  cozenIconRequiredTooltipMaxWidth = max-width-200 > Max width of the tooltip
+ *
+ * [Attribute params]
+ * @param {string} cozenIconRequiredTooltipType = default > Type of the tooltip
+ *
+ */
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.icons.required', [])
+        .directive('cozenIconRequired', cozenIconRequired);
+
+    cozenIconRequired.$inject = [
+        '$filter',
+        'Themes'
+    ];
+
+    function cozenIconRequired($filter, Themes) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenIconRequiredDisplay        : '=?',
+                cozenIconRequiredTooltipLabel   : '=?',
+                cozenIconRequiredTooltipMaxWidth: '=?'
+            },
+            templateUrl: 'directives/icons/required/required.template.html'
+        };
+
+        function link(scope, element, attrs) {
+            var methods = {
+                init    : init,
+                destroy : destroy,
+                hasError: hasError
+            };
+
+            var data = {
+                directive: 'cozenIconRequired'
+            };
+
+            methods.init();
+
+            function init() {
+
+                // Checking required stuff
+                if (methods.hasError()) {
+                    return;
+                }
+
+                // Default values (scope)
+                angular.isUndefined(attrs.cozenIconRequiredDisplay) ? scope.cozenIconRequiredDisplay = true : null;
+                angular.isUndefined(attrs.cozenIconRequiredTooltipLabel) ? scope.cozenIconRequiredTooltipLabel = '' : null;
+                angular.isUndefined(attrs.cozenIconRequiredTooltipMaxWidth) ? scope.cozenIconRequiredTooltipMaxWidth = 'max-width-200' : null;
+
+                // Default values (attribute)
+                scope._cozenIconRequiredTooltipType = angular.isDefined(attrs.cozenIconRequiredTooltipType) ? attrs.cozenIconRequiredTooltipType : 'default';
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme = Themes.getActiveTheme();
+            }
+
+            function hasError() {
+                if (Methods.isNullOrEmpty(attrs.cozenIconRequiredTooltipLabel)) {
+                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    return true;
+                }
+                return false;
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+        }
+    }
+
+})(window.angular);
+
+
+
 /**
  * @ngdoc directive
  * @name cozen-shortcut
