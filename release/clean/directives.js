@@ -3306,6 +3306,10 @@
  * @param {number}  cozenFloatingFeedRight        = 20            > Pixel form the right [config.json]
  * @param {number}  cozenFloatingFeedBottom       = 20            > Pixel from the bottom [config.json]
  *
+ * [Factory - addAlert]
+ * @param {string} label > Text to display [required]
+ * @param {string} type  > Type of the alert (see types in cozen-alert) [required]
+ *
  */
 (function (angular) {
     'use strict';
