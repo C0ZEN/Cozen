@@ -63,12 +63,12 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/icons/info/info.template.html',
-    "<label class=cozen-icon-info ng-class=[_activeTheme] ng-show=cozenIconInfoDisplay><cozen-tooltip cozen-tooltip-label=cozenIconInfoTooltipLabel cozen-tooltip-type=\"{{ _cozenIconInfoTooltipType }}\" cozen-tooltip-placement=\"auto right\" cozen-tooltip-max-width=cozenIconInfoTooltipMaxWidth cozen-tooltip-display=block><i class=\"fa fa-fw fa-info-circle\"></i></cozen-tooltip></label>"
+    "<label class=cozen-icon-info ng-style=_cozenIconInfoStyle ng-class=[_activeTheme] ng-show=cozenIconInfoDisplay><cozen-tooltip cozen-tooltip-label=cozenIconInfoTooltipLabel cozen-tooltip-type=\"{{ _cozenIconInfoTooltipType }}\" cozen-tooltip-placement=\"auto right\" cozen-tooltip-max-width=cozenIconInfoTooltipMaxWidth cozen-tooltip-display=block><i class=\"fa fa-fw fa-info-circle\"></i></cozen-tooltip></label>"
   );
 
 
   $templateCache.put('directives/icons/required/required.template.html',
-    "<label class=cozen-icon-required ng-class=[_activeTheme] ng-show=cozenIconRequiredDisplay><cozen-tooltip cozen-tooltip-label=cozenIconRequiredTooltipLabel cozen-tooltip-type=\"{{ _cozenIconRequiredTooltipType }}\" cozen-tooltip-placement=\"auto right\" cozen-tooltip-max-width=cozenIconRequiredTooltipMaxWidth cozen-tooltip-display=block><i class=\"fa fa-fw fa-exclamation-circle\"></i></cozen-tooltip></label>"
+    "<label class=cozen-icon-required ng-style=_cozenIconRequiredStyle ng-class=[_activeTheme] ng-show=cozenIconRequiredDisplay><cozen-tooltip cozen-tooltip-label=cozenIconRequiredTooltipLabel cozen-tooltip-type=\"{{ _cozenIconRequiredTooltipType }}\" cozen-tooltip-placement=\"auto right\" cozen-tooltip-max-width=cozenIconRequiredTooltipMaxWidth cozen-tooltip-display=block><i class=\"fa fa-fw fa-exclamation-circle\"></i></cozen-tooltip></label>"
   );
 
 

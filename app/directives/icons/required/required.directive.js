@@ -13,6 +13,7 @@
  *
  * [Attribute params]
  * @param {string} cozenIconRequiredTooltipType = default > Type of the tooltip
+ * @param {string} cozenIconRequiredStyle                 > Custom style
  *
  */
 (function (angular) {
@@ -68,6 +69,7 @@
 
                 // Default values (attribute)
                 scope._cozenIconRequiredTooltipType = angular.isDefined(attrs.cozenIconRequiredTooltipType) ? attrs.cozenIconRequiredTooltipType : 'default';
+                scope._cozenIconRequiredStyle       = angular.isDefined(attrs.cozenIconRequiredStyle) ? attrs.cozenIconRequiredStyle : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

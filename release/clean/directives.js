@@ -3629,6 +3629,7 @@
  *
  * [Attribute params]
  * @param {string} cozenIconInfoTooltipType = default > Type of the tooltip
+ * @param {string} cozenIconInfoStyle                 > Custom style
  *
  */
 (function (angular) {
@@ -3684,6 +3685,7 @@
 
                 // Default values (attribute)
                 scope._cozenIconInfoTooltipType = angular.isDefined(attrs.cozenIconInfoTooltipType) ? attrs.cozenIconInfoTooltipType : 'default';
+                scope._cozenIconInfoStyle       = angular.isDefined(attrs.cozenIconInfoStyle) ? attrs.cozenIconInfoStyle : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -6909,6 +6911,7 @@ function hasDuplicates(array) {
  *
  * [Attribute params]
  * @param {string} cozenIconRequiredTooltipType = default > Type of the tooltip
+ * @param {string} cozenIconRequiredStyle                 > Custom style
  *
  */
 (function (angular) {
@@ -6964,6 +6967,7 @@ function hasDuplicates(array) {
 
                 // Default values (attribute)
                 scope._cozenIconRequiredTooltipType = angular.isDefined(attrs.cozenIconRequiredTooltipType) ? attrs.cozenIconRequiredTooltipType : 'default';
+                scope._cozenIconRequiredStyle       = angular.isDefined(attrs.cozenIconRequiredStyle) ? attrs.cozenIconRequiredStyle : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
