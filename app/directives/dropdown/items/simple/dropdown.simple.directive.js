@@ -118,8 +118,10 @@
                 scope._cozenDropdownItemSimpleIconRight = angular.isDefined(attrs.cozenDropdownItemSimpleIconRight) ? attrs.cozenDropdownItemSimpleIconRight : '';
                 scope._cozenDropdownItemSimpleShowTick  = methods.getDropdown()._cozenDropdownShowTick;
                 scope._cozenDropdownItemSimpleTickIcon  = methods.getDropdown()._cozenDropdownTickIcon;
-                scope._cozenDropdownSearch              = [scope._cozenDropdownItemSimpleLabel,
-                    scope._cozenDropdownItemSimpleSubLabel];
+                scope._cozenDropdownSearch              = [
+                    scope._cozenDropdownItemSimpleLabel,
+                    scope._cozenDropdownItemSimpleSubLabel
+                ];
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -322,8 +324,10 @@
 
             function search(event, params) {
                 if (data.dropdown.name == params.dropdown) {
-                    scope._cozenDropdownSearch = $filter('filter')([scope._cozenDropdownItemSimpleLabel,
-                        scope._cozenDropdownItemSimpleSubLabel], params.value);
+                    scope._cozenDropdownSearch = $filter('filter')([
+                        scope._cozenDropdownItemSimpleLabel,
+                        scope._cozenDropdownItemSimpleSubLabel
+                    ], params.value);
                     $rootScope.$broadcast('cozenDropdownItemDisabled', {
                         uuid    : data.uuid,
                         disabled: scope._cozenDropdownSearch.length == 0,

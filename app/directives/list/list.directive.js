@@ -119,8 +119,10 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
-                    scope._cozenListSize];
+                var classList = [
+                    scope._activeTheme,
+                    scope._cozenListSize
+                ];
                 return classList;
             }
 

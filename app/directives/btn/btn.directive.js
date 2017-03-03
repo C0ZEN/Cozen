@@ -260,10 +260,12 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
+                var classList = [
+                    scope._activeTheme,
                     scope._cozenBtnSize,
                     scope._cozenBtnType,
-                    attrs.cozenBtnClass];
+                    attrs.cozenBtnClass
+                ];
                 if (scope.cozenBtnActive) {
                     classList.push('active');
                 }

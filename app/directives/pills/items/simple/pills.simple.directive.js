@@ -13,11 +13,14 @@
  * @param {boolean}  cozenPillsItemSimpleSelected = false > Select the item (edit the models and styles)
  *
  * [Attributes params]
- * @param {number} cozenPillsItemSimpleId        > Id of the item
- * @param {string} cozenPillsItemSimpleLabel     > Text of the item [required]
- * @param {string} cozenPillsItemSimpleIconLeft  > Icon left (name of the icon)
- * @param {string} cozenPillsItemSimpleIconRight > Icon right (name of the icon)
- * @param {string} cozenPillsItemSimpleName      > Name of the pill (only for factory use)
+ * @param {number} cozenPillsItemSimpleId                  > Id of the item
+ * @param {string} cozenPillsItemSimpleLabel               > Text of the item [required]
+ * @param {string} cozenPillsItemSimpleIconLeft            > Icon left (name of the icon)
+ * @param {string} cozenPillsItemSimpleIconRight           > Icon right (name of the icon)
+ * @param {string} cozenPillsItemSimpleName                > Name of the pill (only for factory use)
+ * @param {string} cozenPillsItemSimpleType       = 'blue' > Type of the pill (change the color)
+ * @param {string} cozenPillsItemSimpleTypeBlue            > Shortcut for blue type
+ * @param {string} cozenPillsItemSimpleTypePurple          > Shortcut for purple type
  *
  */
 (function (angular) {
@@ -95,6 +98,22 @@
                     scope.cozenPillsItemSimpleSelected = false;
                 }
 
+                // Shortcut values (type)
+                if (angular.isUndefined(attrs.cozenPillsItemSimpleType)) {
+                    if (angular.isDefined(attrs.cozenPillsItemSimpleTypeBlue)) {
+                        scope._cozenPillsItemSimpleType = 'blue';
+                    }
+                    else if (angular.isDefined(attrs.cozenPillsItemSimpleTypePurple)) {
+                        scope._cozenPillsItemSimpleType = 'purple';
+                    }
+                    else {
+                        scope._cozenPillsItemSimpleType = 'blue';
+                    }
+                }
+                else {
+                    scope._cozenPillsItemSimpleType = attrs.cozenPillsItemSimpleType;
+                }
+
                 // Default values (attributes)
                 scope._cozenPillsItemSimpleId        = angular.isDefined(attrs.cozenPillsItemSimpleId) ? attrs.cozenPillsItemSimpleId : '';
                 scope._cozenPillsItemSimpleLabel     = attrs.cozenPillsItemSimpleLabel;
@@ -127,7 +146,9 @@
             }
 
             function getMainClass() {
-                var classList = [];
+                var classList = [
+                    scope.cozenPillsItemSimpleType
+                ];
                 if (scope.cozenPillsItemSimpleDisabled) {
                     classList.push('disabled');
                 }

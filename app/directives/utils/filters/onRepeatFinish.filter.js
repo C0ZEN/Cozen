@@ -28,10 +28,11 @@
                 Object.defineProperty(
                     data,
                     flagProperty,
-                    {enumerable: false,
+                    {
+                        enumerable  : false,
                         configurable: true,
-                        writable: false,
-                        value: {}
+                        writable    : false,
+                        value       : {}
                     });
                 $timeout(function () {
                     delete data[flagProperty];

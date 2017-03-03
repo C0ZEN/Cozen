@@ -137,9 +137,11 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
+                var classList = [
+                    scope._activeTheme,
                     scope._cozenBtnToggleSize,
-                    attrs.cozenBtnToggleClass];
+                    attrs.cozenBtnToggleClass
+                ];
                 if (scope.cozenBtnToggleDisabled) {
                     classList.push('disabled');
                 }

@@ -203,9 +203,11 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
+                var classList = [
+                    scope._activeTheme,
                     scope._cozenPanelSize,
-                    scope._cozenPanelType];
+                    scope._cozenPanelType
+                ];
                 if (scope.cozenPanelDisabled) {
                     classList.push('disabled');
                 }

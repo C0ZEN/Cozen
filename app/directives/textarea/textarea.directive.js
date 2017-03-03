@@ -223,9 +223,11 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenTextareaForm)) {
-                    var classList = [scope._activeTheme,
+                    var classList = [
+                        scope._activeTheme,
                         scope._cozenTextareaSize,
-                        attrs.cozenTextareaClass];
+                        attrs.cozenTextareaClass
+                    ];
                     var textarea  = methods.getForm();
                     textarea      = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
                     if (!Methods.isNullOrEmpty(textarea)) {

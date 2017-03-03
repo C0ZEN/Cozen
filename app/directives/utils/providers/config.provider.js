@@ -188,8 +188,10 @@
         };
 
         this.requiredType = function (value) {
-            var list = ['star',
-                'icon'];
+            var list = [
+                'star',
+                'icon'
+            ];
             if (!Methods.isInList(list, value)) {
                 Methods.dataMustBeInThisList('requiredType', list);
             }

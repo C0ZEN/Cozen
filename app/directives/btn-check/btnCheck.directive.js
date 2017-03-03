@@ -140,8 +140,10 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
-                    scope._cozenBtnCheckSize];
+                var classList = [
+                    scope._activeTheme,
+                    scope._cozenBtnCheckSize
+                ];
                 if (scope.cozenBtnCheckDisabled) {
                     classList.push('disabled');
                 }

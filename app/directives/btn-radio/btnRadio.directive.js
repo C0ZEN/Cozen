@@ -154,8 +154,10 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
-                    scope._cozenBtnRadioSize];
+                var classList = [
+                    scope._activeTheme,
+                    scope._cozenBtnRadioSize
+                ];
                 if (scope.cozenBtnRadioDisabled) {
                     classList.push('disabled');
                 }

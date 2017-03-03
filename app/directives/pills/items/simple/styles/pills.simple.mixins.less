@@ -199,6 +199,63 @@
         }
     }
 }
+/*******************/
+/*   BORDER COLOR  */
+/*******************/
+.cozen-pills-item-simple-border-color(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
+    .cozen-pills-item.cozen-pills-item-simple {
+        border-top-color    : @border-top;
+        border-right-color  : @border-right;
+        border-bottom-color : @border-bottom;
+        border-left-color   : @border-left;
+        &.active,
+        &:hover,
+        &:focus {
+            border-top-color    : @border-top-hover;
+            border-right-color  : @border-right-hover;
+            border-bottom-color : @border-bottom-hover;
+            border-left-color   : @border-left-hover;
+        }
+    }
+}
+/****************************/
+/*   BORDER SELECTED COLOR  */
+/****************************/
+.cozen-pills-item-simple-border-selected-color(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
+    .cozen-pills-item.cozen-pills-item-simple.selected {
+        border-top-color    : @border-top;
+        border-right-color  : @border-right;
+        border-bottom-color : @border-bottom;
+        border-left-color   : @border-left;
+        &.active,
+        &:hover,
+        &:focus {
+            border-top-color    : @border-top-hover;
+            border-right-color  : @border-right-hover;
+            border-bottom-color : @border-bottom-hover;
+            border-left-color   : @border-left-hover;
+        }
+    }
+}
+/*****************************/
+/*   BORDER DISABLED COLOR   */
+/*****************************/
+.cozen-pills-item-simple-border-disabled-color(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
+    .cozen-pills-item.cozen-pills-item-simple.disabled {
+        border-top-color    : @border-top;
+        border-right-color  : @border-right;
+        border-bottom-color : @border-bottom;
+        border-left-color   : @border-left;
+        &.active,
+        &:hover,
+        &:focus {
+            border-top-color    : @border-top-hover;
+            border-right-color  : @border-right-hover;
+            border-bottom-color : @border-bottom-hover;
+            border-left-color   : @border-left-hover;
+        }
+    }
+}
 /*********************/
 /*   BORDER RADIUS   */
 /*********************/

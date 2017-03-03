@@ -283,11 +283,13 @@
 
             function getMainClass() {
                 if (!Methods.isNullOrEmpty(scope._cozenDropdownForm)) {
-                    var classList = [scope._activeTheme,
+                    var classList = [
+                        scope._activeTheme,
                         scope._cozenDropdownSize,
                         'icon-right',
                         scope._cozenDropdownDirection,
-                        attrs.cozenDropdownClass];
+                        attrs.cozenDropdownClass
+                    ];
                     switch (scope._cozenDropdownValidator) {
                         case 'touched':
                             if (data.touched) {
@@ -360,7 +362,8 @@
                             break;
                         }
                         i++;
-                    } while (i < length);
+                    }
+                    while (i < length);
 
                     scope.activeChild = value;
                     $rootScope.$broadcast('cozenDropdownActive', {
@@ -649,8 +652,10 @@
             }
 
             function getArrowClass() {
-                var classList = ['fa',
-                    'fa-caret-down'];
+                var classList = [
+                    'fa',
+                    'fa-caret-down'
+                ];
                 if (scope._cozenDropdownDirection == 'down' && scope._cozenDropdownCollapse) {
                     classList.push('fa-rotate-90');
                 }

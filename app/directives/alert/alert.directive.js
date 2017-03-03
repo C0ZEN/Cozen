@@ -214,10 +214,12 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
+                var classList = [
+                    scope._activeTheme,
                     scope._cozenAlertSize,
                     scope._cozenAlertType,
-                    attrs.cozenAlertClass];
+                    attrs.cozenAlertClass
+                ];
                 if (!data.firstHide) {
                     if (scope._cozenAlertAnimationIn) {
                         classList.push('animate-in');

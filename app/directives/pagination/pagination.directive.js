@@ -161,9 +161,11 @@
             }
 
             function getMainClass() {
-                var classList = [scope._activeTheme,
+                var classList = [
+                    scope._activeTheme,
                     scope._cozenPaginationSize,
-                    attrs.cozenPaginationClass];
+                    attrs.cozenPaginationClass
+                ];
                 if (scope.cozenPaginationDisabled) {
                     classList.push('disabled');
                 }
