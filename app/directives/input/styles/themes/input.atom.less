@@ -2,7 +2,10 @@ div.cozen-input.atom {
 
     // Size
     &.small {
-        .cozen-input-size(@atom-space-small, @atom-space-base, @atom-font-h3);
+        @padding-small-icon: 3px 6px;
+        @font-size-small-icon: @atom-font-h4;
+        @input-padding-small-icon: 28px;
+        .cozen-input-size(3px, @atom-space-small, @atom-font-h4);
         .cozen-input-color(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-white);
         .cozen-input-color-success(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-white);
         .cozen-input-color-error(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-white);
@@ -13,15 +16,15 @@ div.cozen-input.atom {
         .cozen-input-border-disabled(1px solid @atom-color-line-rule, 1px solid @atom-color-line-rule);
         .cozen-input-placeholder(@atom-color-line-rule, @atom-color-line-rule);
         .cozen-input-placeholder-disabled(@atom-color-line-rule, @atom-color-line-rule);
-        .cozen-input-icon-left(@atom-space-small, @atom-font-h3, @atom-color-line-rule, @atom-color-line-rule, 33px);
-        .cozen-input-icon-left-success(@atom-space-small, @atom-font-h3, @atom-color-line-rule, @atom-color-line-rule, 33px);
-        .cozen-input-icon-left-error(@atom-space-small, @atom-font-h3, @atom-color-line-rule, @atom-color-line-rule, 33px);
-        .cozen-input-icon-left-disabled(@atom-space-small, @atom-font-h3, @atom-color-line-rule, @atom-color-line-rule, 33px);
-        .cozen-input-icon-right(@atom-space-small, @atom-font-h3, @atom-color-font, @atom-color-font, 33px);
-        .cozen-input-icon-right(@atom-space-small, @atom-font-h3, @atom-color-line-rule, @atom-color-line-rule, 33px);
-        .cozen-input-icon-right-success(@atom-space-small, @atom-font-h3, @atom-color-success, @atom-color-success, 33px);
-        .cozen-input-icon-right-error(@atom-space-small, @atom-font-h3, @atom-color-error, @atom-color-error, 33px);
-        .cozen-input-icon-right-disabled(@atom-space-small, @atom-font-h3, @atom-color-line-rule, @atom-color-line-rule, 33px);
+        .cozen-input-icon-left(@padding-small-icon, @font-size-small-icon, @atom-color-line-rule, @atom-color-line-rule, @input-padding-small-icon);
+        .cozen-input-icon-left-success(@padding-small-icon, @font-size-small-icon, @atom-color-line-rule, @atom-color-line-rule, @input-padding-small-icon);
+        .cozen-input-icon-left-error(@padding-small-icon, @font-size-small-icon, @atom-color-line-rule, @atom-color-line-rule, @input-padding-small-icon);
+        .cozen-input-icon-left-disabled(@padding-small-icon, @font-size-small-icon, @atom-color-line-rule, @atom-color-line-rule, @input-padding-small-icon);
+        .cozen-input-icon-right(@padding-small-icon, @font-size-small-icon, @atom-color-font, @atom-color-font, @input-padding-small-icon);
+        .cozen-input-icon-right(@padding-small-icon, @font-size-small-icon, @atom-color-line-rule, @atom-color-line-rule, @input-padding-small-icon);
+        .cozen-input-icon-right-success(@padding-small-icon, @font-size-small-icon, @atom-color-success, @atom-color-success, @input-padding-small-icon);
+        .cozen-input-icon-right-error(@padding-small-icon, @font-size-small-icon, @atom-color-error, @atom-color-error, @input-padding-small-icon);
+        .cozen-input-icon-right-disabled(@padding-small-icon, @font-size-small-icon, @atom-color-line-rule, @atom-color-line-rule, @input-padding-small-icon);
         .cozen-input-arrows(0 @atom-space-small, 8px, 7px, 2px, 27px, 59px);
         .cozen-input-label(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
         .cozen-input-label-success(@atom-font-h3, @atom-color-label, 0, 400, @atom-space-small);
