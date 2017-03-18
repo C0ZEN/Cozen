@@ -7634,6 +7634,7 @@ function hasDuplicates(array) {
  * @param {string}  cozenTooltipTypeDefault              > Shortcut for default type
  * @param {string}  cozenTooltipTypeHtml                 > Shortcut for html type
  * @param {string}  cozenTooltipDisplay                  > Change the display (only when there are problem)
+ * @param {string}  cozenTooltipDisplayChild             > Change the display for the child (only when there are problem)
  * @param {string}  cozenTooltipClass                    > Add a custom class on the tooltip
  *
  */
@@ -7709,13 +7710,14 @@ function hasDuplicates(array) {
                 angular.isUndefined(attrs.cozenTooltipMaxWidth) ? scope.cozenTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attributes)
-                scope._cozenTooltipPlacement  = angular.isDefined(attrs.cozenTooltipPlacement) ? attrs.cozenTooltipPlacement : 'auto right';
-                scope._cozenTooltipBody       = angular.isDefined(attrs.cozenTooltipBody) ? JSON.parse(attrs.cozenTooltipBody) : true;
-                scope._cozenTooltipCloseDelay = angular.isDefined(attrs.cozenTooltipCloseDelay) ? JSON.parse(attrs.cozenTooltipCloseDelay) : 100;
-                scope._cozenTooltipDelay      = angular.isDefined(attrs.cozenTooltipDelay) ? JSON.parse(attrs.cozenTooltipDelay) : 250;
-                scope._cozenTooltipTrigger    = angular.isDefined(attrs.cozenTooltipTrigger) ? attrs.cozenTooltipTrigger : 'mouseenter';
-                scope._cozenTooltipDisplay    = angular.isDefined(attrs.cozenTooltipDisplay) ? attrs.cozenTooltipDisplay : '';
-                scope._cozenTooltipClass      = angular.isDefined(attrs.cozenTooltipClass) ? attrs.cozenTooltipClass : '';
+                scope._cozenTooltipPlacement    = angular.isDefined(attrs.cozenTooltipPlacement) ? attrs.cozenTooltipPlacement : 'auto right';
+                scope._cozenTooltipBody         = angular.isDefined(attrs.cozenTooltipBody) ? JSON.parse(attrs.cozenTooltipBody) : true;
+                scope._cozenTooltipCloseDelay   = angular.isDefined(attrs.cozenTooltipCloseDelay) ? JSON.parse(attrs.cozenTooltipCloseDelay) : 100;
+                scope._cozenTooltipDelay        = angular.isDefined(attrs.cozenTooltipDelay) ? JSON.parse(attrs.cozenTooltipDelay) : 250;
+                scope._cozenTooltipTrigger      = angular.isDefined(attrs.cozenTooltipTrigger) ? attrs.cozenTooltipTrigger : 'mouseenter';
+                scope._cozenTooltipDisplay      = angular.isDefined(attrs.cozenTooltipDisplay) ? attrs.cozenTooltipDisplay : '';
+                scope._cozenTooltipDisplayChild = angular.isDefined(attrs.cozenTooltipDisplayChild) ? attrs.cozenTooltipDisplayChild : '';
+                scope._cozenTooltipClass        = angular.isDefined(attrs.cozenTooltipClass) ? attrs.cozenTooltipClass : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

@@ -14,7 +14,8 @@
          tooltip-popup-delay="{{ _cozenTooltipDelay }}"
          tooltip-trigger="'{{ _cozenTooltipTrigger }}'"
          tooltip-enable="{{ !cozenTooltipDisabled }}"
-         ng-transclude>
+         ng-transclude
+         ng-style="{'display': _cozenTooltipDisplayChild}">
     </div>
 
     <!-- HTML -->
@@ -28,7 +29,8 @@
          tooltip-popup-delay="{{ _cozenTooltipDelay }}"
          tooltip-trigger="'{{ _cozenTooltipTrigger }}'"
          tooltip-enable="{{ !cozenTooltipDisabled }}"
-         ng-transclude>
+         ng-transclude
+         ng-style="{'display': _cozenTooltipDisplayChild}">
     </div>
 </div>
 
