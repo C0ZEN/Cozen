@@ -35,6 +35,7 @@
         ConfigProvider
             .scrollsBar(false)
             .debug(true)
+            .broadcastLog(true)
             .dropdownAutoCloseOthers(true)
             .inputDisplayModelLength(true)
             .textareaDisplayModelLength(true)

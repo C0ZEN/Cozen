@@ -21,6 +21,7 @@
  * @param {string} cozenPillsItemSimpleType       = 'blue' > Type of the pill (change the color)
  * @param {string} cozenPillsItemSimpleTypeBlue            > Shortcut for blue type
  * @param {string} cozenPillsItemSimpleTypePurple          > Shortcut for purple type
+ * @param {string} cozenPillsItemSimpleTypeGreen           > Shortcut for green type
  *
  */
 (function (angular) {
@@ -106,6 +107,9 @@
                     else if (angular.isDefined(attrs.cozenPillsItemSimpleTypePurple)) {
                         scope._cozenPillsItemSimpleType = 'purple';
                     }
+                    else if (angular.isDefined(attrs.cozenPillsItemSimpleTypeGreen)) {
+                        scope._cozenPillsItemSimpleType = 'green';
+                    }
                     else {
                         scope._cozenPillsItemSimpleType = 'blue';
                     }
@@ -147,7 +151,7 @@
 
             function getMainClass() {
                 var classList = [
-                    scope.cozenPillsItemSimpleType
+                    scope._cozenPillsItemSimpleType
                 ];
                 if (scope.cozenPillsItemSimpleDisabled) {
                     classList.push('disabled');

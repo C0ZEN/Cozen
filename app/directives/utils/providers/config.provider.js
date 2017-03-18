@@ -21,6 +21,16 @@
             return this;
         };
 
+        this.broadcastLog = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('broadcastLog');
+            }
+            else {
+                CONFIG.broadcastLog = value;
+            }
+            return this;
+        };
+
         this.currentLanguage = function (value) {
             var list = CONFIG.languages;
             if (!Methods.isInList(list, value)) {

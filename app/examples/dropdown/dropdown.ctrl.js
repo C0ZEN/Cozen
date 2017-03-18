@@ -43,6 +43,32 @@
                 id  : 3
             }
         ];
+        vm.status  = [
+            {
+                id      : 'online',
+                name    : 'other_status_online',
+                selected: true,
+                color   : '#2ecc71'
+            },
+            {
+                id      : 'absent',
+                name    : 'other_status_absent',
+                selected: false,
+                color   : '#e67e22'
+            },
+            {
+                id      : 'busy',
+                name    : 'other_status_busy',
+                selected: false,
+                color   : '#e74c3c'
+            },
+            {
+                id      : 'off',
+                name    : 'other_status_off',
+                selected: false,
+                color   : '#95a5a6'
+            }
+        ];
     }
 
 })(window.angular);

@@ -1,0 +1,40 @@
+<div class="container"
+     style="min-height: 878px;">
+    <div class="row">
+        <div class="col-xs-12">
+            <cozen-form cozen-form-name="lool"
+                        cozen-form-ctrl="vm"
+                        cozen-form-model="form">
+                <cozen-dropdown cozen-dropdown-model="a"
+                                cozen-dropdown-validator-all
+                                cozen-dropdown-single-display-selected-label="true"
+                                cozen-dropdown-label="Status"
+                                cozen-dropdown-placeholder="Status"
+                                cozen-dropdown-required="true">
+                    <cozen-dropdown-item-simple ng-repeat="status in vm.status track by $index"
+                                                cozen-dropdown-item-simple-value="status.id"
+                                                cozen-dropdown-item-simple-label="{{ status.name }}"
+                                                cozen-dropdown-item-simple-custom-html-left="<div class='cozen-test-round' ng-style='{'background-color': status.color}'></div>"
+                                                cozen-dropdown-item-simple-selected="status.selected">
+                    </cozen-dropdown-item-simple>
+                </cozen-dropdown>
+                <pre>{{ a | json }}</pre>
+                <pre>{{ vm.status | json }}</pre>
+                <hr>
+                <cozen-dropdown cozen-dropdown-model="b"
+                                cozen-dropdown-validator-all
+                                cozen-dropdown-single-display-selected-label="true"
+                                cozen-dropdown-label="Status"
+                                cozen-dropdown-placeholder="Status">
+                    <cozen-dropdown-item-simple ng-repeat="status in vm.status track by $index"
+                                                cozen-dropdown-item-simple-value="status.id"
+                                                cozen-dropdown-item-simple-label="{{ status.name }}"
+                                                cozen-dropdown-item-simple-custom-html-left="<div class='cozen-test-round' ng-style='{'background-color': status.color}'></div>"
+                                                cozen-dropdown-item-simple-selected="status.selected">
+                    </cozen-dropdown-item-simple>
+                </cozen-dropdown>
+                <pre>{{ b | json }}</pre>
+            </cozen-form>
+        </div>
+    </div>
+</div>

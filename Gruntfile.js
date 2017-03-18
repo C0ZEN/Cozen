@@ -40,22 +40,37 @@ module.exports = function (grunt) {
             },
             js        : {
                 files  : ['<%= yeoman.app %>/**/*.js'],
-                tasks  : ['newer:jshint:all', 'newer:jscs:all'],
+                tasks  : [
+                    'newer:jshint:all',
+                    'newer:jscs:all'
+                ],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
                 }
             },
             jsTest    : {
                 files: ['test/spec/**/*.js'],
-                tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
+                tasks: ['newer:jshint:test',
+                    'newer:jscs:test',
+                    'karma']
             },
             styles    : {
                 files: ['<%= yeoman.app %>/styles/**/*.css'],
-                tasks: ['less:serve', 'cssmin:serve', 'newer:copy:styles', 'postcss']
+                tasks: [
+                    'less:serve',
+                    'cssmin:serve',
+                    'newer:copy:styles',
+                    'postcss'
+                ]
             },
             less      : {
                 files: ['<%= yeoman.app %>/**/*.less'],
-                tasks: ['less:serve', 'cssmin:serve', 'newer:copy:styles', 'postcss']
+                tasks: [
+                    'less:serve',
+                    'cssmin:serve',
+                    'newer:copy:styles',
+                    'postcss'
+                ]
             },
             gruntfile : {
                 files: ['Gruntfile.js']
@@ -274,7 +289,8 @@ module.exports = function (grunt) {
                 flow: {
                     html: {
                         steps: {
-                            js : ['concat', 'uglifyjs'],
+                            js : ['concat',
+                                'uglifyjs'],
                             css: ['cssmin']
                         },
                         post : {}
@@ -295,7 +311,8 @@ module.exports = function (grunt) {
                     '<%= yeoman.dist %>/styles'
                 ],
                 patterns  : {
-                    js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
+                    js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g,
+                        'Replacing references to images']]
                 }
             }
         },
@@ -444,17 +461,19 @@ module.exports = function (grunt) {
                         'images/**/*.{webp}',
                         'styles/fonts/{,*/}*.*'
                     ]
-                }, {
-                    expand: true,
-                    cwd   : '.tmp/images',
-                    dest  : '<%= yeoman.dist %>/images',
-                    src   : ['generated/*']
-                }, {
-                    expand: true,
-                    cwd   : 'bower_components/bootstrap/dist',
-                    src   : 'fonts/*',
-                    dest  : '<%= yeoman.dist %>'
-                }]
+                },
+                    {
+                        expand: true,
+                        cwd   : '.tmp/images',
+                        dest  : '<%= yeoman.dist %>/images',
+                        src   : ['generated/*']
+                    },
+                    {
+                        expand: true,
+                        cwd   : 'bower_components/bootstrap/dist',
+                        src   : 'fonts/*',
+                        dest  : '<%= yeoman.dist %>'
+                    }]
             },
             styles   : {
                 expand: true,
@@ -539,7 +558,8 @@ module.exports = function (grunt) {
                 },
                 files  : [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'},
-                    {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/import.atom.less'}
+                    {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/import.atom.less'},
+                    {'<%= yeoman.app %>/styles/test.min.css': '<%= yeoman.app %>/styles/test.less'}
                 ]
             },
             release: {
@@ -563,7 +583,8 @@ module.exports = function (grunt) {
             serve  : {
                 files: [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/tau.min.css'},
-                    {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/atom.min.css'}
+                    {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/atom.min.css'},
+                    {'<%= yeoman.app %>/styles/test.min.css': '<%= yeoman.app %>/styles/test.min.css'}
                 ]
             },
             release: {
@@ -642,7 +663,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
+            return grunt.task.run(['build',
+                'connect:dist:keepalive']);
         }
 
         grunt.task.run([

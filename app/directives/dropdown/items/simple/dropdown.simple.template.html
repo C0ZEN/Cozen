@@ -9,6 +9,12 @@
 
     <div class="cozen-dropdown-item-simple-content left">
 
+        <!-- Custom HTML left -->
+        <div ng-if="_cozenDropdownItemSimpleCustomHtmlLeft != ''"
+             class="cozen-dropdown-item-simple-custom-html left"
+             cozen-compile="_cozenDropdownItemSimpleCustomHtmlLeft">
+        </div>
+
         <!-- Left icon -->
         <div ng-if="_cozenDropdownItemSimpleIconLeft != ''"
              class="cozen-dropdown-item-simple-icon left">

@@ -5,35 +5,45 @@ div.cozen-pills.atom {
     }
     &.normal {
         .cozen-pills-item-simple-size(@atom-font-h3, @atom-space-base @atom-space-medium, 400);
-        .cozen-pills-item-simple-color(@atom-color-font, @atom-color-font, @atom-color-white, @atom-color-blue-light);
-        .cozen-pills-item-simple-color-selected(@atom-color-blue, @atom-color-blue-active, @atom-color-white, @atom-color-blue-light);
-        .cozen-pills-item-simple-color-disabled(@atom-color-label-disabled, @atom-color-label-disabled, @atom-color-white, @atom-color-white);
         .cozen-pills-item-simple-icon-left(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
         .cozen-pills-item-simple-icon-left-selected(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
         .cozen-pills-item-simple-icon-left-disabled(@atom-font-h3, @atom-color-label-disabled, @atom-color-label-disabled, 0 @atom-space-small);
         .cozen-pills-item-simple-icon-right(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
         .cozen-pills-item-simple-icon-right-selected(@atom-font-h3, @atom-color-font, @atom-color-font, 0 @atom-space-small);
         .cozen-pills-item-simple-icon-right-disabled(@atom-font-h3, @atom-color-label-disabled, @atom-color-label-disabled, 0 @atom-space-small);
-        .cozen-pills-item-simple-border(2px solid, 1px solid, 1px solid, 1px solid, 2px solid, 1px solid, 1px solid, 1px solid);
-        .cozen-pills-item-simple-border-selected(2px solid, 1px solid, 1px solid, 1px solid, 2px solid, 1px solid, 1px solid, 1px solid);
-        .cozen-pills-item-simple-border-disabled(2px solid, 1px solid, 1px solid, 1px solid, 2px solid, 1px solid, 1px solid, 1px solid);
+        .cozen-pills-item-simple-border(2px, solid, 1px, solid, 1px, solid, 1px, solid, 2px, solid, 1px, solid, 1px, solid, 1px, solid);
+        .cozen-pills-item-simple-border-selected(2px, solid, 1px, solid, 1px, solid, 1px, solid, 2px, solid, 1px, solid, 1px, solid, 1px, solid);
+        .cozen-pills-item-simple-border-disabled(2px, solid, 1px, solid, 1px, solid, 1px, solid, 2px, solid, 1px, solid, 1px, solid, 1px, solid);
         .cozen-pills-item-simple-border-radius(@cozen-radius, 0);
     }
     &.large {
     }
 
     // Type
-    &.blue {
-        .cozen-pills-item-simple-border-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
-        .cozen-pills-item-simple-border-selected-color(@atom-color-blue, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule, @atom-color-blue-active, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule);
-        .cozen-pills-item-simple-border-disabled-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
-
-    }
-    // Type
-    &.purple {
-        .cozen-pills-item-simple-border-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
-        .cozen-pills-item-simple-border-selected-color(@atom-color-purple, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule, @atom-color-purple-active, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule);
-        .cozen-pills-item-simple-border-disabled-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
-
+    div.cozen-pills-item.cozen-pills-item-simple {
+        &.blue {
+            .cozen-pills-item-simple-border-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
+            .cozen-pills-item-simple-border-selected-color(@atom-color-blue, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule, @atom-color-blue-active, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule);
+            .cozen-pills-item-simple-border-disabled-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
+            .cozen-pills-item-simple-background-color(@atom-color-white, @atom-color-blue-light);
+            .cozen-pills-item-simple-background-selected-color(@atom-color-white, @atom-color-blue-light);
+            .cozen-pills-item-simple-background-disabled-color(@atom-color-white, @atom-color-white);
+        }
+        &.purple {
+            .cozen-pills-item-simple-border-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
+            .cozen-pills-item-simple-border-selected-color(@atom-color-purple, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule, @atom-color-purple-active, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule);
+            .cozen-pills-item-simple-border-disabled-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
+            .cozen-pills-item-simple-background-color(@atom-color-white, @atom-color-purple-light);
+            .cozen-pills-item-simple-background-selected-color(@atom-color-white, @atom-color-purple-light);
+            .cozen-pills-item-simple-background-disabled-color(@atom-color-white, @atom-color-white);
+        }
+        &.green {
+            .cozen-pills-item-simple-border-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
+            .cozen-pills-item-simple-border-selected-color(@atom-color-green, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule, @atom-color-green-active, @atom-color-line-rule, @atom-color-white, @atom-color-line-rule);
+            .cozen-pills-item-simple-border-disabled-color(transparent, transparent, @atom-color-line-rule, transparent, transparent, transparent, @atom-color-line-rule, transparent);
+            .cozen-pills-item-simple-background-color(@atom-color-white, @atom-color-green-light);
+            .cozen-pills-item-simple-background-selected-color(@atom-color-white, @atom-color-green-light);
+            .cozen-pills-item-simple-background-disabled-color(@atom-color-white, @atom-color-white);
+        }
     }
 }

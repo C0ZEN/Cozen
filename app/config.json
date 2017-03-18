@@ -9,6 +9,7 @@
         "atom"
     ],
     "debug": false,
+    "broadcastLog": false,
     "scrollsBar": true,
     "scrollsBarConfig": {
         "autoHideScrollbar": true,

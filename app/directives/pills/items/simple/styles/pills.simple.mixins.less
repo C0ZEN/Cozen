@@ -8,51 +8,6 @@
         font-weight : @weight;
     }
 }
-/*************/
-/*   COLOR   */
-/*************/
-.cozen-pills-item-simple-color(@color, @color-hover, @background-color, @background-color-hover) {
-    .cozen-pills-item.cozen-pills-item-simple {
-        color            : @color;
-        background-color : @background-color;
-        &.active,
-        &:hover,
-        &:focus {
-            color            : @color-hover;
-            background-color : @background-color-hover;
-        }
-    }
-}
-/**********************/
-/*   COLOR SELECTED   */
-/**********************/
-.cozen-pills-item-simple-color-selected(@color, @color-hover, @background-color, @background-color-hover) {
-    .cozen-pills-item.cozen-pills-item-simple.selected {
-        color            : @color;
-        background-color : @background-color;
-        &.active,
-        &:hover,
-        &:focus {
-            color            : @color-hover;
-            background-color : @background-color-hover;
-        }
-    }
-}
-/**********************/
-/*   COLOR DISABLED   */
-/**********************/
-.cozen-pills-item-simple-color-disabled(@color, @color-hover, @background-color, @background-color-hover) {
-    .cozen-pills-item.cozen-pills-item-simple.disabled {
-        color            : @color;
-        background-color : @background-color;
-        &.active,
-        &:hover,
-        &:focus {
-            color            : @color-hover;
-            background-color : @background-color-hover;
-        }
-    }
-}
 /*****************/
 /*   ICON LEFT   */
 /*****************/
@@ -145,115 +100,89 @@
 /*************/
 /*   BORDER  */
 /*************/
-.cozen-pills-item-simple-border(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
+.cozen-pills-item-simple-border(@border-top-width, @border-top-style, @border-right-width, @border-right-style, @border-bottom-width, @border-bottom-style, @border-left-width, @border-left-style, @border-top-hover-width, @border-top-hover-style, @border-right-hover-width, @border-right-hover-style, @border-bottom-hover-width, @border-bottom-hover-style, @border-left-hover-width, @border-left-hover-style) {
     .cozen-pills-item.cozen-pills-item-simple {
-        border-top    : @border-top;
-        border-right  : @border-right;
-        border-bottom : @border-bottom;
-        border-left   : @border-left;
-        &.active,
-        &:hover,
-        &:focus {
-            border-top    : @border-top-hover;
-            border-right  : @border-right-hover;
-            border-bottom : @border-bottom-hover;
-            border-left   : @border-left-hover;
-        }
+        ._cozen-pills-item-simple-border-internal(@border-top-width, @border-top-style, @border-right-width, @border-right-style, @border-bottom-width, @border-bottom-style, @border-left-width, @border-left-style, @border-top-hover-width, @border-top-hover-style, @border-right-hover-width, @border-right-hover-style, @border-bottom-hover-width, @border-bottom-hover-style, @border-left-hover-width, @border-left-hover-style);
     }
 }
 /**********************/
 /*   BORDER SELECTED  */
 /**********************/
-.cozen-pills-item-simple-border-selected(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
+.cozen-pills-item-simple-border-selected(@border-top-width, @border-top-style, @border-right-width, @border-right-style, @border-bottom-width, @border-bottom-style, @border-left-width, @border-left-style, @border-top-hover-width, @border-top-hover-style, @border-right-hover-width, @border-right-hover-style, @border-bottom-hover-width, @border-bottom-hover-style, @border-left-hover-width, @border-left-hover-style) {
     .cozen-pills-item.cozen-pills-item-simple.selected {
-        border-top    : @border-top;
-        border-right  : @border-right;
-        border-bottom : @border-bottom;
-        border-left   : @border-left;
-        &.active,
-        &:hover,
-        &:focus {
-            border-top    : @border-top-hover;
-            border-right  : @border-right-hover;
-            border-bottom : @border-bottom-hover;
-            border-left   : @border-left-hover;
-        }
+        ._cozen-pills-item-simple-border-internal(@border-top-width, @border-top-style, @border-right-width, @border-right-style, @border-bottom-width, @border-bottom-style, @border-left-width, @border-left-style, @border-top-hover-width, @border-top-hover-style, @border-right-hover-width, @border-right-hover-style, @border-bottom-hover-width, @border-bottom-hover-style, @border-left-hover-width, @border-left-hover-style);
     }
 }
 /***********************/
 /*   BORDER DISABLED   */
 /***********************/
-.cozen-pills-item-simple-border-disabled(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
+.cozen-pills-item-simple-border-disabled(@border-top-width, @border-top-style, @border-right-width, @border-right-style, @border-bottom-width, @border-bottom-style, @border-left-width, @border-left-style, @border-top-hover-width, @border-top-hover-style, @border-right-hover-width, @border-right-hover-style, @border-bottom-hover-width, @border-bottom-hover-style, @border-left-hover-width, @border-left-hover-style) {
     .cozen-pills-item.cozen-pills-item-simple.disabled {
-        border-top    : @border-top;
-        border-right  : @border-right;
-        border-bottom : @border-bottom;
-        border-left   : @border-left;
-        &.active,
-        &:hover,
-        &:focus {
-            border-top    : @border-top-hover;
-            border-right  : @border-right-hover;
-            border-bottom : @border-bottom-hover;
-            border-left   : @border-left-hover;
-        }
+        ._cozen-pills-item-simple-border-internal(@border-top-width, @border-top-style, @border-right-width, @border-right-style, @border-bottom-width, @border-bottom-style, @border-left-width, @border-left-style, @border-top-hover-width, @border-top-hover-style, @border-right-hover-width, @border-right-hover-style, @border-bottom-hover-width, @border-bottom-hover-style, @border-left-hover-width, @border-left-hover-style);
+    }
+}
+/**********************/
+/*   BORDER INTERNAL  */
+/**********************/
+._cozen-pills-item-simple-border-internal(@border-top-width, @border-top-style, @border-right-width, @border-right-style, @border-bottom-width, @border-bottom-style, @border-left-width, @border-left-style, @border-top-hover-width, @border-top-hover-style, @border-right-hover-width, @border-right-hover-style, @border-bottom-hover-width, @border-bottom-hover-style, @border-left-hover-width, @border-left-hover-style) {
+    border-top-width    : @border-top-width;
+    border-top-style    : @border-top-style;
+    border-right-width  : @border-right-width;
+    border-right-style  : @border-right-style;
+    border-bottom-width : @border-bottom-width;
+    border-bottom-style : @border-bottom-style;
+    border-left-width   : @border-left-width;
+    border-left-style   : @border-left-style;
+    &.active,
+    &:hover,
+    &:focus {
+        border-top-width    : @border-top-hover-width;
+        border-top-style    : @border-top-hover-style;
+        border-right-width  : @border-right-hover-width;
+        border-right-style  : @border-right-hover-style;
+        border-bottom-width : @border-bottom-hover-width;
+        border-bottom-style : @border-bottom-hover-style;
+        border-left-width   : @border-left-hover-width;
+        border-left-style   : @border-left-hover-style;
     }
 }
 /*******************/
 /*   BORDER COLOR  */
 /*******************/
 .cozen-pills-item-simple-border-color(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
-    .cozen-pills-item.cozen-pills-item-simple {
-        border-top-color    : @border-top;
-        border-right-color  : @border-right;
-        border-bottom-color : @border-bottom;
-        border-left-color   : @border-left;
-        &.active,
-        &:hover,
-        &:focus {
-            border-top-color    : @border-top-hover;
-            border-right-color  : @border-right-hover;
-            border-bottom-color : @border-bottom-hover;
-            border-left-color   : @border-left-hover;
-        }
-    }
+    ._cozen-pills-item-simple-border-color-internal(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover);
 }
 /****************************/
 /*   BORDER SELECTED COLOR  */
 /****************************/
 .cozen-pills-item-simple-border-selected-color(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
-    .cozen-pills-item.cozen-pills-item-simple.selected {
-        border-top-color    : @border-top;
-        border-right-color  : @border-right;
-        border-bottom-color : @border-bottom;
-        border-left-color   : @border-left;
-        &.active,
-        &:hover,
-        &:focus {
-            border-top-color    : @border-top-hover;
-            border-right-color  : @border-right-hover;
-            border-bottom-color : @border-bottom-hover;
-            border-left-color   : @border-left-hover;
-        }
+    &.selected {
+        ._cozen-pills-item-simple-border-color-internal(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover);
     }
 }
 /*****************************/
 /*   BORDER DISABLED COLOR   */
 /*****************************/
 .cozen-pills-item-simple-border-disabled-color(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
-    .cozen-pills-item.cozen-pills-item-simple.disabled {
-        border-top-color    : @border-top;
-        border-right-color  : @border-right;
-        border-bottom-color : @border-bottom;
-        border-left-color   : @border-left;
-        &.active,
-        &:hover,
-        &:focus {
-            border-top-color    : @border-top-hover;
-            border-right-color  : @border-right-hover;
-            border-bottom-color : @border-bottom-hover;
-            border-left-color   : @border-left-hover;
-        }
+    &.disabled {
+        ._cozen-pills-item-simple-border-color-internal(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover);
+    }
+}
+/****************************/
+/*   BORDER COLOR INTERNAL  */
+/****************************/
+._cozen-pills-item-simple-border-color-internal(@border-top, @border-right, @border-bottom, @border-left, @border-top-hover, @border-right-hover, @border-bottom-hover, @border-left-hover) {
+    border-top-color    : @border-top;
+    border-right-color  : @border-right;
+    border-bottom-color : @border-bottom;
+    border-left-color   : @border-left;
+    &.active,
+    &:hover,
+    &:focus {
+        border-top-color    : @border-top-hover;
+        border-right-color  : @border-right-hover;
+        border-bottom-color : @border-bottom-hover;
+        border-left-color   : @border-left-hover;
     }
 }
 /*********************/
@@ -265,5 +194,38 @@
         border-top-right-radius    : @radius-top;
         border-bottom-left-radius  : @radius-bottom;
         border-bottom-right-radius : @radius-bottom;
+    }
+}
+/***********************/
+/*   BACKGROUND COLOR  */
+/***********************/
+.cozen-pills-item-simple-background-color(@background-color, @background-color-hover) {
+    ._cozen-pills-item-simple-background-color-internal(@background-color, @background-color-hover);
+}
+/********************************/
+/*   BACKGROUND SELECTED COLOR  */
+/********************************/
+.cozen-pills-item-simple-background-selected-color(@background-color, @background-color-hover) {
+    &.selected {
+        ._cozen-pills-item-simple-background-color-internal(@background-color, @background-color-hover);
+    }
+}
+/********************************/
+/*   BACKGROUND DISABLED COLOR  */
+/********************************/
+.cozen-pills-item-simple-background-disabled-color(@background-color, @background-color-hover) {
+    &.disabled {
+        ._cozen-pills-item-simple-background-color-internal(@background-color, @background-color-hover);
+    }
+}
+/********************************/
+/*   BACKGROUND COLOR INTERNAL  */
+/********************************/
+._cozen-pills-item-simple-background-color-internal(@background-color, @background-color-hover) {
+    background-color : @background-color;
+    &.active,
+    &:hover,
+    &:focus {
+        background-color : @background-color-hover;
     }
 }

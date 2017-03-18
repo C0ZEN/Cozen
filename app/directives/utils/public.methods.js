@@ -24,7 +24,8 @@ var Methods = {
     firstLoadLog              : firstLoadLog,
     missingKeyLog             : missingKeyLog,
     changeRouteLog            : changeRouteLog,
-    hasDuplicates             : hasDuplicates
+    hasDuplicates             : hasDuplicates,
+    broadcastLog              : broadcastLog
 };
 
 var Data = {
@@ -278,4 +279,17 @@ function changeRouteLog(directive, route, params) {
 
 function hasDuplicates(array) {
     return (new Set(array)).size !== array.length;
+}
+
+function broadcastLog(scope, eventName) {
+    var now = moment().format('HH:mm:ss');
+    console.log('%c[%c' + scope + '%c][%c' + now + '%c] Broadcasted event <%c' + eventName + '%c>',
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('time'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor()
+    );
 }

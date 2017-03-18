@@ -14,11 +14,12 @@
  * @param {boolean}  cozenDropdownItemSimpleValue            > Use this value instead of label for parent model
  *
  * [Attributes params]
- * @param {number} cozenDropdownItemSimpleId        > Id of the item
- * @param {string} cozenDropdownItemSimpleLabel     > Text of the item [required]
- * @param {string} cozenDropdownItemSimpleSubLabel  > Text of the item
- * @param {string} cozenDropdownItemSimpleIconLeft  > Icon left (name of the icon)
- * @param {string} cozenDropdownItemSimpleIconRight > Icon right (name of the icon)
+ * @param {number} cozenDropdownItemSimpleId             > Id of the item
+ * @param {string} cozenDropdownItemSimpleLabel          > Text of the item [required]
+ * @param {string} cozenDropdownItemSimpleSubLabel       > Text of the item
+ * @param {string} cozenDropdownItemSimpleIconLeft       > Icon left (name of the icon)
+ * @param {string} cozenDropdownItemSimpleIconRight      > Icon right (name of the icon)
+ * @param {string} cozenDropdownItemSimpleCustomHtmlLeft > Custom HTML (compiled) on the left
  *
  */
 (function (angular) {
@@ -111,17 +112,18 @@
                 }
 
                 // Default values (attributes)
-                scope._cozenDropdownItemSimpleId        = angular.isDefined(attrs.cozenDropdownItemSimpleId) ? attrs.cozenDropdownItemSimpleId : '';
-                scope._cozenDropdownItemSimpleLabel     = attrs.cozenDropdownItemSimpleLabel;
-                scope._cozenDropdownItemSimpleSubLabel  = angular.isDefined(attrs.cozenDropdownItemSimpleSubLabel) ? attrs.cozenDropdownItemSimpleSubLabel : '';
-                scope._cozenDropdownItemSimpleIconLeft  = angular.isDefined(attrs.cozenDropdownItemSimpleIconLeft) ? attrs.cozenDropdownItemSimpleIconLeft : '';
-                scope._cozenDropdownItemSimpleIconRight = angular.isDefined(attrs.cozenDropdownItemSimpleIconRight) ? attrs.cozenDropdownItemSimpleIconRight : '';
-                scope._cozenDropdownItemSimpleShowTick  = methods.getDropdown()._cozenDropdownShowTick;
-                scope._cozenDropdownItemSimpleTickIcon  = methods.getDropdown()._cozenDropdownTickIcon;
-                scope._cozenDropdownSearch              = [
+                scope._cozenDropdownItemSimpleId             = angular.isDefined(attrs.cozenDropdownItemSimpleId) ? attrs.cozenDropdownItemSimpleId : '';
+                scope._cozenDropdownItemSimpleLabel          = attrs.cozenDropdownItemSimpleLabel;
+                scope._cozenDropdownItemSimpleSubLabel       = angular.isDefined(attrs.cozenDropdownItemSimpleSubLabel) ? attrs.cozenDropdownItemSimpleSubLabel : '';
+                scope._cozenDropdownItemSimpleIconLeft       = angular.isDefined(attrs.cozenDropdownItemSimpleIconLeft) ? attrs.cozenDropdownItemSimpleIconLeft : '';
+                scope._cozenDropdownItemSimpleIconRight      = angular.isDefined(attrs.cozenDropdownItemSimpleIconRight) ? attrs.cozenDropdownItemSimpleIconRight : '';
+                scope._cozenDropdownItemSimpleShowTick       = methods.getDropdown()._cozenDropdownShowTick;
+                scope._cozenDropdownItemSimpleTickIcon       = methods.getDropdown()._cozenDropdownTickIcon;
+                scope._cozenDropdownSearch                   = [
                     scope._cozenDropdownItemSimpleLabel,
                     scope._cozenDropdownItemSimpleSubLabel
                 ];
+                scope._cozenDropdownItemSimpleCustomHtmlLeft = angular.isDefined(attrs.cozenDropdownItemSimpleCustomHtmlLeft) ? attrs.cozenDropdownItemSimpleCustomHtmlLeft : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -140,10 +142,25 @@
                 // If attr selected is set, look at the change (for out of the box change) and update the parent
                 if (angular.isDefined(attrs.cozenDropdownItemSimpleSelected)) {
                     scope.$watch('cozenDropdownItemSimpleSelected', function (newValue) {
-                        methods.updateParentModel();
+
+                        // Avoid to deselect an option when single and required
+                        if (!dropdown._cozenDropdownMultiple) {
+                            if (dropdown._cozenDropdownRequired) {
+                                if (newValue) {
+                                    methods.updateParentModel(newValue);
+                                }
+                            }
+                            else {
+                                methods.updateParentModel(newValue);
+                            }
+                        }
+                        else {
+                            methods.updateParentModel(newValue);
+                        }
                     });
                 }
 
+                // Listener from the parent or from brothers (items)
                 $rootScope.$on('cozenDropdownActive', methods.onActive);
                 scope.$on('cozenDropdownCollapse', methods.onCollapse);
                 scope.$on('cozenDropdownDeselect', methods.deselect);
@@ -253,11 +270,17 @@
                 }
 
                 // Tell the parent about the new active child
+                if (CONFIG.broadcastLog) {
+                    Methods.broadcastLog('$rootScope', 'cozenDropdownActiveChild');
+                }
                 $rootScope.$broadcast('cozenDropdownActiveChild', {
                     dropdown   : data.dropdown.name,
                     activeChild: activeChild
                 });
 
+                if (CONFIG.broadcastLog) {
+                    Methods.broadcastLog('$rootScope', 'cozenDropdownActive');
+                }
                 $rootScope.$broadcast('cozenDropdownActive', {
                     uuid: data.uuid
                 });
@@ -306,10 +329,14 @@
                 }
             }
 
-            function updateParentModel() {
+            function updateParentModel(selected) {
+                selected = selected == null ? scope.cozenDropdownItemSimpleSelected : selected;
+                if (CONFIG.broadcastLog) {
+                    Methods.broadcastLog('$rootScope', 'cozenDropdownSelected');
+                }
                 $rootScope.$broadcast('cozenDropdownSelected', {
                     uuid    : data.uuid,
-                    selected: scope.cozenDropdownItemSimpleSelected,
+                    selected: selected,
                     dropdown: data.dropdown.name,
                     value   : Methods.isNullOrEmpty(scope.cozenDropdownItemSimpleValue) ? scope._cozenDropdownItemSimpleLabel : scope.cozenDropdownItemSimpleValue,
                     label   : scope._cozenDropdownItemSimpleLabel
@@ -328,6 +355,9 @@
                         scope._cozenDropdownItemSimpleLabel,
                         scope._cozenDropdownItemSimpleSubLabel
                     ], params.value);
+                    if (CONFIG.broadcastLog) {
+                        Methods.broadcastLog('$rootScope', 'cozenDropdownItemDisabled');
+                    }
                     $rootScope.$broadcast('cozenDropdownItemDisabled', {
                         uuid    : data.uuid,
                         disabled: scope._cozenDropdownSearch.length == 0,
