@@ -2053,14 +2053,7 @@ div.cozen-popup.animate-in {
   -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
-div.cozen-popup.ng-hide {
-  -webkit-transition: none;
-  transition: none;
-  background-color: transparent !important;
-}
-div.cozen-popup.ng-hide-add-active.animate-out {
-  -webkit-transition: 200ms ease-out;
-  transition: 200ms ease-out;
+div.cozen-popup.animate-out {
   background-color: transparent !important;
 }
 div.cozen-popup div.cozen-popup-container.animation-in,
@@ -12621,14 +12614,7 @@ div.cozen-popup.animate-in {
   -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
-div.cozen-popup.ng-hide {
-  -webkit-transition: none;
-  transition: none;
-  background-color: transparent !important;
-}
-div.cozen-popup.ng-hide-add-active.animate-out {
-  -webkit-transition: 200ms ease-out;
-  transition: 200ms ease-out;
+div.cozen-popup.animate-out {
   background-color: transparent !important;
 }
 div.cozen-popup div.cozen-popup-container.animation-in,

@@ -6443,7 +6443,7 @@
  * @param {string}  cozenPopupHeaderPictoLeft             > Add a picto on left of the header (url of the picto)
  *
  */
-(function (angular) {
+(function (angular, document) {
     'use strict';
 
     angular
@@ -6457,10 +6457,11 @@
         'CONFIG',
         '$window',
         '$timeout',
-        'rfc4122'
+        'rfc4122',
+        '$animate'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122) {
+    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate) {
         return {
             link       : link,
             restrict   : 'E',
@@ -6495,7 +6496,8 @@
                 directive: 'cozenPopup',
                 isHover  : false,
                 firstHide: true,
-                uuid     : rfc4122.v4()
+                uuid     : rfc4122.v4(),
+                isHiding : false
             };
 
             scope._isReady = true;
@@ -6633,19 +6635,16 @@
                     scope._cozenPopupSize,
                     scope._cozenPopupType
                 ];
-                if (scope._cozenPopupAnimationIn) {
+                if (scope._cozenPopupAnimationIn && !data.isHiding) {
                     classList.push('animate-in');
-                }
-                if (scope._cozenPopupAnimationOut && !data.firstHide) {
-                    classList.push('animate-out');
                 }
                 return classList;
             }
 
             function hide($event, params) {
                 if (params.name == scope._cozenPopupName) {
-                    data.firstHide         = false;
-                    scope.cozenPopupIsOpen = false;
+                    data.firstHide = false;
+                    data.isHiding  = true;
                     if (Methods.isFunction(scope.cozenPopupOnHide)) {
                         scope.cozenPopupOnHide({
                             id  : scope._cozenPopupId,
@@ -6655,9 +6654,24 @@
                     if (CONFIG.debug) {
                         Methods.directiveCallbackLog(data.directive, 'OnHide');
                     }
-                    Methods.safeApply(scope);
                     $window.removeEventListener('click', methods.onClick);
                     $window.removeEventListener('keydown', methods.onKeyDown);
+
+                    // If popup has animation for exit, execute it then hide the popup
+                    if (scope._cozenPopupAnimationOut && !data.firstHide) {
+                        var popup    = angular.element(element.children()[0]);
+                        var popupCtn = angular.element(angular.element(popup.children()[0]));
+                        $animate.addClass(popup, 'animate-out');
+                        $animate.addClass(popupCtn, 'animate-out ' + CONFIG.popup.animation.out.animation).then(function () {
+                            $animate.removeClass(popupCtn, 'animate-out ' + CONFIG.popup.animation.out.animation);
+                            scope.cozenPopupIsOpen = false;
+                            data.isHiding          = false;
+                        });
+                    }
+                    else {
+                        scope.cozenPopupIsOpen = false;
+                        data.isHiding          = false;
+                    }
                 }
             }
 
@@ -6673,7 +6687,6 @@
                     if (CONFIG.debug) {
                         Methods.directiveCallbackLog(data.directive, 'OnShow');
                     }
-                    Methods.safeApply(scope);
                     if (scope._cozenPopupEasyClose) {
                         $window.addEventListener('click', methods.onClick);
                         $window.addEventListener('keydown', methods.onKeyDown);
@@ -6707,10 +6720,6 @@
                     classList.push(CONFIG.popup.animation.in.animation);
                     classList.push('animation-in');
                 }
-                if (!scope.cozenPopupIsOpen && scope._cozenPopupAnimationOut) {
-                    classList.push(CONFIG.popup.animation.out.animation);
-                    classList.push('animation-out');
-                }
                 return classList;
             }
 
@@ -6730,17 +6739,19 @@
                 // Set the height of the img (to auto fit)
                 if (scope._cozenPopupHeaderPictoLeft != '') {
                     $timeout(function () {
-                        var img          = element.find('.cozen-popup-header .cozen-popup-header-img.left')[0];
-                        var title        = element.find('.cozen-popup-header .cozen-popup-header-title')[0];
-                        img.style.height = title.offsetHeight + 'px';
-                        img.style.width  = title.offsetHeight + 'px';
+                        var img   = element.find('.cozen-popup-header .cozen-popup-header-img.left')[0];
+                        var title = element.find('.cozen-popup-header .cozen-popup-header-title')[0];
+                        if (img != null) {
+                            img.style.height = title.offsetHeight + 'px';
+                            img.style.width  = title.offsetHeight + 'px';
+                        }
                     });
                 }
             }
         }
     }
 
-})(window.angular);
+})(window.angular, window.document);
 
 
 (function (angular) {
