@@ -229,3 +229,44 @@
         background-color : @background-color-hover;
     }
 }
+/************/
+/*   COLOR  */
+/************/
+.cozen-pills-item-simple-color(@color, @color-hover) {
+    ._cozen-pills-item-simple-color-internal(@color, @color-hover);
+}
+/*********************/
+/*   COLOR SELECTED  */
+/*********************/
+.cozen-pills-item-simple-selected-color(@color, @color-hover) {
+    &.selected {
+        ._cozen-pills-item-simple-color-internal(@color, @color-hover);
+    }
+}
+/*********************/
+/*   COLOR DISABLED  */
+/*********************/
+.cozen-pills-item-simple-disabled-color(@color, @color-hover) {
+    &.disabled {
+        ._cozen-pills-item-simple-color-internal(@color, @color-hover);
+    }
+}
+/*********************/
+/*   COLOR INTERNAL  */
+/*********************/
+._cozen-pills-item-simple-color-internal(@color, @color-hover) {
+    div.cozen-pills-item-simple-content {
+        span.cozen-pills-item-simple-label {
+            color : @color;
+        }
+    }
+    &.active,
+    &:hover,
+    &:focus {
+        div.cozen-pills-item-simple-content {
+            span.cozen-pills-item-simple-label {
+                color : @color-hover;
+            }
+        }
+    }
+}
