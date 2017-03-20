@@ -22,24 +22,19 @@
         /// Public functions ///
 
         function subscribe(scope, callback) {
-            var handler = $rootScope.$on('notifying-service-event', callback);
+            var handler = $rootScope.$on('cozenOnClickServiceTriggered', callback);
             scope.$on('$destroy', handler);
         }
 
         // Internal functions ///
 
-        function _onClick() {
-
-            // Broadcast an event
-            $rootScope.$broadcast('cozenOnClick', {});
-
-            // Trigger the broadcast
-            _notify();
-        }
-
         // Notify the send message when subscribe is on
         function _notify() {
-            $rootScope.$emit('notifying-service-event');
+            $rootScope.$emit('cozenOnClickServiceTriggered');
+        }
+
+        function _onClick() {
+            _notify();
         }
     }
 
