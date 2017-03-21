@@ -31,7 +31,7 @@
             scope.$watch(
                 function (scope) {
                     // watch the 'compile' expression for changes
-                    return scope.$eval(attrs.compile);
+                    return scope.$eval(attrs.cozenCompile);
                 },
                 function (value) {
                     // when the 'compile' expression changes
@@ -47,4 +47,5 @@
             );
         }
     }
+
 })(window.angular);
