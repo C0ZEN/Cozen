@@ -1347,9 +1347,10 @@
  * @description
  *
  * [Scope params]
- * @param {function} cozenBtnToggleOnChange         > Callback function called on change
- * @param {boolean}  cozenBtnToggleDisabled = false > Disable the button toggle
- * @param {boolean}  cozenBtnToggleModel            > Model (ak ng-model) which is edited by this directive [required]
+ * @param {function} cozenBtnToggleOnChange                        > Callback function called on change
+ * @param {boolean}  cozenBtnToggleDisabled        = false         > Disable the button toggle
+ * @param {boolean}  cozenBtnToggleModel                           > Model (ak ng-model) which is edited by this directive [required]
+ * @param {string}   cozenBtnToggleTooltipMaxWidth = max-width-200 > Max width of the tooltip (must be a class custom or predefined) [ex: max-width-[100-450])
  *
  * [Attributes params]
  * @param {number}  cozenBtnToggleId                    > Id of the button toggle
@@ -1384,9 +1385,10 @@
             replace    : false,
             transclude : false,
             scope      : {
-                cozenBtnToggleOnChange: '&',
-                cozenBtnToggleDisabled: '=?',
-                cozenBtnToggleModel   : '=?'
+                cozenBtnToggleOnChange       : '&',
+                cozenBtnToggleDisabled       : '=?',
+                cozenBtnToggleModel          : '=?',
+                cozenBtnToggleTooltipMaxWidth: '=?'
             },
             templateUrl: 'directives/btn-toggle/btnToggle.template.html'
         };
@@ -1404,8 +1406,6 @@
             var data = {
                 directive: 'cozenBtnToggle'
             };
-
-            scope._isReady = true;
 
             methods.init();
 
@@ -1443,9 +1443,8 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenBtnToggleDisabled)) {
-                    scope.cozenBtnToggleDisabled = false;
-                }
+                angular.isUndefined(attrs.cozenBtnToggleDisabled) ? scope.cozenBtnToggleDisabled = false : null;
+                angular.isUndefined(attrs.cozenBtnToggleTooltipMaxWidth) ? scope.cozenBtnToggleTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attributes)
                 scope._cozenBtnToggleId          = angular.isDefined(attrs.cozenBtnToggleId) ? attrs.cozenBtnToggleId : '';
@@ -1458,9 +1457,6 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
-
-                // Display the template
-                scope._isReady = true;
             }
 
             function hasError() {

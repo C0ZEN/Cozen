@@ -26,7 +26,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/btn-toggle/btnToggle.template.html',
-    "<div ng-if=_isReady class=cozen-btn-toggle ng-class=_methods.getMainClass(); id=\"{{ _cozenBtnToggleId }}\"><cozen-tooltip cozen-tooltip-label=_cozenBtnToggleTooltip cozen-tooltip-type=\"{{ _cozenBtnToggleTooltipType }}\" cozen-tooltip-disabled=\"_cozenBtnToggleTooltip == ''\"><div class=cozen-btn-toggle-container tabindex=\"{{ _methods.getTabIndex(); }}\" ng-click=_methods.onClick($event)><label ng-if=\"_cozenBtnToggleLabel != ''\" class=cozen-btn-toggle-label ng-class=[_cozenBtnToggleSize]>{{ _cozenBtnToggleLabel | translate }}</label><div class=cozen-btn-toggle-switch ng-class=\"{'active': cozenBtnToggleModel,\r" +
+    "<div class=cozen-btn-toggle ng-class=_methods.getMainClass(); id=\"{{ _cozenBtnToggleId }}\"><cozen-tooltip cozen-tooltip-label=_cozenBtnToggleTooltip cozen-tooltip-type=\"{{ _cozenBtnToggleTooltipType }}\" cozen-tooltip-max-width=cozenBtnToggleTooltipMaxWidth cozen-tooltip-disabled=\"_cozenBtnToggleTooltip == ''\"><div class=cozen-btn-toggle-container tabindex=\"{{ _methods.getTabIndex(); }}\" ng-click=_methods.onClick($event)><label ng-if=\"_cozenBtnToggleLabel != ''\" class=cozen-btn-toggle-label ng-class=[_cozenBtnToggleSize]>{{ _cozenBtnToggleLabel | translate }}</label><div class=cozen-btn-toggle-switch ng-class=\"{'active': cozenBtnToggleModel,\r" +
     "\n" +
     "                            'transition': _cozenBtnToggleAnimation}\"></div></div></cozen-tooltip></div>"
   );
