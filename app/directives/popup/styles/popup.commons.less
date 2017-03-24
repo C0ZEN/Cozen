@@ -26,11 +26,11 @@ div.cozen-popup {
         &.animation-out {
             animation-duration : @cozen-animation-duration-out-fast;
         }
-        :first-child {
+        > div:first-of-type {
             border-top-left-radius  : @cozen-radius;
             border-top-right-radius : @cozen-radius;
         }
-        :last-child {
+        > div:last-of-type {
             border-bottom-left-radius  : @cozen-radius;
             border-bottom-right-radius : @cozen-radius;
         }

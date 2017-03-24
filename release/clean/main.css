@@ -2081,11 +2081,11 @@ div.cozen-popup div.cozen-popup-container.animation-out {
   -webkit-animation-duration: 200ms;
           animation-duration: 200ms;
 }
-div.cozen-popup div.cozen-popup-container :first-child {
+div.cozen-popup div.cozen-popup-container > div:first-of-type {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-div.cozen-popup div.cozen-popup-container :last-child {
+div.cozen-popup div.cozen-popup-container > div:last-of-type {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
@@ -12726,11 +12726,11 @@ div.cozen-popup div.cozen-popup-container.animation-out {
   -webkit-animation-duration: 200ms;
           animation-duration: 200ms;
 }
-div.cozen-popup div.cozen-popup-container :first-child {
+div.cozen-popup div.cozen-popup-container > div:first-of-type {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-div.cozen-popup div.cozen-popup-container :last-child {
+div.cozen-popup div.cozen-popup-container > div:last-of-type {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
