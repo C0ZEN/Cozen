@@ -6456,6 +6456,7 @@
  * @param {function} cozenPopupOnHide         > Callback function called on hide (id, name)
  * @param {boolean}  cozenPopupIsOpen = false > Display the popup without event
  * @param {object}   cozenPopupData           > Custom data gave through the factory events
+ * @param {string}   cozenPopupHeaderTitle    > Text of the header title
  *
  * [Attributes params]
  * @param {number}  cozenPopupId              = uuid      > Id of the popup
@@ -6472,7 +6473,6 @@
  * @param {string}  cozenPopupTypeGreen                   > Shortcut for green type
  * @param {string}  cozenPopupTypePurple                  > Shortcut for purple type
  * @param {boolean} cozenPopupHeader          = true      > Display the header [config]
- * @param {string}  cozenPopupHeaderTitle                 > Text of the header title
  * @param {string}  cozenPopupHeaderSubTitle              > Text of the header sub-title
  * @param {boolean} cozenPopupFooter          = true      > Display the footer [config]
  * @param {string}  cozenPopupName                        > Name of the popup [required]
@@ -6508,10 +6508,11 @@
             replace    : false,
             transclude : true,
             scope      : {
-                cozenPopupOnShow: '&',
-                cozenPopupOnHide: '&',
-                cozenPopupIsOpen: '=?',
-                cozenPopupData  : '=?'
+                cozenPopupOnShow     : '&',
+                cozenPopupOnHide     : '&',
+                cozenPopupIsOpen     : '=?',
+                cozenPopupData       : '=?',
+                cozenPopupHeaderTitle: '=?'
             },
             templateUrl: 'directives/popup/popup.template.html'
         };
@@ -6611,14 +6612,12 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenPopupIsOpen)) {
-                    scope.cozenPopupIsOpen = false;
-                }
+                angular.isUndefined(attrs.cozenPopupIsOpen) ? scope.cozenPopupIsOpen = false : null;
+                angular.isUndefined(attrs.cozenPopupHeaderTitle) ? scope.cozenPopupHeaderTitle = '' : null;
 
                 // Default values (attributes)
                 scope._cozenPopupId              = angular.isDefined(attrs.cozenPopupId) ? attrs.cozenPopupId : data.uuid;
                 scope._cozenPopupHeader          = angular.isDefined(attrs.cozenPopupHeader) ? JSON.parse(attrs.cozenPopupHeader) : CONFIG.popup.header;
-                scope._cozenPopupHeaderTitle     = angular.isDefined(attrs.cozenPopupHeaderTitle) ? attrs.cozenPopupHeaderTitle : '';
                 scope._cozenPopupHeaderSubTitle  = angular.isDefined(attrs.cozenPopupHeaderSubTitle) ? attrs.cozenPopupHeaderSubTitle : '';
                 scope._cozenPopupFooter          = angular.isDefined(attrs.cozenPopupFooter) ? JSON.parse(attrs.cozenPopupFooter) : CONFIG.popup.footer;
                 scope._cozenPopupName            = attrs.cozenPopupName;
