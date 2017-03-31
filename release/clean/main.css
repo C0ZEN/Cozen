@@ -10563,13 +10563,19 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 }
 .atom.tooltip.top-left .tooltip-arrow {
   bottom: 1px !important;
-  left: 12px !important;
+  left: 6px !important;
   border-top-color: #34495E;
+}
+.atom.tooltip.top-left .tooltip-inner {
+  border-bottom-left-radius: 0;
 }
 .atom.tooltip.top-right .tooltip-arrow {
   bottom: 1px !important;
-  right: 12px !important;
+  right: 6px !important;
   border-top-color: #34495E;
+}
+.atom.tooltip.top-right .tooltip-inner {
+  border-bottom-right-radius: 0;
 }
 .atom.tooltip.right .tooltip-arrow {
   left: 1px;
@@ -10585,13 +10591,19 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
 }
 .atom.tooltip.bottom-left .tooltip-arrow {
   top: 1px !important;
-  left: 12px !important;
+  left: 6px !important;
   border-bottom-color: #34495E;
+}
+.atom.tooltip.bottom-left .tooltip-inner {
+  border-top-left-radius: 0;
 }
 .atom.tooltip.bottom-right .tooltip-arrow {
   top: 1px !important;
-  right: 12px !important;
+  right: 6px !important;
   border-bottom-color: #34495E;
+}
+.atom.tooltip.bottom-right .tooltip-inner {
+  border-top-right-radius: 0;
 }
 .atom.tooltip > .tooltip-inner {
   background-color: #34495E;
@@ -16773,13 +16785,19 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
 }
 .tau.tooltip.top-left .tooltip-arrow {
   bottom: 1px !important;
-  left: 12px !important;
+  left: 6px !important;
   border-top-color: #2C3E50;
+}
+.tau.tooltip.top-left .tooltip-inner {
+  border-bottom-left-radius: 0;
 }
 .tau.tooltip.top-right .tooltip-arrow {
   bottom: 1px !important;
-  right: 12px !important;
+  right: 6px !important;
   border-top-color: #2C3E50;
+}
+.tau.tooltip.top-right .tooltip-inner {
+  border-bottom-right-radius: 0;
 }
 .tau.tooltip.right .tooltip-arrow {
   left: 1px;
@@ -16795,13 +16813,19 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
 }
 .tau.tooltip.bottom-left .tooltip-arrow {
   top: 1px !important;
-  left: 12px !important;
+  left: 6px !important;
   border-bottom-color: #2C3E50;
+}
+.tau.tooltip.bottom-left .tooltip-inner {
+  border-top-left-radius: 0;
 }
 .tau.tooltip.bottom-right .tooltip-arrow {
   top: 1px !important;
-  right: 12px !important;
+  right: 6px !important;
   border-bottom-color: #2C3E50;
+}
+.tau.tooltip.bottom-right .tooltip-inner {
+  border-top-right-radius: 0;
 }
 .tau.tooltip > .tooltip-inner {
   background-color: #2C3E50;

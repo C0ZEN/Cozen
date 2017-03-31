@@ -6,15 +6,25 @@
         bottom           : 1px;
         border-top-color : @arrow-color;
     }
-    &.tooltip.top-left .tooltip-arrow {
-        bottom           : 1px !important;
-        left             : 12px !important;
-        border-top-color : @arrow-color;
+    &.tooltip.top-left {
+        .tooltip-arrow {
+            bottom           : 1px !important;
+            left             : 6px !important;
+            border-top-color : @arrow-color;
+        }
+        .tooltip-inner {
+            border-bottom-left-radius : 0;
+        }
     }
-    &.tooltip.top-right .tooltip-arrow {
-        bottom           : 1px !important;
-        right            : 12px !important;
-        border-top-color : @arrow-color;
+    &.tooltip.top-right {
+        .tooltip-arrow {
+            bottom           : 1px !important;
+            right            : 6px !important;
+            border-top-color : @arrow-color;
+        }
+        .tooltip-inner {
+            border-bottom-right-radius : 0;
+        }
     }
     &.tooltip.right .tooltip-arrow {
         left               : 1px;
@@ -28,15 +38,25 @@
         top                 : 1px;
         border-bottom-color : @arrow-color;
     }
-    &.tooltip.bottom-left .tooltip-arrow {
-        top                 : 1px !important;
-        left                : 12px !important;
-        border-bottom-color : @arrow-color;
+    &.tooltip.bottom-left {
+        .tooltip-arrow {
+            top                 : 1px !important;
+            left                : 6px !important;
+            border-bottom-color : @arrow-color;
+        }
+        .tooltip-inner {
+            border-top-left-radius : 0;
+        }
     }
-    &.tooltip.bottom-right .tooltip-arrow {
-        top                 : 1px !important;
-        right               : 12px !important;
-        border-bottom-color : @arrow-color;
+    &.tooltip.bottom-right {
+        .tooltip-arrow {
+            top                 : 1px !important;
+            right               : 6px !important;
+            border-bottom-color : @arrow-color;
+        }
+        .tooltip-inner {
+            border-top-right-radius : 0;
+        }
     }
     &.tooltip > .tooltip-inner {
         background-color : @background-color;
