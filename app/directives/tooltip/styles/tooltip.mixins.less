@@ -3,12 +3,17 @@
 /*************/
 .cozen-tooltip-color(@color, @background-color, @arrow-color, @border, @shadow, @opacity) {
     &.tooltip.top .tooltip-arrow {
+        bottom           : 1px;
         border-top-color : @arrow-color;
     }
     &.tooltip.top-left .tooltip-arrow {
+        bottom           : 1px !important;
+        left             : 12px !important;
         border-top-color : @arrow-color;
     }
     &.tooltip.top-right .tooltip-arrow {
+        bottom           : 1px !important;
+        right            : 12px !important;
         border-top-color : @arrow-color;
     }
     &.tooltip.right .tooltip-arrow {
@@ -16,15 +21,21 @@
         border-right-color : @arrow-color;
     }
     &.tooltip.left .tooltip-arrow {
+        right             : 1px;
         border-left-color : @arrow-color;
     }
     &.tooltip.bottom .tooltip-arrow {
+        top                 : 1px;
         border-bottom-color : @arrow-color;
     }
     &.tooltip.bottom-left .tooltip-arrow {
+        top                 : 1px !important;
+        left                : 12px !important;
         border-bottom-color : @arrow-color;
     }
     &.tooltip.bottom-right .tooltip-arrow {
+        top                 : 1px !important;
+        right               : 12px !important;
         border-bottom-color : @arrow-color;
     }
     &.tooltip > .tooltip-inner {
@@ -33,8 +44,8 @@
         border           : @border;
         box-shadow       : @shadow;
     }
-    &.tooltip {
-        opacity : @opacity;
+    &.tooltip.in {
+        opacity : 1;
     }
 }
 /************/

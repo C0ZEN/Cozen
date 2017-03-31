@@ -25,6 +25,13 @@
                 controller  : 'TooltipCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Tooltip - Default'}
+            })
+            .state('examples.tooltip.directions', {
+                url         : '/directions',
+                templateUrl : 'examples/tooltip/templates/tooltip.directions.html',
+                controller  : 'TooltipCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Tooltip - Directions'}
             });
     }
 

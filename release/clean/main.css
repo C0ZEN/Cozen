@@ -10558,12 +10558,17 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
   color: #FEB909;
 }
 .atom.tooltip.top .tooltip-arrow {
+  bottom: 1px;
   border-top-color: #34495E;
 }
 .atom.tooltip.top-left .tooltip-arrow {
+  bottom: 1px !important;
+  left: 12px !important;
   border-top-color: #34495E;
 }
 .atom.tooltip.top-right .tooltip-arrow {
+  bottom: 1px !important;
+  right: 12px !important;
   border-top-color: #34495E;
 }
 .atom.tooltip.right .tooltip-arrow {
@@ -10571,15 +10576,21 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
   border-right-color: #34495E;
 }
 .atom.tooltip.left .tooltip-arrow {
+  right: 1px;
   border-left-color: #34495E;
 }
 .atom.tooltip.bottom .tooltip-arrow {
+  top: 1px;
   border-bottom-color: #34495E;
 }
 .atom.tooltip.bottom-left .tooltip-arrow {
+  top: 1px !important;
+  left: 12px !important;
   border-bottom-color: #34495E;
 }
 .atom.tooltip.bottom-right .tooltip-arrow {
+  top: 1px !important;
+  right: 12px !important;
   border-bottom-color: #34495E;
 }
 .atom.tooltip > .tooltip-inner {
@@ -10588,7 +10599,7 @@ div.cozen-textarea.atom.large div.cozen-textarea-label label.required-icon:hover
   border: none;
   box-shadow: none;
 }
-.atom.tooltip {
+.atom.tooltip.in {
   opacity: 1;
 }
 .atom.tooltip {
@@ -16757,12 +16768,17 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
   color: #D35400;
 }
 .tau.tooltip.top .tooltip-arrow {
+  bottom: 1px;
   border-top-color: #2C3E50;
 }
 .tau.tooltip.top-left .tooltip-arrow {
+  bottom: 1px !important;
+  left: 12px !important;
   border-top-color: #2C3E50;
 }
 .tau.tooltip.top-right .tooltip-arrow {
+  bottom: 1px !important;
+  right: 12px !important;
   border-top-color: #2C3E50;
 }
 .tau.tooltip.right .tooltip-arrow {
@@ -16770,15 +16786,21 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
   border-right-color: #2C3E50;
 }
 .tau.tooltip.left .tooltip-arrow {
+  right: 1px;
   border-left-color: #2C3E50;
 }
 .tau.tooltip.bottom .tooltip-arrow {
+  top: 1px;
   border-bottom-color: #2C3E50;
 }
 .tau.tooltip.bottom-left .tooltip-arrow {
+  top: 1px !important;
+  left: 12px !important;
   border-bottom-color: #2C3E50;
 }
 .tau.tooltip.bottom-right .tooltip-arrow {
+  top: 1px !important;
+  right: 12px !important;
   border-bottom-color: #2C3E50;
 }
 .tau.tooltip > .tooltip-inner {
@@ -16787,7 +16809,7 @@ div.cozen-textarea.tau.large div.cozen-textarea-label label.required-icon:hover 
   border: 1px solid #2C3E50;
   box-shadow: none;
 }
-.tau.tooltip {
+.tau.tooltip.in {
   opacity: 1;
 }
 .tau.tooltip {
