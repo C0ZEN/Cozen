@@ -37,7 +37,7 @@
  * @param {boolean} cozenAlertForceAnimation    = false         > Force to launch the animation
  * @param {string}  cozenAlertAnimationInClass  = 'fadeInUp'    > Define the kind of animation when showing [config.json]
  * @param {string}  cozenAlertAnimationOutClass = 'fadeOutDown' > Define the kind of animation when hiding [config.json]
- * @param {number}  cozenAlertTimeout           = 0             > Define after how many seconds the alert should hide (0 is never) [config.json]
+ * @param {number}  cozenAlertTimeout           = 0             > Define after how many ms the alert should hide (0 is never) [config.json]
  *
  */
 (function (angular) {
@@ -91,7 +91,8 @@
                 uuid             : rfc4122.v4(),
                 shown            : true,
                 firstHide        : true,
-                firstDisplayWatch: true
+                firstDisplayWatch: true,
+                timeout          : null
             };
 
             methods.init();
@@ -213,6 +214,7 @@
                 element.off('$destroy', methods.destroy);
             }
 
+            // Get the class
             function getMainClass() {
                 var classList = [
                     scope._activeTheme,
@@ -239,10 +241,15 @@
                 return classList;
             }
 
+            // Hide the popup
             function hide($event, params) {
                 if (params.uuid == data.uuid) {
+
+                    // Hide the popup
                     data.firstHide          = false;
                     scope.cozenAlertDisplay = false;
+
+                    // Execute and log the callback function
                     if (Methods.isFunction(scope.cozenAlertOnHide)) {
                         scope.cozenAlertOnHide();
                     }
@@ -263,10 +270,15 @@
                 }
             }
 
+            // Show the popup
             function show($event, params) {
                 if (params.uuid == data.uuid) {
+
+                    // Show the popup
                     data.firstHide          = false;
                     scope.cozenAlertDisplay = true;
+
+                    // Execute and log the callback function
                     if (Methods.isFunction(scope.cozenAlertOnShow)) {
                         scope.cozenAlertOnShow();
                     }
@@ -274,9 +286,26 @@
                         Methods.directiveCallbackLog(data.directive, 'OnShow');
                     }
                     Methods.safeApply(scope);
+
+                    // Start the timer to auto close if > 0
+                    if (scope._cozenAlertTimeout > 0) {
+                        data.timeout = $timeout(function () {
+
+                            // If the popup is still visible, hide it
+                            if (scope.cozenAlertDisplay) {
+                                if (CONFIG.debug) {
+                                    Methods.infoCustomLog(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
+                                }
+                                methods.hide(null, {
+                                    uuid: data.uuid
+                                });
+                            }
+                        }, scope._cozenAlertTimeout);
+                    }
                 }
             }
 
+            // Close the popup
             function onClose() {
                 scope.cozenAlertDisplay = false;
             }

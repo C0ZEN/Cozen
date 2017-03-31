@@ -25,7 +25,8 @@ var Methods = {
     missingKeyLog             : missingKeyLog,
     changeRouteLog            : changeRouteLog,
     hasDuplicates             : hasDuplicates,
-    broadcastLog              : broadcastLog
+    broadcastLog              : broadcastLog,
+    infoCustomLog             : infoCustomLog
 };
 
 var Data = {
@@ -292,4 +293,16 @@ function broadcastLog(scope, eventName) {
         getConsoleColor('fn'),
         getConsoleColor()
     );
+}
+
+function infoCustomLog(target, textBefore, value, textAfter) {
+    var now = moment().format('HH:mm:ss');
+    console.info('%c[%c' + target + '%c][%c' + now + '%c] ' + textBefore + ' <%c' + value + '%c> ' + textAfter,
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('time'),
+        getConsoleColor(),
+        getConsoleColor('fn'),
+        getConsoleColor())
 }

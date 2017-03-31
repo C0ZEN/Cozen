@@ -466,6 +466,16 @@
             return this;
         };
 
+        this.floatingFeedTimeout = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('floatingFeedTimeout');
+            }
+            else {
+                CONFIG.floatingFeed.timeout = value;
+            }
+            return this;
+        };
+
         this.$get = Config;
 
         Config.$inject = [];

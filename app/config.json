@@ -107,6 +107,7 @@
         "closeBtn": true,
         "iconLeft": true,
         "right": 20,
-        "bottom": 20
+        "bottom": 20,
+        "timeout": 8000
     }
 }

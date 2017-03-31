@@ -16,6 +16,7 @@
  * @param {boolean} cozenFloatingFeedIconLeft     = true          > Display the left icon of the popups [config.json]
  * @param {number}  cozenFloatingFeedRight        = 20            > Pixel form the right [config.json]
  * @param {number}  cozenFloatingFeedBottom       = 20            > Pixel from the bottom [config.json]
+ * @param {number}  cozenFloatingFeedTimeout      = 8000          > Lifetime of the alerts before auto close [config.json]
  *
  * [Factory - addAlert]
  * @param {string} label > Text to display [required]
@@ -35,10 +36,11 @@
         'Themes',
         'rfc4122',
         '$timeout',
-        '$animate'
+        '$animate',
+        '$compile'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate) {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate, $compile) {
         return {
             link       : link,
             restrict   : 'E',
@@ -84,6 +86,7 @@
                 scope._cozenFloatingFeedIconLeft     = angular.isDefined(attrs.cozenFloatingFeedIconLeft) ? JSON.parse(attrs.cozenFloatingFeedIconLeft) : CONFIG.floatingFeed.iconLeft;
                 scope._cozenFloatingFeedRight        = angular.isDefined(attrs.cozenFloatingFeedRight) ? attrs.cozenFloatingFeedRight : CONFIG.floatingFeed.right;
                 scope._cozenFloatingFeedBottom       = angular.isDefined(attrs.cozenFloatingFeedBottom) ? attrs.cozenFloatingFeedBottom : CONFIG.floatingFeed.bottom;
+                scope._cozenFloatingFeedTimeout      = angular.isDefined(attrs.cozenFloatingFeedTimeout) ? JSON.parse(attrs.cozenFloatingFeedTimeout) : CONFIG.floatingFeed.timeout;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -98,13 +101,13 @@
                 scope.$on('onFloatingFeedFinished', function () {
 
                     // Animation when adding
-                    if (scope._cozenFloatingFeedAnimationIn != '') {
-                        var child       = element[0].querySelector('#float-feed-alert-0');
-                        scope.hideFirst = false;
-                        $animate.addClass(child, 'floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn).then(function () {
-                            $animate.removeClass(child, 'hidden floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn);
-                        });
-                    }
+                    // if (scope._cozenFloatingFeedAnimationIn != '') {
+                    //     var child       = element[0].querySelector('#float-feed-alert-0');
+                    //     scope.hideFirst = false;
+                    //     $animate.addClass(child, 'floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn).then(function () {
+                    //         $animate.removeClass(child, 'hidden floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn);
+                    //     });
+                    // }
                 });
             }
 
@@ -124,14 +127,18 @@
                 };
             }
 
+            // Add an alert
             function add($event, alert) {
                 if (!Methods.isNullOrEmpty(alert)) {
+
+                    // Check for potential error
                     if (!Methods.hasOwnProperty(alert, 'label')) {
                         Methods.missingKeyLog(data.directive, 'label', 'adding alert');
                     }
                     else if (!Methods.hasOwnProperty(alert, 'type')) {
                         Methods.missingKeyLog(data.directive, 'type', 'adding alert');
                     }
+                    // Add the alert
                     else {
                         alert.addedOn                    = moment().unix();
                         alert.display                    = true;
@@ -139,6 +146,24 @@
                         scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
                         scope._cozenFloatingAlerts.unshift(alert);
                         scope.hideFirst = true;
+
+                        var newAlert = $compile("<cozen-alert cozen-alert-label='alert.label' " +
+                            "cozen-alert-label-values='alert.labelValues' " +
+                            "cozen-alert-size='{{ _cozenFloatingFeedSize }}' " +
+                            "cozen-alert-type='{{ alert.type }}' " +
+                            "cozen-alert-animation-in='false' " +
+                            "cozen-alert-animation-out='{{ !Methods.isNullOrEmpty(_cozenFloatingFeedAnimationOut) }}' " +
+                            "cozen-alert-animation-out-class='{{ _cozenFloatingFeedAnimationOut }}' " +
+                            "cozen-alert-close-btn='{{ _cozenFloatingFeedCloseBtn }}' " +
+                            "cozen-alert-icon-left='{{ _cozenFloatingFeedIconLeft }}' " +
+                            "cozen-alert-close-btn-tooltip='false' " +
+                            "cozen-alert-force-animation='true' " +
+                            "cozen-alert-display='alert.display' " +
+                            "cozen-alert-on-hide-done='_methods.onHideAlert(alert.uuid)' " +
+                            "cozen-alert-class='cozen-floating-alert' " +
+                            "cozen-alert-timeout='{{ _cozenFloatingFeedTimeout }}'>" +
+                            "</cozen-alert>")(scope);
+                        element.append(newAlert);
                     }
                 }
                 else {
@@ -146,10 +171,12 @@
                 }
             }
 
+            // Remove all alerts
             function removeAll() {
                 scope._cozenFloatingAlerts = [];
             }
 
+            // Remove an alert
             function onHideAlert(popupUuid) {
                 for (var i = 0, length = scope._cozenFloatingAlerts.length; i < length; i++) {
                     if (scope._cozenFloatingAlerts[i].uuid == popupUuid) {
