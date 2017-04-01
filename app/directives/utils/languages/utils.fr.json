@@ -1,0 +1,4 @@
+{
+    "cozen_utils_error_1": "Le nom d'utilisateur <strong>{{username}}</strong> est déjà utilisé !",
+    "cozen_utils_error_2": "L'adresse mail <strong>{{email}}</strong> est déjà utilisée !"
+}

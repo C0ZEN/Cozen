@@ -476,6 +476,16 @@
             return this;
         };
 
+        this.floatingFeedAutoDestroy = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('floatingFeedAutoDestroy');
+            }
+            else {
+                CONFIG.floatingFeed.autoDestroy = value;
+            }
+            return this;
+        };
+
         this.$get = Config;
 
         Config.$inject = [];

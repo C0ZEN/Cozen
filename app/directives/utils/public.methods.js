@@ -26,7 +26,8 @@ var Methods = {
     changeRouteLog            : changeRouteLog,
     hasDuplicates             : hasDuplicates,
     broadcastLog              : broadcastLog,
-    infoCustomLog             : infoCustomLog
+    infoCustomLog             : infoCustomLog,
+    infoSimpleLog             : infoSimpleLog
 };
 
 var Data = {
@@ -304,5 +305,17 @@ function infoCustomLog(target, textBefore, value, textAfter) {
         getConsoleColor('time'),
         getConsoleColor(),
         getConsoleColor('fn'),
-        getConsoleColor())
+        getConsoleColor()
+    );
+}
+
+function infoSimpleLog(target, text) {
+    var now = moment().format('HH:mm:ss');
+    console.info('%c[%c' + target + '%c][%c' + now + '%c] ' + text,
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('time'),
+        getConsoleColor()
+    );
 }

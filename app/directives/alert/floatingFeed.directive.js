@@ -37,10 +37,11 @@
         'rfc4122',
         '$timeout',
         '$animate',
-        '$compile'
+        '$compile',
+        '$templateRequest'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate, $compile) {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate, $compile, $templateRequest) {
         return {
             link       : link,
             restrict   : 'E',
@@ -56,8 +57,7 @@
                 getMainClass: getMainClass,
                 getMainStyle: getMainStyle,
                 add         : add,
-                removeAll   : removeAll,
-                onHideAlert : onHideAlert
+                removeAll   : removeAll
             };
 
             var data = {
@@ -72,8 +72,7 @@
                 // Public functions
                 scope._methods = {
                     getMainClass: getMainClass,
-                    getMainStyle: getMainStyle,
-                    onHideAlert : onHideAlert
+                    getMainStyle: getMainStyle
                 };
 
                 // Default values (attributes)
@@ -92,23 +91,9 @@
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
 
-                // Contain all the alert
-                scope._cozenFloatingAlerts = [];
-
                 // Watch for events
                 $rootScope.$on('cozenFloatingFeedAdd', methods.add);
                 $rootScope.$on('cozenFloatingFeedRemoveAll', methods.removeAll);
-                scope.$on('onFloatingFeedFinished', function () {
-
-                    // Animation when adding
-                    // if (scope._cozenFloatingFeedAnimationIn != '') {
-                    //     var child       = element[0].querySelector('#float-feed-alert-0');
-                    //     scope.hideFirst = false;
-                    //     $animate.addClass(child, 'floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn).then(function () {
-                    //         $animate.removeClass(child, 'hidden floating-alert-animation-in ' + scope._cozenFloatingFeedAnimationIn);
-                    //     });
-                    // }
-                });
             }
 
             function destroy() {
@@ -138,32 +123,22 @@
                     else if (!Methods.hasOwnProperty(alert, 'type')) {
                         Methods.missingKeyLog(data.directive, 'type', 'adding alert');
                     }
+
                     // Add the alert
                     else {
                         alert.addedOn                    = moment().unix();
                         alert.display                    = true;
                         alert.uuid                       = rfc4122.v4();
                         scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
-                        scope._cozenFloatingAlerts.unshift(alert);
-                        scope.hideFirst = true;
 
-                        var newAlert = $compile("<cozen-alert cozen-alert-label='alert.label' " +
-                            "cozen-alert-label-values='alert.labelValues' " +
-                            "cozen-alert-size='{{ _cozenFloatingFeedSize }}' " +
-                            "cozen-alert-type='{{ alert.type }}' " +
-                            "cozen-alert-animation-in='false' " +
-                            "cozen-alert-animation-out='{{ !Methods.isNullOrEmpty(_cozenFloatingFeedAnimationOut) }}' " +
-                            "cozen-alert-animation-out-class='{{ _cozenFloatingFeedAnimationOut }}' " +
-                            "cozen-alert-close-btn='{{ _cozenFloatingFeedCloseBtn }}' " +
-                            "cozen-alert-icon-left='{{ _cozenFloatingFeedIconLeft }}' " +
-                            "cozen-alert-close-btn-tooltip='false' " +
-                            "cozen-alert-force-animation='true' " +
-                            "cozen-alert-display='alert.display' " +
-                            "cozen-alert-on-hide-done='_methods.onHideAlert(alert.uuid)' " +
-                            "cozen-alert-class='cozen-floating-alert' " +
-                            "cozen-alert-timeout='{{ _cozenFloatingFeedTimeout }}'>" +
-                            "</cozen-alert>")(scope);
-                        element.append(newAlert);
+                        // The alert object must be accessible through the scope for the template
+                        scope._newAlert = angular.copy(alert);
+
+                        // Convert the template and append the alert
+                        $templateRequest('directives/alert/floatingFeed.alert.template.html').then(function (html) {
+                            var newAlert = $compile(html)(scope);
+                            angular.element(document.getElementById(scope._cozenFloatingFeedId)).append(newAlert);
+                        });
                     }
                 }
                 else {
@@ -173,17 +148,7 @@
 
             // Remove all alerts
             function removeAll() {
-                scope._cozenFloatingAlerts = [];
-            }
-
-            // Remove an alert
-            function onHideAlert(popupUuid) {
-                for (var i = 0, length = scope._cozenFloatingAlerts.length; i < length; i++) {
-                    if (scope._cozenFloatingAlerts[i].uuid == popupUuid) {
-                        scope._cozenFloatingAlerts.splice(i, 1);
-                        break;
-                    }
-                }
+                $rootScope.$broadcast('cozenAlertHideMatching', 'floating-feed-');
             }
         }
     }

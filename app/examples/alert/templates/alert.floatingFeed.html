@@ -4,17 +4,22 @@
             <cozen-floating-feed></cozen-floating-feed>
         </div>
         <div class="col-xs-12">
-            <cozen-btn cozen-btn-label="'Good'"
+            <cozen-alert cozen-alert-label="'Une alerte classique'"
+                         cozen-alert-id="adazdaz">
+            </cozen-alert>
+        </div>
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Error 1.0'"
                        cozen-btn-auto-sizing="true"
-                       cozen-btn-on-click="vm.floatingFeed.addAlert({label: '1', type: 'success'})">
+                       cozen-btn-on-click="vm.floatingFeed.addAlert({label: 'cozen_utils_error_1', type: 'error'})">
             </cozen-btn>
-            <cozen-btn cozen-btn-label="'Good'"
+            <cozen-btn cozen-btn-label="'Error 2.0'"
                        cozen-btn-auto-sizing="true"
-                       cozen-btn-on-click="vm.floatingFeed.addAlert({label: '2', type: 'success'})">
+                       cozen-btn-on-click="vm.floatingFeed.addAlert({label: 'cozen_utils_error_2', type: 'error'})">
             </cozen-btn>
-            <cozen-btn cozen-btn-label="'Good'"
+            <cozen-btn cozen-btn-label="'Error 2.1'"
                        cozen-btn-auto-sizing="true"
-                       cozen-btn-on-click="vm.floatingFeed.addAlert({label: '3', type: 'success'})">
+                       cozen-btn-on-click="vm.floatingFeed.addAlert({label: 'cozen_utils_error_2', type: 'error'})">
             </cozen-btn>
             <cozen-btn cozen-btn-label="'Bad'"
                        cozen-btn-auto-sizing="true"

@@ -1,0 +1,18 @@
+<!-- A bit of genius here -->
+<!-- The :: avoid watching the scope, so the new alert doesn't change old values -->
+<cozen-alert cozen-alert-label="::_newAlert.label"
+             cozen-alert-label-values="::_newAlert.labelValues"
+             cozen-alert-size="{{ _cozenFloatingFeedSize }}"
+             cozen-alert-type="{{ ::_newAlert.type }}"
+             cozen-alert-animation-in="true"
+             cozen-alert-animation-out="{{ !Methods.isNullOrEmpty(_cozenFloatingFeedAnimationOut) }}"
+             cozen-alert-animation-out-class="{{ _cozenFloatingFeedAnimationOut }}"
+             cozen-alert-close-btn="{{ _cozenFloatingFeedCloseBtn }}"
+             cozen-alert-icon-left="{{ _cozenFloatingFeedIconLeft }}"
+             cozen-alert-close-btn-tooltip="false"
+             cozen-alert-force-animation="true"
+             cozen-alert-class="cozen-floating-alert"
+             cozen-alert-id="floating-feed-{{ ::_newAlert.uuid }}"
+             cozen-alert-timeout="{{ _cozenFloatingFeedTimeout }}"
+             cozen-alert-auto-destroy="true">
+</cozen-alert>

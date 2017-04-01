@@ -108,6 +108,7 @@
         "iconLeft": true,
         "right": 20,
         "bottom": 20,
-        "timeout": 8000
+        "timeout": 8000,
+        "autoDestroy": false
     }
 }
