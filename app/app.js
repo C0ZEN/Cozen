@@ -37,7 +37,7 @@
             .debug(true)
             .broadcastLog(true)
             .dropdownAutoCloseOthers(true)
-            .inputDisplayModelLength(true)
+            .inputModelLengthType('focus')
             .textareaDisplayModelLength(true)
             .dropdownDisplayModelLength(true)
             .requiredType('icon')

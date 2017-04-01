@@ -72,12 +72,17 @@
             return this;
         };
 
-        this.inputDisplayModelLength = function (value) {
-            if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('inputDisplayModelLength');
+        this.inputModelLengthType = function (value) {
+            var list = [
+                'always',
+                'never',
+                'focus'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('inputModelLengthType', list);
             }
             else {
-                CONFIG.input.displayModelLength = value;
+                CONFIG.input.modelLengthType = value;
             }
             return this;
         };

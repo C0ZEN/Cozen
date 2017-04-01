@@ -31,7 +31,7 @@
         "displayModelLength": false
     },
     "input": {
-        "displayModelLength": false
+        "modelLengthType": "always"
     },
     "textarea": {
         "displayModelLength": false,

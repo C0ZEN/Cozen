@@ -29,8 +29,9 @@
         </label>
 
         <!-- Model length -->
-        <label ng-if="_cozenInputDisplayModelLength && vm.cozenInputModel.length > 0"
+        <label ng-if="_cozenInputModelLengthType != 'never' && vm.cozenInputModel.length > 0"
                class="model-length"
+               ng-show="_cozenInputModelLengthType == 'focus' && vm._cozenInputIsFocused"
                ng-class="{'error': _cozenInputModelLength < 0}">
             {{ _cozenInputModelLength }}
         </label>
@@ -72,7 +73,9 @@
                    id="{{ _cozenInputName }}"
                    cozen-string-to-number
                    cozen-string-to-number-disabled="{{ _cozenInputType != 'number' }}"
-                   spellcheck="{{ _cozenInputSpellCheck }}">
+                   spellcheck="{{ _cozenInputSpellCheck }}"
+                   ng-focus="vm._cozenInputIsFocused = true"
+                   ng-blur="vm._cozenInputIsFocused = false">
 
             <!-- Arrow up/down -->
             <div ng-if="_cozenInputType == 'number'"
