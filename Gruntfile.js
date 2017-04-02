@@ -50,9 +50,11 @@ module.exports = function (grunt) {
             },
             jsTest    : {
                 files: ['test/spec/**/*.js'],
-                tasks: ['newer:jshint:test',
+                tasks: [
+                    'newer:jshint:test',
                     'newer:jscs:test',
-                    'karma']
+                    'karma'
+                ]
             },
             styles    : {
                 files: ['<%= yeoman.app %>/styles/**/*.css'],
@@ -559,7 +561,7 @@ module.exports = function (grunt) {
                 files  : [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'},
                     {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/import.atom.less'},
-                    {'<%= yeoman.app %>/styles/test.min.css': '<%= yeoman.app %>/styles/test.less'}
+                    {'<%= yeoman.app %>/styles/test/test.min.css': '<%= yeoman.app %>/styles/test/test.less'}
                 ]
             },
             release: {
@@ -584,7 +586,7 @@ module.exports = function (grunt) {
                 files: [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/tau.min.css'},
                     {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/atom.min.css'},
-                    {'<%= yeoman.app %>/styles/test.min.css': '<%= yeoman.app %>/styles/test.min.css'}
+                    {'<%= yeoman.app %>/styles/test/test.min.css': '<%= yeoman.app %>/styles/test/test.min.css'}
                 ]
             },
             release: {
