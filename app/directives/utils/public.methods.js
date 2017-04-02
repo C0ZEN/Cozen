@@ -27,7 +27,8 @@ var Methods = {
     hasDuplicates             : hasDuplicates,
     broadcastLog              : broadcastLog,
     infoCustomLog             : infoCustomLog,
-    infoSimpleLog             : infoSimpleLog
+    infoSimpleLog             : infoSimpleLog,
+    infoObjectLog             : infoObjectLog
 };
 
 var Data = {
@@ -245,7 +246,7 @@ function missingKeyLog(directive, key, when) {
 
 function changeRouteLog(directive, route, params) {
     var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Redirection to <%c' + route + '%c>' + getFormattedParams(params),
+    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Redirection to <%c' + route + '%c>' + _getFormattedParams(params),
         getConsoleColor(),
         getConsoleColor('directive'),
         getConsoleColor(),
@@ -255,28 +256,6 @@ function changeRouteLog(directive, route, params) {
         getConsoleColor(),
         getConsoleColor('fn')
     );
-
-    function getFormattedParams(params) {
-        var text = '', count = 0;
-        if (!Methods.isNullOrEmpty(params) && Object.keys(params).length > 0) {
-            text += '\nParams:%c ';
-            Object.keys(params).forEach(function (key) {
-                if (count > 0) {
-                    text += ', ';
-                }
-                else {
-                    text += '{'
-                }
-                text += key + ':' + params[key];
-                count++;
-            });
-            text += '}';
-        }
-        else {
-            text += '%c';
-        }
-        return text;
-    }
 }
 
 function hasDuplicates(array) {
@@ -298,7 +277,7 @@ function broadcastLog(scope, eventName) {
 
 function infoCustomLog(target, textBefore, value, textAfter) {
     var now = moment().format('HH:mm:ss');
-    console.info('%c[%c' + target + '%c][%c' + now + '%c] ' + textBefore + ' <%c' + value + '%c> ' + textAfter,
+    console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + textBefore + ' <%c' + value + '%c> ' + textAfter,
         getConsoleColor(),
         getConsoleColor('directive'),
         getConsoleColor(),
@@ -311,11 +290,47 @@ function infoCustomLog(target, textBefore, value, textAfter) {
 
 function infoSimpleLog(target, text) {
     var now = moment().format('HH:mm:ss');
-    console.info('%c[%c' + target + '%c][%c' + now + '%c] ' + text,
+    console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + text,
         getConsoleColor(),
         getConsoleColor('directive'),
         getConsoleColor(),
         getConsoleColor('time'),
         getConsoleColor()
     );
+}
+
+function infoObjectLog(target, text, object) {
+    var now = moment().format('HH:mm:ss');
+    console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + text + '\n' + _getFormattedParams(object),
+        getConsoleColor(),
+        getConsoleColor('directive'),
+        getConsoleColor(),
+        getConsoleColor('time'),
+        getConsoleColor(),
+        getConsoleColor('fn')
+    );
+}
+
+/// INTERNAL FUNCTIONS ///
+
+function _getFormattedParams(params) {
+    var text = '', count = 0;
+    if (!Methods.isNullOrEmpty(params) && Object.keys(params).length > 0) {
+        text += '\nParams:%c ';
+        Object.keys(params).forEach(function (key) {
+            if (count > 0) {
+                text += ', ';
+            }
+            else {
+                text += '{'
+            }
+            text += key + ':' + params[key];
+            count++;
+        });
+        text += '}';
+    }
+    else {
+        text += '%c';
+    }
+    return text;
 }
