@@ -35,6 +35,7 @@
         ConfigProvider
             .scrollsBar(false)
             .debug(true)
+            .logsEnabled(true)
             .broadcastLog(true)
             .dropdownAutoCloseOthers(true)
             .inputModelLengthType('focus')

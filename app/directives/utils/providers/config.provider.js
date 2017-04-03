@@ -21,6 +21,21 @@
             return this;
         };
 
+        this.logsEnabled = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('logsEnabled');
+            }
+            else {
+                CONFIG.logs.enabled = value;
+            }
+            return this;
+        };
+
+        this.logsFormat = function (value) {
+            CONFIG.logs.format = value;
+            return this;
+        };
+
         this.broadcastLog = function (value) {
             if (typeof value != 'boolean') {
                 Methods.dataMustBeBoolean('broadcastLog');

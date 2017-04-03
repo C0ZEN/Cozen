@@ -9,6 +9,10 @@
         "atom"
     ],
     "debug": false,
+    "logs": {
+        "enabled": false,
+        "format": "HH:mm:ss.SSS"
+    },
     "broadcastLog": false,
     "scrollsBar": true,
     "scrollsBarConfig": {

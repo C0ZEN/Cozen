@@ -69,7 +69,7 @@ function isFunction(fn) {
     return typeof fn === 'function';
 }
 
-// Use it to tell the dev that a param required is missing
+// Use it to tell the dev that a param required is missing [Deprecated, use enhancedLogs]
 function directiveErrorRequired(directive, param) {
     console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is required',
         getConsoleColor(),
@@ -80,7 +80,7 @@ function directiveErrorRequired(directive, param) {
     );
 }
 
-// Use it to log a called of a function
+// Use it to log a called of a function [Deprecated, use enhancedLogs]
 function directiveCallbackLog(directive, fn) {
     var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + directive + '%c][%c' + now + '%c] Fn <%c' + fn + '%c> called',
@@ -122,7 +122,7 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-// Use it to tell the dev that a param set is not a function
+// Use it to tell the dev that a param set is not a function [Deprecated, use enhancedLogs]
 function directiveErrorFunction(directive, param) {
     console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a function',
         getConsoleColor(),
@@ -133,7 +133,7 @@ function directiveErrorFunction(directive, param) {
     );
 }
 
-// Use it to tell the dev that a param set is not a boolean
+// Use it to tell the dev that a param set is not a boolean [Deprecated, use enhancedLogs]
 function directiveErrorBoolean(directive, param) {
     console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a boolean',
         getConsoleColor(),
@@ -154,7 +154,7 @@ function getElementPaddingTopBottom(element) {
     return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
 }
 
-// Use it to tell the dev that a param value is null or empty but should be set
+// Use it to tell the dev that a param value is null or empty but should be set [Deprecated, use enhancedLogs]
 function directiveErrorEmpty(directive, param) {
     console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
         getConsoleColor(),
@@ -165,7 +165,7 @@ function directiveErrorEmpty(directive, param) {
     );
 }
 
-// Use it to tell the dev that a entered value is incorrect and an callback value was assigned to avoid fatal error
+// Use it to tell the dev that a entered value is incorrect and an callback value was assigned to avoid fatal error [Deprecated, use enhancedLogs]
 function directiveWarningUnmatched(directive, param, value) {
     console.warn('%c[%c' + directive + '%c] Attr <%c' + param + '%c> value\'s was wrong\nThe default value <%c' + value + '%c> was set',
         getConsoleColor(),
@@ -178,7 +178,7 @@ function directiveWarningUnmatched(directive, param, value) {
     );
 }
 
-// Use it to tell the dev that a entered value is not a boolean
+// Use it to tell the dev that a entered value is not a boolean [Deprecated, use enhancedLogs]
 function dataMustBeBoolean(attribute) {
     console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
         getConsoleColor(),
@@ -191,7 +191,7 @@ function dataMustBeBoolean(attribute) {
     );
 }
 
-// Use it to tell the dev that a entered value is not a number
+// Use it to tell the dev that a entered value is not a number [Deprecated, use enhancedLogs]
 function dataMustBeNumber(attribute) {
     console.error('%c<%c' + attribute + '%c> must be an <%cnumber%c>',
         getConsoleColor(),
@@ -202,7 +202,7 @@ function dataMustBeNumber(attribute) {
     );
 }
 
-// Use it to tell the dev that a entered value is not an object
+// Use it to tell the dev that a entered value is not an object [Deprecated, use enhancedLogs]
 function dataMustBeObject(attribute) {
     console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
         getConsoleColor(),
@@ -213,7 +213,7 @@ function dataMustBeObject(attribute) {
     );
 }
 
-// Use it to tell the dev that a key is not in the list so that's a terrible error !!
+// Use it to tell the dev that a key is not in the list so that's a terrible error !! [Deprecated, use enhancedLogs]
 function dataMustBeInThisList(attribute, list) {
     console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
         getConsoleColor(),
@@ -231,7 +231,7 @@ function hasOwnProperty(obj, prop) {
         (!(prop in proto) || proto[prop] !== obj[prop]);
 }
 
-// Use it to show a request log to an API
+// Use it to show a request log to an API [Deprecated, use enhancedLogs]
 function httpRequestLog(request) {
     var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + request.methods + '%c][%c' + now + '%c] ' + request.url,
@@ -243,7 +243,7 @@ function httpRequestLog(request) {
     );
 }
 
-// Use it when you start your app
+// Use it when you start your app [Deprecated, use enhancedLogs]
 function firstLoadLog(isStarting) {
     var now  = moment().format('HH:mm:ss.SSS');
     var text = isStarting ? 'Starting' : 'Ready';
