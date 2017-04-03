@@ -94,8 +94,6 @@
                 uuid     : rfc4122.v4()
             };
 
-            scope._isReady = true;
-
             methods.init();
 
             function init() {
@@ -184,10 +182,6 @@
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
 
-                // Ask the parent to launch the cozenFormName event to get the data
-                // -> Avoid problems when elements are added to the DOM after the form loading
-                $rootScope.$broadcast('cozenFormChildInit');
-
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
                     scope._cozenTextareaForm      = eventData.name;
@@ -222,11 +216,9 @@
                     }, 10);
                 });
 
-                // Display the template (the timeout avoid a visual bug due to events)
-                $timeout(function () {
-                    scope._isReady = true;
-                    methods.updateModelLength();
-                }, 1);
+                // Ask the parent to launch the cozenFormName event to get the data
+                // -> Avoid problems when elements are added to the DOM after the form loading
+                $rootScope.$broadcast('cozenFormChildInit');
             }
 
             function hasError() {
