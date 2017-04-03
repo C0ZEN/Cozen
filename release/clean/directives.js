@@ -2132,6 +2132,271 @@
 
 /**
  * @ngdoc directive
+ * @name cozen-draw-chart
+ * @scope
+ * @restrict E
+ * @replace false
+ * @transclude false
+ * @description
+ * Handle the creation of a google graph easily
+ *
+ * [Scope params]
+ * @param {string}   cozenDrawChartId               > Id of the chart [required]
+ * @param {object}   cozenDrawChartData             > Data for the chart [required]
+ * @param {object}   cozenDrawChartOptions          > Options for the chart [required]
+ * @param {string}   cozenDrawChartType             > Type of the chart [required]
+ * @param {boolean}  cozenDrawChartHidden   = false > Hide the chart (display none)
+ * @param {string}   cozenDrawChartBase64           > Get the graph base64 string (override value)
+ * @param {function} cozenDrawChartOnBase64         > Callback function called when the base64 is ready {id, base64}
+ *
+ */
+(function (angular, window, document) {
+    'use strict';
+
+    angular
+        .module('cozenLib')
+        .directive('cozenDrawChart', cozenDrawChart);
+
+    cozenDrawChart.$inject = [
+        '$interval',
+        'enhancedLogs',
+        '$timeout',
+        'exportToPdfFactory'
+    ];
+
+    function cozenDrawChart($interval, enhancedLogs, $timeout, exportToPdfFactory) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            scope      : {
+                cozenDrawChartId      : '=?',
+                cozenDrawChartData    : '&',
+                cozenDrawChartOptions : '=?',
+                cozenDrawChartType    : '=?',
+                cozenDrawChartHidden  : '=?',
+                cozenDrawChartBase64  : '=?',
+                cozenDrawChartOnBase64: '&'
+            },
+            replace    : false,
+            transclude : false,
+            templateUrl: 'app/components/reporting/export-to-pdf/draw-chart/draw-chart.html'
+        };
+
+        function link(scope, element, attrs) {
+            scope._isReady = false;
+
+            // Methods
+            var methods = {
+                init     : init,
+                destroy  : destroy,
+                initChart: initChart,
+                drawChart: drawChart,
+                onResize : onResize
+            };
+
+            // Data
+            var data = {
+                chart        : null,
+                options      : {},
+                init         : false,
+                directiveName: 'cozenDrawChart'
+            };
+
+            methods.init();
+
+            function init() {
+
+                // Required stuff (checking)
+                var requiredAttrs = [
+                    'cozenDrawChartId',
+                    'cozenDrawChartData',
+                    'cozenDrawChartOptions',
+                    'cozenDrawChartType'
+                ];
+                for (var i = 0, length = requiredAttrs.length; i < length; i++) {
+                    if (angular.isUndefined(attrs[requiredAttrs[i]])) {
+                        enhancedLogs.errorMissingParameterDirective(data.directiveName, requiredAttrs[i]);
+                        return;
+                    }
+                }
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                if (angular.isUndefined(attrs.cozenDrawChartHidden)) {
+                    scope.cozenDrawChartHidden = false;
+                }
+
+                // Display the template
+                scope._isReady = true;
+
+                // Draw the graph
+                google.charts.load('current', {packages: ['corechart']});
+                google.charts.setOnLoadCallback(methods.initChart);
+
+                // Resize it when the window change
+                window.addEventListener('resize', methods.onResize);
+                scope.$watch('cozenDrawChartOptions', function () {
+                    methods.drawChart();
+                });
+            }
+
+            // Properly destroy
+            function destroy() {
+                window.removeEventListener('resize', methods.onResize);
+                element.off('$destroy', methods.destroy);
+            }
+
+            // Init the chart (default conf, creation, callback and watcher)
+            function initChart() {
+                data.options = {
+                    animation          : {
+                        duration: 1000,
+                        easing  : 'out',
+                        startup : true
+                    },
+                    backgroundColor    : {
+                        fill   : 'transparent',
+                        opacity: 100
+                    },
+                    colors             : [
+                        exportToPdfFactory.getColors().moderateRed,
+                        exportToPdfFactory.getColors().moderateYellow,
+                        exportToPdfFactory.getColors().moderateBlue,
+                        exportToPdfFactory.getColors().moderateCyan,
+                        exportToPdfFactory.getColors().moderatePurple
+                    ],
+                    fontName           : 'Hind',
+                    fontSize           : 16,
+                    legend             : {
+                        alignment: 'center',
+                        textStyle: {
+                            bold    : false,
+                            italic  : false,
+                            fontSize: 14,
+                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            fontName: 'Hind'
+                        }
+                    },
+                    focusTarget        : 'category',
+                    tooltip            : {
+                        isHtml   : true,
+                        textStyle: {
+                            bold    : false,
+                            italic  : false,
+                            fontSize: 14,
+                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            fontName: 'Hind'
+                        }
+                    },
+                    hAxis              : {
+                        titleTextStyle: {
+                            bold    : false,
+                            italic  : false,
+                            fontSize: 16,
+                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            fontName: 'Hind'
+                        },
+                        textStyle     : {
+                            bold    : false,
+                            italic  : false,
+                            fontSize: 14,
+                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            fontName: 'Hind'
+                        }
+                    },
+                    vAxis              : {
+                        titleTextStyle: {
+                            bold    : false,
+                            italic  : false,
+                            fontSize: 16,
+                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            fontName: 'Hind'
+                        },
+                        textStyle     : {
+                            bold    : false,
+                            italic  : false,
+                            fontSize: 14,
+                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            fontName: 'Hind'
+                        }
+                    },
+                    theme              : 'material',
+                    annotations        : {
+                        textStyle    : {
+                            bold    : false,
+                            italic  : false,
+                            fontSize: 14,
+                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            fontName: 'Hind',
+                            opacity : 1
+                        },
+                        highContrast : true,
+                        alwaysOutside: false,
+                        stem         : {
+                            color : exportToPdfFactory.getColors().moderateBlack,
+                            length: 5
+                        }
+                    },
+                    enableInteractivity: true
+                };
+
+                var domChart = null;
+                var interval = $interval(function () {
+                    domChart = document.getElementById(scope.cozenDrawChartId);
+                    if (domChart != null && domChart != '') {
+                        data.chartContainer = document.getElementById(scope.cozenDrawChartId);
+                        data.chart          = new google.visualization[scope.cozenDrawChartType](data.chartContainer);
+
+                        // Get the base64 image
+                        if (!data.init) {
+                            google.visualization.events.addListener(data.chart, 'ready', function () {
+
+                                // The timeout fix a bug with custom font-family in the graph
+                                $timeout(function () {
+                                    scope.cozenDrawChartBase64 = data.chart.getImageURI();
+                                    if (typeof scope.cozenDrawChartOnBase64 == 'function') {
+                                        scope.cozenDrawChartOnBase64({
+                                            id    : scope.cozenDrawChartId,
+                                            base64: scope.cozenDrawChartBase64
+                                        });
+                                    }
+                                });
+                            });
+                        }
+
+                        data.init = true;
+                        $interval.cancel(interval);
+                        methods.drawChart();
+                    }
+                }, 30);
+            }
+
+            // Draw the google graph
+            function drawChart() {
+                if (!data.init) {
+                    return;
+                }
+                var options = angular.merge({}, data.options, scope.cozenDrawChartOptions);
+                data.chart.draw(scope.cozenDrawChartData(), options);
+            }
+
+            // Resize the google graph to his container
+            function onResize() {
+                var container = document.getElementById(scope.cozenDrawChartId);
+                if (container != null) {
+                    container             = container.firstChild.firstChild;
+                    container.style.width = "100%";
+                    methods.drawChart();
+                }
+            }
+        }
+    }
+
+})(window.angular, window, document);
+
+
+/**
+ * @ngdoc directive
  * @name cozen-dropdown
  * @scope
  * @restrict E
@@ -3790,6 +4055,117 @@
 
 
 
+/**
+ * @name cozenGoogleAnalyticsRequest
+ * @description
+ * A service to handle more easily multiple tracker
+ * The purpose is to manually trigger which types you want
+ * This is not a service for automatic tracking
+ *
+ * [Hit types]
+ * pageview, screenview, event, transaction, item, social, exception, and timing
+ *
+ */
+(function (angular, document) {
+    'use strict';
+
+    angular
+        .module('cozenLib')
+        .factory('cozenGoogleAnalyticsRequest', cozenGoogleAnalyticsRequest);
+
+    cozenGoogleAnalyticsRequest.$inject = [
+        'enhancedLogs',
+        'PublicMethods',
+        '$location'
+    ];
+
+    function cozenGoogleAnalyticsRequest(enhancedLogs, PublicMethods, $location) {
+
+        // Private data
+        var _data = {
+            trackerDefaultName: 't0'
+        };
+
+        return {
+            create       : create,
+            addCustomData: addCustomData,
+            pageView     : pageView
+        };
+
+        /**
+         * Create the initial tracking (used to know if the user is new or returning)
+         * Also collects information about the device such as screen resolution, viewport size, and document encoding
+         * @param {string} cookieDomain = auto > none while you are working on localhost, auto otherwise
+         * @param {string} trackerName  = t0   > The name of the GA tracker
+         * @param {string} userId              > The userId
+         */
+        function create(cookieDomain, trackerName, userId) {
+
+            // Default values (avoid ES6 shortcuts for cordova)
+            if (PublicMethods.isNullOrEmpty(cookieDomain)) {
+                cookieDomain = 'auto';
+            }
+            if (PublicMethods.isNullOrEmpty(trackerName)) {
+                trackerName = _data.trackerDefaultName;
+            }
+            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('create', trackerName);
+
+            // Create the tracker
+            ga('create', {
+                trackingId  : 'UA-85736401-1',
+                cookieDomain: cookieDomain,
+                name        : trackerName,
+                userId      : userId
+            });
+        }
+
+        /**
+         * Add custom data to the tracker (like dimension or metric)
+         * @param {object} customData       > Object of dimension and/or metric
+         * @param {string} trackerName = t0 > The name of the GA tracker
+         */
+        function addCustomData(customData, trackerName) {
+
+            // Default values
+            if (PublicMethods.isNullOrEmpty(trackerName)) {
+                trackerName = _data.trackerDefaultName;
+            }
+            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('addCustomData', trackerName);
+
+            // Update the tracker with custom dimension or metric
+            ga(trackerName + '.set', customData);
+        }
+
+        /**
+         * Send a pageview hit
+         * @param {string} trackerName = t0   > The name of the tracker
+         * @param {string} pageUrl     = auto > The path portion of a URL. This value should start with a slash (/) character (Default: $location.url())
+         * @param {string} title       = auto > The title of the page (Default: document.title)
+         */
+        function pageView(trackerName, pageUrl, title) {
+
+            // Default values
+            if (PublicMethods.isNullOrEmpty(trackerName)) {
+                trackerName = _data.trackerDefaultName;
+            }
+            if (PublicMethods.isNullOrEmpty(pageUrl)) {
+                pageUrl = $location.url();
+            }
+            if (PublicMethods.isNullOrEmpty(title)) {
+                title = document.title;
+            }
+            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('pageview', trackerName);
+
+            // Send a pageview hit
+            ga(trackerName + '.send', {
+                hitType: 'pageview',
+                page   : pageUrl,
+                title  : title
+            });
+        }
+    }
+
+})(window.angular, window.document);
 (function (angular) {
     'use strict';
 
@@ -4590,6 +4966,445 @@
 
 
 
+/**
+ * @name cozenJsToPdf
+ * @description
+ * A factory used to help the drawing of a jsPDF document
+ * It helps to make easier pdf and avoid error
+ * Of course, if you have a specific need, you can combine the stuff from jsPDF with this factory
+ * You can have multiple instance at a time
+ *
+ * [Example steps]
+ * Start by calling the init() function
+ * Then call drawing functions as much as you want
+ * Ex: drawTitle() drawTitle() drawText() drawTitle()...
+ * Finally, print your document with print() function
+ *
+ * [Reminders]
+ * Paper size points A4: 595x842
+ * For more info: https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
+ *
+ * jsPDF documentation: http://rawgit.com/MrRio/jsPDF/master/docs/
+ * getStringUnitWidth * fontSize => return the width of a string (points)
+ * setTextColor(r, g, b)
+ *
+ */
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib')
+        .factory('cozenJsToPdf', cozenJsToPdf);
+
+    cozenJsToPdf.$inject = [
+        'enhancedLogs'
+    ];
+
+    function cozenJsToPdf(enhancedLogs) {
+
+        // Default configuration (could be override by init styles param)
+        var defaultConfig = {
+            pdfName : 'generated-pdf',
+            title   : {
+                size  : 40,
+                family: 'courier',
+                weight: 'bold',
+                color : {
+                    r: 26,
+                    g: 188,
+                    b: 156
+                }
+            },
+            subtitle: {
+                size  : 30,
+                family: 'courier',
+                weight: 'normal',
+                color : {
+                    r: 231,
+                    g: 76,
+                    b: 60
+                }
+            },
+            text    : {
+                size  : 16,
+                family: 'courier',
+                weight: 'normal',
+                color : {
+                    r: 155,
+                    g: 89,
+                    b: 182
+                }
+            }
+        };
+
+        // Internal functions
+        var methods = {
+            areParamsSet: areParamsSet,
+            rgbToDecimal: rgbToDecimal,
+            hexToRgb    : hexToRgb
+        };
+
+        // Public functions
+        return {
+            init           : init,
+            drawTitle      : drawTitle,
+            drawText       : drawText,
+            drawImage      : drawImage,
+            print          : print,
+            setTextStyle   : setTextStyle,
+            setFillColor   : setFillColor,
+            getStringWidth : getStringWidth,
+            getRowsQuantity: getRowsQuantity,
+            explodeString  : explodeString,
+            svgToBase64    : svgToBase64,
+            svgToBase64Svg : svgToBase64Svg,
+            setTextColor   : setTextColor
+        };
+
+        /**
+         * Init a jsPDF doc
+         * @param {object} config > Configuration for the jsPDF (see the jsPDF doc for that)
+         * @param {object} styles > Override the configuration styles (merge)
+         * @returns {object} jsPDF
+         */
+        function init(config, styles) {
+            var doc           = new jsPDF(config);
+            doc.jsToPdfConfig = angular.merge({}, defaultConfig, styles);
+            return doc;
+        }
+
+        /**
+         * Draw a title
+         * @param {object} doc        > jsPDF document to work with [required]
+         * @param {string|array} text > Text to display [required]
+         * @param {number} x          > Coordinate (according doc.unit settings) x from the left of the page [required]
+         * @param {number} y          > Coordinate (according doc.unit settings) y from the top of the page [required]
+         * @returns {object} jsPDF
+         */
+        function drawTitle(doc, text, x, y) {
+            if (!methods.areParamsSet(doc, text, x, y)) {
+                enhancedLogs.errorMissingParameterFn('drawTitle');
+                return doc;
+            }
+            doc = setTextStyle(doc, doc.jsToPdfConfig.title.size, doc.jsToPdfConfig.title.family, doc.jsToPdfConfig.title.weight);
+            doc.setTextColor(doc.jsToPdfConfig.title.color.r, doc.jsToPdfConfig.title.color.g, doc.jsToPdfConfig.title.color.b);
+            doc.text(text, x, y);
+            return doc;
+        }
+
+        /**
+         * Draw a subtitle
+         * @param {object} doc        > jsPDF document to work with [required]
+         * @param {string|array} text > Text to display [required]
+         * @param {number} x          > Coordinate (according doc.unit settings) x from the left of the page [required]
+         * @param {number} y          > Coordinate (according doc.unit settings) y from the top of the page [required]
+         * @returns {object} jsPDF
+         */
+        function drawSubTitle(doc, text, x, y) {
+            if (!methods.areParamsSet(doc, text, x, y)) {
+                enhancedLogs.errorMissingParameterFn('drawSubTitle');
+                return doc;
+            }
+            doc = setTextStyle(doc, doc.jsToPdfConfig.subtitle.size, doc.jsToPdfConfig.subtitle.family, doc.jsToPdfConfig.subtitle.weight);
+            doc.setTextColor(doc.jsToPdfConfig.subtitle.color.r, doc.jsToPdfConfig.subtitle.color.g, doc.jsToPdfConfig.subtitle.color.b);
+            doc.text(text, x, y);
+            return doc;
+        }
+
+        /**
+         * Draw a text
+         * @param {object} doc        > jsPDF document to work with [required]
+         * @param {string|array} text > Text to display [required]
+         * @param {number} x          > Coordinate (according doc.unit settings) x from the left of the page [required]
+         * @param {number} y          > Coordinate (according doc.unit settings) y from the top of the page [required]
+         * @returns {object} jsPDF
+         */
+        function drawText(doc, text, x, y) {
+            if (!methods.areParamsSet(doc, text, x, y)) {
+                enhancedLogs.errorMissingParameterFn('drawText');
+                return doc;
+            }
+            doc.text(text, x, y);
+            return doc;
+        }
+
+        /**
+         * Draw an image
+         * @param {object} doc              > jsPDF document to work with [required]
+         * @param {string} imageData        > Image as data url [required]
+         * @param {number} x                > Coordinate (according doc.unit settings) x from the left of the page [required]
+         * @param {number} y                > Coordinate (according doc.unit settings) y from the top of the page [required]
+         * @param {number} width            > Width of the image [required]
+         * @param {number} height           > Height of the image [required]
+         * @param {string} type      = JPEG > Format of the image
+         * @returns {object} jsPDF
+         */
+        function drawImage(doc, imageData, x, y, width, height, type) {
+            if (!methods.areParamsSet(doc, imageData, x, y, width, height)) {
+                enhancedLogs.errorMissingParameterFn('drawImage');
+                return doc;
+            }
+            type = Methods.isNullOrEmpty(type) ? 'JPEG' : type;
+            doc.addImage(imageData, type, x, y, width, height);
+            return doc;
+        }
+
+        /**
+         * Print the document
+         * @param {object} doc > jsPDF document to work with [required]
+         * @returns {object} jsPDF
+         */
+        function print(doc) {
+            if (!methods.areParamsSet(doc)) {
+                enhancedLogs.errorMissingParameterFn('print');
+                return doc;
+            }
+            doc.save(doc.jsToPdfConfig.pdfName + '.pdf');
+            return doc;
+        }
+
+        /**
+         * Define the text style
+         * @param {object} doc                > jsPDF document to work with [required]
+         * @param {number} size   = 20        > Font size
+         * @param {string} family = helvetica > Font family (helvetica, courier, times...)
+         * @param {string} style  = normal    > Font style
+         * @returns {object} jsPDF
+         */
+        function setTextStyle(doc, size, family, style) {
+            if (!methods.areParamsSet(doc)) {
+                enhancedLogs.errorMissingParameterFn('setTextStyle');
+                return doc;
+            }
+            size   = Methods.isNullOrEmpty(size) ? 20 : size;
+            family = Methods.isNullOrEmpty(family) ? 'helvetica' : family;
+            style  = Methods.isNullOrEmpty(style) ? 'normal' : style;
+            doc.setFontSize(size);
+            doc.setFont(family, style);
+            return doc;
+        }
+
+        /**
+         * Define the color of the text (RGB or CMYK)
+         * @param {object} doc            > jsPDF document to work with [required]
+         * @param {number|string} ch1 = 0 > R/C from color format
+         * @param {number|string} ch2 = 0 > G/M from color format
+         * @param {number|string} ch3 = 0 > B/Y from color format
+         * @param {number|string} ch4 = 1 > K from color format
+         * @returns {object} jsPDF
+         */
+        function setFillColor(doc, ch1, ch2, ch3, ch4) {
+            if (!methods.areParamsSet(doc)) {
+                enhancedLogs.errorMissingParameterFn('setFillColor');
+                return doc;
+            }
+            ch1 = Methods.isNullOrEmpty(ch1) ? 0 : ch1;
+            ch2 = Methods.isNullOrEmpty(ch2) ? 0 : ch2;
+            ch3 = Methods.isNullOrEmpty(ch3) ? 0 : ch3;
+            ch4 = Methods.isNullOrEmpty(ch4) ? 1 : ch4;
+            if (arguments.length <= 4) {
+                for (var i = 1, length = 4; i < length; i++) {
+                    arguments[i] = methods.rgbToDecimal(arguments[i]);
+                }
+                doc.setFillColor(ch1, ch2, ch3);
+            }
+            else {
+                doc.setFillColor(ch1, ch2, ch3, ch4);
+            }
+            return doc;
+        }
+
+        /**
+         * Return the width of a string
+         * @param {object} doc           > jsPDF document to work with [required]
+         * @param {string} text          > Text to work with [required]
+         * @param {number} fontSize      > Font size [required]
+         * @param {string} unit     = pt > The unit used with this doc
+         * @returns {number}
+         */
+        function getStringWidth(doc, text, fontSize, unit) {
+            if (!methods.areParamsSet(doc, text, fontSize)) {
+                enhancedLogs.errorMissingParameterFn('getStringWidth');
+                return 0;
+            }
+            unit = Methods.isNullOrEmpty(unit) ? 'pt' : unit;
+            switch (unit) {
+                case 'pt':
+                    return parseInt((doc.getStringUnitWidth(text) * fontSize).toFixed(0));
+            }
+        }
+
+        /**
+         * Return the number of rows for a text
+         * @param {object} doc           > jsPDF document to work with [required]
+         * @param {number} rowWidth      > Width of a row [required]
+         * @param {string} text          > Text to work with [required]
+         * @param {number} fontSize      > Font size [required]
+         * @param {string} unit     = pt > The unit used with this doc
+         * @returns {number}
+         */
+        function getRowsQuantity(doc, rowWidth, text, fontSize, unit) {
+            if (!methods.areParamsSet(doc, rowWidth, text, fontSize)) {
+                enhancedLogs.errorMissingParameterFn('getRowsQuantity');
+                return 0;
+            }
+            unit = Methods.isNullOrEmpty(unit) ? 'pt' : unit;
+            switch (unit) {
+                case 'pt':
+                    var stringWidth = getStringWidth(doc, text, fontSize, unit);
+                    return Math.ceil(stringWidth / rowWidth);
+            }
+        }
+
+        /**
+         * Explode a string into array if the limit of chars is detected
+         * @param {string} text     > Text to work with [required]
+         * @param {string} maxChars > Number of chars as delimiter [required]
+         * @returns {Array} array of strings
+         */
+        function explodeString(text, maxChars) {
+            if (!methods.areParamsSet(text, maxChars)) {
+                enhancedLogs.errorMissingParameterFn('explodeString');
+                return [];
+            }
+            var chunks = [];
+            for (var i = 0, charsLength = text.length; i < charsLength; i += maxChars) {
+                chunks.push(text.substring(i, i + maxChars));
+            }
+            return chunks;
+        }
+
+        /**
+         * Convert the SVG to a base64 string
+         * @param {string}   parentDomId > Id of the parent of the parent [required]
+         * @param {canvas}   canvas      > Canvas to work with [required]
+         * @param {function} callback    > Callback to get the base64 string => canvas.toDataURL() [required]
+         */
+        function svgToBase64(parentDomId, canvas, callback) {
+            if (!methods.areParamsSet(parentDomId, canvas, callback)) {
+                enhancedLogs.errorMissingParameterFn('svgToBase64');
+                return;
+            }
+            var svg       = angular.element(document.querySelector('#' + parentDomId + ' svg'));
+            var svg_xml   = (new XMLSerializer()).serializeToString(svg[0]);
+            var img       = new Image();
+            var ctx       = canvas.getContext('2d');
+            canvas.height = svg[0].getBoundingClientRect().height;
+            canvas.width  = svg[0].getBoundingClientRect().width;
+            img.onload    = function () {
+                ctx.drawImage(img, 0, 0);
+                callback();
+            };
+            img.src       = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svg_xml)));
+        }
+
+        /**
+         * Convert the SVG to a base64 svg+xml string
+         * @param {string} parentDomId > Id of the parent of the parent [required]
+         * @returns {string}
+         */
+        function svgToBase64Svg(parentDomId) {
+            if (!methods.areParamsSet(parentDomId)) {
+                enhancedLogs.errorMissingParameterFn('svgToDataUrl');
+                return '';
+            }
+            var svg     = angular.element(document.querySelector('#' + parentDomId + ' svg'));
+            var svg_xml = (new XMLSerializer()).serializeToString(svg[0]);
+            return 'data:image/svg+xml;base64,' + window.btoa(svg_xml);
+        }
+
+        /**
+         * Set the color of the text (three ways)
+         * @param {object}              doc > jsPDF document to work with [required]
+         * @param {number|array|string} r   > Red color or array of color ([r, g b]) or hexadecimal (short/long) [required]
+         * @param {number}              g   > Green color
+         * @param {number}              b   > Blue color
+         * @returns {object} jsPDF
+         */
+        function setTextColor(doc, r, g, b) {
+            if (!methods.areParamsSet(doc, r)) {
+                enhancedLogs.errorMissingParameterFn('setTextColor');
+                return doc;
+            }
+            if (methods.hexToRgb(r)) {
+                r = methods.hexToRgb(r);
+            }
+            if (Array.isArray(r) && r.length == 3) {
+                doc.setTextColor(r[0], r[1], r[2]);
+            }
+            else if (arguments.length == 4) {
+                doc.setTextColor(r, g, b);
+            }
+
+            return doc;
+        }
+
+        /////////// INTERNAL FUNCTIONS ///////////
+
+        /**
+         * Check if arguments are set
+         * @returns {boolean}
+         */
+        function areParamsSet() {
+            for (var i = 0, length = arguments.length; i < length; i++) {
+                if (arguments[i] == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /**
+         * Convert RGB unit to decimal (0 to 1)
+         * @param {number} value > Value to convert [required]
+         * @returns {number}
+         */
+        function rgbToDecimal(value) {
+            if (!methods.areParamsSet(value)) {
+                enhancedLogs.errorMissingParameterFn('rgbToDecimal');
+                return 0;
+            }
+            if (typeof value == 'number' && value > 1) {
+                value = value / 255;
+            }
+            return value;
+        }
+
+        /**
+         * Convert an hexadecimal color to rgb (could be a shortcut)
+         * @param {string} hex > Color of type hexadecimal [required]
+         * @returns {Array|boolean} rgb or false
+         */
+        function hexToRgb(hex) {
+            if (!methods.areParamsSet(hex)) {
+                enhancedLogs.errorMissingParameterFn('hexToRgb');
+                return false;
+            }
+            var color;
+            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+                color = hex.substring(1).split('');
+                if (color.length == 3) {
+                    color = [
+                        color[0],
+                        color[0],
+                        color[1],
+                        color[1],
+                        color[2],
+                        color[2]
+                    ];
+                }
+                color = '0x' + color.join('');
+                return [
+                    (color >> 16) & 255,
+                    (color >> 8) & 255,
+                    color & 255
+                ];
+            }
+            return false;
+        }
+    }
+
+})(window.angular);
 /**
  * @ngdoc directive
  * @name cozen-list

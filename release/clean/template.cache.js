@@ -139,6 +139,11 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('directives/utils/directives/draw-chart/drawChart.html',
+    "<div class=draw-chart-container ng-style=\"{'display': cozenDrawChartHidden ? 'none' : '-webkit-box'}\" ng-if=_isReady><div id=\"{{ cozenDrawChartId }}\"></div></div>"
+  );
+
+
   $templateCache.put('directives/view/view.template.html',
     "<div ng-if=_isReady class=cozen-view cozen-shortcut ng-scrollbars ng-scrollbars-disabled=!_cozenScrollBar ng-scrollbars-config=_cozenScrollBarConfig ng-transclude></div>"
   );
