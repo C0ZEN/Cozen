@@ -9002,6 +9002,9 @@ function _returnSpacesString(key, maxLength) {
 
             function init() {
 
+                // Show only when the textarea know his parent (all the stuff is prepared)
+                scope.cozenTextareaHasParentKnowledge = false;
+
                 // Public functions
                 scope._methods = {
                     getMainClass: getMainClass,
@@ -9092,16 +9095,33 @@ function _returnSpacesString(key, maxLength) {
                     scope._cozenTextareaForm      = eventData.name;
                     scope._cozenTextareaFormCtrl  = eventData.ctrl;
                     scope._cozenTextareaFormModel = eventData.model;
+                    scope.cozenTextareaHasParentKnowledge = true;
 
                     // Force to dirty and touched if the model is not empty
-                    if (!Methods.isNullOrEmpty(scope.vm.cozenTextareaModel)) {
-                        var textarea = methods.getForm();
-                        textarea     = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm][scope._cozenTextareaName];
-                        if (!Methods.isNullOrEmpty(textarea)) {
-                            textarea.$setDirty();
-                            textarea.$setTouched();
+                    // The interval is required because the digest is random so a timeout wasn't enough
+                    var intervalCount = 0;
+                    var interval      = $interval(function () {
+                        var form = methods.getForm();
+                        try {
+                            var textarea = form[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm];
+                            if (!Methods.isNullOrEmpty(textarea)) {
+                                textarea = textarea[scope._cozenTextareaName];
+                                if (!Methods.isNullOrEmpty(textarea)) {
+                                    if (!Methods.isNullOrEmpty(scope.vm.cozenTextareaModel)) {
+                                        textarea.$setDirty();
+                                        textarea.$setTouched();
+                                    }
+                                    $interval.cancel(interval);
+                                }
+                            }
+                        } finally {
+                            methods.updateModelLength();
+                            intervalCount++;
+                            if (intervalCount > 10) {
+                                $interval.cancel(interval);
+                            }
                         }
-                    }
+                    }, 10);
                 });
 
                 // Display the template (the timeout avoid a visual bug due to events)
