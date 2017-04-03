@@ -8112,7 +8112,8 @@ function _explodeObjectForLogs(params) {
             text += '\t';
             text += key;
             text += _returnSpacesString(key, longestKeyLength);
-            text += ': ' + params[key];
+            text += ': ';
+            text += params[key];
             count++;
         });
         text += '\n%c}';
