@@ -68,10 +68,11 @@
         '$interval',
         '$timeout',
         'rfc4122',
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope) {
+    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -234,9 +235,7 @@
                 element.off('$destroy', methods.destroy);
                 scope.$destroy();
                 element.remove();
-                if (CONFIG.debug) {
-                    Methods.infoSimpleLog(data.directive, 'The popup was destroyed');
-                }
+                cozenEnhancedLogs.info.customMessage(data.directive, 'The popup was destroyed');
             }
 
             // Get the class
@@ -278,9 +277,7 @@
                     if (Methods.isFunction(scope.cozenAlertOnHide)) {
                         scope.cozenAlertOnHide();
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnHide');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnHide');
 
                     // @todo instead of added a fix value (corresponding to animation-duration-out) we could:
                     // - Add a parameter (attr + config) to set the time
@@ -314,9 +311,7 @@
                     if (Methods.isFunction(scope.cozenAlertOnShow)) {
                         scope.cozenAlertOnShow();
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnShow');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnShow');
 
                     // Start the timer to auto close if > 0
                     if (scope._cozenAlertTimeout > 0) {
@@ -326,9 +321,7 @@
 
                             // If the popup is still visible, hide it
                             if (scope.cozenAlertDisplay) {
-                                if (CONFIG.debug) {
-                                    Methods.infoCustomLog(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
-                                }
+                                cozenEnhancedLogs.info.customMessageEnhanced(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
                                 methods.hide(null, {
                                     uuid: scope._cozenAlertId
                                 });
@@ -514,10 +507,11 @@
         .provider('CloudinaryUpload', CloudinaryUploadProvider);
 
     CloudinaryUploadProvider.$inject = [
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function CloudinaryUploadProvider(CONFIG) {
+    function CloudinaryUploadProvider(CONFIG, cozenEnhancedLogs) {
 
         // Default values
         var data = {
@@ -584,9 +578,7 @@
                         file.format        = data.format;
                         file.url           = data.url;
                         scope._isUploading = false;
-                        if (CONFIG.debug) {
-                            Methods.directiveCallbackLog(data.directive, 'upload');
-                        }
+                        cozenEnhancedLogs.info.functionCalled(data.directive, 'upload');
 
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {
@@ -676,10 +668,11 @@
         'Themes',
         'CONFIG',
         'rfc4122',
-        'CloudinaryUpload'
+        'CloudinaryUpload',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload) {
+    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -909,9 +902,7 @@
                 if (scope.cozenBtnLoader) {
                     return;
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'OnClick');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'OnClick');
                 if (Methods.isFunction(scope.cozenBtnOnClick)) {
                     scope.cozenBtnOnClick();
                 }
@@ -1069,10 +1060,11 @@
 
     cozenBtnCheck.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnCheck(Themes, CONFIG) {
+    function cozenBtnCheck(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1160,11 +1152,11 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenBtnCheckModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 else if (typeof scope.cozenBtnCheckModel != 'boolean') {
-                    Methods.directiveErrorBoolean(data.directive, 'Model');
+                    cozenEnhancedLogs.error.attributeIsNotBoolean(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -1199,9 +1191,7 @@
                 if (Methods.isFunction(scope.cozenBtnCheckOnChange)) {
                     scope.cozenBtnCheckOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
             }
 
             function getTabIndex() {
@@ -1256,10 +1246,11 @@
         'Themes',
         'CONFIG',
         '$rootScope',
-        'rfc4122'
+        'rfc4122',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122) {
+    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1354,15 +1345,15 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenBtnRadioModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 else if (typeof scope.cozenBtnRadioModel != 'boolean') {
-                    Methods.directiveErrorBoolean(data.directive, 'Model');
+                    cozenEnhancedLogs.error.attributeIsNotBoolean(data.directive, 'Model');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenBtnRadioGroup)) {
-                    Methods.directiveErrorRequired(data.directive, 'Group');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Group');
                     return true;
                 }
                 return false;
@@ -1400,9 +1391,7 @@
                 if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
                     scope.cozenBtnRadioOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                 $rootScope.$broadcast(data.groupEvent.onChange, data);
             }
 
@@ -1421,9 +1410,7 @@
                         if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
                             scope.cozenBtnRadioOnChange();
                         }
-                        if (CONFIG.debug) {
-                            Methods.directiveCallbackLog(data.directive, 'onChange');
-                        }
+                        cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                     }
                 }
             }
@@ -1471,10 +1458,11 @@
 
     cozenBtnToggle.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnToggle(Themes, CONFIG) {
+    function cozenBtnToggle(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1557,7 +1545,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenBtnToggleModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -1593,9 +1581,7 @@
                 if (Methods.isFunction(scope.cozenBtnToggleOnChange)) {
                     scope.cozenBtnToggleOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
             }
 
             function getTabIndex() {
@@ -1671,14 +1657,15 @@
         .provider('Config', ConfigProvider);
 
     ConfigProvider.$inject = [
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function ConfigProvider(CONFIG) {
+    function ConfigProvider(CONFIG, cozenEnhancedLogs) {
 
         this.debug = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('debug');
+                cozenEnhancedLogs.error.valueNotBoolean('debug');
             }
             else {
                 CONFIG.debug = value;
@@ -1688,7 +1675,7 @@
 
         this.logsEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('logsEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('logsEnabled');
             }
             else {
                 CONFIG.logs.enabled = value;
@@ -1703,7 +1690,7 @@
 
         this.broadcastLog = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('broadcastLog');
+                cozenEnhancedLogs.error.valueNotBoolean('broadcastLog');
             }
             else {
                 CONFIG.broadcastLog = value;
@@ -1714,7 +1701,7 @@
         this.currentLanguage = function (value) {
             var list = CONFIG.languages;
             if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('currentLanguage', list);
+                cozenEnhancedLogs.error.valueNotInList('currentLanguage', list);
             }
             else {
                 CONFIG.currentLanguage = value;
@@ -1724,7 +1711,7 @@
 
         this.scrollsBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('scrollsBar');
+                cozenEnhancedLogs.error.valueNotBoolean('scrollsBar');
             }
             else {
                 CONFIG.scrollsBar = value;
@@ -1734,7 +1721,7 @@
 
         this.scrollsBarConfig = function (config) {
             if (typeof config != 'object') {
-                Methods.dataMustBeObject('scrollsBarConfig');
+                cozenEnhancedLogs.error.valueNotObject('scrollsBarConfig');
             }
             else {
                 CONFIG.scrollsBarConfig = config;
@@ -1744,7 +1731,7 @@
 
         this.dropdownAutoCloseOthers = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
+                cozenEnhancedLogs.error.valueNotBoolean('dropdownAutoCloseOthers');
             }
             else {
                 CONFIG.dropdown.autoCloseOthers = value;
@@ -1759,7 +1746,7 @@
                 'focus'
             ];
             if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('inputModelLengthType', list);
+                cozenEnhancedLogs.error.valueNotInList('inputModelLengthType', list);
             }
             else {
                 CONFIG.input.modelLengthType = value;
@@ -1769,7 +1756,7 @@
 
         this.textareaDisplayModelLength = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaDisplayModelLength');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaDisplayModelLength');
             }
             else {
                 CONFIG.textarea.displayModelLength = value;
@@ -1779,7 +1766,7 @@
 
         this.textareaRequired = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaRequired');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaRequired');
             }
             else {
                 CONFIG.textarea.required = value;
@@ -1789,7 +1776,7 @@
 
         this.textareaErrorDesign = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaErrorDesign');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaErrorDesign');
             }
             else {
                 CONFIG.textarea.errorDesign = value;
@@ -1799,7 +1786,7 @@
 
         this.textareaSuccessDesign = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaSuccessDesign');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaSuccessDesign');
             }
             else {
                 CONFIG.textarea.successDesign = value;
@@ -1809,7 +1796,7 @@
 
         this.textareaMinLength = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('textareaMinLength');
+                cozenEnhancedLogs.error.valueNotNumber('textareaMinLength');
             }
             else {
                 CONFIG.textarea.minLength = value;
@@ -1819,7 +1806,7 @@
 
         this.textareaMaxLength = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('textareaMaxLength');
+                cozenEnhancedLogs.error.valueNotNumber('textareaMaxLength');
             }
             else {
                 CONFIG.textarea.maxLength = value;
@@ -1834,7 +1821,7 @@
 
         this.textareaValidatorEmpty = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaValidatorEmpty');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaValidatorEmpty');
             }
             else {
                 CONFIG.textarea.validator.empty = value;
@@ -1844,7 +1831,7 @@
 
         this.textareaElastic = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaElastic');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaElastic');
             }
             else {
                 CONFIG.textarea.elastic = value;
@@ -1854,7 +1841,7 @@
 
         this.textareaRows = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('textareaRows');
+                cozenEnhancedLogs.error.valueNotNumber('textareaRows');
             }
             else {
                 CONFIG.textarea.rows = value;
@@ -1874,7 +1861,7 @@
 
         this.dropdownDisplayModelLength = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('dropdownDisplayModelLength');
+                cozenEnhancedLogs.error.valueNotBoolean('dropdownDisplayModelLength');
             }
             else {
                 CONFIG.dropdown.displayModelLength = value;
@@ -1888,7 +1875,7 @@
                 'icon'
             ];
             if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('requiredType', list);
+                cozenEnhancedLogs.error.valueNotInList('requiredType', list);
             }
             else {
                 CONFIG.required.type = value;
@@ -1908,7 +1895,7 @@
 
         this.alertCloseBtnEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertCloseBtnEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('alertCloseBtnEnabled');
             }
             else {
                 CONFIG.alert.closeBtn.enabled = value;
@@ -1918,7 +1905,7 @@
 
         this.alertCloseBtnTootlip = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertCloseBtnTootlip');
+                cozenEnhancedLogs.error.valueNotBoolean('alertCloseBtnTootlip');
             }
             else {
                 CONFIG.alert.closeBtn.tooltip = value;
@@ -1928,7 +1915,7 @@
 
         this.alertAnimationIn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertAnimationIn');
+                cozenEnhancedLogs.error.valueNotBoolean('alertAnimationIn');
             }
             else {
                 CONFIG.alert.animation.in = value;
@@ -1943,7 +1930,7 @@
 
         this.alertAnimationOut = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertAnimationOut');
+                cozenEnhancedLogs.error.valueNotBoolean('alertAnimationOut');
             }
             else {
                 CONFIG.alert.animation.out = value;
@@ -1983,7 +1970,7 @@
 
         this.alertTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('alertTimeoutTime');
+                cozenEnhancedLogs.error.valueNotNumber('alertTimeoutTime');
             }
             else {
                 CONFIG.alert.timeout.time = value;
@@ -1993,7 +1980,7 @@
 
         this.alertTimeoutBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertTimeoutBar');
+                cozenEnhancedLogs.error.valueNotBoolean('alertTimeoutBar');
             }
             else {
                 CONFIG.alert.timeout.bar = value;
@@ -2003,7 +1990,7 @@
 
         this.btnToggleAnimation = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('btnToggleAnimation');
+                cozenEnhancedLogs.error.valueNotBoolean('btnToggleAnimation');
             }
             else {
                 CONFIG.btnToggle.animation = value;
@@ -2018,7 +2005,7 @@
 
         this.btnToggleStartRight = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('btnToggleStartRight');
+                cozenEnhancedLogs.error.valueNotBoolean('btnToggleStartRight');
             }
             else {
                 CONFIG.btnToggle.startRight = value;
@@ -2028,7 +2015,7 @@
 
         this.popupHeader = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupHeader');
+                cozenEnhancedLogs.error.valueNotBoolean('popupHeader');
             }
             else {
                 CONFIG.popup.header = value;
@@ -2038,7 +2025,7 @@
 
         this.popupFooter = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupFooter');
+                cozenEnhancedLogs.error.valueNotBoolean('popupFooter');
             }
             else {
                 CONFIG.popup.footer = value;
@@ -2048,7 +2035,7 @@
 
         this.popupAnimationInEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupAnimationInEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('popupAnimationInEnabled');
             }
             else {
                 CONFIG.popup.animation.in.enabled = value;
@@ -2058,7 +2045,7 @@
 
         this.popupAnimationOutEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupAnimationOutEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('popupAnimationOutEnabled');
             }
             else {
                 CONFIG.popup.animation.out.enabled = value;
@@ -2078,7 +2065,7 @@
 
         this.popupEasyClose = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupEasyClose');
+                cozenEnhancedLogs.error.valueNotBoolean('popupEasyClose');
             }
             else {
                 CONFIG.popup.easyClose = value;
@@ -2088,7 +2075,7 @@
 
         this.popupCloseBtn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupCloseBtn');
+                cozenEnhancedLogs.error.valueNotBoolean('popupCloseBtn');
             }
             else {
                 CONFIG.popup.closeBtn = value;
@@ -2098,7 +2085,7 @@
 
         this.floatingFeedWidth = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedWidth');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedWidth');
             }
             else {
                 CONFIG.floatingFeed.width = value;
@@ -2123,7 +2110,7 @@
 
         this.floatingFeedCloseBtn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedCloseBtn');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedCloseBtn');
             }
             else {
                 CONFIG.floatingFeed.closeBtn = value;
@@ -2133,7 +2120,7 @@
 
         this.floatingFeedIconLeft = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedIconLeft');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedIconLeft');
             }
             else {
                 CONFIG.floatingFeed.iconLeft = value;
@@ -2143,7 +2130,7 @@
 
         this.floatingFeedRight = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedRight');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedRight');
             }
             else {
                 CONFIG.floatingFeed.right = value;
@@ -2153,7 +2140,7 @@
 
         this.floatingFeedBottom = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedBottom');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedBottom');
             }
             else {
                 CONFIG.floatingFeed.bottom = value;
@@ -2163,7 +2150,7 @@
 
         this.floatingFeedTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedTimeoutTime');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedTimeoutTime');
             }
             else {
                 CONFIG.floatingFeed.timeout.time = value;
@@ -2173,7 +2160,7 @@
 
         this.floatingFeedAutoDestroy = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedAutoDestroy');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedAutoDestroy');
             }
             else {
                 CONFIG.floatingFeed.autoDestroy = value;
@@ -2183,7 +2170,7 @@
 
         this.floatingFeedTimeoutBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedTimeoutBar');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedTimeoutBar');
             }
             else {
                 CONFIG.floatingFeed.timeout.bar = value;
@@ -2231,12 +2218,12 @@
 
     cozenDrawChart.$inject = [
         '$interval',
-        'enhancedLogs',
+        'cozenEnhancedLogs',
         '$timeout',
         'exportToPdfFactory'
     ];
 
-    function cozenDrawChart($interval, enhancedLogs, $timeout, exportToPdfFactory) {
+    function cozenDrawChart($interval, cozenEnhancedLogs, $timeout, exportToPdfFactory) {
         return {
             link       : link,
             restrict   : 'E',
@@ -2287,7 +2274,7 @@
                 ];
                 for (var i = 0, length = requiredAttrs.length; i < length; i++) {
                     if (angular.isUndefined(attrs[requiredAttrs[i]])) {
-                        enhancedLogs.errorMissingParameterDirective(data.directiveName, requiredAttrs[i]);
+                        cozenEnhancedLogs.errorMissingParameterDirective(data.directiveName, requiredAttrs[i]);
                         return;
                     }
                 }
@@ -2530,10 +2517,11 @@
         '$rootScope',
         'rfc4122',
         '$filter',
-        '$timeout'
+        '$timeout',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout) {
+    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -2654,7 +2642,7 @@
                     }
                     else {
                         scope._cozenDropdownModelEnhanced = 'last';
-                        Methods.directiveWarningUnmatched(data.directive, 'ModelEnhanced', 'last');
+                        cozenEnhancedLogs.warn.attributeNotMatched(data.directive, 'ModelEnhanced', 'last');
                     }
                 }
 
@@ -2731,12 +2719,12 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenDropdownModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 if (angular.isDefined(attrs.cozenDropdownName)) {
                     if (Methods.isNullOrEmpty(attrs.cozenDropdownName)) {
-                        Methods.directiveErrorEmpty(data.directive, 'Name');
+                        cozenEnhancedLogs.error.attributeIsEmpty(data.directive, 'Name');
                         return true;
                     }
                 }
@@ -2868,9 +2856,7 @@
                 if (Methods.isFunction(scope.cozenDropdownOnChange)) {
                     scope.cozenDropdownOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
             }
 
             function getForm() {
@@ -3244,7 +3230,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenDropdownItemGroupLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -3481,11 +3467,11 @@
         'rfc4122',
         '$rootScope',
         '$window',
-        '$timeout',
+        'cozenEnhancedLogs',
         '$filter'
     ];
 
-    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, $timeout, $filter) {
+    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs, $filter) {
         return {
             link       : link,
             restrict   : 'E',
@@ -3619,7 +3605,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenDropdownItemSimpleLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -3656,9 +3642,7 @@
                 if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) {
                     scope.cozenDropdownItemSimpleOnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickItem');
                 if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) {
                     dropdown._methods.onClick();
                 }
@@ -3718,7 +3702,7 @@
 
                 // Tell the parent about the new active child
                 if (CONFIG.broadcastLog) {
-                    Methods.broadcastLog('$rootScope', 'cozenDropdownActiveChild');
+                    cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownActiveChild');
                 }
                 $rootScope.$broadcast('cozenDropdownActiveChild', {
                     dropdown   : data.dropdown.name,
@@ -3726,7 +3710,7 @@
                 });
 
                 if (CONFIG.broadcastLog) {
-                    Methods.broadcastLog('$rootScope', 'cozenDropdownActive');
+                    cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownActive');
                 }
                 $rootScope.$broadcast('cozenDropdownActive', {
                     uuid: data.uuid
@@ -3779,7 +3763,7 @@
             function updateParentModel(selected) {
                 selected = selected == null ? scope.cozenDropdownItemSimpleSelected : selected;
                 if (CONFIG.broadcastLog) {
-                    Methods.broadcastLog('$rootScope', 'cozenDropdownSelected');
+                    cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownSelected');
                 }
                 $rootScope.$broadcast('cozenDropdownSelected', {
                     uuid    : data.uuid,
@@ -3803,7 +3787,7 @@
                         scope._cozenDropdownItemSimpleSubLabel
                     ], params.value);
                     if (CONFIG.broadcastLog) {
-                        Methods.broadcastLog('$rootScope', 'cozenDropdownItemDisabled');
+                        cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownItemDisabled');
                     }
                     $rootScope.$broadcast('cozenDropdownItemDisabled', {
                         uuid    : data.uuid,
@@ -3979,7 +3963,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is not a function');
                 console.style(log);
@@ -3997,7 +3981,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is not a boolean');
                 console.style(log);
@@ -4015,7 +3999,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is null or empty');
                 console.style(log);
@@ -4057,7 +4041,7 @@
                 var log = methods.getBase(target);
                 log += console.colors.black('<');
                 log += console.colors.purple(value);
-                log += console.colors.black('> must be an <');
+                log += console.colors.black('> must be a <');
                 log += console.colors.purple('number');
                 log += console.colors.black('>');
                 console.style(log);
@@ -4153,7 +4137,7 @@
                     return;
                 }
                 var log = methods.getBase(from);
-                log += console.colors.black('<');
+                log += console.colors.black('Function <');
                 log += console.colors.purple(fnName);
                 log += console.colors.black('> called');
                 console.style(log);
@@ -4322,7 +4306,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> value is incorrect\nCallback of the default value <');
                 log += console.colors.purple(defaultValue);
@@ -4506,8 +4490,8 @@
                     // Show us the content of the object
                     else if (typeof parameters[key] == 'object' && !Array.isArray(parameters[key])) {
                         text += console.colors.blue('{');
-                        text += '\n' + methods.getTabs(tabs - 1);
-                        text += methods.getFormattedParamsKeysOnly(parameters[key], extended);
+                        text += '\n' + methods.getTabs(tabs + 1);
+                        text += methods.getFormattedParamsKeysOnly(parameters[key], extended, tabs + 1);
                         text += console.colors.blue('}');
                     }
                     else {
@@ -4591,13 +4575,13 @@
         '$rootScope',
         'Themes',
         'rfc4122',
-        '$timeout',
+        'cozenEnhancedLogs',
         '$animate',
         '$compile',
         '$templateRequest'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate, $compile, $templateRequest) {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, cozenEnhancedLogs, $animate, $compile, $templateRequest) {
         return {
             link       : link,
             restrict   : 'E',
@@ -4675,10 +4659,10 @@
 
                     // Check for potential error
                     if (!Methods.hasOwnProperty(alert, 'label')) {
-                        Methods.missingKeyLog(data.directive, 'label', 'adding alert');
+                        cozenEnhancedLogs.error.missingParameterWhen(data.directive, 'label', 'adding alert');
                     }
                     else if (!Methods.hasOwnProperty(alert, 'type')) {
-                        Methods.missingKeyLog(data.directive, 'type', 'adding alert');
+                        cozenEnhancedLogs.error.missingParameterWhen(data.directive, 'type', 'adding alert');
                     }
 
                     // Add the alert
@@ -4699,7 +4683,7 @@
                     }
                 }
                 else {
-                    Methods.directiveErrorRequired(data.directive, 'alert');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'alert');
                 }
             }
 
@@ -4827,15 +4811,15 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenFormName)) {
-                    Methods.directiveErrorRequired(data.directive, 'Name');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Name');
                     return true;
                 }
                 if (Methods.isNullOrEmpty(attrs.cozenFormCtrl)) {
-                    Methods.directiveErrorRequired(data.directive, 'Ctrl');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Ctrl');
                     return true;
                 }
                 if (Methods.isNullOrEmpty(attrs.cozenFormModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -4883,12 +4867,12 @@
         .factory('cozenGoogleAnalyticsRequest', cozenGoogleAnalyticsRequest);
 
     cozenGoogleAnalyticsRequest.$inject = [
-        'enhancedLogs',
+        'cozenEnhancedLogs',
         'PublicMethods',
         '$location'
     ];
 
-    function cozenGoogleAnalyticsRequest(enhancedLogs, PublicMethods, $location) {
+    function cozenGoogleAnalyticsRequest(cozenEnhancedLogs, PublicMethods, $location) {
 
         // Private data
         var _data = {
@@ -4917,7 +4901,7 @@
             if (PublicMethods.isNullOrEmpty(trackerName)) {
                 trackerName = _data.trackerDefaultName;
             }
-            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('create', trackerName);
+            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('create', trackerName);
 
             // Create the tracker
             ga('create', {
@@ -4939,7 +4923,7 @@
             if (PublicMethods.isNullOrEmpty(trackerName)) {
                 trackerName = _data.trackerDefaultName;
             }
-            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('addCustomData', trackerName);
+            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('addCustomData', trackerName);
 
             // Update the tracker with custom dimension or metric
             ga(trackerName + '.set', customData);
@@ -4963,7 +4947,7 @@
             if (PublicMethods.isNullOrEmpty(title)) {
                 title = document.title;
             }
-            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('pageview', trackerName);
+            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('pageview', trackerName);
 
             // Send a pageview hit
             ga(trackerName + '.send', {
@@ -5069,7 +5053,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenIconInfoTooltipLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -5168,10 +5152,11 @@
         '$timeout',
         '$interval',
         '$filter',
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
+    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -5471,7 +5456,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenInputModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -5537,9 +5522,7 @@
                         newModel: scope.vm.cozenInputModel
                     });
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
 
@@ -5806,10 +5789,10 @@
         .factory('cozenJsToPdf', cozenJsToPdf);
 
     cozenJsToPdf.$inject = [
-        'enhancedLogs'
+        'cozenEnhancedLogs'
     ];
 
-    function cozenJsToPdf(enhancedLogs) {
+    function cozenJsToPdf(cozenEnhancedLogs) {
 
         // Default configuration (could be override by init styles param)
         var defaultConfig = {
@@ -5892,7 +5875,7 @@
          */
         function drawTitle(doc, text, x, y) {
             if (!methods.areParamsSet(doc, text, x, y)) {
-                enhancedLogs.errorMissingParameterFn('drawTitle');
+                cozenEnhancedLogs.errorMissingParameterFn('drawTitle');
                 return doc;
             }
             doc = setTextStyle(doc, doc.jsToPdfConfig.title.size, doc.jsToPdfConfig.title.family, doc.jsToPdfConfig.title.weight);
@@ -5911,7 +5894,7 @@
          */
         function drawSubTitle(doc, text, x, y) {
             if (!methods.areParamsSet(doc, text, x, y)) {
-                enhancedLogs.errorMissingParameterFn('drawSubTitle');
+                cozenEnhancedLogs.errorMissingParameterFn('drawSubTitle');
                 return doc;
             }
             doc = setTextStyle(doc, doc.jsToPdfConfig.subtitle.size, doc.jsToPdfConfig.subtitle.family, doc.jsToPdfConfig.subtitle.weight);
@@ -5930,7 +5913,7 @@
          */
         function drawText(doc, text, x, y) {
             if (!methods.areParamsSet(doc, text, x, y)) {
-                enhancedLogs.errorMissingParameterFn('drawText');
+                cozenEnhancedLogs.errorMissingParameterFn('drawText');
                 return doc;
             }
             doc.text(text, x, y);
@@ -5950,7 +5933,7 @@
          */
         function drawImage(doc, imageData, x, y, width, height, type) {
             if (!methods.areParamsSet(doc, imageData, x, y, width, height)) {
-                enhancedLogs.errorMissingParameterFn('drawImage');
+                cozenEnhancedLogs.errorMissingParameterFn('drawImage');
                 return doc;
             }
             type = Methods.isNullOrEmpty(type) ? 'JPEG' : type;
@@ -5965,7 +5948,7 @@
          */
         function print(doc) {
             if (!methods.areParamsSet(doc)) {
-                enhancedLogs.errorMissingParameterFn('print');
+                cozenEnhancedLogs.errorMissingParameterFn('print');
                 return doc;
             }
             doc.save(doc.jsToPdfConfig.pdfName + '.pdf');
@@ -5982,7 +5965,7 @@
          */
         function setTextStyle(doc, size, family, style) {
             if (!methods.areParamsSet(doc)) {
-                enhancedLogs.errorMissingParameterFn('setTextStyle');
+                cozenEnhancedLogs.errorMissingParameterFn('setTextStyle');
                 return doc;
             }
             size   = Methods.isNullOrEmpty(size) ? 20 : size;
@@ -6004,7 +5987,7 @@
          */
         function setFillColor(doc, ch1, ch2, ch3, ch4) {
             if (!methods.areParamsSet(doc)) {
-                enhancedLogs.errorMissingParameterFn('setFillColor');
+                cozenEnhancedLogs.errorMissingParameterFn('setFillColor');
                 return doc;
             }
             ch1 = Methods.isNullOrEmpty(ch1) ? 0 : ch1;
@@ -6033,7 +6016,7 @@
          */
         function getStringWidth(doc, text, fontSize, unit) {
             if (!methods.areParamsSet(doc, text, fontSize)) {
-                enhancedLogs.errorMissingParameterFn('getStringWidth');
+                cozenEnhancedLogs.errorMissingParameterFn('getStringWidth');
                 return 0;
             }
             unit = Methods.isNullOrEmpty(unit) ? 'pt' : unit;
@@ -6054,7 +6037,7 @@
          */
         function getRowsQuantity(doc, rowWidth, text, fontSize, unit) {
             if (!methods.areParamsSet(doc, rowWidth, text, fontSize)) {
-                enhancedLogs.errorMissingParameterFn('getRowsQuantity');
+                cozenEnhancedLogs.errorMissingParameterFn('getRowsQuantity');
                 return 0;
             }
             unit = Methods.isNullOrEmpty(unit) ? 'pt' : unit;
@@ -6073,7 +6056,7 @@
          */
         function explodeString(text, maxChars) {
             if (!methods.areParamsSet(text, maxChars)) {
-                enhancedLogs.errorMissingParameterFn('explodeString');
+                cozenEnhancedLogs.errorMissingParameterFn('explodeString');
                 return [];
             }
             var chunks = [];
@@ -6091,7 +6074,7 @@
          */
         function svgToBase64(parentDomId, canvas, callback) {
             if (!methods.areParamsSet(parentDomId, canvas, callback)) {
-                enhancedLogs.errorMissingParameterFn('svgToBase64');
+                cozenEnhancedLogs.errorMissingParameterFn('svgToBase64');
                 return;
             }
             var svg       = angular.element(document.querySelector('#' + parentDomId + ' svg'));
@@ -6114,7 +6097,7 @@
          */
         function svgToBase64Svg(parentDomId) {
             if (!methods.areParamsSet(parentDomId)) {
-                enhancedLogs.errorMissingParameterFn('svgToDataUrl');
+                cozenEnhancedLogs.errorMissingParameterFn('svgToDataUrl');
                 return '';
             }
             var svg     = angular.element(document.querySelector('#' + parentDomId + ' svg'));
@@ -6132,7 +6115,7 @@
          */
         function setTextColor(doc, r, g, b) {
             if (!methods.areParamsSet(doc, r)) {
-                enhancedLogs.errorMissingParameterFn('setTextColor');
+                cozenEnhancedLogs.errorMissingParameterFn('setTextColor');
                 return doc;
             }
             if (methods.hexToRgb(r)) {
@@ -6170,7 +6153,7 @@
          */
         function rgbToDecimal(value) {
             if (!methods.areParamsSet(value)) {
-                enhancedLogs.errorMissingParameterFn('rgbToDecimal');
+                cozenEnhancedLogs.errorMissingParameterFn('rgbToDecimal');
                 return 0;
             }
             if (typeof value == 'number' && value > 1) {
@@ -6186,7 +6169,7 @@
          */
         function hexToRgb(hex) {
             if (!methods.areParamsSet(hex)) {
-                enhancedLogs.errorMissingParameterFn('hexToRgb');
+                cozenEnhancedLogs.errorMissingParameterFn('hexToRgb');
                 return false;
             }
             var color;
@@ -6424,10 +6407,11 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window'
+        '$window',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window) {
+    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -6502,15 +6486,15 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenListItemMedia3Header)) {
-                    Methods.directiveErrorRequired(data.directive, 'Header');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Header');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenListItemMedia3Label)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenListItemMedia3SubLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'SubLabel');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'SubLabel');
                     return true;
                 }
                 return false;
@@ -6548,9 +6532,7 @@
                 if (Methods.isFunction(scope.cozenListItemMedia3OnClick)) {
                     scope.cozenListItemMedia3OnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickItem');
             }
 
             function getTabIndex() {
@@ -6640,10 +6622,11 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window'
+        '$window',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window) {
+    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -6729,11 +6712,11 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenListItemSimpleLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 else if (scope.cozenListItemSimpleBtnRight && angular.isUndefined(attrs.cozenListItemSimpleBtnRightOnClick)) {
-                    Methods.directiveErrorRequired(data.directive, 'BtnRightOnClick');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'BtnRightOnClick');
                     return true;
                 }
                 return false;
@@ -6771,7 +6754,7 @@
                     scope.cozenListItemSimpleOnClick();
                 }
                 if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickItem');
                 }
             }
 
@@ -6793,9 +6776,7 @@
                 if (Methods.isFunction(scope.cozenListItemSimpleBtnRightOnClick)) {
                     scope.cozenListItemSimpleBtnRightOnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickBtnRight');
                 $event.stopPropagation();
             }
 
@@ -6862,10 +6843,11 @@
         .directive('cozenOnBlur', cozenOnBlur);
 
     cozenOnBlur.$inject = [
-        '$parse'
+        '$parse',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenOnBlur($parse) {
+    function cozenOnBlur($parse, cozenEnhancedLogs) {
         return {
             link      : link,
             restrict  : 'A',
@@ -6925,7 +6907,7 @@
 
             function hasError() {
                 if (!Methods.isFunction(data.callback)) {
-                    Methods.directiveErrorFunction(data.directive, 'cozenOnBlurCallback');
+                    cozenEnhancedLogs.error.attributeIsNotFunction(data.directive, 'cozenOnBlurCallback');
                     return true;
                 }
                 return false;
@@ -7014,10 +6996,11 @@
         .directive('cozenOnFocus', cozenOnFocus);
 
     cozenOnFocus.$inject = [
-        '$parse'
+        '$parse',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenOnFocus($parse) {
+    function cozenOnFocus($parse, cozenEnhancedLogs) {
         return {
             link      : link,
             restrict  : 'A',
@@ -7077,7 +7060,7 @@
 
             function hasError() {
                 if (!Methods.isFunction(data.callback)) {
-                    Methods.directiveErrorFunction(data.directive, 'cozenOnFocusCallback');
+                    cozenEnhancedLogs.error.attributeIsNotFunction(data.directive, 'cozenOnFocusCallback');
                     return true;
                 }
                 return false;
@@ -7243,10 +7226,11 @@
 
     cozenPagination.$inject = [
         'CONFIG',
-        'Themes'
+        'Themes',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPagination(CONFIG, Themes) {
+    function cozenPagination(CONFIG, Themes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -7351,11 +7335,11 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPaginationModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenPaginationTotalElements)) {
-                    Methods.directiveErrorRequired(data.directive, 'TotalElements');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'TotalElements');
                     return true;
                 }
                 return false;
@@ -7443,9 +7427,7 @@
                 if (oldModel != scope.cozenPaginationModel && Methods.isFunction(scope.cozenPaginationOnChange)) {
                     scope.cozenPaginationOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
             }
 
             function getPages() {
@@ -7542,10 +7524,11 @@
 
     cozenPanel.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPanel(Themes, CONFIG) {
+    function cozenPanel(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -7686,7 +7669,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPanelLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -7727,9 +7710,7 @@
                 if (!scope._cozenPanelFrozen) {
                     scope.cozenPanelOpen = !scope.cozenPanelOpen;
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickHeader');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickHeader');
             }
 
             function startWatching() {
@@ -7751,9 +7732,7 @@
                 if (Methods.isFunction(scope.cozenPanelOnClickBigIconLeft)) {
                     scope.cozenPanelOnClickBigIconLeft();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickBigIconLeft');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickBigIconLeft');
             }
 
             function onClickBigIconRight($event) {
@@ -7764,9 +7743,7 @@
                 if (Methods.isFunction(scope.cozenPanelOnClickBigIconRight)) {
                     scope.cozenPanelOnClickBigIconRight();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickBigIconRight');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickBigIconRight');
             }
 
             function bigIconHover(hover) {
@@ -7981,13 +7958,13 @@
     cozenPillsItemSimple.$inject = [
         'CONFIG',
         'rfc4122',
-        '$rootScope',
+        'cozenEnhancedLogs',
         '$window',
         '$timeout',
         '$filter'
     ];
 
-    function cozenPillsItemSimple(CONFIG, rfc4122, $rootScope, $window, $timeout, $filter) {
+    function cozenPillsItemSimple(CONFIG, rfc4122, cozenEnhancedLogs, $window, $timeout, $filter) {
         return {
             link       : link,
             restrict   : 'E',
@@ -8085,7 +8062,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPillsItemSimpleLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -8117,9 +8094,7 @@
                 if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) {
                     scope.cozenPillsItemSimpleOnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClick');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick');
                 if (scope.$parent.$parent.$parent._cozenPillsAutoUpdateModel) {
                     scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
                     Methods.safeApply(scope);
@@ -8199,10 +8174,11 @@
         '$window',
         '$timeout',
         'rfc4122',
-        '$animate'
+        '$animate',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate) {
+    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -8357,7 +8333,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPopupName)) {
-                    Methods.directiveErrorRequired(data.directive, 'Name');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Name');
                     return true;
                 }
                 return false;
@@ -8391,9 +8367,7 @@
                             name: scope._cozenPopupName
                         });
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnHide');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnHide');
                     $window.removeEventListener('click', methods.onClick);
                     $window.removeEventListener('keydown', methods.onKeyDown);
 
@@ -8424,9 +8398,7 @@
                             name: scope._cozenPopupName
                         });
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnShow');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnShow');
                     if (scope._cozenPopupEasyClose) {
                         $window.addEventListener('click', methods.onClick);
                         $window.addEventListener('keydown', methods.onKeyDown);
@@ -8530,30 +8502,12 @@ var Methods = {
     isNullOrEmpty             : isNullOrEmpty,
     safeApply                 : safeApply,
     isFunction                : isFunction,
-    directiveErrorRequired    : directiveErrorRequired,
-    directiveCallbackLog      : directiveCallbackLog,
     getConsoleColor           : getConsoleColor,
     capitalizeFirstLetter     : capitalizeFirstLetter,
-    directiveErrorFunction    : directiveErrorFunction,
-    directiveErrorBoolean     : directiveErrorBoolean,
     isRegExpValid             : isRegExpValid,
     getElementPaddingTopBottom: getElementPaddingTopBottom,
-    directiveErrorEmpty       : directiveErrorEmpty,
-    directiveWarningUnmatched : directiveWarningUnmatched,
-    dataMustBeBoolean         : dataMustBeBoolean,
-    dataMustBeNumber          : dataMustBeNumber,
-    dataMustBeObject          : dataMustBeObject,
-    dataMustBeInThisList      : dataMustBeInThisList,
     hasOwnProperty            : hasOwnProperty,
-    httpRequestLog            : httpRequestLog,
-    firstLoadLog              : firstLoadLog,
-    missingKeyLog             : missingKeyLog,
-    changeRouteLog            : changeRouteLog,
     hasDuplicates             : hasDuplicates,
-    broadcastLog              : broadcastLog,
-    infoCustomLog             : infoCustomLog,
-    infoSimpleLog             : infoSimpleLog,
-    infoObjectLog             : infoObjectLog,
     getLongestKey             : getLongestKey,
     returnSpacesString        : returnSpacesString
 };
@@ -8595,31 +8549,6 @@ function isFunction(fn) {
     return typeof fn === 'function';
 }
 
-// Use it to tell the dev that a param required is missing [Deprecated, use enhancedLogs]
-function directiveErrorRequired(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is required',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
-// Use it to log a called of a function [Deprecated, use enhancedLogs]
-function directiveCallbackLog(directive, fn) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Fn <%c' + fn + '%c> called',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
 // Just a function to get access of the colors for the console
 function getConsoleColor(type) {
     var color = 'color:';
@@ -8648,28 +8577,6 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-// Use it to tell the dev that a param set is not a function [Deprecated, use enhancedLogs]
-function directiveErrorFunction(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a function',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
-// Use it to tell the dev that a param set is not a boolean [Deprecated, use enhancedLogs]
-function directiveErrorBoolean(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is not a boolean',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
 // Check if the regexp is valid
 function isRegExpValid(regexp, value) {
     return !(!new RegExp(regexp).test(value) || isNullOrEmpty(value));
@@ -8680,76 +8587,6 @@ function getElementPaddingTopBottom(element) {
     return parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
 }
 
-// Use it to tell the dev that a param value is null or empty but should be set [Deprecated, use enhancedLogs]
-function directiveErrorEmpty(directive, param) {
-    console.error('%c[%c' + directive + '%c] Attr <%c' + param + '%c> is null or empty',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
-// Use it to tell the dev that a entered value is incorrect and an callback value was assigned to avoid fatal error [Deprecated, use enhancedLogs]
-function directiveWarningUnmatched(directive, param, value) {
-    console.warn('%c[%c' + directive + '%c] Attr <%c' + param + '%c> value\'s was wrong\nThe default value <%c' + value + '%c> was set',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
-// Use it to tell the dev that a entered value is not a boolean [Deprecated, use enhancedLogs]
-function dataMustBeBoolean(attribute) {
-    console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor()
-    );
-}
-
-// Use it to tell the dev that a entered value is not a number [Deprecated, use enhancedLogs]
-function dataMustBeNumber(attribute) {
-    console.error('%c<%c' + attribute + '%c> must be an <%cnumber%c>',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor()
-    );
-}
-
-// Use it to tell the dev that a entered value is not an object [Deprecated, use enhancedLogs]
-function dataMustBeObject(attribute) {
-    console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor()
-    );
-}
-
-// Use it to tell the dev that a key is not in the list so that's a terrible error !! [Deprecated, use enhancedLogs]
-function dataMustBeInThisList(attribute, list) {
-    console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('purple'),
-        getConsoleColor()
-    );
-}
-
 // Check if an object have a property to avoid using not own property
 function hasOwnProperty(obj, prop) {
     var proto = obj.__proto__ || obj.constructor.prototype;
@@ -8757,114 +8594,9 @@ function hasOwnProperty(obj, prop) {
         (!(prop in proto) || proto[prop] !== obj[prop]);
 }
 
-// Use it to show a request log to an API [Deprecated, use enhancedLogs]
-function httpRequestLog(request) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + request.methods + '%c][%c' + now + '%c] ' + request.url,
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor()
-    );
-}
-
-// Use it when you start your app [Deprecated, use enhancedLogs]
-function firstLoadLog(isStarting) {
-    var now  = moment().format('HH:mm:ss.SSS');
-    var text = isStarting ? 'Starting' : 'Ready';
-    console.log('%c[%c' + text + '%c][%c' + now + '%c]',
-        getConsoleColor(),
-        getConsoleColor('red'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor()
-    );
-}
-
-// Use it to send an error to the dev to tell him that something required is missing [Deprecated, use enhancedLogs]
-function missingKeyLog(directive, key, when) {
-    console.error('%c[%c' + directive + '%c] Missing key <%c' + key + '%c> when ' + when,
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
-// Use it when you change a route in your app [Deprecated, use enhancedLogs]
-function changeRouteLog(directive, route, params) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + directive + '%c][%c' + now + '%c] Redirection to <%c' + route + '%c>' + _getFormattedParams(params),
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor(),
-        getConsoleColor('fn')
-    );
-}
-
 // Check if an array have duplicated keys
 function hasDuplicates(array) {
     return (new Set(array)).size !== array.length;
-}
-
-// Use to log a broadcast event [Deprecated, use enhancedLogs]
-function broadcastLog(scope, eventName) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + scope + '%c][%c' + now + '%c] Broadcasted event <%c' + eventName + '%c>',
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
-// A custom log with dynamic text before and after a value [Deprecated, use enhancedLogs]
-function infoCustomLog(target, textBefore, value, textAfter) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + textBefore + ' <%c' + value + '%c> ' + textAfter,
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
-}
-
-// A very simple log with a small text only [Deprecated, use enhancedLogs]
-function infoSimpleLog(target, text) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + text,
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor()
-    );
-}
-
-// Use it to show the key of an object [Deprecated, use enhancedLogs]
-function infoObjectLog(target, text, object) {
-    var now = moment().format('HH:mm:ss');
-    console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + text + _explodeObjectForLogs(object),
-        getConsoleColor(),
-        getConsoleColor('directive'),
-        getConsoleColor(),
-        getConsoleColor('time'),
-        getConsoleColor(),
-        getConsoleColor('fn'),
-        getConsoleColor()
-    );
 }
 
 // Return the longest of an object
@@ -8885,62 +8617,6 @@ function returnSpacesString(key, maxLength) {
     var text = '';
     for (var i = 0; i < diff; i++) {
         text += ' ';
-    }
-    return text;
-}
-
-/// INTERNAL FUNCTIONS ///
-
-// Explode an object to use as a log
-// The object will be as a simple line, no break is made
-function _getFormattedParams(params) {
-    var text = '', count = 0;
-    if (!Methods.isNullOrEmpty(params) && Object.keys(params).length > 0) {
-        text += '\nParams:%c ';
-        Object.keys(params).forEach(function (key) {
-            if (count > 0) {
-                text += ', ';
-            }
-            else {
-                text += '{'
-            }
-            text += key + ':' + params[key];
-            count++;
-        });
-        text += '}';
-    }
-    else {
-        text += '%c';
-    }
-    return text;
-}
-
-// Explode an object to use as a log
-// Basically, this will create a structure as object with key vertically align and with respect of tabulations
-// Note: this function do not handle multiple level (if a key is a object, it's fucked up)
-function _explodeObjectForLogs(params) {
-    var text             = '', count = 0;
-    var longestKeyLength = getLongestKey(params).length;
-    if (!Methods.isNullOrEmpty(params) && Object.keys(params).length > 0) {
-        text += '\n';
-        Object.keys(params).forEach(function (key) {
-            if (count > 0) {
-                text += ',\n';
-            }
-            else {
-                text += '{%c\n'
-            }
-            text += '\t';
-            text += key;
-            text += returnSpacesString(key, longestKeyLength);
-            text += ': ';
-            text += params[key];
-            count++;
-        });
-        text += '\n%c}';
-    }
-    else {
-        text += '%c';
     }
     return text;
 }
@@ -9262,13 +8938,13 @@ function _explodeObjectForLogs(params) {
         'Themes',
         'CONFIG',
         'rfc4122',
-        '$timeout',
+        'cozenEnhancedLogs',
         '$interval',
         '$filter',
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
+    function cozenTextarea(Themes, CONFIG, rfc4122, cozenEnhancedLogs, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -9432,7 +9108,7 @@ function _explodeObjectForLogs(params) {
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenTextareaModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -9484,9 +9160,7 @@ function _explodeObjectForLogs(params) {
                 if (Methods.isFunction(scope.cozenTextareaOnChange)) {
                     scope.cozenTextareaOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                 methods.updateModelLength();
             }
 
@@ -9645,10 +9319,11 @@ function _explodeObjectForLogs(params) {
         .directive('cozenTooltip', cozenTooltip);
 
     cozenTooltip.$inject = [
-        'Themes'
+        'Themes',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenTooltip(Themes) {
+    function cozenTooltip(Themes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'AE',
@@ -9729,7 +9404,7 @@ function _explodeObjectForLogs(params) {
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenTooltipLabel)) {
                     if (!scope.cozenTooltipDisabled) {
-                        Methods.directiveErrorRequired(data.directive, 'cozenTooltipLabel');
+                        cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'cozenTooltipLabel');
                         return true;
                     }
                 }
@@ -9888,7 +9563,7 @@ function _explodeObjectForLogs(params) {
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenUploadInfoConfig)) {
-                    Methods.directiveErrorRequired(data.directive, 'Config');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Config');
                     return true;
                 }
                 return false;
@@ -9925,10 +9600,11 @@ function _explodeObjectForLogs(params) {
         .directive('cozenView', cozenView);
 
     cozenView.$inject = [
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenView(CONFIG) {
+    function cozenView(CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -9975,7 +9651,7 @@ function _explodeObjectForLogs(params) {
 
             function hasError() {
                 if (angular.isUndefined(attrs.cozenViewScrollBarHeight)) {
-                    Methods.directiveErrorRequired(data.directive, 'cozenViewScrollBarHeight');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'cozenViewScrollBarHeight');
                     return true;
                 }
                 return false;

@@ -68,10 +68,11 @@
         '$interval',
         '$timeout',
         'rfc4122',
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope) {
+    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -234,9 +235,7 @@
                 element.off('$destroy', methods.destroy);
                 scope.$destroy();
                 element.remove();
-                if (CONFIG.debug) {
-                    Methods.infoSimpleLog(data.directive, 'The popup was destroyed');
-                }
+                cozenEnhancedLogs.info.customMessage(data.directive, 'The popup was destroyed');
             }
 
             // Get the class
@@ -278,9 +277,7 @@
                     if (Methods.isFunction(scope.cozenAlertOnHide)) {
                         scope.cozenAlertOnHide();
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnHide');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnHide');
 
                     // @todo instead of added a fix value (corresponding to animation-duration-out) we could:
                     // - Add a parameter (attr + config) to set the time
@@ -314,9 +311,7 @@
                     if (Methods.isFunction(scope.cozenAlertOnShow)) {
                         scope.cozenAlertOnShow();
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnShow');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnShow');
 
                     // Start the timer to auto close if > 0
                     if (scope._cozenAlertTimeout > 0) {
@@ -326,9 +321,7 @@
 
                             // If the popup is still visible, hide it
                             if (scope.cozenAlertDisplay) {
-                                if (CONFIG.debug) {
-                                    Methods.infoCustomLog(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
-                                }
+                                cozenEnhancedLogs.info.customMessageEnhanced(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
                                 methods.hide(null, {
                                     uuid: scope._cozenAlertId
                                 });

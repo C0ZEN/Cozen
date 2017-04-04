@@ -539,7 +539,9 @@ module.exports = function (grunt) {
             options: {
                 scripts : [
                     '<%= yeoman.app %>/**/*.js',
-                    '!<%= yeoman.app %>/**/*.tpl.js'
+                    '!<%= yeoman.app %>/**/*.tpl.js',
+                    '!<%= yeoman.app %>/app.config.js',
+                    '!<%= yeoman.app %>/app.run.js'
                 ],
                 startTag: 'cozen-js-start',
                 endTag  : 'cozen-js-end'

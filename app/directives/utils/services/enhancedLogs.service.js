@@ -159,7 +159,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is not a function');
                 console.style(log);
@@ -177,7 +177,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is not a boolean');
                 console.style(log);
@@ -195,7 +195,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is null or empty');
                 console.style(log);
@@ -237,7 +237,7 @@
                 var log = methods.getBase(target);
                 log += console.colors.black('<');
                 log += console.colors.purple(value);
-                log += console.colors.black('> must be an <');
+                log += console.colors.black('> must be a <');
                 log += console.colors.purple('number');
                 log += console.colors.black('>');
                 console.style(log);
@@ -333,7 +333,7 @@
                     return;
                 }
                 var log = methods.getBase(from);
-                log += console.colors.black('<');
+                log += console.colors.black('Function <');
                 log += console.colors.purple(fnName);
                 log += console.colors.black('> called');
                 console.style(log);
@@ -502,7 +502,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attr <');
+                log += console.colors.black('Attribute <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> value is incorrect\nCallback of the default value <');
                 log += console.colors.purple(defaultValue);
@@ -686,8 +686,8 @@
                     // Show us the content of the object
                     else if (typeof parameters[key] == 'object' && !Array.isArray(parameters[key])) {
                         text += console.colors.blue('{');
-                        text += '\n' + methods.getTabs(tabs - 1);
-                        text += methods.getFormattedParamsKeysOnly(parameters[key], extended);
+                        text += '\n' + methods.getTabs(tabs + 1);
+                        text += methods.getFormattedParamsKeysOnly(parameters[key], extended, tabs + 1);
                         text += console.colors.blue('}');
                     }
                     else {

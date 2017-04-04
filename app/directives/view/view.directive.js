@@ -19,10 +19,11 @@
         .directive('cozenView', cozenView);
 
     cozenView.$inject = [
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenView(CONFIG) {
+    function cozenView(CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -69,7 +70,7 @@
 
             function hasError() {
                 if (angular.isUndefined(attrs.cozenViewScrollBarHeight)) {
-                    Methods.directiveErrorRequired(data.directive, 'cozenViewScrollBarHeight');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'cozenViewScrollBarHeight');
                     return true;
                 }
                 return false;

@@ -36,10 +36,11 @@
 
     cozenBtnToggle.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnToggle(Themes, CONFIG) {
+    function cozenBtnToggle(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -122,7 +123,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenBtnToggleModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -158,9 +159,7 @@
                 if (Methods.isFunction(scope.cozenBtnToggleOnChange)) {
                     scope.cozenBtnToggleOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
             }
 
             function getTabIndex() {

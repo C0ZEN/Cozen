@@ -6,10 +6,11 @@
         .provider('CloudinaryUpload', CloudinaryUploadProvider);
 
     CloudinaryUploadProvider.$inject = [
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function CloudinaryUploadProvider(CONFIG) {
+    function CloudinaryUploadProvider(CONFIG, cozenEnhancedLogs) {
 
         // Default values
         var data = {
@@ -76,9 +77,7 @@
                         file.format        = data.format;
                         file.url           = data.url;
                         scope._isUploading = false;
-                        if (CONFIG.debug) {
-                            Methods.directiveCallbackLog(data.directive, 'upload');
-                        }
+                        cozenEnhancedLogs.info.functionCalled(data.directive, 'upload');
 
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {

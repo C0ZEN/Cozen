@@ -37,10 +37,11 @@
         'Themes',
         'CONFIG',
         '$rootScope',
-        'rfc4122'
+        'rfc4122',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122) {
+    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -135,15 +136,15 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenBtnRadioModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 else if (typeof scope.cozenBtnRadioModel != 'boolean') {
-                    Methods.directiveErrorBoolean(data.directive, 'Model');
+                    cozenEnhancedLogs.error.attributeIsNotBoolean(data.directive, 'Model');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenBtnRadioGroup)) {
-                    Methods.directiveErrorRequired(data.directive, 'Group');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Group');
                     return true;
                 }
                 return false;
@@ -181,9 +182,7 @@
                 if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
                     scope.cozenBtnRadioOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                 $rootScope.$broadcast(data.groupEvent.onChange, data);
             }
 
@@ -202,9 +201,7 @@
                         if (Methods.isFunction(scope.cozenBtnRadioOnChange)) {
                             scope.cozenBtnRadioOnChange();
                         }
-                        if (CONFIG.debug) {
-                            Methods.directiveCallbackLog(data.directive, 'onChange');
-                        }
+                        cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                     }
                 }
             }

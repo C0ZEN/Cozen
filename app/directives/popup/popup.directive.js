@@ -54,10 +54,11 @@
         '$window',
         '$timeout',
         'rfc4122',
-        '$animate'
+        '$animate',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate) {
+    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -212,7 +213,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPopupName)) {
-                    Methods.directiveErrorRequired(data.directive, 'Name');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Name');
                     return true;
                 }
                 return false;
@@ -246,9 +247,7 @@
                             name: scope._cozenPopupName
                         });
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnHide');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnHide');
                     $window.removeEventListener('click', methods.onClick);
                     $window.removeEventListener('keydown', methods.onKeyDown);
 
@@ -279,9 +278,7 @@
                             name: scope._cozenPopupName
                         });
                     }
-                    if (CONFIG.debug) {
-                        Methods.directiveCallbackLog(data.directive, 'OnShow');
-                    }
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'OnShow');
                     if (scope._cozenPopupEasyClose) {
                         $window.addEventListener('click', methods.onClick);
                         $window.addEventListener('keydown', methods.onKeyDown);

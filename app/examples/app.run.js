@@ -14,14 +14,14 @@
 
         // Request for the buttons on the main view
         $rootScope.sendObjectLog  = function () {
-            Methods.infoObjectLog('Main', 'Object log test', {
+            cozenEnhancedLogs.info.explodeObject('Main', 'Object log test', {
                 title      : 'Cozen',
                 description: 'Front-End Developer',
                 nationality: 'French'
             });
         };
         $rootScope.sendObjectLog2 = function () {
-            Methods.infoObjectLog('Main', 'Object log test', {
+            cozenEnhancedLogs.info.explodeObject('Main', 'Object log test', {
                 title      : 'Cozen',
                 description: 'Front-End Developer',
                 nationality: {
@@ -52,9 +52,14 @@
             types   : {
                 lang  : 'fr',
                 title : 'My fake route',
-                access: 3
+                access: 3,
+                types : {
+                    lang  : 'fr',
+                    title : 'My fake route',
+                    access: 3
+                }
             },
-            deazd: "sfzef"
+            deazd   : "sfzef"
         });
     }
 

@@ -17,12 +17,12 @@
         .factory('cozenGoogleAnalyticsRequest', cozenGoogleAnalyticsRequest);
 
     cozenGoogleAnalyticsRequest.$inject = [
-        'enhancedLogs',
+        'cozenEnhancedLogs',
         'PublicMethods',
         '$location'
     ];
 
-    function cozenGoogleAnalyticsRequest(enhancedLogs, PublicMethods, $location) {
+    function cozenGoogleAnalyticsRequest(cozenEnhancedLogs, PublicMethods, $location) {
 
         // Private data
         var _data = {
@@ -51,7 +51,7 @@
             if (PublicMethods.isNullOrEmpty(trackerName)) {
                 trackerName = _data.trackerDefaultName;
             }
-            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('create', trackerName);
+            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('create', trackerName);
 
             // Create the tracker
             ga('create', {
@@ -73,7 +73,7 @@
             if (PublicMethods.isNullOrEmpty(trackerName)) {
                 trackerName = _data.trackerDefaultName;
             }
-            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('addCustomData', trackerName);
+            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('addCustomData', trackerName);
 
             // Update the tracker with custom dimension or metric
             ga(trackerName + '.set', customData);
@@ -97,7 +97,7 @@
             if (PublicMethods.isNullOrEmpty(title)) {
                 title = document.title;
             }
-            enhancedLogs.infoTemplateForGoogleAnalyticsRequest('pageview', trackerName);
+            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('pageview', trackerName);
 
             // Send a pageview hit
             ga(trackerName + '.send', {

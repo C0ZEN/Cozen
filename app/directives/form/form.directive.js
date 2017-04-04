@@ -83,15 +83,15 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenFormName)) {
-                    Methods.directiveErrorRequired(data.directive, 'Name');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Name');
                     return true;
                 }
                 if (Methods.isNullOrEmpty(attrs.cozenFormCtrl)) {
-                    Methods.directiveErrorRequired(data.directive, 'Ctrl');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Ctrl');
                     return true;
                 }
                 if (Methods.isNullOrEmpty(attrs.cozenFormModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;

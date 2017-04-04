@@ -6,14 +6,15 @@
         .provider('Config', ConfigProvider);
 
     ConfigProvider.$inject = [
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function ConfigProvider(CONFIG) {
+    function ConfigProvider(CONFIG, cozenEnhancedLogs) {
 
         this.debug = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('debug');
+                cozenEnhancedLogs.error.valueNotBoolean('debug');
             }
             else {
                 CONFIG.debug = value;
@@ -23,7 +24,7 @@
 
         this.logsEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('logsEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('logsEnabled');
             }
             else {
                 CONFIG.logs.enabled = value;
@@ -38,7 +39,7 @@
 
         this.broadcastLog = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('broadcastLog');
+                cozenEnhancedLogs.error.valueNotBoolean('broadcastLog');
             }
             else {
                 CONFIG.broadcastLog = value;
@@ -49,7 +50,7 @@
         this.currentLanguage = function (value) {
             var list = CONFIG.languages;
             if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('currentLanguage', list);
+                cozenEnhancedLogs.error.valueNotInList('currentLanguage', list);
             }
             else {
                 CONFIG.currentLanguage = value;
@@ -59,7 +60,7 @@
 
         this.scrollsBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('scrollsBar');
+                cozenEnhancedLogs.error.valueNotBoolean('scrollsBar');
             }
             else {
                 CONFIG.scrollsBar = value;
@@ -69,7 +70,7 @@
 
         this.scrollsBarConfig = function (config) {
             if (typeof config != 'object') {
-                Methods.dataMustBeObject('scrollsBarConfig');
+                cozenEnhancedLogs.error.valueNotObject('scrollsBarConfig');
             }
             else {
                 CONFIG.scrollsBarConfig = config;
@@ -79,7 +80,7 @@
 
         this.dropdownAutoCloseOthers = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
+                cozenEnhancedLogs.error.valueNotBoolean('dropdownAutoCloseOthers');
             }
             else {
                 CONFIG.dropdown.autoCloseOthers = value;
@@ -94,7 +95,7 @@
                 'focus'
             ];
             if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('inputModelLengthType', list);
+                cozenEnhancedLogs.error.valueNotInList('inputModelLengthType', list);
             }
             else {
                 CONFIG.input.modelLengthType = value;
@@ -104,7 +105,7 @@
 
         this.textareaDisplayModelLength = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaDisplayModelLength');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaDisplayModelLength');
             }
             else {
                 CONFIG.textarea.displayModelLength = value;
@@ -114,7 +115,7 @@
 
         this.textareaRequired = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaRequired');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaRequired');
             }
             else {
                 CONFIG.textarea.required = value;
@@ -124,7 +125,7 @@
 
         this.textareaErrorDesign = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaErrorDesign');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaErrorDesign');
             }
             else {
                 CONFIG.textarea.errorDesign = value;
@@ -134,7 +135,7 @@
 
         this.textareaSuccessDesign = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaSuccessDesign');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaSuccessDesign');
             }
             else {
                 CONFIG.textarea.successDesign = value;
@@ -144,7 +145,7 @@
 
         this.textareaMinLength = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('textareaMinLength');
+                cozenEnhancedLogs.error.valueNotNumber('textareaMinLength');
             }
             else {
                 CONFIG.textarea.minLength = value;
@@ -154,7 +155,7 @@
 
         this.textareaMaxLength = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('textareaMaxLength');
+                cozenEnhancedLogs.error.valueNotNumber('textareaMaxLength');
             }
             else {
                 CONFIG.textarea.maxLength = value;
@@ -169,7 +170,7 @@
 
         this.textareaValidatorEmpty = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaValidatorEmpty');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaValidatorEmpty');
             }
             else {
                 CONFIG.textarea.validator.empty = value;
@@ -179,7 +180,7 @@
 
         this.textareaElastic = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaElastic');
+                cozenEnhancedLogs.error.valueNotBoolean('textareaElastic');
             }
             else {
                 CONFIG.textarea.elastic = value;
@@ -189,7 +190,7 @@
 
         this.textareaRows = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('textareaRows');
+                cozenEnhancedLogs.error.valueNotNumber('textareaRows');
             }
             else {
                 CONFIG.textarea.rows = value;
@@ -209,7 +210,7 @@
 
         this.dropdownDisplayModelLength = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('dropdownDisplayModelLength');
+                cozenEnhancedLogs.error.valueNotBoolean('dropdownDisplayModelLength');
             }
             else {
                 CONFIG.dropdown.displayModelLength = value;
@@ -223,7 +224,7 @@
                 'icon'
             ];
             if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('requiredType', list);
+                cozenEnhancedLogs.error.valueNotInList('requiredType', list);
             }
             else {
                 CONFIG.required.type = value;
@@ -243,7 +244,7 @@
 
         this.alertCloseBtnEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertCloseBtnEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('alertCloseBtnEnabled');
             }
             else {
                 CONFIG.alert.closeBtn.enabled = value;
@@ -253,7 +254,7 @@
 
         this.alertCloseBtnTootlip = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertCloseBtnTootlip');
+                cozenEnhancedLogs.error.valueNotBoolean('alertCloseBtnTootlip');
             }
             else {
                 CONFIG.alert.closeBtn.tooltip = value;
@@ -263,7 +264,7 @@
 
         this.alertAnimationIn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertAnimationIn');
+                cozenEnhancedLogs.error.valueNotBoolean('alertAnimationIn');
             }
             else {
                 CONFIG.alert.animation.in = value;
@@ -278,7 +279,7 @@
 
         this.alertAnimationOut = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertAnimationOut');
+                cozenEnhancedLogs.error.valueNotBoolean('alertAnimationOut');
             }
             else {
                 CONFIG.alert.animation.out = value;
@@ -318,7 +319,7 @@
 
         this.alertTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('alertTimeoutTime');
+                cozenEnhancedLogs.error.valueNotNumber('alertTimeoutTime');
             }
             else {
                 CONFIG.alert.timeout.time = value;
@@ -328,7 +329,7 @@
 
         this.alertTimeoutBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('alertTimeoutBar');
+                cozenEnhancedLogs.error.valueNotBoolean('alertTimeoutBar');
             }
             else {
                 CONFIG.alert.timeout.bar = value;
@@ -338,7 +339,7 @@
 
         this.btnToggleAnimation = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('btnToggleAnimation');
+                cozenEnhancedLogs.error.valueNotBoolean('btnToggleAnimation');
             }
             else {
                 CONFIG.btnToggle.animation = value;
@@ -353,7 +354,7 @@
 
         this.btnToggleStartRight = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('btnToggleStartRight');
+                cozenEnhancedLogs.error.valueNotBoolean('btnToggleStartRight');
             }
             else {
                 CONFIG.btnToggle.startRight = value;
@@ -363,7 +364,7 @@
 
         this.popupHeader = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupHeader');
+                cozenEnhancedLogs.error.valueNotBoolean('popupHeader');
             }
             else {
                 CONFIG.popup.header = value;
@@ -373,7 +374,7 @@
 
         this.popupFooter = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupFooter');
+                cozenEnhancedLogs.error.valueNotBoolean('popupFooter');
             }
             else {
                 CONFIG.popup.footer = value;
@@ -383,7 +384,7 @@
 
         this.popupAnimationInEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupAnimationInEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('popupAnimationInEnabled');
             }
             else {
                 CONFIG.popup.animation.in.enabled = value;
@@ -393,7 +394,7 @@
 
         this.popupAnimationOutEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupAnimationOutEnabled');
+                cozenEnhancedLogs.error.valueNotBoolean('popupAnimationOutEnabled');
             }
             else {
                 CONFIG.popup.animation.out.enabled = value;
@@ -413,7 +414,7 @@
 
         this.popupEasyClose = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupEasyClose');
+                cozenEnhancedLogs.error.valueNotBoolean('popupEasyClose');
             }
             else {
                 CONFIG.popup.easyClose = value;
@@ -423,7 +424,7 @@
 
         this.popupCloseBtn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('popupCloseBtn');
+                cozenEnhancedLogs.error.valueNotBoolean('popupCloseBtn');
             }
             else {
                 CONFIG.popup.closeBtn = value;
@@ -433,7 +434,7 @@
 
         this.floatingFeedWidth = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedWidth');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedWidth');
             }
             else {
                 CONFIG.floatingFeed.width = value;
@@ -458,7 +459,7 @@
 
         this.floatingFeedCloseBtn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedCloseBtn');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedCloseBtn');
             }
             else {
                 CONFIG.floatingFeed.closeBtn = value;
@@ -468,7 +469,7 @@
 
         this.floatingFeedIconLeft = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedIconLeft');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedIconLeft');
             }
             else {
                 CONFIG.floatingFeed.iconLeft = value;
@@ -478,7 +479,7 @@
 
         this.floatingFeedRight = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedRight');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedRight');
             }
             else {
                 CONFIG.floatingFeed.right = value;
@@ -488,7 +489,7 @@
 
         this.floatingFeedBottom = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedBottom');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedBottom');
             }
             else {
                 CONFIG.floatingFeed.bottom = value;
@@ -498,7 +499,7 @@
 
         this.floatingFeedTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedTimeoutTime');
+                cozenEnhancedLogs.error.valueNotNumber('floatingFeedTimeoutTime');
             }
             else {
                 CONFIG.floatingFeed.timeout.time = value;
@@ -508,7 +509,7 @@
 
         this.floatingFeedAutoDestroy = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedAutoDestroy');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedAutoDestroy');
             }
             else {
                 CONFIG.floatingFeed.autoDestroy = value;
@@ -518,7 +519,7 @@
 
         this.floatingFeedTimeoutBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('floatingFeedTimeoutBar');
+                cozenEnhancedLogs.error.valueNotBoolean('floatingFeedTimeoutBar');
             }
             else {
                 CONFIG.floatingFeed.timeout.bar = value;

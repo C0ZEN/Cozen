@@ -48,10 +48,11 @@
 
     cozenPanel.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPanel(Themes, CONFIG) {
+    function cozenPanel(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -192,7 +193,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPanelLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -233,9 +234,7 @@
                 if (!scope._cozenPanelFrozen) {
                     scope.cozenPanelOpen = !scope.cozenPanelOpen;
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickHeader');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickHeader');
             }
 
             function startWatching() {
@@ -257,9 +256,7 @@
                 if (Methods.isFunction(scope.cozenPanelOnClickBigIconLeft)) {
                     scope.cozenPanelOnClickBigIconLeft();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickBigIconLeft');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickBigIconLeft');
             }
 
             function onClickBigIconRight($event) {
@@ -270,9 +267,7 @@
                 if (Methods.isFunction(scope.cozenPanelOnClickBigIconRight)) {
                     scope.cozenPanelOnClickBigIconRight();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickBigIconRight');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickBigIconRight');
             }
 
             function bigIconHover(hover) {

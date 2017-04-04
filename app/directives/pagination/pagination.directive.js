@@ -38,10 +38,11 @@
 
     cozenPagination.$inject = [
         'CONFIG',
-        'Themes'
+        'Themes',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPagination(CONFIG, Themes) {
+    function cozenPagination(CONFIG, Themes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -146,11 +147,11 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPaginationModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenPaginationTotalElements)) {
-                    Methods.directiveErrorRequired(data.directive, 'TotalElements');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'TotalElements');
                     return true;
                 }
                 return false;
@@ -238,9 +239,7 @@
                 if (oldModel != scope.cozenPaginationModel && Methods.isFunction(scope.cozenPaginationOnChange)) {
                     scope.cozenPaginationOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
             }
 
             function getPages() {

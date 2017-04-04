@@ -30,10 +30,11 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window'
+        '$window',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window) {
+    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -108,15 +109,15 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenListItemMedia3Header)) {
-                    Methods.directiveErrorRequired(data.directive, 'Header');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Header');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenListItemMedia3Label)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 else if (Methods.isNullOrEmpty(attrs.cozenListItemMedia3SubLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'SubLabel');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'SubLabel');
                     return true;
                 }
                 return false;
@@ -154,9 +155,7 @@
                 if (Methods.isFunction(scope.cozenListItemMedia3OnClick)) {
                     scope.cozenListItemMedia3OnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickItem');
             }
 
             function getTabIndex() {

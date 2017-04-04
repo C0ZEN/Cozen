@@ -136,7 +136,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenUploadInfoConfig)) {
-                    Methods.directiveErrorRequired(data.directive, 'Config');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Config');
                     return true;
                 }
                 return false;

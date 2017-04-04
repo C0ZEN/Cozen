@@ -20,10 +20,11 @@
         .directive('cozenOnBlur', cozenOnBlur);
 
     cozenOnBlur.$inject = [
-        '$parse'
+        '$parse',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenOnBlur($parse) {
+    function cozenOnBlur($parse, cozenEnhancedLogs) {
         return {
             link      : link,
             restrict  : 'A',
@@ -83,7 +84,7 @@
 
             function hasError() {
                 if (!Methods.isFunction(data.callback)) {
-                    Methods.directiveErrorFunction(data.directive, 'cozenOnBlurCallback');
+                    cozenEnhancedLogs.error.attributeIsNotFunction(data.directive, 'cozenOnBlurCallback');
                     return true;
                 }
                 return false;

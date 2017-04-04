@@ -53,13 +53,13 @@
         'Themes',
         'CONFIG',
         'rfc4122',
-        '$timeout',
+        'cozenEnhancedLogs',
         '$interval',
         '$filter',
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
+    function cozenTextarea(Themes, CONFIG, rfc4122, cozenEnhancedLogs, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -223,7 +223,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenTextareaModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -275,9 +275,7 @@
                 if (Methods.isFunction(scope.cozenTextareaOnChange)) {
                     scope.cozenTextareaOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                 methods.updateModelLength();
             }
 

@@ -81,10 +81,11 @@
         '$timeout',
         '$interval',
         '$filter',
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
+    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -384,7 +385,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenInputModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -450,9 +451,7 @@
                         newModel: scope.vm.cozenInputModel
                     });
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
                 methods.getPasswordTooltipLabel();
                 methods.updateModelLength();
 

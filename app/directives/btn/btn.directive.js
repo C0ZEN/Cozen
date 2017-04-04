@@ -59,10 +59,11 @@
         'Themes',
         'CONFIG',
         'rfc4122',
-        'CloudinaryUpload'
+        'CloudinaryUpload',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload) {
+    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -292,9 +293,7 @@
                 if (scope.cozenBtnLoader) {
                     return;
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'OnClick');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'OnClick');
                 if (Methods.isFunction(scope.cozenBtnOnClick)) {
                     scope.cozenBtnOnClick();
                 }

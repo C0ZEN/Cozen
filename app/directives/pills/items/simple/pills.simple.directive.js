@@ -34,13 +34,13 @@
     cozenPillsItemSimple.$inject = [
         'CONFIG',
         'rfc4122',
-        '$rootScope',
+        'cozenEnhancedLogs',
         '$window',
         '$timeout',
         '$filter'
     ];
 
-    function cozenPillsItemSimple(CONFIG, rfc4122, $rootScope, $window, $timeout, $filter) {
+    function cozenPillsItemSimple(CONFIG, rfc4122, cozenEnhancedLogs, $window, $timeout, $filter) {
         return {
             link       : link,
             restrict   : 'E',
@@ -138,7 +138,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenPillsItemSimpleLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -170,9 +170,7 @@
                 if (Methods.isFunction(scope.cozenPillsItemSimpleOnClick)) {
                     scope.cozenPillsItemSimpleOnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClick');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick');
                 if (scope.$parent.$parent.$parent._cozenPillsAutoUpdateModel) {
                     scope.cozenPillsItemSimpleSelected = !scope.cozenPillsItemSimpleSelected;
                     Methods.safeApply(scope);

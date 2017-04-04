@@ -20,10 +20,11 @@
         .directive('cozenOnFocus', cozenOnFocus);
 
     cozenOnFocus.$inject = [
-        '$parse'
+        '$parse',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenOnFocus($parse) {
+    function cozenOnFocus($parse, cozenEnhancedLogs) {
         return {
             link      : link,
             restrict  : 'A',
@@ -83,7 +84,7 @@
 
             function hasError() {
                 if (!Methods.isFunction(data.callback)) {
-                    Methods.directiveErrorFunction(data.directive, 'cozenOnFocusCallback');
+                    cozenEnhancedLogs.error.attributeIsNotFunction(data.directive, 'cozenOnFocusCallback');
                     return true;
                 }
                 return false;

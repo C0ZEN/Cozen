@@ -34,10 +34,11 @@
 
     cozenBtnCheck.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnCheck(Themes, CONFIG) {
+    function cozenBtnCheck(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -125,11 +126,11 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenBtnCheckModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 else if (typeof scope.cozenBtnCheckModel != 'boolean') {
-                    Methods.directiveErrorBoolean(data.directive, 'Model');
+                    cozenEnhancedLogs.error.attributeIsNotBoolean(data.directive, 'Model');
                     return true;
                 }
                 return false;
@@ -164,9 +165,7 @@
                 if (Methods.isFunction(scope.cozenBtnCheckOnChange)) {
                     scope.cozenBtnCheckOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
             }
 
             function getTabIndex() {

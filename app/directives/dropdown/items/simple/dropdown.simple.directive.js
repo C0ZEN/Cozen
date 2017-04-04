@@ -34,11 +34,11 @@
         'rfc4122',
         '$rootScope',
         '$window',
-        '$timeout',
+        'cozenEnhancedLogs',
         '$filter'
     ];
 
-    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, $timeout, $filter) {
+    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs, $filter) {
         return {
             link       : link,
             restrict   : 'E',
@@ -172,7 +172,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenDropdownItemSimpleLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;
@@ -209,9 +209,7 @@
                 if (Methods.isFunction(scope.cozenDropdownItemSimpleOnClick)) {
                     scope.cozenDropdownItemSimpleOnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickItem');
                 if (!dropdown._cozenDropdownMultiple && dropdown._cozenDropdownAutoClose) {
                     dropdown._methods.onClick();
                 }
@@ -271,7 +269,7 @@
 
                 // Tell the parent about the new active child
                 if (CONFIG.broadcastLog) {
-                    Methods.broadcastLog('$rootScope', 'cozenDropdownActiveChild');
+                    cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownActiveChild');
                 }
                 $rootScope.$broadcast('cozenDropdownActiveChild', {
                     dropdown   : data.dropdown.name,
@@ -279,7 +277,7 @@
                 });
 
                 if (CONFIG.broadcastLog) {
-                    Methods.broadcastLog('$rootScope', 'cozenDropdownActive');
+                    cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownActive');
                 }
                 $rootScope.$broadcast('cozenDropdownActive', {
                     uuid: data.uuid
@@ -332,7 +330,7 @@
             function updateParentModel(selected) {
                 selected = selected == null ? scope.cozenDropdownItemSimpleSelected : selected;
                 if (CONFIG.broadcastLog) {
-                    Methods.broadcastLog('$rootScope', 'cozenDropdownSelected');
+                    cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownSelected');
                 }
                 $rootScope.$broadcast('cozenDropdownSelected', {
                     uuid    : data.uuid,
@@ -356,7 +354,7 @@
                         scope._cozenDropdownItemSimpleSubLabel
                     ], params.value);
                     if (CONFIG.broadcastLog) {
-                        Methods.broadcastLog('$rootScope', 'cozenDropdownItemDisabled');
+                        cozenEnhancedLogs.info.broadcastEvent('$rootScope', 'cozenDropdownItemDisabled');
                     }
                     $rootScope.$broadcast('cozenDropdownItemDisabled', {
                         uuid    : data.uuid,

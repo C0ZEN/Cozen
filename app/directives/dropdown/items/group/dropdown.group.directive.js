@@ -81,7 +81,7 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenDropdownItemGroupLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 return false;

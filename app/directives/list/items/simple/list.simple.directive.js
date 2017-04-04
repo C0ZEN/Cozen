@@ -34,10 +34,11 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window'
+        '$window',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window) {
+    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -123,11 +124,11 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenListItemSimpleLabel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Label');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Label');
                     return true;
                 }
                 else if (scope.cozenListItemSimpleBtnRight && angular.isUndefined(attrs.cozenListItemSimpleBtnRightOnClick)) {
-                    Methods.directiveErrorRequired(data.directive, 'BtnRightOnClick');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'BtnRightOnClick');
                     return true;
                 }
                 return false;
@@ -165,7 +166,7 @@
                     scope.cozenListItemSimpleOnClick();
                 }
                 if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickItem');
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickItem');
                 }
             }
 
@@ -187,9 +188,7 @@
                 if (Methods.isFunction(scope.cozenListItemSimpleBtnRightOnClick)) {
                     scope.cozenListItemSimpleBtnRightOnClick();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onClickBtnRight');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClickBtnRight');
                 $event.stopPropagation();
             }
 

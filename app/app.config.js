@@ -5,8 +5,7 @@
         .module('test', [
             'cozenLib'
         ])
-        .config(config)
-        .run(run);
+        .config(config);
 
     config.$inject = [
         '$locationProvider',
@@ -63,28 +62,6 @@
 
         // Configure the locale for moment
         moment.locale(CONFIG.currentLanguage);
-    }
-
-    run.$inject = [
-        '$rootScope',
-        '$state'
-    ];
-
-    function run($rootScope, $state) {
-        $rootScope.$state      = $state;
-        $rootScope.innerHeight = window.innerHeight;
-
-        // Logs
-        Methods.changeRouteLog('App', 'app');
-        Methods.changeRouteLog('App', 'app', '');
-        Methods.changeRouteLog('App', 'app', {});
-        Methods.changeRouteLog('App', 'app', {
-            user: 'test'
-        });
-        Methods.changeRouteLog('App', 'app', {
-            user: 'test',
-            name: 'lol'
-        });
     }
 
 })(window.angular, window);

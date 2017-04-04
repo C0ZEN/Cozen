@@ -36,13 +36,13 @@
         '$rootScope',
         'Themes',
         'rfc4122',
-        '$timeout',
+        'cozenEnhancedLogs',
         '$animate',
         '$compile',
         '$templateRequest'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $timeout, $animate, $compile, $templateRequest) {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, cozenEnhancedLogs, $animate, $compile, $templateRequest) {
         return {
             link       : link,
             restrict   : 'E',
@@ -120,10 +120,10 @@
 
                     // Check for potential error
                     if (!Methods.hasOwnProperty(alert, 'label')) {
-                        Methods.missingKeyLog(data.directive, 'label', 'adding alert');
+                        cozenEnhancedLogs.error.missingParameterWhen(data.directive, 'label', 'adding alert');
                     }
                     else if (!Methods.hasOwnProperty(alert, 'type')) {
-                        Methods.missingKeyLog(data.directive, 'type', 'adding alert');
+                        cozenEnhancedLogs.error.missingParameterWhen(data.directive, 'type', 'adding alert');
                     }
 
                     // Add the alert
@@ -144,7 +144,7 @@
                     }
                 }
                 else {
-                    Methods.directiveErrorRequired(data.directive, 'alert');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'alert');
                 }
             }
 

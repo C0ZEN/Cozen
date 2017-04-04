@@ -34,10 +34,11 @@
         .directive('cozenTooltip', cozenTooltip);
 
     cozenTooltip.$inject = [
-        'Themes'
+        'Themes',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenTooltip(Themes) {
+    function cozenTooltip(Themes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'AE',
@@ -118,7 +119,7 @@
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenTooltipLabel)) {
                     if (!scope.cozenTooltipDisabled) {
-                        Methods.directiveErrorRequired(data.directive, 'cozenTooltipLabel');
+                        cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'cozenTooltipLabel');
                         return true;
                     }
                 }

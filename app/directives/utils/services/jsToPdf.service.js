@@ -29,10 +29,10 @@
         .factory('cozenJsToPdf', cozenJsToPdf);
 
     cozenJsToPdf.$inject = [
-        'enhancedLogs'
+        'cozenEnhancedLogs'
     ];
 
-    function cozenJsToPdf(enhancedLogs) {
+    function cozenJsToPdf(cozenEnhancedLogs) {
 
         // Default configuration (could be override by init styles param)
         var defaultConfig = {
@@ -115,7 +115,7 @@
          */
         function drawTitle(doc, text, x, y) {
             if (!methods.areParamsSet(doc, text, x, y)) {
-                enhancedLogs.errorMissingParameterFn('drawTitle');
+                cozenEnhancedLogs.errorMissingParameterFn('drawTitle');
                 return doc;
             }
             doc = setTextStyle(doc, doc.jsToPdfConfig.title.size, doc.jsToPdfConfig.title.family, doc.jsToPdfConfig.title.weight);
@@ -134,7 +134,7 @@
          */
         function drawSubTitle(doc, text, x, y) {
             if (!methods.areParamsSet(doc, text, x, y)) {
-                enhancedLogs.errorMissingParameterFn('drawSubTitle');
+                cozenEnhancedLogs.errorMissingParameterFn('drawSubTitle');
                 return doc;
             }
             doc = setTextStyle(doc, doc.jsToPdfConfig.subtitle.size, doc.jsToPdfConfig.subtitle.family, doc.jsToPdfConfig.subtitle.weight);
@@ -153,7 +153,7 @@
          */
         function drawText(doc, text, x, y) {
             if (!methods.areParamsSet(doc, text, x, y)) {
-                enhancedLogs.errorMissingParameterFn('drawText');
+                cozenEnhancedLogs.errorMissingParameterFn('drawText');
                 return doc;
             }
             doc.text(text, x, y);
@@ -173,7 +173,7 @@
          */
         function drawImage(doc, imageData, x, y, width, height, type) {
             if (!methods.areParamsSet(doc, imageData, x, y, width, height)) {
-                enhancedLogs.errorMissingParameterFn('drawImage');
+                cozenEnhancedLogs.errorMissingParameterFn('drawImage');
                 return doc;
             }
             type = Methods.isNullOrEmpty(type) ? 'JPEG' : type;
@@ -188,7 +188,7 @@
          */
         function print(doc) {
             if (!methods.areParamsSet(doc)) {
-                enhancedLogs.errorMissingParameterFn('print');
+                cozenEnhancedLogs.errorMissingParameterFn('print');
                 return doc;
             }
             doc.save(doc.jsToPdfConfig.pdfName + '.pdf');
@@ -205,7 +205,7 @@
          */
         function setTextStyle(doc, size, family, style) {
             if (!methods.areParamsSet(doc)) {
-                enhancedLogs.errorMissingParameterFn('setTextStyle');
+                cozenEnhancedLogs.errorMissingParameterFn('setTextStyle');
                 return doc;
             }
             size   = Methods.isNullOrEmpty(size) ? 20 : size;
@@ -227,7 +227,7 @@
          */
         function setFillColor(doc, ch1, ch2, ch3, ch4) {
             if (!methods.areParamsSet(doc)) {
-                enhancedLogs.errorMissingParameterFn('setFillColor');
+                cozenEnhancedLogs.errorMissingParameterFn('setFillColor');
                 return doc;
             }
             ch1 = Methods.isNullOrEmpty(ch1) ? 0 : ch1;
@@ -256,7 +256,7 @@
          */
         function getStringWidth(doc, text, fontSize, unit) {
             if (!methods.areParamsSet(doc, text, fontSize)) {
-                enhancedLogs.errorMissingParameterFn('getStringWidth');
+                cozenEnhancedLogs.errorMissingParameterFn('getStringWidth');
                 return 0;
             }
             unit = Methods.isNullOrEmpty(unit) ? 'pt' : unit;
@@ -277,7 +277,7 @@
          */
         function getRowsQuantity(doc, rowWidth, text, fontSize, unit) {
             if (!methods.areParamsSet(doc, rowWidth, text, fontSize)) {
-                enhancedLogs.errorMissingParameterFn('getRowsQuantity');
+                cozenEnhancedLogs.errorMissingParameterFn('getRowsQuantity');
                 return 0;
             }
             unit = Methods.isNullOrEmpty(unit) ? 'pt' : unit;
@@ -296,7 +296,7 @@
          */
         function explodeString(text, maxChars) {
             if (!methods.areParamsSet(text, maxChars)) {
-                enhancedLogs.errorMissingParameterFn('explodeString');
+                cozenEnhancedLogs.errorMissingParameterFn('explodeString');
                 return [];
             }
             var chunks = [];
@@ -314,7 +314,7 @@
          */
         function svgToBase64(parentDomId, canvas, callback) {
             if (!methods.areParamsSet(parentDomId, canvas, callback)) {
-                enhancedLogs.errorMissingParameterFn('svgToBase64');
+                cozenEnhancedLogs.errorMissingParameterFn('svgToBase64');
                 return;
             }
             var svg       = angular.element(document.querySelector('#' + parentDomId + ' svg'));
@@ -337,7 +337,7 @@
          */
         function svgToBase64Svg(parentDomId) {
             if (!methods.areParamsSet(parentDomId)) {
-                enhancedLogs.errorMissingParameterFn('svgToDataUrl');
+                cozenEnhancedLogs.errorMissingParameterFn('svgToDataUrl');
                 return '';
             }
             var svg     = angular.element(document.querySelector('#' + parentDomId + ' svg'));
@@ -355,7 +355,7 @@
          */
         function setTextColor(doc, r, g, b) {
             if (!methods.areParamsSet(doc, r)) {
-                enhancedLogs.errorMissingParameterFn('setTextColor');
+                cozenEnhancedLogs.errorMissingParameterFn('setTextColor');
                 return doc;
             }
             if (methods.hexToRgb(r)) {
@@ -393,7 +393,7 @@
          */
         function rgbToDecimal(value) {
             if (!methods.areParamsSet(value)) {
-                enhancedLogs.errorMissingParameterFn('rgbToDecimal');
+                cozenEnhancedLogs.errorMissingParameterFn('rgbToDecimal');
                 return 0;
             }
             if (typeof value == 'number' && value > 1) {
@@ -409,7 +409,7 @@
          */
         function hexToRgb(hex) {
             if (!methods.areParamsSet(hex)) {
-                enhancedLogs.errorMissingParameterFn('hexToRgb');
+                cozenEnhancedLogs.errorMissingParameterFn('hexToRgb');
                 return false;
             }
             var color;

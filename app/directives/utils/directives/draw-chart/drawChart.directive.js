@@ -27,12 +27,12 @@
 
     cozenDrawChart.$inject = [
         '$interval',
-        'enhancedLogs',
+        'cozenEnhancedLogs',
         '$timeout',
         'exportToPdfFactory'
     ];
 
-    function cozenDrawChart($interval, enhancedLogs, $timeout, exportToPdfFactory) {
+    function cozenDrawChart($interval, cozenEnhancedLogs, $timeout, exportToPdfFactory) {
         return {
             link       : link,
             restrict   : 'E',
@@ -83,7 +83,7 @@
                 ];
                 for (var i = 0, length = requiredAttrs.length; i < length; i++) {
                     if (angular.isUndefined(attrs[requiredAttrs[i]])) {
-                        enhancedLogs.errorMissingParameterDirective(data.directiveName, requiredAttrs[i]);
+                        cozenEnhancedLogs.errorMissingParameterDirective(data.directiveName, requiredAttrs[i]);
                         return;
                     }
                 }

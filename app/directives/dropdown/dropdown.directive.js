@@ -61,10 +61,11 @@
         '$rootScope',
         'rfc4122',
         '$filter',
-        '$timeout'
+        '$timeout',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout) {
+    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -185,7 +186,7 @@
                     }
                     else {
                         scope._cozenDropdownModelEnhanced = 'last';
-                        Methods.directiveWarningUnmatched(data.directive, 'ModelEnhanced', 'last');
+                        cozenEnhancedLogs.warn.attributeNotMatched(data.directive, 'ModelEnhanced', 'last');
                     }
                 }
 
@@ -262,12 +263,12 @@
 
             function hasError() {
                 if (Methods.isNullOrEmpty(attrs.cozenDropdownModel)) {
-                    Methods.directiveErrorRequired(data.directive, 'Model');
+                    cozenEnhancedLogs.error.missingParameterDirective(data.directive, 'Model');
                     return true;
                 }
                 if (angular.isDefined(attrs.cozenDropdownName)) {
                     if (Methods.isNullOrEmpty(attrs.cozenDropdownName)) {
-                        Methods.directiveErrorEmpty(data.directive, 'Name');
+                        cozenEnhancedLogs.error.attributeIsEmpty(data.directive, 'Name');
                         return true;
                     }
                 }
@@ -399,9 +400,7 @@
                 if (Methods.isFunction(scope.cozenDropdownOnChange)) {
                     scope.cozenDropdownOnChange();
                 }
-                if (CONFIG.debug) {
-                    Methods.directiveCallbackLog(data.directive, 'onChange');
-                }
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onChange');
             }
 
             function getForm() {
