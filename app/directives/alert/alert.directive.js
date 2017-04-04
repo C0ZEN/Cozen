@@ -39,6 +39,7 @@
  * @param {string}  cozenAlertAnimationOutClass = 'fadeOutDown' > Define the kind of animation when hiding [config.json]
  * @param {number}  cozenAlertTimeout           = 0             > Define after how many ms the alert should hide (0 is never) [config.json]
  * @param {boolean} cozenAlertAutoDestroy       = false         > Auto destroy the popup on the DOM after the hide [config.json]
+ * @param {boolean} cozenAlertTimeoutBar        = false         > Show a progress bar for the lifetime of the alert [config.json]
  *
  * [Event cozenAlertShow]
  * @param {object} data > Object with all the data (uuid)
@@ -64,13 +65,13 @@
     cozenAlert.$inject = [
         'Themes',
         'CONFIG',
-        '$window',
+        '$interval',
         '$timeout',
         'rfc4122',
         '$rootScope'
     ];
 
-    function cozenAlert(Themes, CONFIG, $window, $timeout, rfc4122, $rootScope) {
+    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -89,14 +90,15 @@
 
         function link(scope, element, attrs) {
             var methods = {
-                init        : init,
-                hasError    : hasError,
-                destroy     : destroy,
-                getMainClass: getMainClass,
-                hide        : hide,
-                show        : show,
-                onClose     : onClose,
-                hideMatching: hideMatching
+                init              : init,
+                hasError          : hasError,
+                destroy           : destroy,
+                getMainClass      : getMainClass,
+                hide              : hide,
+                show              : show,
+                onClose           : onClose,
+                hideMatching      : hideMatching,
+                getTimeoutBarWidth: getTimeoutBarWidth
             };
 
             var data = {
@@ -105,7 +107,8 @@
                 shown            : true,
                 firstHide        : true,
                 firstDisplayWatch: true,
-                timeout          : null
+                timeout          : null,
+                timeSpent        : null
             };
 
             methods.init();
@@ -114,9 +117,10 @@
 
                 // Public functions
                 scope._methods = {
-                    getMainClass: getMainClass,
-                    hide        : hide,
-                    onClose     : onClose
+                    getMainClass      : getMainClass,
+                    hide              : hide,
+                    onClose           : onClose,
+                    getTimeoutBarWidth: getTimeoutBarWidth
                 };
 
                 // Checking required stuff
@@ -183,8 +187,11 @@
                 scope._cozenAlertForceAnimation    = angular.isDefined(attrs.cozenAlertForceAnimation) ? JSON.parse(attrs.cozenAlertForceAnimation) : false;
                 scope._cozenAlertAnimationInClass  = angular.isDefined(attrs.cozenAlertAnimationInClass) ? attrs.cozenAlertAnimationInClass : CONFIG.alert.animation.inClass;
                 scope._cozenAlertAnimationOutClass = angular.isDefined(attrs.cozenAlertAnimationOutClass) ? attrs.cozenAlertAnimationOutClass : CONFIG.alert.animation.outClass;
-                scope._cozenAlertTimeout           = angular.isDefined(attrs.cozenAlertTimeout) ? JSON.parse(attrs.cozenAlertTimeout) : CONFIG.alert.timeout;
+                scope._cozenAlertTimeout           = angular.isDefined(attrs.cozenAlertTimeout) ? JSON.parse(attrs.cozenAlertTimeout) : CONFIG.alert.timeout.time;
                 scope._cozenAlertAutoDestroy       = angular.isDefined(attrs.cozenAlertAutoDestroy) ? JSON.parse(attrs.cozenAlertAutoDestroy) : CONFIG.alert.autoDestroy;
+                scope._cozenAlertTimeoutBar        = angular.isDefined(attrs.cozenAlertTimeoutBar) ? JSON.parse(attrs.cozenAlertTimeoutBar) : CONFIG.alert.timeout.bar;
+                scope._cozenAlertHasTimeout        = scope._cozenAlertTimeout > 0;
+                scope._cozenAlertTimeoutPct        = 0;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -282,12 +289,15 @@
                     $timeout(function () {
                         if (Methods.isFunction(scope.cozenAlertOnHideDone)) {
                             scope.cozenAlertOnHideDone();
-
-                            // Auto destroy the popup
-                            if (scope._cozenAlertAutoDestroy) {
-                                methods.destroy();
-                            }
                         }
+
+                        // Auto destroy the popup
+                        if (scope._cozenAlertAutoDestroy) {
+                            methods.destroy();
+                        }
+
+                        // Stop the $interval
+                        $interval.cancel(data.timeSpent);
                     }, timeout);
                 }
             }
@@ -310,6 +320,8 @@
 
                     // Start the timer to auto close if > 0
                     if (scope._cozenAlertTimeout > 0) {
+
+                        // Timeout to auto close when the time is over
                         data.timeout = $timeout(function () {
 
                             // If the popup is still visible, hide it
@@ -322,6 +334,16 @@
                                 });
                             }
                         }, scope._cozenAlertTimeout);
+
+                        if (scope._cozenAlertTimeoutBar) {
+                            data.timeSpent = $interval(function () {
+                                scope._cozenAlertTimeoutPct += 10 * 100 / scope._cozenAlertTimeout;
+                                if (scope._cozenAlertTimeoutPct >= 100) {
+                                    scope._cozenAlertTimeoutPct = 100;
+                                    $interval.cancel(data.timeSpent);
+                                }
+                            }, 10);
+                        }
                     }
                 }
             }
@@ -336,6 +358,11 @@
                 if (scope._cozenAlertId.search(matching) == 0) {
                     methods.hide($event, null, true);
                 }
+            }
+
+            // Get the progression in percentage for the timeout bar
+            function getTimeoutBarWidth() {
+                return
             }
         }
     }

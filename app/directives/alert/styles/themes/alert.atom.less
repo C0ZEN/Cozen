@@ -6,18 +6,21 @@ div.cozen-alert.atom {
         .cozen-alert-icon-left-size(0 @atom-space-base 0 @atom-space-small, @atom-font-body);
         .cozen-alert-btn-close-size(0 @atom-space-small 0 @atom-space-base, @atom-font-body);
         .cozen-alert-label-size(0, @atom-font-h3, 500);
+        .cozen-alert-timeout-bar-size(1px, 'bottom');
     }
     &.normal {
         .cozen-alert-size(0, @atom-space-base);
         .cozen-alert-icon-left-size(0 @atom-space-base 0 @atom-space-small, @atom-font-body);
         .cozen-alert-btn-close-size(0 @atom-space-small 0 @atom-space-base, @atom-font-body);
         .cozen-alert-label-size(0, @atom-font-h3, 500);
+        .cozen-alert-timeout-bar-size(1px, 'bottom');
     }
     &.large {
         .cozen-alert-size(0, @atom-space-base);
         .cozen-alert-icon-left-size(0 @atom-space-base 0 @atom-space-small, @atom-font-body);
         .cozen-alert-btn-close-size(0 @atom-space-small 0 @atom-space-base, @atom-font-body);
         .cozen-alert-label-size(0, @atom-font-h3, 500);
+        .cozen-alert-timeout-bar-size(2px, 'bottom');
     }
 
     // Type
@@ -27,6 +30,7 @@ div.cozen-alert.atom {
         .cozen-alert-btn-close-color(@atom-color-font, @atom-color-font);
         .cozen-alert-label-color(@atom-color-font, @atom-color-font);
         .cozen-alert-color(@atom-color-info-ultra-light, @atom-color-info-ultra-light);
+        .cozen-alert-timeout-bar-color(@atom-color-info);
     }
     &.info {
         .cozen-alert-border(1px solid @atom-color-info, 1px solid @atom-color-info, none);
@@ -34,6 +38,7 @@ div.cozen-alert.atom {
         .cozen-alert-btn-close-color(@atom-color-font, @atom-color-font);
         .cozen-alert-label-color(@atom-color-font, @atom-color-font);
         .cozen-alert-color(@atom-color-info-ultra-light, @atom-color-info-ultra-light);
+        .cozen-alert-timeout-bar-color(@atom-color-info);
     }
     &.success {
         .cozen-alert-border(1px solid @atom-color-success, 1px solid @atom-color-success, none);
@@ -41,6 +46,7 @@ div.cozen-alert.atom {
         .cozen-alert-btn-close-color(@atom-color-font, @atom-color-font);
         .cozen-alert-label-color(@atom-color-font, @atom-color-font);
         .cozen-alert-color(@atom-color-success-ultra-light, @atom-color-success-ultra-light);
+        .cozen-alert-timeout-bar-color(@atom-color-success);
     }
     &.warning {
         .cozen-alert-border(1px solid @atom-color-warning, 1px solid @atom-color-warning, none);
@@ -48,6 +54,7 @@ div.cozen-alert.atom {
         .cozen-alert-btn-close-color(@atom-color-font, @atom-color-font);
         .cozen-alert-label-color(@atom-color-font, @atom-color-font);
         .cozen-alert-color(@atom-color-warning-ultra-light, @atom-color-warning-ultra-light);
+        .cozen-alert-timeout-bar-color(@atom-color-warning);
     }
     &.error {
         .cozen-alert-border(1px solid @atom-color-error, 1px solid @atom-color-error, none);
@@ -55,6 +62,7 @@ div.cozen-alert.atom {
         .cozen-alert-btn-close-color(@atom-color-font, @atom-color-font);
         .cozen-alert-label-color(@atom-color-font, @atom-color-font);
         .cozen-alert-color(@atom-color-error-ultra-light, @atom-color-error-ultra-light);
+        .cozen-alert-timeout-bar-color(@atom-color-error);
     }
 }
 div.cozen-floating-feed.atom {

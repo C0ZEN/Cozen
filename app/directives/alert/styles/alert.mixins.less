@@ -93,3 +93,25 @@
         margin : @margin-top 0 0 0;
     }
 }
+/************************/
+/*   TIMEOUT BAR SIZE   */
+/************************/
+.cozen-alert-timeout-bar-size(@height, @placement) {
+    div.cozen-alert-timeout-bar {
+        height : @height;
+        & when (@placement = 'top') {
+            top : 0;
+        }
+        & when (@placement = 'bottom') {
+            bottom : 0;
+        }
+    }
+}
+/*************************/
+/*   TIMEOUT BAR COLOR   */
+/*************************/
+.cozen-alert-timeout-bar-color(@background-color) {
+    div.cozen-alert-timeout-bar {
+        background-color : @background-color;
+    }
+}

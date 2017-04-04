@@ -316,12 +316,22 @@
             return this;
         };
 
-        this.alertTimeout = function (value) {
+        this.alertTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('alertTimeout');
+                Methods.dataMustBeNumber('alertTimeoutTime');
             }
             else {
-                CONFIG.alert.timeout = value;
+                CONFIG.alert.timeout.time = value;
+            }
+            return this;
+        };
+
+        this.alertTimeoutBar = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('alertTimeoutBar');
+            }
+            else {
+                CONFIG.alert.timeout.bar = value;
             }
             return this;
         };
@@ -486,12 +496,12 @@
             return this;
         };
 
-        this.floatingFeedTimeout = function (value) {
+        this.floatingFeedTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.dataMustBeNumber('floatingFeedTimeout');
+                Methods.dataMustBeNumber('floatingFeedTimeoutTime');
             }
             else {
-                CONFIG.floatingFeed.timeout = value;
+                CONFIG.floatingFeed.timeout.time = value;
             }
             return this;
         };
@@ -502,6 +512,16 @@
             }
             else {
                 CONFIG.floatingFeed.autoDestroy = value;
+            }
+            return this;
+        };
+
+        this.floatingFeedTimeoutBar = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('floatingFeedTimeoutBar');
+            }
+            else {
+                CONFIG.floatingFeed.timeout.bar = value;
             }
             return this;
         };

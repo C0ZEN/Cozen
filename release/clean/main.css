@@ -45,6 +45,12 @@
 /**********************/
 /*   FLOATING ALERT   */
 /**********************/
+/************************/
+/*   TIMEOUT BAR SIZE   */
+/************************/
+/*************************/
+/*   TIMEOUT BAR COLOR   */
+/*************************/
 /************/
 /*   SIZE   */
 /************/
@@ -809,6 +815,7 @@ div.cozen-alert {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 div.cozen-alert.animate-in {
   -webkit-transition: 300ms ease-out;
@@ -852,6 +859,11 @@ div.cozen-alert span.cozen-alert-label {
   width: 100%;
   font-weight: inherit;
   line-height: 1.3;
+}
+div.cozen-alert div.cozen-alert-timeout-bar {
+  position: absolute;
+  left: 0;
+  width: 0;
 }
 div.cozen-floating-feed .floating-alert-animation-in {
   -webkit-animation-fill-mode: both;
@@ -2421,6 +2433,10 @@ div.cozen-alert.atom.small span.cozen-alert-label {
   font-size: 16px;
   font-weight: 500;
 }
+div.cozen-alert.atom.small div.cozen-alert-timeout-bar {
+  height: 1px;
+  bottom: 0;
+}
 div.cozen-alert.atom.normal {
   margin: 0;
   padding: 12px;
@@ -2438,6 +2454,10 @@ div.cozen-alert.atom.normal span.cozen-alert-label {
   font-size: 16px;
   font-weight: 500;
 }
+div.cozen-alert.atom.normal div.cozen-alert-timeout-bar {
+  height: 1px;
+  bottom: 0;
+}
 div.cozen-alert.atom.large {
   margin: 0;
   padding: 12px;
@@ -2454,6 +2474,10 @@ div.cozen-alert.atom.large span.cozen-alert-label {
   padding: 0;
   font-size: 16px;
   font-weight: 500;
+}
+div.cozen-alert.atom.large div.cozen-alert-timeout-bar {
+  height: 2px;
+  bottom: 0;
 }
 div.cozen-alert.atom.default {
   box-shadow: none;
@@ -2484,6 +2508,9 @@ div.cozen-alert.atom.default span.cozen-alert-label:hover {
 div.cozen-alert.atom.default:hover {
   background-color: #D1E7FA;
 }
+div.cozen-alert.atom.default div.cozen-alert-timeout-bar {
+  background-color: #1E88E5;
+}
 div.cozen-alert.atom.info {
   box-shadow: none;
   border: 1px solid #1E88E5;
@@ -2512,6 +2539,9 @@ div.cozen-alert.atom.info span.cozen-alert-label:hover {
 }
 div.cozen-alert.atom.info:hover {
   background-color: #D1E7FA;
+}
+div.cozen-alert.atom.info div.cozen-alert-timeout-bar {
+  background-color: #1E88E5;
 }
 div.cozen-alert.atom.success {
   box-shadow: none;
@@ -2542,6 +2572,9 @@ div.cozen-alert.atom.success span.cozen-alert-label:hover {
 div.cozen-alert.atom.success:hover {
   background-color: #E4F1DA;
 }
+div.cozen-alert.atom.success div.cozen-alert-timeout-bar {
+  background-color: #7CB342;
+}
 div.cozen-alert.atom.warning {
   box-shadow: none;
   border: 1px solid #FFB330;
@@ -2571,6 +2604,9 @@ div.cozen-alert.atom.warning span.cozen-alert-label:hover {
 div.cozen-alert.atom.warning:hover {
   background-color: #FFECCC;
 }
+div.cozen-alert.atom.warning div.cozen-alert-timeout-bar {
+  background-color: #FFB330;
+}
 div.cozen-alert.atom.error {
   box-shadow: none;
   border: 1px solid #E53935;
@@ -2599,6 +2635,9 @@ div.cozen-alert.atom.error span.cozen-alert-label:hover {
 }
 div.cozen-alert.atom.error:hover {
   background-color: #F9D3D2;
+}
+div.cozen-alert.atom.error div.cozen-alert-timeout-bar {
+  background-color: #E53935;
 }
 div.cozen-floating-feed.atom {
   position: fixed;
@@ -10698,6 +10737,12 @@ label.cozen-icon-required.atom:hover {
 /**********************/
 /*   FLOATING ALERT   */
 /**********************/
+/************************/
+/*   TIMEOUT BAR SIZE   */
+/************************/
+/*************************/
+/*   TIMEOUT BAR COLOR   */
+/*************************/
 /************/
 /*   SIZE   */
 /************/
@@ -11478,6 +11523,7 @@ div.cozen-alert {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 div.cozen-alert.animate-in {
   -webkit-transition: 300ms ease-out;
@@ -11521,6 +11567,11 @@ div.cozen-alert span.cozen-alert-label {
   width: 100%;
   font-weight: inherit;
   line-height: 1.3;
+}
+div.cozen-alert div.cozen-alert-timeout-bar {
+  position: absolute;
+  left: 0;
+  width: 0;
 }
 div.cozen-floating-feed .floating-alert-animation-in {
   -webkit-animation-fill-mode: both;

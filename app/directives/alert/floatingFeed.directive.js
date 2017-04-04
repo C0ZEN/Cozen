@@ -17,6 +17,7 @@
  * @param {number}  cozenFloatingFeedRight        = 20            > Pixel form the right [config.json]
  * @param {number}  cozenFloatingFeedBottom       = 20            > Pixel from the bottom [config.json]
  * @param {number}  cozenFloatingFeedTimeout      = 8000          > Lifetime of the alerts before auto close [config.json]
+ * @param {boolean} cozenFloatingFeedTimeoutBar   = true          > Show a progress bar for the lifetime of the alert [config.json]
  *
  * [Factory - addAlert]
  * @param {string} label > Text to display [required]
@@ -85,7 +86,8 @@
                 scope._cozenFloatingFeedIconLeft     = angular.isDefined(attrs.cozenFloatingFeedIconLeft) ? JSON.parse(attrs.cozenFloatingFeedIconLeft) : CONFIG.floatingFeed.iconLeft;
                 scope._cozenFloatingFeedRight        = angular.isDefined(attrs.cozenFloatingFeedRight) ? attrs.cozenFloatingFeedRight : CONFIG.floatingFeed.right;
                 scope._cozenFloatingFeedBottom       = angular.isDefined(attrs.cozenFloatingFeedBottom) ? attrs.cozenFloatingFeedBottom : CONFIG.floatingFeed.bottom;
-                scope._cozenFloatingFeedTimeout      = angular.isDefined(attrs.cozenFloatingFeedTimeout) ? JSON.parse(attrs.cozenFloatingFeedTimeout) : CONFIG.floatingFeed.timeout;
+                scope._cozenFloatingFeedTimeout      = angular.isDefined(attrs.cozenFloatingFeedTimeout) ? JSON.parse(attrs.cozenFloatingFeedTimeout) : CONFIG.floatingFeed.timeout.time;
+                scope._cozenFloatingFeedTimeoutBar   = angular.isDefined(attrs.cozenFloatingFeedTimeoutBar) ? JSON.parse(attrs.cozenFloatingFeedTimeoutBar) : CONFIG.floatingFeed.timeout.bar;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

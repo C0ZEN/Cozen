@@ -78,7 +78,10 @@
             "out": true,
             "outClass": "fadeOutDown"
         },
-        "timeout": 0
+        "timeout": {
+            "time": 0,
+            "bar": false
+        }
     },
     "btnToggle": {
         "animation": true,
@@ -112,7 +115,10 @@
         "iconLeft": true,
         "right": 20,
         "bottom": 20,
-        "timeout": 8000,
+        "timeout": {
+            "time": 8000,
+            "bar": true
+        },
         "autoDestroy": false
     }
 }

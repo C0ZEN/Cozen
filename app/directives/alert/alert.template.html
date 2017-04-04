@@ -24,4 +24,10 @@
             <i class="fa fa-times"></i>
         </cozen-tooltip>
     </div>
+
+    <!-- Progress bar -->
+    <div ng-if="_cozenAlertHasTimeout"
+         class="cozen-alert-timeout-bar"
+         ng-style="{width: _cozenAlertTimeoutPct + '%'}">
+    </div>
 </div>
