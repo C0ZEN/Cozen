@@ -29,7 +29,8 @@ var Methods = {
     infoCustomLog             : infoCustomLog,
     infoSimpleLog             : infoSimpleLog,
     infoObjectLog             : infoObjectLog,
-    getLongestKey             : getLongestKey
+    getLongestKey             : getLongestKey,
+    returnSpacesString        : returnSpacesString
 };
 
 // Common data
@@ -256,7 +257,7 @@ function firstLoadLog(isStarting) {
     );
 }
 
-// Use it to send an error to the dev to tell him that something required is missing
+// Use it to send an error to the dev to tell him that something required is missing [Deprecated, use enhancedLogs]
 function missingKeyLog(directive, key, when) {
     console.error('%c[%c' + directive + '%c] Missing key <%c' + key + '%c> when ' + when,
         getConsoleColor(),
@@ -267,7 +268,7 @@ function missingKeyLog(directive, key, when) {
     );
 }
 
-// Use it when you change a route in your app
+// Use it when you change a route in your app [Deprecated, use enhancedLogs]
 function changeRouteLog(directive, route, params) {
     var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + directive + '%c][%c' + now + '%c] Redirection to <%c' + route + '%c>' + _getFormattedParams(params),
@@ -287,7 +288,7 @@ function hasDuplicates(array) {
     return (new Set(array)).size !== array.length;
 }
 
-// Use to log a broadcast event
+// Use to log a broadcast event [Deprecated, use enhancedLogs]
 function broadcastLog(scope, eventName) {
     var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + scope + '%c][%c' + now + '%c] Broadcasted event <%c' + eventName + '%c>',
@@ -301,7 +302,7 @@ function broadcastLog(scope, eventName) {
     );
 }
 
-// A custom log with dynamic text before and after a value
+// A custom log with dynamic text before and after a value [Deprecated, use enhancedLogs]
 function infoCustomLog(target, textBefore, value, textAfter) {
     var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + textBefore + ' <%c' + value + '%c> ' + textAfter,
@@ -315,7 +316,7 @@ function infoCustomLog(target, textBefore, value, textAfter) {
     );
 }
 
-// A very simple log with a small text only
+// A very simple log with a small text only [Deprecated, use enhancedLogs]
 function infoSimpleLog(target, text) {
     var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + text,
@@ -327,7 +328,7 @@ function infoSimpleLog(target, text) {
     );
 }
 
-// Use it to show the key of an object
+// Use it to show the key of an object [Deprecated, use enhancedLogs]
 function infoObjectLog(target, text, object) {
     var now = moment().format('HH:mm:ss');
     console.log('%c[%c' + target + '%c][%c' + now + '%c] ' + text + _explodeObjectForLogs(object),
@@ -350,6 +351,17 @@ function getLongestKey(object) {
         }
     }
     return longest;
+}
+
+// Return a string filled with spaces
+// The spaces quantity is defined by checking the difference between the key length and a max length
+function returnSpacesString(key, maxLength) {
+    var diff = maxLength - key.length;
+    var text = '';
+    for (var i = 0; i < diff; i++) {
+        text += ' ';
+    }
+    return text;
 }
 
 /// INTERNAL FUNCTIONS ///
@@ -395,7 +407,7 @@ function _explodeObjectForLogs(params) {
             }
             text += '\t';
             text += key;
-            text += _returnSpacesString(key, longestKeyLength);
+            text += returnSpacesString(key, longestKeyLength);
             text += ': ';
             text += params[key];
             count++;
@@ -404,17 +416,6 @@ function _explodeObjectForLogs(params) {
     }
     else {
         text += '%c';
-    }
-    return text;
-}
-
-// Return a string filled with spaces
-// The spaces quantity is defined by checking the difference between the key length and a max length
-function _returnSpacesString(key, maxLength) {
-    var diff = maxLength - key.length;
-    var text = '';
-    for (var i = 0; i < diff; i++) {
-        text += ' ';
     }
     return text;
 }

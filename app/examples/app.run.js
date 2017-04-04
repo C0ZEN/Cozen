@@ -35,6 +35,27 @@
         // Auto log for test
         cozenEnhancedLogs.info.customMessage('Run', 'Custom message example');
         cozenEnhancedLogs.info.customMessage('Run', 'Custom message example');
+        cozenEnhancedLogs.info.changeRouteWithParams('Run', 'fake.route', {
+            lang : 'fr',
+            title: 'My fake route'
+        });
+        cozenEnhancedLogs.info.explodeObject('Run', 'fake.route', {
+            lang    : 'fr',
+            title   : 'My fake route',
+            access  : 3,
+            callback: function () {
+            },
+            cars    : [
+                'lambo',
+                'ferrari'
+            ],
+            types   : {
+                lang  : 'fr',
+                title : 'My fake route',
+                access: 3
+            },
+            deazd: "sfzef"
+        });
     }
 
 })(window.angular);
