@@ -33,7 +33,7 @@
         ThemesProvider.setActiveTheme('atom');
         ConfigProvider
             .scrollsBar(false)
-            .debug('zfz')
+            .debug(true)
             .logsEnabled(true)
             .broadcastLog(true)
             .dropdownAutoCloseOthers(true)

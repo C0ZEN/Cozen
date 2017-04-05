@@ -13,7 +13,7 @@
 
         this.debug = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('debug');
+                Methods.dataMustBeBoolean('debug');
             }
             else {
                 CONFIG.debug = value;
@@ -23,7 +23,7 @@
 
         this.logsEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('logsEnabled');
+                Methods.dataMustBeBoolean('logsEnabled');
             }
             else {
                 CONFIG.logs.enabled = value;
@@ -38,7 +38,7 @@
 
         this.broadcastLog = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('broadcastLog');
+                Methods.dataMustBeBoolean('broadcastLog');
             }
             else {
                 CONFIG.broadcastLog = value;
@@ -49,7 +49,7 @@
         this.currentLanguage = function (value) {
             var list = CONFIG.languages;
             if (!Methods.isInList(list, value)) {
-                Methods.valueNotInList('currentLanguage', list);
+                Methods.dataMustBeInThisList('currentLanguage', list);
             }
             else {
                 CONFIG.currentLanguage = value;
@@ -59,7 +59,7 @@
 
         this.scrollsBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('scrollsBar');
+                Methods.dataMustBeBoolean('scrollsBar');
             }
             else {
                 CONFIG.scrollsBar = value;
@@ -69,7 +69,7 @@
 
         this.scrollsBarConfig = function (config) {
             if (typeof config != 'object') {
-                Methods.valueNotObject('scrollsBarConfig');
+                Methods.dataMustBeObject('scrollsBarConfig');
             }
             else {
                 CONFIG.scrollsBarConfig = config;
@@ -79,7 +79,7 @@
 
         this.dropdownAutoCloseOthers = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('dropdownAutoCloseOthers');
+                Methods.dataMustBeBoolean('dropdownAutoCloseOthers');
             }
             else {
                 CONFIG.dropdown.autoCloseOthers = value;
@@ -94,7 +94,7 @@
                 'focus'
             ];
             if (!Methods.isInList(list, value)) {
-                Methods.valueNotInList('inputModelLengthType', list);
+                Methods.dataMustBeInThisList('inputModelLengthType', list);
             }
             else {
                 CONFIG.input.modelLengthType = value;
@@ -104,7 +104,7 @@
 
         this.textareaDisplayModelLength = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('textareaDisplayModelLength');
+                Methods.dataMustBeBoolean('textareaDisplayModelLength');
             }
             else {
                 CONFIG.textarea.displayModelLength = value;
@@ -114,7 +114,7 @@
 
         this.textareaRequired = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('textareaRequired');
+                Methods.dataMustBeBoolean('textareaRequired');
             }
             else {
                 CONFIG.textarea.required = value;
@@ -124,7 +124,7 @@
 
         this.textareaErrorDesign = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('textareaErrorDesign');
+                Methods.dataMustBeBoolean('textareaErrorDesign');
             }
             else {
                 CONFIG.textarea.errorDesign = value;
@@ -134,7 +134,7 @@
 
         this.textareaSuccessDesign = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('textareaSuccessDesign');
+                Methods.dataMustBeBoolean('textareaSuccessDesign');
             }
             else {
                 CONFIG.textarea.successDesign = value;
@@ -144,7 +144,7 @@
 
         this.textareaMinLength = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('textareaMinLength');
+                Methods.dataMustBeNumber('textareaMinLength');
             }
             else {
                 CONFIG.textarea.minLength = value;
@@ -154,7 +154,7 @@
 
         this.textareaMaxLength = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('textareaMaxLength');
+                Methods.dataMustBeNumber('textareaMaxLength');
             }
             else {
                 CONFIG.textarea.maxLength = value;
@@ -169,7 +169,7 @@
 
         this.textareaValidatorEmpty = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('textareaValidatorEmpty');
+                Methods.dataMustBeBoolean('textareaValidatorEmpty');
             }
             else {
                 CONFIG.textarea.validator.empty = value;
@@ -179,7 +179,7 @@
 
         this.textareaElastic = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('textareaElastic');
+                Methods.dataMustBeBoolean('textareaElastic');
             }
             else {
                 CONFIG.textarea.elastic = value;
@@ -189,7 +189,7 @@
 
         this.textareaRows = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('textareaRows');
+                Methods.dataMustBeNumber('textareaRows');
             }
             else {
                 CONFIG.textarea.rows = value;
@@ -209,7 +209,7 @@
 
         this.dropdownDisplayModelLength = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('dropdownDisplayModelLength');
+                Methods.dataMustBeBoolean('dropdownDisplayModelLength');
             }
             else {
                 CONFIG.dropdown.displayModelLength = value;
@@ -223,7 +223,7 @@
                 'icon'
             ];
             if (!Methods.isInList(list, value)) {
-                Methods.valueNotInList('requiredType', list);
+                Methods.dataMustBeInThisList('requiredType', list);
             }
             else {
                 CONFIG.required.type = value;
@@ -243,7 +243,7 @@
 
         this.alertCloseBtnEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('alertCloseBtnEnabled');
+                Methods.dataMustBeBoolean('alertCloseBtnEnabled');
             }
             else {
                 CONFIG.alert.closeBtn.enabled = value;
@@ -253,7 +253,7 @@
 
         this.alertCloseBtnTootlip = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('alertCloseBtnTootlip');
+                Methods.dataMustBeBoolean('alertCloseBtnTootlip');
             }
             else {
                 CONFIG.alert.closeBtn.tooltip = value;
@@ -263,7 +263,7 @@
 
         this.alertAnimationIn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('alertAnimationIn');
+                Methods.dataMustBeBoolean('alertAnimationIn');
             }
             else {
                 CONFIG.alert.animation.in = value;
@@ -278,7 +278,7 @@
 
         this.alertAnimationOut = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('alertAnimationOut');
+                Methods.dataMustBeBoolean('alertAnimationOut');
             }
             else {
                 CONFIG.alert.animation.out = value;
@@ -318,7 +318,7 @@
 
         this.alertTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('alertTimeoutTime');
+                Methods.dataMustBeNumber('alertTimeoutTime');
             }
             else {
                 CONFIG.alert.timeout.time = value;
@@ -328,7 +328,7 @@
 
         this.alertTimeoutBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('alertTimeoutBar');
+                Methods.dataMustBeBoolean('alertTimeoutBar');
             }
             else {
                 CONFIG.alert.timeout.bar = value;
@@ -338,7 +338,7 @@
 
         this.btnToggleAnimation = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('btnToggleAnimation');
+                Methods.dataMustBeBoolean('btnToggleAnimation');
             }
             else {
                 CONFIG.btnToggle.animation = value;
@@ -353,7 +353,7 @@
 
         this.btnToggleStartRight = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('btnToggleStartRight');
+                Methods.dataMustBeBoolean('btnToggleStartRight');
             }
             else {
                 CONFIG.btnToggle.startRight = value;
@@ -363,7 +363,7 @@
 
         this.popupHeader = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('popupHeader');
+                Methods.dataMustBeBoolean('popupHeader');
             }
             else {
                 CONFIG.popup.header = value;
@@ -373,7 +373,7 @@
 
         this.popupFooter = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('popupFooter');
+                Methods.dataMustBeBoolean('popupFooter');
             }
             else {
                 CONFIG.popup.footer = value;
@@ -383,7 +383,7 @@
 
         this.popupAnimationInEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('popupAnimationInEnabled');
+                Methods.dataMustBeBoolean('popupAnimationInEnabled');
             }
             else {
                 CONFIG.popup.animation.in.enabled = value;
@@ -393,7 +393,7 @@
 
         this.popupAnimationOutEnabled = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('popupAnimationOutEnabled');
+                Methods.dataMustBeBoolean('popupAnimationOutEnabled');
             }
             else {
                 CONFIG.popup.animation.out.enabled = value;
@@ -413,7 +413,7 @@
 
         this.popupEasyClose = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('popupEasyClose');
+                Methods.dataMustBeBoolean('popupEasyClose');
             }
             else {
                 CONFIG.popup.easyClose = value;
@@ -423,7 +423,7 @@
 
         this.popupCloseBtn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('popupCloseBtn');
+                Methods.dataMustBeBoolean('popupCloseBtn');
             }
             else {
                 CONFIG.popup.closeBtn = value;
@@ -433,7 +433,7 @@
 
         this.floatingFeedWidth = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('floatingFeedWidth');
+                Methods.dataMustBeNumber('floatingFeedWidth');
             }
             else {
                 CONFIG.floatingFeed.width = value;
@@ -458,7 +458,7 @@
 
         this.floatingFeedCloseBtn = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('floatingFeedCloseBtn');
+                Methods.dataMustBeBoolean('floatingFeedCloseBtn');
             }
             else {
                 CONFIG.floatingFeed.closeBtn = value;
@@ -468,7 +468,7 @@
 
         this.floatingFeedIconLeft = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('floatingFeedIconLeft');
+                Methods.dataMustBeBoolean('floatingFeedIconLeft');
             }
             else {
                 CONFIG.floatingFeed.iconLeft = value;
@@ -478,7 +478,7 @@
 
         this.floatingFeedRight = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('floatingFeedRight');
+                Methods.dataMustBeNumber('floatingFeedRight');
             }
             else {
                 CONFIG.floatingFeed.right = value;
@@ -488,7 +488,7 @@
 
         this.floatingFeedBottom = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('floatingFeedBottom');
+                Methods.dataMustBeNumber('floatingFeedBottom');
             }
             else {
                 CONFIG.floatingFeed.bottom = value;
@@ -498,7 +498,7 @@
 
         this.floatingFeedTimeoutTime = function (value) {
             if (typeof value != 'number') {
-                Methods.valueNotNumber('floatingFeedTimeoutTime');
+                Methods.dataMustBeNumber('floatingFeedTimeoutTime');
             }
             else {
                 CONFIG.floatingFeed.timeout.time = value;
@@ -508,7 +508,7 @@
 
         this.floatingFeedAutoDestroy = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('floatingFeedAutoDestroy');
+                Methods.dataMustBeBoolean('floatingFeedAutoDestroy');
             }
             else {
                 CONFIG.floatingFeed.autoDestroy = value;
@@ -518,7 +518,7 @@
 
         this.floatingFeedTimeoutBar = function (value) {
             if (typeof value != 'boolean') {
-                Methods.valueNotBoolean('floatingFeedTimeoutBar');
+                Methods.dataMustBeBoolean('floatingFeedTimeoutBar');
             }
             else {
                 CONFIG.floatingFeed.timeout.bar = value;
