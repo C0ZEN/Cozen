@@ -2231,7 +2231,7 @@
             },
             replace    : false,
             transclude : false,
-            templateUrl: 'directives/utils/directives/draw-chart/draw-chart.template.html'
+            templateUrl: 'directives/utils/directives/draw-chart/drawChart.template.html'
         };
 
         function link(scope, element, attrs) {
