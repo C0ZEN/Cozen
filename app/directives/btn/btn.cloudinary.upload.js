@@ -6,11 +6,10 @@
         .provider('CloudinaryUpload', CloudinaryUploadProvider);
 
     CloudinaryUploadProvider.$inject = [
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function CloudinaryUploadProvider(CONFIG, cozenEnhancedLogs) {
+    function CloudinaryUploadProvider(CONFIG) {
 
         // Default values
         var data = {

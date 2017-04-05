@@ -17,12 +17,12 @@
         .factory('cozenGoogleAnalyticsRequest', cozenGoogleAnalyticsRequest);
 
     cozenGoogleAnalyticsRequest.$inject = [
-        'cozenEnhancedLogs',
         'PublicMethods',
-        '$location'
+        '$location',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenGoogleAnalyticsRequest(cozenEnhancedLogs, PublicMethods, $location) {
+    function cozenGoogleAnalyticsRequest(PublicMethods, $location, cozenEnhancedLogs) {
 
         // Private data
         var _data = {

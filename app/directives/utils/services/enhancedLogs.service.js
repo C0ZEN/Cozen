@@ -1,9 +1,3 @@
-/**
- * @name cozenEnhancedLogs
- * @description
- * Just a factory to show better ui logs
- *
- */
 (function (angular) {
     'use strict';
 
@@ -63,7 +57,7 @@
 
         // Public methods
         return {
-            error: {
+            error        : {
                 missingParameterFn       : errorMissingParameterFn,
                 missingParameterDirective: errorMissingParameterDirective,
                 unexpectedBehaviorFn     : errorUnexpectedBehaviorFn,
@@ -74,9 +68,11 @@
                 valueNotNumber           : errorValueNotNumber,
                 valueNotObject           : errorValueNotObject,
                 valueNotInList           : errorValueNotInList,
-                missingParameterWhen     : errorMissingParameterWhen
+                missingParameterWhen     : errorMissingParameterWhen,
+                customMessage            : errorCustomMessage,
+                requiredParameterFn      : errorRequiredParameterFn
             },
-            info : {
+            info         : {
                 customMessage                    : infoCustomMessage,
                 functionCalled                   : infoFunctionCalled,
                 customMessageEnhanced            : infoCustomMessageEnhanced,
@@ -88,13 +84,14 @@
                 broadcastEvent                   : infoBroadcastEvent,
                 explodeObject                    : infoExplodeObject
             },
-            warn : {
+            warn         : {
                 attributeNotMatched: warningAttributeNotMatched
             },
-            wrap : {
+            wrap         : {
                 starting: wrapStarting,
                 end     : wrapEnd
-            }
+            },
+            explodeObject: explodeObject
         };
 
         /// ERROR LOGS ///
@@ -304,6 +301,43 @@
             }
         }
 
+        /**
+         * Display a log error message with a custom message (title/description)
+         * @param {string} title > Specify the title of the message [required]
+         * @param {string} text  > Specify the description of the message [required]
+         */
+        function errorCustomMessage(title, text) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(title) || Methods.isNullOrEmpty(text)) {
+                    return;
+                }
+                var log = methods.getBase(title);
+                log += console.colors.black(text);
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a error message to inform that this function have a missing required parameter
+         * @param {string} fnName = anonymous > Specify the name of the function
+         * @param {string} parameter          > Specify the name of the required parameter [required]
+         */
+        function errorRequiredParameterFn(fnName, parameter) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(parameter)) {
+                    return;
+                }
+                if (Methods.isNullOrEmpty(fnName)) {
+                    fnName = 'anonymous';
+                }
+                var log = methods.getBase(fnName);
+                log += console.colors.black('Missing required parameter <');
+                log += console.colors.purple(parameter);
+                log += console.colors.black('>');
+                console.style(log);
+            }
+        }
+
         /// INFO LOGS ///
 
         /**
@@ -483,6 +517,7 @@
                 }
                 var log = methods.getBase(title);
                 log += console.colors.black(text);
+                log += '\n';
                 log += methods.getFormattedParams(object, extended);
                 console.style(log);
             }
@@ -532,6 +567,25 @@
                 var log = methods.getBase(title);
                 log += console.colors.black('End');
                 console.style(log);
+            }
+        }
+
+        /// OTHERS ///
+
+        /**
+         * Display an object
+         * @param {object}  object          > The object you want to see in deep details [required]
+         * @param {boolean} extended = true > Add more details (type)
+         */
+        function explodeObject(object, extended) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(object)) {
+                    return;
+                }
+                if (Methods.isNullOrEmpty(extended)) {
+                    extended = true;
+                }
+                console.style(methods.getFormattedParams(object, extended));
             }
         }
 
@@ -606,7 +660,6 @@
             var text             = '', count = 0;
             var longestKeyLength = Methods.getLongestKey(parameters).length;
             if (!Methods.isNullOrEmpty(parameters) && Object.keys(parameters).length > 0) {
-                text += '\n';
                 Object.keys(parameters).forEach(function (key) {
                     if (count > 0) {
                         text += '\n';

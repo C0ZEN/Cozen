@@ -6,11 +6,10 @@
         .provider('Config', ConfigProvider);
 
     ConfigProvider.$inject = [
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function ConfigProvider(CONFIG, cozenEnhancedLogs) {
+    function ConfigProvider(CONFIG) {
 
         this.debug = function (value) {
             if (typeof value != 'boolean') {

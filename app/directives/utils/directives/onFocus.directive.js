@@ -20,11 +20,10 @@
         .directive('cozenOnFocus', cozenOnFocus);
 
     cozenOnFocus.$inject = [
-        '$parse',
-        'cozenEnhancedLogs'
+        '$parse'
     ];
 
-    function cozenOnFocus($parse, cozenEnhancedLogs) {
+    function cozenOnFocus($parse) {
         return {
             link      : link,
             restrict  : 'A',

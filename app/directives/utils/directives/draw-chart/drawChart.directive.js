@@ -27,12 +27,11 @@
 
     cozenDrawChart.$inject = [
         '$interval',
-        'cozenEnhancedLogs',
         '$timeout',
         'exportToPdfFactory'
     ];
 
-    function cozenDrawChart($interval, cozenEnhancedLogs, $timeout, exportToPdfFactory) {
+    function cozenDrawChart($interval, $timeout, exportToPdfFactory) {
         return {
             link       : link,
             restrict   : 'E',

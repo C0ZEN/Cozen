@@ -59,11 +59,10 @@
         'Themes',
         'CONFIG',
         'rfc4122',
-        'CloudinaryUpload',
-        'cozenEnhancedLogs'
+        'CloudinaryUpload'
     ];
 
-    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
+    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload) {
         return {
             link       : link,
             restrict   : 'E',

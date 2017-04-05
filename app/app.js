@@ -1,4 +1,4 @@
-(function (angular, window) {
+(function (angular) {
     'use strict';
 
     angular
@@ -64,4 +64,4 @@
         moment.locale(CONFIG.currentLanguage);
     }
 
-})(window.angular, window);
+})(window.angular);

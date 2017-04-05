@@ -37,11 +37,10 @@
         'Themes',
         'CONFIG',
         '$rootScope',
-        'rfc4122',
-        'cozenEnhancedLogs'
+        'rfc4122'
     ];
 
-    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
+    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122) {
         return {
             link       : link,
             restrict   : 'E',

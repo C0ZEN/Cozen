@@ -1,4 +1,4 @@
-(function (angular, window) {
+(function (angular) {
     'use strict';
 
     if (typeof module !== 'undefined' &&
@@ -53,4 +53,4 @@
             'cozenLib.icons'
         ]);
 
-})(window.angular, window);
+})(window.angular);

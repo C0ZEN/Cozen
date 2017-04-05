@@ -22,11 +22,10 @@
         .directive('cozenForm', cozenForm);
 
     cozenForm.$inject = [
-        '$timeout',
         '$rootScope'
     ];
 
-    function cozenForm($timeout, $rootScope) {
+    function cozenForm($rootScope) {
         return {
             link       : link,
             restrict   : 'E',

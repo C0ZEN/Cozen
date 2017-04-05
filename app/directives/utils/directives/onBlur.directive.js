@@ -20,11 +20,10 @@
         .directive('cozenOnBlur', cozenOnBlur);
 
     cozenOnBlur.$inject = [
-        '$parse',
-        'cozenEnhancedLogs'
+        '$parse'
     ];
 
-    function cozenOnBlur($parse, cozenEnhancedLogs) {
+    function cozenOnBlur($parse) {
         return {
             link      : link,
             restrict  : 'A',

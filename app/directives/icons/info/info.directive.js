@@ -24,11 +24,10 @@
         .directive('cozenIconInfo', cozenIconInfo);
 
     cozenIconInfo.$inject = [
-        '$filter',
         'Themes'
     ];
 
-    function cozenIconInfo($filter, Themes) {
+    function cozenIconInfo(Themes) {
         return {
             link       : link,
             restrict   : 'E',

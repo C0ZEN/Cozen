@@ -180,32 +180,38 @@ module.exports = function (grunt) {
         // Empties folders to start fresh
         clean: {
             dist   : {
-                files: [{
-                    dot: true,
-                    src: [
-                        '.tmp',
-                        '<%= yeoman.dist %>/**/*',
-                        '!<%= yeoman.dist %>/.git{,*/}*'
-                    ]
-                }]
+                files: [
+                    {
+                        dot: true,
+                        src: [
+                            '.tmp',
+                            '<%= yeoman.dist %>/**/*',
+                            '!<%= yeoman.dist %>/.git{,*/}*'
+                        ]
+                    }
+                ]
             },
             server : {
-                files: [{
-                    dot: true,
-                    src: [
-                        '.tmp',
-                        '<%= yeoman.release %>'
-                    ]
-                }]
+                files: [
+                    {
+                        dot: true,
+                        src: [
+                            '.tmp',
+                            '<%= yeoman.release %>'
+                        ]
+                    }
+                ]
             },
             release: {
-                files: [{
-                    dot: true,
-                    src: [
-                        '.tmp',
-                        '<%= yeoman.release %>/**/*'
-                    ]
-                }]
+                files: [
+                    {
+                        dot: true,
+                        src: [
+                            '.tmp',
+                            '<%= yeoman.release %>/**/*'
+                        ]
+                    }
+                ]
             }
         },
 
@@ -220,28 +226,34 @@ module.exports = function (grunt) {
                 options: {
                     map: true
                 },
-                files  : [{
-                    expand: true,
-                    cwd   : '.tmp/styles/',
-                    src   : '**/*.css',
-                    dest  : '.tmp/styles/'
-                }]
+                files  : [
+                    {
+                        expand: true,
+                        cwd   : '.tmp/styles/',
+                        src   : '**/*.css',
+                        dest  : '.tmp/styles/'
+                    }
+                ]
             },
             dist   : {
-                files: [{
-                    expand: true,
-                    cwd   : '.tmp/styles/',
-                    src   : '**/*.css',
-                    dest  : '.tmp/styles/'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd   : '.tmp/styles/',
+                        src   : '**/*.css',
+                        dest  : '.tmp/styles/'
+                    }
+                ]
             },
             release: {
-                files: [{
-                    expand: true,
-                    cwd   : '.tmp/styles/',
-                    src   : '**/*.css',
-                    dest  : '.tmp/styles/'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd   : '.tmp/styles/',
+                        src   : '**/*.css',
+                        dest  : '.tmp/styles/'
+                    }
+                ]
             }
         },
 
@@ -291,8 +303,10 @@ module.exports = function (grunt) {
                 flow: {
                     html: {
                         steps: {
-                            js : ['concat',
-                                'uglifyjs'],
+                            js : [
+                                'concat',
+                                'uglifyjs'
+                            ],
                             css: ['cssmin']
                         },
                         post : {}
@@ -313,8 +327,12 @@ module.exports = function (grunt) {
                     '<%= yeoman.dist %>/styles'
                 ],
                 patterns  : {
-                    js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g,
-                        'Replacing references to images']]
+                    js: [
+                        [
+                            /(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g,
+                            'Replacing references to images'
+                        ]
+                    ]
                 }
             }
         },
@@ -354,23 +372,27 @@ module.exports = function (grunt) {
 
         imagemin: {
             dist: {
-                files: [{
-                    expand: true,
-                    cwd   : '<%= yeoman.app %>/images',
-                    src   : '**/*.{png,jpg,jpeg,gif}',
-                    dest  : '<%= yeoman.dist %>/images'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd   : '<%= yeoman.app %>/images',
+                        src   : '**/*.{png,jpg,jpeg,gif}',
+                        dest  : '<%= yeoman.dist %>/images'
+                    }
+                ]
             }
         },
 
         svgmin: {
             dist: {
-                files: [{
-                    expand: true,
-                    cwd   : '<%= yeoman.app %>/images',
-                    src   : '**/*.svg',
-                    dest  : '<%= yeoman.dist %>/images'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd   : '<%= yeoman.app %>/images',
+                        src   : '**/*.svg',
+                        dest  : '<%= yeoman.dist %>/images'
+                    }
+                ]
             }
         },
 
@@ -382,12 +404,14 @@ module.exports = function (grunt) {
                     collapseBooleanAttributes: true,
                     removeCommentsFromCDATA  : true
                 },
-                files  : [{
-                    expand: true,
-                    cwd   : '<%= yeoman.dist %>',
-                    src   : ['*.html'],
-                    dest  : '<%= yeoman.dist %>'
-                }]
+                files  : [
+                    {
+                        expand: true,
+                        cwd   : '<%= yeoman.dist %>',
+                        src   : ['*.html'],
+                        dest  : '<%= yeoman.dist %>'
+                    }
+                ]
             },
             release: {
                 options: {
@@ -397,12 +421,14 @@ module.exports = function (grunt) {
                     removeComments           : true,
                     removeCommentsFromCDATA  : true
                 },
-                files  : [{
-                    expand: true,
-                    cwd   : '<%= yeoman.app %>/directives',
-                    src   : ['**/*.html'],
-                    dest  : '<%= yeoman.release %>/directives'
-                }]
+                files  : [
+                    {
+                        expand: true,
+                        cwd   : '<%= yeoman.app %>/directives',
+                        src   : ['**/*.html'],
+                        dest  : '<%= yeoman.release %>/directives'
+                    }
+                ]
             }
         },
 
@@ -433,12 +459,14 @@ module.exports = function (grunt) {
         // by using the Angular long form for dependency injection.
         ngAnnotate: {
             dist: {
-                files: [{
-                    expand: true,
-                    cwd   : '.tmp/concat/scripts',
-                    src   : '*.js',
-                    dest  : '.tmp/concat/scripts'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd   : '.tmp/concat/scripts',
+                        src   : '*.js',
+                        dest  : '.tmp/concat/scripts'
+                    }
+                ]
             }
         },
 
@@ -452,18 +480,19 @@ module.exports = function (grunt) {
         // Copies remaining files to places other tasks can use
         copy: {
             dist     : {
-                files: [{
-                    expand: true,
-                    dot   : true,
-                    cwd   : '<%= yeoman.app %>',
-                    dest  : '<%= yeoman.dist %>',
-                    src   : [
-                        '*.{ico,png,txt}',
-                        '*.html',
-                        'images/**/*.{webp}',
-                        'styles/fonts/{,*/}*.*'
-                    ]
-                },
+                files: [
+                    {
+                        expand: true,
+                        dot   : true,
+                        cwd   : '<%= yeoman.app %>',
+                        dest  : '<%= yeoman.dist %>',
+                        src   : [
+                            '*.{ico,png,txt}',
+                            '*.html',
+                            'images/**/*.{webp}',
+                            'styles/fonts/{,*/}*.*'
+                        ]
+                    },
                     {
                         expand: true,
                         cwd   : '.tmp/images',
@@ -475,7 +504,8 @@ module.exports = function (grunt) {
                         cwd   : 'bower_components/bootstrap/dist',
                         src   : 'fonts/*',
                         dest  : '<%= yeoman.dist %>'
-                    }]
+                    }
+                ]
             },
             styles   : {
                 expand: true,
@@ -539,9 +569,7 @@ module.exports = function (grunt) {
             options: {
                 scripts : [
                     '<%= yeoman.app %>/**/*.js',
-                    '!<%= yeoman.app %>/**/*.tpl.js',
-                    '!<%= yeoman.app %>/app.config.js',
-                    '!<%= yeoman.app %>/app.run.js'
+                    '!<%= yeoman.app %>/**/*.tpl.js'
                 ],
                 startTag: 'cozen-js-start',
                 endTag  : 'cozen-js-end'
@@ -667,8 +695,10 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build',
-                'connect:dist:keepalive']);
+            return grunt.task.run([
+                'build',
+                'connect:dist:keepalive'
+            ]);
         }
 
         grunt.task.run([

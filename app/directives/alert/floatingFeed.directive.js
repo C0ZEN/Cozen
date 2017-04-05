@@ -36,13 +36,12 @@
         '$rootScope',
         'Themes',
         'rfc4122',
-        'cozenEnhancedLogs',
         '$animate',
         '$compile',
         '$templateRequest'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, cozenEnhancedLogs, $animate, $compile, $templateRequest) {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $animate, $compile, $templateRequest) {
         return {
             link       : link,
             restrict   : 'E',

@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="test">
+<html ng-app="test" ng-strict-di>
     <head>
         <meta charset="utf-8">
         <title ng-bind="$state.current.data.pageTitle + ' - Cozen Lib'">Cozen Lib</title>
@@ -107,11 +107,9 @@
         <!-- endbower -->
         <!-- endbuild -->
 
-        <!-- Required ordered modules -->
-        <script src="app.config.js" type="text/javascript"></script>
-        <script src="app.run.js" type="text/javascript"></script>
-
         <!-- cozen-js-start -->
+
+        <script src="app.js" type="text/javascript"></script>
 
         <script src="examples/tooltip/tooltip.routes.js" type="text/javascript"></script>
 

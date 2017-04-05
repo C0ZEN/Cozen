@@ -81,11 +81,10 @@
         '$timeout',
         '$interval',
         '$filter',
-        '$rootScope',
-        'cozenEnhancedLogs'
+        '$rootScope'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
+    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',

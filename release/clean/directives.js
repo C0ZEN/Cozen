@@ -68,11 +68,10 @@
         '$interval',
         '$timeout',
         'rfc4122',
-        '$rootScope',
-        'cozenEnhancedLogs'
+        '$rootScope'
     ];
 
-    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
+    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -507,11 +506,10 @@
         .provider('CloudinaryUpload', CloudinaryUploadProvider);
 
     CloudinaryUploadProvider.$inject = [
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function CloudinaryUploadProvider(CONFIG, cozenEnhancedLogs) {
+    function CloudinaryUploadProvider(CONFIG) {
 
         // Default values
         var data = {
@@ -668,11 +666,10 @@
         'Themes',
         'CONFIG',
         'rfc4122',
-        'CloudinaryUpload',
-        'cozenEnhancedLogs'
+        'CloudinaryUpload'
     ];
 
-    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
+    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1060,11 +1057,10 @@
 
     cozenBtnCheck.$inject = [
         'Themes',
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function cozenBtnCheck(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenBtnCheck(Themes, CONFIG) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1246,11 +1242,10 @@
         'Themes',
         'CONFIG',
         '$rootScope',
-        'rfc4122',
-        'cozenEnhancedLogs'
+        'rfc4122'
     ];
 
-    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
+    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1458,11 +1453,10 @@
 
     cozenBtnToggle.$inject = [
         'Themes',
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function cozenBtnToggle(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenBtnToggle(Themes, CONFIG) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1657,11 +1651,10 @@
         .provider('Config', ConfigProvider);
 
     ConfigProvider.$inject = [
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function ConfigProvider(CONFIG, cozenEnhancedLogs) {
+    function ConfigProvider(CONFIG) {
 
         this.debug = function (value) {
             if (typeof value != 'boolean') {
@@ -2218,12 +2211,11 @@
 
     cozenDrawChart.$inject = [
         '$interval',
-        'cozenEnhancedLogs',
         '$timeout',
         'exportToPdfFactory'
     ];
 
-    function cozenDrawChart($interval, cozenEnhancedLogs, $timeout, exportToPdfFactory) {
+    function cozenDrawChart($interval, $timeout, exportToPdfFactory) {
         return {
             link       : link,
             restrict   : 'E',
@@ -2517,11 +2509,10 @@
         '$rootScope',
         'rfc4122',
         '$filter',
-        '$timeout',
-        'cozenEnhancedLogs'
+        '$timeout'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
+    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout) {
         return {
             link            : link,
             restrict        : 'E',
@@ -3467,11 +3458,10 @@
         'rfc4122',
         '$rootScope',
         '$window',
-        'cozenEnhancedLogs',
         '$filter'
     ];
 
-    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs, $filter) {
+    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, $filter) {
         return {
             link       : link,
             restrict   : 'E',
@@ -3802,12 +3792,6 @@
 })(window.angular);
 
 
-/**
- * @name cozenEnhancedLogs
- * @description
- * Just a factory to show better ui logs
- *
- */
 (function (angular) {
     'use strict';
 
@@ -3867,7 +3851,7 @@
 
         // Public methods
         return {
-            error: {
+            error        : {
                 missingParameterFn       : errorMissingParameterFn,
                 missingParameterDirective: errorMissingParameterDirective,
                 unexpectedBehaviorFn     : errorUnexpectedBehaviorFn,
@@ -3878,9 +3862,11 @@
                 valueNotNumber           : errorValueNotNumber,
                 valueNotObject           : errorValueNotObject,
                 valueNotInList           : errorValueNotInList,
-                missingParameterWhen     : errorMissingParameterWhen
+                missingParameterWhen     : errorMissingParameterWhen,
+                customMessage            : errorCustomMessage,
+                requiredParameterFn      : errorRequiredParameterFn
             },
-            info : {
+            info         : {
                 customMessage                    : infoCustomMessage,
                 functionCalled                   : infoFunctionCalled,
                 customMessageEnhanced            : infoCustomMessageEnhanced,
@@ -3892,13 +3878,14 @@
                 broadcastEvent                   : infoBroadcastEvent,
                 explodeObject                    : infoExplodeObject
             },
-            warn : {
+            warn         : {
                 attributeNotMatched: warningAttributeNotMatched
             },
-            wrap : {
+            wrap         : {
                 starting: wrapStarting,
                 end     : wrapEnd
-            }
+            },
+            explodeObject: explodeObject
         };
 
         /// ERROR LOGS ///
@@ -4108,6 +4095,43 @@
             }
         }
 
+        /**
+         * Display a log error message with a custom message (title/description)
+         * @param {string} title > Specify the title of the message [required]
+         * @param {string} text  > Specify the description of the message [required]
+         */
+        function errorCustomMessage(title, text) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(title) || Methods.isNullOrEmpty(text)) {
+                    return;
+                }
+                var log = methods.getBase(title);
+                log += console.colors.black(text);
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a error message to inform that this function have a missing required parameter
+         * @param {string} fnName = anonymous > Specify the name of the function
+         * @param {string} parameter          > Specify the name of the required parameter [required]
+         */
+        function errorRequiredParameterFn(fnName, parameter) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(parameter)) {
+                    return;
+                }
+                if (Methods.isNullOrEmpty(fnName)) {
+                    fnName = 'anonymous';
+                }
+                var log = methods.getBase(fnName);
+                log += console.colors.black('Missing required parameter <');
+                log += console.colors.purple(parameter);
+                log += console.colors.black('>');
+                console.style(log);
+            }
+        }
+
         /// INFO LOGS ///
 
         /**
@@ -4287,6 +4311,7 @@
                 }
                 var log = methods.getBase(title);
                 log += console.colors.black(text);
+                log += '\n';
                 log += methods.getFormattedParams(object, extended);
                 console.style(log);
             }
@@ -4336,6 +4361,25 @@
                 var log = methods.getBase(title);
                 log += console.colors.black('End');
                 console.style(log);
+            }
+        }
+
+        /// OTHERS ///
+
+        /**
+         * Display an object
+         * @param {object}  object          > The object you want to see in deep details [required]
+         * @param {boolean} extended = true > Add more details (type)
+         */
+        function explodeObject(object, extended) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(object)) {
+                    return;
+                }
+                if (Methods.isNullOrEmpty(extended)) {
+                    extended = true;
+                }
+                console.style(methods.getFormattedParams(object, extended));
             }
         }
 
@@ -4410,7 +4454,6 @@
             var text             = '', count = 0;
             var longestKeyLength = Methods.getLongestKey(parameters).length;
             if (!Methods.isNullOrEmpty(parameters) && Object.keys(parameters).length > 0) {
-                text += '\n';
                 Object.keys(parameters).forEach(function (key) {
                     if (count > 0) {
                         text += '\n';
@@ -4575,13 +4618,12 @@
         '$rootScope',
         'Themes',
         'rfc4122',
-        'cozenEnhancedLogs',
         '$animate',
         '$compile',
         '$templateRequest'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, cozenEnhancedLogs, $animate, $compile, $templateRequest) {
+    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, $animate, $compile, $templateRequest) {
         return {
             link       : link,
             restrict   : 'E',
@@ -4750,11 +4792,10 @@
         .directive('cozenForm', cozenForm);
 
     cozenForm.$inject = [
-        '$timeout',
         '$rootScope'
     ];
 
-    function cozenForm($timeout, $rootScope) {
+    function cozenForm($rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -4867,12 +4908,12 @@
         .factory('cozenGoogleAnalyticsRequest', cozenGoogleAnalyticsRequest);
 
     cozenGoogleAnalyticsRequest.$inject = [
-        'cozenEnhancedLogs',
         'PublicMethods',
-        '$location'
+        '$location',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenGoogleAnalyticsRequest(cozenEnhancedLogs, PublicMethods, $location) {
+    function cozenGoogleAnalyticsRequest(PublicMethods, $location, cozenEnhancedLogs) {
 
         // Private data
         var _data = {
@@ -4999,11 +5040,10 @@
         .directive('cozenIconInfo', cozenIconInfo);
 
     cozenIconInfo.$inject = [
-        '$filter',
         'Themes'
     ];
 
-    function cozenIconInfo($filter, Themes) {
+    function cozenIconInfo(Themes) {
         return {
             link       : link,
             restrict   : 'E',
@@ -5152,11 +5192,10 @@
         '$timeout',
         '$interval',
         '$filter',
-        '$rootScope',
-        'cozenEnhancedLogs'
+        '$rootScope'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
+    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -6407,11 +6446,10 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window',
-        'cozenEnhancedLogs'
+        '$window'
     ];
 
-    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
+    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window) {
         return {
             link       : link,
             restrict   : 'E',
@@ -6622,11 +6660,10 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window',
-        'cozenEnhancedLogs'
+        '$window'
     ];
 
-    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
+    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window) {
         return {
             link       : link,
             restrict   : 'E',
@@ -6843,11 +6880,10 @@
         .directive('cozenOnBlur', cozenOnBlur);
 
     cozenOnBlur.$inject = [
-        '$parse',
-        'cozenEnhancedLogs'
+        '$parse'
     ];
 
-    function cozenOnBlur($parse, cozenEnhancedLogs) {
+    function cozenOnBlur($parse) {
         return {
             link      : link,
             restrict  : 'A',
@@ -6940,10 +6976,11 @@
 
     cozenOnClickService.$inject = [
         '$window',
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenOnClickService($window, $rootScope) {
+    function cozenOnClickService($window, $rootScope, cozenEnhancedLogs) {
 
         // Listen for a click
         $window.addEventListener('click', _onClick);
@@ -6996,11 +7033,10 @@
         .directive('cozenOnFocus', cozenOnFocus);
 
     cozenOnFocus.$inject = [
-        '$parse',
-        'cozenEnhancedLogs'
+        '$parse'
     ];
 
-    function cozenOnFocus($parse, cozenEnhancedLogs) {
+    function cozenOnFocus($parse) {
         return {
             link      : link,
             restrict  : 'A',
@@ -7226,11 +7262,10 @@
 
     cozenPagination.$inject = [
         'CONFIG',
-        'Themes',
-        'cozenEnhancedLogs'
+        'Themes'
     ];
 
-    function cozenPagination(CONFIG, Themes, cozenEnhancedLogs) {
+    function cozenPagination(CONFIG, Themes) {
         return {
             link       : link,
             restrict   : 'E',
@@ -7524,11 +7559,10 @@
 
     cozenPanel.$inject = [
         'Themes',
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function cozenPanel(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenPanel(Themes, CONFIG) {
         return {
             link       : link,
             restrict   : 'E',
@@ -7958,13 +7992,12 @@
     cozenPillsItemSimple.$inject = [
         'CONFIG',
         'rfc4122',
-        'cozenEnhancedLogs',
         '$window',
         '$timeout',
         '$filter'
     ];
 
-    function cozenPillsItemSimple(CONFIG, rfc4122, cozenEnhancedLogs, $window, $timeout, $filter) {
+    function cozenPillsItemSimple(CONFIG, rfc4122, $window, $timeout, $filter) {
         return {
             link       : link,
             restrict   : 'E',
@@ -8174,11 +8207,10 @@
         '$window',
         '$timeout',
         'rfc4122',
-        '$animate',
-        'cozenEnhancedLogs'
+        '$animate'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
+    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate) {
         return {
             link       : link,
             restrict   : 'E',
@@ -8938,13 +8970,12 @@ function returnSpacesString(key, maxLength) {
         'Themes',
         'CONFIG',
         'rfc4122',
-        'cozenEnhancedLogs',
         '$interval',
         '$filter',
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, cozenEnhancedLogs, $interval, $filter, $rootScope) {
+    function cozenTextarea(Themes, CONFIG, rfc4122, $interval, $filter, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -9319,11 +9350,10 @@ function returnSpacesString(key, maxLength) {
         .directive('cozenTooltip', cozenTooltip);
 
     cozenTooltip.$inject = [
-        'Themes',
-        'cozenEnhancedLogs'
+        'Themes'
     ];
 
-    function cozenTooltip(Themes, cozenEnhancedLogs) {
+    function cozenTooltip(Themes) {
         return {
             link       : link,
             restrict   : 'AE',

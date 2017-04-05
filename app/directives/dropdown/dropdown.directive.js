@@ -61,11 +61,10 @@
         '$rootScope',
         'rfc4122',
         '$filter',
-        '$timeout',
-        'cozenEnhancedLogs'
+        '$timeout'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
+    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout) {
         return {
             link            : link,
             restrict        : 'E',

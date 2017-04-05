@@ -48,11 +48,10 @@
 
     cozenPanel.$inject = [
         'Themes',
-        'CONFIG',
-        'cozenEnhancedLogs'
+        'CONFIG'
     ];
 
-    function cozenPanel(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenPanel(Themes, CONFIG) {
         return {
             link       : link,
             restrict   : 'E',

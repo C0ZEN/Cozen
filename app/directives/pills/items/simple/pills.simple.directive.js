@@ -34,13 +34,12 @@
     cozenPillsItemSimple.$inject = [
         'CONFIG',
         'rfc4122',
-        'cozenEnhancedLogs',
         '$window',
         '$timeout',
         '$filter'
     ];
 
-    function cozenPillsItemSimple(CONFIG, rfc4122, cozenEnhancedLogs, $window, $timeout, $filter) {
+    function cozenPillsItemSimple(CONFIG, rfc4122, $window, $timeout, $filter) {
         return {
             link       : link,
             restrict   : 'E',
