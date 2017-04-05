@@ -91,15 +91,14 @@
 
         function link(scope, element, attrs) {
             var methods = {
-                init              : init,
-                hasError          : hasError,
-                destroy           : destroy,
-                getMainClass      : getMainClass,
-                hide              : hide,
-                show              : show,
-                onClose           : onClose,
-                hideMatching      : hideMatching,
-                getTimeoutBarWidth: getTimeoutBarWidth
+                init        : init,
+                hasError    : hasError,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                hide        : hide,
+                show        : show,
+                onClose     : onClose,
+                hideMatching: hideMatching
             };
 
             var data = {
@@ -118,10 +117,9 @@
 
                 // Public functions
                 scope._methods = {
-                    getMainClass      : getMainClass,
-                    hide              : hide,
-                    onClose           : onClose,
-                    getTimeoutBarWidth: getTimeoutBarWidth
+                    getMainClass: getMainClass,
+                    hide        : hide,
+                    onClose     : onClose
                 };
 
                 // Checking required stuff
@@ -330,7 +328,7 @@
 
                         if (scope._cozenAlertTimeoutBar) {
                             data.timeSpent = $interval(function () {
-                                scope._cozenAlertTimeoutPct += 10 * 100 / scope._cozenAlertTimeout;
+                                scope._cozenAlertTimeoutPct += 11 * 100 / scope._cozenAlertTimeout;
                                 if (scope._cozenAlertTimeoutPct >= 100) {
                                     scope._cozenAlertTimeoutPct = 100;
                                     $interval.cancel(data.timeSpent);
@@ -351,11 +349,6 @@
                 if (scope._cozenAlertId.search(matching) == 0) {
                     methods.hide($event, null, true);
                 }
-            }
-
-            // Get the progression in percentage for the timeout bar
-            function getTimeoutBarWidth() {
-                return
             }
         }
     }
