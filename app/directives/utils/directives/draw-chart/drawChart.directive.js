@@ -90,16 +90,14 @@
                 ];
                 for (var i = 0, length = requiredAttrs.length; i < length; i++) {
                     if (angular.isUndefined(attrs[requiredAttrs[i]])) {
-                        cozenEnhancedLogs.errorMissingParameterDirective(data.directiveName, requiredAttrs[i]);
+                        cozenEnhancedLogs.error.missingParameterDirective(data.directiveName, requiredAttrs[i]);
                         return;
                     }
                 }
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                if (angular.isUndefined(attrs.cozenDrawChartHidden)) {
-                    scope.cozenDrawChartHidden = false;
-                }
+                angular.isUndefined(attrs.cozenDrawChartHidden) ? scope.cozenDrawChartHidden = false : null;
 
                 // Display the template
                 scope._isReady = true;
