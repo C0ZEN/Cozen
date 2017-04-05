@@ -12,7 +12,11 @@ var Methods = {
     hasOwnProperty            : hasOwnProperty,
     hasDuplicates             : hasDuplicates,
     getLongestKey             : getLongestKey,
-    returnSpacesString        : returnSpacesString
+    returnSpacesString        : returnSpacesString,
+    dataMustBeBoolean         : dataMustBeBoolean,
+    dataMustBeNumber          : dataMustBeNumber,
+    dataMustBeObject          : dataMustBeObject,
+    dataMustBeInThisList      : dataMustBeInThisList
 };
 
 // Common data
@@ -122,4 +126,50 @@ function returnSpacesString(key, maxLength) {
         text += ' ';
     }
     return text;
+}
+
+// Use it to tell the dev that a entered value is not a boolean [Deprecated, use enhancedLogs]
+function dataMustBeBoolean(attribute) {
+    console.error('%c<%c' + attribute + '%c> must be <%ctrue%c> or <%cfalse%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
+}
+
+// Use it to tell the dev that a entered value is not a number [Deprecated, use enhancedLogs]
+function dataMustBeNumber(attribute) {
+    console.error('%c<%c' + attribute + '%c> must be an <%cnumber%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
+}
+
+// Use it to tell the dev that a entered value is not an object [Deprecated, use enhancedLogs]
+function dataMustBeObject(attribute) {
+    console.error('%c<%c' + attribute + '%c> must be an <%cobject%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
+}
+
+// Use it to tell the dev that a key is not in the list so that's a terrible error !! [Deprecated, use enhancedLogs]
+function dataMustBeInThisList(attribute, list) {
+    console.error('%c<%c' + attribute + '%c> must be a correct value from this list <%c' + list + '%c>',
+        getConsoleColor(),
+        getConsoleColor('red'),
+        getConsoleColor(),
+        getConsoleColor('purple'),
+        getConsoleColor()
+    );
 }
