@@ -550,10 +550,14 @@
 
         /**
          * Start a series of logs
+         * @param {string} target > Specify the name of the element [required]
          */
-        function wrapStarting() {
+        function wrapStarting(target) {
             if (CONFIG.logs.enabled) {
-                var log = methods.getBase(title);
+                if (Methods.isNullOrEmpty(target)) {
+                    return;
+                }
+                var log = methods.getBase(target);
                 log += console.colors.black('Starting...');
                 console.style(log);
             }
@@ -561,10 +565,14 @@
 
         /**
          * End a series of logs
+         * @param {string} target > Specify the name of the element [required]
          */
-        function wrapEnd() {
+        function wrapEnd(target) {
             if (CONFIG.logs.enabled) {
-                var log = methods.getBase(title);
+                if (Methods.isNullOrEmpty(target)) {
+                    return;
+                }
+                var log = methods.getBase(target);
                 log += console.colors.black('End');
                 console.style(log);
             }
