@@ -23,12 +23,12 @@
     cozenDropdownItemGroup.$inject = [
         'CONFIG',
         'rfc4122',
-        '$rootScope',
+        'cozenEnhancedLogs',
         '$window',
         '$timeout'
     ];
 
-    function cozenDropdownItemGroup(CONFIG, rfc4122, $rootScope, $window, $timeout) {
+    function cozenDropdownItemGroup(CONFIG, rfc4122, cozenEnhancedLogs, $window, $timeout) {
         return {
             link       : link,
             restrict   : 'E',

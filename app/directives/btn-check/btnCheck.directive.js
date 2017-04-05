@@ -34,10 +34,11 @@
 
     cozenBtnCheck.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnCheck(Themes, CONFIG) {
+    function cozenBtnCheck(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

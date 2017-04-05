@@ -38,10 +38,11 @@
 
     cozenPagination.$inject = [
         'CONFIG',
-        'Themes'
+        'Themes',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPagination(CONFIG, Themes) {
+    function cozenPagination(CONFIG, Themes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

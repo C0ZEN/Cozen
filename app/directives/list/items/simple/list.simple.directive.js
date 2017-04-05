@@ -34,10 +34,11 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window'
+        '$window',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window) {
+    function cozenListItemSimple(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

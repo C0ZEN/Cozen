@@ -36,10 +36,11 @@
 
     cozenBtnToggle.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenBtnToggle(Themes, CONFIG) {
+    function cozenBtnToggle(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

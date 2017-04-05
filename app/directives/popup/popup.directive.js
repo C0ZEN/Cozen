@@ -54,10 +54,11 @@
         '$window',
         '$timeout',
         'rfc4122',
-        '$animate'
+        '$animate',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate) {
+    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

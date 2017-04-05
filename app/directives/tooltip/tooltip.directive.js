@@ -34,10 +34,11 @@
         .directive('cozenTooltip', cozenTooltip);
 
     cozenTooltip.$inject = [
-        'Themes'
+        'Themes',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenTooltip(Themes) {
+    function cozenTooltip(Themes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'AE',

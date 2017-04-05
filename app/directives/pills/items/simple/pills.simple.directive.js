@@ -36,10 +36,10 @@
         'rfc4122',
         '$window',
         '$timeout',
-        '$filter'
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPillsItemSimple(CONFIG, rfc4122, $window, $timeout, $filter) {
+    function cozenPillsItemSimple(CONFIG, rfc4122, $window, $timeout, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

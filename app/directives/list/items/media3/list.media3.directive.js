@@ -30,10 +30,11 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window'
+        '$window',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window) {
+    function cozenListItemMedia3(CONFIG, rfc4122, $rootScope, $window, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

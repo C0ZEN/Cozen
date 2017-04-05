@@ -54,11 +54,11 @@
         'CONFIG',
         'rfc4122',
         '$interval',
-        '$filter',
+        'cozenEnhancedLogs',
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $interval, $filter, $rootScope) {
+    function cozenTextarea(Themes, CONFIG, rfc4122, $interval, cozenEnhancedLogs, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',

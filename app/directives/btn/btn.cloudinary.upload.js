@@ -43,10 +43,11 @@
 
         Cloudinary.$inject = [
             'Upload',
-            'CONFIG'
+            'CONFIG',
+            'cozenEnhancedLogs'
         ];
 
-        function Cloudinary(Upload, CONFIG) {
+        function Cloudinary(Upload, CONFIG, cozenEnhancedLogs) {
             return {
                 upload: upload
             };

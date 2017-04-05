@@ -34,10 +34,11 @@
         'rfc4122',
         '$rootScope',
         '$window',
-        '$filter'
+        '$filter',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, $filter) {
+    function cozenDropdownItemSimple(CONFIG, rfc4122, $rootScope, $window, $filter, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

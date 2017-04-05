@@ -28,10 +28,11 @@
 
     cozenPills.$inject = [
         'Themes',
-        'CONFIG'
+        'CONFIG',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenPills(Themes, CONFIG) {
+    function cozenPills(Themes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

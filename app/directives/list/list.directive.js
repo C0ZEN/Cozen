@@ -31,10 +31,11 @@
         'Themes',
         'CONFIG',
         '$window',
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenList(Themes, CONFIG, $window, $rootScope) {
+    function cozenList(Themes, CONFIG, $window, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

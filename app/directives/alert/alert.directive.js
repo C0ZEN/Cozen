@@ -68,10 +68,11 @@
         '$interval',
         '$timeout',
         'rfc4122',
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope) {
+    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

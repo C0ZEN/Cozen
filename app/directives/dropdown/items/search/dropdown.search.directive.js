@@ -29,11 +29,11 @@
         'CONFIG',
         'rfc4122',
         '$rootScope',
-        '$window',
+        'cozenEnhancedLogs',
         '$timeout'
     ];
 
-    function cozenDropdownItemSearch(CONFIG, rfc4122, $rootScope, $window, $timeout) {
+    function cozenDropdownItemSearch(CONFIG, rfc4122, $rootScope, cozenEnhancedLogs, $timeout) {
         return {
             link            : link,
             restrict        : 'E',

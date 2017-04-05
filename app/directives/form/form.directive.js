@@ -22,10 +22,11 @@
         .directive('cozenForm', cozenForm);
 
     cozenForm.$inject = [
-        '$rootScope'
+        '$rootScope',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenForm($rootScope) {
+    function cozenForm($rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',

@@ -20,10 +20,11 @@
 
     cozenUploadInfo.$inject = [
         '$filter',
-        'Themes'
+        'Themes',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenUploadInfo($filter, Themes) {
+    function cozenUploadInfo($filter, Themes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
