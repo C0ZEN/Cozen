@@ -326,9 +326,11 @@
                             }
                         }, scope._cozenAlertTimeout);
 
+                        // Timeout bar (calc the width progress in percentage)
                         if (scope._cozenAlertTimeoutBar) {
-                            data.timeSpent = $interval(function () {
-                                scope._cozenAlertTimeoutPct += 11 * 100 / scope._cozenAlertTimeout;
+                            scope._cozenAlertTimeoutPct = 0;
+                            data.timeSpent              = $interval(function () {
+                                scope._cozenAlertTimeoutPct += 10 * 100 / scope._cozenAlertTimeout;
                                 if (scope._cozenAlertTimeoutPct >= 100) {
                                     scope._cozenAlertTimeoutPct = 100;
                                     $interval.cancel(data.timeSpent);
