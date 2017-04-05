@@ -28,10 +28,10 @@
     cozenDrawChart.$inject = [
         '$interval',
         '$timeout',
-        'exportToPdfFactory'
+        'cozenEnhancedLogs'
     ];
 
-    function cozenDrawChart($interval, $timeout, exportToPdfFactory) {
+    function cozenDrawChart($interval, $timeout, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -66,7 +66,15 @@
                 chart        : null,
                 options      : {},
                 init         : false,
-                directiveName: 'cozenDrawChart'
+                directiveName: 'cozenDrawChart',
+                colors       : {
+                    red   : '#e74c3c',
+                    yellow: '#f1c40f',
+                    blue  : '#3498db',
+                    cyan  : '#1abc9c',
+                    purple: '#9b59b6',
+                    black : '#2c3e50'
+                }
             };
 
             methods.init();
@@ -126,11 +134,11 @@
                         opacity: 100
                     },
                     colors             : [
-                        exportToPdfFactory.getColors().moderateRed,
-                        exportToPdfFactory.getColors().moderateYellow,
-                        exportToPdfFactory.getColors().moderateBlue,
-                        exportToPdfFactory.getColors().moderateCyan,
-                        exportToPdfFactory.getColors().moderatePurple
+                        data.colors.red,
+                        data.colors.yellow,
+                        data.colors.blue,
+                        data.colors.cyan,
+                        data.colors.purple
                     ],
                     fontName           : 'Hind',
                     fontSize           : 16,
@@ -140,7 +148,7 @@
                             bold    : false,
                             italic  : false,
                             fontSize: 14,
-                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            color   : data.colors.black,
                             fontName: 'Hind'
                         }
                     },
@@ -151,7 +159,7 @@
                             bold    : false,
                             italic  : false,
                             fontSize: 14,
-                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            color   : data.colors.black,
                             fontName: 'Hind'
                         }
                     },
@@ -160,14 +168,14 @@
                             bold    : false,
                             italic  : false,
                             fontSize: 16,
-                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            color   : data.colors.black,
                             fontName: 'Hind'
                         },
                         textStyle     : {
                             bold    : false,
                             italic  : false,
                             fontSize: 14,
-                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            color   : data.colors.black,
                             fontName: 'Hind'
                         }
                     },
@@ -176,14 +184,14 @@
                             bold    : false,
                             italic  : false,
                             fontSize: 16,
-                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            color   : data.colors.black,
                             fontName: 'Hind'
                         },
                         textStyle     : {
                             bold    : false,
                             italic  : false,
                             fontSize: 14,
-                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            color   : data.colors.black,
                             fontName: 'Hind'
                         }
                     },
@@ -193,14 +201,14 @@
                             bold    : false,
                             italic  : false,
                             fontSize: 14,
-                            color   : exportToPdfFactory.getColors().moderateBlack,
+                            color   : data.colors.black,
                             fontName: 'Hind',
                             opacity : 1
                         },
                         highContrast : true,
                         alwaysOutside: false,
                         stem         : {
-                            color : exportToPdfFactory.getColors().moderateBlack,
+                            color : data.colors.black,
                             length: 5
                         }
                     },
