@@ -2231,7 +2231,7 @@
             },
             replace    : false,
             transclude : false,
-            templateUrl: 'app/components/reporting/export-to-pdf/draw-chart/draw-chart.html'
+            templateUrl: 'directives/utils/directives/draw-chart/draw-chart.template.html'
         };
 
         function link(scope, element, attrs) {

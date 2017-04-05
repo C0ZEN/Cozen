@@ -139,7 +139,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('directives/utils/directives/draw-chart/drawChart.html',
+  $templateCache.put('directives/utils/directives/draw-chart/drawChart.template.html',
     "<div class=draw-chart-container ng-style=\"{'display': cozenDrawChartHidden ? 'none' : '-webkit-box'}\" ng-if=_isReady><div id=\"{{ cozenDrawChartId }}\"></div></div>"
   );
 
