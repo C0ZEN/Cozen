@@ -676,16 +676,22 @@
                         break;
                     }
                 }
-                timer.splice(i, 1);
-
-                // Get the diff time
-                var now  = moment().milliseconds();
-                var diff = now - targetTimer.started;
 
                 var log = methods.getBase(target);
-                log += console.colors.black('End in <');
-                log += console.colors.purple(diff + 'ms');
-                log += console.colors.black('>');
+                if (!Methods.isNullOrEmpty(targetTimer)) {
+                    timer.splice(i, 1);
+
+                    // Get the diff time
+                    var now  = moment().milliseconds();
+                    var diff = now - targetTimer.started;
+
+                    log += console.colors.black('End in <');
+                    log += console.colors.purple(diff + 'ms');
+                    log += console.colors.black('>');
+                }
+                else {
+                    log += console.colors.black('End');
+                }
                 console.style(log);
             }
         }
