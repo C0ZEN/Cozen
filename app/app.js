@@ -44,7 +44,8 @@
             .alertIconLeftDefault('fa fa-info-circle')
             .currentLanguage('fr')
             .popupAnimationInAnimation('zoomIn')
-            .popupAnimationOutAnimation('zoomOut');
+            .popupAnimationOutAnimation('zoomOut')
+            .floatingFeedTimeoutTime(3000);
 
         // Configure the location provider
         $locationProvider.html5Mode({

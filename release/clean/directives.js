@@ -108,7 +108,8 @@
                 firstHide        : true,
                 firstDisplayWatch: true,
                 timeout          : null,
-                timeSpent        : null
+                timeSpent        : null,
+                displayWatcher   : null
             };
 
             methods.init();
@@ -208,7 +209,7 @@
                 }
 
                 // To execute the hide and show stuff even if the value is changed elsewhere
-                scope.$watch('cozenAlertDisplay', function (newValue) {
+                data.displayWatcher = scope.$watch('cozenAlertDisplay', function (newValue) {
                     if (!data.firstDisplayWatch) {
                         if (newValue) {
                             methods.show(null, {});
@@ -230,6 +231,7 @@
             }
 
             function destroy() {
+                data.displayWatcher();
                 element.off('$destroy', methods.destroy);
                 scope.$destroy();
                 element.remove();
@@ -265,7 +267,7 @@
 
             // Hide the popup
             function hide($event, params, force) {
-                if (force || params.uuid == scope._cozenAlertId) {
+                if (scope.cozenAlertDisplay && (force || params.uuid == scope._cozenAlertId)) {
 
                     // Hide the popup
                     data.firstHide          = false;
