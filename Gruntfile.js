@@ -41,8 +41,8 @@ module.exports = function (grunt) {
             js        : {
                 files  : ['<%= yeoman.app %>/**/*.js'],
                 tasks  : [
-                    'newer:jshint:all',
-                    'newer:jscs:all'
+                    // 'newer:jshint:all',
+                    // 'newer:jscs:all'
                 ],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -51,8 +51,8 @@ module.exports = function (grunt) {
             jsTest    : {
                 files: ['test/spec/**/*.js'],
                 tasks: [
-                    'newer:jshint:test',
-                    'newer:jscs:test',
+                    // 'newer:jshint:test',
+                    // 'newer:jscs:test',
                     'karma'
                 ]
             },
@@ -768,7 +768,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'newer:jshint',
-        'newer:jscs',
+        // 'newer:jscs',
         'test',
         'build'
     ]);

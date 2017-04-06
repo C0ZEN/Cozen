@@ -3853,6 +3853,7 @@
             blue  : '#2980b9'
         };
         var now    = 0;
+        var timer  = [];
 
         // Custom style added to the console
         console.colors.red    = function (text) {
@@ -4176,7 +4177,7 @@
                 }
                 var log = methods.getBase(title);
                 log += console.colors.black(text);
-                methods.sendLog('blue', log);
+                console.style(log);
             }
         }
 
@@ -4463,6 +4464,13 @@
                 if (Methods.isNullOrEmpty(target)) {
                     return;
                 }
+
+                // Add
+                timer.push({
+                    target : target,
+                    started: moment().milliseconds()
+                });
+
                 var log = methods.getBase(target);
                 log += console.colors.black('Starting...');
                 console.style(log);
@@ -4478,8 +4486,25 @@
                 if (Methods.isNullOrEmpty(target)) {
                     return;
                 }
+
+                // Get the starting object
+                var targetTimer = null, i = 0, length;
+                for (length = timer.length; i < length; i++) {
+                    if (timer[i].target == target) {
+                        targetTimer = timer[i];
+                        break;
+                    }
+                }
+                timer.splice(i, 1);
+
+                // Get the diff time
+                var now  = moment().milliseconds();
+                var diff = now - targetTimer.started;
+
                 var log = methods.getBase(target);
-                log += console.colors.black('End');
+                log += console.colors.black('End in <');
+                log += console.colors.purple(diff + 'ms');
+                log += console.colors.black('>');
                 console.style(log);
             }
         }
@@ -4693,9 +4718,16 @@
             return text;
         }
 
-        function sendLog(color, text) {
-            var wrap = console.style.wrap;
-            console.style('<css="background-color:' + colors[color] + ';">' + text + '</css>');
+        function sendLog(type, text) {
+            var icon;
+            switch (type) {
+                case 'info':
+                    icon = 'background:url(http://fr.seaicons.com/wp-content/uploads/2016/05/Sign-Info-icon.png);';
+                    break;
+            }
+            var newLog = '<img="' + icon + 'width:12px; height:12px;">';
+            newLog     = '';
+            console.style(newLog + text);
         }
     }
 

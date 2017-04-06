@@ -16,6 +16,7 @@
         $rootScope.innerHeight = window.innerHeight;
 
         // Logs
+        cozenEnhancedLogs.wrap.starting('Run');
         cozenEnhancedLogs.info.changeRouteWithParams('App', 'app');
         cozenEnhancedLogs.info.changeRouteWithParams('App', 'app', '');
         cozenEnhancedLogs.info.changeRouteWithParams('App', 'app', {});
@@ -76,6 +77,7 @@
             },
             deazd   : "sfzef"
         });
+        cozenEnhancedLogs.wrap.end('Run');
     }
 
 })(window.angular, window);
