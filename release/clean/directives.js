@@ -4484,7 +4484,7 @@
                 });
 
                 var log = methods.getBase(target);
-                log += console.colors.black('Starting...');
+                log += console.colors.black('Started initializing...');
                 console.style(log);
             }
         }
@@ -4516,9 +4516,9 @@
                     var now  = Date.now();
                     var diff = now - targetTimer.started;
 
-                    log += console.colors.black('End in <');
-                    log += console.colors.purple(diff + 'ms');
-                    log += console.colors.black('>');
+                    log += console.colors.black('Initialization completed in <');
+                    log += console.colors.purple(diff);
+                    log += console.colors.black('> milliseconds');
                 }
                 else {
                     log += console.colors.black('End');
