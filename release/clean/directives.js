@@ -277,6 +277,9 @@
                     }
                     cozenEnhancedLogs.info.functionCalled(data.directive, 'OnHide');
 
+                    // Stop the $interval
+                    $interval.cancel(data.timeSpent);
+
                     // @todo instead of added a fix value (corresponding to animation-duration-out) we could:
                     // - Add a parameter (attr + config) to set the time
                     // - Get a real callback when the hide animation is done
@@ -290,9 +293,6 @@
                         if (scope._cozenAlertAutoDestroy) {
                             methods.destroy();
                         }
-
-                        // Stop the $interval
-                        $interval.cancel(data.timeSpent);
                     }, timeout);
                 }
             }
