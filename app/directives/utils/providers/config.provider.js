@@ -528,10 +528,18 @@
 
         this.$get = Config;
 
-        Config.$inject = [];
+        Config.$inject = [
+            'CONFIG'
+        ];
 
-        function Config() {
-            return {};
+        function Config(CONFIG) {
+            return {
+                getConfig: getConfig
+            };
+
+            function getConfig() {
+                return CONFIG;
+            }
         }
     }
 

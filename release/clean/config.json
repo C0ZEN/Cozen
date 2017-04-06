@@ -120,5 +120,13 @@
             "bar": true
         },
         "autoDestroy": false
+    },
+    "googleAnalytics": {
+        "activated": true,
+        "trackerDefaultName": "t0",
+        "cookieDefaultName": "gaCookie",
+        "cookieDefaultDomain": "auto",
+        "cookieExpires": 28800,
+        "trackingId": ""
     }
 }

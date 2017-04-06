@@ -487,6 +487,14 @@
             "bar": true
         },
         "autoDestroy": false
+    },
+    "googleAnalytics": {
+        "activated": true,
+        "trackerDefaultName": "t0",
+        "cookieDefaultName": "gaCookie",
+        "cookieDefaultDomain": "auto",
+        "cookieExpires": 28800,
+        "trackingId": ""
     }
 }
 
@@ -2174,10 +2182,18 @@
 
         this.$get = Config;
 
-        Config.$inject = [];
+        Config.$inject = [
+            'CONFIG'
+        ];
 
-        function Config() {
-            return {};
+        function Config(CONFIG) {
+            return {
+                getConfig: getConfig
+            };
+
+            function getConfig() {
+                return CONFIG;
+            }
         }
     }
 
@@ -4994,6 +5010,77 @@
 
 
 
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib')
+        .provider('GoogleAnalytics', GoogleAnalyticsProvider);
+
+    GoogleAnalyticsProvider.$inject = [
+        'CONFIG'
+    ];
+
+    function GoogleAnalyticsProvider(CONFIG) {
+
+        this.activated = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('activated');
+            }
+            else {
+                CONFIG.googleAnalytics.activated = value;
+            }
+            return this;
+        };
+
+        this.trackerDefaultName = function (value) {
+            CONFIG.googleAnalytics.trackerDefaultName = value;
+            return this;
+        };
+
+        this.cookieDefaultName = function (value) {
+            CONFIG.googleAnalytics.cookieDefaultName = value;
+            return this;
+        };
+
+        this.cookieDefaultDomain = function (value) {
+            CONFIG.googleAnalytics.cookieDefaultDomain = value;
+            return this;
+        };
+
+        this.cookieExpires = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('cookieExpires');
+            }
+            else {
+                CONFIG.googleAnalytics.cookieExpires = value;
+            }
+            return this;
+        };
+
+        this.googleAnalyticsTrackingId = function (value) {
+            CONFIG.googleAnalytics.trackingId = value;
+            return this;
+        };
+
+        this.$get = GoogleAnalytics;
+
+        GoogleAnalytics.$inject = [
+            'CONFIG'
+        ];
+
+        function GoogleAnalytics(CONFIG) {
+            return {
+                getGoogleAnalyticsConfig: getGoogleAnalyticsConfig
+            };
+
+            function getGoogleAnalyticsConfig() {
+                return CONFIG.googleAnalytics;
+            }
+        }
+    }
+
+})(window.angular);
 /**
  * @name cozenGoogleAnalyticsRequest
  * @description
@@ -5015,47 +5102,68 @@
     cozenGoogleAnalyticsRequest.$inject = [
         'PublicMethods',
         '$location',
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        'CONFIG'
     ];
 
-    function cozenGoogleAnalyticsRequest(PublicMethods, $location, cozenEnhancedLogs) {
+    function cozenGoogleAnalyticsRequest(PublicMethods, $location, cozenEnhancedLogs, CONFIG) {
 
         // Private data
         var _data = {
-            trackerDefaultName: 't0'
+            trackerDefaultName : CONFIG.googleAnalytics.trackerDefaultName,
+            cookieDefaultName  : CONFIG.googleAnalytics.cookieDefaultName,
+            cookieDefaultDomain: CONFIG.googleAnalytics.cookieDefaultDomain,
+            cookieExpires      : CONFIG.googleAnalytics.cookieExpires
         };
 
         return {
             create       : create,
             addCustomData: addCustomData,
-            pageView     : pageView
+            pageView     : pageView,
+            event        : event
         };
 
         /**
          * Create the initial tracking (used to know if the user is new or returning)
          * Also collects information about the device such as screen resolution, viewport size, and document encoding
-         * @param {string} cookieDomain = auto > none while you are working on localhost, auto otherwise
-         * @param {string} trackerName  = t0   > The name of the GA tracker
-         * @param {string} userId              > The userId
+         * @param {string}  cookieDomain  = auto > none while you are working on localhost, auto otherwise
+         * @param {string}  trackerName   = t0   > The name of the GA tracker
+         * @param {string}  userId               > The userId
+         * @param {boolean} cookieStorage = true > Define if the GA should keep a track of the cookie
          */
-        function create(cookieDomain, trackerName, userId) {
+        function create(cookieDomain, trackerName, userId, cookieStorage) {
+            if (CONFIG.googleAnalytics.activated) {
 
-            // Default values (avoid ES6 shortcuts for cordova)
-            if (PublicMethods.isNullOrEmpty(cookieDomain)) {
-                cookieDomain = 'auto';
-            }
-            if (PublicMethods.isNullOrEmpty(trackerName)) {
-                trackerName = _data.trackerDefaultName;
-            }
-            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('create', trackerName);
+                // Default values (avoid ES6 shortcuts for cordova)
+                if (PublicMethods.isNullOrEmpty(cookieDomain)) {
+                    cookieDomain = 'auto';
+                }
+                if (PublicMethods.isNullOrEmpty(trackerName)) {
+                    trackerName = _data.trackerDefaultName;
+                }
+                cozenEnhancedLogs.info.ga.baseRequest('create', trackerName);
 
-            // Create the tracker
-            ga('create', {
-                trackingId  : 'UA-85736401-1',
-                cookieDomain: cookieDomain,
-                name        : trackerName,
-                userId      : userId
-            });
+                // Create the tracker
+                var tracker = {
+                    trackingId   : CONFIG.googleAnalytics.trackingId,
+                    name         : trackerName,
+                    userId       : userId,
+                    cookieName   : _data.cookieDefaultName,
+                    cookieDomain : cookieDomain,
+                    cookieExpires: _data.cookieExpires
+                };
+
+                // Disable the storage if cookieStorage is false
+                if (cookieStorage === false) {
+                    tracker = angular.merge({}, tracker, {
+                        storage: 'none'
+                    });
+                }
+                cozenEnhancedLogs.explodeObject(tracker);
+
+                // Create the tracker
+                ga('create', tracker);
+            }
         }
 
         /**
@@ -5064,15 +5172,18 @@
          * @param {string} trackerName = t0 > The name of the GA tracker
          */
         function addCustomData(customData, trackerName) {
+            if (CONFIG.googleAnalytics.activated) {
 
-            // Default values
-            if (PublicMethods.isNullOrEmpty(trackerName)) {
-                trackerName = _data.trackerDefaultName;
+                // Default values
+                if (PublicMethods.isNullOrEmpty(trackerName)) {
+                    trackerName = _data.trackerDefaultName;
+                }
+                cozenEnhancedLogs.info.ga.baseRequest('addCustomData', trackerName);
+                cozenEnhancedLogs.explodeObject(customData);
+
+                // Update the tracker with custom dimension or metric
+                ga(trackerName + '.set', customData);
             }
-            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('addCustomData', trackerName);
-
-            // Update the tracker with custom dimension or metric
-            ga(trackerName + '.set', customData);
         }
 
         /**
@@ -5082,25 +5193,55 @@
          * @param {string} title       = auto > The title of the page (Default: document.title)
          */
         function pageView(trackerName, pageUrl, title) {
+            if (CONFIG.googleAnalytics.activated) {
 
-            // Default values
-            if (PublicMethods.isNullOrEmpty(trackerName)) {
-                trackerName = _data.trackerDefaultName;
-            }
-            if (PublicMethods.isNullOrEmpty(pageUrl)) {
-                pageUrl = $location.url();
-            }
-            if (PublicMethods.isNullOrEmpty(title)) {
-                title = document.title;
-            }
-            cozenEnhancedLogs.infoTemplateForGoogleAnalyticsRequest('pageview', trackerName);
+                // Default values
+                if (PublicMethods.isNullOrEmpty(trackerName)) {
+                    trackerName = _data.trackerDefaultName;
+                }
+                if (PublicMethods.isNullOrEmpty(pageUrl)) {
+                    pageUrl = $location.url();
+                }
+                if (PublicMethods.isNullOrEmpty(title)) {
+                    title = document.title;
+                }
+                enhancedLogs.info.ga.pageView('googleAnalyticsRequest', trackerName, title);
 
-            // Send a pageview hit
-            ga(trackerName + '.send', {
-                hitType: 'pageview',
-                page   : pageUrl,
-                title  : title
-            });
+                // Send a pageview hit
+                ga(trackerName + '.send', {
+                    hitType: 'pageview',
+                    page   : pageUrl,
+                    title  : title
+                });
+            }
+        }
+
+        /**
+         * Send an event hit
+         * @param {string} trackerName = t0   > The name of the tracker
+         * @param {object} eventObject = auto >
+         */
+        function event(trackerName, eventObject) {
+            if (CONFIG.googleAnalytics.activated) {
+
+                // Default values
+                if (PublicMethods.isNullOrEmpty(trackerName)) {
+                    trackerName = _data.trackerDefaultName;
+                }
+                if (PublicMethods.isNullOrEmpty(eventObject)) {
+                    cozenEnhancedLogs.error.requiredParameterFn('event', 'eventObject');
+                    return;
+                }
+                cozenEnhancedLogs.info.ga.event('event', trackerName, eventObject);
+
+                // Add the hit type
+                eventObject = angular.merge({}, {
+                    hitType: 'event'
+                }, eventObject);
+
+                // Send a pageview hit
+                ga(trackerName + '.send', eventObject);
+            }
         }
     }
 
