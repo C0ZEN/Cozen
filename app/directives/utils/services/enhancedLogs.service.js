@@ -649,7 +649,7 @@
                 // Add
                 timer.push({
                     target : target,
-                    started: moment().milliseconds()
+                    started: Date.now()
                 });
 
                 var log = methods.getBase(target);
@@ -682,7 +682,7 @@
                     timer.splice(i, 1);
 
                     // Get the diff time
-                    var now  = moment().milliseconds();
+                    var now  = Date.now();
                     var diff = now - targetTimer.started;
 
                     log += console.colors.black('End in <');
