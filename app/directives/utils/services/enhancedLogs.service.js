@@ -73,19 +73,24 @@
                 requiredParameterFn      : errorRequiredParameterFn
             },
             info         : {
-                customMessage                    : infoCustomMessage,
-                functionCalled                   : infoFunctionCalled,
-                customMessageEnhanced            : infoCustomMessageEnhanced,
-                templateForGoogleAnalyticsRequest: infoTemplateForGoogleAnalyticsRequest,
-                stateRedirectTo                  : infoStateRedirectTo,
-                httpRequest                      : infoHttpRequest,
-                apiRoute                         : infoApiRoute,
-                changeRouteWithParams            : infoChangeRouteWithParams,
-                broadcastEvent                   : infoBroadcastEvent,
-                explodeObject                    : infoExplodeObject
+                customMessage        : infoCustomMessage,
+                functionCalled       : infoFunctionCalled,
+                customMessageEnhanced: infoCustomMessageEnhanced,
+                stateRedirectTo      : infoStateRedirectTo,
+                httpRequest          : infoHttpRequest,
+                apiRoute             : infoApiRoute,
+                changeRouteWithParams: infoChangeRouteWithParams,
+                broadcastEvent       : infoBroadcastEvent,
+                explodeObject        : infoExplodeObject,
+                ga                   : {
+                    baseRequest: infoGaBaseRequest,
+                    pageView   : infoGaPageView,
+                    event      : infoGaEvent
+                }
             },
             warn         : {
-                attributeNotMatched: warningAttributeNotMatched
+                attributeNotMatched: warningAttributeNotMatched,
+                customMessage      : warningCustomMessage
             },
             wrap         : {
                 starting: wrapStarting,
@@ -523,6 +528,72 @@
             }
         }
 
+        /**
+         * Display a log info message for googleAnalyticsRequest service
+         * @param {string} fnName  > Specify the name of the function executed [required]
+         * @param {string} tracker > Specify the name of the tracker [required]
+         */
+        function infoGaBaseRequest(fnName, tracker) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(fnName) || Methods.isNullOrEmpty(tracker)) {
+                    return;
+                }
+                var log = methods.getBase('cozenGoogleAnalyticsRequest');
+                log += console.colors.black('Function <');
+                log += console.colors.purple(fnName);
+                log += console.colors.black('> executed for tracker <');
+                log += console.colors.purple(tracker);
+                log += console.colors.black('>');
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a log info message for googleAnalyticsRequest service when hit type is page view
+         * @param {string} fnName    > Specify the name of the function executed [required]
+         * @param {string} tracker   > Specify the name of the tracker [required]
+         * @param {string} pageTitle > Specify the name of the current page [required]
+         */
+        function infoGaPageView(fnName, tracker, pageTitle) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(fnName) || Methods.isNullOrEmpty(tracker) || Methods.isNullOrEmpty(pageTitle)) {
+                    return;
+                }
+                var log = methods.getBase('cozenGoogleAnalyticsRequest');
+                log += console.colors.black('Function <');
+                log += console.colors.purple(fnName);
+                log += console.colors.black('> executed for tracker <');
+                log += console.colors.purple(tracker);
+                log += console.colors.black('> on page <');
+                log += console.colors.purple(pageTitle);
+                log += console.colors.black('>');
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a log info message for googleAnalyticsRequest service when hit type is event
+         * @param {string} fnName      > Specify the name of the function executed [required]
+         * @param {string} tracker     > Specify the name of the tracker [required]
+         * @param {object} eventObject > Specify the object for event [required]
+         */
+        function infoGaEvent(fnName, tracker, eventObject) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(fnName) || Methods.isNullOrEmpty(tracker) || Methods.isNullOrEmpty(eventObject)) {
+                    return;
+                }
+                var log = methods.getBase('cozenGoogleAnalyticsRequest');
+                log += console.colors.black('Function <');
+                log += console.colors.purple(fnName);
+                log += console.colors.black('> executed for tracker <');
+                log += console.colors.purple(tracker);
+                log += console.colors.black('>');
+                log += '\n';
+                log += methods.getFormattedParams(eventObject);
+                console.style(log);
+            }
+        }
+
         /// WARNING LOGS ///
 
         /**
@@ -542,6 +613,22 @@
                 log += console.colors.black('> value is incorrect\nCallback of the default value <');
                 log += console.colors.purple(defaultValue);
                 log += console.colors.black('> was set');
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a log warning message with a custom message (title/description)
+         * @param {string} title > Specify the title of the message [required]
+         * @param {string} text  > Specify the description of the message [required]
+         */
+        function warningCustomMessage(title, text) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(title) || Methods.isNullOrEmpty(text)) {
+                    return;
+                }
+                var log = methods.getBase(title);
+                log += console.colors.black(text);
                 console.style(log);
             }
         }
