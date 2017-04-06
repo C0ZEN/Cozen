@@ -314,18 +314,6 @@
                     // Start the timer to auto close if > 0
                     if (scope._cozenAlertTimeout > 0) {
 
-                        // Timeout to auto close when the time is over
-                        data.timeout = $timeout(function () {
-
-                            // If the popup is still visible, hide it
-                            if (scope.cozenAlertDisplay) {
-                                cozenEnhancedLogs.info.customMessageEnhanced(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
-                                methods.hide(null, {
-                                    uuid: scope._cozenAlertId
-                                });
-                            }
-                        }, scope._cozenAlertTimeout);
-
                         // Timeout bar (calc the width progress in percentage)
                         if (scope._cozenAlertTimeoutBar) {
                             scope._cozenAlertTimeoutPct = 0;
@@ -333,9 +321,31 @@
                                 scope._cozenAlertTimeoutPct += 10 * 100 / scope._cozenAlertTimeout;
                                 if (scope._cozenAlertTimeoutPct >= 100) {
                                     scope._cozenAlertTimeoutPct = 100;
+
+                                    // If the popup is still visible, hide it
+                                    if (scope.cozenAlertDisplay) {
+                                        cozenEnhancedLogs.info.customMessageEnhanced(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
+                                        methods.hide(null, {
+                                            uuid: scope._cozenAlertId
+                                        });
+                                    }
                                     $interval.cancel(data.timeSpent);
                                 }
                             }, 10);
+                        }
+                        else {
+
+                            // Timeout to auto close when the time is over
+                            data.timeout = $timeout(function () {
+
+                                // If the popup is still visible, hide it
+                                if (scope.cozenAlertDisplay) {
+                                    cozenEnhancedLogs.info.customMessageEnhanced(data.directive, 'The timeout of', scope._cozenAlertTimeout + 'ms', 'is over');
+                                    methods.hide(null, {
+                                        uuid: scope._cozenAlertId
+                                    });
+                                }
+                            }, scope._cozenAlertTimeout);
                         }
                     }
                 }
