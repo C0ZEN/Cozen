@@ -17,6 +17,7 @@
         vm.model3         = 'model3';
         vm.model4         = null;
         vm.model5         = '';
+        vm.number         = 8;
         vm.passwordConfig = {
             minLength: 8
         };

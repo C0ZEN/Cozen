@@ -5990,7 +5990,14 @@
                 }
                 data.arrowDown = true;
                 if (typeof scope.vm.cozenInputModel != 'number') {
-                    scope.vm.cozenInputModel = scope._cozenInputMin;
+                    try {
+                        scope.vm.cozenInputModel = parseInt(scope.vm.cozenInputModel);
+                        if (typeof scope.vm.cozenInputModel != 'number') {
+                            scope.vm.cozenInputModel = scope._cozenInputMin;
+                        }
+                    } catch (e) {
+                        scope.vm.cozenInputModel = scope._cozenInputMin;
+                    }
                     methods.onChange($event);
                 }
                 methods.arrowUpdateModel($event, arrow);

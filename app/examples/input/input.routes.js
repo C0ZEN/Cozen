@@ -32,6 +32,13 @@
                 controller  : 'InputCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Input - Repeat'}
+            })
+            .state('examples.input.number', {
+                url         : '/number',
+                templateUrl : 'examples/input/templates/input.number.html',
+                controller  : 'InputCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Input - Number'}
             });
     }
 
