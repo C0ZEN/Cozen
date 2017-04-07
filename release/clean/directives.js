@@ -1510,6 +1510,9 @@
 
             function init() {
 
+                // isReady fix a bug with the popup after second display (the toggle wasn't visible)
+                scope._isReady = false;
+
                 // Public functions
                 scope._methods = {
                     getMainClass: getMainClass,
@@ -1517,7 +1520,7 @@
                     getTabIndex : getTabIndex
                 };
 
-                // Toggleing required stuff
+                // Check required stuff
                 if (methods.hasError()) {
                     return;
                 }
@@ -1556,6 +1559,7 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
+                scope._isReady     = true;
             }
 
             function hasError() {
@@ -8718,6 +8722,11 @@
                             scope.cozenPopupIsOpen = false;
                             data.isHiding          = false;
                         });
+
+                        // Safe apply required because the $animate.addClass callback is not trigger if the pointer is not on the popup
+                        // This tricky fix force the apply and the callback is then well called
+                        // Without it, the popup will not hide if the user close it from clicking on the outside container
+                        Methods.safeApply(scope);
                     }
                     else {
                         scope.cozenPopupIsOpen = false;

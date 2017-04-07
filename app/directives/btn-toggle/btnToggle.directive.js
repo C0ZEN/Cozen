@@ -73,6 +73,9 @@
 
             function init() {
 
+                // isReady fix a bug with the popup after second display (the toggle wasn't visible)
+                scope._isReady = false;
+
                 // Public functions
                 scope._methods = {
                     getMainClass: getMainClass,
@@ -80,7 +83,7 @@
                     getTabIndex : getTabIndex
                 };
 
-                // Toggleing required stuff
+                // Check required stuff
                 if (methods.hasError()) {
                     return;
                 }
@@ -119,6 +122,7 @@
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = Themes.getActiveTheme();
+                scope._isReady     = true;
             }
 
             function hasError() {

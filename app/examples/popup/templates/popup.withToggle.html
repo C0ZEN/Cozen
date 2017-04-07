@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Popup'"
+                       cozen-btn-on-click="vm.togglePopup(200)">
+            </cozen-btn>
+            <cozen-popup cozen-popup-name="200"
+                         cozen-popup-header-title="'Titre'">
+                <cozen-form cozen-form-name="accessLogsFilter"
+                            cozen-form-ctrl="popup"
+                            cozen-form-model="form">
+                    <cozen-btn-toggle cozen-btn-toggle-model="vm.popup200toggle"
+                                      cozen-btn-toggle-label="Toggle sans tooltip">
+                    </cozen-btn-toggle>
+                    <cozen-btn-toggle cozen-btn-toggle-model="vm.popup200toggle"
+                                      cozen-btn-toggle-label="Toggle avec tooltip"
+                                      cozen-btn-toggle-tooltip="'Tooltip'">
+                    </cozen-btn-toggle>
+                </cozen-form>
+            </cozen-popup>
+        </div>
+    </div>
+</div>

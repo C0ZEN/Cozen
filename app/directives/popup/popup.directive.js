@@ -261,6 +261,11 @@
                             scope.cozenPopupIsOpen = false;
                             data.isHiding          = false;
                         });
+
+                        // Safe apply required because the $animate.addClass callback is not trigger if the pointer is not on the popup
+                        // This tricky fix force the apply and the callback is then well called
+                        // Without it, the popup will not hide if the user close it from clicking on the outside container
+                        Methods.safeApply(scope);
                     }
                     else {
                         scope.cozenPopupIsOpen = false;

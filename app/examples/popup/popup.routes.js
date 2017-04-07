@@ -25,6 +25,13 @@
                 controller  : 'PopupCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Popup - Default'}
+            })
+            .state('examples.popup.withToggle', {
+                url         : '/with-toggle',
+                templateUrl : 'examples/popup/templates/popup.withToggle.html',
+                controller  : 'PopupCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Popup - With toggle'}
             });
     }
 
