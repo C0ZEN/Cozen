@@ -21,6 +21,16 @@
             return this;
         };
 
+        this.dev = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('dev');
+            }
+            else {
+                CONFIG.dev = value;
+            }
+            return this;
+        };
+
         this.logsEnabled = function (value) {
             if (typeof value != 'boolean') {
                 Methods.dataMustBeBoolean('logsEnabled');

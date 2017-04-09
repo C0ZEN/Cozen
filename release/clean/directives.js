@@ -387,6 +387,7 @@
         "tau",
         "atom"
     ],
+    "dev": false,
     "debug": false,
     "logs": {
         "enabled": false,
@@ -1687,6 +1688,16 @@
             }
             else {
                 CONFIG.debug = value;
+            }
+            return this;
+        };
+
+        this.dev = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('dev');
+            }
+            else {
+                CONFIG.dev = value;
             }
             return this;
         };

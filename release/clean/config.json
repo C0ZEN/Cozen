@@ -8,6 +8,7 @@
         "tau",
         "atom"
     ],
+    "dev": false,
     "debug": false,
     "logs": {
         "enabled": false,
