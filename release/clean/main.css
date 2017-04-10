@@ -2642,7 +2642,7 @@ div.cozen-alert.atom.error div.cozen-alert-timeout-bar {
 div.cozen-alert.atom.purple {
   box-shadow: none;
   border: 1px solid #9C27B0;
-  background-color: #F9D3D2;
+  background-color: #F1D5F6;
 }
 div.cozen-alert.atom.purple:hover {
   border: 1px solid #9C27B0;
@@ -2666,7 +2666,7 @@ div.cozen-alert.atom.purple span.cozen-alert-label:hover {
   color: #4C596B;
 }
 div.cozen-alert.atom.purple:hover {
-  background-color: #F9D3D2;
+  background-color: #F1D5F6;
 }
 div.cozen-alert.atom.purple div.cozen-alert-timeout-bar {
   background-color: #9C27B0;
@@ -2674,7 +2674,7 @@ div.cozen-alert.atom.purple div.cozen-alert-timeout-bar {
 div.cozen-alert.atom.green {
   box-shadow: none;
   border: 1px solid #4AC291;
-  background-color: #F9D3D2;
+  background-color: #D9F2E8;
 }
 div.cozen-alert.atom.green:hover {
   border: 1px solid #4AC291;
@@ -2698,7 +2698,7 @@ div.cozen-alert.atom.green span.cozen-alert-label:hover {
   color: #4C596B;
 }
 div.cozen-alert.atom.green:hover {
-  background-color: #F9D3D2;
+  background-color: #D9F2E8;
 }
 div.cozen-alert.atom.green div.cozen-alert-timeout-bar {
   background-color: #4AC291;
@@ -2706,7 +2706,7 @@ div.cozen-alert.atom.green div.cozen-alert-timeout-bar {
 div.cozen-alert.atom.blue {
   box-shadow: none;
   border: 1px solid #2C9FDD;
-  background-color: #F9D3D2;
+  background-color: #E9F5FB;
 }
 div.cozen-alert.atom.blue:hover {
   border: 1px solid #2C9FDD;
@@ -2730,7 +2730,7 @@ div.cozen-alert.atom.blue span.cozen-alert-label:hover {
   color: #4C596B;
 }
 div.cozen-alert.atom.blue:hover {
-  background-color: #F9D3D2;
+  background-color: #E9F5FB;
 }
 div.cozen-alert.atom.blue div.cozen-alert-timeout-bar {
   background-color: #2C9FDD;
