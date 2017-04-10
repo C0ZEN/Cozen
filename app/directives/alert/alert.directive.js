@@ -235,7 +235,7 @@
                 element.off('$destroy', methods.destroy);
                 scope.$destroy();
                 element.remove();
-                cozenEnhancedLogs.info.customMessage(data.directive, 'The popup was destroyed');
+                cozenEnhancedLogs.info.customMessage(data.directive, 'The alert was destroyed');
             }
 
             // Get the class
