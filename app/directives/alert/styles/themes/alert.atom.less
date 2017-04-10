@@ -72,6 +72,22 @@ div.cozen-alert.atom {
         .cozen-alert-color(@atom-color-error-ultra-light, @atom-color-error-ultra-light);
         .cozen-alert-timeout-bar-color(@atom-color-purple);
     }
+    &.green {
+        .cozen-alert-border(1px solid @atom-color-green, 1px solid @atom-color-green, none);
+        .cozen-alert-icon-left-color(@atom-color-green, @atom-color-green);
+        .cozen-alert-btn-close-color(@atom-color-font, @atom-color-font);
+        .cozen-alert-label-color(@atom-color-font, @atom-color-font);
+        .cozen-alert-color(@atom-color-error-ultra-light, @atom-color-error-ultra-light);
+        .cozen-alert-timeout-bar-color(@atom-color-green);
+    }
+    &.blue {
+        .cozen-alert-border(1px solid @atom-color-blue, 1px solid @atom-color-blue, none);
+        .cozen-alert-icon-left-color(@atom-color-blue, @atom-color-blue);
+        .cozen-alert-btn-close-color(@atom-color-font, @atom-color-font);
+        .cozen-alert-label-color(@atom-color-font, @atom-color-font);
+        .cozen-alert-color(@atom-color-error-ultra-light, @atom-color-error-ultra-light);
+        .cozen-alert-timeout-bar-color(@atom-color-blue);
+    }
 }
 div.cozen-floating-feed.atom {
     position         : fixed;

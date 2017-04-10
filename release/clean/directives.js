@@ -28,6 +28,8 @@
  * @param {string}  cozenAlertTypeWarning                       > Shortcut for warning type
  * @param {string}  cozenAlertTypeError                         > Shortcut for error type
  * @param {string}  cozenAlertTypePurple                        > Shortcut for purple type
+ * @param {string}  cozenAlertTypeGreen                         > Shortcut for green type
+ * @param {string}  cozenAlertTypeBlue                          > Shortcut for blue type
  * @param {boolean} cozenAlertAnimationIn       = true          > Add an animation before show [config.json]
  * @param {boolean} cozenAlertAnimationOut      = true          > Add an animation before hide [config.json]
  * @param {boolean} cozenAlertCloseBtn          = true          > Display the close btn (top-right) [config.json]
@@ -167,6 +169,12 @@
                     }
                     else if (angular.isDefined(attrs.cozenAlertTypePurple)) {
                         scope._cozenAlertType = 'purple';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertTypeGreen)) {
+                        scope._cozenAlertType = 'green';
+                    }
+                    else if (angular.isDefined(attrs.cozenAlertTypeBlue)) {
+                        scope._cozenAlertType = 'blue';
                     }
                     else {
                         scope._cozenAlertType = 'default';
