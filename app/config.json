@@ -39,7 +39,7 @@
         "modelLengthType": "always"
     },
     "textarea": {
-        "displayModelLength": false,
+        "modelLengthType": "always",
         "required": false,
         "errorDesign": true,
         "successDesign": true,

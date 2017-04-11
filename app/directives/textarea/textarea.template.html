@@ -30,8 +30,9 @@
         </label>
 
         <!-- Model length -->
-        <label ng-if="_cozenTextareaDisplayModelLength && vm.cozenTextareaModel.length > 0"
+        <label ng-if="_cozenTextareaModelLengthType != 'never' && vm.cozenTextareaModel.length > 0"
                class="model-length"
+               ng-show="_cozenTextareaModelLengthType == 'focus' && vm._cozenTextareaIsFocused"
                ng-class="{'error': _cozenTextareaModelLength < 0}">
             {{ _cozenTextareaModelLength }}
         </label>
@@ -59,7 +60,9 @@
                   msd-elastic
                   msd-elastic-disabled="{{ !_cozenTextareaElastic }}"
                   rows="{{ _cozenTextareaRows }}"
-                  id="{{ _cozenTextareaUuid }}">
+                  id="{{ _cozenTextareaUuid }}"
+                  ng-focus="vm._cozenTextareaIsFocused = true"
+                  ng-blur="vm._cozenTextareaIsFocused = false">
         </textarea>
     </cozen-tooltip>
 </div>

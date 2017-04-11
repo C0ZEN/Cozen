@@ -112,12 +112,17 @@
             return this;
         };
 
-        this.textareaDisplayModelLength = function (value) {
-            if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('textareaDisplayModelLength');
+        this.textareaModelLengthType = function (value) {
+            var list = [
+                'always',
+                'never',
+                'focus'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('textareaModelLengthType', list);
             }
             else {
-                CONFIG.textarea.displayModelLength = value;
+                CONFIG.textarea.modelLengthType = value;
             }
             return this;
         };

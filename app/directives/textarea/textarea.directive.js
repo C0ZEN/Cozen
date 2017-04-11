@@ -16,30 +16,31 @@
  * [Attributes params]
  * @param {number}  cozenTextareaId                                           > Id of the textarea
  * @param {string}  cozenTextareaTooltip                                      > Text of the tooltip
- * @param {string}  cozenTextareaTooltipPlacement = auto right                > Change the position of the tooltip [config]
- * @param {string}  cozenTextareaTooltipTrigger   = outsideClick              > Type of trigger to show the tooltip [config]
- * @param {boolean} cozenTextareaRequired         = false                     > Required textarea [config]
- * @param {boolean} cozenTextareaErrorDesign      = true                      > Add style when error [config]
- * @param {boolean} cozenTextareaSuccessDesign    = true                      > Add style when success [config]
+ * @param {string}  cozenTextareaTooltipPlacement = auto right                > Change the position of the tooltip [config.json]
+ * @param {string}  cozenTextareaTooltipTrigger   = outsideClick              > Type of trigger to show the tooltip [config.json]
+ * @param {boolean} cozenTextareaRequired         = false                     > Required textarea [config.json]
+ * @param {boolean} cozenTextareaErrorDesign      = true                      > Add style when error [config.json]
+ * @param {boolean} cozenTextareaSuccessDesign    = true                      > Add style when success [config.json]
  * @param {string}  cozenTextareaSize             = normal                    > Size of the button
  * @param {string}  cozenTextareaSizeSmall                                    > Shortcut for small size
  * @param {string}  cozenTextareaSizeNormal                                   > Shortcut for normal size
  * @param {string}  cozenTextareaSizeLarge                                    > Shortcut for large size
  * @param {string}  cozenTextareaPlaceholder                                  > Text for the placeholder
- * @param {number}  cozenTextareaMinLength        = 0                         > Minimum char length [config]
- * @param {number}  cozenTextareaMaxLength        = 200                       > Maximum char length [config]
+ * @param {number}  cozenTextareaMinLength        = 0                         > Minimum char length [config.json]
+ * @param {number}  cozenTextareaMaxLength        = 200                       > Maximum char length [config.json]
  * @param {string}  cozenTextareaName             = uuid                      > Name of the textarea
- * @param {boolean} cozenTextareaValidator        = dirty                     > Define after what type of event the textarea must add more ui color [config]
+ * @param {boolean} cozenTextareaValidator        = dirty                     > Define after what type of event the textarea must add more ui color [config.json]
  * @param {boolean} cozenTextareaValidatorAll                                 > Shortcut for all type
  * @param {boolean} cozenTextareaValidatorTouched                             > Shortcut for touched type
  * @param {boolean} cozenTextareaValidatorDirty                               > Shortcut for dirty type
- * @param {boolean} cozenTextareaValidatorEmpty   = true                      > Display ui color even if textarea empty [config]
- * @param {boolean} cozenTextareaElastic          = true                      > Auto resize the textarea depending of his content [config]
- * @param {number}  cozenTextareaRows             = 2                         > Number of rows [config]
+ * @param {boolean} cozenTextareaValidatorEmpty   = true                      > Display ui color even if textarea empty [config.json]
+ * @param {boolean} cozenTextareaElastic          = true                      > Auto resize the textarea depending of his content [config.json]
+ * @param {number}  cozenTextareaRows             = 2                         > Number of rows [config.json]
  * @param {string}  cozenTextareaLabel                                        > Add a label on the top of the textarea
  * @param {string}  cozenTextareaRequiredTooltip  = textarea_required_tooltip > Text to display for the tooltip of the required element
  * @param {string}  cozenTextareaClass                                        > Custom class
  * @param {string}  cozenTextareaTooltipType      = default                   > Type of the tooltip
+ * @param {string}  cozenTextareaModelLengthType  = always                    > Show the number of char to match the length (always, never, focus) [config.json]
  *
  */
 (function (angular) {
@@ -171,7 +172,7 @@
                 scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
                 scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
                 scope._cozenTextareaUuid               = data.uuid;
-                scope._cozenTextareaDisplayModelLength = CONFIG.textarea.displayModelLength;
+                scope._cozenTextareaModelLengthType    = angular.isDefined(attrs.cozenTextareaModelLengthType) ? attrs.cozenTextareaModelLengthType : CONFIG.textarea.modelLengthType;
                 scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
                 scope._cozenTextareaRequiredConfig     = CONFIG.required;
                 scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
@@ -183,9 +184,9 @@
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
-                    scope._cozenTextareaForm      = eventData.name;
-                    scope._cozenTextareaFormCtrl  = eventData.ctrl;
-                    scope._cozenTextareaFormModel = eventData.model;
+                    scope._cozenTextareaForm              = eventData.name;
+                    scope._cozenTextareaFormCtrl          = eventData.ctrl;
+                    scope._cozenTextareaFormModel         = eventData.model;
                     scope.cozenTextareaHasParentKnowledge = true;
 
                     // Force to dirty and touched if the model is not empty
