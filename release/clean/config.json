@@ -129,5 +129,10 @@
         "cookieDefaultDomain": "auto",
         "cookieExpires": 28800,
         "trackingId": ""
+    },
+    "btnLazyTest": {
+        "icon": {
+            "class": "fa-font"
+        }
     }
 }

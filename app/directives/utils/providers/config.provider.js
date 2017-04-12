@@ -541,6 +541,11 @@
             return this;
         };
 
+        this.btnLazyTestIconClass = function (value) {
+            CONFIG.btnLazyTest.icon.class = value;
+            return this;
+        };
+
         this.$get = Config;
 
         Config.$inject = [

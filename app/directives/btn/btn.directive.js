@@ -293,7 +293,7 @@
                 if (scope.cozenBtnLoader) {
                     return;
                 }
-                cozenEnhancedLogs.info.functionCalled(data.directive, 'OnClick');
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick');
                 if (Methods.isFunction(scope.cozenBtnOnClick)) {
                     scope.cozenBtnOnClick();
                 }

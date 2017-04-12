@@ -1,0 +1,59 @@
+/************/
+/*   SIZE   */
+/************/
+.cozen-btn-lazy-test-size(@padding, @font-size) {
+    padding   : @padding;
+    font-size : @font-size;
+}
+/*************/
+/*   COLOR   */
+/*************/
+.cozen-btn-lazy-test-color(@color, @background-color) {
+    .cozen-btn-lazy-test-color-internal(@color, @background-color);
+}
+/*******************/
+/*   COLOR HOVER   */
+/*******************/
+.cozen-btn-lazy-test-color-hover(@color, @background-color) {
+    &:hover,
+    &:active,
+    &:focus {
+        .cozen-btn-lazy-test-color-internal(@color, @background-color);
+    }
+}
+/**********************/
+/*   COLOR INTERNAL   */
+/**********************/
+.cozen-btn-lazy-test-color-internal(@color, @background-color) {
+    color            : @color;
+    background-color : @background-color;
+}
+/**************/
+/*   BORDER   */
+/**************/
+.cozen-btn-lazy-test-border(@size, @type, @color) {
+    .cozen-btn-lazy-test-border-internal(@size, @type, @color);
+}
+/********************/
+/*   BORDER HOVER   */
+/********************/
+.cozen-btn-lazy-test-border-hover(@size, @type, @color) {
+    &:hover,
+    &:active,
+    &:focus {
+        .cozen-btn-lazy-test-border-internal(@size, @type, @color);
+    }
+}
+/***********************/
+/*   BORDER INTERNAL   */
+/***********************/
+.cozen-btn-lazy-test-border-internal(@size, @type, @color) {
+    border : @size @type @color;
+}
+/****************/
+/*   POSITION   */
+/****************/
+.cozen-btn-lazy-test-position(@top, @left) {
+    top  : @top;
+    left : @left;
+}

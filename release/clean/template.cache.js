@@ -23,6 +23,11 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('directives/btn-lazy-test/btnLazyTest.template.html',
+    "<div ng-if=_isReady class=\"cozen-btn-lazy-test animated zoomIn\" ng-class=_methods.getMainClass(); ng-style=_methods.getMainStyle(); id=\"{{ _cozenBtnLazyTestId }}\" tabindex=-1 ng-click=_methods.onClick($event)><span class=title>{{ _cozenBtnLazyTestLabel }}</span></div>"
+  );
+
+
   $templateCache.put('directives/btn-radio/btnRadio.template.html',
     "<div ng-if=_isReady class=cozen-btn-radio ng-class=_methods.getMainClass(); id=\"{{ _cozenBtnRadioId }}\"><cozen-tooltip cozen-tooltip-label=_cozenBtnRadioTooltip cozen-tooltip-disabled=\"_cozenBtnRadioTooltip == ''\"><div class=cozen-btn-radio-container tabindex=\"{{ _methods.getTabIndex(); }}\" ng-click=_methods.onClick($event)><label ng-if=\"_cozenBtnRadioLabel != ''\" class=cozen-btn-radio-label ng-class=[_cozenBtnRadioSize]>{{ _cozenBtnRadioLabel | translate }}</label><div class=cozen-btn-radio-bubble><div ng-show=cozenBtnRadioModel ng-class=\"{'bounceIn': cozenBtnRadioModel && _cozenBtnRadioAnimationOut,\r" +
     "\n" +

@@ -38,7 +38,7 @@
             .broadcastLog(true)
             .dropdownAutoCloseOthers(true)
             .inputModelLengthType('focus')
-            .textareaDisplayModelLength(true)
+            .inputModelLengthType('focus')
             .dropdownDisplayModelLength(true)
             .requiredType('icon')
             .alertIconLeftDefault('fa fa-info-circle')

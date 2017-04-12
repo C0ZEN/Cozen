@@ -382,6 +382,86 @@
 })(window.angular);
 
 
+/**
+ * @ngdoc directive
+ * @name cozen-alt-image
+ * @scope
+ * @restrict A
+ * @replace false
+ * @transclude false
+ * @description
+ * A simple directive used to replace the image src with a default one when an error with the image was found
+ *
+ * @param {string} cozenAltImageType  = veolia > Define what image should be display instead (from a cozenAltImageTypeList below)
+ * @param {string} cozenAltImageTitle          > Override the default title (only if the alt image is trigger)
+ *
+ */
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib')
+        .directive('cozenAltImage', cozenAltImage);
+
+    cozenAltImage.$inject = [];
+
+    function cozenAltImage() {
+        return {
+            link      : link,
+            restrict  : 'A',
+            replace   : false,
+            transclude: false
+        };
+
+        function link(scope, element, attrs) {
+
+            // Methods declaration
+            var methods = {
+                init   : init,
+                destroy: destroy
+            };
+
+            // Internal data
+            var data = {
+                cozenAltImageTypeList  : {
+                    veolia: 'assets/images/veolia/logo.jpg',
+                    cross : 'assets/images/picto-supprimer-gris.png'
+                },
+                currentAltImage   : 'veolia',
+                currentAltImageUrl: ''
+            };
+
+            // Do stuff on creation
+            methods.init();
+
+            function init() {
+
+                // Define the type (if cozenAltImageType is defined and the value found in object, update the default type)
+                if (angular.isDefined(attrs.cozenAltImageType) &&
+                    Methods.hasOwnProperty(data.cozenAltImageTypeList, attrs.cozenAltImageType)) {
+                    data.currentAltImage = attrs.cozenAltImageType;
+                }
+                data.currentAltImageUrl = data.cozenAltImageTypeList[data.currentAltImage];
+
+                // Listeners
+                element.on('$destroy', methods.destroy);
+                element.bind('error', function () {
+
+                    // Change the src
+                    element.attr('src', data.currentAltImageUrl);
+
+                    // Change the title (only if cozenAltImageTitle is set)
+                    angular.isDefined(attrs.cozenAltImageTitle) ? element.attr('title', attrs.cozenAltImageTitle) : null;
+                });
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+        }
+    }
+
+})(window.angular);
 (function (angular) {
     'use strict';
 
@@ -520,6 +600,11 @@
         "cookieDefaultDomain": "auto",
         "cookieExpires": 28800,
         "trackingId": ""
+    },
+    "btnLazyTest": {
+        "icon": {
+            "class": "fa-font"
+        }
     }
 }
 
@@ -930,7 +1015,7 @@
                 if (scope.cozenBtnLoader) {
                     return;
                 }
-                cozenEnhancedLogs.info.functionCalled(data.directive, 'OnClick');
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick');
                 if (Methods.isFunction(scope.cozenBtnOnClick)) {
                     scope.cozenBtnOnClick();
                 }
@@ -1228,6 +1313,125 @@
                     tabIndex = -1;
                 }
                 return tabIndex;
+            }
+        }
+    }
+
+})(window.angular);
+
+
+/**
+ * @ngdoc directive
+ * @name cozen-btn-lazy-test
+ * @scope
+ * @restrict E
+ * @replace false
+ * @transclude false
+ * @description
+ *
+ * [Scope params]
+ * @param {function} cozenBtnLazyTestOnClick > Callback function called on click
+ *
+ * [Attributes params]
+ * @param {string} cozenBtnLazyTestId    = uuid      > Id of the button
+ * @param {string} cozenBtnLazyTestLabel = Lazy test > Label on the button
+ * @param {string} cozenBtnLazyTestTop               > Override the position on the top
+ * @param {string} cozenBtnLazyTestLeft              > Override the position on the left
+ *
+ */
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.btnLazyTest', [])
+        .directive('cozenBtnLazyTest', cozenBtnLazyTest);
+
+    cozenBtnLazyTest.$inject = [
+        'Themes',
+        'CONFIG',
+        'cozenEnhancedLogs',
+        'rfc4122'
+    ];
+
+    function cozenBtnLazyTest(Themes, CONFIG, cozenEnhancedLogs, rfc4122) {
+        return {
+            link       : link,
+            restrict   : 'E',
+            replace    : false,
+            transclude : false,
+            scope      : {
+                cozenBtnLazyTestOnClick: '&'
+            },
+            templateUrl: 'directives/btn-lazy-test/btnLazyTest.template.html'
+        };
+
+        function link(scope, element, attrs) {
+
+            // Methods declaration
+            var methods = {
+                init        : init,
+                destroy     : destroy,
+                getMainClass: getMainClass,
+                getMainStyle: getMainStyle,
+                onClick     : onClick
+            };
+
+            // Internal data
+            var data = {
+                directive: 'cozenBtnLazyTest',
+                uuid     : rfc4122.v4()
+            };
+
+            // Do stuff on creation
+            methods.init();
+
+            function init() {
+                scope._isReady = false;
+
+                // Public methods
+                scope._methods = {
+                    getMainClass: getMainClass,
+                    getMainStyle: getMainStyle,
+                    onClick     : onClick
+                };
+
+                // Default values (attributes)
+                scope._cozenBtnLazyTestId    = angular.isDefined(attrs.cozenBtnLazyTestId) ? attrs.cozenBtnLazyTestId : data.uuid;
+                scope._cozenBtnLazyTestLabel = angular.isDefined(attrs.cozenBtnLazyTestLabel) ? attrs.cozenBtnLazyTestLabel : 'Lazy test';
+
+                // Init stuff
+                element.on('$destroy', methods.destroy);
+                scope._activeTheme               = Themes.getActiveTheme();
+                scope._cozenBtnLazyTestIconClass = CONFIG.btnLazyTest.icon.class;
+
+                // Display the template
+                scope._isReady = true;
+            }
+
+            function destroy() {
+                element.off('$destroy', methods.destroy);
+            }
+
+            function getMainClass() {
+                var classList = [
+                    scope._activeTheme
+                ];
+                return classList;
+            }
+
+            function getMainStyle() {
+                var styleList = [];
+                angular.isDefined(attrs.cozenBtnLazyTestTop) ? styleList.push(attrs.cozenBtnLazyTestTop) : null;
+                angular.isDefined(attrs.cozenBtnLazyTestLeft) ? styleList.push(attrs.cozenBtnLazyTestLeft) : null;
+                return styleList;
+            }
+
+            function onClick($event) {
+                $event.stopPropagation();
+                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick');
+                if (Methods.isFunction(scope.cozenBtnLazyTestOnClick)) {
+                    scope.cozenBtnLazyTestOnClick();
+                }
             }
         }
     }
@@ -2221,6 +2425,11 @@
             else {
                 CONFIG.floatingFeed.timeout.bar = value;
             }
+            return this;
+        };
+
+        this.btnLazyTestIconClass = function (value) {
+            CONFIG.btnLazyTest.icon.class = value;
             return this;
         };
 

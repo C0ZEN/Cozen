@@ -37,6 +37,7 @@
             'cozenLib.alert',
             'cozenLib.btn',
             'cozenLib.btnCheck',
+            'cozenLib.btnLazyTest',
             'cozenLib.btnRadio',
             'cozenLib.btnToggle',
             'cozenLib.dropdown',
