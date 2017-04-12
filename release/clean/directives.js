@@ -609,6 +609,11 @@
         "position": {
             "top": "8px",
             "left": "8px"
+        },
+        "service": {
+            "lang": "en",
+            "gender": "male",
+            "domain": "cozen.com"
         }
     }
 }
@@ -2516,6 +2521,39 @@
 
         this.btnLazyTestPositionLeft = function (value) {
             CONFIG.btnLazyTest.position.left = value;
+            return this;
+        };
+
+        this.btnLazyTestServiceLang = function (value) {
+            var list = [
+                'en',
+                'it'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('btnLazyTestServiceLang', list);
+            }
+            else {
+                CONFIG.btnLazyTest.service.lang = value;
+            }
+            return this;
+        };
+
+        this.btnLazyTestServiceMale = function (value) {
+            var list = [
+                'male',
+                'female'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('btnLazyTestServiceMale', list);
+            }
+            else {
+                CONFIG.btnLazyTest.service.male = value;
+            }
+            return this;
+        };
+
+        this.btnLazyTestServiceDomain = function (value) {
+            CONFIG.btnLazyTest.service.domain = value;
             return this;
         };
 
@@ -6864,6 +6902,217 @@
                 ];
             }
             return false;
+        }
+    }
+
+})(window.angular);
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.lazyLoad.constant', [])
+        .constant('cozenLazyLoadConstant', {
+            last: {
+                lastName   : null,
+                firstName  : null,
+                email      : null,
+                gender     : null,
+                nationality: null,
+                domain     : null
+            }
+        });
+
+})(window.angular);
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.lazyLoad.internalService', [])
+        .factory('cozenLazyLoadInternal', cozenLazyLoadInternal);
+
+    cozenLazyLoadInternal.$inject = [
+        'CONFIG',
+        'cozenLazyLoadConstant'
+    ];
+
+    function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant) {
+        return {
+            getLastLastName   : getLastLastName,
+            getLastFirstName  : getLastFirstName,
+            getLastEmail      : getLastEmail,
+            getLastGender     : getLastGender,
+            getLastNationality: getLastNationality,
+            getLastDomain     : getLastDomain
+        };
+
+        /// INTERNAL METHODS WITH REQUIRED LAST DATA ///
+
+        function getLastLastName() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.lastName)) {
+                // @todo handle error
+                return null;
+            }
+            return cozenLazyLoadConstant.last.lastName;
+        }
+
+        function getLastFirstName() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.firstName)) {
+                // @todo handle error
+                return null;
+            }
+            return cozenLazyLoadConstant.last.firstName;
+        }
+
+        function getLastEmail() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.email)) {
+                // @todo handle error
+                return null;
+            }
+            return cozenLazyLoadConstant.last.email;
+        }
+
+        /// INTERNAL METHODS WITH CONFIG CALLBACK WHEN LAST DATA EMPTY ///
+
+        function getLastGender() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.gender)) {
+                cozenLazyLoadConstant.last.gender = CONFIG.btnLazyTest.service.gender;
+            }
+            return cozenLazyLoadConstant.last.gender;
+        }
+
+        function getLastNationality() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.lang)) {
+                cozenLazyLoadConstant.last.lang = CONFIG.btnLazyTest.service.lang;
+            }
+            return cozenLazyLoadConstant.last.lang;
+        }
+
+        function getLastDomain() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.domain)) {
+                cozenLazyLoadConstant.last.domain = CONFIG.btnLazyTest.service.domain;
+            }
+            return cozenLazyLoadConstant.last.domain;
+        }
+    }
+
+})(window.angular);
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.lazyLoad.memoryService', [])
+        .factory('cozenLazyLoadMemory', cozenLazyLoadMemory);
+
+    cozenLazyLoadMemory.$inject = [
+        'cozenLazyLoadConstant'
+    ];
+
+    function cozenLazyLoadMemory(cozenLazyLoadConstant) {
+        return {
+            getEmail: getEmail
+        };
+
+        /// MEMORY METHODS (use saved data) ///
+
+        function getEmail() {
+            return cozenLazyLoadConstant.last.email;
+        }
+    }
+
+})(window.angular);
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.lazyLoad', [
+            'cozenLib.lazyLoad.constant',
+            'cozenLib.lazyLoad.internalService',
+            'cozenLib.lazyLoad.randomService',
+            'cozenLib.lazyLoad.memoryService'
+        ]);
+
+})(window.angular);
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.lazyLoad.randomService', [])
+        .factory('cozenLazyLoadRandom', cozenLazyLoadRandom);
+
+    cozenLazyLoadRandom.$inject = [
+        'cozenLazyLoadConstant',
+        'cozenLazyLoadInternal'
+    ];
+
+    function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal) {
+        return {
+            getLastName : getRandomLastName,
+            getFirstName: getRandomFirstName,
+            getEmail    : getRandomEmail
+        };
+
+        /// RANDOM METHODS ///
+
+        /**
+         * Return a random last name
+         * @param {string} nationality = en > Define the lang (en, it) [config.json]
+         * @return {string} lastName
+         */
+        function getRandomLastName(nationality) {
+            if (Methods.isNullOrEmpty(nationality)) {
+                nationality = cozenLazyLoadInternal.getLastNationality();
+            }
+            else {
+                cozenLazyLoadConstant.last.nationality = nationality;
+            }
+            cozenLazyLoadConstant.last.lastName = chance.last({
+                nationality: nationality
+            });
+            return cozenLazyLoadConstant.last.lastName;
+        }
+
+        /**
+         * Return a random first name
+         * @param {string} gender      = male > Define the gender (male, female) [config.json]
+         * @param {string} nationality = us   > Define the lang (us, it) [config.json]
+         * @return {string} firstName
+         */
+        function getRandomFirstName(gender, nationality) {
+            if (Methods.isNullOrEmpty(gender)) {
+                gender = cozenLazyLoadInternal.getLastGender();
+            }
+            else {
+                cozenLazyLoadConstant.last.gender = gender;
+            }
+            if (Methods.isNullOrEmpty(nationality)) {
+                nationality = cozenLazyLoadInternal.getLastNationality();
+            }
+            else {
+                cozenLazyLoadConstant.last.nationality = nationality;
+            }
+            cozenLazyLoadConstant.last.firstName = Chance.first({
+                gender     : gender,
+                nationality: nationality
+            });
+            return cozenLazyLoadConstant.last.firstName;
+        }
+
+        /**
+         * Return a random email
+         * @param {string} domain = cozen.com > Define the domain after the @ [config.json]
+         * @return {string} email
+         */
+        function getRandomEmail(domain) {
+            if (Methods.isNullOrEmpty(domain)) {
+                domain = cozenLazyLoadInternal.getLastDomain();
+            }
+            else {
+                cozenLazyLoadConstant.last.domain = domain;
+            }
+            cozenLazyLoadConstant.last.email = Chance.email({
+                domain: domain
+            });
+            return cozenLazyLoadConstant.last.email;
         }
     }
 

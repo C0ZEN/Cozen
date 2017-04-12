@@ -51,7 +51,8 @@
             'cozenLib.textarea',
             'cozenLib.tooltip',
             'cozenLib.view',
-            'cozenLib.icons'
+            'cozenLib.icons',
+            'cozenLib.lazyLoad'
         ]);
 
 })(window.angular);

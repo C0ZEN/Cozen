@@ -556,6 +556,39 @@
             return this;
         };
 
+        this.btnLazyTestServiceLang = function (value) {
+            var list = [
+                'en',
+                'it'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('btnLazyTestServiceLang', list);
+            }
+            else {
+                CONFIG.btnLazyTest.service.lang = value;
+            }
+            return this;
+        };
+
+        this.btnLazyTestServiceMale = function (value) {
+            var list = [
+                'male',
+                'female'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('btnLazyTestServiceMale', list);
+            }
+            else {
+                CONFIG.btnLazyTest.service.male = value;
+            }
+            return this;
+        };
+
+        this.btnLazyTestServiceDomain = function (value) {
+            CONFIG.btnLazyTest.service.domain = value;
+            return this;
+        };
+
         this.$get = Config;
 
         Config.$inject = [
