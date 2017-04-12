@@ -2323,6 +2323,7 @@ div.cozen-btn-lazy-test {
   cursor: pointer;
   border-radius: 3px;
   outline: 0;
+  z-index: 1100;
 }
 div.cozen-btn-lazy-test span.text {
   color: inherit;
@@ -13181,6 +13182,7 @@ div.cozen-btn-lazy-test {
   cursor: pointer;
   border-radius: 3px;
   outline: 0;
+  z-index: 1100;
 }
 div.cozen-btn-lazy-test span.text {
   color: inherit;
