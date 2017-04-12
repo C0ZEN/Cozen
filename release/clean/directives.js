@@ -1410,6 +1410,7 @@
                     scope._isReady = true;
                 }
                 else {
+                    cozenEnhancedLogs.info.customMessage('btnLazyTest', 'Hey ! The logs are still activated but the dev mod is not active. The directive will be destroyed.');
                     methods.destroy();
                 }
             }

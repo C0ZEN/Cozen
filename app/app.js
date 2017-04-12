@@ -33,6 +33,7 @@
         ThemesProvider.setActiveTheme('atom');
         ConfigProvider
             .scrollsBar(false)
+            .dev(true)
             .debug(true)
             .logsEnabled(true)
             .broadcastLog(true)
