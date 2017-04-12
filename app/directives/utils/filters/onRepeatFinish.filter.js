@@ -1,11 +1,6 @@
 /**
- * Generated header by Cozen for cozen project
- * Generated file onRepeatFinish.filter on WebStorm
+ * @description
  *
- * Created by: Geoffrey "C0ZEN" Testelin
- * Date: 07/02/2017
- * Time: 12:47
- * Version: 1.0.0
  */
 (function (angular) {
     'use strict';

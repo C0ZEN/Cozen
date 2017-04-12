@@ -23,6 +23,7 @@
 
     function cozenAltImage() {
         return {
+            required  : 'img',
             link      : link,
             restrict  : 'A',
             replace   : false,
@@ -39,12 +40,12 @@
 
             // Internal data
             var data = {
-                cozenAltImageTypeList  : {
+                cozenAltImageTypeList: {
                     veolia: 'assets/images/veolia/logo.jpg',
                     cross : 'assets/images/picto-supprimer-gris.png'
                 },
-                currentAltImage   : 'veolia',
-                currentAltImageUrl: ''
+                currentAltImage      : 'veolia',
+                currentAltImageUrl   : ''
             };
 
             // Do stuff on creation

@@ -105,18 +105,14 @@
             }
 
             function getMainStyle() {
-                var styleList = [];
+                var styleObj = {};
                 if (angular.isDefined(attrs.cozenBtnLazyTestTop)) {
-                    styleList.push({
-                        top: attrs.cozenBtnLazyTestTop
-                    });
+                    styleObj.top = attrs.cozenBtnLazyTestTop;
                 }
                 if (angular.isDefined(attrs.cozenBtnLazyTestLeft)) {
-                    styleList.push({
-                        left: attrs.cozenBtnLazyTestLeft
-                    });
+                    styleObj.left = attrs.cozenBtnLazyTestLeft;
                 }
-                return styleList;
+                return styleObj;
             }
 
             function onClick($event) {
