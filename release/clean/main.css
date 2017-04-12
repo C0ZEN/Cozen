@@ -795,9 +795,6 @@
 /***********************/
 /*   BORDER INTERNAL   */
 /***********************/
-/****************/
-/*   POSITION   */
-/****************/
 .atom {
   font-family: 'Catamaran', Arial, sans-serif;
 }
@@ -10830,8 +10827,6 @@ div.cozen-btn-lazy-test.atom {
   color: #FFFFFF;
   background-color: #2C9FDD;
   border: 1px solid #2C9FDD;
-  top: 12px;
-  left: 12px;
 }
 div.cozen-btn-lazy-test.atom:hover,
 div.cozen-btn-lazy-test.atom:active,
@@ -11638,9 +11633,6 @@ div.cozen-btn-lazy-test.atom:focus {
 /***********************/
 /*   BORDER INTERNAL   */
 /***********************/
-/****************/
-/*   POSITION   */
-/****************/
 .tau {
   font-family: 'Hind', Arial, sans-serif;
 }

@@ -607,8 +607,8 @@
             "class": "fa-font"
         },
         "position": {
-            "top": "70px",
-            "left": "10px"
+            "top": "8px",
+            "left": "8px"
         }
     }
 }
