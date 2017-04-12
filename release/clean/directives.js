@@ -1428,8 +1428,16 @@
 
             function getMainStyle() {
                 var styleList = [];
-                angular.isDefined(attrs.cozenBtnLazyTestTop) ? styleList.push(attrs.cozenBtnLazyTestTop) : null;
-                angular.isDefined(attrs.cozenBtnLazyTestLeft) ? styleList.push(attrs.cozenBtnLazyTestLeft) : null;
+                if (angular.isDefined(attrs.cozenBtnLazyTestTop)) {
+                    styleList.push({
+                        top: attrs.cozenBtnLazyTestTop
+                    });
+                }
+                if (angular.isDefined(attrs.cozenBtnLazyTestLeft)) {
+                    styleList.push({
+                        left: attrs.cozenBtnLazyTestLeft
+                    });
+                }
                 return styleList;
             }
 
