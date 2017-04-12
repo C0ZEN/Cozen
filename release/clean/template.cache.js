@@ -24,7 +24,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/btn-lazy-test/btnLazyTest.template.html',
-    "<div ng-if=_isReady class=\"cozen-btn-lazy-test animated zoomIn\" ng-class=_methods.getMainClass(); ng-style=_methods.getMainStyle(); id=\"{{ _cozenBtnLazyTestId }}\" tabindex=-1 ng-click=_methods.onClick($event)><span class=title>{{ _cozenBtnLazyTestLabel }}</span></div>"
+    "<div ng-if=_isReady class=\"cozen-btn-lazy-test animated zoomIn\" ng-class=_methods.getMainClass(); ng-style=_methods.getMainStyle(); id=\"{{ _cozenBtnLazyTestId }}\" tabindex=-1 ng-click=_methods.onClick($event)><span class=title>{{ _cozenBtnLazyTestLabel | translate }}</span></div>"
   );
 
 
