@@ -64,30 +64,37 @@
             methods.init();
 
             function init() {
-                scope._isReady = false;
+                if (CONFIG.dev) {
+                    scope._isReady = false;
 
-                // Public methods
-                scope._methods = {
-                    getMainClass: getMainClass,
-                    getMainStyle: getMainStyle,
-                    onClick     : onClick
-                };
+                    // Public methods
+                    scope._methods = {
+                        getMainClass: getMainClass,
+                        getMainStyle: getMainStyle,
+                        onClick     : onClick
+                    };
 
-                // Default values (attributes)
-                scope._cozenBtnLazyTestId    = angular.isDefined(attrs.cozenBtnLazyTestId) ? attrs.cozenBtnLazyTestId : data.uuid;
-                scope._cozenBtnLazyTestLabel = angular.isDefined(attrs.cozenBtnLazyTestLabel) ? attrs.cozenBtnLazyTestLabel : 'Lazy test';
+                    // Default values (attributes)
+                    scope._cozenBtnLazyTestId    = angular.isDefined(attrs.cozenBtnLazyTestId) ? attrs.cozenBtnLazyTestId : data.uuid;
+                    scope._cozenBtnLazyTestLabel = angular.isDefined(attrs.cozenBtnLazyTestLabel) ? attrs.cozenBtnLazyTestLabel : 'Lazy test';
 
-                // Init stuff
-                element.on('$destroy', methods.destroy);
-                scope._activeTheme               = Themes.getActiveTheme();
-                scope._cozenBtnLazyTestIconClass = CONFIG.btnLazyTest.icon.class;
+                    // Init stuff
+                    element.on('$destroy', methods.destroy);
+                    scope._activeTheme               = Themes.getActiveTheme();
+                    scope._cozenBtnLazyTestIconClass = CONFIG.btnLazyTest.icon.class;
 
-                // Display the template
-                scope._isReady = true;
+                    // Display the template
+                    scope._isReady = true;
+                }
+                else {
+                    methods.destroy();
+                }
             }
 
             function destroy() {
                 element.off('$destroy', methods.destroy);
+                scope.$destroy();
+                element.remove();
             }
 
             function getMainClass() {
