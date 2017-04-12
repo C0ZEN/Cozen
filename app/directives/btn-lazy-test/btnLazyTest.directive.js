@@ -106,13 +106,9 @@
             }
 
             function getMainStyle() {
-                var styleObj = {};
-                if (angular.isDefined(attrs.cozenBtnLazyTestTop)) {
-                    styleObj.top = attrs.cozenBtnLazyTestTop;
-                }
-                if (angular.isDefined(attrs.cozenBtnLazyTestLeft)) {
-                    styleObj.left = attrs.cozenBtnLazyTestLeft;
-                }
+                var styleObj  = {};
+                styleObj.top  = angular.isDefined(attrs.cozenBtnLazyTestTop) ? attrs.cozenBtnLazyTestTop : CONFIG.btnLazyTest.position.top;
+                styleObj.left = angular.isDefined(attrs.cozenBtnLazyTestLeft) ? attrs.cozenBtnLazyTestLeft : CONFIG.btnLazyTest.position.left;
                 return styleObj;
             }
 

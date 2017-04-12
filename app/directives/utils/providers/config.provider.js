@@ -546,6 +546,16 @@
             return this;
         };
 
+        this.btnLazyTestPositionTop = function (value) {
+            CONFIG.btnLazyTest.position.top = value;
+            return this;
+        };
+
+        this.btnLazyTestPositionLeft = function (value) {
+            CONFIG.btnLazyTest.position.left = value;
+            return this;
+        };
+
         this.$get = Config;
 
         Config.$inject = [

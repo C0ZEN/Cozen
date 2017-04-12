@@ -133,6 +133,10 @@
     "btnLazyTest": {
         "icon": {
             "class": "fa-font"
+        },
+        "position": {
+            "top": "70px",
+            "left": "10px"
         }
     }
 }
