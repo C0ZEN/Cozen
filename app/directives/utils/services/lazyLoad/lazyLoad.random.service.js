@@ -7,10 +7,12 @@
 
     cozenLazyLoadRandom.$inject = [
         'cozenLazyLoadConstant',
-        'cozenLazyLoadInternal'
+        'cozenLazyLoadInternal',
+        'cozenEnhancedLogs',
+        '$filter'
     ];
 
-    function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal) {
+    function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs, $filter) {
         return {
             getLastName : getRandomLastName,
             getFirstName: getRandomFirstName,
@@ -31,9 +33,10 @@
             else {
                 cozenLazyLoadConstant.last.nationality = nationality;
             }
-            cozenLazyLoadConstant.last.lastName = chance.last({
+            cozenLazyLoadConstant.last.lastName = cozenLazyLoadConstant.cozenChance.last({
                 nationality: nationality
             });
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomLastName', cozenLazyLoadConstant.last.lastName);
             return cozenLazyLoadConstant.last.lastName;
         }
 
@@ -56,10 +59,11 @@
             else {
                 cozenLazyLoadConstant.last.nationality = nationality;
             }
-            cozenLazyLoadConstant.last.firstName = Chance.first({
+            cozenLazyLoadConstant.last.firstName = cozenLazyLoadConstant.cozenChance.first({
                 gender     : gender,
                 nationality: nationality
             });
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomFirstName', cozenLazyLoadConstant.last.firstName);
             return cozenLazyLoadConstant.last.firstName;
         }
 
@@ -75,9 +79,10 @@
             else {
                 cozenLazyLoadConstant.last.domain = domain;
             }
-            cozenLazyLoadConstant.last.email = Chance.email({
+            cozenLazyLoadConstant.last.email = cozenLazyLoadConstant.cozenChance.email({
                 domain: domain
-            });
+            }).toLowerCase();
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomEmail', cozenLazyLoadConstant.last.email);
             return cozenLazyLoadConstant.last.email;
         }
     }

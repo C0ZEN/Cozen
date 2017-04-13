@@ -541,6 +541,16 @@
             return this;
         };
 
+        this.btnLazyTestLog = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('btnLazyTestLog');
+            }
+            else {
+                CONFIG.btnLazyTest.log = value;
+            }
+            return this;
+        };
+
         this.btnLazyTestIconClass = function (value) {
             CONFIG.btnLazyTest.icon.class = value;
             return this;

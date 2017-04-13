@@ -6,17 +6,17 @@
         .controller('BtnLazyTestCtrl', BtnLazyTestCtrl);
 
     BtnLazyTestCtrl.$inject = [
-        'cozenEnhancedLogs',
-        'cozenLazyLoadRandom'
+        'cozenLazyLoadRandom',
+        'cozenLazyLoadMemory'
     ];
 
-    function BtnLazyTestCtrl(cozenEnhancedLogs, cozenLazyLoadRandom) {
-        var vm = this;
-
-        vm.getLastName = function () {
-            var lastName = cozenLazyLoadRandom.getLastName();
-            cozenEnhancedLogs.info.customMessageEnhanced('BtnLazyTestCtrl', 'getLastName', lastName, 'executed');
-        }
+    function BtnLazyTestCtrl(cozenLazyLoadRandom, cozenLazyLoadMemory) {
+        var vm                 = this;
+        vm.leftCol1            = '30px';
+        vm.defaultHeight       = 50;
+        vm.espaceHeight        = 50;
+        vm.cozenLazyLoadRandom = cozenLazyLoadRandom;
+        vm.cozenLazyLoadMemory = cozenLazyLoadMemory;
     }
 
 })(window.angular);

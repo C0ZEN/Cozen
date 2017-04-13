@@ -603,6 +603,7 @@
         "trackingId": ""
     },
     "btnLazyTest": {
+        "log": false,
         "icon": {
             "class": "fa-font"
         },
@@ -2509,6 +2510,16 @@
             return this;
         };
 
+        this.btnLazyTestLog = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('btnLazyTestLog');
+            }
+            else {
+                CONFIG.btnLazyTest.log = value;
+            }
+            return this;
+        };
+
         this.btnLazyTestIconClass = function (value) {
             CONFIG.btnLazyTest.icon.class = value;
             return this;
@@ -4279,6 +4290,7 @@
                 changeRouteWithParams: infoChangeRouteWithParams,
                 broadcastEvent       : infoBroadcastEvent,
                 explodeObject        : infoExplodeObject,
+                lazyLoadLog          : infoLazyLoadLog,
                 ga                   : {
                     baseRequest: infoGaBaseRequest,
                     pageView   : infoGaPageView,
@@ -4581,17 +4593,20 @@
          * @param {string} title      > Specify the title of the message [required]
          * @param {string} textBefore > Specify the text before the value [required]
          * @param {string} value      > Specify the value [required]
-         * @param {string} textAfter  > Specify the text after the message [required]
+         * @param {string} textAfter  > Specify the text after the message
          */
         function infoCustomMessageEnhanced(title, textBefore, value, textAfter) {
             if (CONFIG.logs.enabled) {
-                if (Methods.isNullOrEmpty(title) || Methods.isNullOrEmpty(textBefore) || Methods.isNullOrEmpty(value) || Methods.isNullOrEmpty(textAfter)) {
+                if (Methods.isNullOrEmpty(title) || Methods.isNullOrEmpty(textBefore) || Methods.isNullOrEmpty(value)) {
                     return;
                 }
                 var log = methods.getBase(title);
                 log += console.colors.black(textBefore + ' <');
                 log += console.colors.purple(value);
-                log += console.colors.black('> ' + textAfter);
+                log += console.colors.black('>');
+                if (!Methods.isNullOrEmpty(textAfter)) {
+                    log += console.colors.black(' ' + textAfter);
+                }
                 console.style(log);
             }
         }
@@ -4721,6 +4736,27 @@
                 log += console.colors.black(text);
                 log += '\n';
                 log += methods.getFormattedParams(object, extended);
+                console.style(log);
+            }
+        }
+
+        /**
+         *
+         * @param {string} service > The name of the service which contain the function [required]
+         * @param {string} fnName  > The name of the called function [required]
+         * @param {string} result  > The result value of the called function [required]
+         */
+        function infoLazyLoadLog(service, fnName, result) {
+            if (CONFIG.logs.enabled && CONFIG.dev && CONFIG.btnLazyTest.log) {
+                if (Methods.isNullOrEmpty(service) || Methods.isNullOrEmpty(fnName) || Methods.isNullOrEmpty(result)) {
+                    return;
+                }
+                var log = methods.getBase(service);
+                log += console.colors.black('The function <');
+                log += console.colors.purple(fnName);
+                log += console.colors.black('> returned <');
+                log += console.colors.purple(result);
+                log += console.colors.black('>');
                 console.style(log);
             }
         }
@@ -6912,14 +6948,15 @@
     angular
         .module('cozenLib.lazyLoad.constant', [])
         .constant('cozenLazyLoadConstant', {
-            last: {
-                lastName   : null,
-                firstName  : null,
-                email      : null,
-                gender     : null,
-                nationality: null,
-                domain     : null
-            }
+            last       : {
+                lastName   : 'O\'Connor',
+                firstName  : 'Cozen',
+                email      : 'cozen.oconnor@cozen.com',
+                gender     : 'male',
+                nationality: 'en',
+                domain     : 'cozen.com'
+            },
+            cozenChance: new Chance()
         });
 
 })(window.angular);
@@ -7004,17 +7041,28 @@
         .factory('cozenLazyLoadMemory', cozenLazyLoadMemory);
 
     cozenLazyLoadMemory.$inject = [
-        'cozenLazyLoadConstant'
+        'cozenLazyLoadConstant',
+        'cozenLazyLoadInternal',
+        'cozenEnhancedLogs'
     ];
 
-    function cozenLazyLoadMemory(cozenLazyLoadConstant) {
+    function cozenLazyLoadMemory(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs) {
         return {
             getEmail: getEmail
         };
 
         /// MEMORY METHODS (use saved data) ///
 
+        /**
+         * Return an email address as <firstname.lastname@domain> by fetching the last data available
+         * @returns {string} email address
+         */
         function getEmail() {
+            var firstName                    = cozenLazyLoadInternal.getLastFirstName();
+            var lastName                     = cozenLazyLoadInternal.getLastLastName();
+            var domain                       = cozenLazyLoadInternal.getLastDomain();
+            cozenLazyLoadConstant.last.email = (firstName + '.' + lastName + '@' + domain).toLowerCase();
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadMemory', 'getEmail', cozenLazyLoadConstant.last.email);
             return cozenLazyLoadConstant.last.email;
         }
     }
@@ -7027,8 +7075,8 @@
         .module('cozenLib.lazyLoad', [
             'cozenLib.lazyLoad.constant',
             'cozenLib.lazyLoad.internalService',
-            'cozenLib.lazyLoad.randomService',
-            'cozenLib.lazyLoad.memoryService'
+            'cozenLib.lazyLoad.memoryService',
+            'cozenLib.lazyLoad.randomService'
         ]);
 
 })(window.angular);
@@ -7041,10 +7089,12 @@
 
     cozenLazyLoadRandom.$inject = [
         'cozenLazyLoadConstant',
-        'cozenLazyLoadInternal'
+        'cozenLazyLoadInternal',
+        'cozenEnhancedLogs',
+        '$filter'
     ];
 
-    function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal) {
+    function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs, $filter) {
         return {
             getLastName : getRandomLastName,
             getFirstName: getRandomFirstName,
@@ -7065,9 +7115,10 @@
             else {
                 cozenLazyLoadConstant.last.nationality = nationality;
             }
-            cozenLazyLoadConstant.last.lastName = chance.last({
+            cozenLazyLoadConstant.last.lastName = cozenLazyLoadConstant.cozenChance.last({
                 nationality: nationality
             });
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomLastName', cozenLazyLoadConstant.last.lastName);
             return cozenLazyLoadConstant.last.lastName;
         }
 
@@ -7090,10 +7141,11 @@
             else {
                 cozenLazyLoadConstant.last.nationality = nationality;
             }
-            cozenLazyLoadConstant.last.firstName = Chance.first({
+            cozenLazyLoadConstant.last.firstName = cozenLazyLoadConstant.cozenChance.first({
                 gender     : gender,
                 nationality: nationality
             });
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomFirstName', cozenLazyLoadConstant.last.firstName);
             return cozenLazyLoadConstant.last.firstName;
         }
 
@@ -7109,9 +7161,10 @@
             else {
                 cozenLazyLoadConstant.last.domain = domain;
             }
-            cozenLazyLoadConstant.last.email = Chance.email({
+            cozenLazyLoadConstant.last.email = cozenLazyLoadConstant.cozenChance.email({
                 domain: domain
-            });
+            }).toLowerCase();
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomEmail', cozenLazyLoadConstant.last.email);
             return cozenLazyLoadConstant.last.email;
         }
     }

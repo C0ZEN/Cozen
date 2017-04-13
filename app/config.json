@@ -131,6 +131,7 @@
         "trackingId": ""
     },
     "btnLazyTest": {
+        "log": false,
         "icon": {
             "class": "fa-font"
         },

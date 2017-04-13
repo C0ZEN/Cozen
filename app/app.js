@@ -46,7 +46,8 @@
             .currentLanguage('fr')
             .popupAnimationInAnimation('zoomIn')
             .popupAnimationOutAnimation('zoomOut')
-            .floatingFeedTimeoutTime(3000);
+            .floatingFeedTimeoutTime(3000)
+            .btnLazyTestLog(true);
 
         // Configure the location provider
         $locationProvider.html5Mode({

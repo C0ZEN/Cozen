@@ -83,6 +83,7 @@
                 changeRouteWithParams: infoChangeRouteWithParams,
                 broadcastEvent       : infoBroadcastEvent,
                 explodeObject        : infoExplodeObject,
+                lazyLoadLog          : infoLazyLoadLog,
                 ga                   : {
                     baseRequest: infoGaBaseRequest,
                     pageView   : infoGaPageView,
@@ -385,17 +386,20 @@
          * @param {string} title      > Specify the title of the message [required]
          * @param {string} textBefore > Specify the text before the value [required]
          * @param {string} value      > Specify the value [required]
-         * @param {string} textAfter  > Specify the text after the message [required]
+         * @param {string} textAfter  > Specify the text after the message
          */
         function infoCustomMessageEnhanced(title, textBefore, value, textAfter) {
             if (CONFIG.logs.enabled) {
-                if (Methods.isNullOrEmpty(title) || Methods.isNullOrEmpty(textBefore) || Methods.isNullOrEmpty(value) || Methods.isNullOrEmpty(textAfter)) {
+                if (Methods.isNullOrEmpty(title) || Methods.isNullOrEmpty(textBefore) || Methods.isNullOrEmpty(value)) {
                     return;
                 }
                 var log = methods.getBase(title);
                 log += console.colors.black(textBefore + ' <');
                 log += console.colors.purple(value);
-                log += console.colors.black('> ' + textAfter);
+                log += console.colors.black('>');
+                if (!Methods.isNullOrEmpty(textAfter)) {
+                    log += console.colors.black(' ' + textAfter);
+                }
                 console.style(log);
             }
         }
@@ -525,6 +529,27 @@
                 log += console.colors.black(text);
                 log += '\n';
                 log += methods.getFormattedParams(object, extended);
+                console.style(log);
+            }
+        }
+
+        /**
+         *
+         * @param {string} service > The name of the service which contain the function [required]
+         * @param {string} fnName  > The name of the called function [required]
+         * @param {string} result  > The result value of the called function [required]
+         */
+        function infoLazyLoadLog(service, fnName, result) {
+            if (CONFIG.logs.enabled && CONFIG.dev && CONFIG.btnLazyTest.log) {
+                if (Methods.isNullOrEmpty(service) || Methods.isNullOrEmpty(fnName) || Methods.isNullOrEmpty(result)) {
+                    return;
+                }
+                var log = methods.getBase(service);
+                log += console.colors.black('The function <');
+                log += console.colors.purple(fnName);
+                log += console.colors.black('> returned <');
+                log += console.colors.purple(result);
+                log += console.colors.black('>');
                 console.style(log);
             }
         }
