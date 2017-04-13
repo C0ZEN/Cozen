@@ -13,7 +13,10 @@
                 domain     : null,
                 length     : null,
                 syllables  : null,
-                word       : null
+                word       : null,
+                prefix     : null,
+                birthday   : '16/4/1994',
+                words      : null
             },
             cozenChance: new Chance()
         });

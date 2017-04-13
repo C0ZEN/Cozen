@@ -6,7 +6,7 @@
             'cozenLib.lazyLoad.constant',
             'cozenLib.lazyLoad.internalService',
             'cozenLib.lazyLoad.memoryService',
-            'cozenLib.lazyLoad.userMixins',
+            'cozenLib.lazyLoad.preBuildService',
             'cozenLib.lazyLoad.randomService'
         ]);
 

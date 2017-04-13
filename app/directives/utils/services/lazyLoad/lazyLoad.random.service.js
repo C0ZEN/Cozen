@@ -8,17 +8,19 @@
     cozenLazyLoadRandom.$inject = [
         'cozenLazyLoadConstant',
         'cozenLazyLoadInternal',
-        'cozenEnhancedLogs',
-        '$filter'
+        'cozenEnhancedLogs'
     ];
 
-    function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs, $filter) {
+    function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs) {
         return {
-            getRandomLastName : getRandomLastName,
-            getRandomFirstName: getRandomFirstName,
-            getRandomEmail    : getRandomEmail,
-            getRandomDomain   : getRandomDomain,
-            getRandomWord     : getRandomWord
+            getRandomLastName  : getRandomLastName,
+            getRandomFirstName : getRandomFirstName,
+            getRandomEmail     : getRandomEmail,
+            getRandomDomain    : getRandomDomain,
+            getRandomWord      : getRandomWord,
+            getRandomNamePrefix: getRandomNamePrefix,
+            getRandomBirthday  : getRandomBirthday,
+            getRandomSentence  : getRandomSentence
         };
 
         /// RANDOM METHODS ///
@@ -45,7 +47,7 @@
         /**
          * Return a random first name
          * @param {string} gender      = male > Define the gender (male, female) [config.json]
-         * @param {string} nationality = us   > Define the lang (us, it) [config.json]
+         * @param {string} nationality = en   > Define the lang (en, it) [config.json]
          * @return {string} firstName
          */
         function getRandomFirstName(gender, nationality) {
@@ -76,12 +78,10 @@
          */
         function getRandomEmail(domain) {
             if (Methods.isNullOrEmpty(domain)) {
-                domain = cozenLazyLoadInternal.getLastDomain();
+                domain = getRandomDomain();
             }
-            else {
-                cozenLazyLoadConstant.last.domain = domain;
-            }
-            cozenLazyLoadConstant.last.email = cozenLazyLoadConstant.cozenChance.email({
+            cozenLazyLoadConstant.last.domain = domain;
+            cozenLazyLoadConstant.last.email  = cozenLazyLoadConstant.cozenChance.email({
                 domain: domain
             }).toLowerCase();
             cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomEmail', cozenLazyLoadConstant.last.email);
@@ -130,6 +130,83 @@
             }
             cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomWord', cozenLazyLoadConstant.last.word);
             return cozenLazyLoadConstant.last.word;
+        }
+
+        /**
+         * Return a random prefix
+         * @param {string} gender = male  > Define the gender (male, female) [config.json]
+         * @param {string} full   = false > Return the prefix as a complete word (no shorthand)
+         * @return {string} prefix
+         */
+        function getRandomNamePrefix(gender, full) {
+            var prefix;
+            if (Methods.isNullOrEmpty(full)) {
+                full = false;
+            }
+            if (Methods.isNullOrEmpty(gender)) {
+                prefix = cozenLazyLoadConstant.cozenChance.prefix({
+                    full: full
+                });
+            }
+            else {
+                prefix = cozenLazyLoadConstant.cozenChance.prefix({
+                    gender: gender,
+                    full  : full
+                });
+            }
+            cozenLazyLoadConstant.last.prefix = prefix;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomNamePrefix', prefix);
+            return prefix;
+        }
+
+        /**
+         * Return a random birthday
+         * @param {boolean} string    = false > Return the birthday as a string
+         * @param {boolean} timestamp = false > Return the birthday as a timestamp
+         * @return {string|date|number} birthday
+         */
+        function getRandomBirthday(string, timestamp) {
+            var birthday;
+            if (Methods.isNullOrEmpty(string)) {
+                string = false;
+            }
+            if (Methods.isNullOrEmpty(timestamp)) {
+                timestamp = false;
+            }
+            birthday = cozenLazyLoadConstant.cozenChance.birthday({
+                string: string
+            });
+            if (timestamp) {
+                birthday = moment(birthday).unix();
+            }
+            cozenLazyLoadConstant.last.birthday = birthday;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomBirthday', birthday);
+            return birthday;
+        }
+
+        /**
+         * Return a random sentence
+         * @param {number} words = 15 > The number of words [config.json]
+         * @param {number} min        > Start for a random range of words
+         * @param {number} max        > End for a random range of words
+         * @return {string} sentence
+         */
+        function getRandomSentence(words, min, max) {
+            var sentence;
+            if (Methods.isNullOrEmpty(words)) {
+                words = cozenLazyLoadInternal.getLastWords();
+            }
+            if (!Methods.isNullOrEmpty(min) && !Methods.isNullOrEmpty(max)) {
+                min   = Math.ceil(min);
+                max   = Math.floor(max);
+                words = Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            sentence                         = cozenLazyLoadConstant.cozenChance.sentence({
+                words: words
+            });
+            cozenLazyLoadConstant.last.words = words;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomSentence', sentence);
+            return sentence;
         }
     }
 

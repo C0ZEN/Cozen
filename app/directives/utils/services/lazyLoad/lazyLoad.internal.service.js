@@ -20,7 +20,10 @@
             getLastDomain     : getLastDomain,
             getLastLength     : getLastLength,
             getLastSyllables  : getLastSyllables,
-            getLastWord       : getLastWord
+            getLastWord       : getLastWord,
+            getLastPrefix     : getLastPrefix,
+            getLastWords      : getLastWords,
+            getLastBirthday   : getLastBirthday
         };
 
         /// INTERNAL METHODS ///
@@ -79,6 +82,24 @@
                 cozenLazyLoadConstant.last.word = CONFIG.btnLazyTest.service.word;
             }
             return cozenLazyLoadConstant.last.word;
+        }
+
+        function getLastPrefix() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.prefix)) {
+                cozenLazyLoadConstant.last.prefix = CONFIG.btnLazyTest.service.prefix;
+            }
+            return cozenLazyLoadConstant.last.prefix;
+        }
+
+        function getLastWords() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.words)) {
+                cozenLazyLoadConstant.last.words = CONFIG.btnLazyTest.service.words;
+            }
+            return cozenLazyLoadConstant.last.words;
+        }
+
+        function getLastBirthday() {
+            return cozenLazyLoadConstant.last.birthday;
         }
     }
 

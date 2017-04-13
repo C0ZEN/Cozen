@@ -1,11 +1,17 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <cozen-btn-lazy-test ng-repeat="lazyTest in vm.lazyTestValues track by $index"
+            <cozen-btn-lazy-test ng-repeat="lazyTest in vm.lazyTestValuesCol1 track by $index"
                                  cozen-btn-lazy-test-label="{{ lazyTest.name }}"
                                  cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * $index + 1 }}px"
                                  cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="lazyTest.onClick(lazyTest.param1, lazyTest.param2)">
+                                 cozen-btn-lazy-test-on-click="lazyTest.onClick(lazyTest.param1, lazyTest.param2, lazyTest.param3)">
+            </cozen-btn-lazy-test>
+            <cozen-btn-lazy-test ng-repeat="lazyTest in vm.lazyTestValuesCol2 track by $index"
+                                 cozen-btn-lazy-test-label="{{ lazyTest.name }}"
+                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * $index + 1 }}px"
+                                 cozen-btn-lazy-test-left="{{ vm.leftCol2 }}"
+                                 cozen-btn-lazy-test-on-click="lazyTest.onClick(lazyTest.param1, lazyTest.param2, lazyTest.param3)">
             </cozen-btn-lazy-test>
         </div>
     </div>

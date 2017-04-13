@@ -84,6 +84,7 @@
                 broadcastEvent       : infoBroadcastEvent,
                 explodeObject        : infoExplodeObject,
                 lazyLoadLog          : infoLazyLoadLog,
+                lazyLoadLogObject    : infoLazyLoadLogObject,
                 ga                   : {
                     baseRequest: infoGaBaseRequest,
                     pageView   : infoGaPageView,
@@ -534,7 +535,7 @@
         }
 
         /**
-         *
+         * Display a log info message dedicated to the info lazy services when the result is a simple value
          * @param {string} service > The name of the service which contain the function [required]
          * @param {string} fnName  > The name of the called function [required]
          * @param {string} result  > The result value of the called function [required]
@@ -550,6 +551,27 @@
                 log += console.colors.black('> returned <');
                 log += console.colors.purple(result);
                 log += console.colors.black('>');
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a log info message dedicated to the info lazy services when the result is an object
+         * @param {string} service > The name of the service which contain the function [required]
+         * @param {string} fnName  > The name of the called function [required]
+         * @param {object} object  > The result object of the called function [required]
+         */
+        function infoLazyLoadLogObject(service, fnName, object) {
+            if (CONFIG.logs.enabled && CONFIG.dev && CONFIG.btnLazyTest.log) {
+                if (Methods.isNullOrEmpty(service) || Methods.isNullOrEmpty(fnName) || Methods.isNullOrEmpty(object)) {
+                    return;
+                }
+                var log = methods.getBase(service);
+                log += console.colors.black('The function <');
+                log += console.colors.purple(fnName);
+                log += console.colors.black('> returned an object');
+                log += '\n';
+                log += methods.getFormattedParams(object, true);
                 console.style(log);
             }
         }

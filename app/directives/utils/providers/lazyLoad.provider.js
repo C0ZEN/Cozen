@@ -94,6 +94,26 @@
             return this;
         };
 
+        this.servicePrefix = function (value) {
+            CONFIG.btnLazyTest.service.prefix = value;
+            return this;
+        };
+
+        this.servicePassword = function (value) {
+            CONFIG.btnLazyTest.service.password = value;
+            return this;
+        };
+
+        this.serviceWords = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('serviceWords');
+            }
+            else {
+                CONFIG.btnLazyTest.service.words = value;
+            }
+            return this;
+        };
+
         this.$get = CozenLazyLoad;
 
         CozenLazyLoad.$inject = [
