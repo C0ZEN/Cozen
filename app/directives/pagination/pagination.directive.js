@@ -38,11 +38,11 @@
 
     cozenPagination.$inject = [
         'CONFIG',
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenPagination(CONFIG, Themes, cozenEnhancedLogs) {
+    function cozenPagination(CONFIG, CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -138,7 +138,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme         = Themes.getActiveTheme();
+                scope._activeTheme         = CozenThemes.getActiveTheme();
                 scope.cozenPaginationBlock = 0;
 
                 // Display the template

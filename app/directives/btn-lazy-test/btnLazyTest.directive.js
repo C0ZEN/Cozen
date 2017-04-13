@@ -25,13 +25,13 @@
         .directive('cozenBtnLazyTest', cozenBtnLazyTest);
 
     cozenBtnLazyTest.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs',
         'rfc4122'
     ];
 
-    function cozenBtnLazyTest(Themes, CONFIG, cozenEnhancedLogs, rfc4122) {
+    function cozenBtnLazyTest(CozenThemes, CONFIG, cozenEnhancedLogs, rfc4122) {
         return {
             link       : link,
             restrict   : 'E',
@@ -80,7 +80,7 @@
 
                     // Init stuff
                     element.on('$destroy', methods.destroy);
-                    scope._activeTheme               = Themes.getActiveTheme();
+                    scope._activeTheme               = CozenThemes.getActiveTheme();
                     scope._cozenBtnLazyTestIconClass = CONFIG.btnLazyTest.icon.class;
 
                     // Display the template

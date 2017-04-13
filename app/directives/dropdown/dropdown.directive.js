@@ -55,7 +55,7 @@
         .directive('cozenDropdown', cozenDropdown);
 
     cozenDropdown.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$window',
         '$rootScope',
@@ -65,7 +65,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
+    function cozenDropdown(CozenThemes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -222,7 +222,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme           = Themes.getActiveTheme();
+                scope._activeTheme           = CozenThemes.getActiveTheme();
                 scope.isHover                = false;
                 scope.childrenUuid           = [];
                 scope.activeChild            = 0;

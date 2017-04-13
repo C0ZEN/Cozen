@@ -66,7 +66,7 @@
         .directive('cozenAlert', cozenAlert);
 
     cozenAlert.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$interval',
         '$timeout',
@@ -75,7 +75,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
+    function cozenAlert(CozenThemes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -207,7 +207,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope.$on('cozenAlertShow', methods.show);
                 scope.$on('cozenAlertHide', methods.hide);
                 $rootScope.$on('cozenAlertHideMatching', methods.hideMatching);
@@ -614,7 +614,10 @@
         "service": {
             "lang": "en",
             "gender": "male",
-            "domain": "cozen.com"
+            "domain": "cozen.com",
+            "length": 5,
+            "syllables": 3,
+            "word": "drow"
         }
     }
 }
@@ -789,14 +792,14 @@
         .directive('cozenBtn', cozenBtn);
 
     cozenBtn.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'rfc4122',
         'CloudinaryUpload',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
+    function cozenBtn(CozenThemes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -982,7 +985,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function hasError() {
@@ -1183,12 +1186,12 @@
         .directive('cozenBtnCheck', cozenBtnCheck);
 
     cozenBtnCheck.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtnCheck(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenBtnCheck(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1268,7 +1271,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Display the template
                 scope._isReady = true;
@@ -1358,13 +1361,13 @@
         .directive('cozenBtnLazyTest', cozenBtnLazyTest);
 
     cozenBtnLazyTest.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs',
         'rfc4122'
     ];
 
-    function cozenBtnLazyTest(Themes, CONFIG, cozenEnhancedLogs, rfc4122) {
+    function cozenBtnLazyTest(CozenThemes, CONFIG, cozenEnhancedLogs, rfc4122) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1413,7 +1416,7 @@
 
                     // Init stuff
                     element.on('$destroy', methods.destroy);
-                    scope._activeTheme               = Themes.getActiveTheme();
+                    scope._activeTheme               = CozenThemes.getActiveTheme();
                     scope._cozenBtnLazyTestIconClass = CONFIG.btnLazyTest.icon.class;
 
                     // Display the template
@@ -1494,14 +1497,14 @@
         .directive('cozenBtnRadio', cozenBtnRadio);
 
     cozenBtnRadio.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$rootScope',
         'rfc4122',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
+    function cozenBtnRadio(CozenThemes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1587,7 +1590,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 $rootScope.$on(data.groupEvent.onChange, methods.onGroupChanged);
 
                 // Display the template
@@ -1708,12 +1711,12 @@
         .directive('cozenBtnToggle', cozenBtnToggle);
 
     cozenBtnToggle.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtnToggle(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenBtnToggle(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -1794,7 +1797,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope._isReady     = true;
             }
 
@@ -1972,13 +1975,13 @@
 
     angular
         .module('cozenLib')
-        .provider('Config', ConfigProvider);
+        .provider('CozenConfig', CozenConfigProvider);
 
-    ConfigProvider.$inject = [
+    CozenConfigProvider.$inject = [
         'CONFIG'
     ];
 
-    function ConfigProvider(CONFIG) {
+    function CozenConfigProvider(CONFIG) {
 
         this.debug = function (value) {
             if (typeof value != 'boolean') {
@@ -2510,71 +2513,13 @@
             return this;
         };
 
-        this.btnLazyTestLog = function (value) {
-            if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('btnLazyTestLog');
-            }
-            else {
-                CONFIG.btnLazyTest.log = value;
-            }
-            return this;
-        };
+        this.$get = CozenConfig;
 
-        this.btnLazyTestIconClass = function (value) {
-            CONFIG.btnLazyTest.icon.class = value;
-            return this;
-        };
-
-        this.btnLazyTestPositionTop = function (value) {
-            CONFIG.btnLazyTest.position.top = value;
-            return this;
-        };
-
-        this.btnLazyTestPositionLeft = function (value) {
-            CONFIG.btnLazyTest.position.left = value;
-            return this;
-        };
-
-        this.btnLazyTestServiceLang = function (value) {
-            var list = [
-                'en',
-                'it'
-            ];
-            if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('btnLazyTestServiceLang', list);
-            }
-            else {
-                CONFIG.btnLazyTest.service.lang = value;
-            }
-            return this;
-        };
-
-        this.btnLazyTestServiceMale = function (value) {
-            var list = [
-                'male',
-                'female'
-            ];
-            if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('btnLazyTestServiceMale', list);
-            }
-            else {
-                CONFIG.btnLazyTest.service.male = value;
-            }
-            return this;
-        };
-
-        this.btnLazyTestServiceDomain = function (value) {
-            CONFIG.btnLazyTest.service.domain = value;
-            return this;
-        };
-
-        this.$get = Config;
-
-        Config.$inject = [
+        CozenConfig.$inject = [
             'CONFIG'
         ];
 
-        function Config(CONFIG) {
+        function CozenConfig(CONFIG) {
             return {
                 getConfig: getConfig
             };
@@ -2914,7 +2859,7 @@
         .directive('cozenDropdown', cozenDropdown);
 
     cozenDropdown.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$window',
         '$rootScope',
@@ -2924,7 +2869,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenDropdown(Themes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
+    function cozenDropdown(CozenThemes, CONFIG, $window, $rootScope, rfc4122, $filter, $timeout, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -3081,7 +3026,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme           = Themes.getActiveTheme();
+                scope._activeTheme           = CozenThemes.getActiveTheme();
                 scope.isHover                = false;
                 scope.childrenUuid           = [];
                 scope.activeChild            = 0;
@@ -5187,14 +5132,14 @@
     cozenFloatingFeed.$inject = [
         'CONFIG',
         '$rootScope',
-        'Themes',
+        'CozenThemes',
         'rfc4122',
         'cozenEnhancedLogs',
         '$compile',
         '$templateRequest'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, cozenEnhancedLogs, $compile, $templateRequest) {
+    function cozenFloatingFeed(CONFIG, $rootScope, CozenThemes, rfc4122, cozenEnhancedLogs, $compile, $templateRequest) {
         return {
             link       : link,
             restrict   : 'E',
@@ -5243,7 +5188,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Watch for events
                 $rootScope.$on('cozenFloatingFeedAdd', methods.add);
@@ -5466,13 +5411,13 @@
 
     angular
         .module('cozenLib')
-        .provider('GoogleAnalytics', GoogleAnalyticsProvider);
+        .provider('CozenGoogleAnalytics', CozenGoogleAnalyticsProvider);
 
-    GoogleAnalyticsProvider.$inject = [
+    CozenGoogleAnalyticsProvider.$inject = [
         'CONFIG'
     ];
 
-    function GoogleAnalyticsProvider(CONFIG) {
+    function CozenGoogleAnalyticsProvider(CONFIG) {
 
         this.activated = function (value) {
             if (typeof value != 'boolean') {
@@ -5514,13 +5459,13 @@
             return this;
         };
 
-        this.$get = GoogleAnalytics;
+        this.$get = CozenGoogleAnalytics;
 
-        GoogleAnalytics.$inject = [
+        CozenGoogleAnalytics.$inject = [
             'CONFIG'
         ];
 
-        function GoogleAnalytics(CONFIG) {
+        function CozenGoogleAnalytics(CONFIG) {
             return {
                 getGoogleAnalyticsConfig: getGoogleAnalyticsConfig
             };
@@ -5737,11 +5682,11 @@
         .directive('cozenIconInfo', cozenIconInfo);
 
     cozenIconInfo.$inject = [
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenIconInfo(Themes, cozenEnhancedLogs) {
+    function cozenIconInfo(CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -5786,7 +5731,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function hasError() {
@@ -5884,7 +5829,7 @@
         .directive('cozenInput', cozenInput);
 
     cozenInput.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'rfc4122',
         '$timeout',
@@ -5894,7 +5839,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
+    function cozenInput(CozenThemes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -6118,7 +6063,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);
@@ -6952,9 +6897,12 @@
                 lastName   : 'O\'Connor',
                 firstName  : 'Cozen',
                 email      : 'cozen.oconnor@cozen.com',
-                gender     : 'male',
-                nationality: 'en',
-                domain     : 'cozen.com'
+                gender     : null,
+                nationality: null,
+                domain     : null,
+                length     : null,
+                syllables  : null,
+                word       : null
             },
             cozenChance: new Chance()
         });
@@ -6979,36 +6927,27 @@
             getLastEmail      : getLastEmail,
             getLastGender     : getLastGender,
             getLastNationality: getLastNationality,
-            getLastDomain     : getLastDomain
+            getLastDomain     : getLastDomain,
+            getLastLength     : getLastLength,
+            getLastSyllables  : getLastSyllables,
+            getLastWord       : getLastWord
         };
 
-        /// INTERNAL METHODS WITH REQUIRED LAST DATA ///
+        /// INTERNAL METHODS ///
 
         function getLastLastName() {
-            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.lastName)) {
-                // @todo handle error
-                return null;
-            }
             return cozenLazyLoadConstant.last.lastName;
         }
 
         function getLastFirstName() {
-            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.firstName)) {
-                // @todo handle error
-                return null;
-            }
             return cozenLazyLoadConstant.last.firstName;
         }
 
         function getLastEmail() {
-            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.email)) {
-                // @todo handle error
-                return null;
-            }
             return cozenLazyLoadConstant.last.email;
         }
 
-        /// INTERNAL METHODS WITH CONFIG CALLBACK WHEN LAST DATA EMPTY ///
+        /// INTERNAL METHODS WITH DEFAULT VALUES ON CONFIG ///
 
         function getLastGender() {
             if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.gender)) {
@@ -7029,6 +6968,27 @@
                 cozenLazyLoadConstant.last.domain = CONFIG.btnLazyTest.service.domain;
             }
             return cozenLazyLoadConstant.last.domain;
+        }
+
+        function getLastLength() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.length)) {
+                cozenLazyLoadConstant.last.length = CONFIG.btnLazyTest.service.length;
+            }
+            return cozenLazyLoadConstant.last.length;
+        }
+
+        function getLastSyllables() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.syllables)) {
+                cozenLazyLoadConstant.last.syllables = CONFIG.btnLazyTest.service.syllables;
+            }
+            return cozenLazyLoadConstant.last.syllables;
+        }
+
+        function getLastWord() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.word)) {
+                cozenLazyLoadConstant.last.word = CONFIG.btnLazyTest.service.word;
+            }
+            return cozenLazyLoadConstant.last.word;
         }
     }
 
@@ -7072,12 +7032,147 @@
     'use strict';
 
     angular
+        .module('cozenLib.lazyLoad.userMixins', [
+            'cozenLib.lazyLoad.userMixins.user'
+        ])
+        .factory('cozenLazyLoadMixins', cozenLazyLoadMixins);
+
+    cozenLazyLoadMixins.$inject = [
+        'cozenLazyLoadMixinUser'
+    ];
+
+    function cozenLazyLoadMixins(cozenLazyLoadMixinUser) {
+        return {
+            getUserMixin: cozenLazyLoadMixinUser.getUserMixin
+        };
+    }
+
+})(window.angular);
+(function (angular) {
+    'use strict';
+
+    angular
         .module('cozenLib.lazyLoad', [
             'cozenLib.lazyLoad.constant',
             'cozenLib.lazyLoad.internalService',
             'cozenLib.lazyLoad.memoryService',
+            'cozenLib.lazyLoad.userMixins',
             'cozenLib.lazyLoad.randomService'
         ]);
+
+})(window.angular);
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib')
+        .provider('CozenLazyLoad', CozenLazyLoadProvider);
+
+    CozenLazyLoadProvider.$inject = [
+        'CONFIG'
+    ];
+
+    function CozenLazyLoadProvider(CONFIG) {
+
+        this.log = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('btnLazyTestLog');
+            }
+            else {
+                CONFIG.btnLazyTest.log = value;
+            }
+            return this;
+        };
+
+        this.iconClass = function (value) {
+            CONFIG.btnLazyTest.icon.class = value;
+            return this;
+        };
+
+        this.positionTop = function (value) {
+            CONFIG.btnLazyTest.position.top = value;
+            return this;
+        };
+
+        this.positionLeft = function (value) {
+            CONFIG.btnLazyTest.position.left = value;
+            return this;
+        };
+
+        this.serviceLang = function (value) {
+            var list = [
+                'en',
+                'it'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('serviceLang', list);
+            }
+            else {
+                CONFIG.btnLazyTest.service.lang = value;
+            }
+            return this;
+        };
+
+        this.serviceMale = function (value) {
+            var list = [
+                'male',
+                'female'
+            ];
+            if (!Methods.isInList(list, value)) {
+                Methods.dataMustBeInThisList('serviceMale', list);
+            }
+            else {
+                CONFIG.btnLazyTest.service.male = value;
+            }
+            return this;
+        };
+
+        this.serviceDomain = function (value) {
+            CONFIG.btnLazyTest.service.domain = value;
+            return this;
+        };
+
+        this.serviceLength = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('serviceLength');
+            }
+            else {
+                CONFIG.btnLazyTest.service.length = value;
+            }
+            return this;
+        };
+
+        this.serviceSyllables = function (value) {
+            if (typeof value != 'number') {
+                Methods.dataMustBeNumber('serviceSyllables');
+            }
+            else {
+                CONFIG.btnLazyTest.service.syllables = value;
+            }
+            return this;
+        };
+
+        this.serviceWord = function (value) {
+            CONFIG.btnLazyTest.service.word = value;
+            return this;
+        };
+
+        this.$get = CozenLazyLoad;
+
+        CozenLazyLoad.$inject = [
+            'CONFIG'
+        ];
+
+        function CozenLazyLoad(CONFIG) {
+            return {
+                getCozenLazyLoadConfig: getCozenLazyLoadConfig
+            };
+
+            function getCozenLazyLoadConfig() {
+                return CONFIG.btnLazyTest;
+            }
+        }
+    }
 
 })(window.angular);
 (function (angular) {
@@ -7096,9 +7191,11 @@
 
     function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs, $filter) {
         return {
-            getLastName : getRandomLastName,
-            getFirstName: getRandomFirstName,
-            getEmail    : getRandomEmail
+            getRandomLastName : getRandomLastName,
+            getRandomFirstName: getRandomFirstName,
+            getRandomEmail    : getRandomEmail,
+            getRandomDomain   : getRandomDomain,
+            getRandomWord     : getRandomWord
         };
 
         /// RANDOM METHODS ///
@@ -7167,6 +7264,50 @@
             cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomEmail', cozenLazyLoadConstant.last.email);
             return cozenLazyLoadConstant.last.email;
         }
+
+        /**
+         * Return a random domain
+         * Note that you can't combine length and syllables (to use syllables, send length as null in parameters)
+         * @param {number} length    = 5 > The length of the characters for the prefix domain name
+         * @param {number} syllables = 3 > The number of syllables for the prefix domain name
+         * @returns {string} domain
+         */
+        function getRandomDomain(length, syllables) {
+            var firstWord                     = getRandomWord(length, syllables);
+            var secondWord                    = cozenLazyLoadConstant.cozenChance.tld();
+            cozenLazyLoadConstant.last.domain = firstWord + '.' + secondWord;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomDomain', cozenLazyLoadConstant.last.domain);
+            return cozenLazyLoadConstant.last.domain;
+        }
+
+        /**
+         * Return a random word
+         * Note that you can't combine length and syllables (to use syllables, send length as null in parameters)
+         * @param {number} length    = 5 > The length of the characters for the prefix domain name
+         * @param {number} syllables = 3 > The number of syllables for the prefix domain name
+         * @returns {string} word
+         */
+        function getRandomWord(length, syllables) {
+            if (Methods.isNullOrEmpty(length)) {
+                if (!Methods.isNullOrEmpty(syllables)) {
+                    cozenLazyLoadConstant.last.syllables = syllables;
+                    cozenLazyLoadConstant.last.word      = cozenLazyLoadConstant.cozenChance.word({
+                        syllables: syllables
+                    });
+                }
+                else {
+                    cozenLazyLoadConstant.last.word = cozenLazyLoadConstant.cozenChance.word();
+                }
+            }
+            else {
+                cozenLazyLoadConstant.last.length = length;
+                cozenLazyLoadConstant.last.word   = cozenLazyLoadConstant.cozenChance.word({
+                    length: length
+                });
+            }
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomWord', cozenLazyLoadConstant.last.word);
+            return cozenLazyLoadConstant.last.word;
+        }
     }
 
 })(window.angular);
@@ -7200,14 +7341,14 @@
         .directive('cozenList', cozenList);
 
     cozenList.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$window',
         '$rootScope',
         'cozenEnhancedLogs'
     ];
 
-    function cozenList(Themes, CONFIG, $window, $rootScope, cozenEnhancedLogs) {
+    function cozenList(CozenThemes, CONFIG, $window, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -7272,7 +7413,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope.isHover      = false;
                 $window.addEventListener('keydown', methods.onKeyDown);
                 scope.childrenUuid = [];
@@ -8194,11 +8335,11 @@
 
     cozenPagination.$inject = [
         'CONFIG',
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenPagination(CONFIG, Themes, cozenEnhancedLogs) {
+    function cozenPagination(CONFIG, CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -8294,7 +8435,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme         = Themes.getActiveTheme();
+                scope._activeTheme         = CozenThemes.getActiveTheme();
                 scope.cozenPaginationBlock = 0;
 
                 // Display the template
@@ -8491,12 +8632,12 @@
         .directive('cozenPanel', cozenPanel);
 
     cozenPanel.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenPanel(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenPanel(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -8628,7 +8769,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 methods.startWatching();
 
                 // Display the template
@@ -8769,12 +8910,12 @@
         .directive('cozenPills', cozenPills);
 
     cozenPills.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenPills(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenPills(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -8839,7 +8980,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Display the template
                 scope._isReady = true;
@@ -9137,7 +9278,7 @@
         .directive('cozenPopup', cozenPopup);
 
     cozenPopup.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$window',
         '$timeout',
@@ -9146,7 +9287,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
+    function cozenPopup(CozenThemes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -9279,7 +9420,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope.$on('cozenPopupShow', methods.show);
                 scope.$on('cozenPopupHide', methods.hide);
                 methods.setHeaderPictoSize();
@@ -9669,11 +9810,11 @@ function dataMustBeInThisList(attribute, list) {
         .directive('cozenIconRequired', cozenIconRequired);
 
     cozenIconRequired.$inject = [
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenIconRequired(Themes, cozenEnhancedLogs) {
+    function cozenIconRequired(CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -9712,7 +9853,7 @@ function dataMustBeInThisList(attribute, list) {
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function destroy() {
@@ -9960,7 +10101,7 @@ function dataMustBeInThisList(attribute, list) {
         .directive('cozenTextarea', cozenTextarea);
 
     cozenTextarea.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'rfc4122',
         '$interval',
@@ -9968,7 +10109,7 @@ function dataMustBeInThisList(attribute, list) {
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $interval, cozenEnhancedLogs, $rootScope) {
+    function cozenTextarea(CozenThemes, CONFIG, rfc4122, $interval, cozenEnhancedLogs, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -10089,7 +10230,7 @@ function dataMustBeInThisList(attribute, list) {
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
@@ -10265,13 +10406,13 @@ function dataMustBeInThisList(attribute, list) {
 
     angular
         .module('cozenLib')
-        .provider('Themes', ThemesProvider);
+        .provider('CozenThemes', CozenThemesProvider);
 
-    ThemesProvider.$inject = [
+    CozenThemesProvider.$inject = [
         'CONFIG'
     ];
 
-    function ThemesProvider(CONFIG) {
+    function CozenThemesProvider(CONFIG) {
         var activeTheme = CONFIG.themes[0];
 
         this.setActiveTheme = function (theme) {
@@ -10291,11 +10432,11 @@ function dataMustBeInThisList(attribute, list) {
             return this;
         };
 
-        this.$get = Themes;
+        this.$get = CozenThemes;
 
-        Themes.$inject = [];
+        CozenThemes.$inject = [];
 
-        function Themes() {
+        function CozenThemes() {
             return {
                 getActiveTheme: getActiveTheme
             };
@@ -10343,11 +10484,11 @@ function dataMustBeInThisList(attribute, list) {
         .directive('cozenTooltip', cozenTooltip);
 
     cozenTooltip.$inject = [
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenTooltip(Themes, cozenEnhancedLogs) {
+    function cozenTooltip(CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'AE',
@@ -10419,7 +10560,7 @@ function dataMustBeInThisList(attribute, list) {
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Display the template
                 scope._isReady = true;
@@ -10471,11 +10612,11 @@ function dataMustBeInThisList(attribute, list) {
 
     cozenUploadInfo.$inject = [
         '$filter',
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenUploadInfo($filter, Themes, cozenEnhancedLogs) {
+    function cozenUploadInfo($filter, CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -10583,7 +10724,7 @@ function dataMustBeInThisList(attribute, list) {
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function hasError() {
@@ -10604,6 +10745,37 @@ function dataMustBeInThisList(attribute, list) {
 
 
 
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib.lazyLoad.userMixins.user', [])
+        .factory('cozenLazyLoadMixinUser', cozenLazyLoadMixinUser);
+
+    cozenLazyLoadMixinUser.$inject = [];
+
+    function cozenLazyLoadMixinUser() {
+        return {
+            getUserMixin: getUserMixin
+        };
+
+        /// MEMORY METHODS (use saved data) ///
+
+        /**
+         * Return an email address as <firstname.lastname@domain> by fetching the last data available
+         * @returns {string} email address
+         */
+        function getEmail() {
+            var firstName                    = cozenLazyLoadInternal.getLastFirstName();
+            var lastName                     = cozenLazyLoadInternal.getLastLastName();
+            var domain                       = cozenLazyLoadInternal.getLastDomain();
+            cozenLazyLoadConstant.last.email = (firstName + '.' + lastName + '@' + domain).toLowerCase();
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadMemory', 'getEmail', cozenLazyLoadConstant.last.email);
+            return cozenLazyLoadConstant.last.email;
+        }
+    }
+
+})(window.angular);
 /**
  * @ngdoc directive
  * @name cozen-view

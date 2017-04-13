@@ -34,14 +34,14 @@
         .directive('cozenBtnRadio', cozenBtnRadio);
 
     cozenBtnRadio.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$rootScope',
         'rfc4122',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtnRadio(Themes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
+    function cozenBtnRadio(CozenThemes, CONFIG, $rootScope, rfc4122, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -127,7 +127,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 $rootScope.$on(data.groupEvent.onChange, methods.onGroupChanged);
 
                 // Display the template

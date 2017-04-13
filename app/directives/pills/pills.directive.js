@@ -27,12 +27,12 @@
         .directive('cozenPills', cozenPills);
 
     cozenPills.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenPills(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenPills(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -97,7 +97,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Display the template
                 scope._isReady = true;

@@ -20,11 +20,11 @@
 
     cozenUploadInfo.$inject = [
         '$filter',
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenUploadInfo($filter, Themes, cozenEnhancedLogs) {
+    function cozenUploadInfo($filter, CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -132,7 +132,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function hasError() {

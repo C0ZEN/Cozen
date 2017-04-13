@@ -3,13 +3,13 @@
 
     angular
         .module('cozenLib')
-        .provider('GoogleAnalytics', GoogleAnalyticsProvider);
+        .provider('CozenGoogleAnalytics', CozenGoogleAnalyticsProvider);
 
-    GoogleAnalyticsProvider.$inject = [
+    CozenGoogleAnalyticsProvider.$inject = [
         'CONFIG'
     ];
 
-    function GoogleAnalyticsProvider(CONFIG) {
+    function CozenGoogleAnalyticsProvider(CONFIG) {
 
         this.activated = function (value) {
             if (typeof value != 'boolean') {
@@ -51,13 +51,13 @@
             return this;
         };
 
-        this.$get = GoogleAnalytics;
+        this.$get = CozenGoogleAnalytics;
 
-        GoogleAnalytics.$inject = [
+        CozenGoogleAnalytics.$inject = [
             'CONFIG'
         ];
 
-        function GoogleAnalytics(CONFIG) {
+        function CozenGoogleAnalytics(CONFIG) {
             return {
                 getGoogleAnalyticsConfig: getGoogleAnalyticsConfig
             };

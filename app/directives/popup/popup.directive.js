@@ -49,7 +49,7 @@
         .directive('cozenPopup', cozenPopup);
 
     cozenPopup.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$window',
         '$timeout',
@@ -58,7 +58,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenPopup(Themes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
+    function cozenPopup(CozenThemes, CONFIG, $window, $timeout, rfc4122, $animate, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -191,7 +191,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope.$on('cozenPopupShow', methods.show);
                 scope.$on('cozenPopupHide', methods.hide);
                 methods.setHeaderPictoSize();

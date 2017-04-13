@@ -3,13 +3,13 @@
 
     angular
         .module('cozenLib')
-        .provider('Config', ConfigProvider);
+        .provider('CozenConfig', CozenConfigProvider);
 
-    ConfigProvider.$inject = [
+    CozenConfigProvider.$inject = [
         'CONFIG'
     ];
 
-    function ConfigProvider(CONFIG) {
+    function CozenConfigProvider(CONFIG) {
 
         this.debug = function (value) {
             if (typeof value != 'boolean') {
@@ -541,71 +541,13 @@
             return this;
         };
 
-        this.btnLazyTestLog = function (value) {
-            if (typeof value != 'boolean') {
-                Methods.dataMustBeBoolean('btnLazyTestLog');
-            }
-            else {
-                CONFIG.btnLazyTest.log = value;
-            }
-            return this;
-        };
+        this.$get = CozenConfig;
 
-        this.btnLazyTestIconClass = function (value) {
-            CONFIG.btnLazyTest.icon.class = value;
-            return this;
-        };
-
-        this.btnLazyTestPositionTop = function (value) {
-            CONFIG.btnLazyTest.position.top = value;
-            return this;
-        };
-
-        this.btnLazyTestPositionLeft = function (value) {
-            CONFIG.btnLazyTest.position.left = value;
-            return this;
-        };
-
-        this.btnLazyTestServiceLang = function (value) {
-            var list = [
-                'en',
-                'it'
-            ];
-            if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('btnLazyTestServiceLang', list);
-            }
-            else {
-                CONFIG.btnLazyTest.service.lang = value;
-            }
-            return this;
-        };
-
-        this.btnLazyTestServiceMale = function (value) {
-            var list = [
-                'male',
-                'female'
-            ];
-            if (!Methods.isInList(list, value)) {
-                Methods.dataMustBeInThisList('btnLazyTestServiceMale', list);
-            }
-            else {
-                CONFIG.btnLazyTest.service.male = value;
-            }
-            return this;
-        };
-
-        this.btnLazyTestServiceDomain = function (value) {
-            CONFIG.btnLazyTest.service.domain = value;
-            return this;
-        };
-
-        this.$get = Config;
-
-        Config.$inject = [
+        CozenConfig.$inject = [
             'CONFIG'
         ];
 
-        function Config(CONFIG) {
+        function CozenConfig(CONFIG) {
             return {
                 getConfig: getConfig
             };

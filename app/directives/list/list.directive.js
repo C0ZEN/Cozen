@@ -28,14 +28,14 @@
         .directive('cozenList', cozenList);
 
     cozenList.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$window',
         '$rootScope',
         'cozenEnhancedLogs'
     ];
 
-    function cozenList(Themes, CONFIG, $window, $rootScope, cozenEnhancedLogs) {
+    function cozenList(CozenThemes, CONFIG, $window, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -100,7 +100,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope.isHover      = false;
                 $window.addEventListener('keydown', methods.onKeyDown);
                 scope.childrenUuid = [];

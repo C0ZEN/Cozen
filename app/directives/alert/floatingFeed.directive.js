@@ -34,14 +34,14 @@
     cozenFloatingFeed.$inject = [
         'CONFIG',
         '$rootScope',
-        'Themes',
+        'CozenThemes',
         'rfc4122',
         'cozenEnhancedLogs',
         '$compile',
         '$templateRequest'
     ];
 
-    function cozenFloatingFeed(CONFIG, $rootScope, Themes, rfc4122, cozenEnhancedLogs, $compile, $templateRequest) {
+    function cozenFloatingFeed(CONFIG, $rootScope, CozenThemes, rfc4122, cozenEnhancedLogs, $compile, $templateRequest) {
         return {
             link       : link,
             restrict   : 'E',
@@ -90,7 +90,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Watch for events
                 $rootScope.$on('cozenFloatingFeedAdd', methods.add);

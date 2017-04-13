@@ -33,12 +33,12 @@
         .directive('cozenBtnCheck', cozenBtnCheck);
 
     cozenBtnCheck.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtnCheck(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenBtnCheck(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -118,7 +118,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Display the template
                 scope._isReady = true;

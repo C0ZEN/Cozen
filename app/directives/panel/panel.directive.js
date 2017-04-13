@@ -47,12 +47,12 @@
         .directive('cozenPanel', cozenPanel);
 
     cozenPanel.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenPanel(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenPanel(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -184,7 +184,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 methods.startWatching();
 
                 // Display the template

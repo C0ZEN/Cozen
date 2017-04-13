@@ -66,7 +66,7 @@
         .directive('cozenAlert', cozenAlert);
 
     cozenAlert.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         '$interval',
         '$timeout',
@@ -75,7 +75,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenAlert(Themes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
+    function cozenAlert(CozenThemes, CONFIG, $interval, $timeout, rfc4122, $rootScope, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -207,7 +207,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope.$on('cozenAlertShow', methods.show);
                 scope.$on('cozenAlertHide', methods.hide);
                 $rootScope.$on('cozenAlertHideMatching', methods.hideMatching);

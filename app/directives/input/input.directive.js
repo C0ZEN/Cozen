@@ -75,7 +75,7 @@
         .directive('cozenInput', cozenInput);
 
     cozenInput.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'rfc4122',
         '$timeout',
@@ -85,7 +85,7 @@
         'cozenEnhancedLogs'
     ];
 
-    function cozenInput(Themes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
+    function cozenInput(CozenThemes, CONFIG, rfc4122, $timeout, $interval, $filter, $rootScope, cozenEnhancedLogs) {
         return {
             link            : link,
             restrict        : 'E',
@@ -309,7 +309,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);

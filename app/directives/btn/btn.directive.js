@@ -56,14 +56,14 @@
         .directive('cozenBtn', cozenBtn);
 
     cozenBtn.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'rfc4122',
         'CloudinaryUpload',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtn(Themes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
+    function cozenBtn(CozenThemes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -249,7 +249,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function hasError() {

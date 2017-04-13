@@ -1,61 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-
-            <!-- Default random routes -->
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random LastName"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight }}px"
+            <cozen-btn-lazy-test ng-repeat="lazyTest in vm.lazyTestValues track by $index"
+                                 cozen-btn-lazy-test-label="{{ lazyTest.name }}"
+                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * $index + 1 }}px"
                                  cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getLastName()">
-            </cozen-btn-lazy-test>
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random FirstName"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 2 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getFirstName()">
-            </cozen-btn-lazy-test>
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random Email"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 3 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getEmail()">
-            </cozen-btn-lazy-test>
-
-            <!-- Random routes with params -->
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random LastName (nationality: it)"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 4 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getLastName('it')">
-            </cozen-btn-lazy-test>
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random FirstName (gender: male)"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 5 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getFirstName('male')">
-            </cozen-btn-lazy-test>
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random FirstName (gender: male, nationality: it)"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 6 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getFirstName('male', 'it')">
-            </cozen-btn-lazy-test>
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random FirstName (gender: female)"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 7 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getFirstName('female')">
-            </cozen-btn-lazy-test>
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random FirstName (gender: female, nationality: it)"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 8 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getFirstName('female', 'it')">
-            </cozen-btn-lazy-test>
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Random Email (domain: test.com)"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 9 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadRandom.getEmail('test.com')">
-            </cozen-btn-lazy-test>
-
-            <!-- Memory routes -->
-            <cozen-btn-lazy-test cozen-btn-lazy-test-label="Memory Email"
-                                 cozen-btn-lazy-test-top="{{ vm.defaultHeight + vm.espaceHeight * 10 }}px"
-                                 cozen-btn-lazy-test-left="{{ vm.leftCol1 }}"
-                                 cozen-btn-lazy-test-on-click="vm.cozenLazyLoadMemory.getEmail()">
+                                 cozen-btn-lazy-test-on-click="lazyTest.onClick(lazyTest.param1, lazyTest.param2)">
             </cozen-btn-lazy-test>
         </div>
     </div>

@@ -3,13 +3,13 @@
 
     angular
         .module('cozenLib')
-        .provider('Themes', ThemesProvider);
+        .provider('CozenThemes', CozenThemesProvider);
 
-    ThemesProvider.$inject = [
+    CozenThemesProvider.$inject = [
         'CONFIG'
     ];
 
-    function ThemesProvider(CONFIG) {
+    function CozenThemesProvider(CONFIG) {
         var activeTheme = CONFIG.themes[0];
 
         this.setActiveTheme = function (theme) {
@@ -29,11 +29,11 @@
             return this;
         };
 
-        this.$get = Themes;
+        this.$get = CozenThemes;
 
-        Themes.$inject = [];
+        CozenThemes.$inject = [];
 
-        function Themes() {
+        function CozenThemes() {
             return {
                 getActiveTheme: getActiveTheme
             };

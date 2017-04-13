@@ -34,11 +34,11 @@
         .directive('cozenTooltip', cozenTooltip);
 
     cozenTooltip.$inject = [
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenTooltip(Themes, cozenEnhancedLogs) {
+    function cozenTooltip(CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'AE',
@@ -110,7 +110,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // Display the template
                 scope._isReady = true;

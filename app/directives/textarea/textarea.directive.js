@@ -51,7 +51,7 @@
         .directive('cozenTextarea', cozenTextarea);
 
     cozenTextarea.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'rfc4122',
         '$interval',
@@ -59,7 +59,7 @@
         '$rootScope'
     ];
 
-    function cozenTextarea(Themes, CONFIG, rfc4122, $interval, cozenEnhancedLogs, $rootScope) {
+    function cozenTextarea(CozenThemes, CONFIG, rfc4122, $interval, cozenEnhancedLogs, $rootScope) {
         return {
             link            : link,
             restrict        : 'E',
@@ -180,7 +180,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {

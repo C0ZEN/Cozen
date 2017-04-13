@@ -35,12 +35,12 @@
         .directive('cozenBtnToggle', cozenBtnToggle);
 
     cozenBtnToggle.$inject = [
-        'Themes',
+        'CozenThemes',
         'CONFIG',
         'cozenEnhancedLogs'
     ];
 
-    function cozenBtnToggle(Themes, CONFIG, cozenEnhancedLogs) {
+    function cozenBtnToggle(CozenThemes, CONFIG, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -121,7 +121,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
                 scope._isReady     = true;
             }
 

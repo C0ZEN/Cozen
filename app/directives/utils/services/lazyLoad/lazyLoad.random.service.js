@@ -14,9 +14,11 @@
 
     function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs, $filter) {
         return {
-            getLastName : getRandomLastName,
-            getFirstName: getRandomFirstName,
-            getEmail    : getRandomEmail
+            getRandomLastName : getRandomLastName,
+            getRandomFirstName: getRandomFirstName,
+            getRandomEmail    : getRandomEmail,
+            getRandomDomain   : getRandomDomain,
+            getRandomWord     : getRandomWord
         };
 
         /// RANDOM METHODS ///
@@ -84,6 +86,50 @@
             }).toLowerCase();
             cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomEmail', cozenLazyLoadConstant.last.email);
             return cozenLazyLoadConstant.last.email;
+        }
+
+        /**
+         * Return a random domain
+         * Note that you can't combine length and syllables (to use syllables, send length as null in parameters)
+         * @param {number} length    = 5 > The length of the characters for the prefix domain name
+         * @param {number} syllables = 3 > The number of syllables for the prefix domain name
+         * @returns {string} domain
+         */
+        function getRandomDomain(length, syllables) {
+            var firstWord                     = getRandomWord(length, syllables);
+            var secondWord                    = cozenLazyLoadConstant.cozenChance.tld();
+            cozenLazyLoadConstant.last.domain = firstWord + '.' + secondWord;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomDomain', cozenLazyLoadConstant.last.domain);
+            return cozenLazyLoadConstant.last.domain;
+        }
+
+        /**
+         * Return a random word
+         * Note that you can't combine length and syllables (to use syllables, send length as null in parameters)
+         * @param {number} length    = 5 > The length of the characters for the prefix domain name
+         * @param {number} syllables = 3 > The number of syllables for the prefix domain name
+         * @returns {string} word
+         */
+        function getRandomWord(length, syllables) {
+            if (Methods.isNullOrEmpty(length)) {
+                if (!Methods.isNullOrEmpty(syllables)) {
+                    cozenLazyLoadConstant.last.syllables = syllables;
+                    cozenLazyLoadConstant.last.word      = cozenLazyLoadConstant.cozenChance.word({
+                        syllables: syllables
+                    });
+                }
+                else {
+                    cozenLazyLoadConstant.last.word = cozenLazyLoadConstant.cozenChance.word();
+                }
+            }
+            else {
+                cozenLazyLoadConstant.last.length = length;
+                cozenLazyLoadConstant.last.word   = cozenLazyLoadConstant.cozenChance.word({
+                    length: length
+                });
+            }
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomWord', cozenLazyLoadConstant.last.word);
+            return cozenLazyLoadConstant.last.word;
         }
     }
 

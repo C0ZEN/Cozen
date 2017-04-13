@@ -17,36 +17,27 @@
             getLastEmail      : getLastEmail,
             getLastGender     : getLastGender,
             getLastNationality: getLastNationality,
-            getLastDomain     : getLastDomain
+            getLastDomain     : getLastDomain,
+            getLastLength     : getLastLength,
+            getLastSyllables  : getLastSyllables,
+            getLastWord       : getLastWord
         };
 
-        /// INTERNAL METHODS WITH REQUIRED LAST DATA ///
+        /// INTERNAL METHODS ///
 
         function getLastLastName() {
-            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.lastName)) {
-                // @todo handle error
-                return null;
-            }
             return cozenLazyLoadConstant.last.lastName;
         }
 
         function getLastFirstName() {
-            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.firstName)) {
-                // @todo handle error
-                return null;
-            }
             return cozenLazyLoadConstant.last.firstName;
         }
 
         function getLastEmail() {
-            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.email)) {
-                // @todo handle error
-                return null;
-            }
             return cozenLazyLoadConstant.last.email;
         }
 
-        /// INTERNAL METHODS WITH CONFIG CALLBACK WHEN LAST DATA EMPTY ///
+        /// INTERNAL METHODS WITH DEFAULT VALUES ON CONFIG ///
 
         function getLastGender() {
             if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.gender)) {
@@ -67,6 +58,27 @@
                 cozenLazyLoadConstant.last.domain = CONFIG.btnLazyTest.service.domain;
             }
             return cozenLazyLoadConstant.last.domain;
+        }
+
+        function getLastLength() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.length)) {
+                cozenLazyLoadConstant.last.length = CONFIG.btnLazyTest.service.length;
+            }
+            return cozenLazyLoadConstant.last.length;
+        }
+
+        function getLastSyllables() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.syllables)) {
+                cozenLazyLoadConstant.last.syllables = CONFIG.btnLazyTest.service.syllables;
+            }
+            return cozenLazyLoadConstant.last.syllables;
+        }
+
+        function getLastWord() {
+            if (Methods.isNullOrEmpty(cozenLazyLoadConstant.last.word)) {
+                cozenLazyLoadConstant.last.word = CONFIG.btnLazyTest.service.word;
+            }
+            return cozenLazyLoadConstant.last.word;
         }
     }
 

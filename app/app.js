@@ -11,12 +11,13 @@
         '$locationProvider',
         '$translateProvider',
         'CONFIG',
-        'ThemesProvider',
-        'ConfigProvider'
+        'CozenThemesProvider',
+        'CozenConfigProvider',
+        'CozenLazyLoadProvider'
     ];
 
     // Global configuration
-    function config($locationProvider, $translateProvider, CONFIG, ThemesProvider, ConfigProvider) {
+    function config($locationProvider, $translateProvider, CONFIG, CozenThemesProvider, CozenConfigProvider, CozenLazyLoadProvider) {
 
         // Override the CONFIG for the Tau theme
         // ThemesProvider.setActiveTheme('tau');
@@ -30,8 +31,8 @@
         //     .requiredType('icon');
 
         // Override the CONFIG for the Atom theme
-        ThemesProvider.setActiveTheme('atom');
-        ConfigProvider
+        CozenThemesProvider.setActiveTheme('atom');
+        CozenConfigProvider
             .scrollsBar(false)
             .dev(true)
             .debug(true)
@@ -46,8 +47,8 @@
             .currentLanguage('fr')
             .popupAnimationInAnimation('zoomIn')
             .popupAnimationOutAnimation('zoomOut')
-            .floatingFeedTimeoutTime(3000)
-            .btnLazyTestLog(true);
+            .floatingFeedTimeoutTime(3000);
+        CozenLazyLoadProvider.log(true);
 
         // Configure the location provider
         $locationProvider.html5Mode({

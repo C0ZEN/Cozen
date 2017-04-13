@@ -24,11 +24,11 @@
         .directive('cozenIconRequired', cozenIconRequired);
 
     cozenIconRequired.$inject = [
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenIconRequired(Themes, cozenEnhancedLogs) {
+    function cozenIconRequired(CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -67,7 +67,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function destroy() {

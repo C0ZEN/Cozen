@@ -24,11 +24,11 @@
         .directive('cozenIconInfo', cozenIconInfo);
 
     cozenIconInfo.$inject = [
-        'Themes',
+        'CozenThemes',
         'cozenEnhancedLogs'
     ];
 
-    function cozenIconInfo(Themes, cozenEnhancedLogs) {
+    function cozenIconInfo(CozenThemes, cozenEnhancedLogs) {
         return {
             link       : link,
             restrict   : 'E',
@@ -73,7 +73,7 @@
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
-                scope._activeTheme = Themes.getActiveTheme();
+                scope._activeTheme = CozenThemes.getActiveTheme();
             }
 
             function hasError() {
