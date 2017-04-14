@@ -475,6 +475,10 @@
         "fr",
         "en"
     ],
+    "languagesExtended": [
+        "Français",
+        "English"
+    ],
     "currentLanguage": "fr",
     "themes": [
         "tau",
