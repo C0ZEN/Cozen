@@ -58,6 +58,11 @@
             "main": [
                 "src/scrollbars.js"
             ]
+        },
+        "chance": {
+            "main": [
+                "dist/chance.min.js"
+            ]
         }
     },
     "resolutions": {

@@ -13,14 +13,16 @@
 
     function cozenLazyLoadRandom(cozenLazyLoadConstant, cozenLazyLoadInternal, cozenEnhancedLogs) {
         return {
-            getRandomLastName  : getRandomLastName,
-            getRandomFirstName : getRandomFirstName,
-            getRandomEmail     : getRandomEmail,
-            getRandomDomain    : getRandomDomain,
-            getRandomWord      : getRandomWord,
-            getRandomNamePrefix: getRandomNamePrefix,
-            getRandomBirthday  : getRandomBirthday,
-            getRandomSentence  : getRandomSentence
+            getRandomLastName   : getRandomLastName,
+            getRandomFirstName  : getRandomFirstName,
+            getRandomEmail      : getRandomEmail,
+            getRandomDomain     : getRandomDomain,
+            getRandomWord       : getRandomWord,
+            getRandomNamePrefix : getRandomNamePrefix,
+            getRandomBirthday   : getRandomBirthday,
+            getRandomSentence   : getRandomSentence,
+            getRandomGender     : getRandomGender,
+            getRandomNationality: getRandomNationality
         };
 
         /// RANDOM METHODS ///
@@ -197,9 +199,7 @@
                 words = cozenLazyLoadInternal.getLastWords();
             }
             if (!Methods.isNullOrEmpty(min) && !Methods.isNullOrEmpty(max)) {
-                min   = Math.ceil(min);
-                max   = Math.floor(max);
-                words = Math.floor(Math.random() * (max - min + 1)) + min;
+                words = Methods.getRandomFromRange(min, max);
             }
             sentence                         = cozenLazyLoadConstant.cozenChance.sentence({
                 words: words
@@ -207,6 +207,38 @@
             cozenLazyLoadConstant.last.words = words;
             cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomSentence', sentence);
             return sentence;
+        }
+
+        /**
+         * Return a random gender (male, female)
+         * @returns {string} gender
+         */
+        function getRandomGender() {
+            var genders                       = [
+                'male',
+                'female'
+            ];
+            var index                         = Methods.getRandomFromRange(0, genders.length - 1);
+            var gender                        = genders[index];
+            cozenLazyLoadConstant.last.gender = gender;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomGender', gender);
+            return gender;
+        }
+
+        /**
+         * Return a random nationality (en, it)
+         * @returns {string} nationality
+         */
+        function getRandomNationality() {
+            var nationalities                      = [
+                'en',
+                'it'
+            ];
+            var index                              = Methods.getRandomFromRange(0, nationalities.length - 1);
+            var nationality                        = nationalities[index];
+            cozenLazyLoadConstant.last.nationality = nationality;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomNationality', nationality);
+            return nationality;
         }
     }
 

@@ -33,17 +33,13 @@
 
             // Override the arguments if necessary
             if (Methods.isNullOrEmpty(gender)) {
-                gender = cozenLazyLoadInternal.getLastGender();
+                gender = cozenLazyLoadRandom.getRandomGender();
             }
-            else {
-                cozenLazyLoadConstant.last.gender = gender;
-            }
+            cozenLazyLoadConstant.last.gender = gender;
             if (Methods.isNullOrEmpty(nationality)) {
-                nationality = cozenLazyLoadInternal.getLastNationality();
+                nationality = cozenLazyLoadRandom.getRandomNationality();
             }
-            else {
-                cozenLazyLoadConstant.last.nationality = nationality;
-            }
+            cozenLazyLoadConstant.last.nationality = nationality;
 
             // Log
             cozenLazyLoadRandom.getRandomDomain();
