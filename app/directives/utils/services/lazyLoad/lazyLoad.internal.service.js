@@ -7,11 +7,14 @@
 
     cozenLazyLoadInternal.$inject = [
         'CONFIG',
-        'cozenLazyLoadConstant'
+        'cozenLazyLoadConstant',
+        'cozenEnhancedLogs',
+        '$rootScope'
     ];
 
-    function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant) {
+    function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant, cozenEnhancedLogs, $rootScope) {
         return {
+            sendBroadcastForm : sendBroadcastForm,
             getLastLastName   : getLastLastName,
             getLastFirstName  : getLastFirstName,
             getLastEmail      : getLastEmail,
@@ -27,6 +30,15 @@
         };
 
         /// INTERNAL METHODS ///
+
+        function sendBroadcastForm(cozenFormName) {
+            if (!Methods.isNullOrEmpty(cozenFormName)) {
+                cozenEnhancedLogs.info.broadcastEvent('sendBroadcastForm', 'cozenLazyLoadDataGenerated');
+                $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
+                    cozenFormName: cozenFormName
+                });
+            }
+        }
 
         function getLastLastName() {
             return cozenLazyLoadConstant.last.lastName;

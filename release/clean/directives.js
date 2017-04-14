@@ -6962,11 +6962,14 @@
 
     cozenLazyLoadInternal.$inject = [
         'CONFIG',
-        'cozenLazyLoadConstant'
+        'cozenLazyLoadConstant',
+        'cozenEnhancedLogs',
+        '$rootScope'
     ];
 
-    function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant) {
+    function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant, cozenEnhancedLogs, $rootScope) {
         return {
+            sendBroadcastForm : sendBroadcastForm,
             getLastLastName   : getLastLastName,
             getLastFirstName  : getLastFirstName,
             getLastEmail      : getLastEmail,
@@ -6982,6 +6985,15 @@
         };
 
         /// INTERNAL METHODS ///
+
+        function sendBroadcastForm(cozenFormName) {
+            if (!Methods.isNullOrEmpty(cozenFormName)) {
+                cozenEnhancedLogs.info.broadcastEvent('sendBroadcastForm', 'cozenLazyLoadDataGenerated');
+                $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
+                    cozenFormName: cozenFormName
+                });
+            }
+        }
 
         function getLastLastName() {
             return cozenLazyLoadConstant.last.lastName;
@@ -7171,14 +7183,7 @@
                 birthday     : cozenLazyLoadRandom.getRandomBirthday(false, true)
             };
             cozenEnhancedLogs.info.lazyLoadLogObject('cozenLazyLoadPreBuild', 'getPreBuildSimpleUser', simpleUser);
-
-            // Broadcast event for a specific cozen form
-            if (!Methods.isNullOrEmpty(cozenFormName)) {
-                cozenEnhancedLogs.info.broadcastEvent('getPreBuildSimpleUser', 'cozenLazyLoadDataGenerated');
-                $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
-                    cozenFormName: cozenFormName
-                });
-            }
+            cozenLazyLoadInternal.sendBroadcastForm(cozenFormName);
 
             // Return the simple user object
             return simpleUser;

@@ -62,14 +62,7 @@
                 birthday     : cozenLazyLoadRandom.getRandomBirthday(false, true)
             };
             cozenEnhancedLogs.info.lazyLoadLogObject('cozenLazyLoadPreBuild', 'getPreBuildSimpleUser', simpleUser);
-
-            // Broadcast event for a specific cozen form
-            if (!Methods.isNullOrEmpty(cozenFormName)) {
-                cozenEnhancedLogs.info.broadcastEvent('getPreBuildSimpleUser', 'cozenLazyLoadDataGenerated');
-                $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
-                    cozenFormName: cozenFormName
-                });
-            }
+            cozenLazyLoadInternal.sendBroadcastForm(cozenFormName);
 
             // Return the simple user object
             return simpleUser;
