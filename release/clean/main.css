@@ -1595,6 +1595,9 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dro
   font-size: inherit;
   line-height: inherit;
 }
+div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-content div.cozen-dropdown-item-simple-custom-html {
+  display: inline-block;
+}
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-tick {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -12452,6 +12455,9 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dro
   outline: 0;
   font-size: inherit;
   line-height: inherit;
+}
+div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-content div.cozen-dropdown-item-simple-custom-html {
+  display: inline-block;
 }
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-simple div.cozen-dropdown-item-simple-tick {
   -ms-flex-item-align: center;
