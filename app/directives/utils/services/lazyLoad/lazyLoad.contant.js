@@ -16,7 +16,8 @@
                 word       : null,
                 prefix     : null,
                 birthday   : '16/4/1994',
-                words      : null
+                words      : null,
+                avatar     : 'https://2.gravatar.com/avatar/8ffac0953a8cbb1555386654e45266a6'
             },
             cozenChance: new Chance()
         });

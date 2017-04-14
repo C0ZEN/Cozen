@@ -6947,7 +6947,8 @@
                 word       : null,
                 prefix     : null,
                 birthday   : '16/4/1994',
-                words      : null
+                words      : null,
+                avatar     : 'https://2.gravatar.com/avatar/8ffac0953a8cbb1555386654e45266a6'
             },
             cozenChance: new Chance()
         });
@@ -6981,7 +6982,8 @@
             getLastWord       : getLastWord,
             getLastPrefix     : getLastPrefix,
             getLastWords      : getLastWords,
-            getLastBirthday   : getLastBirthday
+            getLastBirthday   : getLastBirthday,
+            getLastAvatar     : getLastAvatar
         };
 
         /// INTERNAL METHODS ///
@@ -7067,6 +7069,10 @@
 
         function getLastBirthday() {
             return cozenLazyLoadConstant.last.birthday;
+        }
+
+        function getLastAvatar() {
+            return cozenLazyLoadConstant.last.avatar;
         }
     }
 
@@ -7566,6 +7572,32 @@
             cozenLazyLoadConstant.last.nationality = nationality;
             cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomNationality', nationality);
             return nationality;
+        }
+
+        /**
+         * Return a random avatar from Gravatar
+         * @param {string} fileExtension > Force to have an avatar with a specific file extension
+         * @param {string} email         > Get the avatar for this user email
+         * @returns {string} avatar
+         */
+        function getRandomAvatar(fileExtension, email) {
+            var avatar;
+            if (!Methods.isNullOrEmpty(email)) {
+                avatar = cozenLazyLoadConstant.cozenChance.avatar({
+                    email: email
+                });
+            }
+            else if (!Methods.isNullOrEmpty(fileExtension)) {
+                avatar = cozenLazyLoadConstant.cozenChance.avatar({
+                    fileExtension: fileExtension
+                });
+            }
+            else {
+                avatar = cozenLazyLoadConstant.cozenChance.avatar();
+            }
+            cozenLazyLoadConstant.last.avatar = avatar;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomAvatar', avatar);
+            return avatar;
         }
     }
 

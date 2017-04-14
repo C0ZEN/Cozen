@@ -26,7 +26,8 @@
             getLastWord       : getLastWord,
             getLastPrefix     : getLastPrefix,
             getLastWords      : getLastWords,
-            getLastBirthday   : getLastBirthday
+            getLastBirthday   : getLastBirthday,
+            getLastAvatar     : getLastAvatar
         };
 
         /// INTERNAL METHODS ///
@@ -112,6 +113,10 @@
 
         function getLastBirthday() {
             return cozenLazyLoadConstant.last.birthday;
+        }
+
+        function getLastAvatar() {
+            return cozenLazyLoadConstant.last.avatar;
         }
     }
 

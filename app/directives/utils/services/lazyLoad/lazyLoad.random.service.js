@@ -240,6 +240,32 @@
             cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomNationality', nationality);
             return nationality;
         }
+
+        /**
+         * Return a random avatar from Gravatar
+         * @param {string} fileExtension > Force to have an avatar with a specific file extension
+         * @param {string} email         > Get the avatar for this user email
+         * @returns {string} avatar
+         */
+        function getRandomAvatar(fileExtension, email) {
+            var avatar;
+            if (!Methods.isNullOrEmpty(email)) {
+                avatar = cozenLazyLoadConstant.cozenChance.avatar({
+                    email: email
+                });
+            }
+            else if (!Methods.isNullOrEmpty(fileExtension)) {
+                avatar = cozenLazyLoadConstant.cozenChance.avatar({
+                    fileExtension: fileExtension
+                });
+            }
+            else {
+                avatar = cozenLazyLoadConstant.cozenChance.avatar();
+            }
+            cozenLazyLoadConstant.last.avatar = avatar;
+            cozenEnhancedLogs.info.lazyLoadLog('cozenLazyLoadRandom', 'getRandomAvatar', avatar);
+            return avatar;
+        }
     }
 
 })(window.angular);
