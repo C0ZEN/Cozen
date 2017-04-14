@@ -45,16 +45,17 @@
 
             // Log
             cozenLazyLoadRandom.getRandomDomain();
-            var _firstName = cozenLazyLoadRandom.getRandomFirstName(gender, nationality);
-            var _lastName  = cozenLazyLoadRandom.getRandomLastName(nationality);
-            var _prefix    = cozenLazyLoadRandom.getRandomNamePrefix(gender, true);
-            var simpleUser = {
+            var _firstName      = cozenLazyLoadRandom.getRandomFirstName(gender, nationality);
+            var _lastName       = cozenLazyLoadRandom.getRandomLastName(nationality);
+            var _prefix         = cozenLazyLoadRandom.getRandomNamePrefix(gender, true);
+            var _usernameLength = Methods.getRandomFromRange(2, 14);
+            var simpleUser      = {
                 firstName    : _firstName,
                 lastName     : _lastName,
                 fullName     : _firstName + ' ' + _lastName,
                 prefix       : _prefix,
                 email        : cozenLazyLoadMemory.getMemoryEmail(),
-                username     : $filter('cozenCapitalize')(cozenLazyLoadRandom.getRandomWord(8, true, true)),
+                username     : $filter('cozenCapitalize')(cozenLazyLoadRandom.getRandomWord(_usernameLength, true, true)),
                 gender       : gender,
                 nationality  : nationality,
                 password     : CONFIG.btnLazyTest.service.password,
