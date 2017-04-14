@@ -12,12 +12,11 @@
         'cozenLazyLoadMemory',
         'cozenEnhancedLogs',
         '$filter',
-        'CONFIG',
-        '$rootScope'
+        'CONFIG'
     ];
 
     function cozenLazyLoadPreBuild(cozenLazyLoadInternal, cozenLazyLoadConstant, cozenLazyLoadRandom, cozenLazyLoadMemory,
-                                   cozenEnhancedLogs, $filter, CONFIG, $rootScope) {
+                                   cozenEnhancedLogs, $filter, CONFIG) {
         return {
             getPreBuildSimpleUser: getPreBuildSimpleUser
         };

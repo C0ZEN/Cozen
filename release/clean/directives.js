@@ -6975,10 +6975,11 @@
         'CONFIG',
         'cozenLazyLoadConstant',
         'cozenEnhancedLogs',
-        '$rootScope'
+        '$rootScope',
+        '$timeout'
     ];
 
-    function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant, cozenEnhancedLogs, $rootScope) {
+    function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant, cozenEnhancedLogs, $rootScope, $timeout) {
         return {
             sendBroadcastForm    : sendBroadcastForm,
             sendBroadcastBtnClick: sendBroadcastBtnClick,
@@ -7011,8 +7012,10 @@
         function sendBroadcastBtnClick(cozenBtnId) {
             if (!Methods.isNullOrEmpty(cozenBtnId)) {
                 cozenEnhancedLogs.info.broadcastEvent('sendBroadcastBtnClick', 'cozenBtnFakeClick');
-                $rootScope.$broadcast('cozenBtnFakeClick', {
-                    cozenBtnId: cozenBtnId
+                $timeout(function () {
+                    $rootScope.$broadcast('cozenBtnFakeClick', {
+                        cozenBtnId: cozenBtnId
+                    });
                 });
             }
         }
@@ -7159,12 +7162,11 @@
         'cozenLazyLoadMemory',
         'cozenEnhancedLogs',
         '$filter',
-        'CONFIG',
-        '$rootScope'
+        'CONFIG'
     ];
 
     function cozenLazyLoadPreBuild(cozenLazyLoadInternal, cozenLazyLoadConstant, cozenLazyLoadRandom, cozenLazyLoadMemory,
-                                   cozenEnhancedLogs, $filter, CONFIG, $rootScope) {
+                                   cozenEnhancedLogs, $filter, CONFIG) {
         return {
             getPreBuildSimpleUser: getPreBuildSimpleUser
         };
