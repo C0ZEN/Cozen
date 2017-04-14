@@ -32,6 +32,13 @@
                 controller  : 'BtnLazyTestCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'BtnLazyTest - Random'}
+            })
+            .state('examples.btnLazyTest.form', {
+                url         : '/form',
+                templateUrl : 'examples/btn-lazy-test/templates/btnLazyTest.form.html',
+                controller  : 'BtnLazyTestCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'BtnLazyTest - Form'}
             });
     }
 

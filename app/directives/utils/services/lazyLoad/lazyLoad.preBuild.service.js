@@ -12,11 +12,12 @@
         'cozenLazyLoadMemory',
         'cozenEnhancedLogs',
         '$filter',
-        'CONFIG'
+        'CONFIG',
+        '$rootScope'
     ];
 
     function cozenLazyLoadPreBuild(cozenLazyLoadInternal, cozenLazyLoadConstant, cozenLazyLoadRandom, cozenLazyLoadMemory,
-                                   cozenEnhancedLogs, $filter, CONFIG) {
+                                   cozenEnhancedLogs, $filter, CONFIG, $rootScope) {
         return {
             getPreBuildSimpleUser: getPreBuildSimpleUser
         };
@@ -25,11 +26,12 @@
 
         /**
          * Return a simple user object with most common keys required for a register
-         * @param {string} gender      = male > Define the gender (male, female) [config.json]
-         * @param {string} nationality = en   > Define the lang (en, it) [config.json]
+         * @param {string} cozenFormName        > If set, a broadcast message will be send to force the touch and dirty on form's elements
+         * @param {string} gender        = male > Define the gender (male, female) [config.json]
+         * @param {string} nationality   = en   > Define the lang (en, it) [config.json]
          * @return {object} firstName, lastName, email, username
          */
-        function getPreBuildSimpleUser(gender, nationality) {
+        function getPreBuildSimpleUser(cozenFormName, gender, nationality) {
 
             // Override the arguments if necessary
             if (Methods.isNullOrEmpty(gender)) {
@@ -60,6 +62,14 @@
                 birthday     : cozenLazyLoadRandom.getRandomBirthday(false, true)
             };
             cozenEnhancedLogs.info.lazyLoadLogObject('cozenLazyLoadPreBuild', 'getPreBuildSimpleUser', simpleUser);
+
+            // Broadcast event for a specific cozen form
+            if (!Methods.isNullOrEmpty(cozenFormName)) {
+                cozenEnhancedLogs.info.broadcastEvent('getPreBuildSimpleUser', 'cozenLazyLoadDataGenerated');
+                $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
+                    cozenFormName: cozenFormName
+                });
+            }
 
             // Return the simple user object
             return simpleUser;

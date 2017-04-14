@@ -7,11 +7,11 @@
  * @description
  *
  * [Attributes params]
- * @param {number} cozenFormId    > Id of the form
- * @param {string} cozenFormName  > Name of the form [required]
- * @param {string} cozenFormCtrl  > Controller [required]
- * @param {string} cozenFormModel > Model [required]
- * @param {string} cozenFormClass > Add custom class
+ * @param {number} cozenFormId    = uuid > Id of the form
+ * @param {string} cozenFormName         > Name of the form [required]
+ * @param {string} cozenFormCtrl         > Name of the controller [required]
+ * @param {string} cozenFormModel        > Name of the model [required]
+ * @param {string} cozenFormClass        > Add custom class
  *
  */
 (function (angular) {
@@ -23,10 +23,11 @@
 
     cozenForm.$inject = [
         '$rootScope',
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        'rfc4122'
     ];
 
-    function cozenForm($rootScope, cozenEnhancedLogs) {
+    function cozenForm($rootScope, cozenEnhancedLogs, rfc4122) {
         return {
             link       : link,
             restrict   : 'E',
@@ -45,7 +46,8 @@
             };
 
             var data       = {
-                directive: 'cozenForm'
+                directive: 'cozenForm',
+                uuid     : rfc4122.v4()
             };
             scope._isReady = false;
 
@@ -65,7 +67,7 @@
                 }
 
                 // Default values (attributes)
-                scope._cozenFormId    = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : '';
+                scope._cozenFormId    = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : data.uuid;
                 scope._cozenFormName  = attrs.cozenFormName;
                 scope._cozenFormModel = attrs.cozenFormModel;
                 scope._cozenFormCtrl  = attrs.cozenFormCtrl;

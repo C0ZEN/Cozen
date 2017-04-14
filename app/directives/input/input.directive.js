@@ -311,10 +311,25 @@
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = CozenThemes.getActiveTheme();
 
+                // When the user use the lazy load data generator from a preBuild service, set dirty and touched
+                scope.$on('cozenLazyLoadDataGenerated', function ($event, data) {
+                    if (scope._cozenInputForm == data.cozenFormName) {
+                        var form  = methods.getForm();
+                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
+                        if (!Methods.isNullOrEmpty(input)) {
+                            input = input[scope._cozenInputName];
+                            if (!Methods.isNullOrEmpty(input)) {
+                                input.$setDirty();
+                                input.$setTouched();
+                            }
+                        }
+                    }
+                });
+
                 // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);
 
-                // When the form is ready, get the required intels
+                // When the form is ready, get the required intel
                 scope.$on('cozenFormName', function (event, eventData) {
                     scope._cozenInputForm              = eventData.name;
                     scope._cozenInputFormCtrl          = eventData.ctrl;

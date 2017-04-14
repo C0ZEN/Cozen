@@ -5318,11 +5318,11 @@
  * @description
  *
  * [Attributes params]
- * @param {number} cozenFormId    > Id of the form
- * @param {string} cozenFormName  > Name of the form [required]
- * @param {string} cozenFormCtrl  > Controller [required]
- * @param {string} cozenFormModel > Model [required]
- * @param {string} cozenFormClass > Add custom class
+ * @param {number} cozenFormId    = uuid > Id of the form
+ * @param {string} cozenFormName         > Name of the form [required]
+ * @param {string} cozenFormCtrl         > Name of the controller [required]
+ * @param {string} cozenFormModel        > Name of the model [required]
+ * @param {string} cozenFormClass        > Add custom class
  *
  */
 (function (angular) {
@@ -5334,10 +5334,11 @@
 
     cozenForm.$inject = [
         '$rootScope',
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        'rfc4122'
     ];
 
-    function cozenForm($rootScope, cozenEnhancedLogs) {
+    function cozenForm($rootScope, cozenEnhancedLogs, rfc4122) {
         return {
             link       : link,
             restrict   : 'E',
@@ -5356,7 +5357,8 @@
             };
 
             var data       = {
-                directive: 'cozenForm'
+                directive: 'cozenForm',
+                uuid     : rfc4122.v4()
             };
             scope._isReady = false;
 
@@ -5376,7 +5378,7 @@
                 }
 
                 // Default values (attributes)
-                scope._cozenFormId    = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : '';
+                scope._cozenFormId    = angular.isDefined(attrs.cozenFormId) ? attrs.cozenFormId : data.uuid;
                 scope._cozenFormName  = attrs.cozenFormName;
                 scope._cozenFormModel = attrs.cozenFormModel;
                 scope._cozenFormCtrl  = attrs.cozenFormCtrl;
@@ -6090,10 +6092,25 @@
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = CozenThemes.getActiveTheme();
 
+                // When the user use the lazy load data generator from a preBuild service, set dirty and touched
+                scope.$on('cozenLazyLoadDataGenerated', function ($event, data) {
+                    if (scope._cozenInputForm == data.cozenFormName) {
+                        var form  = methods.getForm();
+                        var input = form[scope._cozenInputFormCtrl][scope._cozenInputFormModel][scope._cozenInputForm];
+                        if (!Methods.isNullOrEmpty(input)) {
+                            input = input[scope._cozenInputName];
+                            if (!Methods.isNullOrEmpty(input)) {
+                                input.$setDirty();
+                                input.$setTouched();
+                            }
+                        }
+                    }
+                });
+
                 // Override the default model
                 scope.vm.cozenInputModel = angular.copy(scope._cozenInputPrefix + (Methods.isNullOrEmpty(scope.vm.cozenInputModel) ? '' : scope.vm.cozenInputModel) + scope._cozenInputSuffix);
 
-                // When the form is ready, get the required intels
+                // When the form is ready, get the required intel
                 scope.$on('cozenFormName', function (event, eventData) {
                     scope._cozenInputForm              = eventData.name;
                     scope._cozenInputFormCtrl          = eventData.ctrl;
@@ -7104,11 +7121,12 @@
         'cozenLazyLoadMemory',
         'cozenEnhancedLogs',
         '$filter',
-        'CONFIG'
+        'CONFIG',
+        '$rootScope'
     ];
 
     function cozenLazyLoadPreBuild(cozenLazyLoadInternal, cozenLazyLoadConstant, cozenLazyLoadRandom, cozenLazyLoadMemory,
-                                   cozenEnhancedLogs, $filter, CONFIG) {
+                                   cozenEnhancedLogs, $filter, CONFIG, $rootScope) {
         return {
             getPreBuildSimpleUser: getPreBuildSimpleUser
         };
@@ -7117,11 +7135,12 @@
 
         /**
          * Return a simple user object with most common keys required for a register
-         * @param {string} gender      = male > Define the gender (male, female) [config.json]
-         * @param {string} nationality = en   > Define the lang (en, it) [config.json]
+         * @param {string} cozenFormName        > If set, a broadcast message will be send to force the touch and dirty on form's elements
+         * @param {string} gender        = male > Define the gender (male, female) [config.json]
+         * @param {string} nationality   = en   > Define the lang (en, it) [config.json]
          * @return {object} firstName, lastName, email, username
          */
-        function getPreBuildSimpleUser(gender, nationality) {
+        function getPreBuildSimpleUser(cozenFormName, gender, nationality) {
 
             // Override the arguments if necessary
             if (Methods.isNullOrEmpty(gender)) {
@@ -7152,6 +7171,14 @@
                 birthday     : cozenLazyLoadRandom.getRandomBirthday(false, true)
             };
             cozenEnhancedLogs.info.lazyLoadLogObject('cozenLazyLoadPreBuild', 'getPreBuildSimpleUser', simpleUser);
+
+            // Broadcast event for a specific cozen form
+            if (!Methods.isNullOrEmpty(cozenFormName)) {
+                cozenEnhancedLogs.info.broadcastEvent('getPreBuildSimpleUser', 'cozenLazyLoadDataGenerated');
+                $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
+                    cozenFormName: cozenFormName
+                });
+            }
 
             // Return the simple user object
             return simpleUser;
@@ -10440,34 +10467,48 @@ function getRandomFromRange(min, max) {
                 angular.isUndefined(attrs.cozenTextareaTooltipMaxWidth) ? scope.vm.cozenTextareaTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attributes)
-                scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
-                scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
-                scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
-                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
-                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
-                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
-                scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
-                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
-                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
-                scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
-                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
-                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
-                scope._cozenTextareaTooltipPlacement   = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
-                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
-                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
-                scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
-                scope._cozenTextareaUuid               = data.uuid;
-                scope._cozenTextareaModelLengthType    = angular.isDefined(attrs.cozenTextareaModelLengthType) ? attrs.cozenTextareaModelLengthType : CONFIG.textarea.modelLengthType;
-                scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
-                scope._cozenTextareaRequiredConfig     = CONFIG.required;
-                scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
-                scope._cozenTextareaTooltipType        = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
+                scope._cozenTextareaId               = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
+                scope._cozenTextareaTooltip          = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
+                scope._cozenTextareaTooltipTrigger   = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
+                scope._cozenTextareaRequired         = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
+                scope._cozenTextareaErrorDesign      = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
+                scope._cozenTextareaSuccessDesign    = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
+                scope._cozenTextareaPlaceholder      = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
+                scope._cozenTextareaMinLength        = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
+                scope._cozenTextareaMaxLength        = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
+                scope._cozenTextareaName             = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
+                scope._cozenTextareaValidatorEmpty   = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
+                scope._cozenTextareaValidatorIcon    = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
+                scope._cozenTextareaTooltipPlacement = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
+                scope._cozenTextareaElastic          = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
+                scope._cozenTextareaRows             = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
+                scope._cozenTextareaLabel            = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
+                scope._cozenTextareaUuid             = data.uuid;
+                scope._cozenTextareaModelLengthType  = angular.isDefined(attrs.cozenTextareaModelLengthType) ? attrs.cozenTextareaModelLengthType : CONFIG.textarea.modelLengthType;
+                scope._cozenTextareaModelLength      = scope._cozenTextareaMaxLength;
+                scope._cozenTextareaRequiredConfig   = CONFIG.required;
+                scope._cozenTextareaRequiredTooltip  = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
+                scope._cozenTextareaTooltipType      = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = CozenThemes.getActiveTheme();
 
-                // When the form is ready, get the required intels
+                // When the user use the lazy load data generator from a preBuild service, set dirty and touched
+                scope.$on('cozenLazyLoadDataGenerated', function ($event, data) {
+                    if (scope._cozenInputForm == data.cozenFormName) {
+                        var textarea = form[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm];
+                        if (!Methods.isNullOrEmpty(textarea)) {
+                            textarea = textarea[scope._cozenTextareaName];
+                            if (!Methods.isNullOrEmpty(textarea)) {
+                                textarea.$setDirty();
+                                textarea.$setTouched();
+                            }
+                        }
+                    }
+                });
+
+                // When the form is ready, get the required intel
                 scope.$on('cozenFormName', function (event, eventData) {
                     scope._cozenTextareaForm              = eventData.name;
                     scope._cozenTextareaFormCtrl          = eventData.ctrl;

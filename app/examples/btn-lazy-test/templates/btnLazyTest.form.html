@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>$Title$</title>
-    </head>
-    <body>
-        $END$
-    </body>
-</html>
+<div class="container">
+    <cozen-form cozen-form-name="test"
+                cozen-form-ctrl="vm"
+                cozen-form-model="form">
+        <cozen-btn-lazy-test cozen-btn-lazy-test-label="Fill the first and last name"
+                             cozen-btn-lazy-test-top="70px"
+                             cozen-btn-lazy-test-left="20px"
+                             cozen-btn-lazy-test-on-click="vm.fillForm()">
+        </cozen-btn-lazy-test>
+        <div class="row">
+            <div class="col-xs-10 col-xs-push-2 margin-bottom-20">
+                <cozen-input cozen-input-label="First Name"
+                             cozen-input-name="firstName"
+                             cozen-input-pattern-name
+                             cozen-input-max-length="30"
+                             cozen-input-required="true"
+                             cozen-input-placeholder="First Name"
+                             cozen-input-model="vm.firstName">
+                </cozen-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-push-2 margin-bottom-20">
+                <cozen-input cozen-input-label="Last Name"
+                             cozen-input-name="lastName"
+                             cozen-input-pattern-name
+                             cozen-input-max-length="30"
+                             cozen-input-required="true"
+                             cozen-input-placeholder="Last Name"
+                             cozen-input-model="vm.lastName">
+                </cozen-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-push-2">
+                <cozen-btn cozen-btn-label="'Submit'"
+                           cozen-btn-disabled="vm.form.test.$invalid"
+                           cozen-btn-auto-sizing="true">
+                </cozen-btn>
+            </div>
+        </div>
+    </cozen-form>
+</div>

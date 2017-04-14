@@ -155,34 +155,48 @@
                 angular.isUndefined(attrs.cozenTextareaTooltipMaxWidth) ? scope.vm.cozenTextareaTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attributes)
-                scope._cozenTextareaId                 = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
-                scope._cozenTextareaTooltip            = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
-                scope._cozenTextareaTooltipTrigger     = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
-                scope._cozenTextareaRequired           = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
-                scope._cozenTextareaErrorDesign        = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
-                scope._cozenTextareaSuccessDesign      = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
-                scope._cozenTextareaPlaceholder        = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
-                scope._cozenTextareaMinLength          = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
-                scope._cozenTextareaMaxLength          = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
-                scope._cozenTextareaName               = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
-                scope._cozenTextareaValidatorEmpty     = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
-                scope._cozenTextareaValidatorIcon      = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
-                scope._cozenTextareaTooltipPlacement   = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
-                scope._cozenTextareaElastic            = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
-                scope._cozenTextareaRows               = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
-                scope._cozenTextareaLabel              = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
-                scope._cozenTextareaUuid               = data.uuid;
-                scope._cozenTextareaModelLengthType    = angular.isDefined(attrs.cozenTextareaModelLengthType) ? attrs.cozenTextareaModelLengthType : CONFIG.textarea.modelLengthType;
-                scope._cozenTextareaModelLength        = scope._cozenTextareaMaxLength;
-                scope._cozenTextareaRequiredConfig     = CONFIG.required;
-                scope._cozenTextareaRequiredTooltip    = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
-                scope._cozenTextareaTooltipType        = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
+                scope._cozenTextareaId               = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
+                scope._cozenTextareaTooltip          = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
+                scope._cozenTextareaTooltipTrigger   = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
+                scope._cozenTextareaRequired         = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
+                scope._cozenTextareaErrorDesign      = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
+                scope._cozenTextareaSuccessDesign    = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
+                scope._cozenTextareaPlaceholder      = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
+                scope._cozenTextareaMinLength        = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
+                scope._cozenTextareaMaxLength        = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
+                scope._cozenTextareaName             = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
+                scope._cozenTextareaValidatorEmpty   = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
+                scope._cozenTextareaValidatorIcon    = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
+                scope._cozenTextareaTooltipPlacement = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
+                scope._cozenTextareaElastic          = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
+                scope._cozenTextareaRows             = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
+                scope._cozenTextareaLabel            = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
+                scope._cozenTextareaUuid             = data.uuid;
+                scope._cozenTextareaModelLengthType  = angular.isDefined(attrs.cozenTextareaModelLengthType) ? attrs.cozenTextareaModelLengthType : CONFIG.textarea.modelLengthType;
+                scope._cozenTextareaModelLength      = scope._cozenTextareaMaxLength;
+                scope._cozenTextareaRequiredConfig   = CONFIG.required;
+                scope._cozenTextareaRequiredTooltip  = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
+                scope._cozenTextareaTooltipType      = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = CozenThemes.getActiveTheme();
 
-                // When the form is ready, get the required intels
+                // When the user use the lazy load data generator from a preBuild service, set dirty and touched
+                scope.$on('cozenLazyLoadDataGenerated', function ($event, data) {
+                    if (scope._cozenInputForm == data.cozenFormName) {
+                        var textarea = form[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm];
+                        if (!Methods.isNullOrEmpty(textarea)) {
+                            textarea = textarea[scope._cozenTextareaName];
+                            if (!Methods.isNullOrEmpty(textarea)) {
+                                textarea.$setDirty();
+                                textarea.$setTouched();
+                            }
+                        }
+                    }
+                });
+
+                // When the form is ready, get the required intel
                 scope.$on('cozenFormName', function (event, eventData) {
                     scope._cozenTextareaForm              = eventData.name;
                     scope._cozenTextareaFormCtrl          = eventData.ctrl;

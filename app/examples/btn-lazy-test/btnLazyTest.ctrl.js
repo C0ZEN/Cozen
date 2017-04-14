@@ -12,12 +12,13 @@
     ];
 
     function BtnLazyTestCtrl(cozenLazyLoadRandom, cozenLazyLoadMemory, cozenLazyLoadPreBuild) {
-        var vm                = this;
-        vm.leftCol1           = '30px';
-        vm.leftCol2           = '300px';
-        vm.defaultHeight      = 60;
-        vm.espaceHeight       = 45;
-        vm.lazyTestValuesCol1 = [
+        var vm                   = this;
+        vm.leftCol1              = '30px';
+        vm.leftCol2              = '300px';
+        vm.defaultHeight         = 60;
+        vm.espaceHeight          = 45;
+        vm.cozenLazyLoadPreBuild = cozenLazyLoadPreBuild;
+        vm.lazyTestValuesCol1    = [
             {
                 name   : 'Random LastName',
                 onClick: cozenLazyLoadRandom.getRandomLastName
@@ -114,7 +115,12 @@
                 param3 : 5
             }
         ];
-        vm.lazyTestValuesCol2 = [];
+        vm.lazyTestValuesCol2    = [];
+        vm.fillForm              = function () {
+            var simpleUser = cozenLazyLoadPreBuild.getPreBuildSimpleUser('test');
+            vm.firstName   = simpleUser.firstName;
+            vm.lastName    = simpleUser.lastName;
+        }
     }
 
 })(window.angular);
