@@ -7355,7 +7355,8 @@
             getRandomBirthday   : getRandomBirthday,
             getRandomSentence   : getRandomSentence,
             getRandomGender     : getRandomGender,
-            getRandomNationality: getRandomNationality
+            getRandomNationality: getRandomNationality,
+            getRandomAvatar     : getRandomAvatar
         };
 
         /// RANDOM METHODS ///
