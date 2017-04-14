@@ -2321,6 +2321,10 @@ div.cozen-btn-lazy-test {
   border-radius: 3px;
   outline: 0;
   z-index: 1100;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-duration: 600ms;
+          animation-duration: 600ms;
 }
 div.cozen-btn-lazy-test span.text {
   color: inherit;
@@ -13175,6 +13179,10 @@ div.cozen-btn-lazy-test {
   border-radius: 3px;
   outline: 0;
   z-index: 1100;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-duration: 600ms;
+          animation-duration: 600ms;
 }
 div.cozen-btn-lazy-test span.text {
   color: inherit;
