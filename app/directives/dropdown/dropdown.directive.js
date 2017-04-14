@@ -13,7 +13,7 @@
  * @param {function} cozenDropdownOnChange         > Callback function called on change
  *
  * [Attributes params]
- * @param {number}  cozenDropdownId                                             > Id of the dropdown
+ * @param {number}  cozenDropdownId                                                       > Id of the dropdown
  * @param {string}  cozenDropdownSize                       = 'normal'                    > Size of the dropdown
  * @param {string}  cozenDropdownSizeSmall                                                > Shortcut for small size
  * @param {string}  cozenDropdownSizeNormal                                               > Shortcut for normal size
@@ -191,9 +191,7 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenDropdownDisabled)) {
-                    scope.vm.cozenDropdownDisabled = false;
-                }
+                angular.isUndefined(attrs.cozenDropdownDisabled) ? scope.vm.cozenDropdownDisabled = false : null;
                 scope.vm.cozenDropdownModelEnhanced = '';
 
                 // Default values (attributes)
@@ -256,6 +254,10 @@
                 scope._cozenScrollBarConfig      = CONFIG.scrollsBarConfig;
                 scope._cozenScrollBarConfig.axis = 'y';
                 methods.setScrollBarHeight();
+
+                // Ask the parent to launch the cozenFormName event to get the data
+                // -> Avoid problems when elements are added to the DOM after the form loading
+                $rootScope.$broadcast('cozenFormChildInit');
 
                 // Display the template
                 scope._isReady = true;

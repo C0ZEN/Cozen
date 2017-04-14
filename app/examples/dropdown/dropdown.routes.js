@@ -32,6 +32,13 @@
                 controller  : 'DropdownCtrl',
                 controllerAs: 'vm',
                 data        : {pageTitle: 'Dropdown - Custom Html'}
+            })
+            .state('examples.dropdown.simple', {
+                url         : '/simple',
+                templateUrl : 'examples/dropdown/templates/dropdown.simple.html',
+                controller  : 'DropdownCtrl',
+                controllerAs: 'vm',
+                data        : {pageTitle: 'Dropdown - Simple'}
             });
     }
 

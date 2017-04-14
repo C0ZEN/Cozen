@@ -8,13 +8,13 @@
     DropdownCtrl.$inject = [];
 
     function DropdownCtrl() {
-        var vm     = this;
-        vm.grgege  = 'ffzfzf';
-        vm.onClick = function (id, index) {
+        var vm       = this;
+        vm.grgege    = 'ffzfzf';
+        vm.onClick   = function (id, index) {
             console.log(arguments);
         };
-        vm.form    = {};
-        vm.cars    = [
+        vm.form      = {};
+        vm.cars      = [
             {
                 name: 'lambo',
                 id  : 1
@@ -29,7 +29,7 @@
                 id  : 3
             }
         ];
-        vm.names   = [
+        vm.names     = [
             {
                 name: 'cozen',
                 id  : 1
@@ -43,7 +43,7 @@
                 id  : 3
             }
         ];
-        vm.status  = [
+        vm.status    = [
             {
                 id      : 'online',
                 name    : 'other_status_online',
@@ -69,6 +69,18 @@
                 color   : '#95a5a6'
             }
         ];
+        vm.languages = [
+            {
+                key     : 'fr',
+                label   : 'Français',
+                selected: true
+            },
+            {
+                key     : 'en',
+                label   : 'English',
+                selected: false
+            }
+        ]
     }
 
 })(window.angular);

@@ -101,9 +101,7 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled)) {
-                    scope.cozenDropdownItemSimpleDisabled = false;
-                }
+                angular.isUndefined(attrs.cozenDropdownItemSimpleDisabled) ? scope.cozenDropdownItemSimpleDisabled = false : null;
                 if (angular.isUndefined(attrs.cozenDropdownItemSimpleSelected)) {
                     scope.cozenDropdownItemSimpleSelected = false;
                 }
