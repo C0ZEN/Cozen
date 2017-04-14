@@ -14,20 +14,21 @@
 
     function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant, cozenEnhancedLogs, $rootScope) {
         return {
-            sendBroadcastForm : sendBroadcastForm,
-            getLastLastName   : getLastLastName,
-            getLastFirstName  : getLastFirstName,
-            getLastEmail      : getLastEmail,
-            getLastGender     : getLastGender,
-            getLastNationality: getLastNationality,
-            getLastDomain     : getLastDomain,
-            getLastLength     : getLastLength,
-            getLastSyllables  : getLastSyllables,
-            getLastWord       : getLastWord,
-            getLastPrefix     : getLastPrefix,
-            getLastWords      : getLastWords,
-            getLastBirthday   : getLastBirthday,
-            getLastAvatar     : getLastAvatar
+            sendBroadcastForm    : sendBroadcastForm,
+            sendBroadcastBtnClick: sendBroadcastBtnClick,
+            getLastLastName      : getLastLastName,
+            getLastFirstName     : getLastFirstName,
+            getLastEmail         : getLastEmail,
+            getLastGender        : getLastGender,
+            getLastNationality   : getLastNationality,
+            getLastDomain        : getLastDomain,
+            getLastLength        : getLastLength,
+            getLastSyllables     : getLastSyllables,
+            getLastWord          : getLastWord,
+            getLastPrefix        : getLastPrefix,
+            getLastWords         : getLastWords,
+            getLastBirthday      : getLastBirthday,
+            getLastAvatar        : getLastAvatar
         };
 
         /// INTERNAL METHODS ///
@@ -37,6 +38,15 @@
                 cozenEnhancedLogs.info.broadcastEvent('sendBroadcastForm', 'cozenLazyLoadDataGenerated');
                 $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
                     cozenFormName: cozenFormName
+                });
+            }
+        }
+
+        function sendBroadcastBtnClick(cozenBtnId) {
+            if (!Methods.isNullOrEmpty(cozenBtnId)) {
+                cozenEnhancedLogs.info.broadcastEvent('sendBroadcastBtnClick', 'cozenBtnFakeClick');
+                $rootScope.$broadcast('cozenBtnFakeClick', {
+                    cozenBtnId: cozenBtnId
                 });
             }
         }

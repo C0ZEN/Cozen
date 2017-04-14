@@ -799,10 +799,11 @@
         'CONFIG',
         'rfc4122',
         'CloudinaryUpload',
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        '$rootScope'
     ];
 
-    function cozenBtn(CozenThemes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
+    function cozenBtn(CozenThemes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs, $rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -986,6 +987,13 @@
                     }
                 });
 
+                // Watch for a broadcast event to simulate a fake click
+                $rootScope.$on('cozenBtnFakeClick', function ($event, data) {
+                    if (data.cozenBtnId == scope._cozenBtnId) {
+                        methods.onClick();
+                    }
+                });
+
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = CozenThemes.getActiveTheme();
@@ -1025,7 +1033,9 @@
             }
 
             function onClick($event) {
-                $event.stopPropagation();
+                if (!Methods.isNullOrEmpty($event)) {
+                    $event.stopPropagation();
+                }
                 if (scope.cozenBtnDisabled) {
                     return;
                 }
@@ -6970,20 +6980,21 @@
 
     function cozenLazyLoadInternal(CONFIG, cozenLazyLoadConstant, cozenEnhancedLogs, $rootScope) {
         return {
-            sendBroadcastForm : sendBroadcastForm,
-            getLastLastName   : getLastLastName,
-            getLastFirstName  : getLastFirstName,
-            getLastEmail      : getLastEmail,
-            getLastGender     : getLastGender,
-            getLastNationality: getLastNationality,
-            getLastDomain     : getLastDomain,
-            getLastLength     : getLastLength,
-            getLastSyllables  : getLastSyllables,
-            getLastWord       : getLastWord,
-            getLastPrefix     : getLastPrefix,
-            getLastWords      : getLastWords,
-            getLastBirthday   : getLastBirthday,
-            getLastAvatar     : getLastAvatar
+            sendBroadcastForm    : sendBroadcastForm,
+            sendBroadcastBtnClick: sendBroadcastBtnClick,
+            getLastLastName      : getLastLastName,
+            getLastFirstName     : getLastFirstName,
+            getLastEmail         : getLastEmail,
+            getLastGender        : getLastGender,
+            getLastNationality   : getLastNationality,
+            getLastDomain        : getLastDomain,
+            getLastLength        : getLastLength,
+            getLastSyllables     : getLastSyllables,
+            getLastWord          : getLastWord,
+            getLastPrefix        : getLastPrefix,
+            getLastWords         : getLastWords,
+            getLastBirthday      : getLastBirthday,
+            getLastAvatar        : getLastAvatar
         };
 
         /// INTERNAL METHODS ///
@@ -6993,6 +7004,15 @@
                 cozenEnhancedLogs.info.broadcastEvent('sendBroadcastForm', 'cozenLazyLoadDataGenerated');
                 $rootScope.$broadcast('cozenLazyLoadDataGenerated', {
                     cozenFormName: cozenFormName
+                });
+            }
+        }
+
+        function sendBroadcastBtnClick(cozenBtnId) {
+            if (!Methods.isNullOrEmpty(cozenBtnId)) {
+                cozenEnhancedLogs.info.broadcastEvent('sendBroadcastBtnClick', 'cozenBtnFakeClick');
+                $rootScope.$broadcast('cozenBtnFakeClick', {
+                    cozenBtnId: cozenBtnId
                 });
             }
         }
@@ -7154,11 +7174,12 @@
         /**
          * Return a simple user object with most common keys required for a register
          * @param {string} cozenFormName        > If set, a broadcast message will be send to force the touch and dirty on form's elements
+         * @param {string} cozenBtnId           > If set, a broadcast message will be send to the button to simulate a click (usually, the submit one)
          * @param {string} gender        = male > Define the gender (male, female) [config.json]
          * @param {string} nationality   = en   > Define the lang (en, it) [config.json]
          * @return {object} firstName, lastName, email, username
          */
-        function getPreBuildSimpleUser(cozenFormName, gender, nationality) {
+        function getPreBuildSimpleUser(cozenFormName, cozenBtnId, gender, nationality) {
 
             // Override the arguments if necessary
             if (Methods.isNullOrEmpty(gender)) {
@@ -7190,6 +7211,7 @@
             };
             cozenEnhancedLogs.info.lazyLoadLogObject('cozenLazyLoadPreBuild', 'getPreBuildSimpleUser', simpleUser);
             cozenLazyLoadInternal.sendBroadcastForm(cozenFormName);
+            cozenLazyLoadInternal.sendBroadcastBtnClick(cozenBtnId);
 
             // Return the simple user object
             return simpleUser;

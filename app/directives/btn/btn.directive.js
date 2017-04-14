@@ -60,10 +60,11 @@
         'CONFIG',
         'rfc4122',
         'CloudinaryUpload',
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        '$rootScope'
     ];
 
-    function cozenBtn(CozenThemes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs) {
+    function cozenBtn(CozenThemes, CONFIG, rfc4122, CloudinaryUpload, cozenEnhancedLogs, $rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -247,6 +248,13 @@
                     }
                 });
 
+                // Watch for a broadcast event to simulate a fake click
+                $rootScope.$on('cozenBtnFakeClick', function ($event, data) {
+                    if (data.cozenBtnId == scope._cozenBtnId) {
+                        methods.onClick();
+                    }
+                });
+
                 // Init stuff
                 element.on('$destroy', methods.destroy);
                 scope._activeTheme = CozenThemes.getActiveTheme();
@@ -286,7 +294,9 @@
             }
 
             function onClick($event) {
-                $event.stopPropagation();
+                if (!Methods.isNullOrEmpty($event)) {
+                    $event.stopPropagation();
+                }
                 if (scope.cozenBtnDisabled) {
                     return;
                 }
