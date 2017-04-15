@@ -26,7 +26,7 @@
          */
         function getCurrentLanguage() {
             if (CONFIG.dev) {
-                cozenEnhancedLogs.info.infoCustomMessageEnhanced('cozenLanguage', 'The current language is', CONFIG.currentLanguage);
+                cozenEnhancedLogs.info.customMessageEnhanced('cozenLanguage', 'The current language is', CONFIG.currentLanguage);
                 cozenEnhancedLogs.explodeObject(languages);
             }
             return CONFIG.currentLanguage;
@@ -43,7 +43,7 @@
                 $translate.use(CONFIG.currentLanguage);
                 tmhDynamicLocale.set(CONFIG.currentLanguage);
                 moment.locale(CONFIG.currentLanguage);
-                cozenEnhancedLogs.info.infoCustomMessageEnhanced('cozenLanguage', 'The new active language is', CONFIG.currentLanguage);
+                cozenEnhancedLogs.info.customMessageEnhanced('cozenLanguage', 'The new active language is', CONFIG.currentLanguage);
             }
             else {
                 cozenEnhancedLogs.error.valueNotInList('updateCurrentLanguage', language, CONFIG.currentLanguage);
