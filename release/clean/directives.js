@@ -7004,8 +7004,9 @@
             if (verbose) {
                 CONFIG.languages.forEach(function (language, index) {
                     languages.push({
-                        key  : language,
-                        label: CONFIG.languagesExtended[index]
+                        key    : language,
+                        label  : CONFIG.languagesExtended[index],
+                        current: language == CONFIG.currentLanguage
                     });
                 });
             }
