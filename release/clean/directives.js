@@ -6962,7 +6962,8 @@
             getCurrentLanguage   : getCurrentLanguage,
             updateCurrentLanguage: updateCurrentLanguage,
             getAvailableLanguages: getAvailableLanguages,
-            isLanguageAvailable  : isLanguageAvailable
+            isLanguageAvailable  : isLanguageAvailable,
+            getExtendedLabel     : getExtendedLabel
         };
 
         /**
@@ -7027,6 +7028,25 @@
          */
         function isLanguageAvailable(language) {
             return Methods.isInList(CONFIG.languages, language);
+        }
+
+        /**
+         * Return the extended version of a language key (e.g: fr return Français)
+         * @param {string} language > Key that correspond to the new language (e.g: en)
+         * @return {string}
+         */
+        function getExtendedLabel(language) {
+            if (isLanguageAvailable(language)) {
+                for (var i = 0, length = CONFIG.languages.length; i < length; i++) {
+                    if (CONFIG.languages[i] == language) {
+                        return CONFIG.languagesExtended[i];
+                    }
+                }
+            }
+            else {
+                cozenEnhancedLogs.error.valueNotInList('getExtendedLabel', language, CONFIG.currentLanguage);
+                return language;
+            }
         }
     }
 
