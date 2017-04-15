@@ -6972,7 +6972,6 @@
         function getCurrentLanguage() {
             if (CONFIG.dev) {
                 cozenEnhancedLogs.info.customMessageEnhanced('cozenLanguage', 'The current language is', CONFIG.currentLanguage);
-                cozenEnhancedLogs.explodeObject(languages);
             }
             return CONFIG.currentLanguage;
         }
