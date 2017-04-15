@@ -6988,6 +6988,7 @@
                 $translate.use(CONFIG.currentLanguage);
                 tmhDynamicLocale.set(CONFIG.currentLanguage);
                 moment.locale(CONFIG.currentLanguage);
+                cozenEnhancedLogs.info.infoCustomMessageEnhanced('cozenLanguage', 'The new active language is', CONFIG.currentLanguage);
             }
             else {
                 cozenEnhancedLogs.error.valueNotInList('updateCurrentLanguage', language, CONFIG.currentLanguage);
