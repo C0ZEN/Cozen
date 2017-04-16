@@ -17,7 +17,8 @@ var Methods = {
     dataMustBeNumber          : dataMustBeNumber,
     dataMustBeObject          : dataMustBeObject,
     dataMustBeInThisList      : dataMustBeInThisList,
-    getRandomFromRange        : getRandomFromRange
+    getRandomFromRange        : getRandomFromRange,
+    getRandomBoolean          : getRandomBoolean
 };
 
 // Common data
@@ -180,4 +181,9 @@ function getRandomFromRange(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomBoolean() {
+    var boolean = getRandomFromRange(0, 1);
+    return boolean == 1;
 }
