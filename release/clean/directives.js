@@ -2628,7 +2628,8 @@
                     cyan  : '#1abc9c',
                     purple: '#9b59b6',
                     black : '#2c3e50'
-                }
+                },
+                canResize    : true
             };
 
             methods.init();
@@ -2812,12 +2813,23 @@
 
             // Resize the google graph to his container
             function onResize() {
-                var container = document.getElementById(scope.cozenDrawChartId);
-                if (container != null) {
-                    container             = container.firstChild.firstChild;
-                    container.style.width = "100%";
-                    methods.drawChart();
+                if (data.canResize) {
+                    data.canResize = false;
+
+                    // Draw
+                    var container = document.getElementById(scope.cozenDrawChartId);
+                    if (!Methods.isNullOrEmpty(container)) {
+                        container             = container.firstChild.firstChild;
+                        container.style.width = "100%";
+                        methods.drawChart();
+                    }
+
+                    // Timeout to avoid too much call
+                    $timeout(function () {
+                        data.canResize = true;
+                    }, 30);
                 }
+
             }
         }
     }
