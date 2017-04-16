@@ -145,7 +145,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/utils/directives/draw-chart/drawChart.template.html',
-    "<div class=cozen-draw-chart-container ng-style=\"{'display': cozenDrawChartHidden ? 'none' : '-webkit-box'}\" ng-class=\"_cozenDrawChartAnimationIn != '' ? _cozenDrawChartAnimationIn + ' animated' : ''\" ng-if=_isReady><div id=\"{{ cozenDrawChartId }}\"></div></div>"
+    "<div class=cozen-draw-chart-container ng-style=\"{'display': cozenDrawChartHidden ? 'none' : 'table'}\" ng-class=\"_cozenDrawChartAnimationIn != '' ? _cozenDrawChartAnimationIn + ' animated' : ''\" ng-if=_isReady><div id=\"{{ cozenDrawChartId }}\"></div></div>"
   );
 
 
