@@ -276,7 +276,7 @@
                     // Timeout to avoid too much call
                     $timeout(function () {
                         data.canResize = true;
-                    }, 30);
+                    }, 100);
                 }
 
             }
