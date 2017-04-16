@@ -17,6 +17,9 @@
  * @param {string}   cozenDrawChartBase64           > Get the graph base64 string (override value)
  * @param {function} cozenDrawChartOnBase64         > Callback function called when the base64 is ready {id, base64}
  *
+ * [Attribute params]
+ * @param {string} cozenDrawChartAnimationIn > Custom animation on enter
+ *
  */
 (function (angular, window, document) {
     'use strict';
@@ -94,6 +97,9 @@
                         return;
                     }
                 }
+
+                // Default values (attributes)
+                scope._cozenDrawChartAnimationIn = angular.isDefined(attrs.cozenDrawChartAnimationIn) ? attrs.cozenDrawChartAnimationIn : '';
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

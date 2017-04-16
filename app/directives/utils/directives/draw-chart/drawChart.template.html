@@ -1,5 +1,6 @@
 <div class="cozen-draw-chart-container"
      ng-style="{'display': cozenDrawChartHidden ? 'none' : '-webkit-box'}"
+     ng-class="_cozenDrawChartAnimationIn != '' ? _cozenDrawChartAnimationIn + ' animated' : ''"
      ng-if="_isReady">
 
     <div id="{{ cozenDrawChartId }}"></div>
