@@ -1051,6 +1051,9 @@ div.cozen-btn div.cozen-btn-alert {
 div.cozen-btn div.cozen-btn-alert.ng-hide {
   display: none !important;
 }
+div.cozen-btn.disabled div.cozen-btn-label label {
+  cursor: default;
+}
 div.cozen-btn.disabled div.cozen-btn-content-container div.cozen-btn-content {
   cursor: not-allowed;
   -webkit-user-select: none;
@@ -1743,7 +1746,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-arrows div.cozen-input-a
   color: inherit;
 }
 div.cozen-input.disabled {
-  opacity: 0.4;
   cursor: not-allowed;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -2227,6 +2229,9 @@ div.cozen-textarea.disabled {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+div.cozen-textarea.disabled div.cozen-textarea-label label {
+  cursor: default;
 }
 div.cozen-tooltip {
   display: inline-block;
@@ -11912,6 +11917,9 @@ div.cozen-btn div.cozen-btn-alert {
 div.cozen-btn div.cozen-btn-alert.ng-hide {
   display: none !important;
 }
+div.cozen-btn.disabled div.cozen-btn-label label {
+  cursor: default;
+}
 div.cozen-btn.disabled div.cozen-btn-content-container div.cozen-btn-content {
   cursor: not-allowed;
   -webkit-user-select: none;
@@ -12604,7 +12612,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-arrows div.cozen-input-a
   color: inherit;
 }
 div.cozen-input.disabled {
-  opacity: 0.4;
   cursor: not-allowed;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -13088,6 +13095,9 @@ div.cozen-textarea.disabled {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+div.cozen-textarea.disabled div.cozen-textarea-label label {
+  cursor: default;
 }
 div.cozen-tooltip {
   display: inline-block;

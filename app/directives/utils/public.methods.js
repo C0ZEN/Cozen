@@ -98,6 +98,9 @@ function getElementPaddingTopBottom(element) {
 
 // Check if an object have a property to avoid using not own property
 function hasOwnProperty(obj, prop) {
+    if (isNullOrEmpty(obj) || isNullOrEmpty(prop)) {
+        return false;
+    }
     var proto = obj.__proto__ || obj.constructor.prototype;
     return (prop in obj) &&
         (!(prop in proto) || proto[prop] !== obj[prop]);
