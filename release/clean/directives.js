@@ -2582,10 +2582,11 @@
     cozenDrawChart.$inject = [
         '$interval',
         '$timeout',
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        '$rootScope'
     ];
 
-    function cozenDrawChart($interval, $timeout, cozenEnhancedLogs) {
+    function cozenDrawChart($interval, $timeout, cozenEnhancedLogs, $rootScope) {
         return {
             link       : link,
             restrict   : 'E',
@@ -2669,6 +2670,9 @@
                 scope.$watch('cozenDrawChartOptions', function () {
                     methods.drawChart();
                 });
+
+                // Event to resize the graph
+                $rootScope.$on('cozenDrawChart', methods.onResize);
             }
 
             // Properly destroy
