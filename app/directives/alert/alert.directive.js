@@ -366,8 +366,10 @@
             }
 
             // Close the popup
-            function onClose() {
-                scope.cozenAlertDisplay = false;
+            function onClose($event) {
+                methods.hide($event, {
+                    uuid: scope._cozenAlertId
+                });
             }
 
             // Hide the popup which contain this text (id param)

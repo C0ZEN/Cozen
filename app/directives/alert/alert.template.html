@@ -18,7 +18,7 @@
     <!-- Btn close -->
     <div ng-if="_cozenAlertCloseBtn"
          class="cozen-alert-icon right"
-         ng-click="_methods.onClose()">
+         ng-click="_methods.onClose($event)">
         <cozen-tooltip cozen-tooltip-label="'alert_close_btn_tooltip'"
                        cozen-tooltip-disabled="!_cozenAlertCloseBtnTooltip">
             <i class="fa fa-times"></i>
