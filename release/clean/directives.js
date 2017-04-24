@@ -493,7 +493,7 @@
         "format": "HH:mm:ss.SSS"
     },
     "api": {
-        "url": "http://cozen.com"
+        "url": "http://cozen.com/"
     },
     "broadcastLog": false,
     "scrollsBar": true,
@@ -5751,6 +5751,14 @@
     }
 
 })(window.angular, window.document);
+/**
+ * @ngdoc service
+ * @name cozenLib.cozenHttp
+ * @requires $http
+ * @requires CONFIG
+ * @requires $q
+ * @requires cozenEnhancedLogs
+ **/
 (function (angular) {
     'use strict';
 
@@ -5775,11 +5783,16 @@
         };
 
         /**
-         * Get request
-         * @param url
-         * @param callbackSuccess
-         * @param callbackError
-         * @returns {Promise}
+         * @ngdoc method
+         * @name cozenLib.cozenHttp#requestGet
+         * @methodOf cozenLib.cozenHttp
+         * @description
+         * Decorate the http get request to use a deferred
+         * Optionally called a success/error callback
+         * @param {string}   url             > Suffix added after the CONFIG.api.url
+         * @param {function} callbackSuccess > Function called on success
+         * @param {function} callbackError   > Function called on error
+         * @returns {object} promise
          */
         function requestGet(url, callbackSuccess, callbackError) {
             var deferred = $q.defer();
@@ -5809,12 +5822,17 @@
         }
 
         /**
-         * Post request
-         * @param url
-         * @param params
-         * @param callbackSuccess
-         * @param callbackError
-         * @returns {Promise}
+         * @ngdoc method
+         * @name cozenLib.cozenHttp#requestPost
+         * @methodOf dsiegisApp.egisHttp
+         * @description
+         * Decorate the http post request to use a deferred
+         * Optionally called a success/error callback
+         * @param {string}   url             > Suffix added after the CONFIG.api.url
+         * @param {object}   params          > Data for the body of the http request
+         * @param {function} callbackSuccess > Function called on success
+         * @param {function} callbackError   > Function called on error
+         * @returns {object} promise
          */
         function requestPost(url, params, callbackSuccess, callbackError) {
             var deferred = $q.defer();
@@ -5844,12 +5862,17 @@
         }
 
         /**
-         * Put request
-         * @param url
-         * @param params
-         * @param callbackSuccess
-         * @param callbackError
-         * @returns {Promise}
+         * @ngdoc method
+         * @name cozenLib.cozenHttp#requestPut
+         * @methodOf cozenLib.cozenHttp
+         * @description
+         * Decorate the http put request to use a deferred
+         * Optionally called a success/error callback
+         * @param {string}   url             > Suffix added after the CONFIG.api.url
+         * @param {object}   params          > Data for the body of the http request
+         * @param {function} callbackSuccess > Function called on success
+         * @param {function} callbackError   > Function called on error
+         * @returns {object} promise
          */
         function requestPut(url, params, callbackSuccess, callbackError) {
             var deferred = $q.defer();
@@ -5879,13 +5902,18 @@
         }
 
         /**
-         * Custom request
-         * @param method
-         * @param url
-         * @param params
-         * @param callbackSuccess
-         * @param callbackError
-         * @returns {Promise}
+         * @ngdoc method
+         * @name cozenLib.cozenHttp#requestCustom
+         * @methodOf cozenLib.cozenHttp
+         * @description
+         * Decorate a custom http request to use a deferred
+         * Optionally called a success/error callback
+         * @param {string}   method          > Methods used by the http request (get, post, put...)
+         * @param {string}   url             > Full url to work with
+         * @param {object}   params          > Data for the body of the http request
+         * @param {function} callbackSuccess > Function called on success
+         * @param {function} callbackError   > Function called on error
+         * @returns {object} promise
          */
         function requestCustom(method, url, params, callbackSuccess, callbackError) {
             var deferred = $q.defer();

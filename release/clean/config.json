@@ -19,7 +19,7 @@
         "format": "HH:mm:ss.SSS"
     },
     "api": {
-        "url": "http://cozen.com"
+        "url": "http://cozen.com/"
     },
     "broadcastLog": false,
     "scrollsBar": true,
