@@ -21,6 +21,13 @@
             requestCustom: requestCustom
         };
 
+        /**
+         * Get request
+         * @param url
+         * @param callbackSuccess
+         * @param callbackError
+         * @returns {Promise}
+         */
         function requestGet(url, callbackSuccess, callbackError) {
             var deferred = $q.defer();
             cozenEnhancedLogs.info.httpRequest({
@@ -48,6 +55,14 @@
             return deferred.promise;
         }
 
+        /**
+         * Post request
+         * @param url
+         * @param params
+         * @param callbackSuccess
+         * @param callbackError
+         * @returns {Promise}
+         */
         function requestPost(url, params, callbackSuccess, callbackError) {
             var deferred = $q.defer();
             cozenEnhancedLogs.info.httpRequest({
@@ -75,6 +90,14 @@
             return deferred.promise;
         }
 
+        /**
+         * Put request
+         * @param url
+         * @param params
+         * @param callbackSuccess
+         * @param callbackError
+         * @returns {Promise}
+         */
         function requestPut(url, params, callbackSuccess, callbackError) {
             var deferred = $q.defer();
             cozenEnhancedLogs.info.httpRequest({
@@ -102,6 +125,15 @@
             return deferred.promise;
         }
 
+        /**
+         * Custom request
+         * @param method
+         * @param url
+         * @param params
+         * @param callbackSuccess
+         * @param callbackError
+         * @returns {Promise}
+         */
         function requestCustom(method, url, params, callbackSuccess, callbackError) {
             var deferred = $q.defer();
             cozenEnhancedLogs.info.httpRequest({
