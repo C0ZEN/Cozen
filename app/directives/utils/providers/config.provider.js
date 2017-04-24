@@ -31,6 +31,11 @@
             return this;
         };
 
+        this.apiUrl = function (value) {
+            CONFIG.api.url = value;
+            return this;
+        };
+
         this.logsEnabled = function (value) {
             if (typeof value != 'boolean') {
                 Methods.dataMustBeBoolean('logsEnabled');

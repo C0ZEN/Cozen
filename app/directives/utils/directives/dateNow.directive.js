@@ -1,15 +1,25 @@
+/**
+ * @ngdoc directive
+ * @name cozen-date-now
+ * @scope
+ * @restrict A
+ * @replace false
+ * @transclude false
+ * @description
+ *
+ */
 (function (angular) {
     'use strict';
 
     angular
-        .module('4pjtApp')
-        .directive('dateNow', dateNow);
+        .module('cozenLib')
+        .directive('cozenDateNow', cozenDateNow);
 
-    dateNow.$inject = [
+    cozenDateNow.$inject = [
         '$filter'
     ];
 
-    function dateNow($filter) {
+    function cozenDateNow($filter) {
         return {
             link      : link,
             restrict  : 'A',

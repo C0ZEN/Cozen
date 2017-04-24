@@ -18,6 +18,9 @@
         "enabled": false,
         "format": "HH:mm:ss.SSS"
     },
+    "api": {
+        "url": "http://cozen.com"
+    },
     "broadcastLog": false,
     "scrollsBar": true,
     "scrollsBarConfig": {
