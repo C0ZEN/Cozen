@@ -2718,7 +2718,6 @@
 
                 // Event to resize the graph
                 $rootScope.$on('cozenDrawChart', methods.onResize);
-                $rootScope.$on('cozenDrawChart', methods.onResize);
             }
 
             // Properly destroy
@@ -2841,6 +2840,7 @@
                                             base64: scope.cozenDrawChartBase64
                                         });
                                     }
+                                    methods.onResize();
                                 });
                             });
                         }
