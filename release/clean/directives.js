@@ -10168,7 +10168,8 @@
                     if (Methods.isFunction(scope.cozenPopupOnHide)) {
                         scope.cozenPopupOnHide({
                             id  : scope._cozenPopupId,
-                            name: scope._cozenPopupName
+                            name: scope._cozenPopupName,
+                            data: scope.cozenPopupData
                         });
                     }
                     cozenEnhancedLogs.info.functionCalled(data.directive, 'OnHide');
@@ -10204,7 +10205,8 @@
                     if (Methods.isFunction(scope.cozenPopupOnShow)) {
                         scope.cozenPopupOnShow({
                             id  : scope._cozenPopupId,
-                            name: scope._cozenPopupName
+                            name: scope._cozenPopupName,
+                            data: scope.cozenPopupData
                         });
                     }
                     cozenEnhancedLogs.info.functionCalled(data.directive, 'OnShow');
