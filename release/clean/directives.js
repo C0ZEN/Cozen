@@ -10206,7 +10206,7 @@
                         scope.cozenPopupOnShow({
                             id  : scope._cozenPopupId,
                             name: scope._cozenPopupName,
-                            data: scope.cozenPopupData
+                            data: params.data
                         });
                     }
                     cozenEnhancedLogs.info.functionCalled(data.directive, 'OnShow');
