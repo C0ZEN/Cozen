@@ -12,6 +12,7 @@
  * @param {boolean}  cozenTextareaDisabled = false                > Disable the textarea
  * @param {function} cozenTextareaOnChange                        > Callback function called on change
  * @param {string}   cozenTextareaTooltipMaxWidth = max-width-200 > Max width of the tooltip
+ * @param {string}   cozenTextareaPlaceholder                     > Text for the placeholder
  *
  * [Attributes params]
  * @param {number}  cozenTextareaId                                           > Id of the textarea
@@ -25,7 +26,6 @@
  * @param {string}  cozenTextareaSizeSmall                                    > Shortcut for small size
  * @param {string}  cozenTextareaSizeNormal                                   > Shortcut for normal size
  * @param {string}  cozenTextareaSizeLarge                                    > Shortcut for large size
- * @param {string}  cozenTextareaPlaceholder                                  > Text for the placeholder
  * @param {number}  cozenTextareaMinLength        = 0                         > Minimum char length [config.json]
  * @param {number}  cozenTextareaMaxLength        = 200                       > Maximum char length [config.json]
  * @param {string}  cozenTextareaName             = uuid                      > Name of the textarea
@@ -70,7 +70,8 @@
                 cozenTextareaModel          : '=?',
                 cozenTextareaDisabled       : '=?',
                 cozenTextareaOnChange       : '&',
-                cozenTextareaTooltipMaxWidth: '=?'
+                cozenTextareaTooltipMaxWidth: '=?',
+                cozenTextareaPlaceholder    : '=?'
             },
             templateUrl     : 'directives/textarea/textarea.template.html',
             bindToController: true,
@@ -154,6 +155,7 @@
                 // Default values (scope)
                 angular.isUndefined(attrs.cozenTextareaDisabled) ? scope.vm.cozenTextareaDisabled = false : null;
                 angular.isUndefined(attrs.cozenTextareaTooltipMaxWidth) ? scope.vm.cozenTextareaTooltipMaxWidth = 'max-width-200' : null;
+                angular.isUndefined(attrs.cozenTextareaPlaceholder) ? scope.vm.cozenTextareaPlaceholder = '' : null;
 
                 // Default values (attributes)
                 scope._cozenTextareaId               = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
@@ -162,7 +164,6 @@
                 scope._cozenTextareaRequired         = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
                 scope._cozenTextareaErrorDesign      = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
                 scope._cozenTextareaSuccessDesign    = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
-                scope._cozenTextareaPlaceholder      = angular.isDefined(attrs.cozenTextareaPlaceholder) ? attrs.cozenTextareaPlaceholder : '';
                 scope._cozenTextareaMinLength        = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
                 scope._cozenTextareaMaxLength        = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
                 scope._cozenTextareaName             = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
