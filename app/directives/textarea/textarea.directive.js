@@ -19,6 +19,7 @@
  * @param {string}  cozenTextareaTooltip                                      > Text of the tooltip
  * @param {string}  cozenTextareaTooltipPlacement = auto right                > Change the position of the tooltip [config.json]
  * @param {string}  cozenTextareaTooltipTrigger   = outsideClick              > Type of trigger to show the tooltip [config.json]
+ * @param {string}  cozenTextareaTooltipClass                                 > Add a custom class on the tooltip
  * @param {boolean} cozenTextareaRequired         = false                     > Required textarea [config.json]
  * @param {boolean} cozenTextareaErrorDesign      = true                      > Add style when error [config.json]
  * @param {boolean} cozenTextareaSuccessDesign    = true                      > Add style when success [config.json]
@@ -166,6 +167,7 @@
                 scope._cozenTextareaId                            = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
                 scope._cozenTextareaTooltip                       = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
                 scope._cozenTextareaTooltipTrigger                = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
+                scope._cozenTextareaTooltipClass                  = angular.isDefined(attrs.cozenTextareaTooltipClass) ? attrs.cozenTextareaTooltipClass : '';
                 scope._cozenTextareaRequired                      = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
                 scope._cozenTextareaErrorDesign                   = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
                 scope._cozenTextareaSuccessDesign                 = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
