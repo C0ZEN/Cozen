@@ -61,7 +61,8 @@
         "tooltip": {
             "placement": "auto right",
             "trigger": "outsideClick"
-        }
+        },
+        "spellCheck": false
     },
     "required": {
         "type": "star",

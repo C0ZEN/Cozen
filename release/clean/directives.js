@@ -535,7 +535,8 @@
         "tooltip": {
             "placement": "auto right",
             "trigger": "outsideClick"
-        }
+        },
+        "spellCheck": false
     },
     "required": {
         "type": "star",
@@ -2218,6 +2219,16 @@
 
         this.textareaTooltipTrigger = function (value) {
             CONFIG.textarea.tooltip.trigger = value;
+            return this;
+        };
+
+        this.textareaSpellCheck = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaSpellCheck');
+            }
+            else {
+                CONFIG.textarea.spellCheck = value;
+            }
             return this;
         };
 
@@ -10805,6 +10816,7 @@ function getRandomBoolean() {
  * @param {string}  cozenTextareaClass                                        > Custom class
  * @param {string}  cozenTextareaTooltipType      = default                   > Type of the tooltip
  * @param {string}  cozenTextareaModelLengthType  = always                    > Show the number of char to match the length (always, never, focus) [config.json]
+ * @param {boolean} cozenTextareaSpellCheck       = false                     > Disable the spell checking [config.json]
  *
  */
 (function (angular) {
@@ -10941,6 +10953,7 @@ function getRandomBoolean() {
                 scope._cozenTextareaRequiredConfig   = CONFIG.required;
                 scope._cozenTextareaRequiredTooltip  = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
                 scope._cozenTextareaTooltipType      = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
+                scope._cozenTextareaSpellCheck       = angular.isDefined(attrs.cozenTextareaSpellCheck) ? JSON.parse(attrs.cozenTextareaSpellCheck) : CONFIG.textarea.spellCheck;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

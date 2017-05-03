@@ -227,6 +227,16 @@
             return this;
         };
 
+        this.textareaSpellCheck = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('textareaSpellCheck');
+            }
+            else {
+                CONFIG.textarea.spellCheck = value;
+            }
+            return this;
+        };
+
         this.dropdownDisplayModelLength = function (value) {
             if (typeof value != 'boolean') {
                 Methods.dataMustBeBoolean('dropdownDisplayModelLength');
