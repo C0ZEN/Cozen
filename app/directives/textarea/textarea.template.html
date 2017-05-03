@@ -63,7 +63,7 @@
                   id="{{ _cozenTextareaUuid }}"
                   ng-focus="vm._cozenTextareaIsFocused = true"
                   ng-blur="vm._cozenTextareaIsFocused = false"
-                  spellcheck="{{ _cozenTextareaSpellCheck }}"
+                  spellcheck="{{ _cozenTextareaSpellCheck ? 'true' : 'false' }}"
                   autocomplete="{{ _cozenTextareaSpellCheck ? 'on' : 'off' }}"
                   autocorrect="{{ _cozenTextareaSpellCheck ? 'on' : 'off' }}"
                   autocapitalize="{{ _cozenTextareaSpellCheck ? 'on' : 'off' }}">
