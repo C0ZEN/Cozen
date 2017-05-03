@@ -10818,6 +10818,11 @@ function getRandomBoolean() {
  * @param {string}  cozenTextareaModelLengthType  = always                    > Show the number of char to match the length (always, never, focus) [config.json]
  * @param {boolean} cozenTextareaSpellCheck       = false                     > Disable the spell checking [config.json]
  *
+ * [Attributes params - whenHeightGreaterThan]
+ * @param {string}  cozenTextareaWhenHeightGreaterThan         = 100  > The height you want to be check in pixels
+ * @param {string}  cozenTextareaWhenHeightGreaterThanClass           > The class you which to toggle if the height is greater than
+ * @param {boolean} cozenTextareaWhenHeightGreaterThanDisabled = true > Enable/disable the check (to improve performances)
+ *
  */
 (function (angular) {
     'use strict';
@@ -10933,28 +10938,31 @@ function getRandomBoolean() {
                 angular.isUndefined(attrs.cozenTextareaPlaceholder) ? scope.vm.cozenTextareaPlaceholder = '' : null;
 
                 // Default values (attributes)
-                scope._cozenTextareaId               = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
-                scope._cozenTextareaTooltip          = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
-                scope._cozenTextareaTooltipTrigger   = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
-                scope._cozenTextareaRequired         = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
-                scope._cozenTextareaErrorDesign      = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
-                scope._cozenTextareaSuccessDesign    = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
-                scope._cozenTextareaMinLength        = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
-                scope._cozenTextareaMaxLength        = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
-                scope._cozenTextareaName             = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
-                scope._cozenTextareaValidatorEmpty   = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
-                scope._cozenTextareaValidatorIcon    = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
-                scope._cozenTextareaTooltipPlacement = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
-                scope._cozenTextareaElastic          = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
-                scope._cozenTextareaRows             = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
-                scope._cozenTextareaLabel            = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
-                scope._cozenTextareaUuid             = data.uuid;
-                scope._cozenTextareaModelLengthType  = angular.isDefined(attrs.cozenTextareaModelLengthType) ? attrs.cozenTextareaModelLengthType : CONFIG.textarea.modelLengthType;
-                scope._cozenTextareaModelLength      = scope._cozenTextareaMaxLength;
-                scope._cozenTextareaRequiredConfig   = CONFIG.required;
-                scope._cozenTextareaRequiredTooltip  = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
-                scope._cozenTextareaTooltipType      = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
-                scope._cozenTextareaSpellCheck       = angular.isDefined(attrs.cozenTextareaSpellCheck) ? JSON.parse(attrs.cozenTextareaSpellCheck) : CONFIG.textarea.spellCheck;
+                scope._cozenTextareaId                            = angular.isDefined(attrs.cozenTextareaId) ? attrs.cozenTextareaId : '';
+                scope._cozenTextareaTooltip                       = angular.isDefined(attrs.cozenTextareaTooltip) ? attrs.cozenTextareaTooltip : '';
+                scope._cozenTextareaTooltipTrigger                = angular.isDefined(attrs.cozenTextareaTooltipTrigger) ? attrs.cozenTextareaTooltipTrigger : CONFIG.textarea.tooltip.trigger;
+                scope._cozenTextareaRequired                      = angular.isDefined(attrs.cozenTextareaRequired) ? JSON.parse(attrs.cozenTextareaRequired) : CONFIG.textarea.required;
+                scope._cozenTextareaErrorDesign                   = angular.isDefined(attrs.cozenTextareaErrorDesign) ? JSON.parse(attrs.cozenTextareaErrorDesign) : CONFIG.textarea.errorDesign;
+                scope._cozenTextareaSuccessDesign                 = angular.isDefined(attrs.cozenTextareaSuccessDesign) ? JSON.parse(attrs.cozenTextareaSuccessDesign) : CONFIG.textarea.successDesign;
+                scope._cozenTextareaMinLength                     = angular.isDefined(attrs.cozenTextareaMinLength) ? attrs.cozenTextareaMinLength : CONFIG.textarea.minLength;
+                scope._cozenTextareaMaxLength                     = angular.isDefined(attrs.cozenTextareaMaxLength) ? attrs.cozenTextareaMaxLength : CONFIG.textarea.maxLength;
+                scope._cozenTextareaName                          = angular.isDefined(attrs.cozenTextareaName) ? attrs.cozenTextareaName : data.uuid;
+                scope._cozenTextareaValidatorEmpty                = angular.isDefined(attrs.cozenTextareaValidatorEmpty) ? JSON.parse(attrs.cozenTextareaValidatorEmpty) : CONFIG.textarea.validator.empty;
+                scope._cozenTextareaValidatorIcon                 = angular.isDefined(attrs.cozenTextareaValidatorIcon) ? JSON.parse(attrs.cozenTextareaValidatorIcon) : true;
+                scope._cozenTextareaTooltipPlacement              = angular.isDefined(attrs.cozenTextareaTooltipPlacement) ? attrs.cozenTextareaTooltipPlacement : CONFIG.textarea.tooltip.placement;
+                scope._cozenTextareaElastic                       = angular.isDefined(attrs.cozenTextareaElastic) ? JSON.parse(attrs.cozenTextareaElastic) : CONFIG.textarea.elastic;
+                scope._cozenTextareaRows                          = angular.isDefined(attrs.cozenTextareaRows) ? JSON.parse(attrs.cozenTextareaRows) : CONFIG.textarea.rows;
+                scope._cozenTextareaLabel                         = angular.isDefined(attrs.cozenTextareaLabel) ? attrs.cozenTextareaLabel : '';
+                scope._cozenTextareaUuid                          = data.uuid;
+                scope._cozenTextareaModelLengthType               = angular.isDefined(attrs.cozenTextareaModelLengthType) ? attrs.cozenTextareaModelLengthType : CONFIG.textarea.modelLengthType;
+                scope._cozenTextareaModelLength                   = scope._cozenTextareaMaxLength;
+                scope._cozenTextareaRequiredConfig                = CONFIG.required;
+                scope._cozenTextareaRequiredTooltip               = angular.isDefined(attrs.cozenTextareaRequiredTooltip) ? attrs.cozenTextareaRequiredTooltip : 'textarea_required_tooltip';
+                scope._cozenTextareaTooltipType                   = angular.isDefined(attrs.cozenTextareaTooltipType) ? attrs.cozenTextareaTooltipType : 'default';
+                scope._cozenTextareaSpellCheck                    = angular.isDefined(attrs.cozenTextareaSpellCheck) ? JSON.parse(attrs.cozenTextareaSpellCheck) : CONFIG.textarea.spellCheck;
+                scope._cozenTextareaWhenHeightGreaterThan         = angular.isDefined(attrs.cozenTextareaWhenHeightGreaterThan) ? JSON.parse(attrs.cozenTextareaWhenHeightGreaterThan) : 100;
+                scope._cozenTextareaWhenHeightGreaterThanClass    = angular.isDefined(attrs.cozenTextareaWhenHeightGreaterThanClass) ? attrs.cozenTextareaWhenHeightGreaterThanClass : '';
+                scope._cozenTextareaWhenHeightGreaterThanDisabled = angular.isDefined(attrs.cozenTextareaWhenHeightGreaterThanDisabled) ? JSON.parse(attrs.cozenTextareaWhenHeightGreaterThanDisabled) : true;
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);
@@ -11573,6 +11581,60 @@ function getRandomBoolean() {
 
 })(window.angular, window);
 
+
+/*
+ * @ngdoc directive
+ * @name cozen-when-height-greater-than
+ * @restrict A
+ * @replace false
+ * @transclude false
+ * @description
+ *
+ * [Attributes params]
+ * @param {string}  cozenWhenHeightGreaterThan         = 100   > The height you want to be check in pixels
+ * @param {string}  cozenWhenHeightGreaterThanClass            > The class you which to toggle if the height is greater than
+ * @param {boolean} cozenWhenHeightGreaterThanDisabled = false > Enable/disable the check (to improve performances)
+ *
+ */
+(function (angular) {
+    'use strict';
+
+    angular
+        .module('cozenLib')
+        .directive('cozenWhenHeightGreaterThan', cozenWhenHeightGreaterThan);
+
+    cozenWhenHeightGreaterThan.$inject = [];
+
+    function cozenWhenHeightGreaterThan() {
+        return {
+            link      : link,
+            restrict  : 'A',
+            replace   : false,
+            transclude: false
+        };
+
+        function link(scope, element, attrs) {
+            scope.disabled = angular.isDefined(attrs.cozenWhenHeightGreaterThanDisabled) ? JSON.parse(attrs.cozenWhenHeightGreaterThanDisabled) : false;
+            if (!scope.disabled && !Methods.isNullOrEmpty(attrs.cozenWhenHeightGreaterThanClass)) {
+
+                // Watch every digest and update the height
+                scope.$watch(function () {
+                    scope.__height = element.height();
+                });
+
+                // Watch for the height property and get called when it change
+                scope.$watch('__height', function (newHeight, oldHeight) {
+                    if (newHeight > attrs.cozenWhenHeightGreaterThan) {
+                        element.addClass(attrs.cozenWhenHeightGreaterThanClass);
+                    }
+                    else {
+                        element.removeClass(attrs.cozenWhenHeightGreaterThanClass);
+                    }
+                });
+            }
+        }
+    }
+})(window.angular);
 
 /*
  * The whenReady directive allows you to execute the content of a when-ready

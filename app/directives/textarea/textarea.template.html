@@ -50,6 +50,9 @@
         <!-- Textarea -->
         <textarea ng-model="vm.cozenTextareaModel"
                   ng-required="_cozenTextareaRequired"
+                  cozen-when-height-greater-than="{{ _cozenTextareaWhenHeightGreaterThan }}"
+                  cozen-when-height-greater-than-class="{{ _cozenTextareaWhenHeightGreaterThanClass }}"
+                  cozen-when-height-greater-than-disabled="{{ _cozenTextareaWhenHeightGreaterThanDisabled }}"
                   ng-change="_methods.onChange($event);"
                   ng-disabled="vm.cozenTextareaDisabled"
                   placeholder="{{ vm.cozenTextareaPlaceholder | translate }}"
