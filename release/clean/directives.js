@@ -8830,6 +8830,8 @@
 
             // Default values (attributes)
             scope._cozenOnFinishRender = Methods.isNullOrEmpty(attrs.cozenOnFinishRender) ? 'cozenFinishedRender' : attrs.cozenOnFinishRender;
+
+            // Check if the current is the last
             if (scope.$last === true) {
                 $timeout(function () {
                     scope.$emit(scope._cozenOnFinishRender);
