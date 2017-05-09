@@ -39,9 +39,14 @@
         };
 
         function link(scope, element, attrs) {
+
+            // Default values (attributes)
+            scope._cozenOnRepeatFinish = Methods.isNullOrEmpty(attrs.cozenOnRepeatFinish) ? 'cozenRepeatFinished' : attrs.cozenOnRepeatFinish;
+
+            // Check if the current is the last
             if (scope.$last === true) {
                 $timeout(function () {
-                    scope.$emit(attrs.cozenOnRepeatFinish);
+                    scope.$emit(scope._cozenOnRepeatFinish);
                 });
             }
         }
