@@ -9,10 +9,12 @@
  *
  * [Scope params]
  * @param {string}   cozenTextareaModel                           > Value edited by the textarea [required]
- * @param {boolean}  cozenTextareaDisabled = false                > Disable the textarea
+ * @param {boolean}  cozenTextareaDisabled        = false         > Disable the textarea
  * @param {function} cozenTextareaOnChange                        > Callback function called on change
  * @param {string}   cozenTextareaTooltipMaxWidth = max-width-200 > Max width of the tooltip
  * @param {string}   cozenTextareaPlaceholder                     > Text for the placeholder
+ * @param {function} cozenTextareaOnEnter                         > Callback function called when enter is pressed and the textarea is focused
+ * @param {function} cozenTextareaOnCapsEnter                     > Callback function called when enter and maj is pressed and the textarea is focused
  *
  * [Attributes params]
  * @param {number}  cozenTextareaId                                           > Id of the textarea
@@ -63,10 +65,11 @@
         'rfc4122',
         '$interval',
         'cozenEnhancedLogs',
-        '$rootScope'
+        '$rootScope',
+        'CozenShortcuts'
     ];
 
-    function cozenTextarea(CozenThemes, CONFIG, rfc4122, $interval, cozenEnhancedLogs, $rootScope) {
+    function cozenTextarea(CozenThemes, CONFIG, rfc4122, $interval, cozenEnhancedLogs, $rootScope, CozenShortcuts) {
         return {
             link            : link,
             restrict        : 'E',
@@ -77,7 +80,9 @@
                 cozenTextareaDisabled       : '=?',
                 cozenTextareaOnChange       : '&',
                 cozenTextareaTooltipMaxWidth: '=?',
-                cozenTextareaPlaceholder    : '=?'
+                cozenTextareaPlaceholder    : '=?',
+                cozenTextareaOnEnter        : '&',
+                cozenTextareaOnCapsEnter    : '&'
             },
             templateUrl     : 'directives/textarea/textarea.template.html',
             bindToController: true,
@@ -94,7 +99,8 @@
                 onChange         : onChange,
                 getDesignClass   : getDesignClass,
                 getForm          : getForm,
-                updateModelLength: updateModelLength
+                updateModelLength: updateModelLength,
+                onKeyDown        : onKeyDown
             };
 
             var data = {
@@ -112,7 +118,8 @@
                 // Public functions
                 scope._methods = {
                     getMainClass: getMainClass,
-                    onChange    : onChange
+                    onChange    : onChange,
+                    onKeyDown   : onKeyDown
                 };
 
                 // Checking required stuff
@@ -363,6 +370,37 @@
                 }
                 else {
                     scope._cozenTextareaModelLength = scope._cozenTextareaMaxLength - scope.vm.cozenTextareaModel.length;
+                }
+            }
+
+            function onKeyDown($event) {
+                switch ($event.keyCode) {
+
+                    // Enter
+                    case 13:
+                        if (CozenShortcuts.shift) {
+                            if (Methods.isFunction(scope.vm.cozenTextareaOnCapsEnter)) {
+                                scope.vm.cozenTextareaOnCapsEnter({
+                                    name: scope._cozenTextareaName
+                                });
+                            }
+                            scope.$emit('cozenTextareaOnCapsEnter', {
+                                name: scope._cozenTextareaName
+                            });
+                            cozenEnhancedLogs.info.broadcastEvent(data.directive, 'cozenTextareaOnCapsEnter');
+                        }
+                        else {
+                            if (Methods.isFunction(scope.vm.cozenTextareaOnEnter)) {
+                                scope.vm.cozenTextareaOnEnter({
+                                    name: scope._cozenTextareaName
+                                });
+                            }
+                            scope.$emit('cozenTextareaOnEnter', {
+                                name: scope._cozenTextareaName
+                            });
+                            cozenEnhancedLogs.info.broadcastEvent(data.directive, 'cozenTextareaOnEnter');
+                        }
+                        break;
                 }
             }
         }

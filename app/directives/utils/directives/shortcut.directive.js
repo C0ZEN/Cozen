@@ -14,7 +14,7 @@
 
     angular
         .module('cozenLib')
-        .value('Shortcuts', {
+        .value('CozenShortcuts', {
             shift: false,
             ctrl : false,
             alt  : false
@@ -23,10 +23,11 @@
 
     cozenShortcut.$inject = [
         '$window',
-        'Shortcuts'
+        'CozenShortcuts',
+        'CONFIG'
     ];
 
-    function cozenShortcut($window, Shortcuts) {
+    function cozenShortcut($window, CozenShortcuts, CONFIG) {
         return {
             link      : link,
             restrict  : 'A',
@@ -66,20 +67,26 @@
 
                         // Shift
                         case 16:
-                            Shortcuts.shift = newValue;
-                            methods.shortcutsLog();
+                            if (CONFIG.logs.enabled && CozenShortcuts.shift != newValue) {
+                                CozenShortcuts.shift = newValue;
+                                methods.shortcutsLog();
+                            }
                             break;
 
                         // Ctrl
                         case 17:
-                            Shortcuts.ctrl = newValue;
-                            methods.shortcutsLog();
+                            if (CONFIG.logs.enabled && CozenShortcuts.ctrl != newValue) {
+                                CozenShortcuts.ctrl = newValue;
+                                methods.shortcutsLog();
+                            }
                             break;
 
                         // Alt
                         case 18:
-                            Shortcuts.alt = newValue;
-                            methods.shortcutsLog();
+                            if (CONFIG.logs.enabled && CozenShortcuts.alt != newValue) {
+                                CozenShortcuts.alt = newValue;
+                                methods.shortcutsLog();
+                            }
                             break;
                     }
                 });
@@ -87,11 +94,9 @@
 
             function shortcutsLog() {
                 var log = '';
-                Object.keys(Shortcuts).forEach(function (key) {
-                    log += '%c[%c' + Methods.capitalizeFirstLetter(key) + ' %c' + Shortcuts[key] + '%c]';
+                Object.keys(CozenShortcuts).forEach(function (key) {
+                    log += '%c[%c' + Methods.capitalizeFirstLetter(key) + ' %c' + CozenShortcuts[key] + '%c]';
                 });
-
-                // @todo: Injection automatique en fonction du nombre de clés
                 console.log(log,
                     Methods.getConsoleColor(),
                     Methods.getConsoleColor('directive'),
