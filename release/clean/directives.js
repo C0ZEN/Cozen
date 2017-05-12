@@ -11181,22 +11181,26 @@ function getRandomBoolean() {
                         if (CozenShortcuts.shift) {
                             if (Methods.isFunction(scope.vm.cozenTextareaOnCapsEnter)) {
                                 scope.vm.cozenTextareaOnCapsEnter({
-                                    name: scope._cozenTextareaName
+                                    name : scope._cozenTextareaName,
+                                    model: scope.vm.cozenTextareaModel
                                 });
                             }
                             scope.$emit('cozenTextareaOnCapsEnter', {
-                                name: scope._cozenTextareaName
+                                name : scope._cozenTextareaName,
+                                model: scope.vm.cozenTextareaModel
                             });
                             cozenEnhancedLogs.info.broadcastEvent(data.directive, 'cozenTextareaOnCapsEnter');
                         }
                         else {
                             if (Methods.isFunction(scope.vm.cozenTextareaOnEnter)) {
                                 scope.vm.cozenTextareaOnEnter({
-                                    name: scope._cozenTextareaName
+                                    name : scope._cozenTextareaName,
+                                    model: scope.vm.cozenTextareaModel
                                 });
                             }
                             scope.$emit('cozenTextareaOnEnter', {
-                                name: scope._cozenTextareaName
+                                name : scope._cozenTextareaName,
+                                model: scope.vm.cozenTextareaModel
                             });
                             cozenEnhancedLogs.info.broadcastEvent(data.directive, 'cozenTextareaOnEnter');
                         }
