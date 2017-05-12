@@ -11077,28 +11077,31 @@ function getRandomBoolean() {
                     var textarea  = methods.getForm();
                     textarea      = textarea[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel];
                     if (!Methods.isNullOrEmpty(textarea)) {
-                        textarea = textarea[scope._cozenTextareaForm][scope._cozenTextareaName];
+                        textarea = textarea[scope._cozenTextareaForm];
                         if (!Methods.isNullOrEmpty(textarea)) {
-                            if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
-                                switch (scope._cozenTextareaValidator) {
-                                    case 'touched':
-                                        if (textarea.$touched) {
+                            textarea = textarea[scope._cozenTextareaName];
+                            if (!Methods.isNullOrEmpty(textarea)) {
+                                if (scope._cozenTextareaValidatorEmpty || (!scope._cozenTextareaValidatorEmpty && !Methods.isNullOrEmpty(scope.vm.cozenTextareaModel))) {
+                                    switch (scope._cozenTextareaValidator) {
+                                        case 'touched':
+                                            if (textarea.$touched) {
+                                                classList.push(methods.getDesignClass(textarea));
+                                            }
+                                            break;
+                                        case 'dirty':
+                                            if (textarea.$dirty) {
+                                                classList.push(methods.getDesignClass(textarea));
+                                            }
+                                            break;
+                                        case 'all':
                                             classList.push(methods.getDesignClass(textarea));
-                                        }
-                                        break;
-                                    case 'dirty':
-                                        if (textarea.$dirty) {
-                                            classList.push(methods.getDesignClass(textarea));
-                                        }
-                                        break;
-                                    case 'all':
-                                        classList.push(methods.getDesignClass(textarea));
-                                        break;
+                                            break;
+                                    }
                                 }
                             }
-                        }
-                        if (scope.vm.cozenTextareaDisabled) {
-                            classList.push('disabled');
+                            if (scope.vm.cozenTextareaDisabled) {
+                                classList.push('disabled');
+                            }
                         }
                     }
                     return classList;
