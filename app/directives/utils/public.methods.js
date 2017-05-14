@@ -3,6 +3,7 @@
 var Methods = {
     isInList                  : isInList,
     isNullOrEmpty             : isNullOrEmpty,
+    isNullOrEmptyStrict       : isNullOrEmptyStrict,
     safeApply                 : safeApply,
     isFunction                : isFunction,
     getConsoleColor           : getConsoleColor,
@@ -38,6 +39,11 @@ function isInList(list, value) {
 // Check if a value is null, empty or undefined
 function isNullOrEmpty(element) {
     return element == null || element == '' || element == 'undefined';
+}
+
+// Check if a value is null, empty or undefined
+function isNullOrEmptyStrict(element) {
+    return element === null || element === '' || element === 'undefined';
 }
 
 // Force a digest in angular app safely
