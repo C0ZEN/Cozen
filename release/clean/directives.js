@@ -6764,7 +6764,12 @@
             }
 
             function updateModelLength() {
-                scope._cozenInputModelLength = scope._cozenInputMaxLength - scope.vm.cozenInputModel.length;
+                if (Methods.isNullOrEmpty(scope.vm.cozenInputModel)) {
+                    scope._cozenInputModelLength = 0;
+                }
+                else {
+                    scope._cozenInputModelLength = scope._cozenInputMaxLength - scope.vm.cozenInputModel.length;
+                }
             }
         }
     }
