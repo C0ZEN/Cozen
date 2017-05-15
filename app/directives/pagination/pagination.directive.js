@@ -236,10 +236,12 @@
                         scope.cozenPaginationModel = page;
                         break;
                 }
-                if (oldModel != scope.cozenPaginationModel && Methods.isFunction(scope.cozenPaginationOnChange)) {
-                    scope.cozenPaginationOnChange();
+                if (oldModel != scope.cozenPaginationModel) {
+                    cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
+                    if (Methods.isFunction(scope.cozenPaginationOnChange)) {
+                        scope.cozenPaginationOnChange();
+                    }
                 }
-                cozenEnhancedLogs.info.functionCalled(data.directive, 'onClick' + Methods.capitalizeFirstLetter(type) + page);
             }
 
             function getPages() {
