@@ -8,16 +8,12 @@
 
     angular
         .module('cozenLib')
-        .factory('cozenAnchorSmoothScroll', cozenAnchorSmoothScroll);
+        .service('cozenAnchorSmoothScroll', cozenAnchorSmoothScroll);
 
     cozenAnchorSmoothScroll.$inject = [];
 
     function cozenAnchorSmoothScroll() {
-        return {
-            scrollTo: scrollTo
-        };
-
-        function scrollTo(eID) {
+        this.scrollTo = function (eID) {
             var startY   = currentYPosition();
             var stopY    = elmYPosition(eID);
             var distance = stopY > startY ? stopY - startY : startY - stopY;
