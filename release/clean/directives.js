@@ -111,7 +111,7 @@
                 firstHide        : true,
                 firstDisplayWatch: true,
                 timeout          : null,
-                timeSpent        : null,
+                timeSpentInterval: null,
                 displayWatcher   : null
             };
 
@@ -292,7 +292,7 @@
                     cozenEnhancedLogs.info.functionCalled(data.directive, 'OnHide');
 
                     // Stop the $interval
-                    $interval.cancel(data.timeSpent);
+                    $interval.cancel(data.timeSpentInterval);
 
                     // @todo instead of added a fix value (corresponding to animation-duration-out) we could:
                     // - Add a parameter (attr + config) to set the time
@@ -330,10 +330,23 @@
 
                         // Timeout bar (calc the width progress in percentage)
                         if (scope._cozenAlertTimeoutBar) {
+
+                            // Let's start with 0%
                             scope._cozenAlertTimeoutPct = 0;
-                            data.timeSpent              = $interval(function () {
-                                scope._cozenAlertTimeoutPct += 10 * 100 / scope._cozenAlertTimeout;
+                            data.oldTimeSpent           = moment().valueOf();
+
+                            // Then start incrementing
+                            data.timeSpentInterval = $interval(function () {
+
+                                // Play with the timestamp to get real milliseconds
+                                data.newTimeSpent = moment().valueOf();
+                                scope._cozenAlertTimeoutPct += (data.newTimeSpent - data.oldTimeSpent) * 100 / scope._cozenAlertTimeout;
+                                data.oldTimeSpent = data.newTimeSpent;
+
+                                // 100% pct or more, it's over
                                 if (scope._cozenAlertTimeoutPct >= 100) {
+
+                                    // Fit it at 100% to avoid visual bug
                                     scope._cozenAlertTimeoutPct = 100;
 
                                     // If the popup is still visible, hide it
@@ -343,7 +356,9 @@
                                             uuid: scope._cozenAlertId
                                         });
                                     }
-                                    $interval.cancel(data.timeSpent);
+
+                                    // And stop the interval
+                                    $interval.cancel(data.timeSpentInterval);
                                 }
                             }, 10);
                         }
