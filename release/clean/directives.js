@@ -360,7 +360,7 @@
                                     // And stop the interval
                                     $interval.cancel(data.timeSpentInterval);
                                 }
-                            }, 10);
+                            }, 5);
                         }
                         else {
 
