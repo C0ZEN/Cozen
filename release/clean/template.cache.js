@@ -2,7 +2,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('directives/alert/alert.template.html',
-    "<div ng-show=cozenAlertDisplay class=cozen-alert ng-class=_methods.getMainClass(); id=\"{{ _cozenAlertId }}\"><div ng-if=\"_cozenAlertIconLeft != ''\" class=\"cozen-alert-icon left\"><i class=\"{{ _cozenAlertIconLeft }}\"></i></div><span class=cozen-alert-label ng-bind-html=\"cozenAlertLabel | translate:cozenAlertLabelValues\" ng-style=\"{'text-align': _cozenAlertTextAlign}\"></span><div ng-if=_cozenAlertCloseBtn class=\"cozen-alert-icon right\" ng-click=_methods.onClose($event)><cozen-tooltip cozen-tooltip-label=\"'alert_close_btn_tooltip'\" cozen-tooltip-disabled=!_cozenAlertCloseBtnTooltip><i class=\"fa fa-times\"></i></cozen-tooltip></div><div ng-if=_cozenAlertHasTimeout class=cozen-alert-timeout-bar ng-style=\"{width: _cozenAlertTimeoutPct + '%'}\"></div></div>"
+    "<div ng-show=cozenAlertDisplay class=cozen-alert ng-class=_methods.getMainClass(); id=\"{{ _cozenAlertId }}\"><div ng-if=\"_cozenAlertIconLeft != ''\" class=\"cozen-alert-icon left\"><i class=\"{{ _cozenAlertIconLeft }}\"></i></div><span class=cozen-alert-label cozen-compile=\"cozenAlertLabel | translate:cozenAlertLabelValues\" ng-style=\"{'text-align': _cozenAlertTextAlign}\"></span><div ng-if=_cozenAlertCloseBtn class=\"cozen-alert-icon right\" ng-click=_methods.onClose($event)><cozen-tooltip cozen-tooltip-label=\"'alert_close_btn_tooltip'\" cozen-tooltip-disabled=!_cozenAlertCloseBtnTooltip><i class=\"fa fa-times\"></i></cozen-tooltip></div><div ng-if=_cozenAlertHasTimeout class=cozen-alert-timeout-bar ng-style=\"{width: _cozenAlertTimeoutPct + '%'}\"></div></div>"
   );
 
 
