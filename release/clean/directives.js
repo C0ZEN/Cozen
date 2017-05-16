@@ -727,7 +727,10 @@
                     }).progress(function (e) {
                         scope._uploadingText = Math.round((e.loaded * 100.0) / e.total) + '%';
                     }).success(function (data, status, headers, config) {
-                        file.name                 = file.$ngfName;
+                        try {
+                            file.name = file.$ngfName || data.original_filename;
+                        } catch (e) {
+                        }
                         file.width                = data.width;
                         file.height               = data.height;
                         file.format               = data.format;
