@@ -53,7 +53,7 @@
             };
 
             function upload(file, scope, commonData) {
-                scope._hasUploadError = false;
+                scope.cozenBtnHasUploadError = false;
                 if (Methods.isNullOrEmpty(file)) {
                     return;
                 }
@@ -87,9 +87,9 @@
                             }
                         }
                     }).error(function (data, status, headers, config) {
-                        file.result             = data;
-                        scope._hasUploadError   = true;
-                        scope._uploadErrorLabel = 'btn_upload_error_occurred';
+                        file.result                  = data;
+                        scope.cozenBtnHasUploadError = true;
+                        scope._uploadErrorLabel      = 'btn_upload_error_occurred';
 
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {

@@ -16,6 +16,7 @@
  * @param {object}   cozenBtnUploadModel          > Model (ng-model) which contain the uploaded image
  * @param {string}   cozenBtnLabel                > Text of the button
  * @param {boolean}  cozenBtnIsUploading          > Override variable to know if the btn is uploading (read-only)
+ * @param {boolean}  cozenBtnHasUploadError       > Override variable to know if the btn has an upload error (read-only)
  *
  * [Attributes params]
  * @param {number}  cozenBtnId                                     > Id of the button
@@ -74,14 +75,15 @@
             replace    : false,
             transclude : false,
             scope      : {
-                cozenBtnOnClick     : '&',
-                cozenBtnActive      : '=?',
-                cozenBtnDisabled    : '=?',
-                cozenBtnLoader      : '=?',
-                cozenBtnUploadConfig: '=?',
-                cozenBtnUploadModel : '=?',
-                cozenBtnLabel       : '=?',
-                cozenBtnIsUploading : '=?'
+                cozenBtnOnClick       : '&',
+                cozenBtnActive        : '=?',
+                cozenBtnDisabled      : '=?',
+                cozenBtnLoader        : '=?',
+                cozenBtnUploadConfig  : '=?',
+                cozenBtnUploadModel   : '=?',
+                cozenBtnLabel         : '=?',
+                cozenBtnIsUploading   : '=?',
+                cozenBtnHasUploadError: '=?'
             },
             templateUrl: 'directives/btn/btn.template.html'
         };
@@ -235,9 +237,9 @@
                     };
                     scope.cozenBtnUploadConfig = angular.merge({}, data.defaultUploadConfig, scope.cozenBtnUploadConfig);
                 }
-                scope._hasUploadError     = false;
-                scope.cozenBtnIsUploading = false;
-                scope._uploadingText      = '0%';
+                scope.cozenBtnHasUploadError = false;
+                scope.cozenBtnIsUploading    = false;
+                scope._uploadingText         = '0%';
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
@@ -365,7 +367,7 @@
 
                     // Error file
                     if (!Methods.isNullOrEmpty($newFiles[0].$error)) {
-                        scope._hasUploadError = true;
+                        scope.cozenBtnHasUploadError = true;
                         switch ($newFiles[0].$error) {
                             case 'maxWidth':
                                 scope._uploadErrorLabel  = 'btn_upload_error_maxWidth';
