@@ -808,7 +808,8 @@
  * @param {string}  cozenBtnUpperLabel                             > Add a label on the top of the btn
  * @param {string}  cozenBtnRequiredTooltip = btn_required_tooltip > Text to display for the tooltip of the required element
  * @param {boolean} cozenBtnUploadRequired  = false                > Required upload model
- * @param {boolean} cozenBtnPreviewIcon     = fa fa-fw fa-eye      > Preview icon on the right
+ * @param {string}  cozenBtnPreviewIcon     = fa fa-fw fa-eye      > Preview icon on the right
+ * @param {boolean} cozenBtnPreview         = true                 > Enable or disable the preview
  * @param {boolean} cozenBtnUploadInfoIcon  = true                 > Display an info icon to show the upload requirements
  *
  */
@@ -970,6 +971,7 @@
                 scope._cozenBtnUploadRequired  = angular.isDefined(attrs.cozenBtnUploadRequired) ? JSON.parse(attrs.cozenBtnUploadRequired) : false;
                 scope._cozenBtnPreviewIcon     = angular.isDefined(attrs.cozenBtnPreviewIcon) ? attrs.cozenBtnPreviewIcon : 'fa fa-fw fa-eye';
                 scope._cozenBtnUploadInfoIcon  = angular.isDefined(attrs.cozenBtnUploadInfoIcon) ? JSON.parse(attrs.cozenBtnUploadInfoIcon) : true;
+                scope._cozenBtnPreview         = angular.isDefined(attrs.cozenBtnPreview) ? JSON.parse(attrs.cozenBtnPreview) : true;
 
                 // Upload config
                 if (scope._cozenBtnIsUpload) {
