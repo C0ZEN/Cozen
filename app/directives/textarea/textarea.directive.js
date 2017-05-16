@@ -205,6 +205,7 @@
                 // When the user use the lazy load data generator from a preBuild service, set dirty and touched
                 scope.$on('cozenLazyLoadDataGenerated', function ($event, data) {
                     if (scope._cozenTextareaForm == data.cozenFormName) {
+                        var form     = methods.getForm();
                         var textarea = form[scope._cozenTextareaFormCtrl][scope._cozenTextareaFormModel][scope._cozenTextareaForm];
                         if (!Methods.isNullOrEmpty(textarea)) {
                             textarea = textarea[scope._cozenTextareaName];
