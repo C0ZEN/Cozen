@@ -77,16 +77,16 @@
             replace    : false,
             transclude : false,
             scope      : {
-                cozenBtnOnClick       : '&',
-                cozenBtnActive        : '=?',
-                cozenBtnDisabled      : '=?',
-                cozenBtnLoader        : '=?',
-                cozenBtnUploadConfig  : '=?',
-                cozenBtnUploadModel   : '=?',
-                cozenBtnLabel         : '=?',
-                cozenBtnIsUploading   : '=?',
-                cozenBtnHasUploadError: '=?',
-                cozenBtnOnUpload      : '&'
+                cozenBtnOnClick        : '&',
+                cozenBtnActive         : '=?',
+                cozenBtnDisabled       : '=?',
+                cozenBtnLoader         : '=?',
+                cozenBtnUploadConfig   : '=?',
+                cozenBtnUploadModel    : '=?',
+                cozenBtnLabel          : '=?',
+                cozenBtnIsUploading    : '=?',
+                cozenBtnHasUploadError : '=?',
+                cozenBtnOnUploadSuccess: '&'
             },
             templateUrl: 'directives/btn/btn.template.html'
         };

@@ -733,7 +733,7 @@
                         file.format               = data.format;
                         file.url                  = data.url;
                         scope.cozenBtnIsUploading = false;
-                        cozenEnhancedLogs.info.functionCalled(data.directive, 'upload');
+                        cozenEnhancedLogs.info.functionCalled('cozenBtn', 'upload');
 
                         // Update form validity
                         if (scope._cozenBtnUploadRequired) {
@@ -745,7 +745,7 @@
 
                         // Callback function
                         if (Methods.isFunction(scope.cozenBtnOnUploadSuccess)) {
-                            cozenEnhancedLogs.info.functionCalled(data.directive, 'cozenBtnOnUpload');
+                            cozenEnhancedLogs.info.functionCalled('cozenBtn', 'cozenBtnOnUpload');
                             scope.cozenBtnOnUploadSuccess({
                                 model: scope.cozenBtnUploadModel
                             });
@@ -849,16 +849,16 @@
             replace    : false,
             transclude : false,
             scope      : {
-                cozenBtnOnClick       : '&',
-                cozenBtnActive        : '=?',
-                cozenBtnDisabled      : '=?',
-                cozenBtnLoader        : '=?',
-                cozenBtnUploadConfig  : '=?',
-                cozenBtnUploadModel   : '=?',
-                cozenBtnLabel         : '=?',
-                cozenBtnIsUploading   : '=?',
-                cozenBtnHasUploadError: '=?',
-                cozenBtnOnUpload      : '&'
+                cozenBtnOnClick        : '&',
+                cozenBtnActive         : '=?',
+                cozenBtnDisabled       : '=?',
+                cozenBtnLoader         : '=?',
+                cozenBtnUploadConfig   : '=?',
+                cozenBtnUploadModel    : '=?',
+                cozenBtnLabel          : '=?',
+                cozenBtnIsUploading    : '=?',
+                cozenBtnHasUploadError : '=?',
+                cozenBtnOnUploadSuccess: '&'
             },
             templateUrl: 'directives/btn/btn.template.html'
         };
