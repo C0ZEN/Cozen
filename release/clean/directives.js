@@ -744,9 +744,9 @@
                         }
 
                         // Callback function
-                        if (Methods.isFunction(scope.cozenBtnOnUpload)) {
+                        if (Methods.isFunction(scope.cozenBtnOnUploadSuccess)) {
                             cozenEnhancedLogs.info.functionCalled(data.directive, 'cozenBtnOnUpload');
-                            scope.cozenBtnOnUpload({
+                            scope.cozenBtnOnUploadSuccess({
                                 model: scope.cozenBtnUploadModel
                             });
                         }
@@ -789,7 +789,7 @@
  * @param {string}   cozenBtnLabel                > Text of the button
  * @param {boolean}  cozenBtnIsUploading          > Override variable to know if the btn is uploading (read-only)
  * @param {boolean}  cozenBtnHasUploadError       > Override variable to know if the btn has an upload error (read-only)
- * @param {function} cozenBtnOnUpload             > Callback function called on upload success (return: {model})
+ * @param {function} cozenBtnOnUploadSuccess      > Callback function called on upload success (return: {model})
  *
  * [Attributes params]
  * @param {number}  cozenBtnId                                     > Id of the button

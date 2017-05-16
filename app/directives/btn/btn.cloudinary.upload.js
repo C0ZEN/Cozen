@@ -88,9 +88,9 @@
                         }
 
                         // Callback function
-                        if (Methods.isFunction(scope.cozenBtnOnUpload)) {
+                        if (Methods.isFunction(scope.cozenBtnOnUploadSuccess)) {
                             cozenEnhancedLogs.info.functionCalled(data.directive, 'cozenBtnOnUpload');
-                            scope.cozenBtnOnUpload({
+                            scope.cozenBtnOnUploadSuccess({
                                 model: scope.cozenBtnUploadModel
                             });
                         }
