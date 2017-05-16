@@ -31,5 +31,22 @@
                 <pre>{{ vm.uploadImage3 | json }}</pre>
             </div>
         </cozen-form>
+        <cozen-form cozen-form-name="upload3"
+                    cozen-form-ctrl="vm"
+                    cozen-form-model="form">
+            <div class="col-xs-12">
+                <cozen-btn cozen-btn-label="'Un btn disabled'"
+                           cozen-btn-upload-model="vm.uploadImage5"
+                           cozen-btn-disabled="true">
+                </cozen-btn>
+                <cozen-btn cozen-btn-label="'Un btn upload disabled'"
+                           cozen-btn-upload-model="vm.uploadImage4"
+                           cozen-btn-upper-label="zsfzefzefz"
+                           cozen-btn-upload-required="true"
+                           cozen-btn-is-upload="true"
+                           cozen-btn-disabled="true">
+                </cozen-btn>
+            </div>
+        </cozen-form>
     </div>
 </div>

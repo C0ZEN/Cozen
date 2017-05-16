@@ -87,6 +87,12 @@
 /********************/
 /*   UPLOAD HOVER   */
 /********************/
+/***********************/
+/*   UPLOAD DISABLED   */
+/***********************/
+/*****************************/
+/*   UPLOAD HOVER DISABLED   */
+/*****************************/
 /************************/
 /*   DRAG OVER ACCEPT   */
 /************************/
@@ -3009,6 +3015,18 @@ div.cozen-btn.atom.default.upload div.cozen-btn-content.active {
   border: 1px dashed #2C9FDD;
   color: #2C9FDD;
   background: #FFFFFF;
+}
+div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content {
+  border: 1px solid #D6DBDB;
+  color: #FFFFFF;
+  background: #D6DBDB;
+}
+div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content:hover,
+div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content:focus,
+div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content.active {
+  border: 1px dashed #D6DBDB;
+  color: #FFFFFF;
+  background: #D6DBDB;
 }
 div.cozen-btn.atom.default.upload div.cozen-btn-content.drop-accept {
   border: 1px dashed #7CB342;
@@ -10937,6 +10955,12 @@ div.cozen-btn-lazy-test.atom:focus {
 /********************/
 /*   UPLOAD HOVER   */
 /********************/
+/***********************/
+/*   UPLOAD DISABLED   */
+/***********************/
+/*****************************/
+/*   UPLOAD HOVER DISABLED   */
+/*****************************/
 /************************/
 /*   DRAG OVER ACCEPT   */
 /************************/
