@@ -713,7 +713,7 @@
                 if (Methods.isNullOrEmpty(file)) {
                     return;
                 }
-                scope._isUploading = true;
+                scope.cozenBtnIsUploading = true;
 
                 if (file && !file.$error) {
 
@@ -727,12 +727,12 @@
                     }).progress(function (e) {
                         scope._uploadingText = Math.round((e.loaded * 100.0) / e.total) + '%';
                     }).success(function (data, status, headers, config) {
-                        file.name          = file.$ngfName;
-                        file.width         = data.width;
-                        file.height        = data.height;
-                        file.format        = data.format;
-                        file.url           = data.url;
-                        scope._isUploading = false;
+                        file.name                 = file.$ngfName;
+                        file.width                = data.width;
+                        file.height               = data.height;
+                        file.format               = data.format;
+                        file.url                  = data.url;
+                        scope.cozenBtnIsUploading = false;
                         cozenEnhancedLogs.info.functionCalled(data.directive, 'upload');
 
                         // Update form validity
@@ -779,6 +779,7 @@
  * @param {object}   cozenBtnUploadConfig         > Config of the upload (see ng-file-upload doc)
  * @param {object}   cozenBtnUploadModel          > Model (ng-model) which contain the uploaded image
  * @param {string}   cozenBtnLabel                > Text of the button
+ * @param {boolean}  cozenBtnIsUploading          > Override variable to know if the btn is uploading (read-only)
  *
  * [Attributes params]
  * @param {number}  cozenBtnId                                     > Id of the button
@@ -843,7 +844,8 @@
                 cozenBtnLoader      : '=?',
                 cozenBtnUploadConfig: '=?',
                 cozenBtnUploadModel : '=?',
-                cozenBtnLabel       : '=?'
+                cozenBtnLabel       : '=?',
+                cozenBtnIsUploading : '=?'
             },
             templateUrl: 'directives/btn/btn.template.html'
         };
@@ -997,9 +999,9 @@
                     };
                     scope.cozenBtnUploadConfig = angular.merge({}, data.defaultUploadConfig, scope.cozenBtnUploadConfig);
                 }
-                scope._hasUploadError = false;
-                scope._isUploading    = false;
-                scope._uploadingText  = '0%';
+                scope._hasUploadError     = false;
+                scope.cozenBtnIsUploading = false;
+                scope._uploadingText      = '0%';
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {

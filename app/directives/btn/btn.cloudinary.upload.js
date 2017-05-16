@@ -57,7 +57,7 @@
                 if (Methods.isNullOrEmpty(file)) {
                     return;
                 }
-                scope._isUploading = true;
+                scope.cozenBtnIsUploading = true;
 
                 if (file && !file.$error) {
 
@@ -71,12 +71,12 @@
                     }).progress(function (e) {
                         scope._uploadingText = Math.round((e.loaded * 100.0) / e.total) + '%';
                     }).success(function (data, status, headers, config) {
-                        file.name          = file.$ngfName;
-                        file.width         = data.width;
-                        file.height        = data.height;
-                        file.format        = data.format;
-                        file.url           = data.url;
-                        scope._isUploading = false;
+                        file.name                 = file.$ngfName;
+                        file.width                = data.width;
+                        file.height               = data.height;
+                        file.format               = data.format;
+                        file.url                  = data.url;
+                        scope.cozenBtnIsUploading = false;
                         cozenEnhancedLogs.info.functionCalled(data.directive, 'upload');
 
                         // Update form validity

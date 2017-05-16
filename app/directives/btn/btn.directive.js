@@ -15,6 +15,7 @@
  * @param {object}   cozenBtnUploadConfig         > Config of the upload (see ng-file-upload doc)
  * @param {object}   cozenBtnUploadModel          > Model (ng-model) which contain the uploaded image
  * @param {string}   cozenBtnLabel                > Text of the button
+ * @param {boolean}  cozenBtnIsUploading          > Override variable to know if the btn is uploading (read-only)
  *
  * [Attributes params]
  * @param {number}  cozenBtnId                                     > Id of the button
@@ -79,7 +80,8 @@
                 cozenBtnLoader      : '=?',
                 cozenBtnUploadConfig: '=?',
                 cozenBtnUploadModel : '=?',
-                cozenBtnLabel       : '=?'
+                cozenBtnLabel       : '=?',
+                cozenBtnIsUploading : '=?'
             },
             templateUrl: 'directives/btn/btn.template.html'
         };
@@ -233,9 +235,9 @@
                     };
                     scope.cozenBtnUploadConfig = angular.merge({}, data.defaultUploadConfig, scope.cozenBtnUploadConfig);
                 }
-                scope._hasUploadError = false;
-                scope._isUploading    = false;
-                scope._uploadingText  = '0%';
+                scope._hasUploadError     = false;
+                scope.cozenBtnIsUploading = false;
+                scope._uploadingText      = '0%';
 
                 // When the form is ready, get the required intels
                 scope.$on('cozenFormName', function (event, eventData) {
