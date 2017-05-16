@@ -814,6 +814,7 @@
  * @param {boolean} cozenBtnPreview         = true                 > Enable or disable the preview
  * @param {boolean} cozenBtnUploadInfoIcon  = true                 > Display an info icon to show the upload requirements
  * @param {boolean} cozenBtnUploadProgress  = true                 > Display or hide the progress percentage
+ * @param {boolean} cozenBtnUploadAlert     = true                 > Display or hide the alerts
  *
  */
 (function (angular, document) {
@@ -978,6 +979,7 @@
                 scope._cozenBtnUploadInfoIcon  = angular.isDefined(attrs.cozenBtnUploadInfoIcon) ? JSON.parse(attrs.cozenBtnUploadInfoIcon) : true;
                 scope._cozenBtnPreview         = angular.isDefined(attrs.cozenBtnPreview) ? JSON.parse(attrs.cozenBtnPreview) : true;
                 scope._cozenBtnUploadProgress  = angular.isDefined(attrs.cozenBtnUploadProgress) ? JSON.parse(attrs.cozenBtnUploadProgress) : true;
+                scope._cozenBtnUploadAlert     = angular.isDefined(attrs.cozenBtnUploadAlert) ? JSON.parse(attrs.cozenBtnUploadAlert) : true;
 
                 // Upload config
                 if (scope._cozenBtnIsUpload) {
