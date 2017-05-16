@@ -86,6 +86,14 @@
                                 btn.$setValidity('isUploadSet', true);
                             }
                         }
+
+                        // Callback function
+                        if (Methods.isFunction(scope.cozenBtnOnUpload)) {
+                            cozenEnhancedLogs.info.functionCalled(data.directive, 'cozenBtnOnUpload');
+                            scope.cozenBtnOnUpload({
+                                model: scope.cozenBtnUploadModel
+                            });
+                        }
                     }).error(function (data, status, headers, config) {
                         file.result                  = data;
                         scope.cozenBtnHasUploadError = true;

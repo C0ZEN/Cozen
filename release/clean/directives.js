@@ -742,6 +742,14 @@
                                 btn.$setValidity('isUploadSet', true);
                             }
                         }
+
+                        // Callback function
+                        if (Methods.isFunction(scope.cozenBtnOnUpload)) {
+                            cozenEnhancedLogs.info.functionCalled(data.directive, 'cozenBtnOnUpload');
+                            scope.cozenBtnOnUpload({
+                                model: scope.cozenBtnUploadModel
+                            });
+                        }
                     }).error(function (data, status, headers, config) {
                         file.result                  = data;
                         scope.cozenBtnHasUploadError = true;
@@ -781,6 +789,7 @@
  * @param {string}   cozenBtnLabel                > Text of the button
  * @param {boolean}  cozenBtnIsUploading          > Override variable to know if the btn is uploading (read-only)
  * @param {boolean}  cozenBtnHasUploadError       > Override variable to know if the btn has an upload error (read-only)
+ * @param {function} cozenBtnOnUpload             > Callback function called on upload success (return: {model})
  *
  * [Attributes params]
  * @param {number}  cozenBtnId                                     > Id of the button
@@ -848,7 +857,8 @@
                 cozenBtnUploadModel   : '=?',
                 cozenBtnLabel         : '=?',
                 cozenBtnIsUploading   : '=?',
-                cozenBtnHasUploadError: '=?'
+                cozenBtnHasUploadError: '=?',
+                cozenBtnOnUpload      : '&'
             },
             templateUrl: 'directives/btn/btn.template.html'
         };
