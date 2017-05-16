@@ -43,7 +43,10 @@
             }
         }
 
-        function sendBroadcastBtnClick(cozenBtnId) {
+        function sendBroadcastBtnClick(cozenBtnId, cozenFormName) {
+            if (!Methods.isNullOrEmpty(cozenFormName)) {
+                sendBroadcastForm(cozenFormName);
+            }
             if (!Methods.isNullOrEmpty(cozenBtnId)) {
                 cozenEnhancedLogs.info.broadcastEvent('sendBroadcastBtnClick', 'cozenBtnFakeClick');
                 $timeout(function () {

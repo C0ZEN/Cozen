@@ -1015,7 +1015,7 @@
                 // Watch for a broadcast event to simulate a fake click
                 $rootScope.$on('cozenBtnFakeClick', function ($event, data) {
                     if (data.cozenBtnId == scope._cozenBtnId) {
-                        methods.onClick();
+                        methods.onClick($event);
                     }
                 });
 
@@ -7418,7 +7418,10 @@
             }
         }
 
-        function sendBroadcastBtnClick(cozenBtnId) {
+        function sendBroadcastBtnClick(cozenBtnId, cozenFormName) {
+            if (!Methods.isNullOrEmpty(cozenFormName)) {
+                sendBroadcastForm(cozenFormName);
+            }
             if (!Methods.isNullOrEmpty(cozenBtnId)) {
                 cozenEnhancedLogs.info.broadcastEvent('sendBroadcastBtnClick', 'cozenBtnFakeClick');
                 $timeout(function () {

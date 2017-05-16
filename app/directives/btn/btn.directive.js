@@ -251,7 +251,7 @@
                 // Watch for a broadcast event to simulate a fake click
                 $rootScope.$on('cozenBtnFakeClick', function ($event, data) {
                     if (data.cozenBtnId == scope._cozenBtnId) {
-                        methods.onClick();
+                        methods.onClick($event);
                     }
                 });
 
