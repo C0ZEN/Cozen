@@ -95,7 +95,7 @@
                         file.format       = data.format;
                         file.url          = data.url;
                         file.bytesSize    = data.bytes;
-                        file.readableSize = Methods.getHumanFileSize(data.bytes, true);
+                        file.readableSize = Methods.getHumanFileSize(data.bytes, false);
 
                         // Tell that this is finish
                         scope.cozenBtnIsUploading    = false;
