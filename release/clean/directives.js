@@ -735,12 +735,12 @@
 
                         // Avoid to block the process
                         try {
-                            file.name = data.original_filename;
+                            file.originalName = data.original_filename;
                         }
                         catch (e) {
                         }
                         try {
-                            file.fullName = file.$ngfName;
+                            file.fullName = file.$ngfName || file.name;
                         }
                         catch (e) {
                         }
@@ -751,7 +751,7 @@
                         file.format       = data.format;
                         file.url          = data.url;
                         file.bytesSize    = data.bytes;
-                        file.readableSize = Methods.getHumanFileSize(data.bytes, false);
+                        file.readableSize = Methods.getHumanFileSize(data.bytes, true);
 
                         // Tell that this is finish
                         scope.cozenBtnIsUploading    = false;
@@ -10637,10 +10637,10 @@ function getRandomBoolean() {
 function getHumanFileSize(bytes, si) {
     var thresh = si ? 1000 : 1024;
     if (Math.abs(bytes) < thresh) {
-        return bytes + 'B';
+        return bytes + ' B';
     }
     var units = si
-        ? ['kB',
+        ? ['KB',
             'MB',
             'GB',
             'TB',
@@ -10661,7 +10661,7 @@ function getHumanFileSize(bytes, si) {
         bytes /= thresh;
         ++u;
     } while (Math.abs(bytes) >= thresh && u < units.length - 1);
-    return bytes.toFixed(1) + '' + units[u];
+    return bytes.toFixed(1) + ' ' + units[u];
 }
 /**
  * @ngdoc directive

@@ -79,12 +79,12 @@
 
                         // Avoid to block the process
                         try {
-                            file.name = data.original_filename;
+                            file.originalName = data.original_filename;
                         }
                         catch (e) {
                         }
                         try {
-                            file.fullName = file.$ngfName;
+                            file.fullName = file.$ngfName || file.name;
                         }
                         catch (e) {
                         }
@@ -95,7 +95,7 @@
                         file.format       = data.format;
                         file.url          = data.url;
                         file.bytesSize    = data.bytes;
-                        file.readableSize = Methods.getHumanFileSize(data.bytes, false);
+                        file.readableSize = Methods.getHumanFileSize(data.bytes, true);
 
                         // Tell that this is finish
                         scope.cozenBtnIsUploading    = false;
