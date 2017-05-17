@@ -53,7 +53,12 @@
             };
 
             function upload(file, scope, commonData) {
+
+                // Init to default values
                 scope.cozenBtnHasUploadError = false;
+                scope._hasUploadingSomething = false;
+
+                // No file, no upload
                 if (Methods.isNullOrEmpty(file)) {
                     return;
                 }
@@ -75,11 +80,12 @@
                             file.name = file.$ngfName || data.original_filename;
                         } catch (e) {
                         }
-                        file.width                = data.width;
-                        file.height               = data.height;
-                        file.format               = data.format;
-                        file.url                  = data.url;
-                        scope.cozenBtnIsUploading = false;
+                        file.width                   = data.width;
+                        file.height                  = data.height;
+                        file.format                  = data.format;
+                        file.url                     = data.url;
+                        scope.cozenBtnIsUploading    = false;
+                        scope._hasUploadingSomething = true;
                         cozenEnhancedLogs.info.functionCalled('cozenBtn', 'upload');
 
                         // Update form validity

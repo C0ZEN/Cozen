@@ -20,38 +20,40 @@
  * @param {function} cozenBtnOnUploadSuccess      > Callback function called on upload success (return: {model, file})
  *
  * [Attributes params]
- * @param {number}  cozenBtnId                                     > Id of the button
- * @param {string}  cozenBtnSize            = normal               > Size of the button
- * @param {string}  cozenBtnSizeSmall                              > Shortcut for small size
- * @param {string}  cozenBtnSizeNormal                             > Shortcut for normal size
- * @param {string}  cozenBtnSizeLarge                              > Shortcut for large size
- * @param {string}  cozenBtnType            = default              > Type of the button (change the color)
- * @param {string}  cozenBtnTypePrimary                            > Shortcut for primary type
- * @param {string}  cozenBtnTypeTransparent                        > Shortcut for transparent type
- * @param {string}  cozenBtnTypeCold                               > Shortcut for cold type
- * @param {string}  cozenBtnTypePurple                             > Shortcut for purple type
- * @param {string}  cozenBtnTypeGreen                              > Shortcut for green type
- * @param {string}  cozenBtnTypeGoogle                             > Shortcut for google type
- * @param {string}  cozenBtnTypeFacebook                           > Shortcut for facebook type
- * @param {string}  cozenBtnTypeDefault                            > Shortcut for default type
- * @param {string}  cozenBtnTypeInfo                               > Shortcut for info type
- * @param {string}  cozenBtnTypeSuccess                            > Shortcut for success type
- * @param {string}  cozenBtnTypeWarning                            > Shortcut for warning type
- * @param {string}  cozenBtnTypeError                              > Shortcut for error type
- * @param {string}  cozenBtnIconLeft                               > Add an icon the to left (write the class)
- * @param {string}  cozenBtnIconRight                              > Add an icon the to right (write the class)
- * @param {boolean} cozenBtnAutoSizing      = false                > Shortcut to activate the auto sizing (instead of 100% width)
- * @param {string}  cozenBtnClass                                  > Custom class
- * @param {string}  cozenBtnImgLeft                                > URL/path to the left img
- * @param {boolean} cozenBtnIsUpload        = false                > Active the upload mod
- * @param {string}  cozenBtnUpperLabel                             > Add a label on the top of the btn
- * @param {string}  cozenBtnRequiredTooltip = btn_required_tooltip > Text to display for the tooltip of the required element
- * @param {boolean} cozenBtnUploadRequired  = false                > Required upload model
- * @param {string}  cozenBtnPreviewIcon     = fa fa-fw fa-eye      > Preview icon on the right
- * @param {boolean} cozenBtnPreview         = true                 > Enable or disable the preview
- * @param {boolean} cozenBtnUploadInfoIcon  = true                 > Display an info icon to show the upload requirements
- * @param {boolean} cozenBtnUploadProgress  = true                 > Display or hide the progress percentage
- * @param {boolean} cozenBtnUploadAlert     = true                 > Display or hide the alerts
+ * @param {number}  cozenBtnId                                         > Id of the button
+ * @param {string}  cozenBtnSize                = normal               > Size of the button
+ * @param {string}  cozenBtnSizeSmall                                  > Shortcut for small size
+ * @param {string}  cozenBtnSizeNormal                                 > Shortcut for normal size
+ * @param {string}  cozenBtnSizeLarge                                  > Shortcut for large size
+ * @param {string}  cozenBtnType                = default              > Type of the button (change the color)
+ * @param {string}  cozenBtnTypePrimary                                > Shortcut for primary type
+ * @param {string}  cozenBtnTypeTransparent                            > Shortcut for transparent type
+ * @param {string}  cozenBtnTypeCold                                   > Shortcut for cold type
+ * @param {string}  cozenBtnTypePurple                                 > Shortcut for purple type
+ * @param {string}  cozenBtnTypeGreen                                  > Shortcut for green type
+ * @param {string}  cozenBtnTypeGoogle                                 > Shortcut for google type
+ * @param {string}  cozenBtnTypeFacebook                               > Shortcut for facebook type
+ * @param {string}  cozenBtnTypeDefault                                > Shortcut for default type
+ * @param {string}  cozenBtnTypeInfo                                   > Shortcut for info type
+ * @param {string}  cozenBtnTypeSuccess                                > Shortcut for success type
+ * @param {string}  cozenBtnTypeWarning                                > Shortcut for warning type
+ * @param {string}  cozenBtnTypeError                                  > Shortcut for error type
+ * @param {string}  cozenBtnIconLeft                                   > Add an icon the to left (write the class)
+ * @param {string}  cozenBtnIconRight                                  > Add an icon the to right (write the class)
+ * @param {boolean} cozenBtnAutoSizing          = false                > Shortcut to activate the auto sizing (instead of 100% width)
+ * @param {string}  cozenBtnClass                                      > Custom class
+ * @param {string}  cozenBtnImgLeft                                    > URL/path to the left img
+ * @param {boolean} cozenBtnIsUpload            = false                > Active the upload mod
+ * @param {string}  cozenBtnUpperLabel                                 > Add a label on the top of the btn
+ * @param {string}  cozenBtnRequiredTooltip     = btn_required_tooltip > Text to display for the tooltip of the required element
+ * @param {boolean} cozenBtnUploadRequired      = false                > Required upload model
+ * @param {string}  cozenBtnPreviewIcon         = fa fa-fw fa-eye      > Preview icon on the right
+ * @param {boolean} cozenBtnPreview             = true                 > Enable or disable the preview
+ * @param {boolean} cozenBtnUploadInfoIcon      = true                 > Display an info icon to show the upload requirements
+ * @param {boolean} cozenBtnUploadProgress      = true                 > Display or hide the progress percentage
+ * @param {boolean} cozenBtnUploadAlert         = true                 > Display or hide the alerts
+ * @param {boolean} cozenBtnUploadErrorDesign   = true                 > Change the design if there is an error with the upload
+ * @param {boolean} cozenBtnUploadSuccessDesign = true                 > Change the design if there is an success with the upload
  *
  */
 (function (angular, document) {
@@ -203,21 +205,23 @@
                 }
 
                 // Default values (attributes)
-                scope._cozenBtnId              = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
-                scope._cozenBtnIconLeft        = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
-                scope._cozenBtnIconRight       = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
-                scope._cozenBtnImgLeft         = angular.isDefined(attrs.cozenBtnImgLeft) ? attrs.cozenBtnImgLeft : '';
-                scope._cozenBtnIsUpload        = angular.isDefined(attrs.cozenBtnIsUpload) ? JSON.parse(attrs.cozenBtnIsUpload) : false;
-                scope._cozenBtnName            = data.uuid;
-                scope._cozenBtnUpperLabel      = angular.isDefined(attrs.cozenBtnUpperLabel) ? attrs.cozenBtnUpperLabel : '';
-                scope._cozenBtnRequiredConfig  = CONFIG.required;
-                scope._cozenBtnRequiredTooltip = angular.isDefined(attrs.cozenBtnRequiredTooltip) ? attrs.cozenBtnRequiredTooltip : 'btn_required_tooltip';
-                scope._cozenBtnUploadRequired  = angular.isDefined(attrs.cozenBtnUploadRequired) ? JSON.parse(attrs.cozenBtnUploadRequired) : false;
-                scope._cozenBtnPreviewIcon     = angular.isDefined(attrs.cozenBtnPreviewIcon) ? attrs.cozenBtnPreviewIcon : 'fa fa-fw fa-eye';
-                scope._cozenBtnUploadInfoIcon  = angular.isDefined(attrs.cozenBtnUploadInfoIcon) ? JSON.parse(attrs.cozenBtnUploadInfoIcon) : true;
-                scope._cozenBtnPreview         = angular.isDefined(attrs.cozenBtnPreview) ? JSON.parse(attrs.cozenBtnPreview) : true;
-                scope._cozenBtnUploadProgress  = angular.isDefined(attrs.cozenBtnUploadProgress) ? JSON.parse(attrs.cozenBtnUploadProgress) : true;
-                scope._cozenBtnUploadAlert     = angular.isDefined(attrs.cozenBtnUploadAlert) ? JSON.parse(attrs.cozenBtnUploadAlert) : true;
+                scope._cozenBtnId                  = angular.isDefined(attrs.cozenBtnId) ? attrs.cozenBtnId : '';
+                scope._cozenBtnIconLeft            = angular.isDefined(attrs.cozenBtnIconLeft) ? attrs.cozenBtnIconLeft : '';
+                scope._cozenBtnIconRight           = angular.isDefined(attrs.cozenBtnIconRight) ? attrs.cozenBtnIconRight : '';
+                scope._cozenBtnImgLeft             = angular.isDefined(attrs.cozenBtnImgLeft) ? attrs.cozenBtnImgLeft : '';
+                scope._cozenBtnIsUpload            = angular.isDefined(attrs.cozenBtnIsUpload) ? JSON.parse(attrs.cozenBtnIsUpload) : false;
+                scope._cozenBtnName                = data.uuid;
+                scope._cozenBtnUpperLabel          = angular.isDefined(attrs.cozenBtnUpperLabel) ? attrs.cozenBtnUpperLabel : '';
+                scope._cozenBtnRequiredConfig      = CONFIG.required;
+                scope._cozenBtnRequiredTooltip     = angular.isDefined(attrs.cozenBtnRequiredTooltip) ? attrs.cozenBtnRequiredTooltip : 'btn_required_tooltip';
+                scope._cozenBtnUploadRequired      = angular.isDefined(attrs.cozenBtnUploadRequired) ? JSON.parse(attrs.cozenBtnUploadRequired) : false;
+                scope._cozenBtnPreviewIcon         = angular.isDefined(attrs.cozenBtnPreviewIcon) ? attrs.cozenBtnPreviewIcon : 'fa fa-fw fa-eye';
+                scope._cozenBtnUploadInfoIcon      = angular.isDefined(attrs.cozenBtnUploadInfoIcon) ? JSON.parse(attrs.cozenBtnUploadInfoIcon) : true;
+                scope._cozenBtnPreview             = angular.isDefined(attrs.cozenBtnPreview) ? JSON.parse(attrs.cozenBtnPreview) : true;
+                scope._cozenBtnUploadProgress      = angular.isDefined(attrs.cozenBtnUploadProgress) ? JSON.parse(attrs.cozenBtnUploadProgress) : true;
+                scope._cozenBtnUploadAlert         = angular.isDefined(attrs.cozenBtnUploadAlert) ? JSON.parse(attrs.cozenBtnUploadAlert) : true;
+                scope._cozenBtnUploadErrorDesign   = angular.isDefined(attrs.cozenBtnUploadErrorDesign) ? JSON.parse(attrs.cozenBtnUploadErrorDesign) : true;
+                scope._cozenBtnUploadSuccessDesign = angular.isDefined(attrs.cozenBtnUploadSuccessDesign) ? JSON.parse(attrs.cozenBtnUploadSuccessDesign) : true;
 
                 // Upload config
                 if (scope._cozenBtnIsUpload) {
@@ -243,6 +247,7 @@
                 }
                 scope.cozenBtnHasUploadError = false;
                 scope.cozenBtnIsUploading    = false;
+                scope._hasUploadingSomething = false;
                 scope._uploadingText         = '0%';
 
                 // When the form is ready, get the required intels
@@ -302,8 +307,11 @@
                 if (scope._cozenBtnIsUpload) {
                     classList.push('upload');
                 }
-                if (scope.cozenBtnHasUploadError) {
-                    classList.push('upload-error')
+                if (scope._cozenBtnUploadErrorDesign && scope.cozenBtnHasUploadError) {
+                    classList.push('upload-error');
+                }
+                if (scope._cozenBtnUploadSuccessDesign && scope._hasUploadingSomething) {
+                    classList.push('upload-success');
                 }
                 return classList;
             }
