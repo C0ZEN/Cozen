@@ -87,6 +87,12 @@
 /********************/
 /*   UPLOAD HOVER   */
 /********************/
+/********************/
+/*   UPLOAD ERROR   */
+/********************/
+/**************************/
+/*   UPLOAD HOVER ERROR   */
+/**************************/
 /***********************/
 /*   UPLOAD DISABLED   */
 /***********************/
@@ -3016,13 +3022,29 @@ div.cozen-btn.atom.default.upload div.cozen-btn-content.active {
   color: #2C9FDD;
   background: #FFFFFF;
 }
+div.cozen-btn.atom.default.upload.upload-error div.cozen-btn-content {
+  border: 1px solid #E53935;
+  color: #FFFFFF;
+  background: #E53935;
+}
+div.cozen-btn.atom.default.upload.upload-error div.cozen-btn-content:hover,
+div.cozen-btn.atom.default.upload.upload-error div.cozen-btn-content:focus,
+div.cozen-btn.atom.default.upload.upload-error div.cozen-btn-content.active {
+  border: 1px dashed #E53935;
+  color: #E53935;
+  background: #FFFFFF;
+}
+div.cozen-btn.atom.default.upload.upload-error.disabled div.cozen-btn-content,
 div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content {
   border: 1px solid #D6DBDB;
   color: #FFFFFF;
   background: #D6DBDB;
 }
+div.cozen-btn.atom.default.upload.upload-error.disabled div.cozen-btn-content:hover,
 div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content:hover,
+div.cozen-btn.atom.default.upload.upload-error.disabled div.cozen-btn-content:focus,
 div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content:focus,
+div.cozen-btn.atom.default.upload.upload-error.disabled div.cozen-btn-content.active,
 div.cozen-btn.atom.default.upload.disabled div.cozen-btn-content.active {
   border: 1px dashed #D6DBDB;
   color: #FFFFFF;
@@ -10955,6 +10977,12 @@ div.cozen-btn-lazy-test.atom:focus {
 /********************/
 /*   UPLOAD HOVER   */
 /********************/
+/********************/
+/*   UPLOAD ERROR   */
+/********************/
+/**************************/
+/*   UPLOAD HOVER ERROR   */
+/**************************/
 /***********************/
 /*   UPLOAD DISABLED   */
 /***********************/

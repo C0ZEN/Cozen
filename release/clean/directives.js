@@ -1078,6 +1078,9 @@
                 if (scope._cozenBtnIsUpload) {
                     classList.push('upload');
                 }
+                if (scope.cozenBtnHasUploadError) {
+                    classList.push('upload-error')
+                }
                 return classList;
             }
 

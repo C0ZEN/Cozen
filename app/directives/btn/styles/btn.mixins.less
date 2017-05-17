@@ -176,10 +176,35 @@
         }
     }
 }
+/********************/
+/*   UPLOAD ERROR   */
+/********************/
+.cozen-btn-upload-error(@border, @color, @background) {
+    &.upload.upload-error {
+        div.cozen-btn-content {
+            .cozen-btn-drag-over-internal(@border, @color, @background);
+        }
+    }
+}
+/**************************/
+/*   UPLOAD HOVER ERROR   */
+/**************************/
+.cozen-btn-upload-hover-error(@border, @color, @background) {
+    &.upload.upload-error {
+        div.cozen-btn-content {
+            &:hover,
+            &:focus,
+            &.active {
+                .cozen-btn-drag-over-internal(@border, @color, @background);
+            }
+        }
+    }
+}
 /***********************/
 /*   UPLOAD DISABLED   */
 /***********************/
 .cozen-btn-upload-disabled(@border, @color, @background) {
+    &.upload.upload-error.disabled,
     &.upload.disabled {
         div.cozen-btn-content {
             .cozen-btn-drag-over-internal(@border, @color, @background);
@@ -190,6 +215,7 @@
 /*   UPLOAD HOVER DISABLED   */
 /*****************************/
 .cozen-btn-upload-hover-disabled(@border, @color, @background) {
+    &.upload.upload-error.disabled,
     &.upload.disabled {
         div.cozen-btn-content {
             &:hover,
