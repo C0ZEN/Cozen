@@ -128,7 +128,17 @@
             "time": 8000,
             "bar": true
         },
-        "autoDestroy": false
+        "autoDestroy": false,
+        "displayTypes": {
+            "default": true,
+            "info": true,
+            "success": true,
+            "warning": true,
+            "error": true,
+            "purple": true,
+            "green": true,
+            "blue": true
+        }
     },
     "googleAnalytics": {
         "activated": true,

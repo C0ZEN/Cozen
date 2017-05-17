@@ -127,19 +127,23 @@
 
                     // Add the alert
                     else {
-                        alert.addedOn                    = moment().unix();
-                        alert.display                    = true;
-                        alert.uuid                       = rfc4122.v4();
-                        scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
 
-                        // The alert object must be accessible through the scope for the template
-                        scope._newAlert = angular.copy(alert);
+                        // Avoid sending alert if the config tell us not to (by type)
+                        if (CONFIG.floatingFeed.displayTypes[alert.type]) {
+                            alert.addedOn                    = moment().unix();
+                            alert.display                    = true;
+                            alert.uuid                       = rfc4122.v4();
+                            scope._cozenFloatingFeedIconLeft = scope._cozenFloatingFeedIconLeft ? CONFIG.alert.iconLeft[alert.type] : '';
 
-                        // Convert the template and append the alert
-                        $templateRequest('directives/alert/floatingFeed.alert.template.html').then(function (html) {
-                            var newAlert = $compile(html)(scope);
-                            angular.element(document.getElementById(scope._cozenFloatingFeedId)).append(newAlert);
-                        });
+                            // The alert object must be accessible through the scope for the template
+                            scope._newAlert = angular.copy(alert);
+
+                            // Convert the template and append the alert
+                            $templateRequest('directives/alert/floatingFeed.alert.template.html').then(function (html) {
+                                var newAlert = $compile(html)(scope);
+                                angular.element(document.getElementById(scope._cozenFloatingFeedId)).append(newAlert);
+                            });
+                        }
                     }
                 }
                 else {
