@@ -1,0 +1,162 @@
+{
+    "languages": [
+        "fr",
+        "en"
+    ],
+    "languagesExtended": [
+        "Français",
+        "English"
+    ],
+    "currentLanguage": "fr",
+    "themes": [
+        "tau",
+        "atom"
+    ],
+    "dev": false,
+    "debug": false,
+    "logs": {
+        "enabled": false,
+        "format": "HH:mm:ss.SSS"
+    },
+    "api": {
+        "url": "http://cozen.com/"
+    },
+    "broadcastLog": false,
+    "scrollsBar": true,
+    "scrollsBarConfig": {
+        "autoHideScrollbar": true,
+        "theme": "dark",
+        "advanced": {
+            "updateOnContentResize": true,
+            "updateOnSelectorChange": true
+        },
+        "setHeight": 0,
+        "scrollInertia": 100,
+        "axis": "yx",
+        "scrollButtons": {
+            "scrollAmount": "auto",
+            "enable": false
+        }
+    },
+    "dropdown": {
+        "autoCloseOthers": true,
+        "displayModelLength": false
+    },
+    "input": {
+        "modelLengthType": "always"
+    },
+    "textarea": {
+        "modelLengthType": "always",
+        "required": false,
+        "errorDesign": true,
+        "successDesign": true,
+        "minLength": 0,
+        "maxLength": 200,
+        "validator": {
+            "type": "dirty",
+            "empty": true
+        },
+        "elastic": true,
+        "rows": 2,
+        "tooltip": {
+            "placement": "auto right",
+            "trigger": "outsideClick"
+        },
+        "spellCheck": false
+    },
+    "required": {
+        "type": "star",
+        "icon": "fa fa-fw fa-exclamation-circle"
+    },
+    "alert": {
+        "textAlign": "justify",
+        "closeBtn": {
+            "tooltip": true,
+            "enabled": true
+        },
+        "iconLeft": {
+            "default": "",
+            "info": "fa fa-info-circle",
+            "success": "fa fa-check-circle",
+            "warning": "fa fa-exclamation-triangle",
+            "error": "fa fa-exclamation-circle"
+        },
+        "animation": {
+            "in": true,
+            "inClass": "fadeInUp",
+            "out": true,
+            "outClass": "fadeOutDown"
+        },
+        "timeout": {
+            "time": 0,
+            "bar": false
+        }
+    },
+    "btnToggle": {
+        "animation": true,
+        "tooltipType": "default",
+        "startRight": true
+    },
+    "popup": {
+        "header": true,
+        "footer": true,
+        "animation": {
+            "in": {
+                "enabled": true,
+                "animation": "fadeInUp"
+            },
+            "out": {
+                "enabled": true,
+                "animation": "fadeOutDown"
+            }
+        },
+        "easeClose": true,
+        "closeBtn": true
+    },
+    "floatingFeed": {
+        "width": 460,
+        "size": "normal",
+        "animation": {
+            "in": "fadeInDown",
+            "out": "fadeOutDown"
+        },
+        "closeBtn": true,
+        "iconLeft": true,
+        "right": 20,
+        "bottom": 20,
+        "timeout": {
+            "time": 8000,
+            "bar": true
+        },
+        "autoDestroy": false
+    },
+    "googleAnalytics": {
+        "activated": true,
+        "trackerDefaultName": "t0",
+        "cookieDefaultName": "gaCookie",
+        "cookieDefaultDomain": "auto",
+        "cookieExpires": 28800,
+        "trackingId": ""
+    },
+    "btnLazyTest": {
+        "log": false,
+        "icon": {
+            "class": "fa-font"
+        },
+        "position": {
+            "top": "8px",
+            "left": "8px"
+        },
+        "service": {
+            "lang": "en",
+            "gender": "male",
+            "domain": "cozen.com",
+            "length": 5,
+            "syllables": 3,
+            "word": "drow",
+            "prefix": "Mrs.",
+            "password": "Soleil123",
+            "words": 15
+        }
+    }
+}
