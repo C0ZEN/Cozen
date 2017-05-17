@@ -732,14 +732,28 @@
                     }).progress(function (e) {
                         scope._uploadingText = Math.round((e.loaded * 100.0) / e.total) + '%';
                     }).success(function (data, status, headers, config) {
+
+                        // Avoid to block the process
                         try {
-                            file.name = file.$ngfName || data.original_filename;
-                        } catch (e) {
+                            file.name = data.original_filename;
                         }
-                        file.width                   = data.width;
-                        file.height                  = data.height;
-                        file.format                  = data.format;
-                        file.url                     = data.url;
+                        catch (e) {
+                        }
+                        try {
+                            file.fullName = file.$ngfName;
+                        }
+                        catch (e) {
+                        }
+
+                        // Other information
+                        file.width        = data.width;
+                        file.height       = data.height;
+                        file.format       = data.format;
+                        file.url          = data.url;
+                        file.bytesSize    = data.bytes;
+                        file.readableSize = Methods.getHumanFileSize(data.bytes, true);
+
+                        // Tell that this is finish
                         scope.cozenBtnIsUploading    = false;
                         scope._hasUploadingSomething = true;
                         cozenEnhancedLogs.info.functionCalled('cozenBtn', 'upload');
@@ -10441,7 +10455,8 @@ var Methods = {
     dataMustBeObject          : dataMustBeObject,
     dataMustBeInThisList      : dataMustBeInThisList,
     getRandomFromRange        : getRandomFromRange,
-    getRandomBoolean          : getRandomBoolean
+    getRandomBoolean          : getRandomBoolean,
+    getHumanFileSize          : getHumanFileSize
 };
 
 // Common data
@@ -10617,6 +10632,36 @@ function getRandomFromRange(min, max) {
 function getRandomBoolean() {
     var boolean = getRandomFromRange(0, 1);
     return boolean == 1;
+}
+
+function getHumanFileSize(bytes, si) {
+    var thresh = si ? 1000 : 1024;
+    if (Math.abs(bytes) < thresh) {
+        return bytes + 'B';
+    }
+    var units = si
+        ? ['kB',
+            'MB',
+            'GB',
+            'TB',
+            'PB',
+            'EB',
+            'ZB',
+            'YB']
+        : ['KiB',
+            'MiB',
+            'GiB',
+            'TiB',
+            'PiB',
+            'EiB',
+            'ZiB',
+            'YiB'];
+    var u     = -1;
+    do {
+        bytes /= thresh;
+        ++u;
+    } while (Math.abs(bytes) >= thresh && u < units.length - 1);
+    return bytes.toFixed(1) + '' + units[u];
 }
 /**
  * @ngdoc directive

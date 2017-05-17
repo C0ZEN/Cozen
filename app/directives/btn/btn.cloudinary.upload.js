@@ -76,14 +76,28 @@
                     }).progress(function (e) {
                         scope._uploadingText = Math.round((e.loaded * 100.0) / e.total) + '%';
                     }).success(function (data, status, headers, config) {
+
+                        // Avoid to block the process
                         try {
-                            file.name = file.$ngfName || data.original_filename;
-                        } catch (e) {
+                            file.name = data.original_filename;
                         }
-                        file.width                   = data.width;
-                        file.height                  = data.height;
-                        file.format                  = data.format;
-                        file.url                     = data.url;
+                        catch (e) {
+                        }
+                        try {
+                            file.fullName = file.$ngfName;
+                        }
+                        catch (e) {
+                        }
+
+                        // Other information
+                        file.width        = data.width;
+                        file.height       = data.height;
+                        file.format       = data.format;
+                        file.url          = data.url;
+                        file.bytesSize    = data.bytes;
+                        file.readableSize = Methods.getHumanFileSize(data.bytes, true);
+
+                        // Tell that this is finish
                         scope.cozenBtnIsUploading    = false;
                         scope._hasUploadingSomething = true;
                         cozenEnhancedLogs.info.functionCalled('cozenBtn', 'upload');
