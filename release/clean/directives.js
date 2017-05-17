@@ -2006,6 +2006,9 @@
  * @transclude false
  * @description
  *
+ * @param {string}  cozenCompile                    > The text you want to convert
+ * @param {boolean} cozenCompileRewriteHtml = false > Perform a replace of the text to avoid breaking HTML text
+ *
  */
 (function (angular) {
     'use strict';
@@ -2027,12 +2030,24 @@
         };
 
         function link(scope, element, attrs) {
+
+            // Default values (attributes)
+            scope.cozenCompileRewriteHtml = angular.isDefined(attrs.cozenCompileRewriteHtml) ? JSON.parse(attrs.cozenCompileRewriteHtml) : false;
+
             scope.$watch(
                 function (scope) {
+
                     // watch the 'compile' expression for changes
                     return scope.$eval(attrs.cozenCompile);
                 },
                 function (value) {
+
+                    // Rewrite the HTML
+                    if (scope.cozenCompileRewriteHtml) {
+                        value.replace(/&lt;/g, '<');
+                        value.replace(/&gt;/g, '>');
+                    }
+
                     // when the 'compile' expression changes
                     // assign it into the current DOM
                     element.html(value);
