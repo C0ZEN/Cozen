@@ -94,7 +94,8 @@
                         if (Methods.isFunction(scope.cozenBtnOnUploadSuccess)) {
                             cozenEnhancedLogs.info.functionCalled('cozenBtn', 'cozenBtnOnUpload');
                             scope.cozenBtnOnUploadSuccess({
-                                model: scope.cozenBtnUploadModel
+                                model: scope.cozenBtnUploadModel,
+                                file : data
                             });
                         }
                     }).error(function (data, status, headers, config) {
