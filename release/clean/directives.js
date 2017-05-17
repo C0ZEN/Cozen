@@ -2018,10 +2018,11 @@
         .directive('cozenCompile', cozenCompile);
 
     cozenCompile.$inject = [
-        '$compile'
+        '$compile',
+        '$sce'
     ];
 
-    function cozenCompile($compile) {
+    function cozenCompile($compile, $sce) {
         return {
             link      : link,
             restrict  : 'A',
@@ -2044,8 +2045,9 @@
 
                     // Rewrite the HTML
                     if (scope.cozenCompileRewriteHtml) {
-                        value.replace(/&lt;/g, '<');
-                        value.replace(/&gt;/g, '>');
+                        value = $sce.valueOf(value);
+                        value = value.replace(/&lt;/g, '<');
+                        value = value.replace(/&gt;/g, '>');
                     }
 
                     // when the 'compile' expression changes
