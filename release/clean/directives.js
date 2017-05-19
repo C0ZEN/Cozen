@@ -6344,6 +6344,7 @@
  * @param {string}  cozenInputTooltip                                   > Text of the tooltip
  * @param {string}  cozenInputTooltipPlacement = auto right             > Change the position of the tooltip
  * @param {string}  cozenInputTooltipTrigger   = outsideClick           > Type of trigger to show the tooltip
+ * @param {string}  cozenInputTooltipType      = default                > Define what type of tooltip is required
  * @param {boolean} cozenInputRequired         = false                  > Required input
  * @param {boolean} cozenInputErrorDesign      = true                   > Add style when error
  * @param {boolean} cozenInputSuccessDesign    = true                   > Add style when success
@@ -6592,6 +6593,7 @@
                 scope._cozenInputId               = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
                 scope._cozenInputTooltip          = angular.isDefined(attrs.cozenInputTooltip) ? attrs.cozenInputTooltip : '';
                 scope._cozenInputTooltipTrigger   = angular.isDefined(attrs.cozenInputTooltipTrigger) ? attrs.cozenInputTooltipTrigger : 'outsideClick';
+                scope._cozenInputTooltipType      = angular.isDefined(attrs.cozenInputTooltipType) ? attrs.cozenInputTooltipType : 'default';
                 scope._cozenInputRequired         = angular.isDefined(attrs.cozenInputRequired) ? JSON.parse(attrs.cozenInputRequired) : false;
                 scope._cozenInputErrorDesign      = angular.isDefined(attrs.cozenInputErrorDesign) ? JSON.parse(attrs.cozenInputErrorDesign) : true;
                 scope._cozenInputSuccessDesign    = angular.isDefined(attrs.cozenInputSuccessDesign) ? JSON.parse(attrs.cozenInputSuccessDesign) : true;
@@ -6607,7 +6609,6 @@
                 scope._cozenInputName             = angular.isDefined(attrs.cozenInputName) ? attrs.cozenInputName : data.uuid;
                 scope._cozenInputValidatorEmpty   = angular.isDefined(attrs.cozenInputValidatorEmpty) ? JSON.parse(attrs.cozenInputValidatorEmpty) : true;
                 scope._cozenInputValidatorIcon    = angular.isDefined(attrs.cozenInputValidatorIcon) ? JSON.parse(attrs.cozenInputValidatorIcon) : true;
-                scope._cozenInputTooltipType      = scope._cozenInputType == 'password' ? 'html' : 'default';
                 scope._cozenInputAutoComplete     = angular.isDefined(attrs.cozenInputAutoComplete) ? attrs.cozenInputAutoComplete : 'on';
                 scope._cozenInputTooltipPlacement = angular.isDefined(attrs.cozenInputTooltipPlacement) ? attrs.cozenInputTooltipPlacement : 'auto right';
                 scope._cozenInputLabel            = angular.isDefined(attrs.cozenInputLabel) ? attrs.cozenInputLabel : '';
@@ -6617,6 +6618,9 @@
                 scope._cozenInputRequiredConfig   = CONFIG.required;
                 scope._cozenInputRequiredTooltip  = angular.isDefined(attrs.cozenInputRequiredTooltip) ? attrs.cozenInputRequiredTooltip : 'input_required_tooltip';
                 scope._cozenInputSpellCheck       = angular.isDefined(attrs.cozenInputSpellCheck) ? JSON.parse(attrs.cozenInputSpellCheck) : false;
+
+                // Force HTML tooltip if input type of password
+                scope._cozenInputTooltipType = scope._cozenInputType == 'password' ? 'html' : scope._cozenInputTooltipType;
 
                 // Object overriding (typePasswordConfig)
                 if (scope._cozenInputType == 'password') {
