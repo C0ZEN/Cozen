@@ -21,7 +21,7 @@
     <!-- HTML -->
     <div ng-if="_cozenTooltipType == 'html'"
          class="cozen-tooltip-html"
-         uib-tooltip-html="cozenTooltipLabel"
+         uib-tooltip-html="cozenTooltipLabel | translate"
          tooltip-class="{{ _activeTheme + ' ' + cozenTooltipMaxWidth + ' ' + _cozenTooltipClass }}"
          tooltip-placement="{{ _cozenTooltipPlacement }}"
          tooltip-append-to-body="{{ _cozenTooltipBody }}"
