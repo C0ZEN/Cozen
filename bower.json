@@ -13,7 +13,7 @@
         "angular-route": "^1.4.0",
         "angular-sanitize": "^1.4.0",
         "angular-touch": "^1.4.0",
-        "angular-ui-router": "^0.3.2",
+        "angular-ui-router": "^1.0.3",
         "angular-translate": "^2.13.0",
         "angular-translate-loader-url": "^2.13.0",
         "angular-translate-loader-static-files": "^2.13.0",
