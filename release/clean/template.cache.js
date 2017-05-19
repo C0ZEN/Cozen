@@ -150,7 +150,7 @@ angular.module('cozenLib').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/view/view.template.html',
-    "<div ng-if=_isReady class=cozen-view cozen-shortcut ng-scrollbars ng-scrollbars-disabled=!_cozenScrollBar ng-scrollbars-config=_cozenScrollBarConfig ng-transclude></div>"
+    "<div ng-if=_isReady class=cozen-view cozen-shortcut ng-scrollbars ng-scrollbars-disabled=true ng-scrollbars-config=_cozenScrollBarConfig ng-transclude></div>"
   );
 
 }]);
