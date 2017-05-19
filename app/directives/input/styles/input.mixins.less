@@ -60,16 +60,6 @@
                 background-color : @background-color-hover;
             }
         }
-        div.cozen-input-arrows {
-            div.cozen-input-arrow {
-                &.up div {
-                    border-bottom-color : @color;
-                }
-                &.down div {
-                    border-top-color : @color;
-                }
-            }
-        }
     }
 }
 /**************/
@@ -419,8 +409,24 @@
     div.cozen-input-content {
         div.cozen-input-arrows {
             color : @color;
+            div.cozen-input-arrow {
+                &.up div {
+                    border-bottom-color : @color;
+                }
+                &.down div {
+                    border-top-color : @color;
+                }
+            }
             &:hover {
                 color : @color-hover;
+                div.cozen-input-arrow {
+                    &.up div {
+                        border-bottom-color : @color-hover;
+                    }
+                    &.down div {
+                        border-top-color : @color-hover;
+                    }
+                }
             }
         }
     }

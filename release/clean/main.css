@@ -6937,12 +6937,6 @@ div.cozen-input.atom.small div.cozen-input-content input:hover,
 div.cozen-input.atom.small div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.atom.small.success-design {
   color: #4C596B;
 }
@@ -6956,12 +6950,6 @@ div.cozen-input.atom.small.success-design div.cozen-input-content input:hover,
 div.cozen-input.atom.small.success-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.atom.small.error-design {
   color: #4C596B;
 }
@@ -6974,12 +6962,6 @@ div.cozen-input.atom.small.error-design div.cozen-input-content:hover {
 div.cozen-input.atom.small.error-design div.cozen-input-content input:hover,
 div.cozen-input.atom.small.error-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
-}
-div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
 }
 div.cozen-input.atom.small.success-design.disabled,
 div.cozen-input.atom.small.error-design.disabled,
@@ -7003,16 +6985,6 @@ div.cozen-input.atom.small.success-design.disabled div.cozen-input-content input
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.small.disabled div.cozen-input-content input:focus {
   background-color: #F8F8F8;
-}
-div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #D6DBDB;
-}
-div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #D6DBDB;
 }
 div.cozen-input.atom.small div.cozen-input-content input {
   border: 1px solid #D6DBDB;
@@ -7280,30 +7252,86 @@ div.cozen-input.atom.small.icon-right.number div.cozen-input-content input {
 div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.small div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.small.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.small.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows {
   color: #D6DBDB;
 }
+div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
+}
 div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows:hover {
   color: #D6DBDB;
+}
+div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.atom.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.atom.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.atom.small.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
 }
 div.cozen-input.atom.small div.cozen-input-label {
   margin-bottom: 6px;
@@ -7390,12 +7418,6 @@ div.cozen-input.atom.normal div.cozen-input-content input:hover,
 div.cozen-input.atom.normal div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.atom.normal.success-design {
   color: #4C596B;
 }
@@ -7409,12 +7431,6 @@ div.cozen-input.atom.normal.success-design div.cozen-input-content input:hover,
 div.cozen-input.atom.normal.success-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.atom.normal.error-design {
   color: #4C596B;
 }
@@ -7427,12 +7443,6 @@ div.cozen-input.atom.normal.error-design div.cozen-input-content:hover {
 div.cozen-input.atom.normal.error-design div.cozen-input-content input:hover,
 div.cozen-input.atom.normal.error-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
-}
-div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
 }
 div.cozen-input.atom.normal.success-design.disabled,
 div.cozen-input.atom.normal.error-design.disabled,
@@ -7456,16 +7466,6 @@ div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content inpu
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.normal.disabled div.cozen-input-content input:focus {
   background-color: #F8F8F8;
-}
-div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #D6DBDB;
-}
-div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #D6DBDB;
 }
 div.cozen-input.atom.normal div.cozen-input-content input {
   border: 1px solid #D6DBDB;
@@ -7733,30 +7733,86 @@ div.cozen-input.atom.normal.icon-right.number div.cozen-input-content input {
 div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.normal div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.normal.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.normal.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows {
   color: #D6DBDB;
 }
+div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
+}
 div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows:hover {
   color: #D6DBDB;
+}
+div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.atom.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.atom.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.atom.normal.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
 }
 div.cozen-input.atom.normal div.cozen-input-label {
   margin-bottom: 6px;
@@ -7843,12 +7899,6 @@ div.cozen-input.atom.large div.cozen-input-content input:hover,
 div.cozen-input.atom.large div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.atom.large.success-design {
   color: #4C596B;
 }
@@ -7862,12 +7912,6 @@ div.cozen-input.atom.large.success-design div.cozen-input-content input:hover,
 div.cozen-input.atom.large.success-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.atom.large.error-design {
   color: #4C596B;
 }
@@ -7880,12 +7924,6 @@ div.cozen-input.atom.large.error-design div.cozen-input-content:hover {
 div.cozen-input.atom.large.error-design div.cozen-input-content input:hover,
 div.cozen-input.atom.large.error-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
-}
-div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
 }
 div.cozen-input.atom.large.success-design.disabled,
 div.cozen-input.atom.large.error-design.disabled,
@@ -7909,16 +7947,6 @@ div.cozen-input.atom.large.success-design.disabled div.cozen-input-content input
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.atom.large.disabled div.cozen-input-content input:focus {
   background-color: #F8F8F8;
-}
-div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #D6DBDB;
-}
-div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #D6DBDB;
 }
 div.cozen-input.atom.large div.cozen-input-content input {
   border: 1px solid #D6DBDB;
@@ -8186,30 +8214,86 @@ div.cozen-input.atom.large.icon-right.number div.cozen-input-content input {
 div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.large div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.large.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows {
   color: #4C596B;
 }
+div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
+}
 div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #4C596B;
+}
+div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #4C596B;
+}
+div.cozen-input.atom.large.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #4C596B;
 }
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows {
   color: #D6DBDB;
 }
+div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
+}
 div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows:hover {
   color: #D6DBDB;
+}
+div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.atom.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.atom.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.atom.large.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
 }
 div.cozen-input.atom.large div.cozen-input-label {
   margin-bottom: 6px;
@@ -17951,12 +18035,6 @@ div.cozen-input.nolan.small div.cozen-input-content input:hover,
 div.cozen-input.nolan.small div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.nolan.small.success-design {
   color: #4C596B;
 }
@@ -17970,12 +18048,6 @@ div.cozen-input.nolan.small.success-design div.cozen-input-content input:hover,
 div.cozen-input.nolan.small.success-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.nolan.small.error-design {
   color: #4C596B;
 }
@@ -17988,12 +18060,6 @@ div.cozen-input.nolan.small.error-design div.cozen-input-content:hover {
 div.cozen-input.nolan.small.error-design div.cozen-input-content input:hover,
 div.cozen-input.nolan.small.error-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
-}
-div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
 }
 div.cozen-input.nolan.small.success-design.disabled,
 div.cozen-input.nolan.small.error-design.disabled,
@@ -18017,16 +18083,6 @@ div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content inpu
 div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.nolan.small.disabled div.cozen-input-content input:focus {
   background-color: #F8F8F8;
-}
-div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #D6DBDB;
-}
-div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #D6DBDB;
 }
 div.cozen-input.nolan.small div.cozen-input-content input {
   border: 1px solid #D6DBDB;
@@ -18294,30 +18350,86 @@ div.cozen-input.nolan.small.icon-right.number div.cozen-input-content input {
 div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.small div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.small.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.small.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows {
   color: #D6DBDB;
 }
+div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
+}
 div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows:hover {
   color: #D6DBDB;
+}
+div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.nolan.small.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.nolan.small.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.nolan.small.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
 }
 div.cozen-input.nolan.small div.cozen-input-label {
   margin-bottom: 6px;
@@ -18404,12 +18516,6 @@ div.cozen-input.nolan.normal div.cozen-input-content input:hover,
 div.cozen-input.nolan.normal div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.nolan.normal.success-design {
   color: #4C596B;
 }
@@ -18423,12 +18529,6 @@ div.cozen-input.nolan.normal.success-design div.cozen-input-content input:hover,
 div.cozen-input.nolan.normal.success-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.nolan.normal.error-design {
   color: #4C596B;
 }
@@ -18441,12 +18541,6 @@ div.cozen-input.nolan.normal.error-design div.cozen-input-content:hover {
 div.cozen-input.nolan.normal.error-design div.cozen-input-content input:hover,
 div.cozen-input.nolan.normal.error-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
-}
-div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
 }
 div.cozen-input.nolan.normal.success-design.disabled,
 div.cozen-input.nolan.normal.error-design.disabled,
@@ -18470,16 +18564,6 @@ div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content inp
 div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.nolan.normal.disabled div.cozen-input-content input:focus {
   background-color: #F8F8F8;
-}
-div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #D6DBDB;
-}
-div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #D6DBDB;
 }
 div.cozen-input.nolan.normal div.cozen-input-content input {
   border: 1px solid #D6DBDB;
@@ -18747,30 +18831,86 @@ div.cozen-input.nolan.normal.icon-right.number div.cozen-input-content input {
 div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.normal div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.normal.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.normal.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows {
   color: #D6DBDB;
 }
+div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
+}
 div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows:hover {
   color: #D6DBDB;
+}
+div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.nolan.normal.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.nolan.normal.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.nolan.normal.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
 }
 div.cozen-input.nolan.normal div.cozen-input-label {
   margin-bottom: 9px;
@@ -18857,12 +18997,6 @@ div.cozen-input.nolan.large div.cozen-input-content input:hover,
 div.cozen-input.nolan.large div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.nolan.large.success-design {
   color: #4C596B;
 }
@@ -18876,12 +19010,6 @@ div.cozen-input.nolan.large.success-design div.cozen-input-content input:hover,
 div.cozen-input.nolan.large.success-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
 }
-div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
-}
 div.cozen-input.nolan.large.error-design {
   color: #4C596B;
 }
@@ -18894,12 +19022,6 @@ div.cozen-input.nolan.large.error-design div.cozen-input-content:hover {
 div.cozen-input.nolan.large.error-design div.cozen-input-content input:hover,
 div.cozen-input.nolan.large.error-design div.cozen-input-content input:focus {
   background-color: #FFFFFF;
-}
-div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #4C596B;
-}
-div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #4C596B;
 }
 div.cozen-input.nolan.large.success-design.disabled,
 div.cozen-input.nolan.large.error-design.disabled,
@@ -18923,16 +19045,6 @@ div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content inpu
 div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content input:focus,
 div.cozen-input.nolan.large.disabled div.cozen-input-content input:focus {
   background-color: #F8F8F8;
-}
-div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
-div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #D6DBDB;
-}
-div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
-div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #D6DBDB;
 }
 div.cozen-input.nolan.large div.cozen-input-content input {
   border: 1px solid #D6DBDB;
@@ -19200,30 +19312,86 @@ div.cozen-input.nolan.large.icon-right.number div.cozen-input-content input {
 div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.large div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.large.success-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows {
   color: #7048ff;
 }
+div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
+}
 div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows:hover {
   color: #7048ff;
+}
+div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #7048ff;
+}
+div.cozen-input.nolan.large.error-design div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #7048ff;
 }
 div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows,
 div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows {
   color: #D6DBDB;
 }
+div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div,
+div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div,
+div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
+}
 div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover,
 div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows:hover {
   color: #D6DBDB;
+}
+div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div,
+div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.up div {
+  border-bottom-color: #D6DBDB;
+}
+div.cozen-input.nolan.large.success-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.nolan.large.error-design.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div,
+div.cozen-input.nolan.large.disabled div.cozen-input-content div.cozen-input-arrows:hover div.cozen-input-arrow.down div {
+  border-top-color: #D6DBDB;
 }
 div.cozen-input.nolan.large div.cozen-input-label {
   margin-bottom: 6px;
@@ -26572,12 +26740,6 @@ div.cozen-input.tau.small div.cozen-input-content input:hover,
 div.cozen-input.tau.small div.cozen-input-content input:focus {
   background-color: #ECF0F1;
 }
-div.cozen-input.tau.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #34495E;
-}
-div.cozen-input.tau.small div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #34495E;
-}
 div.cozen-input.tau.small div.cozen-input-content input {
   border: 1px solid #95A5A6;
 }
@@ -26710,12 +26872,6 @@ div.cozen-input.tau.normal div.cozen-input-content input:hover,
 div.cozen-input.tau.normal div.cozen-input-content input:focus {
   background-color: #ECF0F1;
 }
-div.cozen-input.tau.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #34495E;
-}
-div.cozen-input.tau.normal div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #34495E;
-}
 div.cozen-input.tau.normal div.cozen-input-content input {
   border: 1px solid #95A5A6;
 }
@@ -26847,12 +27003,6 @@ div.cozen-input.tau.large div.cozen-input-content:hover {
 div.cozen-input.tau.large div.cozen-input-content input:hover,
 div.cozen-input.tau.large div.cozen-input-content input:focus {
   background-color: #ECF0F1;
-}
-div.cozen-input.tau.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.up div {
-  border-bottom-color: #34495E;
-}
-div.cozen-input.tau.large div.cozen-input-content div.cozen-input-arrows div.cozen-input-arrow.down div {
-  border-top-color: #34495E;
 }
 div.cozen-input.tau.large div.cozen-input-content input {
   border: 1px solid #95A5A6;
