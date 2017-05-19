@@ -1,0 +1,74 @@
+div.cozen-popup.nolan {
+
+    // Size
+    &.small {
+        .cozen-popup-size(100px auto, 650px, 540px, @nolan-space-base @nolan-space-medium);
+        .cozen-popup-header-size(@nolan-font-h2, 0, @nolan-font-h3, @nolan-font-h2, @nolan-font-h3, 500);
+    }
+    &.normal {
+        .cozen-popup-size(100px auto, 650px, 760px, @nolan-space-base @nolan-space-medium);
+        .cozen-popup-header-size(@nolan-font-h2, 0, @nolan-font-h3, @nolan-font-h2, @nolan-font-h3, 500);
+    }
+    &.large {
+        .cozen-popup-size(100px auto, 650px, 1040px, @nolan-space-base @nolan-space-medium);
+        .cozen-popup-header-size(@nolan-font-h2, 0, @nolan-font-h3, @nolan-font-h2, @nolan-font-h3, 500);
+    }
+
+    // Type
+    &.default {
+        .cozen-popup-header(@nolan-color-line-rule-light, @nolan-color-line-rule-light);
+        .cozen-popup-header-color(@nolan-color-font, @nolan-color-label, @nolan-color-font);
+        .cozen-popup-body(@nolan-color-white, @nolan-color-white);
+        .cozen-popup-footer(@nolan-color-line-rule-light, @nolan-color-line-rule-light);
+        .cozen-popup-border(1px solid @nolan-color-line-rule, 1px solid @nolan-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+        .cozen-popup-container(rgba(0, 0, 0, 0.85));
+    }
+    &.info {
+        .cozen-popup-header(@nolan-color-info, @nolan-color-info);
+        .cozen-popup-header-color(@nolan-color-white, @nolan-color-white, @nolan-color-white);
+        .cozen-popup-body(@nolan-color-white, @nolan-color-white);
+        .cozen-popup-footer(@nolan-color-info, @nolan-color-info);
+        .cozen-popup-border(none, 1px solid @nolan-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+        .cozen-popup-container(rgba(0, 0, 0, 0.85));
+    }
+    &.success {
+        .cozen-popup-header(@nolan-color-success, @nolan-color-success);
+        .cozen-popup-header-color(@nolan-color-white, @nolan-color-white, @nolan-color-white);
+        .cozen-popup-body(@nolan-color-white, @nolan-color-white);
+        .cozen-popup-footer(@nolan-color-success, @nolan-color-success);
+        .cozen-popup-border(none, 1px solid @nolan-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+        .cozen-popup-container(rgba(0, 0, 0, 0.85));
+    }
+    &.warning {
+        .cozen-popup-header(@nolan-color-warning, @nolan-color-warning);
+        .cozen-popup-header-color(@nolan-color-white, @nolan-color-white, @nolan-color-white);
+        .cozen-popup-body(@nolan-color-white, @nolan-color-white);
+        .cozen-popup-footer(@nolan-color-warning, @nolan-color-warning);
+        .cozen-popup-border(none, 1px solid @nolan-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+        .cozen-popup-container(rgba(0, 0, 0, 0.85));
+    }
+    &.error {
+        .cozen-popup-header(@nolan-color-error, @nolan-color-error);
+        .cozen-popup-header-color(@nolan-color-white, @nolan-color-white, @nolan-color-white);
+        .cozen-popup-body(@nolan-color-white, @nolan-color-white);
+        .cozen-popup-footer(@nolan-color-error, @nolan-color-error);
+        .cozen-popup-border(none, 1px solid @nolan-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+        .cozen-popup-container(rgba(0, 0, 0, 0.85));
+    }
+    &.green {
+        .cozen-popup-header(@nolan-color-green, @nolan-color-green);
+        .cozen-popup-header-color(@nolan-color-white, @nolan-color-white, @nolan-color-white);
+        .cozen-popup-body(@nolan-color-white, @nolan-color-white);
+        .cozen-popup-footer(@nolan-color-green, @nolan-color-green);
+        .cozen-popup-border(none, 1px solid @nolan-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+        .cozen-popup-container(rgba(0, 0, 0, 0.85));
+    }
+    &.purple {
+        .cozen-popup-header(@nolan-color-purple, @nolan-color-purple);
+        .cozen-popup-header-color(@nolan-color-white, @nolan-color-white, @nolan-color-white);
+        .cozen-popup-body(@nolan-color-white, @nolan-color-white);
+        .cozen-popup-footer(@nolan-color-purple, @nolan-color-purple);
+        .cozen-popup-border(none, 1px solid @nolan-color-line-rule, ~"0 2px 8px rgba(100,100,100,0.3);");
+        .cozen-popup-container(rgba(0, 0, 0, 0.85));
+    }
+}

@@ -591,6 +591,7 @@ module.exports = function (grunt) {
                 files  : [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'},
                     {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/import.atom.less'},
+                    {'<%= yeoman.app %>/styles/themes/nolan/nolan.min.css': '<%= yeoman.app %>/styles/themes/nolan/import.nolan.less'},
                     {'<%= yeoman.app %>/styles/test/test.min.css': '<%= yeoman.app %>/styles/test/test.less'}
                 ]
             },
@@ -604,7 +605,9 @@ module.exports = function (grunt) {
                     {'.tmp/release/themes/tau.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'},
                     {'.tmp/release/themes/min/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/import.tau.less'},
                     {'.tmp/release/themes/atom.css': '<%= yeoman.app %>/styles/themes/atom/import.atom.less'},
-                    {'.tmp/release/themes/min/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/import.atom.less'}
+                    {'.tmp/release/themes/min/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/import.atom.less'},
+                    {'.tmp/release/themes/nolan.css': '<%= yeoman.app %>/styles/themes/nolan/import.nolan.less'},
+                    {'.tmp/release/themes/min/nolan.min.css': '<%= yeoman.app %>/styles/themes/nolan/import.nolan.less'}
                 ]
             }
         },
@@ -616,6 +619,7 @@ module.exports = function (grunt) {
                 files: [
                     {'<%= yeoman.app %>/styles/themes/tau/tau.min.css': '<%= yeoman.app %>/styles/themes/tau/tau.min.css'},
                     {'<%= yeoman.app %>/styles/themes/atom/atom.min.css': '<%= yeoman.app %>/styles/themes/atom/atom.min.css'},
+                    {'<%= yeoman.app %>/styles/themes/nolan/nolan.min.css': '<%= yeoman.app %>/styles/themes/nolan/nolan.min.css'},
                     {'<%= yeoman.app %>/styles/test/test.min.css': '<%= yeoman.app %>/styles/test/test.min.css'}
                 ]
             },
@@ -623,6 +627,7 @@ module.exports = function (grunt) {
                 files: [
                     {'.tmp/release/themes/min/tau.min.css': '.tmp/release/themes/min/tau.min.css'},
                     {'.tmp/release/themes/min/atom.min.css': '.tmp/release/themes/min/atom.min.css'},
+                    {'.tmp/release/themes/min/nolan.min.css': '.tmp/release/themes/min/nolan.min.css'},
                     {'.tmp/release/reset.min.css': '<%= yeoman.app %>/styles/reset.css'}
                 ]
             }

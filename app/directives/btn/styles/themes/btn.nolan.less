@@ -1,0 +1,121 @@
+div.cozen-btn.nolan {
+    @border-height : 1px;
+
+    // Size
+    &.small {
+        .cozen-btn-size(@nolan-space-small, @nolan-font-h4, @nolan-space-small @nolan-space-medium);
+        .cozen-btn-icon(@nolan-space-small, 18px);
+        .cozen-btn-loader((40px - @border-height * 2 - @nolan-space-small * 2) / 2, 50px, 10px);
+        .cozen-btn-img-left(26px, 26px, 0);
+        .cozen-btn-alert(@nolan-space-small 0 0 0);
+    }
+    &.normal {
+        .cozen-btn-size(@nolan-space-small, @nolan-font-h3, @nolan-space-small @nolan-space-medium);
+        .cozen-btn-icon(@nolan-space-small, 14px);
+        .cozen-btn-loader((40px - @border-height * 2 - @nolan-space-small * 2) / 2, 50px, 10px);
+        .cozen-btn-img-left(26px, 26px, 0);
+        .cozen-btn-alert(@nolan-space-small 0 0 0);
+    }
+    &.large {
+        .cozen-btn-size(@nolan-space-base, @nolan-font-h3, @nolan-space-base @nolan-space-large);
+        .cozen-btn-icon(@nolan-space-base, 16px);
+        .cozen-btn-loader((52px - @border-height * 2 - @nolan-space-base * 2) / 2, 90px, 12px);
+        .cozen-btn-img-left(26px, 26px, 0);
+        .cozen-btn-alert(@nolan-space-small 0 0 0);
+    }
+
+    // Type
+    &.default {
+        .cozen-btn-type(@nolan-color-white, @nolan-color-blue, @nolan-color-blue-active, 400);
+        .cozen-btn-border(@border-height, solid, @nolan-color-blue, @nolan-color-blue-active, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+        .cozen-btn-upload(1px solid @nolan-color-blue, @nolan-color-white, @nolan-color-blue);
+        .cozen-btn-upload-hover(1px dashed @nolan-color-blue, @nolan-color-blue, @nolan-color-white);
+        .cozen-btn-upload-error(1px solid @nolan-color-error, @nolan-color-white, @nolan-color-error);
+        .cozen-btn-upload-hover-error(1px dashed @nolan-color-error, @nolan-color-error, @nolan-color-white);
+        .cozen-btn-upload-success(1px solid @nolan-color-green, @nolan-color-white, @nolan-color-green);
+        .cozen-btn-upload-hover-success(1px dashed @nolan-color-green, @nolan-color-green, @nolan-color-white);
+        .cozen-btn-upload-disabled(1px solid @nolan-color-line-rule, @nolan-color-white, @nolan-color-line-rule);
+        .cozen-btn-upload-hover-disabled(1px dashed @nolan-color-line-rule, @nolan-color-white, @nolan-color-line-rule);
+        .cozen-btn-drag-over-accept(1px dashed @nolan-color-success, @nolan-color-success, @nolan-color-white);
+        .cozen-btn-drag-over-reject(1px dashed @nolan-color-error, @nolan-color-error, @nolan-color-white);
+        .cozen-btn-label(@nolan-font-h3, @nolan-color-label, 0, 400, @nolan-space-small);
+        .cozen-btn-label-success(@nolan-font-h3, @nolan-color-label, 0, 400, @nolan-space-small);
+        .cozen-btn-label-error(@nolan-font-h3, @nolan-color-label, 0, 400, @nolan-space-small);
+        .cozen-btn-label-disabled(@nolan-font-h3, @nolan-color-label-disabled, 0, 400, @nolan-space-small);
+        .cozen-btn-required-star(@nolan-font-h3, @nolan-color-yellow, 0 3px, @nolan-color-yellow);
+        .cozen-btn-required-icon(@nolan-font-body, @nolan-color-yellow, 0 5px, @nolan-color-yellow);
+        .cozen-btn-preview-icon(0 @nolan-space-base, @nolan-color-blue, @nolan-font-h3);
+        .cozen-btn-preview-icon-hover(0 @nolan-space-base, @nolan-color-blue-active, @nolan-font-h3);
+        .cozen-btn-preview-img(@nolan-space-base, @nolan-color-white, 1px solid @nolan-color-line-rule);
+        .cozen-btn-preview-img-title(@nolan-color-font, @nolan-font-h3, 500);
+        .cozen-btn-preview-img-subtitle(@nolan-color-label, @nolan-font-h4, 400);
+    }
+    &.primary {
+        .cozen-btn-type(@nolan-color-blue, @nolan-color-white, @nolan-color-blue-light, 500);
+        .cozen-btn-border(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 500);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.transparent {
+        .cozen-btn-type(@nolan-color-blue, transparent, rgba(0, 0, 0, 0.1), 500);
+        .cozen-btn-border(@border-height, solid, transparent, rgba(0, 0, 0, 0.1), @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 500);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.cold {
+        .cozen-btn-type(@nolan-color-white, #BDC3C7, #D6D9DC, 500);
+        .cozen-btn-border(@border-height, solid, #BDC3C7, #D6D9DC, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 500);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.purple {
+        .cozen-btn-type(@nolan-color-white, @nolan-color-purple, @nolan-color-purple-active, 400);
+        .cozen-btn-border(@border-height, solid, @nolan-color-purple, @nolan-color-purple-active, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.green {
+        .cozen-btn-type(@nolan-color-white, @nolan-color-green, @nolan-color-green-active, 400);
+        .cozen-btn-border(@border-height, solid, @nolan-color-green, @nolan-color-green-active, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.google {
+        .cozen-btn-type(@nolan-color-white, #CF4332, #D35345, 400);
+        .cozen-btn-border(@border-height, solid, #CF4332, #D35345, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.facebook {
+        .cozen-btn-type(@nolan-color-white, #3C66C4, #4E76CA, 400);
+        .cozen-btn-border(@border-height, solid, #3C66C4, #4E76CA, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.info {
+        .cozen-btn-type(@nolan-color-white, @nolan-color-info, @nolan-color-info-light, 400);
+        .cozen-btn-border(@border-height, solid, @nolan-color-info, @nolan-color-info-light, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.success {
+        .cozen-btn-type(@nolan-color-white, @nolan-color-success, @nolan-color-success-light, 400);
+        .cozen-btn-border(@border-height, solid, @nolan-color-success, @nolan-color-success-light, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.warning {
+        .cozen-btn-type(@nolan-color-white, @nolan-color-warning, @nolan-color-warning-light, 400);
+        .cozen-btn-border(@border-height, solid, @nolan-color-warning, @nolan-color-warning-light, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+    &.error {
+        .cozen-btn-type(@nolan-color-white, @nolan-color-error, @nolan-color-error-light, 400);
+        .cozen-btn-border(@border-height, solid, @nolan-color-error, @nolan-color-error-light, @cozen-radius);
+        .cozen-btn-type-disabled(@nolan-color-white, @nolan-color-line-rule, @nolan-color-line-rule, 400);
+        .cozen-btn-border-disabled(@border-height, solid, @nolan-color-line-rule, @nolan-color-line-rule, @cozen-radius);
+    }
+}

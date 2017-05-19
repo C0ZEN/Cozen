@@ -499,7 +499,8 @@
     "currentLanguage": "fr",
     "themes": [
         "tau",
-        "atom"
+        "atom",
+        "nolan"
     ],
     "dev": false,
     "debug": false,
