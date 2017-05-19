@@ -17926,7 +17926,7 @@ div.cozen-input.nolan.small div.cozen-input-content:hover input {
   border: 1px solid #0055ff;
 }
 div.cozen-input.nolan.small.success-design div.cozen-input-content input {
-  border: 1px solid #7CB342;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-input.nolan.small.success-design div.cozen-input-content input:focus {
   border: 1px solid #7CB342;
@@ -17935,7 +17935,7 @@ div.cozen-input.nolan.small.success-design div.cozen-input-content:hover input {
   border: 1px solid #7CB342;
 }
 div.cozen-input.nolan.small.error-design div.cozen-input-content input {
-  border: 1px solid #E53935;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-input.nolan.small.error-design div.cozen-input-content input:focus {
   border: 1px solid #E53935;
@@ -18351,7 +18351,7 @@ div.cozen-input.nolan.normal div.cozen-input-content:hover input {
   border: 1px solid #0055ff;
 }
 div.cozen-input.nolan.normal.success-design div.cozen-input-content input {
-  border: 1px solid #7CB342;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-input.nolan.normal.success-design div.cozen-input-content input:focus {
   border: 1px solid #7CB342;
@@ -18360,7 +18360,7 @@ div.cozen-input.nolan.normal.success-design div.cozen-input-content:hover input 
   border: 1px solid #7CB342;
 }
 div.cozen-input.nolan.normal.error-design div.cozen-input-content input {
-  border: 1px solid #E53935;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-input.nolan.normal.error-design div.cozen-input-content input:focus {
   border: 1px solid #E53935;
@@ -18776,7 +18776,7 @@ div.cozen-input.nolan.large div.cozen-input-content:hover input {
   border: 1px solid #0055ff;
 }
 div.cozen-input.nolan.large.success-design div.cozen-input-content input {
-  border: 1px solid #7CB342;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-input.nolan.large.success-design div.cozen-input-content input:focus {
   border: 1px solid #7CB342;
@@ -18785,7 +18785,7 @@ div.cozen-input.nolan.large.success-design div.cozen-input-content:hover input {
   border: 1px solid #7CB342;
 }
 div.cozen-input.nolan.large.error-design div.cozen-input-content input {
-  border: 1px solid #E53935;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-input.nolan.large.error-design div.cozen-input-content input:focus {
   border: 1px solid #E53935;
@@ -21174,14 +21174,14 @@ div.cozen-textarea.nolan.small textarea:hover {
   border: 1px solid #0055ff;
 }
 div.cozen-textarea.nolan.small.success-design textarea {
-  border: 1px solid #7CB342;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-textarea.nolan.small.success-design textarea:focus,
 div.cozen-textarea.nolan.small.success-design textarea:hover {
   border: 1px solid #7CB342;
 }
 div.cozen-textarea.nolan.small.error-design textarea {
-  border: 1px solid #E53935;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-textarea.nolan.small.error-design textarea:focus,
 div.cozen-textarea.nolan.small.error-design textarea:hover {
@@ -21371,14 +21371,14 @@ div.cozen-textarea.nolan.normal textarea:hover {
   border: 1px solid #0055ff;
 }
 div.cozen-textarea.nolan.normal.success-design textarea {
-  border: 1px solid #7CB342;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-textarea.nolan.normal.success-design textarea:focus,
 div.cozen-textarea.nolan.normal.success-design textarea:hover {
   border: 1px solid #7CB342;
 }
 div.cozen-textarea.nolan.normal.error-design textarea {
-  border: 1px solid #E53935;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-textarea.nolan.normal.error-design textarea:focus,
 div.cozen-textarea.nolan.normal.error-design textarea:hover {
@@ -21568,14 +21568,14 @@ div.cozen-textarea.nolan.large textarea:hover {
   border: 1px solid #0055ff;
 }
 div.cozen-textarea.nolan.large.success-design textarea {
-  border: 1px solid #7CB342;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-textarea.nolan.large.success-design textarea:focus,
 div.cozen-textarea.nolan.large.success-design textarea:hover {
   border: 1px solid #7CB342;
 }
 div.cozen-textarea.nolan.large.error-design textarea {
-  border: 1px solid #E53935;
+  border: 1px solid #D6DBDB;
 }
 div.cozen-textarea.nolan.large.error-design textarea:focus,
 div.cozen-textarea.nolan.large.error-design textarea:hover {
