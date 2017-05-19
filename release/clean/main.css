@@ -21715,71 +21715,71 @@ div.cozen-textarea.nolan.large div.cozen-textarea-label label.required-icon {
 div.cozen-textarea.nolan.large div.cozen-textarea-label label.required-icon:hover {
   color: #FEB909;
 }
-.atom.tooltip.top .tooltip-arrow {
+.nolan.tooltip.top .tooltip-arrow {
   bottom: 1px;
   border-top-color: #34495E;
 }
-.atom.tooltip.top-left .tooltip-arrow {
+.nolan.tooltip.top-left .tooltip-arrow {
   bottom: 1px !important;
   left: 6px !important;
   border-top-color: #34495E;
 }
-.atom.tooltip.top-left .tooltip-inner {
+.nolan.tooltip.top-left .tooltip-inner {
   border-bottom-left-radius: 0;
 }
-.atom.tooltip.top-right .tooltip-arrow {
+.nolan.tooltip.top-right .tooltip-arrow {
   bottom: 1px !important;
   right: 6px !important;
   border-top-color: #34495E;
 }
-.atom.tooltip.top-right .tooltip-inner {
+.nolan.tooltip.top-right .tooltip-inner {
   border-bottom-right-radius: 0;
 }
-.atom.tooltip.right .tooltip-arrow {
+.nolan.tooltip.right .tooltip-arrow {
   left: 1px;
   border-right-color: #34495E;
 }
-.atom.tooltip.left .tooltip-arrow {
+.nolan.tooltip.left .tooltip-arrow {
   right: 1px;
   border-left-color: #34495E;
 }
-.atom.tooltip.bottom .tooltip-arrow {
+.nolan.tooltip.bottom .tooltip-arrow {
   top: 1px;
   border-bottom-color: #34495E;
 }
-.atom.tooltip.bottom-left .tooltip-arrow {
+.nolan.tooltip.bottom-left .tooltip-arrow {
   top: 1px !important;
   left: 6px !important;
   border-bottom-color: #34495E;
 }
-.atom.tooltip.bottom-left .tooltip-inner {
+.nolan.tooltip.bottom-left .tooltip-inner {
   border-top-left-radius: 0;
 }
-.atom.tooltip.bottom-right .tooltip-arrow {
+.nolan.tooltip.bottom-right .tooltip-arrow {
   top: 1px !important;
   right: 6px !important;
   border-bottom-color: #34495E;
 }
-.atom.tooltip.bottom-right .tooltip-inner {
+.nolan.tooltip.bottom-right .tooltip-inner {
   border-top-right-radius: 0;
 }
-.atom.tooltip > .tooltip-inner {
+.nolan.tooltip > .tooltip-inner {
   background-color: #34495E;
   color: #FFFFFF;
   border: none;
   box-shadow: none;
 }
-.atom.tooltip.in {
+.nolan.tooltip.in {
   opacity: 1;
 }
-.atom.tooltip {
+.nolan.tooltip {
   font-size: 14px;
   font-weight: 400;
 }
-.atom.tooltip {
+.nolan.tooltip {
   padding: 6px;
 }
-.atom.tooltip > .tooltip-inner {
+.nolan.tooltip > .tooltip-inner {
   max-width: inherit;
 }
 label.cozen-upload-info.nolan {
