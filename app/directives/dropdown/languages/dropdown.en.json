@@ -1,1 +1,5 @@
-{}
+{
+    "dropdown_count": "{{selected}} selected elements on {{total}}",
+    "dropdown_count_all": "Al elements selected",
+    "dropdown_required_tooltip": "Required field"
+}

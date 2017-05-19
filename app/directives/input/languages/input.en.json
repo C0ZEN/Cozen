@@ -1,1 +1,8 @@
-{}
+{
+    "input_password_lowercase": "A lowercase",
+    "input_password_uppercase": "An uppercase",
+    "input_password_number": "A number",
+    "input_password_special_char": "A special char",
+    "input_password_min_length": "At least {{length}} characters",
+    "input_required_tooltip": "Required field"
+}

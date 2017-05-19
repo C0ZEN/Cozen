@@ -1,3 +1,12 @@
 {
-    "btn_label": "I am a label"
+    "btn_label": "I am a label",
+    "btn_required_tooltip": "Required upload",
+    "btn_upload_error_maxWidth": "The image width is <strong>{{width}}px</strong> whereas it must be less than <strong>{{maxWidth}}px</strong>",
+    "btn_upload_error_minWidth": "The image width is <strong>{{width}}px</strong> whereas it must be greater than <strong>{{minWidth}}px</strong>",
+    "btn_upload_error_maxHeight": "The image height is <strong>{{height}}px</strong> whereas it must be less than <strong>{{maxHeight}}px</strong>",
+    "btn_upload_error_minHeight": "The image height is <strong>{{height}}px</strong> whereas it must be greater than <strong>{{minHeight}}px</strong>",
+    "btn_upload_error_maxSize": "The image size is <strong>{{size}}</strong> bytes whereas it must be less than <strong>{{maxSize}}</strong>",
+    "btn_upload_error_pattern": "The image type is <strong>{{type}}</strong> whereas it must be type of <strong>{{types}}</strong>",
+    "btn_upload_error_unknown": "An unknown error occurred",
+    "btn_upload_error_occurred": "An unknown error occurred while uploading"
 }

@@ -1,1 +1,8 @@
-{}
+{
+    "cozen_icons_uploadInfo_type": "Type: ",
+    "cozen_icons_uploadInfo_types": "Types: ",
+    "cozen_icons_uploadInfo_maxSize": "Maximum size: ",
+    "cozen_icons_uploadInfo_height": "Height: ",
+    "cozen_icons_uploadInfo_width": "Width: ",
+    "cozen_icons_uploadInfo_undefined": "Undefined"
+}
