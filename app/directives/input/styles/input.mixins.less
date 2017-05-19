@@ -380,6 +380,51 @@
         }
     }
 }
+/********************/
+/*   ARROWS COLOR   */
+/********************/
+.cozen-input-arrows-color(@color, @color-hover) {
+    .cozen-input-arrows-color-internal(@color, @color-hover);
+}
+/****************************/
+/*   ARROWS COLOR SUCCESS   */
+/****************************/
+.cozen-input-arrows-color-success(@color, @color-hover) {
+    &.success-design {
+        .cozen-input-arrows-color-internal(@color, @color-hover);
+    }
+}
+/**************************/
+/*   ARROWS COLOR ERROR   */
+/**************************/
+.cozen-input-arrows-color-error(@color, @color-hover) {
+    &.error-design {
+        .cozen-input-arrows-color-internal(@color, @color-hover);
+    }
+}
+/*****************************/
+/*   ARROWS COLOR DISABLED   */
+/*****************************/
+.cozen-input-arrows-color-disabled(@color, @color-hover) {
+    &.success-design.disabled,
+    &.error-design.disabled,
+    &.disabled {
+        .cozen-input-arrows-color-internal(@color, @color-hover);
+    }
+}
+/*****************************/
+/*   ARROWS COLOR INTERNAL   */
+/*****************************/
+.cozen-input-arrows-color-internal(@color, @color-hover) {
+    div.cozen-input-content {
+        div.cozen-input-arrows {
+            color : @color;
+            &:hover {
+                color : @color-hover;
+            }
+        }
+    }
+}
 /*************/
 /*   LABEL   */
 /*************/
