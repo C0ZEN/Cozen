@@ -10628,7 +10628,8 @@ var Methods = {
     dataMustBeInThisList      : dataMustBeInThisList,
     getRandomFromRange        : getRandomFromRange,
     getRandomBoolean          : getRandomBoolean,
-    getHumanFileSize          : getHumanFileSize
+    getHumanFileSize          : getHumanFileSize,
+    getNumberArray            : getNumberArray
 };
 
 // Common data
@@ -10834,6 +10835,10 @@ function getHumanFileSize(bytes, si) {
         ++u;
     } while (Math.abs(bytes) >= thresh && u < units.length - 1);
     return bytes.toFixed(1) + ' ' + units[u];
+}
+
+function getNumberArray(number) {
+    return new Array(number);
 }
 /**
  * @ngdoc directive
