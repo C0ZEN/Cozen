@@ -6333,11 +6333,12 @@
  * @description
  *
  * [Scope params]
- * @param {string}   cozenInputModel                      > Value edited by the input [required]
- * @param {boolean}  cozenInputDisabled           = false > Disable the input
- * @param {function} cozenInputOnChange                   > Callback function called on change
- * @param {object}   cozenInputTypePasswordConfig         > Override the default configuration object
- * @param {boolean}  cozenInputHasError                   > Force to have error design
+ * @param {string}   cozenInputModel                              > Value edited by the input [required]
+ * @param {boolean}  cozenInputDisabled           = false         > Disable the input
+ * @param {function} cozenInputOnChange                           > Callback function called on change
+ * @param {object}   cozenInputTypePasswordConfig                 > Override the default configuration object
+ * @param {boolean}  cozenInputHasError                           > Force to have error design
+ * @param {string}   cozenInputTooltipMaxWidth    = max-width-200 > Max width of the tooltip
  *
  * [Attributes params]
  * @param {number}  cozenInputId                                        > Id of the input
@@ -6422,7 +6423,8 @@
                 cozenInputDisabled          : '=?',
                 cozenInputOnChange          : '&',
                 cozenInputTypePasswordConfig: '=?',
-                cozenInputHasError          : '=?'
+                cozenInputHasError          : '=?',
+                cozenInputTooltipMaxWidth   : '=?'
             },
             templateUrl     : 'directives/input/input.template.html',
             bindToController: true,
@@ -6582,12 +6584,9 @@
                 }
 
                 // Default values (scope)
-                if (angular.isUndefined(attrs.cozenInputDisabled)) {
-                    scope.vm.cozenInputDisabled = false;
-                }
-                if (angular.isUndefined(attrs.cozenInputHasError)) {
-                    scope.vm.cozenInputHasError = false;
-                }
+                angular.isUndefined(attrs.cozenInputDisabled) ? scope.vm.cozenInputDisabled = false : null;
+                angular.isUndefined(attrs.cozenInputHasError) ? scope.vm.cozenInputHasError = false : null;
+                angular.isUndefined(attrs.cozenInputTooltipMaxWidth) ? scope.vm.cozenInputTooltipMaxWidth = 'max-width-200' : null;
 
                 // Default values (attributes)
                 scope._cozenInputId               = angular.isDefined(attrs.cozenInputId) ? attrs.cozenInputId : '';
