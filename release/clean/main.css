@@ -872,16 +872,13 @@ div.cozen-alert {
   position: relative;
 }
 div.cozen-alert.animate-in {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-alert.ng-hide {
-  -webkit-transition: none;
   transition: none;
   background-color: transparent !important;
 }
 div.cozen-alert.ng-hide-add-active.animate-out {
-  -webkit-transition: 200ms ease-out;
   transition: 200ms ease-out;
   background-color: transparent !important;
 }
@@ -927,7 +924,6 @@ div.cozen-floating-feed .floating-alert-animation-in {
 }
 div.cozen-btn {
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -981,7 +977,6 @@ div.cozen-btn div.cozen-btn-content-container div.cozen-btn-content {
           flex: 1;
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-content span.cozen-btn-label {
@@ -1054,7 +1049,6 @@ div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview.ng-hide {
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview div.cozen-btn-preview-btn {
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview div.cozen-btn-preview-btn i {
@@ -1110,7 +1104,6 @@ div.cozen-btn.auto.loading {
 }
 div.cozen-btn-check {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -1144,7 +1137,6 @@ div.cozen-btn-check div.cozen-btn-check-container label.cozen-btn-check-label {
 }
 div.cozen-btn-check div.cozen-btn-check-container div.cozen-btn-check-square {
   position: relative;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 3px;
   display: inline-block;
@@ -1185,7 +1177,6 @@ div.cozen-btn-check.check-right div.cozen-btn-check-container div.cozen-btn-chec
 }
 div.cozen-btn-radio {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -1219,7 +1210,6 @@ div.cozen-btn-radio div.cozen-btn-radio-container label.cozen-btn-radio-label {
 }
 div.cozen-btn-radio div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
   position: relative;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 50%;
   display: inline-block;
@@ -1267,7 +1257,6 @@ div.cozen-btn-radio.bubble-right div.cozen-btn-radio-container div.cozen-btn-rad
 }
 div.cozen-btn-toggle {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -1336,11 +1325,9 @@ div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.
   left: 50%;
 }
 div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.transition {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.transition:after {
-  -webkit-transition: 200ms ease-out;
   transition: 200ms ease-out;
 }
 div.cozen-btn-toggle.disabled {
@@ -1362,7 +1349,6 @@ div.cozen-dropdown {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown div.cozen-dropdown-label {
@@ -1399,7 +1385,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content {
   background-color: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
 }
@@ -1410,7 +1395,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.c
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -1431,7 +1415,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.c
   cursor: pointer;
 }
 div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon.right i {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon i {
@@ -1445,7 +1428,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content input
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
 }
@@ -1521,7 +1503,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-group div.cozen-drop
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   font-size: inherit;
   line-height: inherit;
@@ -1533,14 +1514,12 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content {
   cursor: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
 }
@@ -1550,7 +1529,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -1573,7 +1551,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content div.cozen-dropdown-item-search-icon i {
   width: 1.28571429em;
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content input {
@@ -1583,7 +1560,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
 }
@@ -1655,7 +1631,6 @@ div.cozen-input {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-input div.cozen-input-label {
@@ -1692,7 +1667,6 @@ div.cozen-input div.cozen-input-content {
   color: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
   border-radius: 3px;
@@ -1704,7 +1678,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-icon {
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -1726,7 +1699,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-icon.right {
 div.cozen-input div.cozen-input-content div.cozen-input-icon i {
   width: 1.28571429em;
   text-align: center;
-  -webkit-transition: none;
   transition: none;
 }
 div.cozen-input div.cozen-input-content input {
@@ -1736,7 +1708,6 @@ div.cozen-input div.cozen-input-content input {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
   line-height: initial;
@@ -1800,7 +1771,6 @@ ul.cozen-input-password-tooltip li.complete {
 }
 div.cozen-list .cozen-list-item {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -1896,14 +1866,12 @@ div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simpl
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   font-size: inherit;
   line-height: inherit;
 }
 div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn {
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 3px;
   display: inline-block;
@@ -1918,7 +1886,6 @@ div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simpl
 div.cozen-pagination {
   cursor: pointer;
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -1939,7 +1906,6 @@ div.cozen-pagination {
           user-select: none;
 }
 div.cozen-pagination > div.cozen-pagination-btn {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   position: relative;
   cursor: inherit;
@@ -1951,7 +1917,6 @@ div.cozen-pagination > div.cozen-pagination-btn span,
 div.cozen-pagination > div.cozen-pagination-btn i {
   vertical-align: middle;
   font-size: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-pagination > div.cozen-pagination-btn:first-of-type {
@@ -1974,7 +1939,6 @@ div.cozen-pagination.disabled {
 }
 div.cozen-panel {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -1985,7 +1949,6 @@ div.cozen-panel {
 div.cozen-panel div.cozen-panel-header {
   cursor: inherit;
   outline: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2015,7 +1978,6 @@ div.cozen-panel div.cozen-panel-header div.cozen-panel-big-icon {
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-panel div.cozen-panel-header div.cozen-panel-icon {
@@ -2035,7 +1997,6 @@ div.cozen-panel div.cozen-panel-header div.cozen-panel-big-icon i {
   vertical-align: middle;
   height: inherit;
   line-height: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-panel div.cozen-panel-body {
@@ -2086,7 +2047,6 @@ div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
           justify-content: space-between;
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-pills .cozen-pills-item.cozen-pills-item-simple div.cozen-pills-item-simple-content {
@@ -2133,7 +2093,6 @@ div.cozen-popup {
   background-color: transparent;
 }
 div.cozen-popup.animate-in {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-popup.animate-out {
@@ -2214,7 +2173,6 @@ div.cozen-textarea {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-textarea div.cozen-textarea-label {
@@ -2249,7 +2207,6 @@ div.cozen-textarea textarea {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
   resize: vertical;
@@ -2301,7 +2258,6 @@ div.cozen-tooltip > div.cozen-tooltip-html {
   max-width: 450px;
 }
 label.cozen-upload-info {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -2320,7 +2276,6 @@ label.cozen-upload-info i {
   text-align: left;
 }
 label.cozen-icon-info {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -2338,7 +2293,6 @@ label.cozen-icon-info i {
   vertical-align: middle;
 }
 label.cozen-icon-required {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -11970,16 +11924,13 @@ div.cozen-alert {
   position: relative;
 }
 div.cozen-alert.animate-in {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-alert.ng-hide {
-  -webkit-transition: none;
   transition: none;
   background-color: transparent !important;
 }
 div.cozen-alert.ng-hide-add-active.animate-out {
-  -webkit-transition: 200ms ease-out;
   transition: 200ms ease-out;
   background-color: transparent !important;
 }
@@ -12025,7 +11976,6 @@ div.cozen-floating-feed .floating-alert-animation-in {
 }
 div.cozen-btn {
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -12079,7 +12029,6 @@ div.cozen-btn div.cozen-btn-content-container div.cozen-btn-content {
           flex: 1;
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-content span.cozen-btn-label {
@@ -12152,7 +12101,6 @@ div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview.ng-hide {
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview div.cozen-btn-preview-btn {
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview div.cozen-btn-preview-btn i {
@@ -12208,7 +12156,6 @@ div.cozen-btn.auto.loading {
 }
 div.cozen-btn-check {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -12242,7 +12189,6 @@ div.cozen-btn-check div.cozen-btn-check-container label.cozen-btn-check-label {
 }
 div.cozen-btn-check div.cozen-btn-check-container div.cozen-btn-check-square {
   position: relative;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 3px;
   display: inline-block;
@@ -12283,7 +12229,6 @@ div.cozen-btn-check.check-right div.cozen-btn-check-container div.cozen-btn-chec
 }
 div.cozen-btn-radio {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -12317,7 +12262,6 @@ div.cozen-btn-radio div.cozen-btn-radio-container label.cozen-btn-radio-label {
 }
 div.cozen-btn-radio div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
   position: relative;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 50%;
   display: inline-block;
@@ -12365,7 +12309,6 @@ div.cozen-btn-radio.bubble-right div.cozen-btn-radio-container div.cozen-btn-rad
 }
 div.cozen-btn-toggle {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -12434,11 +12377,9 @@ div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.
   left: 50%;
 }
 div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.transition {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.transition:after {
-  -webkit-transition: 200ms ease-out;
   transition: 200ms ease-out;
 }
 div.cozen-btn-toggle.disabled {
@@ -12460,7 +12401,6 @@ div.cozen-dropdown {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown div.cozen-dropdown-label {
@@ -12497,7 +12437,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content {
   background-color: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
 }
@@ -12508,7 +12447,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.c
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -12529,7 +12467,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.c
   cursor: pointer;
 }
 div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon.right i {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon i {
@@ -12543,7 +12480,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content input
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
 }
@@ -12619,7 +12555,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-group div.cozen-drop
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   font-size: inherit;
   line-height: inherit;
@@ -12631,14 +12566,12 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content {
   cursor: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
 }
@@ -12648,7 +12581,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -12671,7 +12603,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content div.cozen-dropdown-item-search-icon i {
   width: 1.28571429em;
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content input {
@@ -12681,7 +12612,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
 }
@@ -12753,7 +12683,6 @@ div.cozen-input {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-input div.cozen-input-label {
@@ -12790,7 +12719,6 @@ div.cozen-input div.cozen-input-content {
   color: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
   border-radius: 3px;
@@ -12802,7 +12730,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-icon {
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -12824,7 +12751,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-icon.right {
 div.cozen-input div.cozen-input-content div.cozen-input-icon i {
   width: 1.28571429em;
   text-align: center;
-  -webkit-transition: none;
   transition: none;
 }
 div.cozen-input div.cozen-input-content input {
@@ -12834,7 +12760,6 @@ div.cozen-input div.cozen-input-content input {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
   line-height: initial;
@@ -12898,7 +12823,6 @@ ul.cozen-input-password-tooltip li.complete {
 }
 div.cozen-list .cozen-list-item {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -12994,14 +12918,12 @@ div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simpl
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   font-size: inherit;
   line-height: inherit;
 }
 div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn {
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 3px;
   display: inline-block;
@@ -13016,7 +12938,6 @@ div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simpl
 div.cozen-pagination {
   cursor: pointer;
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -13037,7 +12958,6 @@ div.cozen-pagination {
           user-select: none;
 }
 div.cozen-pagination > div.cozen-pagination-btn {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   position: relative;
   cursor: inherit;
@@ -13049,7 +12969,6 @@ div.cozen-pagination > div.cozen-pagination-btn span,
 div.cozen-pagination > div.cozen-pagination-btn i {
   vertical-align: middle;
   font-size: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-pagination > div.cozen-pagination-btn:first-of-type {
@@ -13072,7 +12991,6 @@ div.cozen-pagination.disabled {
 }
 div.cozen-panel {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -13083,7 +13001,6 @@ div.cozen-panel {
 div.cozen-panel div.cozen-panel-header {
   cursor: inherit;
   outline: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13113,7 +13030,6 @@ div.cozen-panel div.cozen-panel-header div.cozen-panel-big-icon {
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-panel div.cozen-panel-header div.cozen-panel-icon {
@@ -13133,7 +13049,6 @@ div.cozen-panel div.cozen-panel-header div.cozen-panel-big-icon i {
   vertical-align: middle;
   height: inherit;
   line-height: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-panel div.cozen-panel-body {
@@ -13184,7 +13099,6 @@ div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
           justify-content: space-between;
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-pills .cozen-pills-item.cozen-pills-item-simple div.cozen-pills-item-simple-content {
@@ -13231,7 +13145,6 @@ div.cozen-popup {
   background-color: transparent;
 }
 div.cozen-popup.animate-in {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-popup.animate-out {
@@ -13312,7 +13225,6 @@ div.cozen-textarea {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-textarea div.cozen-textarea-label {
@@ -13347,7 +13259,6 @@ div.cozen-textarea textarea {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
   resize: vertical;
@@ -13399,7 +13310,6 @@ div.cozen-tooltip > div.cozen-tooltip-html {
   max-width: 450px;
 }
 label.cozen-upload-info {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -13418,7 +13328,6 @@ label.cozen-upload-info i {
   text-align: left;
 }
 label.cozen-icon-info {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -13436,7 +13345,6 @@ label.cozen-icon-info i {
   vertical-align: middle;
 }
 label.cozen-icon-required {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -23080,16 +22988,13 @@ div.cozen-alert {
   position: relative;
 }
 div.cozen-alert.animate-in {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-alert.ng-hide {
-  -webkit-transition: none;
   transition: none;
   background-color: transparent !important;
 }
 div.cozen-alert.ng-hide-add-active.animate-out {
-  -webkit-transition: 200ms ease-out;
   transition: 200ms ease-out;
   background-color: transparent !important;
 }
@@ -23135,7 +23040,6 @@ div.cozen-floating-feed .floating-alert-animation-in {
 }
 div.cozen-btn {
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -23189,7 +23093,6 @@ div.cozen-btn div.cozen-btn-content-container div.cozen-btn-content {
           flex: 1;
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-content span.cozen-btn-label {
@@ -23262,7 +23165,6 @@ div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview.ng-hide {
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview div.cozen-btn-preview-btn {
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-btn div.cozen-btn-content-container div.cozen-btn-preview div.cozen-btn-preview-btn i {
@@ -23318,7 +23220,6 @@ div.cozen-btn.auto.loading {
 }
 div.cozen-btn-check {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -23352,7 +23253,6 @@ div.cozen-btn-check div.cozen-btn-check-container label.cozen-btn-check-label {
 }
 div.cozen-btn-check div.cozen-btn-check-container div.cozen-btn-check-square {
   position: relative;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 3px;
   display: inline-block;
@@ -23393,7 +23293,6 @@ div.cozen-btn-check.check-right div.cozen-btn-check-container div.cozen-btn-chec
 }
 div.cozen-btn-radio {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -23427,7 +23326,6 @@ div.cozen-btn-radio div.cozen-btn-radio-container label.cozen-btn-radio-label {
 }
 div.cozen-btn-radio div.cozen-btn-radio-container div.cozen-btn-radio-bubble {
   position: relative;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 50%;
   display: inline-block;
@@ -23475,7 +23373,6 @@ div.cozen-btn-radio.bubble-right div.cozen-btn-radio-container div.cozen-btn-rad
 }
 div.cozen-btn-toggle {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -23544,11 +23441,9 @@ div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.
   left: 50%;
 }
 div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.transition {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-btn-toggle div.cozen-btn-toggle-container div.cozen-btn-toggle-switch.transition:after {
-  -webkit-transition: 200ms ease-out;
   transition: 200ms ease-out;
 }
 div.cozen-btn-toggle.disabled {
@@ -23570,7 +23465,6 @@ div.cozen-dropdown {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown div.cozen-dropdown-label {
@@ -23607,7 +23501,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content {
   background-color: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
 }
@@ -23618,7 +23511,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.c
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -23639,7 +23531,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.c
   cursor: pointer;
 }
 div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon.right i {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content div.cozen-dropdown-icon i {
@@ -23653,7 +23544,6 @@ div.cozen-dropdown div.cozen-dropdown-container div.cozen-dropdown-content input
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
 }
@@ -23729,7 +23619,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-group div.cozen-drop
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   font-size: inherit;
   line-height: inherit;
@@ -23741,14 +23630,12 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content {
   cursor: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
 }
@@ -23758,7 +23645,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -23781,7 +23667,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content div.cozen-dropdown-item-search-icon i {
   width: 1.28571429em;
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dropdown-item-search-content input {
@@ -23791,7 +23676,6 @@ div.cozen-dropdown .cozen-dropdown-item.cozen-dropdown-item-search div.cozen-dro
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
 }
@@ -23863,7 +23747,6 @@ div.cozen-input {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-input div.cozen-input-label {
@@ -23900,7 +23783,6 @@ div.cozen-input div.cozen-input-content {
   color: inherit;
   display: inline-block;
   width: 100%;
-  -webkit-transition: none;
   transition: none;
   position: relative;
   border-radius: 3px;
@@ -23912,7 +23794,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-icon {
   font-size: inherit;
   color: inherit;
   background-color: transparent;
-  -webkit-transition: none;
   transition: none;
   position: absolute;
   top: 0;
@@ -23934,7 +23815,6 @@ div.cozen-input div.cozen-input-content div.cozen-input-icon.right {
 div.cozen-input div.cozen-input-content div.cozen-input-icon i {
   width: 1.28571429em;
   text-align: center;
-  -webkit-transition: none;
   transition: none;
 }
 div.cozen-input div.cozen-input-content input {
@@ -23944,7 +23824,6 @@ div.cozen-input div.cozen-input-content input {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
   line-height: initial;
@@ -24008,7 +23887,6 @@ ul.cozen-input-password-tooltip li.complete {
 }
 div.cozen-list .cozen-list-item {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -24104,14 +23982,12 @@ div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simpl
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   font-size: inherit;
   line-height: inherit;
 }
 div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simple-content div.cozen-list-item-simple-btn {
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   border-radius: 3px;
   display: inline-block;
@@ -24126,7 +24002,6 @@ div.cozen-list .cozen-list-item.cozen-list-item-simple div.cozen-list-item-simpl
 div.cozen-pagination {
   cursor: pointer;
   text-align: center;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -24147,7 +24022,6 @@ div.cozen-pagination {
           user-select: none;
 }
 div.cozen-pagination > div.cozen-pagination-btn {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   position: relative;
   cursor: inherit;
@@ -24159,7 +24033,6 @@ div.cozen-pagination > div.cozen-pagination-btn span,
 div.cozen-pagination > div.cozen-pagination-btn i {
   vertical-align: middle;
   font-size: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-pagination > div.cozen-pagination-btn:first-of-type {
@@ -24182,7 +24055,6 @@ div.cozen-pagination.disabled {
 }
 div.cozen-panel {
   cursor: pointer;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -24193,7 +24065,6 @@ div.cozen-panel {
 div.cozen-panel div.cozen-panel-header {
   cursor: inherit;
   outline: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -24223,7 +24094,6 @@ div.cozen-panel div.cozen-panel-header div.cozen-panel-big-icon {
   font-weight: normal;
   vertical-align: sub;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-panel div.cozen-panel-header div.cozen-panel-icon {
@@ -24243,7 +24113,6 @@ div.cozen-panel div.cozen-panel-header div.cozen-panel-big-icon i {
   vertical-align: middle;
   height: inherit;
   line-height: inherit;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-panel div.cozen-panel-body {
@@ -24294,7 +24163,6 @@ div.cozen-pills .cozen-pills-item.cozen-pills-item-simple {
           justify-content: space-between;
   cursor: pointer;
   outline: 0;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-pills .cozen-pills-item.cozen-pills-item-simple div.cozen-pills-item-simple-content {
@@ -24341,7 +24209,6 @@ div.cozen-popup {
   background-color: transparent;
 }
 div.cozen-popup.animate-in {
-  -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
 div.cozen-popup.animate-out {
@@ -24422,7 +24289,6 @@ div.cozen-textarea {
   line-height: 1;
   width: 100%;
   display: inline-block;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
 }
 div.cozen-textarea div.cozen-textarea-label {
@@ -24457,7 +24323,6 @@ div.cozen-textarea textarea {
   display: inline-block;
   width: 100%;
   border-radius: 3px;
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   outline: 0;
   resize: vertical;
@@ -24509,7 +24374,6 @@ div.cozen-tooltip > div.cozen-tooltip-html {
   max-width: 450px;
 }
 label.cozen-upload-info {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -24528,7 +24392,6 @@ label.cozen-upload-info i {
   text-align: left;
 }
 label.cozen-icon-info {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
@@ -24546,7 +24409,6 @@ label.cozen-icon-info i {
   vertical-align: middle;
 }
 label.cozen-icon-required {
-  -webkit-transition: all 80ms ease-out;
   transition: all 80ms ease-out;
   box-sizing: border-box;
   position: relative;
