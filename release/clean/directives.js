@@ -4325,18 +4325,19 @@
                 requiredParameterFn      : errorRequiredParameterFn
             },
             info         : {
-                customMessage        : infoCustomMessage,
-                functionCalled       : infoFunctionCalled,
-                customMessageEnhanced: infoCustomMessageEnhanced,
-                stateRedirectTo      : infoStateRedirectTo,
-                httpRequest          : infoHttpRequest,
-                apiRoute             : infoApiRoute,
-                changeRouteWithParams: infoChangeRouteWithParams,
-                broadcastEvent       : infoBroadcastEvent,
-                explodeObject        : infoExplodeObject,
-                lazyLoadLog          : infoLazyLoadLog,
-                lazyLoadLogObject    : infoLazyLoadLogObject,
-                ga                   : {
+                customMessage                    : infoCustomMessage,
+                functionCalled                   : infoFunctionCalled,
+                customMessageEnhanced            : infoCustomMessageEnhanced,
+                templateForGoogleAnalyticsRequest: infoTemplateForGoogleAnalyticsRequest,
+                stateRedirectTo                  : infoStateRedirectTo,
+                httpRequest                      : infoHttpRequest,
+                apiRoute                         : infoApiRoute,
+                changeRouteWithParams            : infoChangeRouteWithParams,
+                broadcastEvent                   : infoBroadcastEvent,
+                explodeObject                    : infoExplodeObject,
+                lazyLoadLog                      : infoLazyLoadLog,
+                lazyLoadLogObject                : infoLazyLoadLogObject,
+                ga                               : {
                     baseRequest: infoGaBaseRequest,
                     pageView   : infoGaPageView,
                     event      : infoGaEvent
@@ -4937,11 +4938,15 @@
         /**
          * Start a series of logs
          * @param {string} target > Specify the name of the element [required]
+         * @param {string} action > Specify the action which is completed
          */
-        function wrapStarting(target) {
+        function wrapStarting(target, action) {
             if (CONFIG.logs.enabled) {
                 if (Methods.isNullOrEmpty(target)) {
                     return;
+                }
+                if (Methods.isNullOrEmpty(action)) {
+                    action = 'Started initializing...';
                 }
 
                 // Add
@@ -4951,7 +4956,7 @@
                 });
 
                 var log = methods.getBase(target);
-                log += console.colors.black('Started initializing...');
+                log += console.colors.black(action);
                 console.style(log);
             }
         }
@@ -4959,11 +4964,15 @@
         /**
          * End a series of logs
          * @param {string} target > Specify the name of the element [required]
+         * @param {string} action > Specify the action which is completed
          */
-        function wrapEnd(target) {
+        function wrapEnd(target, action) {
             if (CONFIG.logs.enabled) {
                 if (Methods.isNullOrEmpty(target)) {
                     return;
+                }
+                if (Methods.isNullOrEmpty(action)) {
+                    action = 'Initialization completed in';
                 }
 
                 // Get the starting object
@@ -4983,7 +4992,7 @@
                     var now  = Date.now();
                     var diff = now - targetTimer.started;
 
-                    log += console.colors.black('Initialization completed in <');
+                    log += console.colors.black(action + ' <');
                     log += console.colors.purple(diff);
                     log += console.colors.black('> milliseconds');
                 }
@@ -6090,7 +6099,7 @@
         /**
          * @ngdoc method
          * @name cozenLib.cozenHttp#requestPost
-         * @methodOf dsiegisApp.egisHttp
+         * @methodOf cozenLib.cozenHttp
          * @description
          * Decorate the http post request to use a deferred
          * Optionally called a success/error callback
@@ -7481,7 +7490,7 @@
     }
 
 })(window.angular);
-(function (angular) {
+(function (angular, moment, Methods) {
     'use strict';
 
     angular
@@ -7588,7 +7597,7 @@
         }
     }
 
-})(window.angular);
+})(window.angular, window.moment, window.Methods);
 
 
 (function (angular) {
@@ -9026,11 +9035,10 @@
 
     cozenOnClickService.$inject = [
         '$window',
-        '$rootScope',
-        'cozenEnhancedLogs'
+        '$rootScope'
     ];
 
-    function cozenOnClickService($window, $rootScope, cozenEnhancedLogs) {
+    function cozenOnClickService($window, $rootScope) {
 
         // Listen for a click
         $window.addEventListener('click', _onClick);

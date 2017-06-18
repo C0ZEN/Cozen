@@ -7,11 +7,10 @@
 
     cozenOnClickService.$inject = [
         '$window',
-        '$rootScope',
-        'cozenEnhancedLogs'
+        '$rootScope'
     ];
 
-    function cozenOnClickService($window, $rootScope, cozenEnhancedLogs) {
+    function cozenOnClickService($window, $rootScope) {
 
         // Listen for a click
         $window.addEventListener('click', _onClick);

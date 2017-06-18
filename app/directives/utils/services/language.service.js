@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, moment, Methods) {
     'use strict';
 
     angular
@@ -105,5 +105,5 @@
         }
     }
 
-})(window.angular);
+})(window.angular, window.moment, window.Methods);
 

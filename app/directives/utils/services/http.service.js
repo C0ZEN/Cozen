@@ -71,7 +71,7 @@
         /**
          * @ngdoc method
          * @name cozenLib.cozenHttp#requestPost
-         * @methodOf dsiegisApp.egisHttp
+         * @methodOf cozenLib.cozenHttp
          * @description
          * Decorate the http post request to use a deferred
          * Optionally called a success/error callback
