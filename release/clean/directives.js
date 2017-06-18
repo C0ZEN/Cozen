@@ -10845,7 +10845,10 @@ function getHumanFileSize(bytes, si) {
 }
 
 function getNumberArray(number) {
-    return new Array(number);
+    if (!Methods.isNullOrEmpty(number) && typeof number == 'number') {
+        return new Array(number);
+    }
+    return [];
 }
 /**
  * @ngdoc directive
