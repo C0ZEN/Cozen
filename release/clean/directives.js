@@ -7490,7 +7490,7 @@
     }
 
 })(window.angular);
-(function (angular, moment, Methods) {
+(function (angular) {
     'use strict';
 
     angular
@@ -7597,7 +7597,7 @@
         }
     }
 
-})(window.angular, window.moment, window.Methods);
+})(window.angular);
 
 
 (function (angular) {
