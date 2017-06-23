@@ -21,7 +21,8 @@ var Methods = {
     getRandomFromRange        : getRandomFromRange,
     getRandomBoolean          : getRandomBoolean,
     getHumanFileSize          : getHumanFileSize,
-    getNumberArray            : getNumberArray
+    getNumberArray            : getNumberArray,
+    isBoolean                 : isBoolean
 };
 
 // Common data
@@ -234,4 +235,9 @@ function getNumberArray(number) {
         return new Array(number);
     }
     return [];
+}
+
+// Check if the value is a boolean
+function isBoolean(value) {
+    return typeof value === 'boolean';
 }
