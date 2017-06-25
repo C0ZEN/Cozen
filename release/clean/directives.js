@@ -10666,14 +10666,17 @@ function isNullOrEmptyStrict(element) {
 
 // Force a digest in angular app safely
 function safeApply(scope, fn) {
-    var phase = scope.$root.$$phase;
-    if (phase == '$apply' || phase == '$digest') {
-        if (fn && (typeof(fn) === 'function')) {
-            fn();
+    var phase = scope.$root;
+    if (!isNullOrEmpty(phase)) {
+        phase = phase.$$phase;
+        if (phase == '$apply' || phase == '$digest') {
+            if (fn && (typeof(fn) === 'function')) {
+                fn();
+            }
         }
-    }
-    else {
-        scope.$apply(fn);
+        else {
+            scope.$apply(fn);
+        }
     }
 }
 
