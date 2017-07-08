@@ -9,10 +9,13 @@
         '$rootScope'
     ];
 
+    // jscs:disable jsDoc
     function cozenPopupFactory($rootScope) {
+
+        // jscs:enable jsDoc
         return {
-            show: show,
-            hide: hide
+            hide: hide,
+            show: show
         };
 
         function show(params) {

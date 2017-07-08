@@ -633,7 +633,7 @@ module.exports = function (grunt) {
             }
         },
 
-        "merge-json": {
+        'merge-json': {
             i18n: {
                 files: {
                     '<%= yeoman.app %>/languages/fr.concat.json': ['<%= yeoman.app %>/directives/**/*.fr.json'],
