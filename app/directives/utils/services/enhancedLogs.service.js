@@ -64,6 +64,8 @@
                 unexpectedBehaviorFn     : errorUnexpectedBehaviorFn,
                 attributeIsNotFunction   : errorAttributeIsNotFunction,
                 attributeIsNotBoolean    : errorAttributeIsNotBoolean,
+                attributeIsNotString     : errorAttributeIsNotString,
+                attributeIsNotNumber     : errorAttributeIsNotNumber,
                 attributeIsEmpty         : errorAttributeIsEmpty,
                 valueNotBoolean          : errorValueNotBoolean,
                 valueNotNumber           : errorValueNotNumber,
@@ -86,6 +88,7 @@
                 explodeObject                    : infoExplodeObject,
                 lazyLoadLog                      : infoLazyLoadLog,
                 lazyLoadLogObject                : infoLazyLoadLogObject,
+                setDefaultAttrValue              : infoSetDefaultAttrValue,
                 ga                               : {
                     baseRequest: infoGaBaseRequest,
                     pageView   : infoGaPageView,
@@ -94,7 +97,8 @@
             },
             warn         : {
                 attributeNotMatched: warningAttributeNotMatched,
-                customMessage      : warningCustomMessage
+                customMessage      : warningCustomMessage,
+                wrongType          : warningWrongType
             },
             wrap         : {
                 starting: wrapStarting,
@@ -131,9 +135,9 @@
                     return;
                 }
                 var log = methods.getBase(directive);
-                log += console.colors.black('Attribute <');
+                log += console.colors.black('Attr <');
                 log += console.colors.purple(attr);
-                log += console.colors.black('> is required !');
+                log += console.colors.black('> is required');
                 console.style(log);
             }
         }
@@ -165,7 +169,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attribute <');
+                log += console.colors.black('Attr <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is not a function');
                 console.style(log);
@@ -183,9 +187,45 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attribute <');
+                log += console.colors.black('Attr <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> is not a boolean');
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a log error message when an attribute is not a string
+         * @param {string} target    > Specify the name of the element [required]
+         * @param {string} attribute > Specify the name of the attribute [required]
+         */
+        function errorAttributeIsNotString(target, attribute) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(target) || Methods.isNullOrEmpty(attribute)) {
+                    return;
+                }
+                var log = methods.getBase(target);
+                log += console.colors.black('Attr <');
+                log += console.colors.purple(attribute);
+                log += console.colors.black('> is not a string');
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a log error message when an attribute is not a number
+         * @param {string} target    > Specify the name of the element [required]
+         * @param {string} attribute > Specify the name of the attribute [required]
+         */
+        function errorAttributeIsNotNumber(target, attribute) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(target) || Methods.isNullOrEmpty(attribute)) {
+                    return;
+                }
+                var log = methods.getBase(target);
+                log += console.colors.black('Attr <');
+                log += console.colors.purple(attribute);
+                log += console.colors.black('> is not a number');
                 console.style(log);
             }
         }
@@ -201,9 +241,9 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attribute <');
+                log += console.colors.black('Attr <');
                 log += console.colors.purple(attribute);
-                log += console.colors.black('> is null or empty');
+                log += console.colors.black('> is null');
                 console.style(log);
             }
         }
@@ -577,6 +617,21 @@
             }
         }
 
+        function infoSetDefaultAttrValue(service, attr, value) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(service) || Methods.isNullOrEmpty(attr) || Methods.isNullOrEmpty(value)) {
+                    return;
+                }
+                var log = methods.getBase(service);
+                log += console.colors.black('Set default value <');
+                log += console.colors.purple(value);
+                log += console.colors.black('> for attr <');
+                log += console.colors.purple(attr);
+                log += console.colors.black('>');
+                console.style(log);
+            }
+        }
+
         /**
          * Display a log info message for googleAnalyticsRequest service
          * @param {string} fnName  > Specify the name of the function executed [required]
@@ -657,7 +712,7 @@
                     return;
                 }
                 var log = methods.getBase(target);
-                log += console.colors.black('Attribute <');
+                log += console.colors.black('Attr <');
                 log += console.colors.purple(attribute);
                 log += console.colors.black('> value is incorrect\nCallback of the default value <');
                 log += console.colors.purple(defaultValue);
@@ -678,6 +733,27 @@
                 }
                 var log = methods.getBase(title);
                 log += console.colors.black(text);
+                console.style(log);
+            }
+        }
+
+        /**
+         * Display a log warning message when a value have a wrong type in a directive
+         * @param {string} directive > Specify the name of the directive [required]
+         * @param {string} attr  > Specify the attr name [required]
+         * @param {string} type  > Specify the type of the attr (the required one) [required]
+         */
+        function warningWrongType(directive, attr, type) {
+            if (CONFIG.logs.enabled) {
+                if (Methods.isNullOrEmpty(directive) || Methods.isNullOrEmpty(attr) || Methods.isNullOrEmpty(type)) {
+                    return;
+                }
+                var log = methods.getBase(directive);
+                log += console.colors.black('Attr <');
+                log += console.colors.purple(attr);
+                log += console.colors.black('> value is wrong. It should be <');
+                log += console.colors.purple(type);
+                log += console.colors.black('>');
                 console.style(log);
             }
         }

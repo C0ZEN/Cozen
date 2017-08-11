@@ -14,9 +14,9 @@
     "disallowSpaceBeforeSemicolon": true,
     "disallowSpacesInCallExpression": true,
     "disallowTrailingComma": true,
-    "disallowTrailingWhitespace": true,
-    "disallowUnusedParams": true,
-    "disallowUnusedVariables": true,
+    //"disallowTrailingWhitespace": true,
+    //"disallowUnusedParams": true,
+    //"disallowUnusedVariables": true,
     "disallowYodaConditions": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
     "requireCapitalizedComments": true,
@@ -29,7 +29,7 @@
     "requireSpaceAfterLineComment": true,
     "requireSpaceBeforeBinaryOperators": true,
     "requireSpaceBeforeBlockStatements": true,
-    "requireSpaceBeforeKeywords": true,
+    // "requireSpaceBeforeKeywords": true,
     "requireSpaceBeforeObjectValues": true,
     "requireSpaceBetweenArguments": true,
     "requireSpacesInForStatement": true,
@@ -41,9 +41,9 @@
         "beforeAlternate": true
     },
     "requireBlocksOnNewline": true,
-    "requireCurlyBraces": true,
+    // "requireCurlyBraces": true,
     "requireDollarBeforejQueryAssignment": true,
-    "requireEarlyReturn": true,
+    //"requireEarlyReturn": true,
     "requireImportAlphabetized": true,
     "requireKeywordsOnNewLine": [
         "else",
@@ -61,20 +61,7 @@
     "requireObjectKeysOnNewLine": true,
     "requirePaddingNewLinesAfterUseStrict": true,
     "requirePaddingNewLinesBeforeLineComments": true,
-    "validateOrderInObjectKeys": "asc",
+    // "validateOrderInObjectKeys": "asc",
     "validateQuoteMarks": "'",
-    "maxErrors": 10000,
-    "jsDoc": {
-        "checkAnnotations": true,
-        "checkParamExistence": true,
-        "checkParamNames": true,
-        "requireParamTypes": true,
-        "checkRedundantParams": true,
-        "checkReturnTypes": true,
-        "checkRedundantReturns": true,
-        "requireReturnTypes": true,
-        "enforceExistence": true,
-        "requireParamDescription": true,
-        "requireReturnDescription": true
-    }
+    "maxErrors": 10000
 }
