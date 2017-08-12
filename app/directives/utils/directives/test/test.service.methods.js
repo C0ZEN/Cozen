@@ -6,71 +6,86 @@
         .factory('cozenTestServiceMethods', cozenTestServiceMethods);
 
     cozenTestServiceMethods.$inject = [
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        'CONFIG'
     ];
 
-    function cozenTestServiceMethods(cozenEnhancedLogs) {
+    function cozenTestServiceMethods(cozenEnhancedLogs, CONFIG) {
         return {
-            isUndefined  : isUndefined,
-            isString     : isString,
-            isBoolean    : isBoolean,
-            isNumber     : isNumber,
-            isAttrString : isAttrString,
-            isAttrBoolean: isAttrBoolean,
-            isAttrNumber : isAttrNumber
+            isUndefined  : $isUndefined,
+            isString     : $isString,
+            isBoolean    : $isBoolean,
+            isNumber     : $isNumber,
+            isAttrString : $isAttrString,
+            isAttrBoolean: $isAttrBoolean,
+            isAttrNumber : $isAttrNumber
         };
 
-        function isUndefined($config, $property) {
+        function $isUndefined($config, $property) {
             if (angular.isUndefined($config.attrs[$property])) {
-                cozenEnhancedLogs.error.attributeIsEmpty($config.directive, $property);
+                if (CONFIG.logs.test) {
+                    cozenEnhancedLogs.error.attributeIsEmpty($config.directive, $property);
+                }
                 return true;
             }
             return false;
         }
 
-        function isString($config, $property) {
+        function $isString($config, $property) {
             if (!Methods.isString($config.scope[$property]) || Methods.isNullOrEmpty($config.scope[$property])) {
-                cozenEnhancedLogs.error.attributeIsNotString($config.directive, $property);
+                if (CONFIG.logs.test) {
+                    cozenEnhancedLogs.error.attributeIsNotString($config.directive, $property);
+                }
                 return false;
             }
             return true;
         }
 
-        function isBoolean($config, $property) {
+        function $isBoolean($config, $property) {
             if (!Methods.isBoolean(($config.scope[$property])) || Methods.isNullOrEmpty($config.scope[$property])) {
-                cozenEnhancedLogs.error.attributeIsNotBoolean($config.directive, $property);
+                if (CONFIG.logs.test) {
+                    cozenEnhancedLogs.error.attributeIsNotBoolean($config.directive, $property);
+                }
                 return false;
             }
             return true;
         }
 
-        function isNumber($config, $property) {
+        function $isNumber($config, $property) {
             if (!angular.isNumber($config.scope[$property]) || Methods.isNullOrEmpty($config.scope[$property])) {
-                cozenEnhancedLogs.error.attributeIsNotNumber($config.directive, $property);
+                if (CONFIG.logs.test) {
+                    cozenEnhancedLogs.error.attributeIsNotNumber($config.directive, $property);
+                }
                 return false;
             }
             return true;
         }
 
-        function isAttrString($config, $property) {
+        function $isAttrString($config, $property) {
             if (!Methods.isString($config.attrs[$property]) || Methods.isNullOrEmpty($config.attrs[$property])) {
-                cozenEnhancedLogs.error.attributeIsNotString($config.directive, $property);
+                if (CONFIG.logs.test) {
+                    cozenEnhancedLogs.error.attributeIsNotString($config.directive, $property);
+                }
                 return false;
             }
             return true;
         }
 
-        function isAttrBoolean($config, $property) {
+        function $isAttrBoolean($config, $property) {
             if (!Methods.isBoolean(($config.attrs[$property])) || Methods.isNullOrEmpty($config.attrs[$property])) {
-                cozenEnhancedLogs.error.attributeIsNotBoolean($config.directive, $property);
+                if (CONFIG.logs.test) {
+                    cozenEnhancedLogs.error.attributeIsNotBoolean($config.directive, $property);
+                }
                 return false;
             }
             return true;
         }
 
-        function isAttrNumber($config, $property) {
+        function $isAttrNumber($config, $property) {
             if (!angular.isNumber($config.attrs[$property]) || Methods.isNullOrEmpty($config.attrs[$property])) {
-                cozenEnhancedLogs.error.attributeIsNotNumber($config.directive, $property);
+                if (CONFIG.logs.test) {
+                    cozenEnhancedLogs.error.attributeIsNotNumber($config.directive, $property);
+                }
                 return false;
             }
             return true;

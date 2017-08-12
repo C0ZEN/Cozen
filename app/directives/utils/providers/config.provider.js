@@ -51,6 +51,16 @@
             return this;
         };
 
+        this.logsTest = function (value) {
+            if (typeof value != 'boolean') {
+                Methods.dataMustBeBoolean('logsTest');
+            }
+            else {
+                CONFIG.logs.test = value;
+            }
+            return this;
+        };
+
         this.broadcastLog = function (value) {
             if (typeof value != 'boolean') {
                 Methods.dataMustBeBoolean('broadcastLog');

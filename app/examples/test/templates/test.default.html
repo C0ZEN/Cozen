@@ -1,24 +1,100 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            Look at the console to see the test
 
-            <cozen-test-error cozen-test-error-boolean=""
-                              >
-            </cozen-test-error>
-            <cozen-test-error cozen-test-error-boolean=""
+        <!-- No params -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'No name'"
+                       cozen-btn-on-click="vm.one = !vm.one">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.one"></cozen-test-error>
+        </div>
+
+        <!-- Name but not set -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name but empty'"
+                       cozen-btn-on-click="vm.two = !vm.two">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.two"
                               cozen-test-error-name="">
             </cozen-test-error>
-            <cozen-test-error cozen-test-error-name="First">
+        </div>
+
+        <!-- Name set -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name 3'"
+                       cozen-btn-on-click="vm.three = !vm.three">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.three"
+                              cozen-test-error-name="3">
             </cozen-test-error>
-            <cozen-test-error cozen-test-error-boolean=""
-                              cozen-test-error-name="Second">
-            </cozen-test-error>
-            <cozen-test-error cozen-test-error-boolean="vm.True"
-                              cozen-test-error-name="Third">
-            </cozen-test-error>
-            <cozen-test-error cozen-test-error-boolean="true"
+        </div>
+
+        <!-- Name set, boolean but not set -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name 4, boolean but empty'"
+                       cozen-btn-on-click="vm.four = !vm.four">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.four"
+                              cozen-test-error-boolean=""
                               cozen-test-error-name="4">
+            </cozen-test-error>
+        </div>
+
+        <!-- Name set, boolean set -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name 5, boolean variable'"
+                       cozen-btn-on-click="vm.five = !vm.five">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.five"
+                              cozen-test-error-boolean="vm.True"
+                              cozen-test-error-name="5">
+            </cozen-test-error>
+        </div>
+
+        <!-- Name set, boolean set -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name 6, boolean string'"
+                       cozen-btn-on-click="vm.six = !vm.six">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.six"
+                              cozen-test-error-boolean="true"
+                              cozen-test-error-name="6">
+            </cozen-test-error>
+        </div>
+
+        <!-- Name set, boolean set, type empty -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name 7, boolean, type but empty'"
+                       cozen-btn-on-click="vm.seven = !vm.seven">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.seven"
+                              cozen-test-error-boolean="true"
+                              cozen-test-error-name="7"
+                              cozen-test-error-type="">
+            </cozen-test-error>
+        </div>
+
+        <!-- Name set, boolean set, type other -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name 8, boolean, type other'"
+                       cozen-btn-on-click="vm.height = !vm.height">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.height"
+                              cozen-test-error-boolean="true"
+                              cozen-test-error-name="8"
+                              cozen-test-error-type="'other'">
+            </cozen-test-error>
+        </div>
+
+        <!-- Name set, boolean set, type wrong (not in the list) -->
+        <div class="col-xs-12">
+            <cozen-btn cozen-btn-label="'Name 9, boolean, type wrong'"
+                       cozen-btn-on-click="vm.nine = !vm.nine">
+            </cozen-btn>
+            <cozen-test-error ng-if="vm.nine"
+                              cozen-test-error-boolean="true"
+                              cozen-test-error-name="9"
+                              cozen-test-error-type="vm.wrong">
             </cozen-test-error>
         </div>
     </div>

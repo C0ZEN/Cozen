@@ -17,7 +17,8 @@
     "debug": false,
     "logs": {
         "enabled": false,
-        "format": "HH:mm:ss.SSS"
+        "format": "HH:mm:ss.SSS",
+        "test": true
     },
     "api": {
         "url": "http://cozen.com/"

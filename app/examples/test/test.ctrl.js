@@ -10,7 +10,8 @@
     function TestCtrl() {
         var vm = this;
 
-        vm.True = true;
+        vm.True  = true;
+        vm.wrong = 'wrong';
 
         console.log('--- START TEST LOGS ---');
     }

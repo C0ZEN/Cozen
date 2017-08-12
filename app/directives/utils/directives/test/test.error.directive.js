@@ -8,10 +8,15 @@
  * @description
  *
  * [Scope]
- * @param {boolean} cozenTestErrorBoolean = true > Simulate the check of a boolean
+ * @param {boolean} cozenTestErrorBoolean = true    > Simulate the check of a boolean
+ * @param {string}  cozenTestErrorType    = default > Simulate the check of a string with specific values (default, other) [shortcuts]
  *
  * [Attrs]
  * @param {string} cozenTestErrorName > Name of the directive for logs [required]
+ *
+ * [Shortcuts]
+ * @param {null} cozenTestErrorTypeDefault
+ * @param {null} cozenTestErrorTypeOther
  *
  */
 (function (angular) {
@@ -23,10 +28,11 @@
 
     cozenTestError.$inject = [
         'cozenTestService',
-        'cozenEnhancedLogs'
+        'cozenEnhancedLogs',
+        'CONFIG'
     ];
 
-    function cozenTestError(cozenTestService, cozenEnhancedLogs) {
+    function cozenTestError(cozenTestService, cozenEnhancedLogs, CONFIG) {
         return {
             link      : link,
             restrict  : 'E',
@@ -34,18 +40,26 @@
             transclude: false,
             scope     : {
                 cozenTestErrorBoolean: '=?',
+                cozenTestErrorType   : '=?',
                 cozenTestErrorName   : '@'
             }
         };
 
         function link(scope, element, attrs) {
+
+            // Internal methods
             var methods = {
                 init   : init,
                 destroy: destroy
             };
 
+            // Internal data
             var data   = {
-                directive: 'cozenTestError'
+                directive: 'cozenTestError',
+                types    : [
+                    'default',
+                    'other'
+                ]
             };
             var config = cozenTestService.getConfig(data.directive, scope, attrs);
 
@@ -63,8 +77,9 @@
                     return;
                 }
 
-                // Set default value for cozenTestErrorBoolean
+                // Set default values
                 cozenTestService.setDefault(config, 'cozenTestErrorBoolean', true);
+                cozenTestService.setDefault(config, 'cozenTestErrorType', 'default', data.types);
 
                 // Init stuff
                 element.on('$destroy', methods.destroy);

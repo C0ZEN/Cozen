@@ -12,7 +12,7 @@
 
     function cozenTestErrorService(cozenEnhancedLogs, cozenTestServiceMethods) {
         return {
-            isAttrString: isAttrString
+            isAttrString: $isAttrString
         };
 
         /**
@@ -23,7 +23,7 @@
          * @param $property
          * @return {boolean}
          */
-        function isAttrString($config, $property) {
+        function $isAttrString($config, $property) {
             if (cozenTestServiceMethods.isUndefined($config, $property)) {
                 return false;
             }
